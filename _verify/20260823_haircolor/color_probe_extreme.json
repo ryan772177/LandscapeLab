@@ -1,0 +1,12 @@
+{
+  "_note": "RESPONSIVENESS PROBE, not a candidate look. PaintColor is the one obviously-named colour parameter not yet touched and it sits at [1,1,1]. Setting it to a value no hair could be (pure saturated blue at 2x) answers whether the parameter reaches the render AT ALL. If the frame does not move, PaintColor is inert on this master and no amount of dialling it in would have worked -- that is the precondition this project requires before trusting any new knob: an input that SHOULD move the number must be shown to move it.",
+  "targets": [
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Cards",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Helmet"
+  ],
+  "scalars": {},
+  "vectors": {
+    "PaintColor": [0.0, 0.15, 2.0]
+  }
+}

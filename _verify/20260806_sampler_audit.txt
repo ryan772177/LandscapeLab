@@ -1,0 +1,107 @@
+SAMPLER AUDIT - re-run 2026-08-06 on the CURRENT material bytes
+Instrument: scripts/audit_material_samplers.py -- the scratch node asks the ENGINE (AutoSetSampleType), so this is the engine's own answer, not a transcription of its switch statement.
+Cleanup post-condition asserted per material: expression count before == after, 0 scratch nodes left.
+
+=== /Game/Materials/M_AutoLandscape ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+graph expressions: before 262, after 262; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Ground037_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Ground037_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock026_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock026_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock051_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock051_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Snow006_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_WildGrass_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_WildGrass_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Alpine_Macro                     SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Variants                  SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Weights                   SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+
+31 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.
+EXIT=0
+
+=== /Game/Meshes/Materials/M_fir_bark ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Meshes/Materials/M_fir_bark
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+graph expressions: before 9, after 9; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_fir_tree_01_bark_diff_4k         SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_fir_tree_01_bark_nor_gl_4k       SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_fir_tree_01_bark_rough_4k        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+
+3 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.
+EXIT=0
+
+=== /Game/Meshes/Materials/M_fir_twig ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Meshes/Materials/M_fir_twig
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+graph expressions: before 10, after 10; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_fir_tree_01_twig_alpha_4k        SAMPLERTYPE_ALPHA          SAMPLERTYPE_ALPHA          ok
+T_fir_tree_01_twig_diff_4k         SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_fir_tree_01_twig_nor_gl_4k       SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_fir_tree_01_twig_rough_4k        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+
+4 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.
+EXIT=0
+
+=== /Game/Meshes/Materials/M_grass_medium_01 ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Meshes/Materials/M_grass_medium_01
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+graph expressions: before 18, after 18; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_grass_medium_01_alpha_4k         SAMPLERTYPE_ALPHA          SAMPLERTYPE_ALPHA          ok
+T_grass_medium_01_alpha_4k         SAMPLERTYPE_ALPHA          SAMPLERTYPE_ALPHA          ok
+T_grass_medium_01_diff_4k          SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_grass_medium_01_nor_gl_4k        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_grass_medium_01_rough_4k         SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+
+5 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.
+EXIT=0
+

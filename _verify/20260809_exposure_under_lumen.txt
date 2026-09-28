@@ -1,0 +1,85 @@
+20260809 — EXPOSURE RESOLVED UNDER LUMEN
+
+RESULT: -1.897 EV for the Lumen render condition, against R13's solved
+-1.786 EV for the Lumen-off editing condition. NOT applied to the world;
+see WHERE IT BELONGS.
+
+WHY THIS WAS NOT A RE-RUN OF THE SOLVER
+
+`atmosphere_solve.py` computes
+
+    lum  = lambert_luminance(albedo, ground_illuminance, incidence)
+    bias = log2(target * white_point / lum)
+
+which is a DIRECT-LIGHT Lambertian model with no indirect term. Running
+it again with Lumen enabled returns the identical number — the solver
+cannot see Lumen. So the solver stays physical and the missing term is
+supplied as a MEASURED coefficient:
+
+    lum_with_gi = lum * gi_gain
+    bias_lumen  = bias_direct - log2(gi_gain)
+
+THE MEASUREMENT — `scripts/measure_gi_gain.py`, 19 paired frames
+
+Both sets captured with CLOUDS OFF via `render_condition.py`, which reads
+every cvar back. The only variable is Lumen.
+
+    on  tag  lumen_on_clouds_off    (065559Z, commit f3e1c018)
+    off tag  lumen_off_clouds_off   (control)
+
+    SUNLIT GI GAIN, 13 cameras with >5% sunlit-responding pixels
+      median 1.0798   p10 1.0410   p90 1.0956   spread 0.0719
+
+    correction  -log2(1.0798) = -0.111 EV
+    -1.786 EV -> -1.897 EV
+
+SUNLIT AND SHADOW ARE DIFFERENT QUANTITIES, AND THE FIRST VERSION MIXED
+THEM
+
+A first pass took one median over every responding pixel and returned
+1.5753 with a spread of 7.25. The spread was the finding: in shadow the
+direct term is ~0, so bounce is ALL the light and the ratio runs 1.24 to
+8.30, while sunlit ground moves only 1.03 to 1.10. Measured per camera:
+
+    cliff_face      sunlit 1.4774   shadow 8.2990   (0.0% sunlit pixels)
+    sweep_0150      sunlit —        shadow 5.1459
+    trunk_base      sunlit 1.0322   shadow 1.5383
+    lod_near        sunlit 1.0612   shadow 1.4107
+
+The exposure solve targets SUNLIT TERRAIN — R13's 0.3201 is a sunlit
+figure and `lambert_luminance` computes direct sunlit luminance — so the
+SUNLIT gain is the one that enters the solve. The shadow column is not an
+error bar on it; it is a different quantity.
+
+An earlier crude estimate of -2.007 EV, taken from whole-frame means
+across a cloud-confounded pair, was 0.11 stops too aggressive for exactly
+this reason and is discarded.
+
+WHAT LUMEN ACTUALLY DOES TO THIS WORLD, which the numbers say plainly:
+it barely touches sunlit ground (+8%) and transforms shadow (+24% to
++730%). Correcting exposure by -0.111 EV therefore HOLDS the sunlit look
+where R13 put it and lets the shadows lift, which is the desirable half
+of GI rather than a side effect to be cancelled.
+
+WHERE IT BELONGS, AND WHY NOT THE WORLD
+
+`recipes/alpine.json` carries ONE `lighting.exposure.compensation_ev`.
+Setting it to -1.897 would make every Lumen-OFF capture render sunlit
+terrain at 0.2964, i.e. -7.4% against the target the entire existing
+evidence base was built on, and would shift every comparison with a
+historical frame. Adding a second field that nothing reads would be an
+INERT FIELD, which non-negotiable 21 forbids outright.
+
+R7 already splits the conditions — Lumen off for editing, on for final
+renders — so the exposure should be split the same way, and the render
+value belongs with the render configuration: clip proposal Phase 4.1,
+"MRQ configuration, as EXACT VALUES in a recipe". That recipe does not
+exist yet. -1.897 is its first known value.
+
+NOT DONE
+- No recipe edited, no lighting applied, nothing saved.
+- The world remains at -1.786, correct for the Lumen-off condition it is
+  captured in.
+- Whether Lumen LOOKS better is Ryan's judgement. What is measured: +8%
+  sunlit, large shadow lift, 0.000% blown pixels, and no GPU incident on
+  a machine that has hung once.

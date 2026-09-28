@@ -1,0 +1,45 @@
+{
+ "source": "SM_Church_Forge.fbx",
+ "out": "SM_Church_Forge_split.fbx",
+ "up_axis": "y",
+ "up_span": 0.9147,
+ "axis_spans": {
+  "x": 0.763,
+  "y": 0.9147,
+  "z": 0.39494
+ },
+ "band_fracs": {
+  "stone": [
+   0.0,
+   0.115
+  ],
+  "plaster": [
+   0.115,
+   0.683
+  ],
+  "copper": [
+   0.683,
+   1.0
+  ]
+ },
+ "band_edges_local": {
+  "stone_top": 0.10519,
+  "copper_bottom": 0.62474
+ },
+ "slots": [
+  "M_Church_Stone",
+  "M_Church_Plaster",
+  "M_Church_Copper",
+  "M_Church_Roof"
+ ],
+ "roof_normal_min": 0.55,
+ "_roof_is_not_a_height_band": "The roof is selected by FACE NORMAL inside the plaster height range, because the nave roof and the tower shaft occupy the same heights and no horizontal cut separates them. The threshold sits in the measured trough (0.25-0.60, <=1.01% area each) just below the roof mode (0.60-0.70, 25.45%). Signed, so eave soffits stay plaster.",
+ "faces_per_slot": {
+  "M_Church_Stone": 17969,
+  "M_Church_Plaster": 29124,
+  "M_Church_Copper": 4164,
+  "M_Church_Roof": 8743
+ },
+ "faces_total": 60000,
+ "_dome_caveat": "The copper edge is read off r_max decline plus the concept's 1.5/2.5 nave ratio, NOT off a radial dome inflection -- the tower is off-centre from the nave, so radius about the mesh centre mixes offset with local radius and shows no clean bulge. Defensible, not surveyed. The frame settles it."
+}

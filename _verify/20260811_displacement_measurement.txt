@@ -1,0 +1,65 @@
+20260811 â€” MATERIAL DISPLACEMENT + LANDSCAPE NANITE: the measurement
+==================================================================
+
+INTERVENTION (one change, two inseparable halves):
+  material  M_AutoLandscape  sha256 2e0f68ad24db2f63b026986cf6e48de8d63766d96beda0ca697abbc499e238e9
+            use_material_attributes True, enable_tessellation True,
+            displacement_scaling magnitude 0.16 center 0.5
+            = 0.40 m peak amplitude (scale_z 500 cm/unit)
+  landscape enable_nanite True on 257 actors, 256 with a built
+            Nanite mesh (the parent ALandscape holds no geometry
+            in a World Partition world)
+
+  These cannot be separated: Nanite without the displacement
+  material renders the same 4 m geometry, and displacement without
+  Nanite tessellation is never evaluated. One intervention.
+
+RENDER STATE HELD CONSTANT: Lumen on, r.ScreenPercentage 100 â€”
+read back as ALREADY at those values before being set, in the SAME
+editor process (PID 16156) that produced the 5080sp100 baseline.
+
+==================================================================
+
+NOISE FLOOR from a same-settings pair (triplanar_no_clouds@20260808T044840Z vs triplanar_no_clouds@20260808T054655Z, 18 stations)
+  worst |delta| between two runs that should be identical: 2.08%
+  Anything at or under this is NOT SEPARATED from run-to-run variation.
+
+EDGE ENERGY  5080sp100 -> 5080disp   (whole frame, 19 stations)
+
+  station                before      after    change
+  lod_near             0.006549   0.007360   +12.38%  
+  lod_far              0.008291   0.009093    +9.67%  
+  trunk_base           0.026716   0.029007    +8.57%  
+  diag_oblique         0.018592   0.020123    +8.23%  
+  verify_aerial        0.018950   0.020292    +7.08%  
+  sweep_2000           0.038441   0.040516    +5.40%  
+  sweep_0700           0.013186   0.013880    +5.26%  
+  ridge_wide           0.011703   0.011946    +2.08%  (in noise)
+  snowline_detail      0.009315   0.009490    +1.88%  (in noise)
+  rock_grounding       0.032336   0.032473    +0.42%  (in noise)
+  diag_topdown         0.017914   0.017966    +0.29%  (in noise)
+  player_eye           0.025101   0.024707    -1.57%  (in noise)
+  sweep_0350           0.021836   0.021012    -3.77%  
+  sweep_1200           0.020414   0.019578    -4.10%  
+  cliff_face           0.011069   0.010498    -5.16%  
+  forest_floor         0.025876   0.022434   -13.30%  
+  sweep_0150           0.017621   0.015094   -14.34%  
+  verify_ground        0.035970   0.030491   -15.23%  
+  sweep_0060           0.017003   0.013073   -23.11%  
+
+  mean change    -1.02%
+  median change  +0.42%
+  gained on      11 of 19 stations
+  above the 2.08% noise floor: 14 of 19
+
+Source artefact: the PNG pixels. This shares its source with
+compare_images.py, so the two cannot corroborate each other —
+they ask different questions of one artefact. Edge energy says
+whether high-frequency structure appeared, NOT whether the
+frame looks better.
+
+SELFTEST on alpine__cliff_face__20260804T052929Z__6798860b-dirty.png
+  baseline edge energy : 0.003510
+  blurred              : 0.002946  (-16.1%)
+  sharpened            : 0.004595  (+30.9%)
+  VERDICT: the metric loses on blur and gains on sharpen — it has a sign

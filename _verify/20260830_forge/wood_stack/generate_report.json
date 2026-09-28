@@ -1,0 +1,68 @@
+{
+ "candidate": "TRELLIS multi-view",
+ "asset": "wood_stack",
+ "name": "SM_WoodStack_Forge",
+ "inputs": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az000.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az035.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az090.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az180.png"
+ ],
+ "n_views": 4,
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260830,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "error": null,
+ "vram_free_before_MiB": 15045,
+ "vram_total_MiB": 16303,
+ "load_s": 21.3,
+ "input_sizes": [
+  [
+   "wood_stack_az000.png",
+   1024,
+   1024
+  ],
+  [
+   "wood_stack_az035.png",
+   1024,
+   1024
+  ],
+  [
+   "wood_stack_az090.png",
+   1024,
+   1024
+  ],
+  [
+   "wood_stack_az180.png",
+   1024,
+   1024
+  ]
+ ],
+ "run_s": 55.7,
+ "vertices": 1400074,
+ "faces": 2801712,
+ "extent": [
+  0.9939,
+  0.6132,
+  0.7531
+ ],
+ "thin_over_long": 0.617,
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/SM_WoodStack_Forge_raw.obj",
+ "out_obj_bytes": 108976605,
+ "boundary_edges": 0,
+ "nonmanifold_edges": 0,
+ "watertight": true,
+ "euler_characteristic": -782,
+ "genus": 392,
+ "vram_peak_MiB": 14870,
+ "wall_s": 87.5
+}

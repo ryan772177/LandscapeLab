@@ -1,0 +1,50 @@
+20260808 — GROUND CLUTTER GRASS TYPE: material rebuild, verified on the resulting bytes
+
+WHAT WAS BUILT
+  scripts/make_landscape_material.py --assign
+  graph clear  : 130 survived delete_all_material_expressions, 0 after the explicit total clear
+  graph assert : EXACT match to spec
+  compiled clean
+  grass output wired to 2 layer mask(s)
+
+  GT_alpine_Meadow         4 varieties, densities sum 120.0 vs species total 120.0
+  GT_alpine_GroundClutter  2 varieties, densities sum   1.5 vs species total   1.5
+      SM_Boulder05a       0.900 /10m2
+      SM_River_Rock_01    0.600 /10m2
+
+THE BYTES THESE CLAIMS ARE ABOUT
+  M_AutoLandscape.uasset          sha256 84394299fb76c72b882ce999b793c8b1aa7b9ad11dffba9cd56b3e19bdc51959
+  GT_alpine_GroundClutter.uasset  sha256 612bd8ac382f75852f3af898dac92c27d9376c576ed6b971aa02cf58049bcbde
+  material SHA BEFORE this rebuild 3d38821ee4091c1b9bdb7c67a77e2403cc25941215c7a72d121bb0b5f30831ca
+  restore tag                      pre-grass-clutter-material-rebuild-20260808
+
+INDEPENDENT VERIFICATION (not the builder's own word — B-BUILD-UNKNOWN)
+  audit_material_connectivity: 262 expressions, 262 reachable, 0 ORPHANED. VERDICT CONNECTED.
+  Expression count is UNCHANGED at 262 and that is CORRECT, not suspicious:
+  a LandscapeGrassOutput holds a LIST of GrassInputs, so a second grass type
+  extends that list rather than adding a node.
+  Triplanar still wired: T_Rock026_C and T_Rock051_C at 4 connected samples,
+  Snow/Ground/WildGrass at 2 — exactly what material.triplanar.layers=[Rock] predicts.
+
+WHAT IS NOT PROVEN HERE
+  Reachability is not correctness. No frame has been rendered, so whether the
+  clutter READS at 1.7 m eye height, and whether 1.5/10m2 is the right density,
+  are both UNJUDGED. grass.DumpGrassData -bygrasstype is the direct instrument
+  for non-zero weights (R11) and has NOT been run.
+
+PENDING AT THE TIME THIS WAS WRITTEN
+  audit_material_samplers has NOT returned. It is running against these same
+  bytes and its result is NOT included above. Treat the sampler question as
+  UNMEASURED on this build until a dated artefact says otherwise — the
+  previous build's 31/31 was against sha 3d38821e, which these bytes are not.
+
+RESOLVED — the pending audit returned AFTER the above was written
+  audit_material_samplers on these same bytes: 31 sampler(s) audited,
+  0 mismatch(es). It reads the BUILT graph and asks the ENGINE what each
+  asset needs, sharing no code with the builder's own check.
+  The sampler question is now MEASURED on sha 84394299, not inherited
+  from the previous build's 31/31 against sha 3d38821e.
+
+  STILL UNJUDGED, unchanged: no frame has been rendered. Whether the
+  clutter reads at 1.7 m eye height and whether 1.5/10m2 is right are
+  both open, and grass.DumpGrassData -bygrasstype has not been run.

@@ -1,0 +1,20 @@
+{
+ "ok": false,
+ "error": null,
+ "memory_before_load": {
+  "UNREADABLE": "type object 'SystemLibrary' has no attribute 'get_platform_memory_stats'"
+ },
+ "chunk_actors_before_load": 64,
+ "recast_actors": 1,
+ "agent": {
+  "agent_max_slope": 44.76508331298828,
+  "tile_size_uu": 1600.0
+ },
+ "chunk_actors_all_regions_loaded": 64,
+ "memory_all_regions_loaded": {
+  "UNREADABLE": "type object 'SystemLibrary' has no attribute 'get_platform_memory_stats'"
+ },
+ "chunk_packages_named": 64,
+ "chunk_packages_unreadable": 0,
+ "_caveat": "EDITOR measurement with EVERY region forced resident -- the worst case this process can produce, and an UPPER BOUND rather than a shipping figure. A cooked build streams differently and would need its own reading. The delta also includes landscape proxies, foliage and everything else the regions carry, so it is not navmesh alone."
+}

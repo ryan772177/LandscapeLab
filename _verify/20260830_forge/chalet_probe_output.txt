@@ -1,0 +1,44 @@
+﻿  - 6B7A5CA74866B85576ADD591E1DF79C4 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "roof_package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+  "roof_name": "SM_House02_Roof",
+  "roof_tris_lod0": 8902,
+  "roof_material_slots": 1,
+  "level": "/Game/Scratch/Probe_ChaletSilhouette",
+  "roof_alone": {
+    "pivot_z": 0.0,
+    "base_z_cm": -201.49,
+    "top_z_cm": 136.53,
+    "height_cm": 338.02,
+    "footprint_cm": [
+      899.3,
+      916.6
+    ]
+  },
+  "pivot_drop_cm": 201.49,
+  "as_built": {
+    "roof_placed_at_z": 400.0,
+    "roof_base_z_cm": 198.51,
+    "wall_top_cm": 400.0,
+    "roof_sunk_into_walls_cm": 201.49,
+    "silhouette_cm": 536.5
+  },
+  "corrected": {
+    "roof_placed_at_z": 601.49,
+    "roof_base_z_cm": 400.0,
+    "wall_top_cm": 400.0,
+    "base_meets_wall_top": true,
+    "silhouette_cm": 738.0
+  },
+  "ruling_1": {
+    "church_top_cm": 1341.3,
+    "ruled_ratio": 2.5,
+    "ratio_vs_as_built": 2.5,
+    "ratio_vs_corrected": 1.817,
+    "church_top_if_corrected_cm": 1845.0,
+    "church_shortfall_cm": 503.7
+  }
+}
+(25.7 s)

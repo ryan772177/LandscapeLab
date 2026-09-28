@@ -1,0 +1,72 @@
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+READ-ONLY: mutates no asset, saves nothing.
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+expressions in graph : 262
+outputs driven       : 3 (MP_BASE_COLOR, MP_NORMAL, MP_ROUGHNESS)
+custom outputs seeded: 1 (MaterialExpressionLandscapeGrassOutput)
+reachable from output: 221
+accessor calls / errors: 221 / 0
+
+TextureSample nodes reaching an output:
+  T_Alpine_Macro               connected 1   ORPHANED 0
+  T_Alpine_Variants            connected 1   ORPHANED 0
+  T_Alpine_Weights             connected 1   ORPHANED 0
+  T_Ground037_C                connected 2   ORPHANED 0
+  T_Ground037_D                connected 1   ORPHANED 0
+  T_Ground037_N                connected 1   ORPHANED 0
+  T_Ground037_R                connected 1   ORPHANED 0
+  T_Rock026_C                  connected 2   ORPHANED 2
+  T_Rock026_D                  connected 1   ORPHANED 0
+  T_Rock026_N                  connected 1   ORPHANED 0
+  T_Rock026_R                  connected 1   ORPHANED 0
+  T_Rock051_C                  connected 2   ORPHANED 2
+  T_Rock051_D                  connected 1   ORPHANED 0
+  T_Rock051_N                  connected 1   ORPHANED 0
+  T_Rock051_R                  connected 1   ORPHANED 0
+  T_Snow006_C                  connected 2   ORPHANED 0
+  T_Snow006_N                  connected 1   ORPHANED 0
+  T_Snow006_R                  connected 1   ORPHANED 0
+  T_WildGrass_C                connected 2   ORPHANED 0
+  T_WildGrass_D                connected 1   ORPHANED 0
+  T_WildGrass_N                connected 1   ORPHANED 0
+  T_WildGrass_R                connected 1   ORPHANED 0
+
+VERDICT: 41 ORPHANED EXPRESSION(S) — present in the graph, reachable from no output.
+  MaterialExpressionMultiply                   10
+  MaterialExpressionDivide                     7
+  MaterialExpressionAdd                        6
+  MaterialExpressionComponentMask              6
+  MaterialExpressionConstant                   6
+  MaterialExpressionTextureSample              4
+  MaterialExpressionSaturate                   1
+  MaterialExpressionSubtract                   1
+
+  first 25, by key:
+    MaterialExpressionAdd@-1100,-1000              
+    MaterialExpressionAdd@-950,-900                
+    MaterialExpressionAdd@520,1050                 
+    MaterialExpressionAdd@520,490                  
+    MaterialExpressionAdd@660,1240                 
+    MaterialExpressionAdd@660,680                  
+    MaterialExpressionComponentMask@-1700,-1100    
+    MaterialExpressionComponentMask@-1700,-900     
+    MaterialExpressionComponentMask@-1700,700      
+    MaterialExpressionComponentMask@-1700,900      
+    MaterialExpressionComponentMask@-1950,-400     
+    MaterialExpressionComponentMask@-1950,200      
+    MaterialExpressionConstant@-140,1010           
+    MaterialExpressionConstant@-140,1270           
+    MaterialExpressionConstant@-140,450            
+    MaterialExpressionConstant@-140,710            
+    MaterialExpressionConstant@-1700,-560          
+    MaterialExpressionConstant@-1900,-630          
+    MaterialExpressionDivide@-1500,-700            
+    MaterialExpressionDivide@60,1180               
+    MaterialExpressionDivide@60,360                
+    MaterialExpressionDivide@60,620                
+    MaterialExpressionDivide@60,920                
+    MaterialExpressionDivide@800,1240              
+    MaterialExpressionDivide@800,680               
+    ... and 16 more

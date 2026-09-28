@@ -1,0 +1,20 @@
+{
+ "concept_id": "alpine_village_01",
+ "source_sha256": "bf7cae764adcdb50d753ef42367612cf7c8571bfb604a6e5c8a7f5f2f9c2600e",
+ "solve": {
+  "fov_horizontal_deg": 60.0,
+  "fov_vertical_deg": 35.983,
+  "fov_provenance": "chosen -- the concept says 'moderate', not a number",
+  "height_m": 1.8,
+  "horizon_frac": 0.45,
+  "pitch_deg": 1.799,
+  "_pitch_derivation": "(0.5 - horizon_frac) * fov_vertical. The concept records pitch_hint 'level' AND horizon_frac 0.45; a level camera puts the horizon at 0.5, so the two are reconciled by solving rather than by picking one.",
+  "yaw_convention": "world yaw is NOT solved here -- nothing in the image fixes a compass direction, and the concept already REFUSED to give the sun an azimuth for the same reason. Feature bearings stay relative to camera forward, which is what they were recorded as."
+ },
+ "feature_bearings_deg": {
+  "peak": -6.0,
+  "basin": 0.0,
+  "slope": 22.0,
+  "stream": 30.0
+ }
+}

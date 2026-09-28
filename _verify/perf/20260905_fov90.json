@@ -1,0 +1,196 @@
+{
+  "_what": "per-zone frame cost along the fixed spline in recipes/perf_budgets.json",
+  "_measurement_class": "EDITOR VIEWPORT, not PIE, not cooked. FrameTime is clamped by UEditorEngine::GetMaxTickRate and is NOT a cost signal. GPUTime / RenderThreadTime / GameThreadTime are the valid instruments.",
+  "_limit": "STEADY-STATE at fixed stations. Does NOT measure streaming transients, World Partition pop-in, or first-traversal shader hitches.",
+  "label": "fov90",
+  "frames_per_station": 300,
+  "level_path": "/Game/Alpine8K",
+  "expect_components": 1024,
+  "recorded": "2026-09-05T00:44:37",
+  "stations": [
+    {
+      "zone": "plaza",
+      "ground_cm": 18671.815395355225,
+      "eye_z_cm": 18846.815395355225,
+      "camera": "-210800.0,278800.0,18846.8,-2.0,-12.8,0.0",
+      "fov_horizontal_deg": 90.0,
+      "viewport_size": null,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 300,
+          "mean": 16.7,
+          "p50": 16.67,
+          "p90": 16.68,
+          "max": 27.29
+        },
+        "GameThreadTime": {
+          "n": 300,
+          "mean": 13.37,
+          "p50": 13.38,
+          "p90": 14.0,
+          "max": 23.88
+        },
+        "RenderThreadTime": {
+          "n": 300,
+          "mean": 0.17,
+          "p50": 0.0,
+          "p90": 0.0,
+          "max": 7.75
+        },
+        "GPUTime": {
+          "n": 300,
+          "mean": 7.7,
+          "p50": 7.69,
+          "p90": 7.84,
+          "max": 8.45
+        },
+        "RHIThreadTime": {
+          "n": 300,
+          "mean": 0.11,
+          "p50": 0.1,
+          "p90": 0.15,
+          "max": 0.52
+        }
+      },
+      "artefact": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Profiling\\CSV\\Profile(20260905_004221).csv"
+    },
+    {
+      "zone": "main_street",
+      "ground_cm": 18715.25526046753,
+      "eye_z_cm": 18890.25526046753,
+      "camera": "-204847.3,278048.0,18890.3,-2.0,-12.9,0.0",
+      "fov_horizontal_deg": 90.0,
+      "viewport_size": null,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 300,
+          "mean": 16.72,
+          "p50": 16.67,
+          "p90": 16.68,
+          "max": 32.44
+        },
+        "GameThreadTime": {
+          "n": 300,
+          "mean": 13.36,
+          "p50": 13.27,
+          "p90": 13.9,
+          "max": 31.52
+        },
+        "RenderThreadTime": {
+          "n": 300,
+          "mean": 0.1,
+          "p50": 0.0,
+          "p90": 0.0,
+          "max": 6.4
+        },
+        "GPUTime": {
+          "n": 300,
+          "mean": 5.46,
+          "p50": 5.45,
+          "p90": 5.56,
+          "max": 6.51
+        },
+        "RHIThreadTime": {
+          "n": 300,
+          "mean": 0.11,
+          "p50": 0.1,
+          "p90": 0.14,
+          "max": 0.26
+        }
+      },
+      "artefact": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Profiling\\CSV\\Profile(20260905_004304).csv"
+    },
+    {
+      "zone": "treeline",
+      "ground_cm": 23114.429712295532,
+      "eye_z_cm": 23289.429712295532,
+      "camera": "-153506.0,265800.0,23289.4,-2.0,-12.8,0.0",
+      "fov_horizontal_deg": 90.0,
+      "viewport_size": null,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 300,
+          "mean": 16.73,
+          "p50": 16.67,
+          "p90": 16.68,
+          "max": 35.06
+        },
+        "GameThreadTime": {
+          "n": 300,
+          "mean": 13.38,
+          "p50": 13.31,
+          "p90": 13.98,
+          "max": 34.13
+        },
+        "RenderThreadTime": {
+          "n": 300,
+          "mean": 0.13,
+          "p50": 0.0,
+          "p90": 0.0,
+          "max": 6.85
+        },
+        "GPUTime": {
+          "n": 300,
+          "mean": 6.92,
+          "p50": 6.92,
+          "p90": 7.05,
+          "max": 7.53
+        },
+        "RHIThreadTime": {
+          "n": 300,
+          "mean": 0.12,
+          "p50": 0.11,
+          "p90": 0.16,
+          "max": 0.48
+        }
+      },
+      "artefact": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Profiling\\CSV\\Profile(20260905_004346).csv"
+    },
+    {
+      "zone": "vista",
+      "ground_cm": 32863.15977573395,
+      "eye_z_cm": 33038.15977573395,
+      "camera": "-329971.0,305839.0,33038.2,-4.0,-12.8,0.0",
+      "fov_horizontal_deg": 90.0,
+      "viewport_size": null,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 300,
+          "mean": 16.69,
+          "p50": 16.67,
+          "p90": 16.68,
+          "max": 23.62
+        },
+        "GameThreadTime": {
+          "n": 300,
+          "mean": 13.67,
+          "p50": 13.64,
+          "p90": 14.15,
+          "max": 23.98
+        },
+        "RenderThreadTime": {
+          "n": 300,
+          "mean": 0.12,
+          "p50": 0.0,
+          "p90": 0.0,
+          "max": 7.74
+        },
+        "GPUTime": {
+          "n": 300,
+          "mean": 8.18,
+          "p50": 8.17,
+          "p90": 8.33,
+          "max": 9.29
+        },
+        "RHIThreadTime": {
+          "n": 300,
+          "mean": 0.12,
+          "p50": 0.11,
+          "p90": 0.17,
+          "max": 0.44
+        }
+      },
+      "artefact": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Profiling\\CSV\\Profile(20260905_004430).csv"
+    }
+  ]
+}

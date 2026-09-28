@@ -1,0 +1,43 @@
+  residency mode: NEAR-FIELD — 16 components within 600 m of the camera
+bench_capture — profile target, 3 job(s), 3840x2160, temporal x8
+  out: C:\Users\Admin\UE5LandscapePipeline\_verify\bench\2026-09-07\target
+  residency: expect 16 landscape components, 180 warm-up frames, probe REQUIRED
+  - C7B0BE1C465D255EA9667CACEDEFADA0 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  cvar config read-back matches request on every job
+  ... 15 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 30 s | LandscapeLab - Unreal Editor | log idle 15 s
+  ... 46 s | LandscapeLab - Unreal Editor | log idle 30 s
+  ... 61 s | LandscapeLab - Unreal Editor | log idle 46 s
+  ... 76 s | LandscapeLab - Unreal Editor | log idle 61 s
+  ... 91 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 107 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 122 s | LandscapeLab - Unreal Editor | log idle 15 s
+  ... 137 s | LandscapeLab - Unreal Editor | log idle 30 s
+  ... 152 s | LandscapeLab - Unreal Editor | log idle 46 s
+  ... 168 s | LandscapeLab - Unreal Editor | log idle 61 s
+  ... 183 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 198 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 213 s | LandscapeLab - Unreal Editor | log idle 15 s
+  ... 228 s | LandscapeLab - Unreal Editor | log idle 30 s
+  ... 244 s | LandscapeLab - Unreal Editor | log idle 46 s
+  ... 259 s | LandscapeLab - Unreal Editor | log idle 61 s
+  ... 274 s | LandscapeLab - Unreal Editor | log idle 76 s
+  ... 289 s | LandscapeLab - Unreal Editor | log idle 0 s
+  render finished in 305 s (poll: {'final_window_title': 'LandscapeLab - Unreal Editor'})
+  residency read-back (3 probe line(s)):
+    Bench_target_near_ground FAIL       8 of 16 landscape components resident (50.0%)
+    Bench_target_mid_slope   FAIL       8 of 16 landscape components resident (50.0%)
+    Bench_target_vista       FAIL       8 of 16 landscape components resident (50.0%)
+  engine applied 13/13 cvars; resolution lines [[3840, 2160]]
+
+  near_ground  [3840, 2160]  _verify/bench/2026-09-07/target/near_ground.png  luma 0.3752
+  mid_slope    [3840, 2160]  _verify/bench/2026-09-07/target/mid_slope.png  luma 0.8053
+  vista        [3840, 2160]  _verify/bench/2026-09-07/target/vista.png  luma 0.7454
+  sidecar: _verify\bench\2026-09-07\bench_run_target.json
+  content gate: using derivation from _verify\bench\2026-09-05\bench_stations_derived.json
+
+REFUSE (FAIL): residency. The frames exist and may even look plausible, but the world was not established to be there when they were taken, so they are not measurements.
+  Bench_target_near_ground FAIL — 8 of 16 landscape components resident (50.0%)
+  Bench_target_mid_slope   FAIL — 8 of 16 landscape components resident (50.0%)
+  Bench_target_vista       FAIL — 8 of 16 landscape components resident (50.0%)
+  Sidecar written anyway: _verify\bench\2026-09-07\bench_run_target.json

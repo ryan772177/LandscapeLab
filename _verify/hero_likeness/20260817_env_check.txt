@@ -1,0 +1,238 @@
+========================================================================
+PHASE A — offline: declared paths and joint-map consistency
+========================================================================
+  OK    joint_map            C:/Users/Admin/Desktop/AlpineHero_joint_map.json (35293 bytes)
+  OK    dna_canonical        C:\Users\Admin\UE5LandscapePipeline\hero/dna/MHC_AlpineHero_Head.dna (54082461 bytes)
+  OK    reference_image      C:\Users\Admin\UE5LandscapePipeline\hero/reference/hero_face_bald_frontal.jpg (594729 bytes)
+  OK    mediapipe_model      C:\Users\Admin\UE5LandscapePipeline\hero/models/face_landmarker.task (3758596 bytes)
+  OK    dna_parser           C:/Users/Admin/Desktop/dna25_parser.py
+  OK    reference_appearance C:\Users\Admin\UE5LandscapePipeline\hero/reference/hero_face_haired_frontal.jpg
+  OK    joint map: 870 joints, format '2.5 (gen 2, ver 5)'
+  OK    region jaw_width    -> group jaw_width     4 joints  axis=x gain=3.00 cm mirror=True
+  OK    region jaw_line     -> group jaw_line     19 joints  axis=x gain=2.00 cm mirror=True
+  OK    region chin         -> group chin         46 joints  axis=z gain=2.00 cm mirror=True
+  OK    region cheekbones   -> group cheekbones   18 joints  axis=x gain=3.00 cm mirror=True
+  OK    region temples      -> group temples      10 joints  axis=x gain=2.00 cm mirror=True
+  OK    region brow         -> group brow         10 joints  axis=z gain=1.50 cm mirror=True
+  OK    region nose_bridge  -> group nose_bridge   9 joints  axis=z gain=1.50 cm mirror=False
+  OK    region nose_tip     -> group nose_tip     10 joints  axis=z gain=1.50 cm mirror=False
+  OK    region jaw_pivot    -> group jaw_pivot     1 joints  axis=z gain=0.00 cm mirror=False  (DISABLED)
+
+PHASE A PASSED
+
+========================================================================
+PHASE B — the live editor
+========================================================================
+  - FE9D533A492667A2735EFC9E0772B2DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+engine       : 5.8.1-56057345+++UE5+Release-5.8
+project dir  : ../../../../../../Users/Admin/UE5LandscapePipeline/LandscapeLab/
+
+MetaHuman stack, asked of the RUNNING process (not a descriptor):
+   DNA                                        present
+   DNAAsset                                   present
+   DNAImporterLibrary                         present
+   EvaluateRig                                present
+   LandscapeLabTools                          present
+   MetaHumanCharacter                         present
+   MetaHumanCharacterEditorSubsystem          present
+   MetaHumanCharacterExportBlueprintLibrary   present
+
+namespace entries mentioning dna/riglogic:
+   AnimGraphNode_RigLogic
+   AnimNode_RigLogic
+   BaseGeneratedNavLinksProxy
+   DNA
+   DNAAsset
+   DNAAssetImportFactory
+   DNAAssetImportUI
+   DNAAssetUserData
+   DNACalibVectorOperation
+   DNAConfig
+   DNACopyPolicy
+   DNADataLayer
+   DNADataLayerUIProxy
+   DNAImporter
+   DNAImporterLibrary
+   DNAMeshVertexColorDataAsset
+   GeneratedNavLinksProxy
+   ImportFromDNAParams
+   MetaHumanDNAExportParams
+   MetaHumanInterchangeDnaTranslator
+   MetaHumanPosedDNAExportParams
+   OptimusValidatedName
+   PerPlatformERigLogicCalculationType
+   PerPlatformERigLogicFloatingPointType
+   RigLogicCalculationType
+   RigLogicConfiguration
+   RigLogicFloatingPointType
+   RigLogicInitPolicy
+   RigLogicRotationOrder
+   RigLogicRotationType
+   RigLogicScaleType
+   RigLogicTranslationType
+   RigUnit_RigLogic
+
+character    : /Game/Hero/MHC_AlpineHero  loaded=True  class=MetaHumanCharacter
+face mesh    : /Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh
+               loaded=True  class=SkeletalMesh
+   skeleton  : /Game/MetaHumans/Common/Face/Face_Archetype_Skeleton.Face_Archetype_Skeleton
+   bone count: 875   <- a DIFFERENT representation from DNA joints; they need not be equal
+
+DNA reachability:
+   asset_user_data_classes  ['AnimCurveMetaData', 'DNAAssetUserData']
+   dna_asset_found          True
+   wrapper_class            DNAAssetUserData
+   inner_class              DNA
+   inner_path               /Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh_DNA.SKM_MHC_AlpineHero_FaceMesh_DNA
+   dna_file_name            RAISED: DNA: Failed to find property 'dna_file_name' for attribute 'dna_file_name' on 'DNA'
+   set_rig_dna(DNAAsset-typed) RAISED: EvaluateRig: Failed to convert parameter 'dna_asset' when calling function 'EvaluateRig.SetRigDNA' on 'EvaluateRig_0'
+  TypeError: NativizeP
+   set_rig_dna_from_asset(DNA-typed) True
+   evaluate_ok              True
+   evaluate_meshes          1
+   evaluate_verts_mesh0     24049
+   joints_body_conforming   RAISED: MetaHumanCharacterEditorSubsystem: Failed to convert parameter 'template_mesh' when calling function 'MetaHumanCharacterEditorSubsystem.GetJ
+
+dir() of the live classes — this is the evidence, not the stub:
+   --- DNA ---
+       acquire_editor_element_handle       call_method                         cast                              
+       get_class                           get_default_object                  get_editor_property               
+       get_fname                           get_full_name                       get_name                          
+       get_outer                           get_outermost                       get_package                       
+       get_path_name                       get_typed_outer                     get_world                         
+       is_editor_property_overridden       is_package_external                 meta_data                         
+       modify                              rename                              reset_editor_property             
+       rig_logic_configuration             set_editor_properties               set_editor_property               
+       static_class                      
+   --- DNAAsset ---
+       acquire_editor_element_handle       call_method                         cast                              
+       dna_file_name                       get_class                           get_default_object                
+       get_editor_property                 get_fname                           get_full_name                     
+       get_name                            get_outer                           get_outermost                     
+       get_package                         get_path_name                       get_typed_outer                   
+       get_world                           is_editor_property_overridden       is_package_external               
+       meta_data                           modify                              rename                            
+       reset_editor_property               rig_logic_configuration             set_editor_properties             
+       set_editor_property                 static_class                      
+   --- DNAImporter ---
+       acquire_editor_element_handle       call_method                         cast                              
+       get_class                           get_default_object                  get_editor_property               
+       get_fname                           get_full_name                       get_name                          
+       get_outer                           get_outermost                       get_package                       
+       get_path_name                       get_typed_outer                     get_world                         
+       is_editor_property_overridden       is_package_external                 modify                            
+       rename                              reset_editor_property               set_editor_properties             
+       set_editor_property                 static_class                      
+   --- DNAImporterLibrary ---
+       acquire_editor_element_handle       call_method                         cast                              
+       get_class                           get_default_object                  get_editor_property               
+       get_fname                           get_full_name                       get_name                          
+       get_outer                           get_outermost                       get_package                       
+       get_path_name                       get_typed_outer                     get_world                         
+       import_and_attach_dna               import_skeletal_mesh_dna            is_editor_property_overridden     
+       is_package_external                 modify                              rename                            
+       reset_editor_property               set_editor_properties               set_editor_property               
+       static_class                      
+   --- EvaluateRig ---
+       acquire_editor_element_handle       call_method                         cast                              
+       evaluate_raw_controls               get_class                           get_default_object                
+       get_editor_property                 get_fname                           get_full_name                     
+       get_name                            get_outer                           get_outermost                     
+       get_package                         get_path_name                       get_typed_outer                   
+       get_world                           is_editor_property_overridden       is_package_external               
+       modify                              rename                              reset_editor_property             
+       set_editor_properties               set_editor_property                 set_rig_dna                       
+       set_rig_dna_from_asset              static_class                      
+   --- MetaHumanCharacterEditorSubsystem ---
+       acquire_editor_element_handle       align_to_target_meshes              assemble_for_preview              
+       build_meta_human                    call_method                         can_build_meta_human              
+       cast                                commit_body_state                   commit_eyes_settings              
+       commit_face_state                   commit_head_model_settings          commit_makeup_settings            
+       commit_posed_state_as_a_pose        commit_skin_settings                commit_target_mesh_keypoints      
+       compare_body_state                  compare_face_state                  compare_face_textures             
+       conform_body                        conform_body_to_target              conform_to_target_meshes          
+       fit_face_state_from_body_with_eyes_teeth_dna  fit_face_state_from_body_with_eyes_teeth_template  fit_state_to_target_vertices      
+       get_body_constraints                get_class                           get_default_object                
+       get_editor_property                 get_face_landmarks                  get_face_model_coefficients       
+       get_fname                           get_full_name                       get_joints_for_body_conforming    
+       get_joints_for_body_conforming_from_dna  get_joints_for_body_conforming_from_template  get_mesh_data_for_conforming      
+       get_mesh_for_body_conforming        get_mesh_for_body_conforming_from_dna  get_mesh_for_body_conforming_from_template
+       get_name                            get_outer                           get_outermost                     
+       get_package                         get_path_name                       get_preset_body_key_points        
+       get_preview_collection              get_typed_outer                     get_world                         
+       import_body_whole_rig               import_from_face_dna                import_from_identity              
+       import_from_template                is_editor_property_overridden       is_object_added_for_editing       
+       is_package_external                 modify                              on_edit_preview_collection        
+       remove_face_rig                     remove_object_to_edit               rename                            
+       request_auto_rigging                request_texture_sources             reset_editor_property             
+       set_body_constraints                set_body_joints                     set_body_mesh                     
+       set_editor_properties               set_editor_property                 set_face_model_coefficients       
+       spawn_meta_human_actor              static_class                        track_face_landmarks_from_image   
+       translate_face_landmarks            try_add_object_to_edit            
+   --- MetaHumanCharacterExportBlueprintLibrary ---
+       acquire_editor_element_handle       call_method                         cast                              
+       export_dcc                          export_dna                          export_geometry                   
+       export_materials                    export_posed_dna                    get_class                         
+       get_default_object                  get_editor_property                 get_fname                         
+       get_full_name                       get_name                            get_outer                         
+       get_outermost                       get_package                         get_path_name                     
+       get_typed_outer                     get_world                           is_editor_property_overridden     
+       is_package_external                 modify                              rename                            
+       reset_editor_property               set_editor_properties               set_editor_property               
+       static_class                      
+   --- dna_asset_inner ---
+       acquire_editor_element_handle       call_method                         cast                              
+       get_class                           get_default_object                  get_editor_property               
+       get_fname                           get_full_name                       get_name                          
+       get_outer                           get_outermost                       get_package                       
+       get_path_name                       get_typed_outer                     get_world                         
+       is_editor_property_overridden       is_package_external                 meta_data                         
+       modify                              rename                              reset_editor_property             
+       rig_logic_configuration             set_editor_properties               set_editor_property               
+       static_class                      
+   --- dna_wrapper_instance ---
+       acquire_editor_element_handle       call_method                         cast                              
+       dna_asset                           get_class                           get_default_object                
+       get_editor_property                 get_fname                           get_full_name                     
+       get_name                            get_outer                           get_outermost                     
+       get_package                         get_path_name                       get_typed_outer                   
+       get_world                           is_editor_property_overridden       is_package_external               
+       modify                              rename                              reset_editor_property             
+       set_editor_properties               set_editor_property                 static_class                      
+   --- evaluate_rig ---
+       acquire_editor_element_handle       call_method                         cast                              
+       evaluate_raw_controls               get_class                           get_default_object                
+       get_editor_property                 get_fname                           get_full_name                     
+       get_name                            get_outer                           get_outermost                     
+       get_package                         get_path_name                       get_typed_outer                   
+       get_world                           is_editor_property_overridden       is_package_external               
+       modify                              rename                              reset_editor_property             
+       set_editor_properties               set_editor_property                 set_rig_dna                       
+       set_rig_dna_from_asset              static_class                      
+   --- subsystem_dna ---
+       fit_face_state_from_body_with_eyes_teeth_dna  get_joints_for_body_conforming_from_dna  get_mesh_for_body_conforming_from_dna
+       import_from_face_dna              
+   --- subsystem_joint ---
+       get_joints_for_body_conforming      get_joints_for_body_conforming_from_dna  get_joints_for_body_conforming_from_template
+       set_body_joints                   
+   --- subsystem_rig ---
+       import_body_whole_rig               remove_face_rig                     request_auto_rigging              
+
+========================================================================
+THE GATE — three criteria, reported separately
+========================================================================
+(a) DNA reader reachable from the Face mesh            PASS
+    route: SkeletalMesh.asset_user_data -> DNAAssetUserData
+           -> .dna_asset (class DNA) -> EvaluateRig.set_rig_dna_from_asset
+(b) the bound rig EVALUATES to geometry                PASS
+    24049 vertices returned for mesh 0 at LOD 0 — a measurement of the face that needs NO render
+(c) a reflected reader reports joint count == 870       PASS
+
+    joint/bone count by source:
+      DNA file (offline, dna25_parser / joint map)   870
+      Face skeleton bone_tree (live)                 875
+      reflected DNA reader                           870
+    The first two need not agree and do not: a DNA joint list and
+    a USkeleton bone tree are different things.
+
+GATE PASSED

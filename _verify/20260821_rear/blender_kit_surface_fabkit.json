@@ -1,0 +1,130 @@
+{
+  "blend": "C:\\Users\\Admin\\Documents\\groom.blend",
+  "blender": "5.2.0 LTS",
+  "objects": [
+    {
+      "name": "Camera",
+      "type": "CAMERA",
+      "parent": null,
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          7.3589,
+          -6.9258,
+          4.9583
+        ],
+        "max": [
+          7.3589,
+          -6.9258,
+          4.9583
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": []
+    },
+    {
+      "name": "Cube",
+      "type": "MESH",
+      "parent": null,
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "max": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "size": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "modifiers": [],
+      "mesh": {
+        "verts": 8,
+        "polys": 6
+      }
+    },
+    {
+      "name": "Light",
+      "type": "LIGHT",
+      "parent": null,
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          4.0762,
+          1.0055,
+          5.9039
+        ],
+        "max": [
+          4.0762,
+          1.0055,
+          5.9039
+        ],
+        "size": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "modifiers": []
+    }
+  ],
+  "node_health": {},
+  "addons": {
+    "enabled": [
+      "GroomExporter",
+      "bl_pkg",
+      "cycles",
+      "io_anim_bvh",
+      "io_curve_svg",
+      "io_mesh_uv_layout",
+      "io_scene_fbx",
+      "io_scene_gltf2",
+      "pose_library"
+    ],
+    "groom_like": [
+      "GroomExporter"
+    ],
+    "groom_operators": [
+      "bpy.ops.groom.add_attribute_node",
+      "bpy.ops.groom.add_curve_node",
+      "bpy.ops.groom.add_custom_attribute_node",
+      "bpy.ops.groom.add_export_node",
+      "bpy.ops.groom.addcustomnode",
+      "bpy.ops.groom.buttonexport",
+      "bpy.ops.groom.buttonfastsetter",
+      "bpy.ops.groom.buttonfillfastsetter",
+      "bpy.ops.groom.fillattributesnode",
+      "bpy.ops.groom.groomtooltip",
+      "bpy.ops.groom.headertooltip",
+      "bpy.ops.groom.nodeupdate",
+      "bpy.ops.groom.removecustomnode",
+      "bpy.ops.groom.selectcurves",
+      "bpy.ops.groom.strandtooltip",
+      "bpy.ops.groom.vertextooltip"
+    ]
+  },
+  "summary": {
+    "objects": 3,
+    "curves_objects": 0,
+    "mesh_objects": 1,
+    "node_groups": 0,
+    "node_groups_with_undefined": 0
+  }
+}

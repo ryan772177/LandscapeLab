@@ -1,0 +1,25 @@
+20260811 — THE SAVED BYTES CARRY THE NANITE STATE
+=================================================
+
+Read from the .uasset files on disk — a DIFFERENT representation
+from the live editor, which is where every other check looked.
+Pass 1 sat 'saved and verified' for three days on side-records.
+
+packages written by the save : 257
+total actor packages on disk : 2058
+control set (NOT saved)      : 1801
+
+=== THE SAVED PACKAGES (expect: Nanite tokens present) ===
+saved by this operation      scanned   257   carrying a Nanite token   257   unreadable 0
+      LandscapeNaniteMesh          present in   256
+      bEnableNanite                present in   257
+      LandscapeNaniteComponent     present in   256
+
+=== POSITIVE CONTROL: packages the save did NOT touch ===
+    (foliage/rock actors � must be CLEAN, or the token is noise)
+not saved                    scanned   400   carrying a Nanite token     0   unreadable 0
+      LandscapeNaniteMesh          present in     0
+      bEnableNanite                present in     0
+      LandscapeNaniteComponent     present in     0
+
+VERDICT: the saved bytes carry the Nanite state, and the token is discriminating (absent from every control)

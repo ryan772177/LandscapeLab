@@ -1,0 +1,166 @@
+{
+ "asset": "crystal_spire",
+ "name": "SM_CrystalSpire_Forge",
+ "asset_class": "hero_prop",
+ "max_tris": 60000,
+ "stages": {
+  "1_input_floors": "ok (3 views)",
+  "2_ai_guard": "all 3 views cleared (--strict)",
+  "3_generate": "ok",
+  "4_retopo": "375448 -> 60000 tris",
+  "5_pivot": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "6_uv": "smart_project (MACHINE unwrap, greybox-grade)",
+  "7_intake": "ok (TRIANGLES within budget; NOT a topology claim -- genus 11)"
+ },
+ "scale_target_cm": 20000.0,
+ "scale_why": "declared height_cm",
+ "generate": {
+  "candidate": "TRELLIS multi-view",
+  "asset": "crystal_spire",
+  "name": "SM_CrystalSpire_Forge",
+  "inputs": [
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az000.jpg",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az045.jpg",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az090.jpg"
+  ],
+  "n_views": 3,
+  "model_repo": "JeffreyXiang/TRELLIS-image-large",
+  "seed": 20260901,
+  "sampler": {
+   "sparse_structure": {
+    "steps": 12,
+    "cfg_strength": 7.5
+   },
+   "slat": {
+    "steps": 12,
+    "cfg_strength": 3
+   }
+  },
+  "error": null,
+  "vram_free_before_MiB": 15045,
+  "vram_total_MiB": 16303,
+  "load_s": 22.9,
+  "input_sizes": [
+   [
+    "crystal_az000.jpg",
+    1024,
+    1024
+   ],
+   [
+    "crystal_az045.jpg",
+    1024,
+    1024
+   ],
+   [
+    "crystal_az090.jpg",
+    1024,
+    1024
+   ]
+  ],
+  "run_s": 6.3,
+  "vertices": 187704,
+  "faces": 375448,
+  "extent": [
+   0.461,
+   0.4209,
+   0.9998
+  ],
+  "thin_over_long": 0.421,
+  "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/crystal_spire/SM_CrystalSpire_Forge_raw.obj",
+  "out_obj_bytes": 13751770,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "euler_characteristic": -20,
+  "genus": 11,
+  "vram_peak_MiB": 10362,
+  "wall_s": 30.5
+ },
+ "finish": {
+  "ok": true,
+  "error": null,
+  "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\crystal_spire\\SM_CrystalSpire_Forge_raw.obj",
+  "asset_class": "hero_prop",
+  "max_tris": 60000,
+  "before": {
+   "verts": 187704,
+   "edges": 563172,
+   "faces": 375448,
+   "triangles": 375448,
+   "euler_characteristic": -20,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 11,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [],
+   "has_uvs": false
+  },
+  "decimate_ratio": 0.159809,
+  "decimated": true,
+  "pivot": {
+   "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+   "moved_by": [
+    -0.002833,
+    0.002333,
+    0.499127
+   ],
+   "z_min_after": 0.0,
+   "base_at_origin": true
+  },
+  "uv_action": "smart_project (MACHINE unwrap, greybox-grade)",
+  "after": {
+   "verts": 29980,
+   "edges": 90000,
+   "faces": 60000,
+   "triangles": 60000,
+   "euler_characteristic": -20,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 11,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [
+    "UVMap"
+   ],
+   "has_uvs": true
+  },
+  "bbox_after": {
+   "min": [
+    -0.23059,
+    -0.2106,
+    0.0
+   ],
+   "max": [
+    0.23059,
+    0.2106,
+    1.00003
+   ]
+  },
+  "export_rotation": {
+   "applied_deg": [
+    -90.0,
+    0.0,
+    0.0
+   ],
+   "method": "direct vertex write (operator transform_apply is context-dependent and silently did not take headless)",
+   "z_extent_after_rot": 0.4212,
+   "y_extent_after_rot": 1.00003,
+   "_expect": "z_extent should now equal the pre-rotation Y (0.395) and y_extent the pre-rotation Z (0.915)",
+   "_why": "the FBX round trip rotates +90 about X; this cancels it so UE receives the asset upright. Applied after all measurement, so bbox_after remains Blender-space."
+  },
+  "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\crystal_spire\\SM_CrystalSpire_Forge.fbx",
+  "out_fbx_bytes": 2497788,
+  "tri_within_budget": true,
+  "genus_before_after": [
+   11,
+   11
+  ],
+  "genus_reduced": false,
+  "_genus_finding": "DECIMATION DID NOT REDUCE GENUS and was never going to -- edge collapse preserves topology. The triangle budget is met and the handles remain. Closing them needs a real retopology or hole-filling pass, which is a separate unit and is NOT claimed here."
+ },
+ "wall_s": 46.6,
+ "assets_row": "| `/Game/Scratch/ForgeCrystalSpire/SM_CrystalSpire_Forge` | **GENERATED** -- TRELLIS (MIT) from 3 operator concept references (`refs/crystal_spire_refs/{crystal_az000.jpg,crystal_az045.jpg,crystal_az090.jpg}`), seed 20260901 | TRELLIS **MIT**; the references are the operator's own. All 3 cleared `ai_input_guard.py --strict` BEFORE the weights loaded (R-AIGATE) | generated from operator concept reference | 60000 tris (hero_prop ceiling 60000), watertight True, **genus 11 -- topological noise NOT removed**, UVs: smart_project (MACHINE unwrap, greybox-grade) | NO -- stage 10 not yet run in a verified editor |",
+ "assets_md": "row ADDED for SM_CrystalSpire_Forge",
+ "forge_log_line": "| SM_CrystalSpire_Forge | hero_prop | 3 views | gen 6.3s / VRAM 10362 MiB | 375448 -> 60000 tris | genus 11 -> 11 | UVs True | 46.6 s total |"
+}

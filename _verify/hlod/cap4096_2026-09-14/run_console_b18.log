@@ -1,0 +1,242 @@
+
+=== batch_18 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  0.5 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  0.8 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  1.2 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  1.5 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  1.8 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  2.2 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  2.5 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  2.9 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  3.2 min] 0/0  approve=0 reject=0  vram=223 peak=223  -
+    [  3.5 min] 0/0  approve=0 reject=0  vram=227 peak=227  -
+    [  3.9 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y-2
+    [  4.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y-2
+    [  4.5 min] 1/8  approve=0 reject=0  vram=1369 peak=1369  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y-2
+    [  4.9 min] 4/8  approve=4 reject=0  vram=8906 peak=8906  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y-5
+    [  5.2 min] 8/8  approve=7 reject=0  vram=10936 peak=10936  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y0
+    done rc=1 in 5.4 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 10936 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=6.812s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_18.log', LF will be replaced by CRLF the next time Git touches it
+[main 6688e402] HLOD batch 18: 0 cells de-staled, 0 -> 0 left, 5.4 min, VRAM peak 10936 MiB
+ 4 files changed, 3453 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_18.log
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/run_console_b18.log
+    cells at cap 4096: 145 -> 153  (+8, expected +8)   free disk 51.27 GB   VRAM peak 10936 MiB
+
+=== batch_19 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y1
+    [  0.5 min] 4/8  approve=4 reject=0  vram=8269 peak=8269  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X1_Y4
+    [  0.8 min] 8/8  approve=7 reject=0  vram=10938 peak=10938  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y-1
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 10938 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=3.986s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_19.log', LF will be replaced by CRLF the next time Git touches it
+[main c972c978] HLOD batch 19: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 10938 MiB
+ 4 files changed, 3155 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_19.log
+    cells at cap 4096: 153 -> 161  (+8, expected +8)   free disk 49.49 GB   VRAM peak 10938 MiB
+
+=== batch_20 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y-2
+    [  0.5 min] 4/8  approve=4 reject=0  vram=8043 peak=8043  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11636 peak=11636  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11636 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=3.645s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_20.log', LF will be replaced by CRLF the next time Git touches it
+[main 419c52ff] HLOD batch 20: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11636 MiB
+ 4 files changed, 3154 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_20.log
+    cells at cap 4096: 161 -> 169  (+8, expected +8)   free disk 47.64 GB   VRAM peak 11636 MiB
+
+=== batch_21 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y1
+    [  0.5 min] 4/8  approve=4 reject=0  vram=8427 peak=8427  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y4
+    [  0.8 min] 7/8  approve=7 reject=0  vram=12116 peak=12116  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X2_Y7
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 12116 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=4.08s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_21.log', LF will be replaced by CRLF the next time Git touches it
+[main dc727656] HLOD batch 21: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 12116 MiB
+ 4 files changed, 3153 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_21.log
+    cells at cap 4096: 169 -> 177  (+8, expected +8)   free disk 45.64 GB   VRAM peak 12116 MiB
+
+=== batch_22 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y-2
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6519 peak=6519  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11637 peak=11637  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11637 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=3.44s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_22.log', LF will be replaced by CRLF the next time Git touches it
+[main 20515e87] HLOD batch 22: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11637 MiB
+ 4 files changed, 3154 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_22.log
+    cells at cap 4096: 177 -> 185  (+8, expected +8)   free disk 43.78 GB   VRAM peak 11637 MiB
+
+=== batch_23 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y1
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6678 peak=6678  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y4
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11796 peak=11796  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X3_Y7
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11796 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=3.049s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_23.log', LF will be replaced by CRLF the next time Git touches it
+[main 2f0a2b96] HLOD batch 23: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11796 MiB
+ 4 files changed, 3153 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_23.log
+    cells at cap 4096: 185 -> 193  (+8, expected +8)   free disk 41.76 GB   VRAM peak 11796 MiB
+
+=== batch_24 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y-2
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6521 peak=6521  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11639 peak=11639  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11639 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=2.946s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_24.log', LF will be replaced by CRLF the next time Git touches it
+[main 10088b78] HLOD batch 24: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11639 MiB
+ 4 files changed, 3153 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_24.log
+    cells at cap 4096: 193 -> 201  (+8, expected +8)   free disk 39.71 GB   VRAM peak 11639 MiB
+
+=== batch_25 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y1
+    [  0.5 min] 4/8  approve=4 reject=0  vram=8331 peak=8331  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y4
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11926 peak=11926  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X4_Y7
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11926 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=3.59s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_25.log', LF will be replaced by CRLF the next time Git touches it
+[main b2b0ae9e] HLOD batch 25: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11926 MiB
+ 4 files changed, 3153 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_25.log
+    cells at cap 4096: 201 -> 209  (+8, expected +8)   free disk 37.69 GB   VRAM peak 11926 MiB
+
+=== batch_26 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y-2
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6522 peak=6522  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11384 peak=11384  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11384 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=2.17s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_26.log', LF will be replaced by CRLF the next time Git touches it
+[main b986f1fd] HLOD batch 26: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11384 MiB
+ 4 files changed, 3153 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_26.log
+    cells at cap 4096: 209 -> 217  (+8, expected +8)   free disk 35.45 GB   VRAM peak 11384 MiB
+
+=== batch_27 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y1
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6587 peak=6587  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y4
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11769 peak=11769  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X5_Y7
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11769 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=2.584s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_27.log', LF will be replaced by CRLF the next time Git touches it
+[main 2e9b8235] HLOD batch 27: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11769 MiB
+ 4 files changed, 3157 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_27.log
+    cells at cap 4096: 217 -> 225  (+8, expected +8)   free disk 33.23 GB   VRAM peak 11769 MiB
+
+=== batch_28 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y-2
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6517 peak=6517  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11509 peak=11509  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y-8
+    [  1.2 min] 8/8  approve=8 reject=0  vram=11 peak=11509  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y0
+    done rc=1 in 1.2 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11509 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=12.174s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_28.log', LF will be replaced by CRLF the next time Git touches it
+[main 08e1e929] HLOD batch 28: 0 cells de-staled, 0 -> 0 left, 1.2 min, VRAM peak 11509 MiB
+ 4 files changed, 3135 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_28.log
+    cells at cap 4096: 225 -> 233  (+8, expected +8)   free disk 37.34 GB   VRAM peak 11509 MiB
+
+=== batch_29 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y1
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6519 peak=6519  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y4
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11799 peak=11799  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X6_Y7
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11799 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=2.747s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_29.log', LF will be replaced by CRLF the next time Git touches it
+[main 52ee62cb] HLOD batch 29: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11799 MiB
+ 4 files changed, 3146 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_29.log
+    cells at cap 4096: 233 -> 241  (+8, expected +8)   free disk 35.54 GB   VRAM peak 11799 MiB
+
+=== batch_30 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/8  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y-2
+    [  0.5 min] 4/8  approve=3 reject=0  vram=6518 peak=6518  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y-5
+    [  0.8 min] 7/8  approve=7 reject=0  vram=11639 peak=11639  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11639 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=2.782s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_30.log', LF will be replaced by CRLF the next time Git touches it
+[main f183ab93] HLOD batch 30: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11639 MiB
+ 4 files changed, 3154 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_30.log
+    cells at cap 4096: 241 -> 249  (+8, expected +8)   free disk 33.74 GB   VRAM peak 11639 MiB
+
+=== batch_31 (attempt 1) ===
+    cells in section: 7   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 1/7  approve=0 reject=0  vram=259 peak=259  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y1
+    [  0.5 min] 4/7  approve=3 reject=0  vram=6518 peak=6518  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y4
+    [  0.8 min] 7/7  approve=7 reject=0  vram=11252 peak=11252  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X7_Y7
+    done rc=1 in 1.0 min | approve=7 reject=0 | STALE 0 -> 0 (-0), current=1042 | vram peak 11252 MiB | true_exit=True | written=7 torn=0 last_write_to_exit=7.825s
+  attribution  building-lines 7  decisions 7  approved 7  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 7      reject 0       from Alpine8K_MainPartition x7
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/run_console_b18.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/cap4096_2026-09-14/batch_31.log', LF will be replaced by CRLF the next time Git touches it
+[main 6a1bbc9b] HLOD batch 31: 0 cells de-staled, 0 -> 0 left, 1.0 min, VRAM peak 11252 MiB
+ 4 files changed, 3058 insertions(+), 4 deletions(-)
+ create mode 100644 _verify/hlod/cap4096_2026-09-14/batch_31.log
+    cells at cap 4096: 249 -> 256  (+7, expected +7)   free disk 32.33 GB   VRAM peak 11252 MiB
+
+FINAL  landscape cells 256  at cap 4096: 256  stale: 0
+FINAL  landscape package bytes: 14,635,573,797 (13.63 GB)
+FINAL  free disk: 32.33 GB

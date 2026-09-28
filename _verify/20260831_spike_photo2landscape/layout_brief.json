@@ -1,0 +1,126 @@
+{
+  "_what_this_is": "SPIKE v0 of the side-project 'concept image -> UE landscape' pipeline. This file is the LAYOUT BRIEF: terrain intent read from the concept image by a human (Claude, by eye), the step a vision model would automate later. Coordinates follow the project convention measured from recipes/alpine_8k.json placements: world metres, origin at map centre, +x east, +y SOUTH (image-north = -y).",
+  "source_image": "C:/Users/Admin/Downloads/side_project/Gemini_Generated_Image_4zvs9q4zvs9q4zvs.jpg",
+  "source_kind": "AI-generated fantasy concept art (Gemini). NOT a photograph; geometry is painterly and inconsistent. This brief encodes INTENT (layout, mood, biomes), not reconstruction.",
+  "camera_hypothesis": {
+    "viewer": "standing on an elevated south rim, looking north across the valley",
+    "eye_height_note": "well above valley floor; foreground path is a ridge vantage"
+  },
+  "world": {
+    "extent_m": 4032.0,
+    "resolution_px": 1009,
+    "metres_per_vertex": 4.0,
+    "z_range_m": 2000.0
+  },
+  "terrain_entities": [
+    {
+      "id": "valley_basin",
+      "read": "broad low green valley floor occupying the centre of frame, below all surrounding ground",
+      "world": "centred slightly south of map centre"
+    },
+    {
+      "id": "river_corridor",
+      "read": "meandering river through the valley floor, flowing away from viewer (to the north), stone bridge mid-frame",
+      "world": "roughly N-S corridor through the basin; v0 approximates the meander with a valley stamp, no water sim"
+    },
+    {
+      "id": "north_massif",
+      "read": "large jagged grey massif across the background, snow-free, knife ridges",
+      "world": "north edge, tallest terrain on the map"
+    },
+    {
+      "id": "northwest_peaks",
+      "read": "steep secondary peaks upper-left, partly in cloud",
+      "world": "north-west corner"
+    },
+    {
+      "id": "northeast_spires",
+      "read": "cluster of thin rock spires upper-right around the crystal monolith",
+      "world": "north-east corner; the CRYSTAL ITSELF IS NOT TERRAIN (landmark mesh, forge asset, out of spike scope)"
+    },
+    {
+      "id": "west_terraces",
+      "read": "hanging cliff plateaus with waterfalls dropping to the valley, left of frame",
+      "world": "west flank"
+    },
+    {
+      "id": "east_ridge",
+      "read": "cliff walls with waterfalls right of frame, below the city",
+      "world": "east flank"
+    },
+    {
+      "id": "city_rise",
+      "read": "walled golden city on a raised shelf, right-of-centre, above valley floor",
+      "world": "east of map centre; city PLAN is a separate layer (plan_city.py), terrain only provides the shelf"
+    },
+    {
+      "id": "south_vantage",
+      "read": "rocky foreground ridge the viewer stands on, stone path, ruins",
+      "world": "south edge, moderate height"
+    }
+  ],
+  "biome_reads": [
+    {
+      "zone": "valley floor",
+      "read": "lush grass, scattered ruins, paths"
+    },
+    {
+      "zone": "west slopes",
+      "read": "dense old-growth forest with bioluminescent understory"
+    },
+    {
+      "zone": "cliffs and peaks",
+      "read": "bare rock, no snow line visible"
+    }
+  ],
+  "lighting_measured": {
+    "_source": "scripts/analyse_concept.py, band 0.55-0.75, run 2026-08-31",
+    "sunlit_rgb": [
+      0.477,
+      0.511,
+      0.429
+    ],
+    "shadow_rgb": [
+      0.095,
+      0.131,
+      0.133
+    ],
+    "split": "WARM light, COOL shadow (R-B sunlit +0.048, shadow -0.039)",
+    "haze": "min-luma rises 0.087 -> 0.151 toward the horizon: strong aerial haze, lifted blacks",
+    "sun_position_read": "low on horizon, image right (east-northeast of viewer); warm golden hour",
+    "shadow_bearing_image_deg": 9.4,
+    "shadow_bearing_coherence": 0.128,
+    "coherence_note": "0.128 is LOW; bearing is weak evidence on this painterly ground band",
+    "sunlit_rb_split": 0.048,
+    "minluma_rise": 0.064
+  },
+  "out_of_scope_v0": [
+    "water rendering",
+    "waterfalls",
+    "crystal monolith mesh",
+    "airship",
+    "ruins placement",
+    "bioluminescent foliage material"
+  ],
+  "lighting_geometry": {
+    "_provenance": "hand-read: sun low near horizon right of frame, viewer facing north; matches the proven azimuth-285 family of the lit vista shots",
+    "sun_elevation_deg": 9.0,
+    "sun_azimuth_deg": 95.0,
+    "fog_height_datum_m": 60.0,
+    "fog_half_height_m": 180.0,
+    "_azimuth_calibration": "sun low right of frame (ENE); compass azimuth - supersedes the 285 family note",
+    "exposure_compensation_ev_override": -3.65,
+    "_ev_calibration": "crystal: render 0.611 at -1.923 vs concept 0.302 ; 2026-09-02 luma-matching pass"
+  },
+  "render_camera": {
+    "at_m": [
+      0.0,
+      1400.0
+    ],
+    "height_above_ground_m": 40.0,
+    "pitch_deg": -10.0,
+    "yaw_deg": -90.0,
+    "fov": 70.0,
+    "_provenance": "the proven spike_vista camera: loc (0,140000,52500) reproduced via ground 485.7 m + 40"
+  }
+}

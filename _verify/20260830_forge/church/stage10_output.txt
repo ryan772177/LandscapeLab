@@ -1,0 +1,58 @@
+﻿  - 6B7A5CA74866B85576ADD591E1DF79C4 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "deleted_stale_asset": "/Game/Scratch/ForgeChurch/SM_Church_Forge",
+  "imported_paths": [
+    "/Game/Scratch/ForgeChurch/SM_Church_Forge.SM_Church_Forge"
+  ],
+  "mesh_package": "/Game/Scratch/ForgeChurch/SM_Church_Forge",
+  "mesh_tris": 60000,
+  "mesh_uv_channels": 1,
+  "level": "/Game/Scratch/Forge_church",
+  "level_overwritten": false,
+  "raw_height_cm": 91.47,
+  "ue_raw_extent_cm": [
+    76.3,
+    39.49,
+    91.47
+  ],
+  "blender_bbox_size": [
+    0.763,
+    0.39494,
+    0.9147
+  ],
+  "shape_ratios_expected": [
+    0.4318,
+    0.8342,
+    1.0
+  ],
+  "shape_ratios_measured": [
+    0.4318,
+    0.8341,
+    1.0
+  ],
+  "orientation_ok": true,
+  "scale_applied": 20.17046,
+  "_scale_derivation": "target 1845.0 cm from 2.5 x 738.0 (chalet_silhouette_cm); scale = target / MEASURED raw height, then READ BACK from the placed actor rather than assumed to have applied",
+  "top_cm": 1845.0,
+  "base_cm": 0.0,
+  "footprint_cm": [
+    1539.0,
+    796.6
+  ],
+  "target_cm": 1845.0,
+  "height_error_cm": 0.0,
+  "height_within_1pct": true,
+  "roof_pivot_drop_cm": 201.49,
+  "chalet_silhouette_cm": 738.0,
+  "chalet_roof_base_cm": 400.0,
+  "chalet_wall_top_cm": 400.0,
+  "chalet_assembly_ok": true,
+  "ratio_against": "chalet_silhouette_cm",
+  "ratio_target": 2.5,
+  "ratio_measured": 2.5,
+  "ratio_within_2pct": true,
+  "saved": true
+}
+(27.2 s)

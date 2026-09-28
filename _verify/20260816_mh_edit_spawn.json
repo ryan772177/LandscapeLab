@@ -1,0 +1,30 @@
+{
+  "error": null,
+  "unreadable": [],
+  "steps": {
+    "already_open_for_edit": false,
+    "try_add_object_to_edit": "True",
+    "open_for_edit_now": true
+  },
+  "actor": {
+    "spawned": true,
+    "label": "MHC_AlpineHero_PreviewActor",
+    "class": "MetaHumanDefaultEditorPipelineActor",
+    "location": "<Struct 'Vector' (0x000002035FA1E720) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+    "skeletal_components": [
+      {
+        "component": "Body",
+        "mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1"
+      },
+      {
+        "component": "Face",
+        "mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.FaceMesh_0"
+      }
+    ]
+  },
+  "collection": {
+    "preview": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.InternalCollection",
+    "default_instance": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.InternalCollection.DefaultInstance",
+    "is_assembled_before": false
+  }
+}

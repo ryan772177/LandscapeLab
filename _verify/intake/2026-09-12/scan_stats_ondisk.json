@@ -1,0 +1,115 @@
+{
+ "_what": "ground-scan surface stats",
+ "_crop_px": 1024,
+ "_stride": 4,
+ "scans": [
+  {
+   "scan": "Rock026_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Rock026_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.38391,
+    "luma_p05": 0.06881,
+    "luma_p50": 0.39494,
+    "luma_p95": 0.68004,
+    "rgb_mean_linear": [
+     0.38453,
+     0.38472,
+     0.37406
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.7789,
+     "corr_red_vs_dH_dcol_CONTROL": -0.7336,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.7789)",
+     "file": "Rock026_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.7789,
+     "corr_red_vs_dH_dcol_CONTROL": -0.7336,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.7789)",
+     "file": "Rock026_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Rock063_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Rock063_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.20671,
+    "luma_p05": 0.05337,
+    "luma_p50": 0.17622,
+    "luma_p95": 0.47539,
+    "rgb_mean_linear": [
+     0.24446,
+     0.21087,
+     0.05434
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.6186,
+     "corr_red_vs_dH_dcol_CONTROL": -0.6629,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.6186)",
+     "file": "Rock063_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.6186,
+     "corr_red_vs_dH_dcol_CONTROL": -0.6629,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.6186)",
+     "file": "Rock063_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Snow006_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Snow006_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.5796,
+    "luma_p05": 0.53372,
+    "luma_p50": 0.58086,
+    "luma_p95": 0.62302,
+    "rgb_mean_linear": [
+     0.57523,
+     0.58053,
+     0.58319
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.8582,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8689,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8582)",
+     "file": "Snow006_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.8582,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8689,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.8582)",
+     "file": "Snow006_4K-PNG_NormalGL.png"
+    }
+   }
+  }
+ ]
+}

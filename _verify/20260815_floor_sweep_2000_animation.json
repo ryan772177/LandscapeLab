@@ -1,0 +1,21 @@
+{
+  "label": "20260815_floor_sweep_2000",
+  "frames": [
+    "HighresScreenshot00058.png",
+    "HighresScreenshot00059.png",
+    "HighresScreenshot00060.png"
+  ],
+  "gap_s": 4.0,
+  "floor": 0.00298,
+  "mean_mae": 0.016410497609537642,
+  "mean_pct_moved": 21.605613425925924,
+  "peak": 0.8509803921568628,
+  "band_pct_moved": {
+    "top quarter": 25.179253472222225,
+    "upper middle": 32.92881944444444,
+    "lower middle": 17.125868055555554,
+    "bottom quarter": 6.529513888888889
+  },
+  "verdict": "MOVING",
+  "diff_image": "_verify\\20260815_floor_sweep_2000_animation_diff.png"
+}

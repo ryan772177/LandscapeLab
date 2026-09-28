@@ -1,0 +1,3844 @@
+{
+  "blend": "C:\\Users\\Admin\\Documents\\Groom_Test_26_06_28_vfull_52.blend",
+  "blender": "5.2.0 LTS",
+  "objects": [
+    {
+      "name": "Armature",
+      "type": "ARMATURE",
+      "parent": null,
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -17.3803,
+          -11.3252,
+          0.0
+        ],
+        "max": [
+          17.1483,
+          7.4736,
+          151.159
+        ],
+        "size": [
+          34.5287,
+          18.7988,
+          151.159
+        ]
+      },
+      "modifiers": []
+    },
+    {
+      "name": "buns_braids",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -7.378,
+          -7.8321,
+          132.1041
+        ],
+        "max": [
+          7.1719,
+          13.3899,
+          157.2998
+        ],
+        "size": [
+          14.5499,
+          21.2221,
+          25.1957
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.019999999552965164,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.019999999552965164,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Add Guide Object",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"buns_braids_guides\") at 0x000001FB603FCF20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"buns_braids_guides\") at 0x000001FB603FCF20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Merge Guide",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Merge Guide and Weight it",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Curves_Guides",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"buns_braids_guides\") at 0x000001FB603FCF20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"buns_braids_guides\") at 0x000001FB603FCF20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.029999999329447746,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.029999999329447746,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 78379,
+        "points": 2269334
+      },
+      "curves_evaluated": {
+        "curves": 79621,
+        "points": 2285552
+      }
+    },
+    {
+      "name": "buns_braids_guides",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": true,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -6.9748,
+          -7.4908,
+          132.5608
+        ],
+        "max": [
+          6.6234,
+          12.7317,
+          156.371
+        ],
+        "size": [
+          13.5982,
+          20.2224,
+          23.8102
+        ]
+      },
+      "modifiers": [],
+      "curves_authored": {
+        "curves": 621,
+        "points": 8109
+      },
+      "curves_evaluated": {
+        "curves": 621,
+        "points": 8109
+      }
+    },
+    {
+      "name": "curly_ear",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -7.7837,
+          -3.6461,
+          129.9487
+        ],
+        "max": [
+          7.4905,
+          -0.007,
+          142.9285
+        ],
+        "size": [
+          15.2742,
+          3.6391,
+          12.9799
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.019999999552965164,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.019999999552965164,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Add Guide Object",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Add Guide Object",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"curly_ear_guides\") at 0x000001FB603FC120>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"curly_ear_guides\") at 0x000001FB603FC120>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Merge Guide and Weight it",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Curves_Guides",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"curly_ear_guides\") at 0x000001FB603FC120>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"curly_ear_guides\") at 0x000001FB603FC120>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.009999999776482582,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.009999999776482582,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 680,
+        "points": 25160
+      },
+      "curves_evaluated": {
+        "curves": 792,
+        "points": 27736
+      }
+    },
+    {
+      "name": "curly_ear_guides",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": true,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -7.7931,
+          -3.5797,
+          130.0686
+        ],
+        "max": [
+          7.328,
+          -0.06,
+          142.7908
+        ],
+        "size": [
+          15.1211,
+          3.5197,
+          12.7222
+        ]
+      },
+      "modifiers": [],
+      "curves_authored": {
+        "curves": 56,
+        "points": 1288
+      },
+      "curves_evaluated": {
+        "curves": 56,
+        "points": 1288
+      }
+    },
+    {
+      "name": "curly_strands_top_bun",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -8.9527,
+          2.9118,
+          145.9884
+        ],
+        "max": [
+          7.3114,
+          20.0121,
+          156.7267
+        ],
+        "size": [
+          16.2641,
+          17.1003,
+          10.7383
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.019999999552965164,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.019999999552965164,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Add Guide Object",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Add Guide Object",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"curly_strands_top_bun_guides\") at 0x000001FB603FB220>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"curly_strands_top_bun_guides\") at 0x000001FB603FB220>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Merge Guide and Weight it",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Curves_Guides",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"curly_strands_top_bun_guides\") at 0x000001FB603FB220>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"curly_strands_top_bun_guides\") at 0x000001FB603FB220>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.009999999776482582,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.009999999776482582,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 959,
+        "points": 37847
+      },
+      "curves_evaluated": {
+        "curves": 1003,
+        "points": 39467
+      }
+    },
+    {
+      "name": "curly_strands_top_bun_guides",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -7.7428,
+          2.91,
+          146.4692
+        ],
+        "max": [
+          7.1927,
+          19.1383,
+          156.3991
+        ],
+        "size": [
+          14.9355,
+          16.2283,
+          9.93
+        ]
+      },
+      "modifiers": [],
+      "curves_authored": {
+        "curves": 22,
+        "points": 810
+      },
+      "curves_evaluated": {
+        "curves": 22,
+        "points": 810
+      }
+    },
+    {
+      "name": "head_lod0_mesh",
+      "type": "MESH",
+      "parent": "Armature",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -14.3409,
+          -11.3685,
+          118.1565
+        ],
+        "max": [
+          14.3409,
+          7.9172,
+          151.1754
+        ],
+        "size": [
+          28.6818,
+          19.2856,
+          33.019
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Root",
+          "type": "ARMATURE",
+          "show_viewport": true
+        },
+        {
+          "name": "Capture Rest Geometry",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Capture Rest Geometry",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_1",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Points to modify the positions of",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Rest Position",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketBool",
+              "description": "",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "mesh": {
+        "verts": 24049,
+        "polys": 24002
+      }
+    },
+    {
+      "name": "head_lod0_mesh_scalp",
+      "type": "MESH",
+      "parent": "Armature",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -6.8009,
+          -8.5477,
+          134.8357
+        ],
+        "max": [
+          6.6989,
+          7.7275,
+          151.1754
+        ],
+        "size": [
+          13.4998,
+          16.2752,
+          16.3398
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Root",
+          "type": "ARMATURE",
+          "show_viewport": true
+        },
+        {
+          "name": "Capture Rest Geometry",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Capture Rest Geometry",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_1",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Points to modify the positions of",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Rest Position",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketBool",
+              "description": "",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "mesh": {
+        "verts": 1890,
+        "polys": 1760
+      }
+    },
+    {
+      "name": "Metahuman Curly Hair",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -11.78,
+          -11.8511,
+          131.0589
+        ],
+        "max": [
+          11.0381,
+          12.5137,
+          154.7354
+        ],
+        "size": [
+          22.818,
+          24.3649,
+          23.6765
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh_scalp\") at 0x000001FB603FA420>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh_scalp\") at 0x000001FB603FA420>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh_scalp\") at 0x000001FB603FA420>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh_scalp\") at 0x000001FB603FA420>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Surface Deform",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Surface Deform",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Curly hair _ modded to custom head",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "GroomExporter Curly Hair",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_1",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.09999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.09999999403953552,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GroomExporter voxelyze hair for AO",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "voxelyze hair for AO",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "AO_debug_material",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketBool",
+              "description": "",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Exponent",
+              "identifier": "Socket_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "",
+              "min_value": -10000.0,
+              "max_value": 10000.0,
+              "default_value": 4.0,
+              "stored": {
+                "value": 2.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 2.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 303,
+        "points": 3636
+      },
+      "curves_evaluated": {
+        "curves": 31570,
+        "points": 1410651
+      }
+    },
+    {
+      "name": "Ponytail",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -5.4807,
+          7.4431,
+          119.3581
+        ],
+        "max": [
+          4.2264,
+          18.3261,
+          147.8969
+        ],
+        "size": [
+          9.7071,
+          10.883,
+          28.5389
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.019999999552965164,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.019999999552965164,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Add Guide Object",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Add Guide Object",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"Ponytail_guides\") at 0x000001FB603F8120>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"Ponytail_guides\") at 0x000001FB603F8120>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Merge Guide and Weight it",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Curves_Guides",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"Ponytail_braids_guides\") at 0x000001FB603F8820>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"Ponytail_braids_guides\") at 0x000001FB603F8820>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.009999999776482582,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.009999999776482582,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 9904,
+        "points": 405422
+      },
+      "curves_evaluated": {
+        "curves": 9966,
+        "points": 408074
+      }
+    },
+    {
+      "name": "Ponytail_braids",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -5.4384,
+          7.3401,
+          120.1056
+        ],
+        "max": [
+          4.1345,
+          18.5106,
+          147.374
+        ],
+        "size": [
+          9.5729,
+          11.1705,
+          27.2683
+        ]
+      },
+      "modifiers": [
+        {
+          "name": "Set Hair Curve Profile",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Set Hair Curve Profile",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Replace Radius",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Replace the original radius",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.019999999552965164,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.019999999552965164,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Shape",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketFloat",
+              "description": "Shape of the radius along the curve",
+              "min_value": -1.0,
+              "max_value": 1.0,
+              "default_value": 0.4999999403953552,
+              "stored": {
+                "value": 0.4999999403953552,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.4999999403953552,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Min",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the minimum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor Max",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor of the radius at the maximum",
+              "min_value": 0.0,
+              "max_value": 10000.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Add Guide Object",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Add Guide Object",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Object",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"Ponytail_braids_guides\") at 0x000001FB603F8820>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"Ponytail_braids_guides\") at 0x000001FB603F8820>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.10000000149011612,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.10000000149011612,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Shrinkwrap Hair Curves",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Shrinkwrap Hair Curves",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (May include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Input Type",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input type for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 0,
+                "type": 1
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface object used for shrinkwrap",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry used for shrinkwrap",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Factor",
+              "identifier": "Input_5",
+              "socket_type": "NodeSocketFloat",
+              "description": "Factor",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 1.0,
+              "stored": {
+                "value": 1.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 1.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Offset Distance",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketFloat",
+              "description": "Distance from the surface used for shrinkwrap",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Above Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend shrinkwrap for points above the surface",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.5,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Smoothing Steps",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketInt",
+              "description": "Amount of steps of smoothing applied after shrinkwrap",
+              "min_value": 0,
+              "max_value": 2147483647,
+              "default_value": 0,
+              "stored": {
+                "value": 0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Lock Roots",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Lock the position of root points",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "Attach Hair Curves to Surface",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Attach Hair Curves to Surface",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Input_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Input Geometry (may include other than curves)",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Source",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketMenu",
+              "description": "Select the input source for the surface geometry.",
+              "default_value": "Object",
+              "stored": {
+                "value": 1,
+                "type": 1
+              },
+              "current_value": 1,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Geometry",
+              "identifier": "Input_3",
+              "socket_type": "NodeSocketGeometry",
+              "description": "Surface geometry to attach hair curves to",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface Object",
+              "identifier": "Input_4",
+              "socket_type": "NodeSocketObject",
+              "description": "Surface Object to attach to",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"head_lod0_mesh\") at 0x000001FB603FAB20>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Surface UV Map",
+              "identifier": "Input_2",
+              "socket_type": "NodeSocketVector",
+              "description": "Surface UV map used for attachment",
+              "min_value": -3.4028234663852886e+38,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored": {
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "type": 2,
+                "attribute_name": "UVMap"
+              },
+              "current_value": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Resting Surface",
+              "identifier": "Input_6",
+              "socket_type": "NodeSocketBool",
+              "description": "Use the surface's resting state to preserve stability under deformation",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Use Existing Attachment",
+              "identifier": "Input_10",
+              "socket_type": "NodeSocketBool",
+              "description": "Sample the surface UV map at the attachment point",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Snap to Surface",
+              "identifier": "Input_8",
+              "socket_type": "NodeSocketBool",
+              "description": "Snap the root of each curve to the closest surface point",
+              "default_value": true,
+              "stored": {
+                "value": true,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": true,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Blend along Curve",
+              "identifier": "Input_12",
+              "socket_type": "NodeSocketFloat",
+              "description": "Blend deformation along each curve from the root",
+              "min_value": 0.0,
+              "max_value": 1.0,
+              "default_value": 0.0,
+              "stored": {
+                "value": 0.0,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.0,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Align to Surface Normal",
+              "identifier": "Input_7",
+              "socket_type": "NodeSocketBool",
+              "description": "Align the curve to the surface normal (needs a guide as reference)",
+              "default_value": false,
+              "stored": {
+                "value": false,
+                "type": 1,
+                "attribute_name": "",
+                "layer_name": ""
+              },
+              "current_value": false,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        },
+        {
+          "name": "GeometryNodes",
+          "type": "NODES",
+          "show_viewport": true,
+          "node_group": "Merge Guide and Weight it",
+          "inputs": [
+            {
+              "name": "Geometry",
+              "identifier": "Socket_0",
+              "socket_type": "NodeSocketGeometry",
+              "description": "",
+              "stored": {
+                "type": 0
+              },
+              "current_value": null,
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Curves_Guides",
+              "identifier": "Socket_2",
+              "socket_type": "NodeSocketObject",
+              "description": "",
+              "default_value": null,
+              "stored": {
+                "value": "<bpy_struct, Object(\"Ponytail_guides\") at 0x000001FB603F8120>",
+                "type": 1
+              },
+              "current_value": "<bpy_struct, Object(\"Ponytail_guides\") at 0x000001FB603F8120>",
+              "value_source": "modifier override"
+            },
+            {
+              "name": "Radius_guide",
+              "identifier": "Socket_3",
+              "socket_type": "NodeSocketFloat",
+              "description": "Base radius to be set if 'Replace Radius' is enabled",
+              "min_value": 0.0,
+              "max_value": 3.4028234663852886e+38,
+              "default_value": 0.009999999776482582,
+              "stored": {
+                "value": 0.009999999776482582,
+                "type": 1,
+                "attribute_name": ""
+              },
+              "current_value": 0.009999999776482582,
+              "value_source": "modifier override"
+            }
+          ],
+          "raw_items": {
+            "__error__": "TypeError: 'GeometryNodesInterfaceInputs' object is not iterable"
+          }
+        }
+      ],
+      "curves_authored": {
+        "curves": 1240,
+        "points": 181983
+      },
+      "curves_evaluated": {
+        "curves": 1302,
+        "points": 184635
+      }
+    },
+    {
+      "name": "Ponytail_braids_guides",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -4.647,
+          7.4431,
+          121.6835
+        ],
+        "max": [
+          3.3376,
+          17.9854,
+          145.0558
+        ],
+        "size": [
+          7.9847,
+          10.5423,
+          23.3723
+        ]
+      },
+      "modifiers": [],
+      "curves_authored": {
+        "curves": 6,
+        "points": 306
+      },
+      "curves_evaluated": {
+        "curves": 6,
+        "points": 306
+      }
+    },
+    {
+      "name": "Ponytail_guides",
+      "type": "CURVES",
+      "parent": "head_lod0_mesh",
+      "hide_viewport": false,
+      "hide_render": false,
+      "in_scene": true,
+      "bounds": {
+        "min": [
+          -5.4484,
+          7.3401,
+          120.0956
+        ],
+        "max": [
+          4.1445,
+          18.15,
+          147.384
+        ],
+        "size": [
+          9.5929,
+          10.8099,
+          27.2883
+        ]
+      },
+      "modifiers": [],
+      "curves_authored": {
+        "curves": 56,
+        "points": 2346
+      },
+      "curves_evaluated": {
+        "curves": 56,
+        "points": 2346
+      }
+    }
+  ],
+  "node_health": {
+    ".shape_range": {
+      "nodes": 30,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Add Guide Object": {
+      "nodes": 7,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curl Hair Curves": {
+      "nodes": 76,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curly hair": {
+      "nodes": 9,
+      "undefined": [],
+      "type": "GroomExporterNode"
+    },
+    "Curve Info.003": {
+      "nodes": 19,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Root": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Root.001": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Root.004": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Segment.001": {
+      "nodes": 20,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Segment.003": {
+      "nodes": 20,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Tip": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Tip.001": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Tip.003": {
+      "nodes": 10,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "GE_Set Guide Basic Info": {
+      "nodes": 8,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "GE_Set Guides Distances and Weights": {
+      "nodes": 86,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Get Attachment Surface": {
+      "nodes": 15,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Get Rest Geometry": {
+      "nodes": 13,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "GroomExporter Curly Hair": {
+      "nodes": 27,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Hair Curves Noise": {
+      "nodes": 97,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Merge Guide and Weight it": {
+      "nodes": 11,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Metahuman Braid Bun": {
+      "nodes": 11,
+      "undefined": [],
+      "type": "GroomExporterNode"
+    },
+    "Restore Curve Segment Length.001": {
+      "nodes": 53,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Restore Curve Segment Length.003": {
+      "nodes": 53,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Roll Hair Curves": {
+      "nodes": 157,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "shape_range.001": {
+      "nodes": 30,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "shape_range.004": {
+      "nodes": 30,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Smooth Hair Curves": {
+      "nodes": 88,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Surface Deform": {
+      "nodes": 3,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "voxelyze hair for AO": {
+      "nodes": 24,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Capture Rest Geometry": {
+      "nodes": 12,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Attach Hair Curves to Surface": {
+      "nodes": 122,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Attachment Info": {
+      "nodes": 15,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Curve Info": {
+      "nodes": 19,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Get Hair Surface Geometry": {
+      "nodes": 5,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Interpolate Hair Curves": {
+      "nodes": 184,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Rest Surface": {
+      "nodes": 9,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Set Attachment Surface": {
+      "nodes": 22,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Set Hair Curve Profile": {
+      "nodes": 13,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    },
+    "Shrinkwrap Hair Curves": {
+      "nodes": 88,
+      "undefined": [],
+      "type": "GeometryNodeTree"
+    }
+  },
+  "addons": {
+    "enabled": [
+      "GroomExporter",
+      "bl_pkg",
+      "cycles",
+      "io_anim_bvh",
+      "io_curve_svg",
+      "io_mesh_uv_layout",
+      "io_scene_fbx",
+      "io_scene_gltf2",
+      "pose_library"
+    ],
+    "groom_like": [
+      "GroomExporter"
+    ],
+    "groom_operators": [
+      "bpy.ops.groom.add_attribute_node",
+      "bpy.ops.groom.add_curve_node",
+      "bpy.ops.groom.add_custom_attribute_node",
+      "bpy.ops.groom.add_export_node",
+      "bpy.ops.groom.addcustomnode",
+      "bpy.ops.groom.buttonexport",
+      "bpy.ops.groom.buttonfastsetter",
+      "bpy.ops.groom.buttonfillfastsetter",
+      "bpy.ops.groom.fillattributesnode",
+      "bpy.ops.groom.groomtooltip",
+      "bpy.ops.groom.headertooltip",
+      "bpy.ops.groom.nodeupdate",
+      "bpy.ops.groom.removecustomnode",
+      "bpy.ops.groom.selectcurves",
+      "bpy.ops.groom.strandtooltip",
+      "bpy.ops.groom.vertextooltip"
+    ]
+  },
+  "summary": {
+    "objects": 14,
+    "curves_objects": 11,
+    "mesh_objects": 2,
+    "node_groups": 39,
+    "node_groups_with_undefined": 0
+  }
+}

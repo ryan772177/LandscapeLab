@@ -1,0 +1,647 @@
+{
+ "_what": "ground-scan intake probe",
+ "scans": [
+  {
+   "folder": "Gravel021_4K-PNG",
+   "n_files": 12,
+   "maps": {
+    "ao": [
+     {
+      "file": "Gravel021_4K-PNG_AmbientOcclusion.png",
+      "bytes": 9213138,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "Gravel021_4K-PNG_Color.png",
+      "bytes": 23028048,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "Gravel021_4K-PNG_Displacement.png",
+      "bytes": 25084949,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "normal": [
+     {
+      "file": "Gravel021_4K-PNG_NormalDX.png",
+      "bytes": 94939405,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     },
+     {
+      "file": "Gravel021_4K-PNG_NormalGL.png",
+      "bytes": 94938077,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Gravel021_4K-PNG_Roughness.png",
+      "bytes": 7655652,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "Gravel021.png",
+    "Gravel021_4K-PNG.blend",
+    "Gravel021_4K-PNG.mtlx",
+    "Gravel021_4K-PNG.tres",
+    "Gravel021_4K-PNG.usdc",
+    "Gravel021_4K-PNG_IdMask.png"
+   ],
+   "physical_size": {
+    "metres": null,
+    "source": null
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "Snow007A_4K-PNG",
+   "n_files": 11,
+   "maps": {
+    "ao": [
+     {
+      "file": "Snow007A_4K-PNG_AmbientOcclusion.png",
+      "bytes": 7090894,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "Snow007A_4K-PNG_Color.png",
+      "bytes": 27207395,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "Snow007A_4K-PNG_Displacement.png",
+      "bytes": 23591919,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "normal": [
+     {
+      "file": "Snow007A_4K-PNG_NormalDX.png",
+      "bytes": 90938332,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     },
+     {
+      "file": "Snow007A_4K-PNG_NormalGL.png",
+      "bytes": 90942596,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Snow007A_4K-PNG_Roughness.png",
+      "bytes": 15200936,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "Snow007A.png",
+    "Snow007A_4K-PNG.blend",
+    "Snow007A_4K-PNG.mtlx",
+    "Snow007A_4K-PNG.tres",
+    "Snow007A_4K-PNG.usdc"
+   ],
+   "physical_size": {
+    "metres": null,
+    "source": null
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "rock_shopk_high",
+   "n_files": 11,
+   "maps": {
+    "ao": [
+     {
+      "file": "Rock_shopk_High_4K_AO.jpg",
+      "bytes": 5802189,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Rock_shopk_High_4K_BaseColor.jpg",
+      "bytes": 9584185,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Rock_shopk_High_4K_Bump.jpg",
+      "bytes": 3286223,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     },
+     {
+      "file": "Rock_shopk_High_4K_Displacement.jpg",
+      "bytes": 2172348,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Rock_shopk_High_4K_Normal.jpg",
+      "bytes": 19056689,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Rock_shopk_High_4K_Roughness.jpg",
+      "bytes": 4475133,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Rock_shopk_High.fbx",
+    "Rock_shopk_High_4K_Cavity.jpg",
+    "Rock_shopk_High_4K_Gloss.jpg",
+    "Rock_shopk_High_4K_Specular.jpg",
+    "shopk.json"
+   ],
+   "physical_size": {
+    "metres": "1x1",
+    "source": "shopk.json physicalSize"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  },
+  {
+   "folder": "rock_shopk_raw",
+   "n_files": 10,
+   "maps": {
+    "ao": [
+     {
+      "file": "Rock_shopk_Raw_8K_AO.jpg",
+      "bytes": 33994233,
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Rock_shopk_Raw_8K_BaseColor.jpg",
+      "bytes": 60961698,
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Rock_shopk_Raw_8K_Bump.jpg",
+      "bytes": 14536030,
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Rock_shopk_Raw_8K_Normal.jpg",
+      "bytes": 61750002,
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Rock_shopk_Raw_8K_Roughness.jpg",
+      "bytes": 28602180,
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Rock_shopk_Raw.fbx",
+    "Rock_shopk_Raw_8K_Cavity.jpg",
+    "Rock_shopk_Raw_8K_Gloss.jpg",
+    "Rock_shopk_Raw_8K_Specular.jpg",
+    "shopk.json"
+   ],
+   "physical_size": {
+    "metres": "1x1",
+    "source": "shopk.json physicalSize"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  },
+  {
+   "folder": "forest_floor_vktfeilaw_4k",
+   "n_files": 10,
+   "maps": {
+    "ao": [
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_AO.jpg",
+      "bytes": 12252821,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_BaseColor.jpg",
+      "bytes": 21676402,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_Bump.jpg",
+      "bytes": 8226024,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     },
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_Displacement.jpg",
+      "bytes": 6088717,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_Normal.jpg",
+      "bytes": 41669380,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Forest_Floor_vktfeilaw_4K_Roughness.jpg",
+      "bytes": 8811906,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Forest_Floor_vktfeilaw_4K_Cavity.jpg",
+    "Forest_Floor_vktfeilaw_4K_Gloss.jpg",
+    "Forest_Floor_vktfeilaw_4K_Specular.jpg",
+    "vktfeilaw.json"
+   ],
+   "physical_size": {
+    "metres": "2x2 m",
+    "source": "vktfeilaw.json meta[Scan Area]"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  },
+  {
+   "folder": "nordic_forest_ground_root_moss_coarse_xiekec0_4k",
+   "n_files": 10,
+   "maps": {
+    "ao": [
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_AO.jpg",
+      "bytes": 15045204,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_BaseColor.jpg",
+      "bytes": 30297203,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Bump.jpg",
+      "bytes": 10099238,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     },
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Displacement.jpg",
+      "bytes": 5219541,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Normal.jpg",
+      "bytes": 45600411,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Roughness.jpg",
+      "bytes": 10743960,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Cavity.jpg",
+    "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Gloss.jpg",
+    "Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Specular.jpg",
+    "xiekec0.json"
+   ],
+   "physical_size": {
+    "metres": "2x2 m",
+    "source": "xiekec0.json meta[Scan Area]"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  },
+  {
+   "folder": "wild_grass_xbreagf_4k",
+   "n_files": 10,
+   "maps": {
+    "ao": [
+     {
+      "file": "Wild_Grass_xbreagf_4K_AO.jpg",
+      "bytes": 17874033,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Wild_Grass_xbreagf_4K_BaseColor.jpg",
+      "bytes": 25854973,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Wild_Grass_xbreagf_4K_Bump.jpg",
+      "bytes": 13998147,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     },
+     {
+      "file": "Wild_Grass_xbreagf_4K_Displacement.jpg",
+      "bytes": 10402324,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Wild_Grass_xbreagf_4K_Normal.jpg",
+      "bytes": 48776471,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Wild_Grass_xbreagf_4K_Roughness.jpg",
+      "bytes": 13129158,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Wild_Grass_xbreagf_4K_Cavity.jpg",
+    "Wild_Grass_xbreagf_4K_Gloss.jpg",
+    "Wild_Grass_xbreagf_4K_Specular.jpg",
+    "xbreagf.json"
+   ],
+   "physical_size": {
+    "metres": "2x2 m",
+    "source": "xbreagf.json meta[Scan Area]"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  },
+  {
+   "folder": "nordic_beach_rocky_ground_ukoncdamw_high",
+   "n_files": 12,
+   "maps": {
+    "ao": [
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_AO.jpg",
+      "bytes": 7659202,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "color": [
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_BaseColor.jpg",
+      "bytes": 7593018,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "height": [
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Bump.jpg",
+      "bytes": 4417889,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     },
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Displacement.jpg",
+      "bytes": 2167607,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "normal": [
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Normal.jpg",
+      "bytes": 24697751,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ],
+    "roughness": [
+     {
+      "file": "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Roughness.jpg",
+      "bytes": 4134384,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "container": "jpeg",
+      "_measured": "SOF marker 0xC0 precision byte"
+     }
+    ]
+   },
+   "other": [
+    "Nordic_Beach_Rocky_Ground_ukoncdamw_High.fbx",
+    "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Cavity.jpg",
+    "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Fuzz.jpg",
+    "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Gloss.jpg",
+    "Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Specular.jpg",
+    "ukoncdamw.json"
+   ],
+   "physical_size": {
+    "metres": "1x1",
+    "source": "ukoncdamw.json physicalSize"
+   },
+   "height_bit_depth": 8,
+   "height_verdict": "REFUSE -- 8-bit height"
+  }
+ ]
+}

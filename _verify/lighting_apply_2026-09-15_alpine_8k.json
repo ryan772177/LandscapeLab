@@ -1,0 +1,208 @@
+{
+ "ok": true,
+ "actors": {
+  "sun": "reused",
+  "sky_atmosphere": "reused",
+  "skylight": "reused",
+  "fog": "reused",
+  "clouds": "reused",
+  "post_process": "reused"
+ },
+ "pin_readbacks": {
+  "Lighting_alpine_8k_Sun": false,
+  "Lighting_alpine_8k_SkyAtmo": false,
+  "Lighting_alpine_8k_SkyLight": false,
+  "Lighting_alpine_8k_Fog": false,
+  "Lighting_alpine_8k_Clouds": false,
+  "Lighting_alpine_8k_PostProcess": false
+ },
+ "sun_rotation_readback": [
+  -0.0,
+  -12.0,
+  -75.0
+ ],
+ "sun_rotation_expected": [
+  0.0,
+  -12.0,
+  285.0
+ ],
+ "sun_rotation_matches": true,
+ "sun_light_shaft_bloom_readback": true,
+ "sun_atmosphere_sun_light_readback": true,
+ "sun_cast_shadows_readback": true,
+ "atmo_mie_scattering_scale": 0.009999999776482582,
+ "atmo_mie_anisotropy": 0.800000011920929,
+ "atmo_rayleigh_scattering_scale": 0.03310000151395798,
+ "sky_intensity": 1.0,
+ "sky_real_time_capture": true,
+ "sky_lower_hemisphere_is_black": true,
+ "sky_lower_hemisphere_color": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "sky_color_requested_linear": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "sky_color_readback_fcolor": [
+  255,
+  255,
+  255,
+  255
+ ],
+ "sky_color_readback_linear": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "sky_color_roundtrip_abs_error": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "sky_color_quantisation_floor_linear": 0.0089,
+ "fog_datum_cm": 18674.0,
+ "fog_half_height_m": 517.49,
+ "fog_height_falloff": 0.01932404490908037,
+ "fog_volumetric_enabled_readback": true,
+ "fog_volumetric_extinction_scale": 1.0,
+ "fog_volumetric_scattering_distribution": 0.4000000059604645,
+ "fog_inscattering_luminance": [
+  0.0,
+  0.0,
+  0.0,
+  1.0
+ ],
+ "fog_directional_inscattering_luminance": [
+  0.0,
+  0.0,
+  0.0,
+  1.0
+ ],
+ "fog_sky_atmosphere_ambient_scale": [
+  1.0,
+  1.0,
+  1.0,
+  1.0
+ ],
+ "fog_start_distance_cm": 0.0,
+ "fog_implied_half_height_m": 517.49,
+ "clouds_readback": {
+  "layer_bottom_km": 2.0,
+  "layer_height_km": 1.5,
+  "material": "/Game/Bench/MI_AlpineClouds.MI_AlpineClouds",
+  "coverage": 0.30000001192092896,
+  "cvar_r_VolumetricCloud": 1.0
+ },
+ "ppv_unbound_readback": true,
+ "grade_readback": {
+  "white_temp": 3438.60009765625,
+  "temperature_type": "<TemperatureMethod.TEMP_WHITE_BALANCE: 0>",
+  "white_tint": -0.024800000712275505,
+  "color_contrast": [
+   1.0,
+   1.0,
+   1.0,
+   0.95
+  ],
+  "color_contrast_effective_xyz_times_w": [
+   0.95,
+   0.95,
+   0.95
+  ],
+  "bloom_method": "<BloomMethod.BM_FFT: 1>",
+  "bloom_intensity": 0.4000000059604645,
+  "film_grain_intensity": 0.0,
+  "vignette_intensity": 0.0,
+  "scene_fringe_intensity": 0.0
+ },
+ "exposure_readback": {
+  "auto_exposure_method": "<AutoExposureMethod.AEM_MANUAL: 2>",
+  "auto_exposure_bias": -14.257100105285645,
+  "auto_exposure_min_brightness": 1.0,
+  "auto_exposure_max_brightness": 1.0,
+  "auto_exposure_apply_physical_camera_exposure": false,
+  "override_auto_exposure_apply_physical_camera_exposure": true
+ },
+ "census": {
+  "DirectionalLight": {
+   "ours": [
+    [
+     "Lighting_alpine_8k_Sun",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.DirectionalLight_UAID_183D2D961742B8F702_1907558713"
+    ]
+   ],
+   "foreign": [],
+   "inert": [
+    [
+     "HeroStage_Key",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.DirectionalLight_UAID_183D2D961742DAFA02_1197121874"
+    ],
+    [
+     "HeroStage_Fill",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.DirectionalLight_UAID_183D2D961742DAFA02_1197128875"
+    ],
+    [
+     "HeroStage_Rim",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.DirectionalLight_UAID_183D2D961742DAFA02_1197134876"
+    ]
+   ]
+  },
+  "ExponentialHeightFog": {
+   "ours": [
+    [
+     "Lighting_alpine_8k_Fog",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.ExponentialHeightFog_UAID_183D2D961742B8F702_1907573716"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "SkyAtmosphere": {
+   "ours": [
+    [
+     "Lighting_alpine_8k_SkyAtmo",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.SkyAtmosphere_UAID_183D2D961742B8F702_1907566714"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "SkyLight": {
+   "ours": [
+    [
+     "Lighting_alpine_8k_SkyLight",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.SkyLight_UAID_183D2D961742B8F702_1907570715"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "VolumetricCloud": {
+   "ours": [
+    [
+     "Lighting_alpine_8k_Clouds",
+     "/Game/Alpine8K.Alpine8K:PersistentLevel.VolumetricCloud_UAID_183D2D961742750003_2078942423"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  }
+ },
+ "save": {
+  "marked": 6,
+  "packages": [
+   "/Game/__ExternalActors__/Alpine8K/6/7V/8UPRTIR5VBPANUTGTNUAEV",
+   "/Game/__ExternalActors__/Alpine8K/2/SA/X3ZBQEEM3UN5G99GW4G8EO",
+   "/Game/__ExternalActors__/Alpine8K/D/4S/KH57KMNNPAXU2NNFWIGJ0C",
+   "/Game/__ExternalActors__/Alpine8K/6/YC/MADCYKPRPR8A06JP5HRKUH",
+   "/Game/__ExternalActors__/Alpine8K/3/XP/BPW0LO1X38VYGTUYN044BC",
+   "/Game/__ExternalActors__/Alpine8K/8/Z0/IL3RYQP4MYEBFFOA9A4SL5",
+   "/Game/Bench/MI_AlpineClouds"
+  ],
+  "saved": true,
+  "still_dirty_ours": []
+ }
+}

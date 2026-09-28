@@ -1,0 +1,24 @@
+{
+ "asset_key": "wood_stack",
+ "name": "SM_WoodStack_Forge",
+ "views": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az000.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az035.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az090.png",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az180.png"
+ ],
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260830,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/SM_WoodStack_Forge_raw.obj",
+ "out_report": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/generate_report.json"
+}

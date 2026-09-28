@@ -1,0 +1,152 @@
+{
+  "_what": "E3: frame cost measured in a STANDALONE -game process, at the four ratified perf stations.",
+  "_not_a_ratification": "recipes/perf_budgets.json is LAW and is untouched. This is a second instrument reported beside it. Whether any budget should move is an operator decision.",
+  "engine": "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "project": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "level": "/Game/Alpine8K",
+  "requested_res": [
+    3840,
+    2160
+  ],
+  "fov_h_deg": 90.0,
+  "_fov_h_deg_note": "declared from the spline but NOT applied to the -game process (BugItGo/ExecCmds set no FOV) and NOT read back -- it is the engine default here; treat this value as prose, not a measurement (rule 12).",
+  "eye_height_cm": 175.0,
+  "settle_s": 60.0,
+  "margin_s": 20.0,
+  "local_ddc_path_override": null,
+  "noxgecontroller": true,
+  "no_remote_shader_compile": false,
+  "min_window_s": 25.0,
+  "frames_requested": 60000,
+  "declared_loading_range_cm": 51200,
+  "_residency_note": "VRAM peak is measured per station (nvidia-smi poll over the steady-state window, vs the 13312 MiB abort ceiling) and an in-engine GPU-mem CSV cross-check is attempted; WP streaming-active is read from each station's log. This closes the T11 rule-12 gap (the tool declared no VRAM/residency). A steady-state resident-cell COUNT is still not reachable via startup-only ExecCmds in -game.",
+  "z_source": "heightmap-derived + eye height; a PLACEMENT AID, not a trace. perf_budgets.json requires an in-editor trace; the measured gap at near_ground is 2.3 cm and the standalone pawn collides.",
+  "camera_command": "BugItGo (not ViewActor): it takes the ratified coordinates directly and needs no named camera actor. The log is checked for the echo AND for 'not recognized'.",
+  "zones": {
+    "forest_floor": {
+      "zone": "forest_floor",
+      "label": "forest_floor_t4E_4_r2",
+      "hide_foliage": false,
+      "density_scale": null,
+      "hide_hlod": false,
+      "csv_gpu_stats": true,
+      "cmd": [
+        "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+        "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+        "/Game/Alpine8K",
+        "-game",
+        "-windowed",
+        "-ResX=3840",
+        "-ResY=2160",
+        "-ExecCmds=r.setRes 3840x2160w,BugItGo -166400.0 192000.0 19819.8 -5.0 100.0 0,r.Nanite.MaxPixelsPerEdge 4,r.Nanite.MaxPixelsPerEdge,r.GPUCsvStatsEnable 1,CsvProfile frames=60000",
+        "-nosplash",
+        "-NoLoadingScreen",
+        "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\perf_standalone_forest_floor_t4E_4_r2.log",
+        "-csvGpuStats",
+        "-noxgecontroller"
+      ],
+      "exec_cmds": "r.setRes 3840x2160w,BugItGo -166400.0 192000.0 19819.8 -5.0 100.0 0,r.Nanite.MaxPixelsPerEdge 4,r.Nanite.MaxPixelsPerEdge,r.GPUCsvStatsEnable 1,CsvProfile frames=60000",
+      "camera": {
+        "x_cm": -166400.0,
+        "y_cm": 192000.0,
+        "z_cm": 19819.83100633249,
+        "pitch_deg": -5.0,
+        "yaw_deg": 100.0
+      },
+      "requested_res": [
+        3840,
+        2160
+      ],
+      "dwell_s": 106.3,
+      "vram_mib": {
+        "peak_mib": 4963,
+        "mean_mib": 4044.5,
+        "n_samples": 21,
+        "peak_window_mib": 4963,
+        "n_window": 9,
+        "abort_ceiling_mib": 13312,
+        "physical_mib": 16303,
+        "headroom_to_abort_mib": 8349,
+        "over_abort_ceiling": false,
+        "_caveat": "whole-GPU used (nvidia-smi memory.used); includes any other consumer, but the -game process dominates a dedicated run."
+      },
+      "log": "LandscapeLab\\Saved\\Logs\\perf_standalone_forest_floor_t4E_4_r2.log",
+      "viewport_res_readback": [
+        3840,
+        2160
+      ],
+      "res_matches_request": true,
+      "config_setres_seen": [
+        1280,
+        720
+      ],
+      "command_not_recognized": false,
+      "residency": {
+        "wp_initialized_game": true,
+        "generate_streaming_seen": true,
+        "streaming_active": true,
+        "_source": "log markers (LogWorldPartition)",
+        "_limit": "the default -game log carries WP Initialize + GenerateStreaming but NOT a steady-state resident-cell count; this proves the world is STREAMED and bounded by the declared loading range, not that N cells were resident. A cell count needs LogWorldPartition Verbose or a wp.Runtime dump, neither reachable via startup-only ExecCmds."
+      },
+      "csv": "_verify\\perf\\standalone_2026-09-23\\forest_floor_t4E_4_r2.csv",
+      "frames_total": 6362,
+      "frames_dropped_from_front": 4548,
+      "window_s_measured": 25.0,
+      "window_ok": true,
+      "capture_s_total": 87.6,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 1814,
+          "mean": 13.703,
+          "p50": 13.671,
+          "p90": 14.767,
+          "max": 16.456
+        },
+        "GameThreadTime": {
+          "n": 1813,
+          "mean": 4.073,
+          "p50": 3.955,
+          "p90": 4.945,
+          "max": 6.513
+        },
+        "RenderThreadTime": {
+          "n": 1813,
+          "mean": 13.684,
+          "p50": 13.641,
+          "p90": 14.728,
+          "max": 16.448
+        },
+        "GPUTime": {
+          "n": 1813,
+          "mean": 12.292,
+          "p50": 12.231,
+          "p90": 12.618,
+          "max": 14.377
+        }
+      },
+      "gpu_mem_csv": {
+        "peak_by_column": {
+          "NaniteStreaming/RootAllocationMB": 16.0,
+          "NaniteStreaming/RootDataSizeMB": 3.3,
+          "TextureStreaming/ResidentMeshMem": 0.0,
+          "TextureStreaming/StreamedMeshMem": 0.0,
+          "GPUMem/LocalBudgetMB": 15235.0,
+          "GPUMem/LocalUsedMB": 4930.0,
+          "GPUMem/SystemBudgetMB": 17579.9,
+          "GPUMem/SystemUsedMB": 431.9
+        },
+        "n_rows": 6362
+      },
+      "station_ok": true
+    }
+  },
+  "camera_differentiation": null,
+  "vram_summary": {
+    "peak_mib": 4963,
+    "abort_ceiling_mib": 13312,
+    "physical_mib": 16303,
+    "headroom_to_abort_mib": 8349,
+    "over_abort_ceiling": false,
+    "n_stations_measured": 1
+  }
+}

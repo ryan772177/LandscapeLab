@@ -1,0 +1,96 @@
+20260809 — GROUND CLUTTER, FIRST RENDER: NOT VISIBLE, AND WHY
+
+VERDICT: GT_alpine_GroundClutter is LIVE in the engine and does NOT read
+in the frame. The density I chose (1.5 per 10 m2) is too low, and the
+mesh is too heavy to simply raise it. Nothing here is a build fault.
+
+WHAT THE ENGINE SAYS — R11's direct instrument, after FlushCache + 240 s
+dwell with the viewport parked at forest_floor:
+
+    By grass type report:
+    (HeightData):            Num components = 1024
+    GT_alpine_GroundClutter: Num components =  862, 3448.00 KB
+    GT_alpine_Meadow:        Num components =  862, 3448.00 KB
+
+R11: this counts components FOR the type, and the capture path strips
+all-zero types (InitializeFrom(bStripEmptyWeights=true),
+LandscapeGrassWeightExporter.cpp:1190), so a counted component
+NECESSARILY holds non-zero weights. GroundClutter matches Meadow's
+footprint exactly. The wiring is right.
+
+WHAT THE FRAMES SHOW — nothing, and the arithmetic says why
+
+    alpine__forest_floor__20260809T055832Z__..._groundclutter.png
+    alpine__forest_floor__20260809T062907Z__..._clutter_after_flush.png
+
+At 1.5/10m2 = 0.15/m2, spacing 2.58 m:
+
+    tight crop      ~24 m2  ->    ~4 rocks expected   (absence is WEAK evidence)
+    near-ground band ~240 m2 ->  ~36 rocks expected   (absence is stronger)
+    full 70 m disc  15,394 m2 -> 2,309 rocks
+
+No rock is identifiable in either frame. Grass blades ARE visible at 2x
+magnification, so the grass system itself renders.
+
+THE PHOTOMETRIC ROUTE IS DEFEATED, AND THIS IS WORTH KNOWING
+
+Frame-to-frame comparison cannot settle this on the current world:
+
+    SKY  (should be the control)  mae 0.06469
+    MID                           mae 0.05308
+    NEAR GROUND                   mae 0.02853
+
+The SKY moves MORE than the ground between two captures taken 30 minutes
+apart with identical settings. VOLUMETRIC CLOUDS ANIMATE, so there is no
+same-settings noise floor while they are on. The 2026-08-08 before/after
+work established a floor of mean mae 0.00298 — that was measured on
+CLOUD-FREE frames and does not transfer.
+
+  ANY FUTURE FRAME-TO-FRAME COMPARISON ON THIS WORLD MUST DISABLE CLOUDS
+  FIRST, or its noise floor is larger than the effect it is looking for.
+
+THE MESH IS THE REAL CONSTRAINT
+
+Effective cost per instance is about 1,179 triangles (crude LOD1 average
+over the disc) against 316 for a grass tuft — 3.7x. So raising density to
+visibility is not free:
+
+     per10m2   spacing  instances@70m   M tris   vs R11 grass
+         1.5     2.58m          2,309      2.7        0.09x   <- current, invisible
+         5.0     1.41m          7,697      9.1        0.30x
+        10.0     1.00m         15,394     18.2        0.61x
+        20.0     0.71m         30,788     36.3        1.22x
+        50.0     0.45m         76,969     90.8        3.05x
+
+RECOMMENDED, NOT APPLIED: trade reach for density, which is R11's own
+ruling for grass ("grass beyond ~50 m is ground texture anyway") and
+applies harder to a 0.5 m rock, which is sub-pixel well before 50 m.
+
+    10/10m2 at a 40 m cull -> 5,027 instances, ~5.9M tris, 1.0 m spacing
+
+That is denser than the eye needs at foot level, cheaper than the current
+70 m reach, and about a fifth of R11 grass.
+
+WHAT THIS DOES NOT SETTLE
+
+"Too sparse to see" and "not rendering at all" are still not separated by
+direct evidence. The engine's component count is strong evidence for the
+former, but the decisive test is cheap and has not been run: raise the
+density hard (20-50/10m2), flush, capture. If rocks appear it was
+density; if not, it is a rendering problem and the component count is
+misleading.
+
+PROCESS FAULTS IN GETTING HERE, both mine
+
+1. R11's ORDERED STEPS are 1) build 2) grass.FlushCache 3) dwell
+   4) capture. I SKIPPED step 2, reasoning that a brand-new grass type
+   had no stale cache to clear. The first capture was therefore taken
+   before the landscape had regenerated grass data, and showed nothing.
+   Substituting my own reasoning for a locked recipe step is exactly what
+   the operating loop forbids.
+
+2. I then ran FlushCache and DumpGrassData in the SAME payload, back to
+   back, and read "No grass data." — having just destroyed the state I
+   was measuring. Non-negotiable 5: a check that consumes the value it is
+   verifying verifies nothing. Re-run in the right order (park, dwell,
+   dump) it returned 862 components.

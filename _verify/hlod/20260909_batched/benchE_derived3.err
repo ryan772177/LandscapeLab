@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\Admin\UE5LandscapePipeline\scripts\bench_capture.py", line 1111, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\Admin\UE5LandscapePipeline\scripts\bench_capture.py", line 1024, in main
+    json.dump(sidecar, open(sp, "w", encoding="utf-8"), indent=1)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type set is not JSON serializable

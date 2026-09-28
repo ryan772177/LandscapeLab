@@ -1,0 +1,151 @@
+{
+ "faces_in_band": 37867,
+ "band_fracs": [
+  0.115,
+  0.683
+ ],
+ "up_axis": "y",
+ "buckets": [
+  {
+   "lo": 0.0,
+   "hi": 0.05,
+   "faces": 8188,
+   "area": 0.723122,
+   "area_pct": 42.91
+  },
+  {
+   "lo": 0.05,
+   "hi": 0.1,
+   "faces": 2238,
+   "area": 0.064046,
+   "area_pct": 3.8
+  },
+  {
+   "lo": 0.1,
+   "hi": 0.15,
+   "faces": 1460,
+   "area": 0.028734,
+   "area_pct": 1.71
+  },
+  {
+   "lo": 0.15,
+   "hi": 0.2,
+   "faces": 1212,
+   "area": 0.020933,
+   "area_pct": 1.24
+  },
+  {
+   "lo": 0.2,
+   "hi": 0.25,
+   "faces": 1028,
+   "area": 0.016787,
+   "area_pct": 1.0
+  },
+  {
+   "lo": 0.25,
+   "hi": 0.3,
+   "faces": 873,
+   "area": 0.013139,
+   "area_pct": 0.78
+  },
+  {
+   "lo": 0.3,
+   "hi": 0.35,
+   "faces": 823,
+   "area": 0.011976,
+   "area_pct": 0.71
+  },
+  {
+   "lo": 0.35,
+   "hi": 0.4,
+   "faces": 804,
+   "area": 0.011326,
+   "area_pct": 0.67
+  },
+  {
+   "lo": 0.4,
+   "hi": 0.45,
+   "faces": 866,
+   "area": 0.014586,
+   "area_pct": 0.87
+  },
+  {
+   "lo": 0.45,
+   "hi": 0.5,
+   "faces": 809,
+   "area": 0.012777,
+   "area_pct": 0.76
+  },
+  {
+   "lo": 0.5,
+   "hi": 0.55,
+   "faces": 745,
+   "area": 0.010712,
+   "area_pct": 0.64
+  },
+  {
+   "lo": 0.55,
+   "hi": 0.6,
+   "faces": 971,
+   "area": 0.017093,
+   "area_pct": 1.01
+  },
+  {
+   "lo": 0.6,
+   "hi": 0.65,
+   "faces": 3256,
+   "area": 0.145679,
+   "area_pct": 8.65
+  },
+  {
+   "lo": 0.65,
+   "hi": 0.7,
+   "faces": 5376,
+   "area": 0.283105,
+   "area_pct": 16.8
+  },
+  {
+   "lo": 0.7,
+   "hi": 0.75,
+   "faces": 1952,
+   "area": 0.066902,
+   "area_pct": 3.97
+  },
+  {
+   "lo": 0.75,
+   "hi": 0.8,
+   "faces": 1566,
+   "area": 0.051526,
+   "area_pct": 3.06
+  },
+  {
+   "lo": 0.8,
+   "hi": 0.85,
+   "faces": 2263,
+   "area": 0.103755,
+   "area_pct": 6.16
+  },
+  {
+   "lo": 0.85,
+   "hi": 0.9,
+   "faces": 1121,
+   "area": 0.033051,
+   "area_pct": 1.96
+  },
+  {
+   "lo": 0.9,
+   "hi": 0.95,
+   "faces": 818,
+   "area": 0.01641,
+   "area_pct": 0.97
+  },
+  {
+   "lo": 0.95,
+   "hi": 1.0,
+   "faces": 1498,
+   "area": 0.039371,
+   "area_pct": 2.34
+  }
+ ],
+ "_meaning": "|normal . up| per face, area-weighted. ~0 is a vertical wall, ~1 a flat cap, and a pitched roof sits at cos(pitch): 0.87 at 30 deg, 0.71 at 45."
+}

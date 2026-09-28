@@ -1,0 +1,55 @@
+BYTE RECONCILIATION — pre-doc-consolidation-20260829 -> working tree
+
+  EXTENDED +51243              1360784  LESSONS.md
+  EXTENDED +16745               683609  RECIPES.md
+  EXTENDED +2937                147617  BACKLOG.md
+  UNCHANGED                     116301  _trash/docs-consolidated-2026-08-02/lessons.md
+  UNCHANGED                     115059  _trash/docs-consolidated-2026-08-02/decisions.md
+  EXTENDED +1646                 94227  _verify/20260827_unit5_walk_postnav30.md
+  UNCHANGED                      73893  recipes/schema.md
+  EXTENDED +1192                 67815  _verify/20260827_unit5_walk_stream_control_600.md
+  UNCHANGED                      52417  _trash/docs-consolidated-2026-08-02/audit-log.md
+  EXTENDED +806                  45429  _verify/20260827_unit5_walk_stream_mounted_1800.md
+  EXTENDED +720                  40631  _verify/20260827_unit5_walk_postnav260.md
+  EXTENDED +672                  39623  _verify/20260816_unit5_walk_hero001.md
+  UNCHANGED                      39046  _trash/docs-consolidated-2026-08-02/changelog.md
+  EXTENDED +672                  38975  _verify/20260815_unit5_walk_walk003.md
+  ... 145 files total
+
+  unchanged      1011984 chars
+  extended       3145122  (originals still present; TOCs/banners added)
+  moved            56337
+  MISSING              0
+
+  CLAUDE.md: 488823 chars decomposed, 488823 accounted for, 0 pieces missing
+
+  DECLARED REWRITES — 3 lines, listed so none is silent:
+      ASSETS.md — the row's link to plans/conifer_asset_spec.md gained a pointer to its archive path. The row's FACTS are untouched.
+      terrain/regions/README.md — repointed at the archived IMPORT_CHECKLIST.md and warns its premise died with R-CREATE.
+      the 27d heading was edited to mark it superseded when the post-hoc 2026-08-28 block was inserted above it. Its BODY is byte-identical in the archive; both heading forms are recorded verbatim in docs/archive/claude_md_superseded_sections.md.
+
+EVERY ORIGINAL BYTE ACCOUNTED FOR.
+  note  1 doc(s) DECLARE historical paths, so the stale-link scan skipped them: BACKLOG.md
+check_docs.py — 151 tracked .md files, CLAUDE.md 24987 chars (ceiling 25000)
+  ok  index complete, everything covered, one CURRENT STATE, no stale links, archive banners present
+NO FAILURES
+OFFLINE SUITE -- no editor, no world, no network
+
+  ok       the doc index, size ceiling and archive banners      exit 0     0.0s
+  ok       ...and that the doc checker can itself fail          exit 0     0.1s
+  ok       the generated TOCs are current                       exit 0     0.5s
+  ok       recipe + gate corpus                                 exit 0     0.9s
+  ok       plan_city's four gates refuse, and write nothing     exit 0     5.3s
+  ok       ...and that prover can itself fail                   exit 0    10.6s
+  ok       the encounter SUCCESS path, re-verified independently exit 0    65.9s
+  ok       encounter separation + settlement units              exit 0     0.3s
+  ok       the input-stamp instrument refuses                   exit 0     2.7s
+  ok       every plan against its inputs                        exit 0    44.4s
+  ok       the street network is one component                  exit 0     0.1s
+  ok       the surface lookup, and that its binding refuses     exit 0     1.1s
+  ok       the surface bake's own controls                      exit 0     3.7s
+  ok       the planner-recipe prose rule, and that it refuses   exit 0     0.0s
+  ok       no script reads a prose key                          exit 0     0.1s
+  ok       the surface lookup against the drawn pixels          exit 0     1.7s
+
+NO FAILURES across 16 checks.

@@ -1,0 +1,55 @@
+{
+ "frames": [
+  {
+   "frame": "BEFORE (Tiling 1.0)",
+   "file": "_verify/20260830_overnight/C0_side_by_side_stage.png",
+   "original": {
+    "sat_mean": 0.13095282018184662,
+    "val_mean": 0.40390437841415405,
+    "px": 47562,
+    "rgb_mean": [
+     100.5,
+     96.2,
+     93.9
+    ]
+   },
+   "swapped": {
+    "sat_mean": 0.012885835953056812,
+    "val_mean": 0.9255686402320862,
+    "px": 13708,
+    "rgb_mean": [
+     233.8,
+     233.0,
+     236.0
+    ]
+   },
+   "sat_ratio_swapped_over_original": 0.098
+  },
+  {
+   "frame": "AFTER (derived tiling)",
+   "file": "_verify/20260830_c0/c0_stage_tiled_matched.png",
+   "original": {
+    "sat_mean": 0.14781275391578674,
+    "val_mean": 0.2740442454814911,
+    "px": 70982,
+    "rgb_mean": [
+     63.3,
+     64.1,
+     68.7
+    ]
+   },
+   "swapped": {
+    "sat_mean": 0.05373819172382355,
+    "val_mean": 0.8343819379806519,
+    "px": 16409,
+    "rgb_mean": [
+     212.6,
+     210.6,
+     201.4
+    ]
+   },
+   "sat_ratio_swapped_over_original": 0.364
+  }
+ ],
+ "excess_change": 3.714
+}

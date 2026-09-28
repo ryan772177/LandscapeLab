@@ -1,0 +1,22 @@
+﻿
+__SOCKETS__{"blend": "C:\\Users\\Admin\\UE5LandscapePipeline\\hero\\blender\\AlpineHero_Repoint_v1.blend", "groom": 
+"Metahuman Curly Hair", "curves_data_surface": "SKM_MHC_AlpineHero_FaceMesh.001", "curves_data_surface_uv": 
+"DiffuseUV", "parent": "SKM_MHC_AlpineHero_FaceMesh.001", "meshes_present": ["SKM_MHC_AlpineHero_FaceMesh.001", 
+"head_lod0_mesh", "head_lod0_mesh_scalp"], "modifiers": [{"name": "Shrinkwrap Hair Curves", "type": "NODES", 
+"show_viewport": true, "node_group": "Shrinkwrap Hair Curves", "sockets": {"Geometry": "None", "Surface Input Type": 
+"0", "Surface": "None", "Factor": "1.0", "Offset Distance": "0.0", "Above Surface": "0.0", "Smoothing Steps": "0", 
+"Lock Roots": "True"}}, {"name": "Set Hair Curve Profile", "type": "NODES", "show_viewport": true, "node_group": "Set 
+Hair Curve Profile", "sockets": {"Geometry": "None", "Replace Radius": "True", "Radius": "0.10000000149011612", 
+"Shape": "0.4999999403953552", "Factor Min": "0.0", "Factor Max": "1.0"}}, {"name": "Attach Hair Curves to Surface", 
+"type": "NODES", "show_viewport": true, "node_group": "Attach Hair Curves to Surface", "sockets": {"Geometry": "None", 
+"Surface Source": "1", "Surface Geometry": "None", "Surface Object": "SKM_MHC_AlpineHero_FaceMesh.001", "Surface UV 
+Map": "[0.0, 0.0, 0.0]", "Resting Surface": "False", "Use Existing Attachment": "False", "Snap to Surface": "True", 
+"Blend along Curve": "0.0", "Align to Surface Normal": "False"}}, {"name": "Surface Deform", "type": "NODES", 
+"show_viewport": true, "node_group": "Surface Deform", "sockets": {"Geometry": "None"}}, {"name": "Curly hair _ modded 
+to custom head", "type": "NODES", "show_viewport": true, "node_group": "GroomExporter Curly Hair", "sockets": 
+{"Geometry": "None", "Radius_guide": "0.09999999403953552"}}, {"name": "GroomExporter voxelyze hair for AO", "type": 
+"NODES", "show_viewport": true, "node_group": "voxelyze hair for AO", "sockets": {"Geometry": "None", "Object": 
+"SKM_MHC_AlpineHero_FaceMesh.001", "AO_debug_material": "False", "Exponent": "2.0"}}], "evaluated_z": [131.059, 
+154.735], "evaluated_curves": 31570}
+
+

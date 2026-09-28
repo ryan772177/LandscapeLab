@@ -1,0 +1,12354 @@
+{
+ "_what": "The town's reachable region, measured against the BUILT navmesh from the PlayerStart. Authored, versioned data -- not a diagnostic.",
+ "_bound_to": {
+  "city_plan": "alpine_basin_town_plan.json",
+  "navmesh_agent": {
+   "agent_max_slope": 44.76508331298828,
+   "agent_radius": 34.0,
+   "agent_height": 176.0,
+   "tile_size_uu": 1600.0
+  },
+  "nav_chunk_actors_resident": 10,
+  "player_start_cm": [
+   -210800.0,
+   278800.0,
+   18791.8
+  ],
+  "query_extent_cm": 500.0
+ },
+ "_a_reachability_claim_is_true_for_ONE_navmesh_build": "If the agent, the bounds volumes or the terrain change, this file is stale and must be re-measured. It records the agent it was measured with for exactly that reason.",
+ "streets": {
+  "total": 838,
+  "reachable": 653,
+  "unreachable": 185,
+  "failed_projection": 0
+ },
+ "buildings": {
+  "total": 303,
+  "reachable": 253,
+  "unreachable": 50
+ },
+ "street_rows": [
+  {
+   "i": 0,
+   "kind": "ring",
+   "loc_cm": [
+    -204847.3,
+    279552.0
+   ],
+   "radius_m": 60.0,
+   "reachable": false
+  },
+  {
+   "i": 1,
+   "kind": "ring",
+   "loc_cm": [
+    -205221.3,
+    281008.7
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 2,
+   "kind": "ring",
+   "loc_cm": [
+    -205945.9,
+    282326.7
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 3,
+   "kind": "ring",
+   "loc_cm": [
+    -206975.5,
+    283423.1
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 4,
+   "kind": "ring",
+   "loc_cm": [
+    -208245.3,
+    284229.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 5,
+   "kind": "ring",
+   "loc_cm": [
+    -209675.7,
+    284693.7
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 6,
+   "kind": "ring",
+   "loc_cm": [
+    -211176.7,
+    284788.2
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 7,
+   "kind": "ring",
+   "loc_cm": [
+    -212654.1,
+    284506.3
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 8,
+   "kind": "ring",
+   "loc_cm": [
+    -214015.0,
+    283866.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 9,
+   "kind": "ring",
+   "loc_cm": [
+    -215173.8,
+    282907.3
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 10,
+   "kind": "ring",
+   "loc_cm": [
+    -216057.8,
+    281690.5
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 11,
+   "kind": "ring",
+   "loc_cm": [
+    -216611.5,
+    280292.1
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 12,
+   "kind": "ring",
+   "loc_cm": [
+    -216800.0,
+    278800.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 13,
+   "kind": "ring",
+   "loc_cm": [
+    -216611.5,
+    277307.9
+   ],
+   "radius_m": 60.0,
+   "reachable": false
+  },
+  {
+   "i": 14,
+   "kind": "ring",
+   "loc_cm": [
+    -216057.8,
+    275909.5
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 15,
+   "kind": "ring",
+   "loc_cm": [
+    -215173.8,
+    274692.7
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 16,
+   "kind": "ring",
+   "loc_cm": [
+    -214015.0,
+    273734.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 17,
+   "kind": "ring",
+   "loc_cm": [
+    -212654.1,
+    273093.7
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 18,
+   "kind": "ring",
+   "loc_cm": [
+    -211176.7,
+    272811.8
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 19,
+   "kind": "ring",
+   "loc_cm": [
+    -209675.7,
+    272906.3
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 20,
+   "kind": "ring",
+   "loc_cm": [
+    -208245.3,
+    273371.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 21,
+   "kind": "ring",
+   "loc_cm": [
+    -206975.5,
+    274176.9
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 22,
+   "kind": "ring",
+   "loc_cm": [
+    -205945.9,
+    275273.3
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 23,
+   "kind": "ring",
+   "loc_cm": [
+    -205221.3,
+    276591.3
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 24,
+   "kind": "ring",
+   "loc_cm": [
+    -204847.3,
+    278048.0
+   ],
+   "radius_m": 60.0,
+   "reachable": true
+  },
+  {
+   "i": 25,
+   "kind": "ring",
+   "loc_cm": [
+    -201028.8,
+    279550.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 26,
+   "kind": "ring",
+   "loc_cm": [
+    -201257.8,
+    281033.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 27,
+   "kind": "ring",
+   "loc_cm": [
+    -201710.5,
+    282463.4
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 28,
+   "kind": "ring",
+   "loc_cm": [
+    -202376.2,
+    283808.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 29,
+   "kind": "ring",
+   "loc_cm": [
+    -203239.4,
+    285035.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 30,
+   "kind": "ring",
+   "loc_cm": [
+    -204279.8,
+    286116.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 31,
+   "kind": "ring",
+   "loc_cm": [
+    -205473.0,
+    287025.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 32,
+   "kind": "ring",
+   "loc_cm": [
+    -206791.1,
+    287742.5
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 33,
+   "kind": "ring",
+   "loc_cm": [
+    -208203.2,
+    288249.7
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 34,
+   "kind": "ring",
+   "loc_cm": [
+    -209676.1,
+    288535.3
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 35,
+   "kind": "ring",
+   "loc_cm": [
+    -211175.4,
+    288592.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 36,
+   "kind": "ring",
+   "loc_cm": [
+    -212665.8,
+    288420.7
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 37,
+   "kind": "ring",
+   "loc_cm": [
+    -214112.6,
+    288023.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 38,
+   "kind": "ring",
+   "loc_cm": [
+    -215481.7,
+    287409.4
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 39,
+   "kind": "ring",
+   "loc_cm": [
+    -216741.0,
+    286593.9
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 40,
+   "kind": "ring",
+   "loc_cm": [
+    -217861.1,
+    285595.6
+   ],
+   "radius_m": 98.0,
+   "reachable": false
+  },
+  {
+   "i": 41,
+   "kind": "ring",
+   "loc_cm": [
+    -218815.7,
+    284438.1
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 42,
+   "kind": "ring",
+   "loc_cm": [
+    -219582.4,
+    283148.5
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 43,
+   "kind": "ring",
+   "loc_cm": [
+    -220143.3,
+    281756.9
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 44,
+   "kind": "ring",
+   "loc_cm": [
+    -220485.1,
+    280296.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 45,
+   "kind": "ring",
+   "loc_cm": [
+    -220600.0,
+    278800.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 46,
+   "kind": "ring",
+   "loc_cm": [
+    -220485.1,
+    277304.0
+   ],
+   "radius_m": 98.0,
+   "reachable": false
+  },
+  {
+   "i": 47,
+   "kind": "ring",
+   "loc_cm": [
+    -220143.3,
+    275843.1
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 48,
+   "kind": "ring",
+   "loc_cm": [
+    -219582.4,
+    274451.5
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 49,
+   "kind": "ring",
+   "loc_cm": [
+    -218815.7,
+    273161.9
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 50,
+   "kind": "ring",
+   "loc_cm": [
+    -217861.1,
+    272004.4
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 51,
+   "kind": "ring",
+   "loc_cm": [
+    -216741.0,
+    271006.1
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 52,
+   "kind": "ring",
+   "loc_cm": [
+    -215481.7,
+    270190.6
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 53,
+   "kind": "ring",
+   "loc_cm": [
+    -214112.6,
+    269576.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 54,
+   "kind": "ring",
+   "loc_cm": [
+    -212665.8,
+    269179.3
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 55,
+   "kind": "ring",
+   "loc_cm": [
+    -211175.4,
+    269007.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 56,
+   "kind": "ring",
+   "loc_cm": [
+    -209676.1,
+    269064.7
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 57,
+   "kind": "ring",
+   "loc_cm": [
+    -208203.2,
+    269350.3
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 58,
+   "kind": "ring",
+   "loc_cm": [
+    -206791.1,
+    269857.5
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 59,
+   "kind": "ring",
+   "loc_cm": [
+    -205473.0,
+    270574.2
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 60,
+   "kind": "ring",
+   "loc_cm": [
+    -204279.8,
+    271483.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 61,
+   "kind": "ring",
+   "loc_cm": [
+    -203239.4,
+    272564.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 62,
+   "kind": "ring",
+   "loc_cm": [
+    -202376.2,
+    273792.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 63,
+   "kind": "ring",
+   "loc_cm": [
+    -201710.5,
+    275136.6
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 64,
+   "kind": "ring",
+   "loc_cm": [
+    -201257.8,
+    276567.0
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 65,
+   "kind": "ring",
+   "loc_cm": [
+    -201028.8,
+    278049.8
+   ],
+   "radius_m": 98.0,
+   "reachable": true
+  },
+  {
+   "i": 66,
+   "kind": "ring",
+   "loc_cm": [
+    -197221.4,
+    279562.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 67,
+   "kind": "ring",
+   "loc_cm": [
+    -197392.2,
+    281078.1
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 68,
+   "kind": "ring",
+   "loc_cm": [
+    -197731.5,
+    282565.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 69,
+   "kind": "ring",
+   "loc_cm": [
+    -198235.2,
+    284004.5
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 70,
+   "kind": "ring",
+   "loc_cm": [
+    -198897.0,
+    285378.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 71,
+   "kind": "ring",
+   "loc_cm": [
+    -199708.4,
+    286669.9
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 72,
+   "kind": "ring",
+   "loc_cm": [
+    -200659.3,
+    287862.3
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 73,
+   "kind": "ring",
+   "loc_cm": [
+    -201737.7,
+    288940.7
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 74,
+   "kind": "ring",
+   "loc_cm": [
+    -202930.1,
+    289891.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 75,
+   "kind": "ring",
+   "loc_cm": [
+    -204221.4,
+    290703.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 76,
+   "kind": "ring",
+   "loc_cm": [
+    -205595.5,
+    291364.8
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 77,
+   "kind": "ring",
+   "loc_cm": [
+    -207035.0,
+    291868.5
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 78,
+   "kind": "ring",
+   "loc_cm": [
+    -208521.9,
+    292207.8
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 79,
+   "kind": "ring",
+   "loc_cm": [
+    -210037.4,
+    292378.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 80,
+   "kind": "ring",
+   "loc_cm": [
+    -211562.6,
+    292378.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 81,
+   "kind": "ring",
+   "loc_cm": [
+    -213078.1,
+    292207.8
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 82,
+   "kind": "ring",
+   "loc_cm": [
+    -214565.0,
+    291868.5
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 83,
+   "kind": "ring",
+   "loc_cm": [
+    -216004.5,
+    291364.8
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 84,
+   "kind": "ring",
+   "loc_cm": [
+    -217378.6,
+    290703.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 85,
+   "kind": "ring",
+   "loc_cm": [
+    -218669.9,
+    289891.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 86,
+   "kind": "ring",
+   "loc_cm": [
+    -219862.3,
+    288940.7
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 87,
+   "kind": "ring",
+   "loc_cm": [
+    -220940.7,
+    287862.3
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 88,
+   "kind": "ring",
+   "loc_cm": [
+    -221891.6,
+    286669.9
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 89,
+   "kind": "ring",
+   "loc_cm": [
+    -222703.0,
+    285378.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 90,
+   "kind": "ring",
+   "loc_cm": [
+    -223364.8,
+    284004.5
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 91,
+   "kind": "ring",
+   "loc_cm": [
+    -223868.5,
+    282565.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 92,
+   "kind": "ring",
+   "loc_cm": [
+    -224207.8,
+    281078.1
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 93,
+   "kind": "ring",
+   "loc_cm": [
+    -224378.6,
+    279562.6
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 94,
+   "kind": "ring",
+   "loc_cm": [
+    -224378.6,
+    278037.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 95,
+   "kind": "ring",
+   "loc_cm": [
+    -224207.8,
+    276521.9
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 96,
+   "kind": "ring",
+   "loc_cm": [
+    -223868.5,
+    275035.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 97,
+   "kind": "ring",
+   "loc_cm": [
+    -223364.8,
+    273595.5
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 98,
+   "kind": "ring",
+   "loc_cm": [
+    -222703.0,
+    272221.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 99,
+   "kind": "ring",
+   "loc_cm": [
+    -221891.6,
+    270930.1
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 100,
+   "kind": "ring",
+   "loc_cm": [
+    -220940.7,
+    269737.7
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 101,
+   "kind": "ring",
+   "loc_cm": [
+    -219862.3,
+    268659.3
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 102,
+   "kind": "ring",
+   "loc_cm": [
+    -218669.9,
+    267708.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 103,
+   "kind": "ring",
+   "loc_cm": [
+    -217378.6,
+    266897.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 104,
+   "kind": "ring",
+   "loc_cm": [
+    -216004.5,
+    266235.2
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 105,
+   "kind": "ring",
+   "loc_cm": [
+    -214565.0,
+    265731.5
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 106,
+   "kind": "ring",
+   "loc_cm": [
+    -213078.1,
+    265392.2
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 107,
+   "kind": "ring",
+   "loc_cm": [
+    -211562.6,
+    265221.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 108,
+   "kind": "ring",
+   "loc_cm": [
+    -210037.4,
+    265221.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 109,
+   "kind": "ring",
+   "loc_cm": [
+    -208521.9,
+    265392.2
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 110,
+   "kind": "ring",
+   "loc_cm": [
+    -207035.0,
+    265731.5
+   ],
+   "radius_m": 136.0,
+   "reachable": false
+  },
+  {
+   "i": 111,
+   "kind": "ring",
+   "loc_cm": [
+    -205595.5,
+    266235.2
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 112,
+   "kind": "ring",
+   "loc_cm": [
+    -204221.4,
+    266897.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 113,
+   "kind": "ring",
+   "loc_cm": [
+    -202930.1,
+    267708.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 114,
+   "kind": "ring",
+   "loc_cm": [
+    -201737.7,
+    268659.3
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 115,
+   "kind": "ring",
+   "loc_cm": [
+    -200659.3,
+    269737.7
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 116,
+   "kind": "ring",
+   "loc_cm": [
+    -199708.4,
+    270930.1
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 117,
+   "kind": "ring",
+   "loc_cm": [
+    -198897.0,
+    272221.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 118,
+   "kind": "ring",
+   "loc_cm": [
+    -198235.2,
+    273595.5
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 119,
+   "kind": "ring",
+   "loc_cm": [
+    -197731.5,
+    275035.0
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 120,
+   "kind": "ring",
+   "loc_cm": [
+    -197392.2,
+    276521.9
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 121,
+   "kind": "ring",
+   "loc_cm": [
+    -197221.4,
+    278037.4
+   ],
+   "radius_m": 136.0,
+   "reachable": true
+  },
+  {
+   "i": 122,
+   "kind": "ring",
+   "loc_cm": [
+    -193416.6,
+    279559.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 123,
+   "kind": "ring",
+   "loc_cm": [
+    -193548.9,
+    281071.2
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 124,
+   "kind": "ring",
+   "loc_cm": [
+    -193812.4,
+    282566.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 125,
+   "kind": "ring",
+   "loc_cm": [
+    -194205.3,
+    284032.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 126,
+   "kind": "ring",
+   "loc_cm": [
+    -194724.5,
+    285458.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 127,
+   "kind": "ring",
+   "loc_cm": [
+    -195366.0,
+    286834.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 128,
+   "kind": "ring",
+   "loc_cm": [
+    -196125.0,
+    288149.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 129,
+   "kind": "ring",
+   "loc_cm": [
+    -197971.4,
+    290555.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 130,
+   "kind": "ring",
+   "loc_cm": [
+    -199044.7,
+    291628.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 131,
+   "kind": "ring",
+   "loc_cm": [
+    -200207.6,
+    292604.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 132,
+   "kind": "ring",
+   "loc_cm": [
+    -201451.0,
+    293475.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 133,
+   "kind": "ring",
+   "loc_cm": [
+    -202765.6,
+    294234.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 134,
+   "kind": "ring",
+   "loc_cm": [
+    -204141.3,
+    294875.5
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 135,
+   "kind": "ring",
+   "loc_cm": [
+    -205567.7,
+    295394.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 136,
+   "kind": "ring",
+   "loc_cm": [
+    -207034.0,
+    295787.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 137,
+   "kind": "ring",
+   "loc_cm": [
+    -208528.8,
+    296051.1
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 138,
+   "kind": "ring",
+   "loc_cm": [
+    -210041.0,
+    296183.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 139,
+   "kind": "ring",
+   "loc_cm": [
+    -211559.0,
+    296183.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 140,
+   "kind": "ring",
+   "loc_cm": [
+    -213071.2,
+    296051.1
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 141,
+   "kind": "ring",
+   "loc_cm": [
+    -214566.0,
+    295787.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 142,
+   "kind": "ring",
+   "loc_cm": [
+    -216032.3,
+    295394.7
+   ],
+   "radius_m": 174.0,
+   "reachable": false
+  },
+  {
+   "i": 143,
+   "kind": "ring",
+   "loc_cm": [
+    -217458.7,
+    294875.5
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 144,
+   "kind": "ring",
+   "loc_cm": [
+    -218834.4,
+    294234.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 145,
+   "kind": "ring",
+   "loc_cm": [
+    -220149.0,
+    293475.0
+   ],
+   "radius_m": 174.0,
+   "reachable": false
+  },
+  {
+   "i": 146,
+   "kind": "ring",
+   "loc_cm": [
+    -221392.4,
+    292604.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 147,
+   "kind": "ring",
+   "loc_cm": [
+    -222555.3,
+    291628.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 148,
+   "kind": "ring",
+   "loc_cm": [
+    -223628.6,
+    290555.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 149,
+   "kind": "ring",
+   "loc_cm": [
+    -224604.3,
+    289392.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 150,
+   "kind": "ring",
+   "loc_cm": [
+    -225475.0,
+    288149.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 151,
+   "kind": "ring",
+   "loc_cm": [
+    -226234.0,
+    286834.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 152,
+   "kind": "ring",
+   "loc_cm": [
+    -226875.5,
+    285458.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 153,
+   "kind": "ring",
+   "loc_cm": [
+    -227394.7,
+    284032.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 154,
+   "kind": "ring",
+   "loc_cm": [
+    -227787.6,
+    282566.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 155,
+   "kind": "ring",
+   "loc_cm": [
+    -228051.1,
+    281071.2
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 156,
+   "kind": "ring",
+   "loc_cm": [
+    -228183.4,
+    279559.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 157,
+   "kind": "ring",
+   "loc_cm": [
+    -228183.4,
+    278041.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 158,
+   "kind": "ring",
+   "loc_cm": [
+    -228051.1,
+    276528.8
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 159,
+   "kind": "ring",
+   "loc_cm": [
+    -227787.6,
+    275034.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 160,
+   "kind": "ring",
+   "loc_cm": [
+    -227394.7,
+    273567.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 161,
+   "kind": "ring",
+   "loc_cm": [
+    -226875.5,
+    272141.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 162,
+   "kind": "ring",
+   "loc_cm": [
+    -226234.0,
+    270765.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 163,
+   "kind": "ring",
+   "loc_cm": [
+    -225475.0,
+    269451.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 164,
+   "kind": "ring",
+   "loc_cm": [
+    -224604.3,
+    268207.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 165,
+   "kind": "ring",
+   "loc_cm": [
+    -223628.6,
+    267044.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 166,
+   "kind": "ring",
+   "loc_cm": [
+    -222555.3,
+    265971.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 167,
+   "kind": "ring",
+   "loc_cm": [
+    -221392.4,
+    264995.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 168,
+   "kind": "ring",
+   "loc_cm": [
+    -220149.0,
+    264125.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 169,
+   "kind": "ring",
+   "loc_cm": [
+    -218834.4,
+    263366.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 170,
+   "kind": "ring",
+   "loc_cm": [
+    -217458.7,
+    262724.5
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 171,
+   "kind": "ring",
+   "loc_cm": [
+    -216032.3,
+    262205.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 172,
+   "kind": "ring",
+   "loc_cm": [
+    -214566.0,
+    261812.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 173,
+   "kind": "ring",
+   "loc_cm": [
+    -213071.2,
+    261548.9
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 174,
+   "kind": "ring",
+   "loc_cm": [
+    -211559.0,
+    261416.6
+   ],
+   "radius_m": 174.0,
+   "reachable": false
+  },
+  {
+   "i": 175,
+   "kind": "ring",
+   "loc_cm": [
+    -210041.0,
+    261416.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 176,
+   "kind": "ring",
+   "loc_cm": [
+    -208528.8,
+    261548.9
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 177,
+   "kind": "ring",
+   "loc_cm": [
+    -207034.0,
+    261812.4
+   ],
+   "radius_m": 174.0,
+   "reachable": false
+  },
+  {
+   "i": 178,
+   "kind": "ring",
+   "loc_cm": [
+    -205567.7,
+    262205.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 179,
+   "kind": "ring",
+   "loc_cm": [
+    -204141.3,
+    262724.5
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 180,
+   "kind": "ring",
+   "loc_cm": [
+    -202765.6,
+    263366.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 181,
+   "kind": "ring",
+   "loc_cm": [
+    -201451.0,
+    264125.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 182,
+   "kind": "ring",
+   "loc_cm": [
+    -200207.6,
+    264995.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 183,
+   "kind": "ring",
+   "loc_cm": [
+    -199044.7,
+    265971.4
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 184,
+   "kind": "ring",
+   "loc_cm": [
+    -197971.4,
+    267044.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 185,
+   "kind": "ring",
+   "loc_cm": [
+    -195366.0,
+    270765.6
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 186,
+   "kind": "ring",
+   "loc_cm": [
+    -194724.5,
+    272141.3
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 187,
+   "kind": "ring",
+   "loc_cm": [
+    -194205.3,
+    273567.7
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 188,
+   "kind": "ring",
+   "loc_cm": [
+    -193812.4,
+    275034.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 189,
+   "kind": "ring",
+   "loc_cm": [
+    -193548.9,
+    276528.8
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 190,
+   "kind": "ring",
+   "loc_cm": [
+    -193416.6,
+    278041.0
+   ],
+   "radius_m": 174.0,
+   "reachable": true
+  },
+  {
+   "i": 191,
+   "kind": "ring",
+   "loc_cm": [
+    -189613.5,
+    279556.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 192,
+   "kind": "ring",
+   "loc_cm": [
+    -189721.5,
+    281066.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 193,
+   "kind": "ring",
+   "loc_cm": [
+    -189936.8,
+    282564.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 194,
+   "kind": "ring",
+   "loc_cm": [
+    -190258.5,
+    284042.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 195,
+   "kind": "ring",
+   "loc_cm": [
+    -190684.9,
+    285495.0
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 196,
+   "kind": "ring",
+   "loc_cm": [
+    -191213.8,
+    286912.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 197,
+   "kind": "ring",
+   "loc_cm": [
+    -191842.4,
+    288289.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 198,
+   "kind": "ring",
+   "loc_cm": [
+    -192567.7,
+    289617.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 199,
+   "kind": "ring",
+   "loc_cm": [
+    -193385.9,
+    290890.8
+   ],
+   "radius_m": 212.0,
+   "reachable": false
+  },
+  {
+   "i": 200,
+   "kind": "ring",
+   "loc_cm": [
+    -194292.8,
+    292102.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 201,
+   "kind": "ring",
+   "loc_cm": [
+    -195283.8,
+    293246.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 202,
+   "kind": "ring",
+   "loc_cm": [
+    -196353.9,
+    294316.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 203,
+   "kind": "ring",
+   "loc_cm": [
+    -197497.7,
+    295307.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 204,
+   "kind": "ring",
+   "loc_cm": [
+    -198709.2,
+    296214.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 205,
+   "kind": "ring",
+   "loc_cm": [
+    -199982.3,
+    297032.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 206,
+   "kind": "ring",
+   "loc_cm": [
+    -201310.5,
+    297757.6
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 207,
+   "kind": "ring",
+   "loc_cm": [
+    -202687.1,
+    298386.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 208,
+   "kind": "ring",
+   "loc_cm": [
+    -204105.0,
+    298915.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 209,
+   "kind": "ring",
+   "loc_cm": [
+    -205557.1,
+    299341.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 210,
+   "kind": "ring",
+   "loc_cm": [
+    -207035.9,
+    299663.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 211,
+   "kind": "ring",
+   "loc_cm": [
+    -208533.8,
+    299878.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 212,
+   "kind": "ring",
+   "loc_cm": [
+    -210043.3,
+    299986.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 213,
+   "kind": "ring",
+   "loc_cm": [
+    -211556.7,
+    299986.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 214,
+   "kind": "ring",
+   "loc_cm": [
+    -213066.2,
+    299878.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 215,
+   "kind": "ring",
+   "loc_cm": [
+    -214564.1,
+    299663.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 216,
+   "kind": "ring",
+   "loc_cm": [
+    -216042.9,
+    299341.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 217,
+   "kind": "ring",
+   "loc_cm": [
+    -217495.0,
+    298915.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 218,
+   "kind": "ring",
+   "loc_cm": [
+    -218912.9,
+    298386.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 219,
+   "kind": "ring",
+   "loc_cm": [
+    -220289.5,
+    297757.6
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 220,
+   "kind": "ring",
+   "loc_cm": [
+    -221617.7,
+    297032.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 221,
+   "kind": "ring",
+   "loc_cm": [
+    -222890.8,
+    296214.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 222,
+   "kind": "ring",
+   "loc_cm": [
+    -224102.3,
+    295307.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 223,
+   "kind": "ring",
+   "loc_cm": [
+    -225246.1,
+    294316.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 224,
+   "kind": "ring",
+   "loc_cm": [
+    -226316.2,
+    293246.1
+   ],
+   "radius_m": 212.0,
+   "reachable": false
+  },
+  {
+   "i": 225,
+   "kind": "ring",
+   "loc_cm": [
+    -227307.2,
+    292102.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 226,
+   "kind": "ring",
+   "loc_cm": [
+    -228214.1,
+    290890.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 227,
+   "kind": "ring",
+   "loc_cm": [
+    -229032.3,
+    289617.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 228,
+   "kind": "ring",
+   "loc_cm": [
+    -229757.6,
+    288289.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 229,
+   "kind": "ring",
+   "loc_cm": [
+    -230386.2,
+    286912.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 230,
+   "kind": "ring",
+   "loc_cm": [
+    -230915.1,
+    285495.0
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 231,
+   "kind": "ring",
+   "loc_cm": [
+    -231341.5,
+    284042.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 232,
+   "kind": "ring",
+   "loc_cm": [
+    -231663.2,
+    282564.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 233,
+   "kind": "ring",
+   "loc_cm": [
+    -231878.5,
+    281066.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 234,
+   "kind": "ring",
+   "loc_cm": [
+    -231986.5,
+    279556.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 235,
+   "kind": "ring",
+   "loc_cm": [
+    -231986.5,
+    278043.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 236,
+   "kind": "ring",
+   "loc_cm": [
+    -231878.5,
+    276533.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 237,
+   "kind": "ring",
+   "loc_cm": [
+    -231663.2,
+    275035.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 238,
+   "kind": "ring",
+   "loc_cm": [
+    -231341.5,
+    273557.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 239,
+   "kind": "ring",
+   "loc_cm": [
+    -230915.1,
+    272105.0
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 240,
+   "kind": "ring",
+   "loc_cm": [
+    -230386.2,
+    270687.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 241,
+   "kind": "ring",
+   "loc_cm": [
+    -229757.6,
+    269310.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 242,
+   "kind": "ring",
+   "loc_cm": [
+    -229032.3,
+    267982.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 243,
+   "kind": "ring",
+   "loc_cm": [
+    -228214.1,
+    266709.2
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 244,
+   "kind": "ring",
+   "loc_cm": [
+    -216042.9,
+    258258.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 245,
+   "kind": "ring",
+   "loc_cm": [
+    -214564.1,
+    257936.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 246,
+   "kind": "ring",
+   "loc_cm": [
+    -213066.2,
+    257721.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 247,
+   "kind": "ring",
+   "loc_cm": [
+    -211556.7,
+    257613.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 248,
+   "kind": "ring",
+   "loc_cm": [
+    -210043.3,
+    257613.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 249,
+   "kind": "ring",
+   "loc_cm": [
+    -208533.8,
+    257721.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 250,
+   "kind": "ring",
+   "loc_cm": [
+    -207035.9,
+    257936.8
+   ],
+   "radius_m": 212.0,
+   "reachable": false
+  },
+  {
+   "i": 251,
+   "kind": "ring",
+   "loc_cm": [
+    -205557.1,
+    258258.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 252,
+   "kind": "ring",
+   "loc_cm": [
+    -204105.0,
+    258684.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 253,
+   "kind": "ring",
+   "loc_cm": [
+    -202687.1,
+    259213.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 254,
+   "kind": "ring",
+   "loc_cm": [
+    -201310.5,
+    259842.4
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 255,
+   "kind": "ring",
+   "loc_cm": [
+    -199982.3,
+    260567.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 256,
+   "kind": "ring",
+   "loc_cm": [
+    -198709.2,
+    261385.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 257,
+   "kind": "ring",
+   "loc_cm": [
+    -197497.7,
+    262292.8
+   ],
+   "radius_m": 212.0,
+   "reachable": false
+  },
+  {
+   "i": 258,
+   "kind": "ring",
+   "loc_cm": [
+    -196353.9,
+    263283.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 259,
+   "kind": "ring",
+   "loc_cm": [
+    -195283.8,
+    264353.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 260,
+   "kind": "ring",
+   "loc_cm": [
+    -194292.8,
+    265497.7
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 261,
+   "kind": "ring",
+   "loc_cm": [
+    -192567.7,
+    267982.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 262,
+   "kind": "ring",
+   "loc_cm": [
+    -191842.4,
+    269310.5
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 263,
+   "kind": "ring",
+   "loc_cm": [
+    -191213.8,
+    270687.1
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 264,
+   "kind": "ring",
+   "loc_cm": [
+    -190684.9,
+    272105.0
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 265,
+   "kind": "ring",
+   "loc_cm": [
+    -190258.5,
+    273557.1
+   ],
+   "radius_m": 212.0,
+   "reachable": false
+  },
+  {
+   "i": 266,
+   "kind": "ring",
+   "loc_cm": [
+    -189936.8,
+    275035.9
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 267,
+   "kind": "ring",
+   "loc_cm": [
+    -189721.5,
+    276533.8
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 268,
+   "kind": "ring",
+   "loc_cm": [
+    -189613.5,
+    278043.3
+   ],
+   "radius_m": 212.0,
+   "reachable": true
+  },
+  {
+   "i": 269,
+   "kind": "ring",
+   "loc_cm": [
+    -185811.4,
+    279555.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 270,
+   "kind": "ring",
+   "loc_cm": [
+    -185902.6,
+    281062.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 271,
+   "kind": "ring",
+   "loc_cm": [
+    -186084.6,
+    282561.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 272,
+   "kind": "ring",
+   "loc_cm": [
+    -186356.8,
+    284047.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 273,
+   "kind": "ring",
+   "loc_cm": [
+    -186718.2,
+    285513.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 274,
+   "kind": "ring",
+   "loc_cm": [
+    -187167.5,
+    286955.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 275,
+   "kind": "ring",
+   "loc_cm": [
+    -187703.0,
+    288367.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 276,
+   "kind": "ring",
+   "loc_cm": [
+    -188322.8,
+    289744.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 277,
+   "kind": "ring",
+   "loc_cm": [
+    -189024.6,
+    291081.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 278,
+   "kind": "ring",
+   "loc_cm": [
+    -189805.9,
+    292373.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 279,
+   "kind": "ring",
+   "loc_cm": [
+    -190663.7,
+    293616.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 280,
+   "kind": "ring",
+   "loc_cm": [
+    -191595.1,
+    294805.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 281,
+   "kind": "ring",
+   "loc_cm": [
+    -192596.5,
+    295935.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 282,
+   "kind": "ring",
+   "loc_cm": [
+    -193664.3,
+    297003.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 283,
+   "kind": "ring",
+   "loc_cm": [
+    -195983.4,
+    298936.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 284,
+   "kind": "ring",
+   "loc_cm": [
+    -198518.6,
+    300575.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 285,
+   "kind": "ring",
+   "loc_cm": [
+    -199855.8,
+    301277.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 286,
+   "kind": "ring",
+   "loc_cm": [
+    -201232.9,
+    301897.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 287,
+   "kind": "ring",
+   "loc_cm": [
+    -202644.9,
+    302432.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 288,
+   "kind": "ring",
+   "loc_cm": [
+    -204086.7,
+    302881.8
+   ],
+   "radius_m": 250.0,
+   "reachable": false
+  },
+  {
+   "i": 289,
+   "kind": "ring",
+   "loc_cm": [
+    -205553.0,
+    303243.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 290,
+   "kind": "ring",
+   "loc_cm": [
+    -207038.4,
+    303515.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 291,
+   "kind": "ring",
+   "loc_cm": [
+    -208537.5,
+    303697.4
+   ],
+   "radius_m": 250.0,
+   "reachable": false
+  },
+  {
+   "i": 292,
+   "kind": "ring",
+   "loc_cm": [
+    -210044.9,
+    303788.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 293,
+   "kind": "ring",
+   "loc_cm": [
+    -211555.1,
+    303788.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 294,
+   "kind": "ring",
+   "loc_cm": [
+    -213062.5,
+    303697.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 295,
+   "kind": "ring",
+   "loc_cm": [
+    -214561.6,
+    303515.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 296,
+   "kind": "ring",
+   "loc_cm": [
+    -216047.0,
+    303243.2
+   ],
+   "radius_m": 250.0,
+   "reachable": false
+  },
+  {
+   "i": 297,
+   "kind": "ring",
+   "loc_cm": [
+    -217513.3,
+    302881.8
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 298,
+   "kind": "ring",
+   "loc_cm": [
+    -218955.1,
+    302432.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 299,
+   "kind": "ring",
+   "loc_cm": [
+    -220367.1,
+    301897.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 300,
+   "kind": "ring",
+   "loc_cm": [
+    -221744.2,
+    301277.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 301,
+   "kind": "ring",
+   "loc_cm": [
+    -223081.4,
+    300575.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 302,
+   "kind": "ring",
+   "loc_cm": [
+    -224373.7,
+    299794.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 303,
+   "kind": "ring",
+   "loc_cm": [
+    -225616.6,
+    298936.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 304,
+   "kind": "ring",
+   "loc_cm": [
+    -226805.3,
+    298004.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 305,
+   "kind": "ring",
+   "loc_cm": [
+    -227935.7,
+    297003.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 306,
+   "kind": "ring",
+   "loc_cm": [
+    -229003.5,
+    295935.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 307,
+   "kind": "ring",
+   "loc_cm": [
+    -230004.9,
+    294805.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 308,
+   "kind": "ring",
+   "loc_cm": [
+    -230936.3,
+    293616.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 309,
+   "kind": "ring",
+   "loc_cm": [
+    -231794.1,
+    292373.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 310,
+   "kind": "ring",
+   "loc_cm": [
+    -232575.4,
+    291081.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 311,
+   "kind": "ring",
+   "loc_cm": [
+    -233277.2,
+    289744.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 312,
+   "kind": "ring",
+   "loc_cm": [
+    -233897.0,
+    288367.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 313,
+   "kind": "ring",
+   "loc_cm": [
+    -234432.5,
+    286955.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 314,
+   "kind": "ring",
+   "loc_cm": [
+    -234881.8,
+    285513.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 315,
+   "kind": "ring",
+   "loc_cm": [
+    -235243.2,
+    284047.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 316,
+   "kind": "ring",
+   "loc_cm": [
+    -235515.4,
+    282561.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 317,
+   "kind": "ring",
+   "loc_cm": [
+    -235697.4,
+    281062.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 318,
+   "kind": "ring",
+   "loc_cm": [
+    -235788.6,
+    279555.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 319,
+   "kind": "ring",
+   "loc_cm": [
+    -235788.6,
+    278044.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 320,
+   "kind": "ring",
+   "loc_cm": [
+    -235697.4,
+    276537.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 321,
+   "kind": "ring",
+   "loc_cm": [
+    -235515.4,
+    275038.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 322,
+   "kind": "ring",
+   "loc_cm": [
+    -213062.5,
+    253902.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 323,
+   "kind": "ring",
+   "loc_cm": [
+    -211555.1,
+    253811.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 324,
+   "kind": "ring",
+   "loc_cm": [
+    -210044.9,
+    253811.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 325,
+   "kind": "ring",
+   "loc_cm": [
+    -208537.5,
+    253902.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 326,
+   "kind": "ring",
+   "loc_cm": [
+    -207038.4,
+    254084.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 327,
+   "kind": "ring",
+   "loc_cm": [
+    -205553.0,
+    254356.8
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 328,
+   "kind": "ring",
+   "loc_cm": [
+    -204086.7,
+    254718.2
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 329,
+   "kind": "ring",
+   "loc_cm": [
+    -202644.9,
+    255167.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 330,
+   "kind": "ring",
+   "loc_cm": [
+    -201232.9,
+    255703.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 331,
+   "kind": "ring",
+   "loc_cm": [
+    -199855.8,
+    256322.8
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 332,
+   "kind": "ring",
+   "loc_cm": [
+    -198518.6,
+    257024.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 333,
+   "kind": "ring",
+   "loc_cm": [
+    -197226.3,
+    257805.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 334,
+   "kind": "ring",
+   "loc_cm": [
+    -195983.4,
+    258663.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 335,
+   "kind": "ring",
+   "loc_cm": [
+    -194794.7,
+    259595.1
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 336,
+   "kind": "ring",
+   "loc_cm": [
+    -193664.3,
+    260596.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 337,
+   "kind": "ring",
+   "loc_cm": [
+    -192596.5,
+    261664.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 338,
+   "kind": "ring",
+   "loc_cm": [
+    -191595.1,
+    262794.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 339,
+   "kind": "ring",
+   "loc_cm": [
+    -190663.7,
+    263983.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 340,
+   "kind": "ring",
+   "loc_cm": [
+    -189805.9,
+    265226.3
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 341,
+   "kind": "ring",
+   "loc_cm": [
+    -189024.6,
+    266518.6
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 342,
+   "kind": "ring",
+   "loc_cm": [
+    -188322.8,
+    267855.8
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 343,
+   "kind": "ring",
+   "loc_cm": [
+    -187703.0,
+    269232.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 344,
+   "kind": "ring",
+   "loc_cm": [
+    -187167.5,
+    270644.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 345,
+   "kind": "ring",
+   "loc_cm": [
+    -186718.2,
+    272086.7
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 346,
+   "kind": "ring",
+   "loc_cm": [
+    -186356.8,
+    273553.0
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 347,
+   "kind": "ring",
+   "loc_cm": [
+    -186084.6,
+    275038.4
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 348,
+   "kind": "ring",
+   "loc_cm": [
+    -185902.6,
+    276537.5
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 349,
+   "kind": "ring",
+   "loc_cm": [
+    -185811.4,
+    278044.9
+   ],
+   "radius_m": 250.0,
+   "reachable": true
+  },
+  {
+   "i": 350,
+   "kind": "ring",
+   "loc_cm": [
+    -182009.9,
+    279553.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 351,
+   "kind": "ring",
+   "loc_cm": [
+    -182088.8,
+    281059.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 352,
+   "kind": "ring",
+   "loc_cm": [
+    -182246.4,
+    282559.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 353,
+   "kind": "ring",
+   "loc_cm": [
+    -182482.3,
+    284048.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 354,
+   "kind": "ring",
+   "loc_cm": [
+    -182795.7,
+    285523.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 355,
+   "kind": "ring",
+   "loc_cm": [
+    -183186.0,
+    286979.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 356,
+   "kind": "ring",
+   "loc_cm": [
+    -183651.9,
+    288413.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 357,
+   "kind": "ring",
+   "loc_cm": [
+    -184192.3,
+    289821.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 358,
+   "kind": "ring",
+   "loc_cm": [
+    -184805.5,
+    291198.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 359,
+   "kind": "ring",
+   "loc_cm": [
+    -185490.1,
+    292542.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 360,
+   "kind": "ring",
+   "loc_cm": [
+    -186244.0,
+    293848.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 361,
+   "kind": "ring",
+   "loc_cm": [
+    -187065.2,
+    295112.5
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 362,
+   "kind": "ring",
+   "loc_cm": [
+    -187951.4,
+    296332.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 363,
+   "kind": "ring",
+   "loc_cm": [
+    -188900.3,
+    297504.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 364,
+   "kind": "ring",
+   "loc_cm": [
+    -189909.2,
+    298624.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 365,
+   "kind": "ring",
+   "loc_cm": [
+    -190975.4,
+    299690.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 366,
+   "kind": "ring",
+   "loc_cm": [
+    -192095.9,
+    300699.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 367,
+   "kind": "ring",
+   "loc_cm": [
+    -194487.5,
+    302534.8
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 368,
+   "kind": "ring",
+   "loc_cm": [
+    -195752.0,
+    303356.0
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 369,
+   "kind": "ring",
+   "loc_cm": [
+    -197057.8,
+    304109.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 370,
+   "kind": "ring",
+   "loc_cm": [
+    -198401.3,
+    304794.5
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 371,
+   "kind": "ring",
+   "loc_cm": [
+    -199778.7,
+    305407.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 372,
+   "kind": "ring",
+   "loc_cm": [
+    -201186.4,
+    305948.1
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 373,
+   "kind": "ring",
+   "loc_cm": [
+    -202620.4,
+    306414.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 374,
+   "kind": "ring",
+   "loc_cm": [
+    -204076.8,
+    306804.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 375,
+   "kind": "ring",
+   "loc_cm": [
+    -205551.6,
+    307117.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 376,
+   "kind": "ring",
+   "loc_cm": [
+    -207040.8,
+    307353.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 377,
+   "kind": "ring",
+   "loc_cm": [
+    -208540.4,
+    307511.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 378,
+   "kind": "ring",
+   "loc_cm": [
+    -210046.1,
+    307590.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 379,
+   "kind": "ring",
+   "loc_cm": [
+    -211553.9,
+    307590.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 380,
+   "kind": "ring",
+   "loc_cm": [
+    -213059.6,
+    307511.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 381,
+   "kind": "ring",
+   "loc_cm": [
+    -214559.2,
+    307353.6
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 382,
+   "kind": "ring",
+   "loc_cm": [
+    -216048.4,
+    307117.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 383,
+   "kind": "ring",
+   "loc_cm": [
+    -217523.2,
+    306804.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 384,
+   "kind": "ring",
+   "loc_cm": [
+    -218979.6,
+    306414.0
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 385,
+   "kind": "ring",
+   "loc_cm": [
+    -220413.6,
+    305948.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 386,
+   "kind": "ring",
+   "loc_cm": [
+    -221821.3,
+    305407.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 387,
+   "kind": "ring",
+   "loc_cm": [
+    -223198.7,
+    304794.5
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 388,
+   "kind": "ring",
+   "loc_cm": [
+    -224542.2,
+    304109.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 389,
+   "kind": "ring",
+   "loc_cm": [
+    -225848.0,
+    303356.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 390,
+   "kind": "ring",
+   "loc_cm": [
+    -227112.5,
+    302534.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 391,
+   "kind": "ring",
+   "loc_cm": [
+    -228332.3,
+    301648.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 392,
+   "kind": "ring",
+   "loc_cm": [
+    -229504.1,
+    300699.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 393,
+   "kind": "ring",
+   "loc_cm": [
+    -230624.6,
+    299690.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 394,
+   "kind": "ring",
+   "loc_cm": [
+    -231690.8,
+    298624.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 395,
+   "kind": "ring",
+   "loc_cm": [
+    -232699.7,
+    297504.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 396,
+   "kind": "ring",
+   "loc_cm": [
+    -233648.6,
+    296332.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 397,
+   "kind": "ring",
+   "loc_cm": [
+    -234534.8,
+    295112.5
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 398,
+   "kind": "ring",
+   "loc_cm": [
+    -235356.0,
+    293848.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 399,
+   "kind": "ring",
+   "loc_cm": [
+    -236109.9,
+    292542.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 400,
+   "kind": "ring",
+   "loc_cm": [
+    -236794.5,
+    291198.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 401,
+   "kind": "ring",
+   "loc_cm": [
+    -237407.7,
+    289821.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 402,
+   "kind": "ring",
+   "loc_cm": [
+    -237948.1,
+    288413.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 403,
+   "kind": "ring",
+   "loc_cm": [
+    -238414.0,
+    286979.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 404,
+   "kind": "ring",
+   "loc_cm": [
+    -239117.7,
+    284048.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 405,
+   "kind": "ring",
+   "loc_cm": [
+    -239353.6,
+    282559.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 406,
+   "kind": "ring",
+   "loc_cm": [
+    -239511.2,
+    281059.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 407,
+   "kind": "ring",
+   "loc_cm": [
+    -239590.1,
+    279553.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 408,
+   "kind": "ring",
+   "loc_cm": [
+    -211553.9,
+    250009.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 409,
+   "kind": "ring",
+   "loc_cm": [
+    -210046.1,
+    250009.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 410,
+   "kind": "ring",
+   "loc_cm": [
+    -208540.4,
+    250088.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 411,
+   "kind": "ring",
+   "loc_cm": [
+    -207040.8,
+    250246.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 412,
+   "kind": "ring",
+   "loc_cm": [
+    -205551.6,
+    250482.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 413,
+   "kind": "ring",
+   "loc_cm": [
+    -204076.8,
+    250795.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 414,
+   "kind": "ring",
+   "loc_cm": [
+    -202620.4,
+    251186.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 415,
+   "kind": "ring",
+   "loc_cm": [
+    -201186.4,
+    251651.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 416,
+   "kind": "ring",
+   "loc_cm": [
+    -199778.7,
+    252192.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 417,
+   "kind": "ring",
+   "loc_cm": [
+    -198401.3,
+    252805.5
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 418,
+   "kind": "ring",
+   "loc_cm": [
+    -197057.8,
+    253490.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 419,
+   "kind": "ring",
+   "loc_cm": [
+    -195752.0,
+    254244.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 420,
+   "kind": "ring",
+   "loc_cm": [
+    -194487.5,
+    255065.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 421,
+   "kind": "ring",
+   "loc_cm": [
+    -193267.7,
+    255951.4
+   ],
+   "radius_m": 288.0,
+   "reachable": false
+  },
+  {
+   "i": 422,
+   "kind": "ring",
+   "loc_cm": [
+    -192095.9,
+    256900.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 423,
+   "kind": "ring",
+   "loc_cm": [
+    -190975.4,
+    257909.2
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 424,
+   "kind": "ring",
+   "loc_cm": [
+    -189909.2,
+    258975.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 425,
+   "kind": "ring",
+   "loc_cm": [
+    -188900.3,
+    260095.9
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 426,
+   "kind": "ring",
+   "loc_cm": [
+    -187951.4,
+    261267.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 427,
+   "kind": "ring",
+   "loc_cm": [
+    -187065.2,
+    262487.5
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 428,
+   "kind": "ring",
+   "loc_cm": [
+    -186244.0,
+    263752.0
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 429,
+   "kind": "ring",
+   "loc_cm": [
+    -185490.1,
+    265057.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 430,
+   "kind": "ring",
+   "loc_cm": [
+    -184805.5,
+    266401.3
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 431,
+   "kind": "ring",
+   "loc_cm": [
+    -184192.3,
+    267778.7
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 432,
+   "kind": "ring",
+   "loc_cm": [
+    -183651.9,
+    269186.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 433,
+   "kind": "ring",
+   "loc_cm": [
+    -183186.0,
+    270620.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 434,
+   "kind": "ring",
+   "loc_cm": [
+    -182795.7,
+    272076.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 435,
+   "kind": "ring",
+   "loc_cm": [
+    -182482.3,
+    273551.6
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 436,
+   "kind": "ring",
+   "loc_cm": [
+    -182246.4,
+    275040.8
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 437,
+   "kind": "ring",
+   "loc_cm": [
+    -182088.8,
+    276540.4
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 438,
+   "kind": "ring",
+   "loc_cm": [
+    -182009.9,
+    278046.1
+   ],
+   "radius_m": 288.0,
+   "reachable": true
+  },
+  {
+   "i": 439,
+   "kind": "ring",
+   "loc_cm": [
+    -178278.2,
+    281057.4
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 440,
+   "kind": "ring",
+   "loc_cm": [
+    -178417.2,
+    282556.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 441,
+   "kind": "ring",
+   "loc_cm": [
+    -178625.3,
+    284048.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 442,
+   "kind": "ring",
+   "loc_cm": [
+    -178902.0,
+    285528.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 443,
+   "kind": "ring",
+   "loc_cm": [
+    -179246.8,
+    286994.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 444,
+   "kind": "ring",
+   "loc_cm": [
+    -179658.9,
+    288443.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 445,
+   "kind": "ring",
+   "loc_cm": [
+    -180137.5,
+    289871.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 446,
+   "kind": "ring",
+   "loc_cm": [
+    -180681.5,
+    291275.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 447,
+   "kind": "ring",
+   "loc_cm": [
+    -181289.8,
+    292653.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 448,
+   "kind": "ring",
+   "loc_cm": [
+    -181961.1,
+    294001.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 449,
+   "kind": "ring",
+   "loc_cm": [
+    -182693.9,
+    295316.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 450,
+   "kind": "ring",
+   "loc_cm": [
+    -183486.7,
+    296597.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 451,
+   "kind": "ring",
+   "loc_cm": [
+    -184337.8,
+    297839.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 452,
+   "kind": "ring",
+   "loc_cm": [
+    -185245.4,
+    299041.5
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 453,
+   "kind": "ring",
+   "loc_cm": [
+    -186207.4,
+    300200.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 454,
+   "kind": "ring",
+   "loc_cm": [
+    -187222.0,
+    301313.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 455,
+   "kind": "ring",
+   "loc_cm": [
+    -188286.9,
+    302378.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 456,
+   "kind": "ring",
+   "loc_cm": [
+    -190558.5,
+    304354.6
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 457,
+   "kind": "ring",
+   "loc_cm": [
+    -191760.3,
+    305262.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 458,
+   "kind": "ring",
+   "loc_cm": [
+    -193002.7,
+    306113.3
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 459,
+   "kind": "ring",
+   "loc_cm": [
+    -194283.1,
+    306906.1
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 460,
+   "kind": "ring",
+   "loc_cm": [
+    -195598.8,
+    307638.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 461,
+   "kind": "ring",
+   "loc_cm": [
+    -196946.9,
+    308310.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 462,
+   "kind": "ring",
+   "loc_cm": [
+    -198324.5,
+    308918.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 463,
+   "kind": "ring",
+   "loc_cm": [
+    -199728.8,
+    309462.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 464,
+   "kind": "ring",
+   "loc_cm": [
+    -201156.7,
+    309941.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 465,
+   "kind": "ring",
+   "loc_cm": [
+    -202605.2,
+    310353.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 466,
+   "kind": "ring",
+   "loc_cm": [
+    -204071.2,
+    310698.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 467,
+   "kind": "ring",
+   "loc_cm": [
+    -205551.5,
+    310974.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 468,
+   "kind": "ring",
+   "loc_cm": [
+    -207043.1,
+    311182.8
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 469,
+   "kind": "ring",
+   "loc_cm": [
+    -208542.6,
+    311321.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 470,
+   "kind": "ring",
+   "loc_cm": [
+    -210047.0,
+    311391.3
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 471,
+   "kind": "ring",
+   "loc_cm": [
+    -211553.0,
+    311391.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 472,
+   "kind": "ring",
+   "loc_cm": [
+    -213057.4,
+    311321.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 473,
+   "kind": "ring",
+   "loc_cm": [
+    -217528.8,
+    310698.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 474,
+   "kind": "ring",
+   "loc_cm": [
+    -218994.8,
+    310353.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 475,
+   "kind": "ring",
+   "loc_cm": [
+    -220443.3,
+    309941.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 476,
+   "kind": "ring",
+   "loc_cm": [
+    -221871.2,
+    309462.5
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 477,
+   "kind": "ring",
+   "loc_cm": [
+    -223275.5,
+    308918.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 478,
+   "kind": "ring",
+   "loc_cm": [
+    -224653.1,
+    308310.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 479,
+   "kind": "ring",
+   "loc_cm": [
+    -226001.2,
+    307638.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 480,
+   "kind": "ring",
+   "loc_cm": [
+    -227316.9,
+    306906.1
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 481,
+   "kind": "ring",
+   "loc_cm": [
+    -228597.3,
+    306113.3
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 482,
+   "kind": "ring",
+   "loc_cm": [
+    -229839.7,
+    305262.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 483,
+   "kind": "ring",
+   "loc_cm": [
+    -231041.5,
+    304354.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 484,
+   "kind": "ring",
+   "loc_cm": [
+    -232200.2,
+    303392.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 485,
+   "kind": "ring",
+   "loc_cm": [
+    -233313.1,
+    302378.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 486,
+   "kind": "ring",
+   "loc_cm": [
+    -234378.0,
+    301313.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 487,
+   "kind": "ring",
+   "loc_cm": [
+    -235392.6,
+    300200.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 488,
+   "kind": "ring",
+   "loc_cm": [
+    -236354.6,
+    299041.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 489,
+   "kind": "ring",
+   "loc_cm": [
+    -237262.2,
+    297839.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 490,
+   "kind": "ring",
+   "loc_cm": [
+    -238113.3,
+    296597.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 491,
+   "kind": "ring",
+   "loc_cm": [
+    -238906.1,
+    295316.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 492,
+   "kind": "ring",
+   "loc_cm": [
+    -239638.9,
+    294001.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 493,
+   "kind": "ring",
+   "loc_cm": [
+    -240310.2,
+    292653.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 494,
+   "kind": "ring",
+   "loc_cm": [
+    -240918.5,
+    291275.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 495,
+   "kind": "ring",
+   "loc_cm": [
+    -241462.5,
+    289871.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 496,
+   "kind": "ring",
+   "loc_cm": [
+    -241941.1,
+    288443.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 497,
+   "kind": "ring",
+   "loc_cm": [
+    -242353.2,
+    286994.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 498,
+   "kind": "ring",
+   "loc_cm": [
+    -242698.0,
+    285528.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 499,
+   "kind": "ring",
+   "loc_cm": [
+    -242974.7,
+    284048.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 500,
+   "kind": "ring",
+   "loc_cm": [
+    -243182.8,
+    282556.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 501,
+   "kind": "ring",
+   "loc_cm": [
+    -243321.8,
+    281057.4
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 502,
+   "kind": "ring",
+   "loc_cm": [
+    -210047.0,
+    246208.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 503,
+   "kind": "ring",
+   "loc_cm": [
+    -208542.6,
+    246278.2
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 504,
+   "kind": "ring",
+   "loc_cm": [
+    -207043.1,
+    246417.2
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 505,
+   "kind": "ring",
+   "loc_cm": [
+    -205551.5,
+    246625.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 506,
+   "kind": "ring",
+   "loc_cm": [
+    -204071.2,
+    246902.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 507,
+   "kind": "ring",
+   "loc_cm": [
+    -202605.2,
+    247246.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 508,
+   "kind": "ring",
+   "loc_cm": [
+    -201156.7,
+    247658.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 509,
+   "kind": "ring",
+   "loc_cm": [
+    -199728.8,
+    248137.5
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 510,
+   "kind": "ring",
+   "loc_cm": [
+    -198324.5,
+    248681.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 511,
+   "kind": "ring",
+   "loc_cm": [
+    -196946.9,
+    249289.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 512,
+   "kind": "ring",
+   "loc_cm": [
+    -195598.8,
+    249961.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 513,
+   "kind": "ring",
+   "loc_cm": [
+    -194283.1,
+    250693.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 514,
+   "kind": "ring",
+   "loc_cm": [
+    -193002.7,
+    251486.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 515,
+   "kind": "ring",
+   "loc_cm": [
+    -191760.3,
+    252337.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 516,
+   "kind": "ring",
+   "loc_cm": [
+    -190558.5,
+    253245.4
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 517,
+   "kind": "ring",
+   "loc_cm": [
+    -189399.8,
+    254207.4
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 518,
+   "kind": "ring",
+   "loc_cm": [
+    -188286.9,
+    255222.0
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 519,
+   "kind": "ring",
+   "loc_cm": [
+    -187222.0,
+    256286.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 520,
+   "kind": "ring",
+   "loc_cm": [
+    -186207.4,
+    257399.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 521,
+   "kind": "ring",
+   "loc_cm": [
+    -185245.4,
+    258558.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 522,
+   "kind": "ring",
+   "loc_cm": [
+    -184337.8,
+    259760.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 523,
+   "kind": "ring",
+   "loc_cm": [
+    -183486.7,
+    261002.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 524,
+   "kind": "ring",
+   "loc_cm": [
+    -182693.9,
+    262283.1
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 525,
+   "kind": "ring",
+   "loc_cm": [
+    -181961.1,
+    263598.8
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 526,
+   "kind": "ring",
+   "loc_cm": [
+    -181289.8,
+    264946.9
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 527,
+   "kind": "ring",
+   "loc_cm": [
+    -180681.5,
+    266324.5
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 528,
+   "kind": "ring",
+   "loc_cm": [
+    -180137.5,
+    267728.8
+   ],
+   "radius_m": 326.0,
+   "reachable": false
+  },
+  {
+   "i": 529,
+   "kind": "ring",
+   "loc_cm": [
+    -178435.9,
+    295459.2
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 530,
+   "kind": "ring",
+   "loc_cm": [
+    -179152.0,
+    296782.4
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 531,
+   "kind": "ring",
+   "loc_cm": [
+    -179922.2,
+    298074.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 532,
+   "kind": "ring",
+   "loc_cm": [
+    -180745.1,
+    299334.4
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 533,
+   "kind": "ring",
+   "loc_cm": [
+    -181619.4,
+    300558.9
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 534,
+   "kind": "ring",
+   "loc_cm": [
+    -182543.5,
+    301746.2
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 535,
+   "kind": "ring",
+   "loc_cm": [
+    -183515.9,
+    302894.3
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 536,
+   "kind": "ring",
+   "loc_cm": [
+    -189041.1,
+    307980.6
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 537,
+   "kind": "ring",
+   "loc_cm": [
+    -190265.6,
+    308854.9
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 538,
+   "kind": "ring",
+   "loc_cm": [
+    -191525.1,
+    309677.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 539,
+   "kind": "ring",
+   "loc_cm": [
+    -192817.6,
+    310448.0
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 540,
+   "kind": "ring",
+   "loc_cm": [
+    -194140.8,
+    311164.1
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 541,
+   "kind": "ring",
+   "loc_cm": [
+    -195492.5,
+    311824.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 542,
+   "kind": "ring",
+   "loc_cm": [
+    -196870.3,
+    312429.2
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 543,
+   "kind": "ring",
+   "loc_cm": [
+    -198271.9,
+    312976.1
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 544,
+   "kind": "ring",
+   "loc_cm": [
+    -199695.0,
+    313464.7
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 545,
+   "kind": "ring",
+   "loc_cm": [
+    -201137.0,
+    313894.0
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 546,
+   "kind": "ring",
+   "loc_cm": [
+    -202595.5,
+    314263.3
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 547,
+   "kind": "ring",
+   "loc_cm": [
+    -204068.0,
+    314572.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 548,
+   "kind": "ring",
+   "loc_cm": [
+    -205552.1,
+    314819.7
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 549,
+   "kind": "ring",
+   "loc_cm": [
+    -207045.0,
+    315005.8
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 550,
+   "kind": "ring",
+   "loc_cm": [
+    -220463.0,
+    313894.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 551,
+   "kind": "ring",
+   "loc_cm": [
+    -221905.0,
+    313464.7
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 552,
+   "kind": "ring",
+   "loc_cm": [
+    -223328.1,
+    312976.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 553,
+   "kind": "ring",
+   "loc_cm": [
+    -224729.7,
+    312429.2
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 554,
+   "kind": "ring",
+   "loc_cm": [
+    -226107.5,
+    311824.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 555,
+   "kind": "ring",
+   "loc_cm": [
+    -227459.2,
+    311164.1
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 556,
+   "kind": "ring",
+   "loc_cm": [
+    -228782.4,
+    310448.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 557,
+   "kind": "ring",
+   "loc_cm": [
+    -230074.9,
+    309677.8
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 558,
+   "kind": "ring",
+   "loc_cm": [
+    -231334.4,
+    308854.9
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 559,
+   "kind": "ring",
+   "loc_cm": [
+    -232558.9,
+    307980.6
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 560,
+   "kind": "ring",
+   "loc_cm": [
+    -233746.2,
+    307056.5
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 561,
+   "kind": "ring",
+   "loc_cm": [
+    -234894.3,
+    306084.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 562,
+   "kind": "ring",
+   "loc_cm": [
+    -236001.3,
+    305065.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 563,
+   "kind": "ring",
+   "loc_cm": [
+    -237065.1,
+    304001.3
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 564,
+   "kind": "ring",
+   "loc_cm": [
+    -238084.1,
+    302894.3
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 565,
+   "kind": "ring",
+   "loc_cm": [
+    -239056.5,
+    301746.2
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 566,
+   "kind": "ring",
+   "loc_cm": [
+    -239980.6,
+    300558.9
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 567,
+   "kind": "ring",
+   "loc_cm": [
+    -240854.9,
+    299334.4
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 568,
+   "kind": "ring",
+   "loc_cm": [
+    -241677.8,
+    298074.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 569,
+   "kind": "ring",
+   "loc_cm": [
+    -242448.0,
+    296782.4
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 570,
+   "kind": "ring",
+   "loc_cm": [
+    -243164.1,
+    295459.2
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 571,
+   "kind": "ring",
+   "loc_cm": [
+    -243824.8,
+    294107.5
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 572,
+   "kind": "ring",
+   "loc_cm": [
+    -244429.2,
+    292729.7
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 573,
+   "kind": "ring",
+   "loc_cm": [
+    -244976.1,
+    291328.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 574,
+   "kind": "ring",
+   "loc_cm": [
+    -245464.7,
+    289905.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 575,
+   "kind": "ring",
+   "loc_cm": [
+    -245894.0,
+    288463.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 576,
+   "kind": "ring",
+   "loc_cm": [
+    -246263.3,
+    287004.5
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 577,
+   "kind": "ring",
+   "loc_cm": [
+    -246572.1,
+    285532.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 578,
+   "kind": "ring",
+   "loc_cm": [
+    -246819.7,
+    284047.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 579,
+   "kind": "ring",
+   "loc_cm": [
+    -247005.8,
+    282555.0
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 580,
+   "kind": "ring",
+   "loc_cm": [
+    -208544.5,
+    242469.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 581,
+   "kind": "ring",
+   "loc_cm": [
+    -207045.0,
+    242594.2
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 582,
+   "kind": "ring",
+   "loc_cm": [
+    -205552.1,
+    242780.3
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 583,
+   "kind": "ring",
+   "loc_cm": [
+    -204068.0,
+    243027.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 584,
+   "kind": "ring",
+   "loc_cm": [
+    -202595.5,
+    243336.7
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 585,
+   "kind": "ring",
+   "loc_cm": [
+    -201137.0,
+    243706.0
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 586,
+   "kind": "ring",
+   "loc_cm": [
+    -199695.0,
+    244135.3
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 587,
+   "kind": "ring",
+   "loc_cm": [
+    -198271.9,
+    244623.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 588,
+   "kind": "ring",
+   "loc_cm": [
+    -196870.3,
+    245170.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 589,
+   "kind": "ring",
+   "loc_cm": [
+    -195492.5,
+    245775.2
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 590,
+   "kind": "ring",
+   "loc_cm": [
+    -189041.1,
+    249619.4
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 591,
+   "kind": "ring",
+   "loc_cm": [
+    -187853.8,
+    250543.5
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 592,
+   "kind": "ring",
+   "loc_cm": [
+    -186705.7,
+    251515.9
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 593,
+   "kind": "ring",
+   "loc_cm": [
+    -184534.9,
+    253598.7
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 594,
+   "kind": "ring",
+   "loc_cm": [
+    -183515.9,
+    254705.7
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 595,
+   "kind": "ring",
+   "loc_cm": [
+    -182543.5,
+    255853.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 596,
+   "kind": "ring",
+   "loc_cm": [
+    -181619.4,
+    257041.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 597,
+   "kind": "ring",
+   "loc_cm": [
+    -180745.1,
+    258265.6
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 598,
+   "kind": "ring",
+   "loc_cm": [
+    -179922.2,
+    259525.1
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 599,
+   "kind": "ring",
+   "loc_cm": [
+    -179152.0,
+    260817.6
+   ],
+   "radius_m": 364.0,
+   "reachable": false
+  },
+  {
+   "i": 600,
+   "kind": "ring",
+   "loc_cm": [
+    -178435.9,
+    262140.8
+   ],
+   "radius_m": 364.0,
+   "reachable": true
+  },
+  {
+   "i": 601,
+   "kind": "ring",
+   "loc_cm": [
+    -185152.4,
+    309755.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 602,
+   "kind": "ring",
+   "loc_cm": [
+    -186327.8,
+    310692.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 603,
+   "kind": "ring",
+   "loc_cm": [
+    -187537.4,
+    311585.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 604,
+   "kind": "ring",
+   "loc_cm": [
+    -188779.6,
+    312432.4
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 605,
+   "kind": "ring",
+   "loc_cm": [
+    -190052.5,
+    313232.3
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 606,
+   "kind": "ring",
+   "loc_cm": [
+    -191354.5,
+    313984.0
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 607,
+   "kind": "ring",
+   "loc_cm": [
+    -192683.7,
+    314686.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 608,
+   "kind": "ring",
+   "loc_cm": [
+    -194038.2,
+    315338.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 609,
+   "kind": "ring",
+   "loc_cm": [
+    -195416.1,
+    315940.0
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 610,
+   "kind": "ring",
+   "loc_cm": [
+    -219010.9,
+    318152.5
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 611,
+   "kind": "ring",
+   "loc_cm": [
+    -220476.6,
+    317818.0
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 612,
+   "kind": "ring",
+   "loc_cm": [
+    -221928.8,
+    317428.9
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 613,
+   "kind": "ring",
+   "loc_cm": [
+    -223365.4,
+    316985.7
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 614,
+   "kind": "ring",
+   "loc_cm": [
+    -224784.4,
+    316489.2
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 615,
+   "kind": "ring",
+   "loc_cm": [
+    -226183.9,
+    315940.0
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 616,
+   "kind": "ring",
+   "loc_cm": [
+    -227561.8,
+    315338.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 617,
+   "kind": "ring",
+   "loc_cm": [
+    -228916.3,
+    314686.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 618,
+   "kind": "ring",
+   "loc_cm": [
+    -230245.5,
+    313984.0
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 619,
+   "kind": "ring",
+   "loc_cm": [
+    -231547.5,
+    313232.3
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 620,
+   "kind": "ring",
+   "loc_cm": [
+    -232820.4,
+    312432.4
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 621,
+   "kind": "ring",
+   "loc_cm": [
+    -234062.6,
+    311585.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 622,
+   "kind": "ring",
+   "loc_cm": [
+    -235272.2,
+    310692.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 623,
+   "kind": "ring",
+   "loc_cm": [
+    -236447.6,
+    309755.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 624,
+   "kind": "ring",
+   "loc_cm": [
+    -237587.1,
+    308774.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 625,
+   "kind": "ring",
+   "loc_cm": [
+    -238689.2,
+    307752.3
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 626,
+   "kind": "ring",
+   "loc_cm": [
+    -239752.3,
+    306689.2
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 627,
+   "kind": "ring",
+   "loc_cm": [
+    -240774.8,
+    305587.1
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 628,
+   "kind": "ring",
+   "loc_cm": [
+    -241755.5,
+    304447.6
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 629,
+   "kind": "ring",
+   "loc_cm": [
+    -242692.8,
+    303272.2
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 630,
+   "kind": "ring",
+   "loc_cm": [
+    -243585.5,
+    302062.6
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 631,
+   "kind": "ring",
+   "loc_cm": [
+    -244432.4,
+    300820.4
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 632,
+   "kind": "ring",
+   "loc_cm": [
+    -245232.3,
+    299547.5
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 633,
+   "kind": "ring",
+   "loc_cm": [
+    -245984.0,
+    298245.5
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 634,
+   "kind": "ring",
+   "loc_cm": [
+    -246686.5,
+    296916.3
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 635,
+   "kind": "ring",
+   "loc_cm": [
+    -247338.8,
+    295561.8
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 636,
+   "kind": "ring",
+   "loc_cm": [
+    -202589.1,
+    239447.5
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 637,
+   "kind": "ring",
+   "loc_cm": [
+    -201123.4,
+    239782.0
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 638,
+   "kind": "ring",
+   "loc_cm": [
+    -199671.2,
+    240171.1
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 639,
+   "kind": "ring",
+   "loc_cm": [
+    -198234.6,
+    240614.3
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 640,
+   "kind": "ring",
+   "loc_cm": [
+    -196815.6,
+    241110.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 641,
+   "kind": "ring",
+   "loc_cm": [
+    -195416.1,
+    241660.0
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 642,
+   "kind": "ring",
+   "loc_cm": [
+    -194038.2,
+    242261.2
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 643,
+   "kind": "ring",
+   "loc_cm": [
+    -192683.7,
+    242913.5
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 644,
+   "kind": "ring",
+   "loc_cm": [
+    -190052.5,
+    244367.7
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 645,
+   "kind": "ring",
+   "loc_cm": [
+    -188779.6,
+    245167.6
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 646,
+   "kind": "ring",
+   "loc_cm": [
+    -187537.4,
+    246014.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 647,
+   "kind": "ring",
+   "loc_cm": [
+    -186327.8,
+    246907.2
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 648,
+   "kind": "ring",
+   "loc_cm": [
+    -185152.4,
+    247844.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 649,
+   "kind": "ring",
+   "loc_cm": [
+    -184012.9,
+    248825.2
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 650,
+   "kind": "ring",
+   "loc_cm": [
+    -182910.8,
+    249847.7
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 651,
+   "kind": "ring",
+   "loc_cm": [
+    -181847.7,
+    250910.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 652,
+   "kind": "ring",
+   "loc_cm": [
+    -180825.2,
+    252012.9
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 653,
+   "kind": "ring",
+   "loc_cm": [
+    -179844.5,
+    253152.4
+   ],
+   "radius_m": 402.0,
+   "reachable": true
+  },
+  {
+   "i": 654,
+   "kind": "ring",
+   "loc_cm": [
+    -178907.2,
+    254327.8
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 655,
+   "kind": "ring",
+   "loc_cm": [
+    -178014.5,
+    255537.4
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 656,
+   "kind": "ring",
+   "loc_cm": [
+    -177167.6,
+    256779.6
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 657,
+   "kind": "ring",
+   "loc_cm": [
+    -176367.7,
+    258052.5
+   ],
+   "radius_m": 402.0,
+   "reachable": false
+  },
+  {
+   "i": 658,
+   "kind": "ring",
+   "loc_cm": [
+    -220486.3,
+    321720.6
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 659,
+   "kind": "ring",
+   "loc_cm": [
+    -221946.0,
+    321364.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 660,
+   "kind": "ring",
+   "loc_cm": [
+    -223392.7,
+    320959.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 661,
+   "kind": "ring",
+   "loc_cm": [
+    -224824.7,
+    320505.0
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 662,
+   "kind": "ring",
+   "loc_cm": [
+    -226240.4,
+    320001.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 663,
+   "kind": "ring",
+   "loc_cm": [
+    -227638.1,
+    319450.7
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 664,
+   "kind": "ring",
+   "loc_cm": [
+    -229016.1,
+    318852.1
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 665,
+   "kind": "ring",
+   "loc_cm": [
+    -230372.9,
+    318206.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 666,
+   "kind": "ring",
+   "loc_cm": [
+    -231706.9,
+    317515.6
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 667,
+   "kind": "ring",
+   "loc_cm": [
+    -233016.5,
+    316779.3
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 668,
+   "kind": "ring",
+   "loc_cm": [
+    -234300.2,
+    315998.7
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 669,
+   "kind": "ring",
+   "loc_cm": [
+    -235556.5,
+    315174.6
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 670,
+   "kind": "ring",
+   "loc_cm": [
+    -236784.0,
+    314308.2
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 671,
+   "kind": "ring",
+   "loc_cm": [
+    -237981.1,
+    313400.4
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 672,
+   "kind": "ring",
+   "loc_cm": [
+    -239146.5,
+    312452.2
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 673,
+   "kind": "ring",
+   "loc_cm": [
+    -240278.9,
+    311464.8
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 674,
+   "kind": "ring",
+   "loc_cm": [
+    -241377.0,
+    310439.4
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 675,
+   "kind": "ring",
+   "loc_cm": [
+    -242439.4,
+    309377.0
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 676,
+   "kind": "ring",
+   "loc_cm": [
+    -243464.8,
+    308278.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 677,
+   "kind": "ring",
+   "loc_cm": [
+    -244452.2,
+    307146.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 678,
+   "kind": "ring",
+   "loc_cm": [
+    -245400.4,
+    305981.1
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 679,
+   "kind": "ring",
+   "loc_cm": [
+    -246308.2,
+    304784.0
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 680,
+   "kind": "ring",
+   "loc_cm": [
+    -247174.6,
+    303556.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 681,
+   "kind": "ring",
+   "loc_cm": [
+    -247998.7,
+    302300.2
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 682,
+   "kind": "ring",
+   "loc_cm": [
+    -248779.3,
+    301016.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 683,
+   "kind": "ring",
+   "loc_cm": [
+    -249515.6,
+    299706.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 684,
+   "kind": "ring",
+   "loc_cm": [
+    -250206.9,
+    298372.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 685,
+   "kind": "ring",
+   "loc_cm": [
+    -205553.8,
+    235113.9
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 686,
+   "kind": "ring",
+   "loc_cm": [
+    -204065.3,
+    235318.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 687,
+   "kind": "ring",
+   "loc_cm": [
+    -202584.7,
+    235573.7
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 688,
+   "kind": "ring",
+   "loc_cm": [
+    -201113.7,
+    235879.4
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 689,
+   "kind": "ring",
+   "loc_cm": [
+    -199654.0,
+    236235.1
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 690,
+   "kind": "ring",
+   "loc_cm": [
+    -198207.3,
+    236640.5
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 691,
+   "kind": "ring",
+   "loc_cm": [
+    -191227.1,
+    239393.1
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 692,
+   "kind": "ring",
+   "loc_cm": [
+    -189893.1,
+    240084.4
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 693,
+   "kind": "ring",
+   "loc_cm": [
+    -188583.5,
+    240820.7
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 694,
+   "kind": "ring",
+   "loc_cm": [
+    -187299.8,
+    241601.3
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 695,
+   "kind": "ring",
+   "loc_cm": [
+    -186043.5,
+    242425.4
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 696,
+   "kind": "ring",
+   "loc_cm": [
+    -184816.0,
+    243291.8
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 697,
+   "kind": "ring",
+   "loc_cm": [
+    -183618.9,
+    244199.6
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 698,
+   "kind": "ring",
+   "loc_cm": [
+    -182453.5,
+    245147.8
+   ],
+   "radius_m": 440.0,
+   "reachable": false
+  },
+  {
+   "i": 699,
+   "kind": "spoke",
+   "loc_cm": [
+    -207000.0,
+    278800.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 700,
+   "kind": "spoke",
+   "loc_cm": [
+    -203800.0,
+    278800.0
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 701,
+   "kind": "spoke",
+   "loc_cm": [
+    -200600.0,
+    278800.0
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 702,
+   "kind": "spoke",
+   "loc_cm": [
+    -197400.0,
+    278800.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 703,
+   "kind": "spoke",
+   "loc_cm": [
+    -194200.0,
+    278800.0
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 704,
+   "kind": "spoke",
+   "loc_cm": [
+    -191000.0,
+    278800.0
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 705,
+   "kind": "spoke",
+   "loc_cm": [
+    -187800.0,
+    278800.0
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 706,
+   "kind": "spoke",
+   "loc_cm": [
+    -184600.0,
+    278800.0
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 707,
+   "kind": "spoke",
+   "loc_cm": [
+    -207376.3,
+    280448.8
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 708,
+   "kind": "spoke",
+   "loc_cm": [
+    -204493.2,
+    281837.2
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 709,
+   "kind": "spoke",
+   "loc_cm": [
+    -201610.1,
+    283225.6
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 710,
+   "kind": "spoke",
+   "loc_cm": [
+    -198727.0,
+    284614.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 711,
+   "kind": "spoke",
+   "loc_cm": [
+    -195843.9,
+    286002.5
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 712,
+   "kind": "spoke",
+   "loc_cm": [
+    -192960.8,
+    287390.9
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 713,
+   "kind": "spoke",
+   "loc_cm": [
+    -190077.7,
+    288779.3
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 714,
+   "kind": "spoke",
+   "loc_cm": [
+    -187194.6,
+    290167.8
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 715,
+   "kind": "spoke",
+   "loc_cm": [
+    -184311.5,
+    291556.2
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 716,
+   "kind": "spoke",
+   "loc_cm": [
+    -181428.4,
+    292944.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 717,
+   "kind": "spoke",
+   "loc_cm": [
+    -178545.3,
+    294333.0
+   ],
+   "radius_m": 358.0,
+   "reachable": true
+  },
+  {
+   "i": 718,
+   "kind": "spoke",
+   "loc_cm": [
+    -208430.7,
+    281771.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 719,
+   "kind": "spoke",
+   "loc_cm": [
+    -206435.6,
+    284272.8
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 720,
+   "kind": "spoke",
+   "loc_cm": [
+    -204440.4,
+    286774.7
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 721,
+   "kind": "spoke",
+   "loc_cm": [
+    -202445.2,
+    289276.5
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 722,
+   "kind": "spoke",
+   "loc_cm": [
+    -200450.1,
+    291778.4
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 723,
+   "kind": "spoke",
+   "loc_cm": [
+    -198454.9,
+    294280.3
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 724,
+   "kind": "spoke",
+   "loc_cm": [
+    -196459.7,
+    296782.1
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 725,
+   "kind": "spoke",
+   "loc_cm": [
+    -194464.6,
+    299284.0
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 726,
+   "kind": "spoke",
+   "loc_cm": [
+    -190474.2,
+    304287.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 727,
+   "kind": "spoke",
+   "loc_cm": [
+    -188479.1,
+    306789.6
+   ],
+   "radius_m": 358.0,
+   "reachable": false
+  },
+  {
+   "i": 728,
+   "kind": "spoke",
+   "loc_cm": [
+    -186483.9,
+    309291.4
+   ],
+   "radius_m": 390.0,
+   "reachable": false
+  },
+  {
+   "i": 729,
+   "kind": "spoke",
+   "loc_cm": [
+    -209954.4,
+    282504.7
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 730,
+   "kind": "spoke",
+   "loc_cm": [
+    -209242.4,
+    285624.5
+   ],
+   "radius_m": 70.0,
+   "reachable": false
+  },
+  {
+   "i": 731,
+   "kind": "spoke",
+   "loc_cm": [
+    -208530.3,
+    288744.3
+   ],
+   "radius_m": 102.0,
+   "reachable": false
+  },
+  {
+   "i": 732,
+   "kind": "spoke",
+   "loc_cm": [
+    -207818.2,
+    291864.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 733,
+   "kind": "spoke",
+   "loc_cm": [
+    -207106.2,
+    294983.8
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 734,
+   "kind": "spoke",
+   "loc_cm": [
+    -206394.1,
+    298103.6
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 735,
+   "kind": "spoke",
+   "loc_cm": [
+    -205682.0,
+    301223.3
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 736,
+   "kind": "spoke",
+   "loc_cm": [
+    -204257.9,
+    307462.9
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 737,
+   "kind": "spoke",
+   "loc_cm": [
+    -203545.8,
+    310582.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 738,
+   "kind": "spoke",
+   "loc_cm": [
+    -202833.8,
+    313702.4
+   ],
+   "radius_m": 358.0,
+   "reachable": true
+  },
+  {
+   "i": 739,
+   "kind": "spoke",
+   "loc_cm": [
+    -211645.6,
+    282504.7
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 740,
+   "kind": "spoke",
+   "loc_cm": [
+    -212357.6,
+    285624.5
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 741,
+   "kind": "spoke",
+   "loc_cm": [
+    -213069.7,
+    288744.3
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 742,
+   "kind": "spoke",
+   "loc_cm": [
+    -213781.8,
+    291864.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 743,
+   "kind": "spoke",
+   "loc_cm": [
+    -214493.8,
+    294983.8
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 744,
+   "kind": "spoke",
+   "loc_cm": [
+    -215205.9,
+    298103.6
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 745,
+   "kind": "spoke",
+   "loc_cm": [
+    -215918.0,
+    301223.3
+   ],
+   "radius_m": 230.0,
+   "reachable": false
+  },
+  {
+   "i": 746,
+   "kind": "spoke",
+   "loc_cm": [
+    -216630.0,
+    304343.1
+   ],
+   "radius_m": 262.0,
+   "reachable": false
+  },
+  {
+   "i": 747,
+   "kind": "spoke",
+   "loc_cm": [
+    -217342.1,
+    307462.9
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 748,
+   "kind": "spoke",
+   "loc_cm": [
+    -218054.2,
+    310582.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 749,
+   "kind": "spoke",
+   "loc_cm": [
+    -219478.3,
+    316822.2
+   ],
+   "radius_m": 390.0,
+   "reachable": false
+  },
+  {
+   "i": 750,
+   "kind": "spoke",
+   "loc_cm": [
+    -213169.3,
+    281771.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 751,
+   "kind": "spoke",
+   "loc_cm": [
+    -215164.4,
+    284272.8
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 752,
+   "kind": "spoke",
+   "loc_cm": [
+    -217159.6,
+    286774.7
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 753,
+   "kind": "spoke",
+   "loc_cm": [
+    -219154.8,
+    289276.5
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 754,
+   "kind": "spoke",
+   "loc_cm": [
+    -221149.9,
+    291778.4
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 755,
+   "kind": "spoke",
+   "loc_cm": [
+    -223145.1,
+    294280.3
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 756,
+   "kind": "spoke",
+   "loc_cm": [
+    -225140.3,
+    296782.1
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 757,
+   "kind": "spoke",
+   "loc_cm": [
+    -227135.4,
+    299284.0
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 758,
+   "kind": "spoke",
+   "loc_cm": [
+    -231125.8,
+    304287.7
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 759,
+   "kind": "spoke",
+   "loc_cm": [
+    -233120.9,
+    306789.6
+   ],
+   "radius_m": 358.0,
+   "reachable": true
+  },
+  {
+   "i": 760,
+   "kind": "spoke",
+   "loc_cm": [
+    -235116.1,
+    309291.4
+   ],
+   "radius_m": 390.0,
+   "reachable": false
+  },
+  {
+   "i": 761,
+   "kind": "spoke",
+   "loc_cm": [
+    -237111.3,
+    311793.3
+   ],
+   "radius_m": 422.0,
+   "reachable": false
+  },
+  {
+   "i": 762,
+   "kind": "spoke",
+   "loc_cm": [
+    -239106.4,
+    314295.1
+   ],
+   "radius_m": 454.0,
+   "reachable": false
+  },
+  {
+   "i": 763,
+   "kind": "spoke",
+   "loc_cm": [
+    -214223.7,
+    280448.8
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 764,
+   "kind": "spoke",
+   "loc_cm": [
+    -217106.8,
+    281837.2
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 765,
+   "kind": "spoke",
+   "loc_cm": [
+    -219989.9,
+    283225.6
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 766,
+   "kind": "spoke",
+   "loc_cm": [
+    -222873.0,
+    284614.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 767,
+   "kind": "spoke",
+   "loc_cm": [
+    -225756.1,
+    286002.5
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 768,
+   "kind": "spoke",
+   "loc_cm": [
+    -228639.2,
+    287390.9
+   ],
+   "radius_m": 198.0,
+   "reachable": false
+  },
+  {
+   "i": 769,
+   "kind": "spoke",
+   "loc_cm": [
+    -231522.3,
+    288779.3
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 770,
+   "kind": "spoke",
+   "loc_cm": [
+    -234405.4,
+    290167.8
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 771,
+   "kind": "spoke",
+   "loc_cm": [
+    -237288.5,
+    291556.2
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 772,
+   "kind": "spoke",
+   "loc_cm": [
+    -240171.6,
+    292944.6
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 773,
+   "kind": "spoke",
+   "loc_cm": [
+    -245937.8,
+    295721.5
+   ],
+   "radius_m": 390.0,
+   "reachable": false
+  },
+  {
+   "i": 774,
+   "kind": "spoke",
+   "loc_cm": [
+    -248820.9,
+    297109.9
+   ],
+   "radius_m": 422.0,
+   "reachable": false
+  },
+  {
+   "i": 775,
+   "kind": "spoke",
+   "loc_cm": [
+    -214600.0,
+    278800.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 776,
+   "kind": "spoke",
+   "loc_cm": [
+    -217800.0,
+    278800.0
+   ],
+   "radius_m": 70.0,
+   "reachable": false
+  },
+  {
+   "i": 777,
+   "kind": "spoke",
+   "loc_cm": [
+    -221000.0,
+    278800.0
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 778,
+   "kind": "spoke",
+   "loc_cm": [
+    -224200.0,
+    278800.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 779,
+   "kind": "spoke",
+   "loc_cm": [
+    -227400.0,
+    278800.0
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 780,
+   "kind": "spoke",
+   "loc_cm": [
+    -230600.0,
+    278800.0
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 781,
+   "kind": "spoke",
+   "loc_cm": [
+    -233800.0,
+    278800.0
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 782,
+   "kind": "spoke",
+   "loc_cm": [
+    -237000.0,
+    278800.0
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 783,
+   "kind": "spoke",
+   "loc_cm": [
+    -240200.0,
+    278800.0
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 784,
+   "kind": "spoke",
+   "loc_cm": [
+    -214223.7,
+    277151.2
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 785,
+   "kind": "spoke",
+   "loc_cm": [
+    -217106.8,
+    275762.8
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 786,
+   "kind": "spoke",
+   "loc_cm": [
+    -219989.9,
+    274374.4
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 787,
+   "kind": "spoke",
+   "loc_cm": [
+    -222873.0,
+    272986.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 788,
+   "kind": "spoke",
+   "loc_cm": [
+    -225756.1,
+    271597.5
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 789,
+   "kind": "spoke",
+   "loc_cm": [
+    -228639.2,
+    270209.1
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 790,
+   "kind": "spoke",
+   "loc_cm": [
+    -213169.3,
+    275829.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 791,
+   "kind": "spoke",
+   "loc_cm": [
+    -215164.4,
+    273327.2
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 792,
+   "kind": "spoke",
+   "loc_cm": [
+    -217159.6,
+    270825.3
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 793,
+   "kind": "spoke",
+   "loc_cm": [
+    -219154.8,
+    268323.5
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 794,
+   "kind": "spoke",
+   "loc_cm": [
+    -221149.9,
+    265821.6
+   ],
+   "radius_m": 166.0,
+   "reachable": false
+  },
+  {
+   "i": 795,
+   "kind": "spoke",
+   "loc_cm": [
+    -211645.6,
+    275095.3
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 796,
+   "kind": "spoke",
+   "loc_cm": [
+    -212357.6,
+    271975.5
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 797,
+   "kind": "spoke",
+   "loc_cm": [
+    -213069.7,
+    268855.7
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 798,
+   "kind": "spoke",
+   "loc_cm": [
+    -213781.8,
+    265736.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 799,
+   "kind": "spoke",
+   "loc_cm": [
+    -214493.8,
+    262616.2
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 800,
+   "kind": "spoke",
+   "loc_cm": [
+    -215205.9,
+    259496.4
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 801,
+   "kind": "spoke",
+   "loc_cm": [
+    -209954.4,
+    275095.3
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 802,
+   "kind": "spoke",
+   "loc_cm": [
+    -209242.4,
+    271975.5
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 803,
+   "kind": "spoke",
+   "loc_cm": [
+    -208530.3,
+    268855.7
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 804,
+   "kind": "spoke",
+   "loc_cm": [
+    -207818.2,
+    265736.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 805,
+   "kind": "spoke",
+   "loc_cm": [
+    -207106.2,
+    262616.2
+   ],
+   "radius_m": 166.0,
+   "reachable": false
+  },
+  {
+   "i": 806,
+   "kind": "spoke",
+   "loc_cm": [
+    -206394.1,
+    259496.4
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 807,
+   "kind": "spoke",
+   "loc_cm": [
+    -205682.0,
+    256376.7
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 808,
+   "kind": "spoke",
+   "loc_cm": [
+    -204970.0,
+    253256.9
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 809,
+   "kind": "spoke",
+   "loc_cm": [
+    -204257.9,
+    250137.1
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 810,
+   "kind": "spoke",
+   "loc_cm": [
+    -203545.8,
+    247017.4
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 811,
+   "kind": "spoke",
+   "loc_cm": [
+    -202833.8,
+    243897.6
+   ],
+   "radius_m": 358.0,
+   "reachable": true
+  },
+  {
+   "i": 812,
+   "kind": "spoke",
+   "loc_cm": [
+    -202121.7,
+    240777.8
+   ],
+   "radius_m": 390.0,
+   "reachable": true
+  },
+  {
+   "i": 813,
+   "kind": "spoke",
+   "loc_cm": [
+    -201409.6,
+    237658.0
+   ],
+   "radius_m": 422.0,
+   "reachable": true
+  },
+  {
+   "i": 814,
+   "kind": "spoke",
+   "loc_cm": [
+    -200697.5,
+    234538.3
+   ],
+   "radius_m": 454.0,
+   "reachable": false
+  },
+  {
+   "i": 815,
+   "kind": "spoke",
+   "loc_cm": [
+    -208430.7,
+    275829.0
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 816,
+   "kind": "spoke",
+   "loc_cm": [
+    -206435.6,
+    273327.2
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 817,
+   "kind": "spoke",
+   "loc_cm": [
+    -204440.4,
+    270825.3
+   ],
+   "radius_m": 102.0,
+   "reachable": true
+  },
+  {
+   "i": 818,
+   "kind": "spoke",
+   "loc_cm": [
+    -202445.2,
+    268323.5
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 819,
+   "kind": "spoke",
+   "loc_cm": [
+    -200450.1,
+    265821.6
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 820,
+   "kind": "spoke",
+   "loc_cm": [
+    -198454.9,
+    263319.7
+   ],
+   "radius_m": 198.0,
+   "reachable": false
+  },
+  {
+   "i": 821,
+   "kind": "spoke",
+   "loc_cm": [
+    -196459.7,
+    260817.9
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 822,
+   "kind": "spoke",
+   "loc_cm": [
+    -194464.6,
+    258316.0
+   ],
+   "radius_m": 262.0,
+   "reachable": true
+  },
+  {
+   "i": 823,
+   "kind": "spoke",
+   "loc_cm": [
+    -192469.4,
+    255814.2
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 824,
+   "kind": "spoke",
+   "loc_cm": [
+    -190474.2,
+    253312.3
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 825,
+   "kind": "spoke",
+   "loc_cm": [
+    -188479.1,
+    250810.4
+   ],
+   "radius_m": 358.0,
+   "reachable": false
+  },
+  {
+   "i": 826,
+   "kind": "spoke",
+   "loc_cm": [
+    -186483.9,
+    248308.6
+   ],
+   "radius_m": 390.0,
+   "reachable": false
+  },
+  {
+   "i": 827,
+   "kind": "spoke",
+   "loc_cm": [
+    -184488.7,
+    245806.7
+   ],
+   "radius_m": 422.0,
+   "reachable": false
+  },
+  {
+   "i": 828,
+   "kind": "spoke",
+   "loc_cm": [
+    -182493.6,
+    243304.9
+   ],
+   "radius_m": 454.0,
+   "reachable": false
+  },
+  {
+   "i": 829,
+   "kind": "spoke",
+   "loc_cm": [
+    -207376.3,
+    277151.2
+   ],
+   "radius_m": 38.0,
+   "reachable": true
+  },
+  {
+   "i": 830,
+   "kind": "spoke",
+   "loc_cm": [
+    -204493.2,
+    275762.8
+   ],
+   "radius_m": 70.0,
+   "reachable": true
+  },
+  {
+   "i": 831,
+   "kind": "spoke",
+   "loc_cm": [
+    -198727.0,
+    272986.0
+   ],
+   "radius_m": 134.0,
+   "reachable": true
+  },
+  {
+   "i": 832,
+   "kind": "spoke",
+   "loc_cm": [
+    -195843.9,
+    271597.5
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 833,
+   "kind": "spoke",
+   "loc_cm": [
+    -192960.8,
+    270209.1
+   ],
+   "radius_m": 198.0,
+   "reachable": true
+  },
+  {
+   "i": 834,
+   "kind": "spoke",
+   "loc_cm": [
+    -190077.7,
+    268820.7
+   ],
+   "radius_m": 230.0,
+   "reachable": true
+  },
+  {
+   "i": 835,
+   "kind": "spoke",
+   "loc_cm": [
+    -184311.5,
+    266043.8
+   ],
+   "radius_m": 294.0,
+   "reachable": true
+  },
+  {
+   "i": 836,
+   "kind": "spoke",
+   "loc_cm": [
+    -181428.4,
+    264655.4
+   ],
+   "radius_m": 326.0,
+   "reachable": true
+  },
+  {
+   "i": 837,
+   "kind": "spoke",
+   "loc_cm": [
+    -178545.3,
+    263267.0
+   ],
+   "radius_m": 358.0,
+   "reachable": true
+  }
+ ],
+ "building_rows": [
+  {
+   "i": 0,
+   "loc_cm": [
+    -201845.9,
+    280169.5
+   ],
+   "doorstep_cm": [
+    -201861.6,
+    281144.1
+   ],
+   "radius_m": 92.4,
+   "reachable": true
+  },
+  {
+   "i": 1,
+   "loc_cm": [
+    -204338.0,
+    279641.8
+   ],
+   "doorstep_cm": [
+    -204591.0,
+    280733.5
+   ],
+   "radius_m": 65.0,
+   "reachable": true
+  },
+  {
+   "i": 2,
+   "loc_cm": [
+    -205470.3,
+    282661.3
+   ],
+   "doorstep_cm": [
+    -205928.2,
+    283367.4
+   ],
+   "radius_m": 66.8,
+   "reachable": true
+  },
+  {
+   "i": 3,
+   "loc_cm": [
+    -205122.7,
+    285225.5
+   ],
+   "doorstep_cm": [
+    -205724.4,
+    285845.6
+   ],
+   "radius_m": 86.8,
+   "reachable": true
+  },
+  {
+   "i": 4,
+   "loc_cm": [
+    -207707.9,
+    285863.2
+   ],
+   "doorstep_cm": [
+    -208547.3,
+    286141.8
+   ],
+   "radius_m": 76.8,
+   "reachable": true
+  },
+  {
+   "i": 5,
+   "loc_cm": [
+    -209712.3,
+    285429.8
+   ],
+   "doorstep_cm": [
+    -210627.8,
+    285488.0
+   ],
+   "radius_m": 66.9,
+   "reachable": true
+  },
+  {
+   "i": 6,
+   "loc_cm": [
+    -211848.4,
+    286135.1
+   ],
+   "doorstep_cm": [
+    -212790.2,
+    285929.6
+   ],
+   "radius_m": 74.0,
+   "reachable": true
+  },
+  {
+   "i": 7,
+   "loc_cm": [
+    -213965.6,
+    286233.7
+   ],
+   "doorstep_cm": [
+    -214810.1,
+    285880.1
+   ],
+   "radius_m": 81.4,
+   "reachable": true
+  },
+  {
+   "i": 8,
+   "loc_cm": [
+    -216316.6,
+    283128.6
+   ],
+   "doorstep_cm": [
+    -216966.5,
+    282202.9
+   ],
+   "radius_m": 70.4,
+   "reachable": true
+  },
+  {
+   "i": 9,
+   "loc_cm": [
+    -217472.7,
+    279155.0
+   ],
+   "doorstep_cm": [
+    -217528.1,
+    278286.6
+   ],
+   "radius_m": 67.5,
+   "reachable": true
+  },
+  {
+   "i": 10,
+   "loc_cm": [
+    -219504.6,
+    282120.4
+   ],
+   "doorstep_cm": [
+    -219804.8,
+    281300.8
+   ],
+   "radius_m": 93.5,
+   "reachable": true
+  },
+  {
+   "i": 11,
+   "loc_cm": [
+    -216855.6,
+    276878.8
+   ],
+   "doorstep_cm": [
+    -216664.3,
+    275954.0
+   ],
+   "radius_m": 65.2,
+   "reachable": true
+  },
+  {
+   "i": 12,
+   "loc_cm": [
+    -218986.4,
+    277079.5
+   ],
+   "doorstep_cm": [
+    -218762.8,
+    276093.0
+   ],
+   "radius_m": 84.1,
+   "reachable": true
+  },
+  {
+   "i": 13,
+   "loc_cm": [
+    -216272.3,
+    274633.0
+   ],
+   "doorstep_cm": [
+    -215844.9,
+    273974.7
+   ],
+   "radius_m": 69.8,
+   "reachable": true
+  },
+  {
+   "i": 14,
+   "loc_cm": [
+    -217026.4,
+    272020.7
+   ],
+   "doorstep_cm": [
+    -216237.2,
+    271262.3
+   ],
+   "radius_m": 92.9,
+   "reachable": true
+  },
+  {
+   "i": 15,
+   "loc_cm": [
+    -213516.9,
+    272074.2
+   ],
+   "doorstep_cm": [
+    -212546.6,
+    271740.8
+   ],
+   "radius_m": 72.7,
+   "reachable": true
+  },
+  {
+   "i": 16,
+   "loc_cm": [
+    -210838.9,
+    272206.7
+   ],
+   "doorstep_cm": [
+    -210055.6,
+    272167.0
+   ],
+   "radius_m": 66.7,
+   "reachable": true
+  },
+  {
+   "i": 17,
+   "loc_cm": [
+    -209432.2,
+    270821.6
+   ],
+   "doorstep_cm": [
+    -208550.3,
+    270929.0
+   ],
+   "radius_m": 81.9,
+   "reachable": true
+  },
+  {
+   "i": 18,
+   "loc_cm": [
+    -211284.3,
+    271085.2
+   ],
+   "doorstep_cm": [
+    -210342.4,
+    271071.9
+   ],
+   "radius_m": 77.4,
+   "reachable": true
+  },
+  {
+   "i": 19,
+   "loc_cm": [
+    -208014.9,
+    272873.5
+   ],
+   "doorstep_cm": [
+    -207088.8,
+    273216.6
+   ],
+   "radius_m": 67.0,
+   "reachable": true
+  },
+  {
+   "i": 20,
+   "loc_cm": [
+    -205798.7,
+    271858.2
+   ],
+   "doorstep_cm": [
+    -204903.2,
+    272531.3
+   ],
+   "radius_m": 86.1,
+   "reachable": true
+  },
+  {
+   "i": 21,
+   "loc_cm": [
+    -205060.7,
+    275387.8
+   ],
+   "doorstep_cm": [
+    -204460.0,
+    276179.4
+   ],
+   "radius_m": 68.6,
+   "reachable": true
+  },
+  {
+   "i": 22,
+   "loc_cm": [
+    -204032.2,
+    277945.4
+   ],
+   "doorstep_cm": [
+    -204031.9,
+    278894.5
+   ],
+   "radius_m": 67.7,
+   "reachable": true
+  },
+  {
+   "i": 23,
+   "loc_cm": [
+    -202104.2,
+    277108.9
+   ],
+   "doorstep_cm": [
+    -201881.3,
+    277902.4
+   ],
+   "radius_m": 89.6,
+   "reachable": true
+  },
+  {
+   "i": 24,
+   "loc_cm": [
+    -198427.8,
+    279413.8
+   ],
+   "doorstep_cm": [
+    -198470.0,
+    280455.8
+   ],
+   "radius_m": 124.4,
+   "reachable": true
+  },
+  {
+   "i": 25,
+   "loc_cm": [
+    -200507.7,
+    282112.6
+   ],
+   "doorstep_cm": [
+    -200734.7,
+    283011.2
+   ],
+   "radius_m": 109.1,
+   "reachable": true
+  },
+  {
+   "i": 26,
+   "loc_cm": [
+    -202333.7,
+    287673.4
+   ],
+   "doorstep_cm": [
+    -202932.4,
+    288353.5
+   ],
+   "radius_m": 123.8,
+   "reachable": true
+  },
+  {
+   "i": 27,
+   "loc_cm": [
+    -200827.0,
+    285877.3
+   ],
+   "doorstep_cm": [
+    -201369.1,
+    286661.3
+   ],
+   "radius_m": 122.8,
+   "reachable": true
+  },
+  {
+   "i": 28,
+   "loc_cm": [
+    -205921.2,
+    290858.8
+   ],
+   "doorstep_cm": [
+    -206648.4,
+    291116.2
+   ],
+   "radius_m": 130.0,
+   "reachable": true
+  },
+  {
+   "i": 29,
+   "loc_cm": [
+    -206567.3,
+    288616.4
+   ],
+   "doorstep_cm": [
+    -207444.4,
+    289144.4
+   ],
+   "radius_m": 108.8,
+   "reachable": true
+  },
+  {
+   "i": 30,
+   "loc_cm": [
+    -211115.5,
+    290574.5
+   ],
+   "doorstep_cm": [
+    -212156.6,
+    290456.4
+   ],
+   "radius_m": 117.4,
+   "reachable": true
+  },
+  {
+   "i": 31,
+   "loc_cm": [
+    -208929.8,
+    288966.7
+   ],
+   "doorstep_cm": [
+    -209929.2,
+    289160.6
+   ],
+   "radius_m": 104.0,
+   "reachable": true
+  },
+  {
+   "i": 32,
+   "loc_cm": [
+    -214127.1,
+    291233.6
+   ],
+   "doorstep_cm": [
+    -215048.6,
+    290966.9
+   ],
+   "radius_m": 128.9,
+   "reachable": true
+  },
+  {
+   "i": 33,
+   "loc_cm": [
+    -213742.2,
+    289233.8
+   ],
+   "doorstep_cm": [
+    -214706.9,
+    289082.4
+   ],
+   "radius_m": 110.0,
+   "reachable": true
+  },
+  {
+   "i": 34,
+   "loc_cm": [
+    -218204.2,
+    285781.3
+   ],
+   "doorstep_cm": [
+    -218933.1,
+    285072.2
+   ],
+   "radius_m": 102.7,
+   "reachable": true
+  },
+  {
+   "i": 35,
+   "loc_cm": [
+    -219654.5,
+    288471.9
+   ],
+   "doorstep_cm": [
+    -220467.4,
+    287684.7
+   ],
+   "radius_m": 131.3,
+   "reachable": true
+  },
+  {
+   "i": 36,
+   "loc_cm": [
+    -221458.9,
+    284738.8
+   ],
+   "doorstep_cm": [
+    -221921.7,
+    283937.0
+   ],
+   "radius_m": 122.5,
+   "reachable": true
+  },
+  {
+   "i": 37,
+   "loc_cm": [
+    -221957.0,
+    282369.8
+   ],
+   "doorstep_cm": [
+    -222150.0,
+    281439.5
+   ],
+   "radius_m": 116.5,
+   "reachable": true
+  },
+  {
+   "i": 38,
+   "loc_cm": [
+    -222058.4,
+    280730.4
+   ],
+   "doorstep_cm": [
+    -222148.7,
+    279692.1
+   ],
+   "radius_m": 113.8,
+   "reachable": true
+  },
+  {
+   "i": 39,
+   "loc_cm": [
+    -222470.4,
+    275704.1
+   ],
+   "doorstep_cm": [
+    -222141.6,
+    274722.6
+   ],
+   "radius_m": 120.5,
+   "reachable": true
+  },
+  {
+   "i": 40,
+   "loc_cm": [
+    -220925.9,
+    277238.2
+   ],
+   "doorstep_cm": [
+    -220801.5,
+    276485.8
+   ],
+   "radius_m": 102.7,
+   "reachable": true
+  },
+  {
+   "i": 41,
+   "loc_cm": [
+    -220300.3,
+    270582.3
+   ],
+   "doorstep_cm": [
+    -219693.7,
+    269916.4
+   ],
+   "radius_m": 125.7,
+   "reachable": true
+  },
+  {
+   "i": 42,
+   "loc_cm": [
+    -221513.0,
+    273165.5
+   ],
+   "doorstep_cm": [
+    -221065.5,
+    272188.0
+   ],
+   "radius_m": 122.1,
+   "reachable": true
+  },
+  {
+   "i": 43,
+   "loc_cm": [
+    -217798.8,
+    267913.1
+   ],
+   "doorstep_cm": [
+    -217023.9,
+    267257.1
+   ],
+   "radius_m": 131.1,
+   "reachable": true
+  },
+  {
+   "i": 44,
+   "loc_cm": [
+    -214155.6,
+    269163.3
+   ],
+   "doorstep_cm": [
+    -213337.6,
+    268847.0
+   ],
+   "radius_m": 102.7,
+   "reachable": true
+  },
+  {
+   "i": 45,
+   "loc_cm": [
+    -212054.1,
+    267935.0
+   ],
+   "doorstep_cm": [
+    -211073.2,
+    267754.4
+   ],
+   "radius_m": 110.5,
+   "reachable": true
+  },
+  {
+   "i": 46,
+   "loc_cm": [
+    -210106.6,
+    266576.7
+   ],
+   "doorstep_cm": [
+    -209045.6,
+    266722.6
+   ],
+   "radius_m": 122.0,
+   "reachable": true
+  },
+  {
+   "i": 47,
+   "loc_cm": [
+    -207184.6,
+    266224.8
+   ],
+   "doorstep_cm": [
+    -206269.9,
+    266562.1
+   ],
+   "radius_m": 130.5,
+   "reachable": true
+  },
+  {
+   "i": 48,
+   "loc_cm": [
+    -204062.5,
+    267969.3
+   ],
+   "doorstep_cm": [
+    -203315.8,
+    268315.7
+   ],
+   "radius_m": 128.8,
+   "reachable": true
+  },
+  {
+   "i": 49,
+   "loc_cm": [
+    -205883.7,
+    269028.6
+   ],
+   "doorstep_cm": [
+    -205049.9,
+    269411.6
+   ],
+   "radius_m": 110.1,
+   "reachable": true
+  },
+  {
+   "i": 50,
+   "loc_cm": [
+    -200211.0,
+    271861.2
+   ],
+   "doorstep_cm": [
+    -199632.5,
+    272707.7
+   ],
+   "radius_m": 127.2,
+   "reachable": true
+  },
+  {
+   "i": 51,
+   "loc_cm": [
+    -198503.4,
+    277538.5
+   ],
+   "doorstep_cm": [
+    -198521.1,
+    278462.1
+   ],
+   "radius_m": 122.8,
+   "reachable": true
+  },
+  {
+   "i": 52,
+   "loc_cm": [
+    -195565.3,
+    282537.8
+   ],
+   "doorstep_cm": [
+    -195851.1,
+    283266.6
+   ],
+   "radius_m": 156.0,
+   "reachable": true
+  },
+  {
+   "i": 53,
+   "loc_cm": [
+    -196011.9,
+    281032.8
+   ],
+   "doorstep_cm": [
+    -196179.5,
+    282017.7
+   ],
+   "radius_m": 149.7,
+   "reachable": true
+  },
+  {
+   "i": 54,
+   "loc_cm": [
+    -195203.7,
+    284346.5
+   ],
+   "doorstep_cm": [
+    -195593.2,
+    285402.3
+   ],
+   "radius_m": 165.8,
+   "reachable": true
+  },
+  {
+   "i": 55,
+   "loc_cm": [
+    -197630.6,
+    284111.3
+   ],
+   "doorstep_cm": [
+    -197969.0,
+    284937.7
+   ],
+   "radius_m": 142.2,
+   "reachable": true
+  },
+  {
+   "i": 56,
+   "loc_cm": [
+    -200534.8,
+    290102.0
+   ],
+   "doorstep_cm": [
+    -201340.0,
+    290730.9
+   ],
+   "radius_m": 152.3,
+   "reachable": true
+  },
+  {
+   "i": 57,
+   "loc_cm": [
+    -197352.5,
+    286316.5
+   ],
+   "doorstep_cm": [
+    -197718.8,
+    287125.9
+   ],
+   "radius_m": 155.1,
+   "reachable": true
+  },
+  {
+   "i": 58,
+   "loc_cm": [
+    -206458.6,
+    292382.8
+   ],
+   "doorstep_cm": [
+    -207275.3,
+    292579.0
+   ],
+   "radius_m": 142.2,
+   "reachable": true
+  },
+  {
+   "i": 59,
+   "loc_cm": [
+    -203813.3,
+    293371.4
+   ],
+   "doorstep_cm": [
+    -204631.6,
+    293710.3
+   ],
+   "radius_m": 161.4,
+   "reachable": true
+  },
+  {
+   "i": 60,
+   "loc_cm": [
+    -213449.4,
+    293644.9
+   ],
+   "doorstep_cm": [
+    -214562.3,
+    293470.0
+   ],
+   "radius_m": 151.4,
+   "reachable": true
+  },
+  {
+   "i": 61,
+   "loc_cm": [
+    -208018.5,
+    293268.9
+   ],
+   "doorstep_cm": [
+    -208913.7,
+    293544.1
+   ],
+   "radius_m": 148.6,
+   "reachable": true
+  },
+  {
+   "i": 62,
+   "loc_cm": [
+    -216020.5,
+    291895.4
+   ],
+   "doorstep_cm": [
+    -216934.9,
+    291556.1
+   ],
+   "radius_m": 141.5,
+   "reachable": true
+  },
+  {
+   "i": 63,
+   "loc_cm": [
+    -219981.0,
+    292851.5
+   ],
+   "doorstep_cm": [
+    -220808.8,
+    292280.6
+   ],
+   "radius_m": 167.9,
+   "reachable": true
+  },
+  {
+   "i": 64,
+   "loc_cm": [
+    -216621.1,
+    293665.4
+   ],
+   "doorstep_cm": [
+    -217321.7,
+    293312.0
+   ],
+   "radius_m": 159.1,
+   "reachable": true
+  },
+  {
+   "i": 65,
+   "loc_cm": [
+    -222180.6,
+    287129.4
+   ],
+   "doorstep_cm": [
+    -222832.8,
+    286304.5
+   ],
+   "radius_m": 141.8,
+   "reachable": true
+  },
+  {
+   "i": 66,
+   "loc_cm": [
+    -224607.5,
+    287484.4
+   ],
+   "doorstep_cm": [
+    -225269.7,
+    286682.8
+   ],
+   "radius_m": 164.8,
+   "reachable": true
+  },
+  {
+   "i": 67,
+   "loc_cm": [
+    -221966.5,
+    291419.4
+   ],
+   "doorstep_cm": [
+    -222618.8,
+    290961.9
+   ],
+   "radius_m": 169.6,
+   "reachable": true
+  },
+  {
+   "i": 68,
+   "loc_cm": [
+    -226472.4,
+    284434.6
+   ],
+   "doorstep_cm": [
+    -226661.3,
+    283549.8
+   ],
+   "radius_m": 165.6,
+   "reachable": true
+  },
+  {
+   "i": 69,
+   "loc_cm": [
+    -227570.1,
+    280012.0
+   ],
+   "doorstep_cm": [
+    -227554.4,
+    279200.2
+   ],
+   "radius_m": 167.6,
+   "reachable": true
+  },
+  {
+   "i": 70,
+   "loc_cm": [
+    -225706.5,
+    279986.8
+   ],
+   "doorstep_cm": [
+    -225839.6,
+    278986.9
+   ],
+   "radius_m": 150.4,
+   "reachable": true
+  },
+  {
+   "i": 71,
+   "loc_cm": [
+    -225925.3,
+    277411.7
+   ],
+   "doorstep_cm": [
+    -225936.0,
+    276635.1
+   ],
+   "radius_m": 152.9,
+   "reachable": true
+  },
+  {
+   "i": 72,
+   "loc_cm": [
+    -226561.5,
+    274939.7
+   ],
+   "doorstep_cm": [
+    -226292.9,
+    274174.8
+   ],
+   "radius_m": 161.7,
+   "reachable": true
+  },
+  {
+   "i": 73,
+   "loc_cm": [
+    -227346.1,
+    277709.3
+   ],
+   "doorstep_cm": [
+    -227328.3,
+    276691.0
+   ],
+   "radius_m": 166.6,
+   "reachable": true
+  },
+  {
+   "i": 74,
+   "loc_cm": [
+    -223746.4,
+    272980.0
+   ],
+   "doorstep_cm": [
+    -223432.1,
+    272015.6
+   ],
+   "radius_m": 143.4,
+   "reachable": true
+  },
+  {
+   "i": 75,
+   "loc_cm": [
+    -221486.9,
+    266092.8
+   ],
+   "doorstep_cm": [
+    -220589.7,
+    265388.6
+   ],
+   "radius_m": 166.0,
+   "reachable": true
+  },
+  {
+   "i": 76,
+   "loc_cm": [
+    -217846.3,
+    264304.9
+   ],
+   "doorstep_cm": [
+    -216865.3,
+    263935.8
+   ],
+   "radius_m": 160.5,
+   "reachable": true
+  },
+  {
+   "i": 77,
+   "loc_cm": [
+    -214691.5,
+    265131.5
+   ],
+   "doorstep_cm": [
+    -213572.9,
+    264892.7
+   ],
+   "radius_m": 141.8,
+   "reachable": true
+  },
+  {
+   "i": 78,
+   "loc_cm": [
+    -211366.5,
+    263496.2
+   ],
+   "doorstep_cm": [
+    -210574.4,
+    263461.5
+   ],
+   "radius_m": 153.4,
+   "reachable": true
+  },
+  {
+   "i": 79,
+   "loc_cm": [
+    -207373.2,
+    262136.5
+   ],
+   "doorstep_cm": [
+    -206491.8,
+    262280.0
+   ],
+   "radius_m": 170.7,
+   "reachable": true
+  },
+  {
+   "i": 80,
+   "loc_cm": [
+    -209386.9,
+    262695.1
+   ],
+   "doorstep_cm": [
+    -208490.1,
+    262748.2
+   ],
+   "radius_m": 162.2,
+   "reachable": true
+  },
+  {
+   "i": 81,
+   "loc_cm": [
+    -201892.4,
+    265853.5
+   ],
+   "doorstep_cm": [
+    -201062.6,
+    266349.2
+   ],
+   "radius_m": 158.1,
+   "reachable": true
+  },
+  {
+   "i": 82,
+   "loc_cm": [
+    -204773.3,
+    265338.5
+   ],
+   "doorstep_cm": [
+    -203937.8,
+    265649.0
+   ],
+   "radius_m": 148.3,
+   "reachable": true
+  },
+  {
+   "i": 83,
+   "loc_cm": [
+    -199216.7,
+    269715.5
+   ],
+   "doorstep_cm": [
+    -198642.8,
+    270658.6
+   ],
+   "radius_m": 146.3,
+   "reachable": true
+  },
+  {
+   "i": 84,
+   "loc_cm": [
+    -197135.2,
+    269056.8
+   ],
+   "doorstep_cm": [
+    -196661.2,
+    269782.6
+   ],
+   "radius_m": 167.7,
+   "reachable": true
+  },
+  {
+   "i": 85,
+   "loc_cm": [
+    -199747.1,
+    266233.8
+   ],
+   "doorstep_cm": [
+    -199087.0,
+    266984.9
+   ],
+   "radius_m": 166.4,
+   "reachable": true
+  },
+  {
+   "i": 86,
+   "loc_cm": [
+    -195267.3,
+    274725.5
+   ],
+   "doorstep_cm": [
+    -195104.4,
+    275774.0
+   ],
+   "radius_m": 159.8,
+   "reachable": true
+  },
+  {
+   "i": 87,
+   "loc_cm": [
+    -195308.1,
+    277958.2
+   ],
+   "doorstep_cm": [
+    -195182.3,
+    278743.5
+   ],
+   "radius_m": 156.2,
+   "reachable": true
+  },
+  {
+   "i": 88,
+   "loc_cm": [
+    -192371.7,
+    280878.3
+   ],
+   "doorstep_cm": [
+    -192472.5,
+    281711.2
+   ],
+   "radius_m": 185.6,
+   "reachable": true
+  },
+  {
+   "i": 89,
+   "loc_cm": [
+    -190194.8,
+    281560.4
+   ],
+   "doorstep_cm": [
+    -190299.1,
+    282498.9
+   ],
+   "radius_m": 208.3,
+   "reachable": true
+  },
+  {
+   "i": 90,
+   "loc_cm": [
+    -191687.7,
+    283161.9
+   ],
+   "doorstep_cm": [
+    -191944.9,
+    283988.1
+   ],
+   "radius_m": 195.6,
+   "reachable": true
+  },
+  {
+   "i": 91,
+   "loc_cm": [
+    -193949.1,
+    290811.2
+   ],
+   "doorstep_cm": [
+    -194702.4,
+    291657.3
+   ],
+   "radius_m": 206.0,
+   "reachable": true
+  },
+  {
+   "i": 92,
+   "loc_cm": [
+    -197418.8,
+    292154.9
+   ],
+   "doorstep_cm": [
+    -198176.4,
+    292962.8
+   ],
+   "radius_m": 189.7,
+   "reachable": true
+  },
+  {
+   "i": 93,
+   "loc_cm": [
+    -203423.0,
+    295590.0
+   ],
+   "doorstep_cm": [
+    -204196.1,
+    296006.6
+   ],
+   "radius_m": 184.3,
+   "reachable": true
+  },
+  {
+   "i": 94,
+   "loc_cm": [
+    -206171.4,
+    296251.5
+   ],
+   "doorstep_cm": [
+    -207116.8,
+    296520.6
+   ],
+   "radius_m": 181.0,
+   "reachable": true
+  },
+  {
+   "i": 95,
+   "loc_cm": [
+    -199418.7,
+    294376.5
+   ],
+   "doorstep_cm": [
+    -200245.1,
+    295123.5
+   ],
+   "radius_m": 194.4,
+   "reachable": true
+  },
+  {
+   "i": 96,
+   "loc_cm": [
+    -205109.6,
+    298231.7
+   ],
+   "doorstep_cm": [
+    -206009.3,
+    298550.1
+   ],
+   "radius_m": 203.2,
+   "reachable": true
+  },
+  {
+   "i": 97,
+   "loc_cm": [
+    -209261.9,
+    298239.5
+   ],
+   "doorstep_cm": [
+    -210300.9,
+    298354.8
+   ],
+   "radius_m": 195.6,
+   "reachable": true
+  },
+  {
+   "i": 98,
+   "loc_cm": [
+    -215891.3,
+    295976.5
+   ],
+   "doorstep_cm": [
+    -216932.8,
+    295710.1
+   ],
+   "radius_m": 179.9,
+   "reachable": true
+  },
+  {
+   "i": 99,
+   "loc_cm": [
+    -219391.3,
+    296065.1
+   ],
+   "doorstep_cm": [
+    -220279.2,
+    295695.5
+   ],
+   "radius_m": 193.7,
+   "reachable": true
+  },
+  {
+   "i": 100,
+   "loc_cm": [
+    -225960.9,
+    292840.3
+   ],
+   "doorstep_cm": [
+    -226626.8,
+    292273.8
+   ],
+   "radius_m": 207.9,
+   "reachable": true
+  },
+  {
+   "i": 101,
+   "loc_cm": [
+    -228970.7,
+    286947.5
+   ],
+   "doorstep_cm": [
+    -229319.8,
+    286062.7
+   ],
+   "radius_m": 198.9,
+   "reachable": true
+  },
+  {
+   "i": 102,
+   "loc_cm": [
+    -229609.0,
+    279412.4
+   ],
+   "doorstep_cm": [
+    -229641.2,
+    278345.5
+   ],
+   "radius_m": 188.5,
+   "reachable": true
+  },
+  {
+   "i": 103,
+   "loc_cm": [
+    -229675.7,
+    276150.8
+   ],
+   "doorstep_cm": [
+    -229615.0,
+    275392.5
+   ],
+   "radius_m": 191.2,
+   "reachable": true
+  },
+  {
+   "i": 104,
+   "loc_cm": [
+    -228425.6,
+    268572.5
+   ],
+   "doorstep_cm": [
+    -227939.9,
+    267558.3
+   ],
+   "radius_m": 205.0,
+   "reachable": true
+  },
+  {
+   "i": 105,
+   "loc_cm": [
+    -224140.9,
+    264941.2
+   ],
+   "doorstep_cm": [
+    -223535.0,
+    264205.4
+   ],
+   "radius_m": 193.7,
+   "reachable": true
+  },
+  {
+   "i": 106,
+   "loc_cm": [
+    -225552.7,
+    268377.2
+   ],
+   "doorstep_cm": [
+    -225106.2,
+    267614.9
+   ],
+   "radius_m": 181.6,
+   "reachable": true
+  },
+  {
+   "i": 107,
+   "loc_cm": [
+    -221973.0,
+    263249.3
+   ],
+   "doorstep_cm": [
+    -220997.1,
+    262659.7
+   ],
+   "radius_m": 190.9,
+   "reachable": true
+  },
+  {
+   "i": 108,
+   "loc_cm": [
+    -215391.2,
+    261530.6
+   ],
+   "doorstep_cm": [
+    -214367.2,
+    261253.9
+   ],
+   "radius_m": 179.1,
+   "reachable": true
+  },
+  {
+   "i": 109,
+   "loc_cm": [
+    -217310.9,
+    260981.7
+   ],
+   "doorstep_cm": [
+    -216544.1,
+    260674.4
+   ],
+   "radius_m": 190.1,
+   "reachable": true
+  },
+  {
+   "i": 110,
+   "loc_cm": [
+    -207378.0,
+    258241.4
+   ],
+   "doorstep_cm": [
+    -206329.8,
+    258559.5
+   ],
+   "radius_m": 207.3,
+   "reachable": true
+  },
+  {
+   "i": 111,
+   "loc_cm": [
+    -212163.0,
+    260865.4
+   ],
+   "doorstep_cm": [
+    -211115.8,
+    260796.9
+   ],
+   "radius_m": 180.1,
+   "reachable": true
+  },
+  {
+   "i": 112,
+   "loc_cm": [
+    -204635.1,
+    259849.6
+   ],
+   "doorstep_cm": [
+    -203546.9,
+    260075.6
+   ],
+   "radius_m": 200.8,
+   "reachable": true
+  },
+  {
+   "i": 113,
+   "loc_cm": [
+    -202917.9,
+    261889.7
+   ],
+   "doorstep_cm": [
+    -201975.8,
+    262177.7
+   ],
+   "radius_m": 188.2,
+   "reachable": true
+  },
+  {
+   "i": 114,
+   "loc_cm": [
+    -200338.7,
+    262412.1
+   ],
+   "doorstep_cm": [
+    -199404.9,
+    263046.4
+   ],
+   "radius_m": 194.4,
+   "reachable": true
+  },
+  {
+   "i": 115,
+   "loc_cm": [
+    -197511.9,
+    263160.1
+   ],
+   "doorstep_cm": [
+    -196601.4,
+    263841.2
+   ],
+   "radius_m": 206.2,
+   "reachable": true
+  },
+  {
+   "i": 116,
+   "loc_cm": [
+    -197315.5,
+    266485.1
+   ],
+   "doorstep_cm": [
+    -196795.4,
+    267040.9
+   ],
+   "radius_m": 182.9,
+   "reachable": true
+  },
+  {
+   "i": 117,
+   "loc_cm": [
+    -194711.8,
+    266501.2
+   ],
+   "doorstep_cm": [
+    -194058.2,
+    267251.8
+   ],
+   "radius_m": 203.4,
+   "reachable": true
+  },
+  {
+   "i": 118,
+   "loc_cm": [
+    -192985.3,
+    272647.3
+   ],
+   "doorstep_cm": [
+    -192486.0,
+    273672.4
+   ],
+   "radius_m": 190.2,
+   "reachable": true
+  },
+  {
+   "i": 119,
+   "loc_cm": [
+    -193365.0,
+    275447.4
+   ],
+   "doorstep_cm": [
+    -193264.4,
+    276290.0
+   ],
+   "radius_m": 177.1,
+   "reachable": true
+  },
+  {
+   "i": 120,
+   "loc_cm": [
+    -190778.5,
+    273369.1
+   ],
+   "doorstep_cm": [
+    -190612.5,
+    274367.5
+   ],
+   "radius_m": 206.7,
+   "reachable": true
+  },
+  {
+   "i": 121,
+   "loc_cm": [
+    -189275.5,
+    287510.0
+   ],
+   "doorstep_cm": [
+    -189544.0,
+    288376.8
+   ],
+   "radius_m": 233.1,
+   "reachable": true
+  },
+  {
+   "i": 122,
+   "loc_cm": [
+    -188306.9,
+    280844.0
+   ],
+   "doorstep_cm": [
+    -188518.3,
+    281817.4
+   ],
+   "radius_m": 224.9,
+   "reachable": true
+  },
+  {
+   "i": 123,
+   "loc_cm": [
+    -191023.8,
+    289646.0
+   ],
+   "doorstep_cm": [
+    -191502.3,
+    290458.3
+   ],
+   "radius_m": 225.5,
+   "reachable": true
+  },
+  {
+   "i": 124,
+   "loc_cm": [
+    -194616.5,
+    295343.6
+   ],
+   "doorstep_cm": [
+    -195398.6,
+    296095.2
+   ],
+   "radius_m": 231.6,
+   "reachable": true
+  },
+  {
+   "i": 125,
+   "loc_cm": [
+    -191549.5,
+    293247.1
+   ],
+   "doorstep_cm": [
+    -192323.1,
+    294029.1
+   ],
+   "radius_m": 239.4,
+   "reachable": true
+  },
+  {
+   "i": 126,
+   "loc_cm": [
+    -205501.0,
+    300108.9
+   ],
+   "doorstep_cm": [
+    -206360.6,
+    300347.5
+   ],
+   "radius_m": 220.0,
+   "reachable": true
+  },
+  {
+   "i": 127,
+   "loc_cm": [
+    -199249.2,
+    297905.9
+   ],
+   "doorstep_cm": [
+    -200138.1,
+    298293.9
+   ],
+   "radius_m": 222.2,
+   "reachable": true
+  },
+  {
+   "i": 128,
+   "loc_cm": [
+    -202350.2,
+    299242.2
+   ],
+   "doorstep_cm": [
+    -203199.5,
+    299550.0
+   ],
+   "radius_m": 221.0,
+   "reachable": true
+  },
+  {
+   "i": 129,
+   "loc_cm": [
+    -211303.5,
+    300952.4
+   ],
+   "doorstep_cm": [
+    -212366.7,
+    300989.5
+   ],
+   "radius_m": 222.4,
+   "reachable": true
+  },
+  {
+   "i": 130,
+   "loc_cm": [
+    -208780.8,
+    303258.1
+   ],
+   "doorstep_cm": [
+    -209870.7,
+    303439.9
+   ],
+   "radius_m": 246.6,
+   "reachable": true
+  },
+  {
+   "i": 131,
+   "loc_cm": [
+    -214002.7,
+    302756.4
+   ],
+   "doorstep_cm": [
+    -214780.5,
+    302708.0
+   ],
+   "radius_m": 242.4,
+   "reachable": true
+  },
+  {
+   "i": 132,
+   "loc_cm": [
+    -207491.7,
+    301712.1
+   ],
+   "doorstep_cm": [
+    -208366.8,
+    301872.7
+   ],
+   "radius_m": 232.0,
+   "reachable": true
+  },
+  {
+   "i": 133,
+   "loc_cm": [
+    -216420.3,
+    300849.1
+   ],
+   "doorstep_cm": [
+    -217490.1,
+    300557.2
+   ],
+   "radius_m": 227.6,
+   "reachable": true
+  },
+  {
+   "i": 134,
+   "loc_cm": [
+    -220628.0,
+    299164.3
+   ],
+   "doorstep_cm": [
+    -221364.8,
+    298818.6
+   ],
+   "radius_m": 226.4,
+   "reachable": true
+  },
+  {
+   "i": 135,
+   "loc_cm": [
+    -226260.8,
+    296991.1
+   ],
+   "doorstep_cm": [
+    -226834.9,
+    296386.5
+   ],
+   "radius_m": 238.0,
+   "reachable": true
+  },
+  {
+   "i": 136,
+   "loc_cm": [
+    -227776.4,
+    294204.3
+   ],
+   "doorstep_cm": [
+    -228366.0,
+    293677.7
+   ],
+   "radius_m": 230.2,
+   "reachable": true
+  },
+  {
+   "i": 137,
+   "loc_cm": [
+    -230270.8,
+    291719.5
+   ],
+   "doorstep_cm": [
+    -230816.9,
+    291098.1
+   ],
+   "radius_m": 234.9,
+   "reachable": true
+  },
+  {
+   "i": 138,
+   "loc_cm": [
+    -233735.5,
+    282968.4
+   ],
+   "doorstep_cm": [
+    -234013.8,
+    282070.0
+   ],
+   "radius_m": 234.4,
+   "reachable": true
+  },
+  {
+   "i": 139,
+   "loc_cm": [
+    -233321.0,
+    284840.7
+   ],
+   "doorstep_cm": [
+    -233598.2,
+    283951.3
+   ],
+   "radius_m": 233.7,
+   "reachable": true
+  },
+  {
+   "i": 140,
+   "loc_cm": [
+    -231297.0,
+    287059.3
+   ],
+   "doorstep_cm": [
+    -231765.8,
+    286189.3
+   ],
+   "radius_m": 222.3,
+   "reachable": true
+  },
+  {
+   "i": 141,
+   "loc_cm": [
+    -232635.8,
+    281301.2
+   ],
+   "doorstep_cm": [
+    -232791.8,
+    280524.7
+   ],
+   "radius_m": 220.6,
+   "reachable": true
+  },
+  {
+   "i": 142,
+   "loc_cm": [
+    -234789.6,
+    275932.8
+   ],
+   "doorstep_cm": [
+    -234520.5,
+    274912.1
+   ],
+   "radius_m": 240.4,
+   "reachable": true
+  },
+  {
+   "i": 143,
+   "loc_cm": [
+    -234801.9,
+    277986.4
+   ],
+   "doorstep_cm": [
+    -234753.7,
+    277187.5
+   ],
+   "radius_m": 240.1,
+   "reachable": true
+  },
+  {
+   "i": 144,
+   "loc_cm": [
+    -211600.1,
+    254551.3
+   ],
+   "doorstep_cm": [
+    -210754.8,
+    254637.6
+   ],
+   "radius_m": 241.6,
+   "reachable": true
+  },
+  {
+   "i": 145,
+   "loc_cm": [
+    -209799.3,
+    256572.1
+   ],
+   "doorstep_cm": [
+    -208990.6,
+    256509.9
+   ],
+   "radius_m": 223.6,
+   "reachable": true
+  },
+  {
+   "i": 146,
+   "loc_cm": [
+    -206910.0,
+    255023.4
+   ],
+   "doorstep_cm": [
+    -205999.8,
+    255302.9
+   ],
+   "radius_m": 239.8,
+   "reachable": true
+  },
+  {
+   "i": 147,
+   "loc_cm": [
+    -197922.4,
+    260810.5
+   ],
+   "doorstep_cm": [
+    -197144.5,
+    261429.1
+   ],
+   "radius_m": 221.0,
+   "reachable": true
+  },
+  {
+   "i": 148,
+   "loc_cm": [
+    -202254.9,
+    257271.6
+   ],
+   "doorstep_cm": [
+    -201364.0,
+    257578.4
+   ],
+   "radius_m": 232.2,
+   "reachable": true
+  },
+  {
+   "i": 149,
+   "loc_cm": [
+    -203787.1,
+    255489.1
+   ],
+   "doorstep_cm": [
+    -202830.9,
+    255832.6
+   ],
+   "radius_m": 243.1,
+   "reachable": true
+  },
+  {
+   "i": 150,
+   "loc_cm": [
+    -191631.7,
+    268312.9
+   ],
+   "doorstep_cm": [
+    -191130.0,
+    269154.9
+   ],
+   "radius_m": 219.1,
+   "reachable": true
+  },
+  {
+   "i": 151,
+   "loc_cm": [
+    -193543.2,
+    262120.0
+   ],
+   "doorstep_cm": [
+    -193051.3,
+    262755.0
+   ],
+   "radius_m": 239.3,
+   "reachable": true
+  },
+  {
+   "i": 152,
+   "loc_cm": [
+    -188265.8,
+    269782.4
+   ],
+   "doorstep_cm": [
+    -187927.5,
+    270529.9
+   ],
+   "radius_m": 243.2,
+   "reachable": true
+  },
+  {
+   "i": 153,
+   "loc_cm": [
+    -188020.7,
+    272152.6
+   ],
+   "doorstep_cm": [
+    -187838.3,
+    273013.9
+   ],
+   "radius_m": 236.8,
+   "reachable": true
+  },
+  {
+   "i": 154,
+   "loc_cm": [
+    -185039.5,
+    284855.5
+   ],
+   "doorstep_cm": [
+    -185296.9,
+    285758.4
+   ],
+   "radius_m": 264.4,
+   "reachable": true
+  },
+  {
+   "i": 155,
+   "loc_cm": [
+    -185210.0,
+    288699.9
+   ],
+   "doorstep_cm": [
+    -185658.9,
+    289621.4
+   ],
+   "radius_m": 273.7,
+   "reachable": true
+  },
+  {
+   "i": 156,
+   "loc_cm": [
+    -192388.4,
+    297465.4
+   ],
+   "doorstep_cm": [
+    -193091.2,
+    298148.6
+   ],
+   "radius_m": 262.3,
+   "reachable": true
+  },
+  {
+   "i": 157,
+   "loc_cm": [
+    -188431.5,
+    294654.7
+   ],
+   "doorstep_cm": [
+    -188833.9,
+    295395.2
+   ],
+   "radius_m": 275.3,
+   "reachable": true
+  },
+  {
+   "i": 158,
+   "loc_cm": [
+    -203702.1,
+    303432.1
+   ],
+   "doorstep_cm": [
+    -204734.4,
+    303597.6
+   ],
+   "radius_m": 255.3,
+   "reachable": true
+  },
+  {
+   "i": 159,
+   "loc_cm": [
+    -199719.0,
+    302206.3
+   ],
+   "doorstep_cm": [
+    -200426.6,
+    302458.7
+   ],
+   "radius_m": 258.3,
+   "reachable": true
+  },
+  {
+   "i": 160,
+   "loc_cm": [
+    -201238.6,
+    305231.6
+   ],
+   "doorstep_cm": [
+    -202287.7,
+    305554.5
+   ],
+   "radius_m": 280.8,
+   "reachable": true
+  },
+  {
+   "i": 161,
+   "loc_cm": [
+    -197003.8,
+    303277.2
+   ],
+   "doorstep_cm": [
+    -198003.8,
+    303726.4
+   ],
+   "radius_m": 280.2,
+   "reachable": true
+  },
+  {
+   "i": 162,
+   "loc_cm": [
+    -197044.9,
+    301280.7
+   ],
+   "doorstep_cm": [
+    -197819.0,
+    301732.8
+   ],
+   "radius_m": 263.5,
+   "reachable": true
+  },
+  {
+   "i": 163,
+   "loc_cm": [
+    -211203.6,
+    306653.0
+   ],
+   "doorstep_cm": [
+    -211957.1,
+    306738.6
+   ],
+   "radius_m": 279.6,
+   "reachable": true
+  },
+  {
+   "i": 164,
+   "loc_cm": [
+    -216086.7,
+    304168.1
+   ],
+   "doorstep_cm": [
+    -217164.0,
+    304092.4
+   ],
+   "radius_m": 260.8,
+   "reachable": true
+  },
+  {
+   "i": 165,
+   "loc_cm": [
+    -206048.5,
+    306026.9
+   ],
+   "doorstep_cm": [
+    -206851.5,
+    306191.2
+   ],
+   "radius_m": 276.7,
+   "reachable": true
+  },
+  {
+   "i": 166,
+   "loc_cm": [
+    -225628.5,
+    302320.6
+   ],
+   "doorstep_cm": [
+    -226440.3,
+    301663.9
+   ],
+   "radius_m": 277.0,
+   "reachable": true
+  },
+  {
+   "i": 167,
+   "loc_cm": [
+    -222463.8,
+    301933.1
+   ],
+   "doorstep_cm": [
+    -223224.0,
+    301542.9
+   ],
+   "radius_m": 259.2,
+   "reachable": true
+  },
+  {
+   "i": 168,
+   "loc_cm": [
+    -221499.9,
+    304535.4
+   ],
+   "doorstep_cm": [
+    -222476.1,
+    304280.7
+   ],
+   "radius_m": 280.3,
+   "reachable": true
+  },
+  {
+   "i": 169,
+   "loc_cm": [
+    -219069.1,
+    305672.5
+   ],
+   "doorstep_cm": [
+    -220063.2,
+    305381.8
+   ],
+   "radius_m": 281.5,
+   "reachable": true
+  },
+  {
+   "i": 170,
+   "loc_cm": [
+    -233626.4,
+    291602.6
+   ],
+   "doorstep_cm": [
+    -234147.6,
+    290673.5
+   ],
+   "radius_m": 261.9,
+   "reachable": true
+  },
+  {
+   "i": 171,
+   "loc_cm": [
+    -230062.5,
+    297582.5
+   ],
+   "doorstep_cm": [
+    -230794.8,
+    296769.4
+   ],
+   "radius_m": 268.8,
+   "reachable": true
+  },
+  {
+   "i": 172,
+   "loc_cm": [
+    -231150.7,
+    294244.2
+   ],
+   "doorstep_cm": [
+    -231578.4,
+    293588.1
+   ],
+   "radius_m": 255.0,
+   "reachable": true
+  },
+  {
+   "i": 173,
+   "loc_cm": [
+    -236667.2,
+    279688.8
+   ],
+   "doorstep_cm": [
+    -236617.7,
+    278879.1
+   ],
+   "radius_m": 258.2,
+   "reachable": true
+  },
+  {
+   "i": 174,
+   "loc_cm": [
+    -236503.4,
+    282562.0
+   ],
+   "doorstep_cm": [
+    -236565.7,
+    281468.8
+   ],
+   "radius_m": 259.0,
+   "reachable": true
+  },
+  {
+   "i": 175,
+   "loc_cm": [
+    -236476.3,
+    289208.6
+   ],
+   "doorstep_cm": [
+    -236701.0,
+    288395.2
+   ],
+   "radius_m": 276.2,
+   "reachable": true
+  },
+  {
+   "i": 176,
+   "loc_cm": [
+    -237317.2,
+    277223.6
+   ],
+   "doorstep_cm": [
+    -237169.2,
+    276110.3
+   ],
+   "radius_m": 265.1,
+   "reachable": true
+  },
+  {
+   "i": 177,
+   "loc_cm": [
+    -213199.0,
+    251224.1
+   ],
+   "doorstep_cm": [
+    -212417.6,
+    251240.3
+   ],
+   "radius_m": 276.1,
+   "reachable": true
+  },
+  {
+   "i": 178,
+   "loc_cm": [
+    -208055.5,
+    251951.2
+   ],
+   "doorstep_cm": [
+    -207214.7,
+    251996.3
+   ],
+   "radius_m": 270.4,
+   "reachable": true
+  },
+  {
+   "i": 179,
+   "loc_cm": [
+    -206770.1,
+    251840.0
+   ],
+   "doorstep_cm": [
+    -206003.8,
+    251854.6
+   ],
+   "radius_m": 273.7,
+   "reachable": true
+  },
+  {
+   "i": 180,
+   "loc_cm": [
+    -196308.6,
+    256807.3
+   ],
+   "doorstep_cm": [
+    -195578.2,
+    257412.4
+   ],
+   "radius_m": 262.5,
+   "reachable": true
+  },
+  {
+   "i": 181,
+   "loc_cm": [
+    -201854.9,
+    253339.0
+   ],
+   "doorstep_cm": [
+    -201160.0,
+    253627.1
+   ],
+   "radius_m": 269.6,
+   "reachable": true
+  },
+  {
+   "i": 182,
+   "loc_cm": [
+    -203676.1,
+    252376.3
+   ],
+   "doorstep_cm": [
+    -202916.3,
+    252680.2
+   ],
+   "radius_m": 272.8,
+   "reachable": true
+  },
+  {
+   "i": 183,
+   "loc_cm": [
+    -190731.4,
+    261946.0
+   ],
+   "doorstep_cm": [
+    -190272.7,
+    262549.1
+   ],
+   "radius_m": 261.8,
+   "reachable": true
+  },
+  {
+   "i": 184,
+   "loc_cm": [
+    -188987.4,
+    265295.3
+   ],
+   "doorstep_cm": [
+    -188571.0,
+    265988.9
+   ],
+   "radius_m": 256.6,
+   "reachable": true
+  },
+  {
+   "i": 185,
+   "loc_cm": [
+    -182637.5,
+    277200.9
+   ],
+   "doorstep_cm": [
+    -182587.5,
+    278107.4
+   ],
+   "radius_m": 282.2,
+   "reachable": true
+  },
+  {
+   "i": 186,
+   "loc_cm": [
+    -184018.6,
+    275342.8
+   ],
+   "doorstep_cm": [
+    -183991.0,
+    276202.0
+   ],
+   "radius_m": 269.3,
+   "reachable": true
+  },
+  {
+   "i": 187,
+   "loc_cm": [
+    -184857.8,
+    270569.5
+   ],
+   "doorstep_cm": [
+    -184570.0,
+    271267.7
+   ],
+   "radius_m": 272.9,
+   "reachable": true
+  },
+  {
+   "i": 188,
+   "loc_cm": [
+    -183189.4,
+    272767.8
+   ],
+   "doorstep_cm": [
+    -183111.7,
+    273531.6
+   ],
+   "radius_m": 281.9,
+   "reachable": true
+  },
+  {
+   "i": 189,
+   "loc_cm": [
+    -182118.8,
+    287815.0
+   ],
+   "doorstep_cm": [
+    -182477.5,
+    288652.0
+   ],
+   "radius_m": 299.9,
+   "reachable": true
+  },
+  {
+   "i": 190,
+   "loc_cm": [
+    -180459.4,
+    285127.7
+   ],
+   "doorstep_cm": [
+    -180533.4,
+    286183.8
+   ],
+   "radius_m": 311.5,
+   "reachable": true
+  },
+  {
+   "i": 191,
+   "loc_cm": [
+    -181949.0,
+    285383.7
+   ],
+   "doorstep_cm": [
+    -182193.9,
+    286216.2
+   ],
+   "radius_m": 295.5,
+   "reachable": true
+  },
+  {
+   "i": 192,
+   "loc_cm": [
+    -178854.7,
+    280732.5
+   ],
+   "doorstep_cm": [
+    -178876.4,
+    281820.5
+   ],
+   "radius_m": 320.7,
+   "reachable": true
+  },
+  {
+   "i": 193,
+   "loc_cm": [
+    -188533.8,
+    298573.6
+   ],
+   "doorstep_cm": [
+    -189308.7,
+    299394.2
+   ],
+   "radius_m": 297.7,
+   "reachable": true
+  },
+  {
+   "i": 194,
+   "loc_cm": [
+    -199398.1,
+    307445.8
+   ],
+   "doorstep_cm": [
+    -200259.7,
+    307847.7
+   ],
+   "radius_m": 309.0,
+   "reachable": true
+  },
+  {
+   "i": 195,
+   "loc_cm": [
+    -195078.4,
+    305883.2
+   ],
+   "doorstep_cm": [
+    -195925.0,
+    306502.8
+   ],
+   "radius_m": 314.4,
+   "reachable": true
+  },
+  {
+   "i": 196,
+   "loc_cm": [
+    -212489.9,
+    308248.8
+   ],
+   "doorstep_cm": [
+    -213465.5,
+    308296.3
+   ],
+   "radius_m": 296.2,
+   "reachable": true
+  },
+  {
+   "i": 197,
+   "loc_cm": [
+    -205358.5,
+    308778.8
+   ],
+   "doorstep_cm": [
+    -206409.4,
+    309020.6
+   ],
+   "radius_m": 305.4,
+   "reachable": true
+  },
+  {
+   "i": 198,
+   "loc_cm": [
+    -229073.2,
+    304302.5
+   ],
+   "doorstep_cm": [
+    -229878.1,
+    303675.7
+   ],
+   "radius_m": 313.5,
+   "reachable": true
+  },
+  {
+   "i": 199,
+   "loc_cm": [
+    -226054.7,
+    305952.0
+   ],
+   "doorstep_cm": [
+    -226933.4,
+    305585.1
+   ],
+   "radius_m": 312.7,
+   "reachable": true
+  },
+  {
+   "i": 200,
+   "loc_cm": [
+    -233991.9,
+    300629.6
+   ],
+   "doorstep_cm": [
+    -234527.4,
+    300069.3
+   ],
+   "radius_m": 318.6,
+   "reachable": true
+  },
+  {
+   "i": 201,
+   "loc_cm": [
+    -235497.8,
+    297851.3
+   ],
+   "doorstep_cm": [
+    -236015.1,
+    297083.5
+   ],
+   "radius_m": 311.5,
+   "reachable": true
+  },
+  {
+   "i": 202,
+   "loc_cm": [
+    -237960.0,
+    293917.7
+   ],
+   "doorstep_cm": [
+    -238490.3,
+    293203.1
+   ],
+   "radius_m": 312.1,
+   "reachable": true
+  },
+  {
+   "i": 203,
+   "loc_cm": [
+    -231545.0,
+    301124.3
+   ],
+   "doorstep_cm": [
+    -232362.2,
+    300353.9
+   ],
+   "radius_m": 304.9,
+   "reachable": true
+  },
+  {
+   "i": 204,
+   "loc_cm": [
+    -240819.5,
+    280785.2
+   ],
+   "doorstep_cm": [
+    -240821.2,
+    279801.8
+   ],
+   "radius_m": 300.4,
+   "reachable": true
+  },
+  {
+   "i": 205,
+   "loc_cm": [
+    -242534.5,
+    280840.9
+   ],
+   "doorstep_cm": [
+    -242586.7,
+    279991.8
+   ],
+   "radius_m": 318.1,
+   "reachable": true
+  },
+  {
+   "i": 206,
+   "loc_cm": [
+    -241240.1,
+    288633.7
+   ],
+   "doorstep_cm": [
+    -241395.9,
+    287742.8
+   ],
+   "radius_m": 318.8,
+   "reachable": true
+  },
+  {
+   "i": 207,
+   "loc_cm": [
+    -239893.9,
+    284261.4
+   ],
+   "doorstep_cm": [
+    -240100.1,
+    283398.1
+   ],
+   "radius_m": 296.6,
+   "reachable": true
+  },
+  {
+   "i": 208,
+   "loc_cm": [
+    -207085.2,
+    246857.1
+   ],
+   "doorstep_cm": [
+    -206317.1,
+    246876.7
+   ],
+   "radius_m": 322.4,
+   "reachable": true
+  },
+  {
+   "i": 209,
+   "loc_cm": [
+    -193018.6,
+    255453.0
+   ],
+   "doorstep_cm": [
+    -192159.2,
+    255957.8
+   ],
+   "radius_m": 294.8,
+   "reachable": true
+  },
+  {
+   "i": 210,
+   "loc_cm": [
+    -200041.1,
+    250422.8
+   ],
+   "doorstep_cm": [
+    -199239.2,
+    250720.9
+   ],
+   "radius_m": 303.7,
+   "reachable": true
+  },
+  {
+   "i": 211,
+   "loc_cm": [
+    -195849.7,
+    252596.7
+   ],
+   "doorstep_cm": [
+    -195174.7,
+    253025.9
+   ],
+   "radius_m": 301.4,
+   "reachable": true
+  },
+  {
+   "i": 212,
+   "loc_cm": [
+    -186143.0,
+    260212.9
+   ],
+   "doorstep_cm": [
+    -185559.0,
+    261109.5
+   ],
+   "radius_m": 308.2,
+   "reachable": true
+  },
+  {
+   "i": 213,
+   "loc_cm": [
+    -184869.0,
+    263910.3
+   ],
+   "doorstep_cm": [
+    -184495.7,
+    264673.2
+   ],
+   "radius_m": 298.6,
+   "reachable": true
+  },
+  {
+   "i": 214,
+   "loc_cm": [
+    -185761.9,
+    262355.4
+   ],
+   "doorstep_cm": [
+    -185415.6,
+    263067.1
+   ],
+   "radius_m": 298.6,
+   "reachable": true
+  },
+  {
+   "i": 215,
+   "loc_cm": [
+    -181623.6,
+    271135.8
+   ],
+   "doorstep_cm": [
+    -181219.0,
+    272188.1
+   ],
+   "radius_m": 303.1,
+   "reachable": true
+  },
+  {
+   "i": 216,
+   "loc_cm": [
+    -182426.6,
+    269475.1
+   ],
+   "doorstep_cm": [
+    -182290.5,
+    270219.0
+   ],
+   "radius_m": 297.7,
+   "reachable": true
+  },
+  {
+   "i": 217,
+   "loc_cm": [
+    -180427.3,
+    295825.3
+   ],
+   "doorstep_cm": [
+    -180776.1,
+    296669.9
+   ],
+   "radius_m": 349.4,
+   "reachable": true
+  },
+  {
+   "i": 218,
+   "loc_cm": [
+    -186540.4,
+    304236.8
+   ],
+   "doorstep_cm": [
+    -187274.6,
+    304787.5
+   ],
+   "radius_m": 350.5,
+   "reachable": true
+  },
+  {
+   "i": 219,
+   "loc_cm": [
+    -182851.9,
+    299529.9
+   ],
+   "doorstep_cm": [
+    -183398.7,
+    300170.8
+   ],
+   "radius_m": 347.5,
+   "reachable": true
+  },
+  {
+   "i": 220,
+   "loc_cm": [
+    -199629.8,
+    310998.7
+   ],
+   "doorstep_cm": [
+    -200469.7,
+    311202.7
+   ],
+   "radius_m": 340.1,
+   "reachable": true
+  },
+  {
+   "i": 221,
+   "loc_cm": [
+    -191126.1,
+    305379.4
+   ],
+   "doorstep_cm": [
+    -191778.4,
+    306004.3
+   ],
+   "radius_m": 331.9,
+   "reachable": false
+  },
+  {
+   "i": 222,
+   "loc_cm": [
+    -191437.4,
+    308955.2
+   ],
+   "doorstep_cm": [
+    -192096.1,
+    309389.5
+   ],
+   "radius_m": 358.5,
+   "reachable": true
+  },
+  {
+   "i": 223,
+   "loc_cm": [
+    -209636.2,
+    311921.4
+   ],
+   "doorstep_cm": [
+    -210686.0,
+    311931.7
+   ],
+   "radius_m": 331.3,
+   "reachable": true
+  },
+  {
+   "i": 224,
+   "loc_cm": [
+    -215818.5,
+    312864.8
+   ],
+   "doorstep_cm": [
+    -216567.2,
+    312791.5
+   ],
+   "radius_m": 344.8,
+   "reachable": true
+  },
+  {
+   "i": 225,
+   "loc_cm": [
+    -204185.2,
+    312555.8
+   ],
+   "doorstep_cm": [
+    -205078.0,
+    312807.1
+   ],
+   "radius_m": 344.9,
+   "reachable": true
+  },
+  {
+   "i": 226,
+   "loc_cm": [
+    -227152.0,
+    308606.1
+   ],
+   "doorstep_cm": [
+    -228062.1,
+    308237.3
+   ],
+   "radius_m": 341.3,
+   "reachable": true
+  },
+  {
+   "i": 227,
+   "loc_cm": [
+    -229185.5,
+    309466.5
+   ],
+   "doorstep_cm": [
+    -229859.2,
+    308978.5
+   ],
+   "radius_m": 356.9,
+   "reachable": false
+  },
+  {
+   "i": 228,
+   "loc_cm": [
+    -231724.3,
+    307263.3
+   ],
+   "doorstep_cm": [
+    -232317.8,
+    306774.2
+   ],
+   "radius_m": 352.9,
+   "reachable": true
+  },
+  {
+   "i": 229,
+   "loc_cm": [
+    -234671.9,
+    302734.0
+   ],
+   "doorstep_cm": [
+    -235295.9,
+    301927.7
+   ],
+   "radius_m": 336.9,
+   "reachable": true
+  },
+  {
+   "i": 230,
+   "loc_cm": [
+    -232597.5,
+    304677.4
+   ],
+   "doorstep_cm": [
+    -233234.5,
+    304144.6
+   ],
+   "radius_m": 338.5,
+   "reachable": true
+  },
+  {
+   "i": 231,
+   "loc_cm": [
+    -240034.1,
+    294499.6
+   ],
+   "doorstep_cm": [
+    -240583.6,
+    293575.6
+   ],
+   "radius_m": 332.5,
+   "reachable": true
+  },
+  {
+   "i": 232,
+   "loc_cm": [
+    -245732.8,
+    284808.3
+   ],
+   "doorstep_cm": [
+    -245965.8,
+    283723.3
+   ],
+   "radius_m": 355.1,
+   "reachable": true
+  },
+  {
+   "i": 233,
+   "loc_cm": [
+    -244742.1,
+    286522.6
+   ],
+   "doorstep_cm": [
+    -244891.6,
+    285585.3
+   ],
+   "radius_m": 347.6,
+   "reachable": true
+  },
+  {
+   "i": 234,
+   "loc_cm": [
+    -241683.0,
+    291736.4
+   ],
+   "doorstep_cm": [
+    -242183.8,
+    290838.8
+   ],
+   "radius_m": 336.1,
+   "reachable": true
+  },
+  {
+   "i": 235,
+   "loc_cm": [
+    -189852.1,
+    251742.3
+   ],
+   "doorstep_cm": [
+    -189273.0,
+    252323.0
+   ],
+   "radius_m": 341.2,
+   "reachable": true
+  },
+  {
+   "i": 236,
+   "loc_cm": [
+    -194842.4,
+    247705.1
+   ],
+   "doorstep_cm": [
+    -194217.2,
+    248138.6
+   ],
+   "radius_m": 348.6,
+   "reachable": true
+  },
+  {
+   "i": 237,
+   "loc_cm": [
+    -199299.7,
+    247787.3
+   ],
+   "doorstep_cm": [
+    -198268.5,
+    248074.6
+   ],
+   "radius_m": 331.8,
+   "reachable": true
+  },
+  {
+   "i": 238,
+   "loc_cm": [
+    -192352.7,
+    251404.1
+   ],
+   "doorstep_cm": [
+    -191573.6,
+    251866.5
+   ],
+   "radius_m": 330.9,
+   "reachable": true
+  },
+  {
+   "i": 239,
+   "loc_cm": [
+    -183452.4,
+    260314.7
+   ],
+   "doorstep_cm": [
+    -182954.3,
+    261047.1
+   ],
+   "radius_m": 330.2,
+   "reachable": true
+  },
+  {
+   "i": 240,
+   "loc_cm": [
+    -188214.3,
+    251447.3
+   ],
+   "doorstep_cm": [
+    -187342.5,
+    251987.4
+   ],
+   "radius_m": 356.3,
+   "reachable": true
+  },
+  {
+   "i": 241,
+   "loc_cm": [
+    -181422.9,
+    304453.2
+   ],
+   "doorstep_cm": [
+    -181846.6,
+    305091.4
+   ],
+   "radius_m": 391.1,
+   "reachable": false
+  },
+  {
+   "i": 242,
+   "loc_cm": [
+    -176937.0,
+    297633.2
+   ],
+   "doorstep_cm": [
+    -177450.7,
+    298348.2
+   ],
+   "radius_m": 386.6,
+   "reachable": false
+  },
+  {
+   "i": 243,
+   "loc_cm": [
+    -186990.4,
+    309668.7
+   ],
+   "doorstep_cm": [
+    -187639.4,
+    310215.4
+   ],
+   "radius_m": 390.3,
+   "reachable": false
+  },
+  {
+   "i": 244,
+   "loc_cm": [
+    -193383.0,
+    313789.5
+   ],
+   "doorstep_cm": [
+    -194108.5,
+    314178.0
+   ],
+   "radius_m": 391.2,
+   "reachable": true
+  },
+  {
+   "i": 245,
+   "loc_cm": [
+    -189116.2,
+    312174.9
+   ],
+   "doorstep_cm": [
+    -190101.4,
+    312738.9
+   ],
+   "radius_m": 397.5,
+   "reachable": true
+  },
+  {
+   "i": 246,
+   "loc_cm": [
+    -204778.9,
+    316547.7
+   ],
+   "doorstep_cm": [
+    -205706.7,
+    316635.2
+   ],
+   "radius_m": 381.8,
+   "reachable": false
+  },
+  {
+   "i": 247,
+   "loc_cm": [
+    -212179.4,
+    316084.6
+   ],
+   "doorstep_cm": [
+    -213121.4,
+    316024.3
+   ],
+   "radius_m": 373.0,
+   "reachable": false
+  },
+  {
+   "i": 248,
+   "loc_cm": [
+    -216428.4,
+    315770.8
+   ],
+   "doorstep_cm": [
+    -217296.9,
+    315715.9
+   ],
+   "radius_m": 374.8,
+   "reachable": true
+  },
+  {
+   "i": 249,
+   "loc_cm": [
+    -223596.2,
+    313479.0
+   ],
+   "doorstep_cm": [
+    -224450.9,
+    313133.8
+   ],
+   "radius_m": 369.5,
+   "reachable": false
+  },
+  {
+   "i": 250,
+   "loc_cm": [
+    -222423.9,
+    316544.0
+   ],
+   "doorstep_cm": [
+    -223182.7,
+    316365.5
+   ],
+   "radius_m": 395.5,
+   "reachable": false
+  },
+  {
+   "i": 251,
+   "loc_cm": [
+    -220452.2,
+    314763.3
+   ],
+   "doorstep_cm": [
+    -221242.3,
+    314495.1
+   ],
+   "radius_m": 371.9,
+   "reachable": false
+  },
+  {
+   "i": 252,
+   "loc_cm": [
+    -227533.9,
+    312198.9
+   ],
+   "doorstep_cm": [
+    -228536.3,
+    311745.0
+   ],
+   "radius_m": 374.2,
+   "reachable": true
+  },
+  {
+   "i": 253,
+   "loc_cm": [
+    -237080.6,
+    307356.9
+   ],
+   "doorstep_cm": [
+    -237819.8,
+    306525.2
+   ],
+   "radius_m": 387.1,
+   "reachable": false
+  },
+  {
+   "i": 254,
+   "loc_cm": [
+    -238034.9,
+    304277.6
+   ],
+   "doorstep_cm": [
+    -238614.1,
+    303726.4
+   ],
+   "radius_m": 373.5,
+   "reachable": true
+  },
+  {
+   "i": 255,
+   "loc_cm": [
+    -245362.0,
+    295954.8
+   ],
+   "doorstep_cm": [
+    -245848.9,
+    295126.0
+   ],
+   "radius_m": 386.6,
+   "reachable": true
+  },
+  {
+   "i": 256,
+   "loc_cm": [
+    -246481.3,
+    290968.7
+   ],
+   "doorstep_cm": [
+    -246864.0,
+    290070.7
+   ],
+   "radius_m": 377.8,
+   "reachable": false
+  },
+  {
+   "i": 257,
+   "loc_cm": [
+    -210043.7,
+    239862.2
+   ],
+   "doorstep_cm": [
+    -209179.1,
+    239919.6
+   ],
+   "radius_m": 389.1,
+   "reachable": true
+  },
+  {
+   "i": 258,
+   "loc_cm": [
+    -205979.7,
+    241776.8
+   ],
+   "doorstep_cm": [
+    -205174.0,
+    241885.0
+   ],
+   "radius_m": 373.4,
+   "reachable": true
+  },
+  {
+   "i": 259,
+   "loc_cm": [
+    -199208.2,
+    243115.9
+   ],
+   "doorstep_cm": [
+    -198239.8,
+    243419.7
+   ],
+   "radius_m": 375.4,
+   "reachable": true
+  },
+  {
+   "i": 260,
+   "loc_cm": [
+    -192473.8,
+    246930.6
+   ],
+   "doorstep_cm": [
+    -191776.6,
+    247221.1
+   ],
+   "radius_m": 368.7,
+   "reachable": true
+  },
+  {
+   "i": 261,
+   "loc_cm": [
+    -197413.3,
+    243123.7
+   ],
+   "doorstep_cm": [
+    -196653.9,
+    243423.9
+   ],
+   "radius_m": 381.0,
+   "reachable": true
+  },
+  {
+   "i": 262,
+   "loc_cm": [
+    -180712.4,
+    255849.3
+   ],
+   "doorstep_cm": [
+    -180164.1,
+    256474.7
+   ],
+   "radius_m": 379.1,
+   "reachable": false
+  },
+  {
+   "i": 263,
+   "loc_cm": [
+    -179344.1,
+    258472.4
+   ],
+   "doorstep_cm": [
+    -178668.8,
+    259377.5
+   ],
+   "radius_m": 375.5,
+   "reachable": false
+  },
+  {
+   "i": 264,
+   "loc_cm": [
+    -177962.6,
+    261004.9
+   ],
+   "doorstep_cm": [
+    -177491.6,
+    262016.9
+   ],
+   "radius_m": 373.0,
+   "reachable": false
+  },
+  {
+   "i": 265,
+   "loc_cm": [
+    -173988.2,
+    302141.2
+   ],
+   "doorstep_cm": [
+    -174493.0,
+    302830.7
+   ],
+   "radius_m": 435.4,
+   "reachable": false
+  },
+  {
+   "i": 266,
+   "loc_cm": [
+    -180893.8,
+    309383.3
+   ],
+   "doorstep_cm": [
+    -181566.8,
+    309928.3
+   ],
+   "radius_m": 427.0,
+   "reachable": false
+  },
+  {
+   "i": 267,
+   "loc_cm": [
+    -187793.5,
+    315501.9
+   ],
+   "doorstep_cm": [
+    -188595.2,
+    316015.2
+   ],
+   "radius_m": 433.4,
+   "reachable": false
+  },
+  {
+   "i": 268,
+   "loc_cm": [
+    -190157.1,
+    316286.6
+   ],
+   "doorstep_cm": [
+    -191146.1,
+    316801.0
+   ],
+   "radius_m": 427.8,
+   "reachable": false
+  },
+  {
+   "i": 269,
+   "loc_cm": [
+    -202281.2,
+    319292.6
+   ],
+   "doorstep_cm": [
+    -203041.9,
+    319413.5
+   ],
+   "radius_m": 413.5,
+   "reachable": false
+  },
+  {
+   "i": 270,
+   "loc_cm": [
+    -214679.1,
+    320417.9
+   ],
+   "doorstep_cm": [
+    -215823.9,
+    320433.5
+   ],
+   "radius_m": 419.4,
+   "reachable": false
+  },
+  {
+   "i": 271,
+   "loc_cm": [
+    -229800.0,
+    315405.0
+   ],
+   "doorstep_cm": [
+    -230474.2,
+    314932.9
+   ],
+   "radius_m": 411.4,
+   "reachable": false
+  },
+  {
+   "i": 272,
+   "loc_cm": [
+    -221184.7,
+    320119.1
+   ],
+   "doorstep_cm": [
+    -222231.5,
+    319719.0
+   ],
+   "radius_m": 424.9,
+   "reachable": false
+  },
+  {
+   "i": 273,
+   "loc_cm": [
+    -231637.4,
+    314612.2
+   ],
+   "doorstep_cm": [
+    -232475.0,
+    314177.1
+   ],
+   "radius_m": 414.9,
+   "reachable": false
+  },
+  {
+   "i": 274,
+   "loc_cm": [
+    -243318.0,
+    307581.0
+   ],
+   "doorstep_cm": [
+    -244016.6,
+    306979.7
+   ],
+   "radius_m": 435.6,
+   "reachable": false
+  },
+  {
+   "i": 275,
+   "loc_cm": [
+    -238050.4,
+    309822.0
+   ],
+   "doorstep_cm": [
+    -238798.8,
+    309111.3
+   ],
+   "radius_m": 412.6,
+   "reachable": false
+  },
+  {
+   "i": 276,
+   "loc_cm": [
+    -242932.9,
+    304587.3
+   ],
+   "doorstep_cm": [
+    -243460.8,
+    304011.0
+   ],
+   "radius_m": 412.6,
+   "reachable": false
+  },
+  {
+   "i": 277,
+   "loc_cm": [
+    -203296.7,
+    237839.5
+   ],
+   "doorstep_cm": [
+    -202192.2,
+    238151.2
+   ],
+   "radius_m": 415.5,
+   "reachable": true
+  },
+  {
+   "i": 278,
+   "loc_cm": [
+    -208828.3,
+    235517.3
+   ],
+   "doorstep_cm": [
+    -207746.2,
+    235479.1
+   ],
+   "radius_m": 434.3,
+   "reachable": true
+  },
+  {
+   "i": 279,
+   "loc_cm": [
+    -197035.5,
+    240592.3
+   ],
+   "doorstep_cm": [
+    -196278.2,
+    240883.1
+   ],
+   "radius_m": 406.0,
+   "reachable": true
+  },
+  {
+   "i": 280,
+   "loc_cm": [
+    -189511.1,
+    243195.9
+   ],
+   "doorstep_cm": [
+    -188703.2,
+    243802.9
+   ],
+   "radius_m": 413.9,
+   "reachable": false
+  },
+  {
+   "i": 281,
+   "loc_cm": [
+    -197307.8,
+    238369.2
+   ],
+   "doorstep_cm": [
+    -196559.5,
+    238572.9
+   ],
+   "radius_m": 426.7,
+   "reachable": false
+  },
+  {
+   "i": 282,
+   "loc_cm": [
+    -182139.7,
+    247942.8
+   ],
+   "doorstep_cm": [
+    -181440.8,
+    248749.4
+   ],
+   "radius_m": 420.1,
+   "reachable": false
+  },
+  {
+   "i": 283,
+   "loc_cm": [
+    -180275.3,
+    249745.7
+   ],
+   "doorstep_cm": [
+    -179653.3,
+    250581.7
+   ],
+   "radius_m": 420.3,
+   "reachable": false
+  },
+  {
+   "i": 284,
+   "loc_cm": [
+    -181427.2,
+    312304.5
+   ],
+   "doorstep_cm": [
+    -182208.3,
+    313080.5
+   ],
+   "radius_m": 446.4,
+   "reachable": false
+  },
+  {
+   "i": 285,
+   "loc_cm": [
+    -176185.1,
+    308123.7
+   ],
+   "doorstep_cm": [
+    -176863.6,
+    308822.1
+   ],
+   "radius_m": 453.1,
+   "reachable": false
+  },
+  {
+   "i": 286,
+   "loc_cm": [
+    -191051.9,
+    320282.0
+   ],
+   "doorstep_cm": [
+    -191778.8,
+    320740.3
+   ],
+   "radius_m": 460.5,
+   "reachable": false
+  },
+  {
+   "i": 287,
+   "loc_cm": [
+    -185848.9,
+    317891.1
+   ],
+   "doorstep_cm": [
+    -186720.9,
+    318382.8
+   ],
+   "radius_m": 463.3,
+   "reachable": false
+  },
+  {
+   "i": 288,
+   "loc_cm": [
+    -217693.0,
+    324124.6
+   ],
+   "doorstep_cm": [
+    -218746.5,
+    324037.4
+   ],
+   "radius_m": 459.3,
+   "reachable": false
+  },
+  {
+   "i": 289,
+   "loc_cm": [
+    -221963.4,
+    322099.4
+   ],
+   "doorstep_cm": [
+    -222967.7,
+    321721.1
+   ],
+   "radius_m": 446.1,
+   "reachable": false
+  },
+  {
+   "i": 290,
+   "loc_cm": [
+    -233788.3,
+    317228.5
+   ],
+   "doorstep_cm": [
+    -234611.5,
+    316575.8
+   ],
+   "radius_m": 446.5,
+   "reachable": false
+  },
+  {
+   "i": 291,
+   "loc_cm": [
+    -236332.9,
+    315432.5
+   ],
+   "doorstep_cm": [
+    -237111.0,
+    315016.4
+   ],
+   "radius_m": 447.6,
+   "reachable": false
+  },
+  {
+   "i": 292,
+   "loc_cm": [
+    -238610.5,
+    314273.9
+   ],
+   "doorstep_cm": [
+    -239264.3,
+    313747.3
+   ],
+   "radius_m": 450.7,
+   "reachable": false
+  },
+  {
+   "i": 293,
+   "loc_cm": [
+    -241994.5,
+    312932.3
+   ],
+   "doorstep_cm": [
+    -242705.8,
+    312378.8
+   ],
+   "radius_m": 463.2,
+   "reachable": false
+  },
+  {
+   "i": 294,
+   "loc_cm": [
+    -249574.5,
+    303141.4
+   ],
+   "doorstep_cm": [
+    -250115.4,
+    302196.6
+   ],
+   "radius_m": 457.5,
+   "reachable": false
+  },
+  {
+   "i": 295,
+   "loc_cm": [
+    -250460.0,
+    299128.5
+   ],
+   "doorstep_cm": [
+    -250872.9,
+    298083.6
+   ],
+   "radius_m": 444.7,
+   "reachable": false
+  },
+  {
+   "i": 296,
+   "loc_cm": [
+    -208625.0,
+    232953.3
+   ],
+   "doorstep_cm": [
+    -207683.6,
+    232905.9
+   ],
+   "radius_m": 460.0,
+   "reachable": false
+  },
+  {
+   "i": 297,
+   "loc_cm": [
+    -204030.5,
+    233222.0
+   ],
+   "doorstep_cm": [
+    -203282.0,
+    233288.9
+   ],
+   "radius_m": 461.3,
+   "reachable": false
+  },
+  {
+   "i": 298,
+   "loc_cm": [
+    -191196.9,
+    236523.9
+   ],
+   "doorstep_cm": [
+    -190252.3,
+    237064.5
+   ],
+   "radius_m": 465.2,
+   "reachable": false
+  },
+  {
+   "i": 299,
+   "loc_cm": [
+    -188486.0,
+    237499.2
+   ],
+   "doorstep_cm": [
+    -187783.6,
+    237978.3
+   ],
+   "radius_m": 468.6,
+   "reachable": false
+  },
+  {
+   "i": 300,
+   "loc_cm": [
+    -184951.2,
+    241607.9
+   ],
+   "doorstep_cm": [
+    -184250.9,
+    242151.9
+   ],
+   "radius_m": 452.5,
+   "reachable": false
+  },
+  {
+   "i": 301,
+   "loc_cm": [
+    -177743.6,
+    247740.7
+   ],
+   "doorstep_cm": [
+    -177093.3,
+    248554.7
+   ],
+   "radius_m": 452.9,
+   "reachable": false
+  },
+  {
+   "i": 302,
+   "loc_cm": [
+    -170318.5,
+    257508.3
+   ],
+   "doorstep_cm": [
+    -169872.3,
+    258253.8
+   ],
+   "radius_m": 458.0,
+   "reachable": false
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "_what": "Brief-4 T6 re-measure: walkable + reachable, post-carve, water subtracted. Walkable = the offline 1 m quad instrument (reproduces the 49.27 baseline). Reachable = offline BFS; navmesh-authoritative re-measure folded to a nav-modifier rebuild.",
+ "date": "2026-09-19",
+ "agent_profile": "walk",
+ "agent_bar_deg": 44.765083,
+ "cell_m": 1.0,
+ "z_span_m": [
+  0.0,
+  1552.485
+ ],
+ "walkable_km2": 49.27,
+ "walkable_dry_km2": 47.77,
+ "walkable_submerged_km2": 1.5,
+ "reachable_pre_water_bfs_km2": 46.06,
+ "reachable_post_water_bfs_km2": 44.57,
+ "reachable_lost_to_water_km2": 1.49,
+ "spec_navmesh_reachable_km2": 36.53,
+ "_navmesh_note": "36.53 is the NAVMESH lattice (R-NAVGRID). The offline 1 m BFS above is a DIFFERENT instrument (optimistic, no agent radius/step) and need not equal it. The navmesh-authoritative re-measure needs a rebuild carving the lake footprints as NavArea_Null; target reduction = walkable_submerged_km2."
+}

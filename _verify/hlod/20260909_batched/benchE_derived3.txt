@@ -1,0 +1,40 @@
+  residency mode: DERIVED — grid MainPartition, loading range 25600 cm (256 m); expectation comes from the engine, not the file
+  residency mode: NEAR-FIELD — 16 components within 600 m of the camera
+  - 9AB647E848880026CBDB7CAECC21C6EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+    near_ground  expected 808 actors (980 in box, skipped {'not_spatial': 3, 'other_grid': 53, 'box_only': 116})
+  - 9AB647E848880026CBDB7CAECC21C6EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+    mid_slope    expected 20 actors (51 in box, skipped {'not_spatial': 3, 'other_grid': 28, 'box_only': 0})
+  - 9AB647E848880026CBDB7CAECC21C6EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+    vista        expected 15 actors (41 in box, skipped {'not_spatial': 2, 'other_grid': 24, 'box_only': 0})
+bench_capture — profile target, 3 job(s), 3840x2160, temporal x8
+  out: C:\Users\Admin\UE5LandscapePipeline\_verify\bench\2026-09-07\target_derived
+  residency: expect 16 landscape components, 180 warm-up frames, probe REQUIRED
+  - 9AB647E848880026CBDB7CAECC21C6EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  cvar config read-back matches request on every job
+  ... 15 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 30 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 15 s
+  ... 46 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 30 s
+  ... 61 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 46 s
+  ... 76 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 61 s
+  ... 91 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 107 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 122 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 15 s
+  ... 137 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 30 s
+  ... 152 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 46 s
+  ... 168 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 61 s
+  ... 183 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 76 s
+  ... 198 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 213 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 228 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 244 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 15 s
+  ... 259 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 30 s
+  ... 274 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 46 s
+  ... 289 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 61 s
+  ... 305 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  ... 320 s | C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor.exe | log idle 0 s
+  render finished in 335 s (poll: {'final_window_title': 'C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe'})
+  DERIVED residency (3 probe line(s)):
+    near_ground  FAIL       expected 808 resident 1415 missing 1
+    mid_slope    FAIL       expected 20 resident 258 missing 2
+    vista        FAIL       expected 15 resident 251 missing 4
+  engine applied 13/13 cvars; resolution lines [[3840, 2160]]

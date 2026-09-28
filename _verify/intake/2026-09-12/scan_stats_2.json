@@ -1,0 +1,227 @@
+{
+ "_what": "ground-scan surface stats",
+ "_crop_px": 1024,
+ "_stride": 4,
+ "scans": [
+  {
+   "scan": "PineNeedles001_4K-PNG",
+   "opacity": {
+    "has_opacity_map": true,
+    "file": "PineNeedles001_4K-PNG_Opacity.png",
+    "mean": 0.0408,
+    "opaque_fraction": 0.0334,
+    "opaque_threshold": 0.98,
+    "verdict": "CUTOUT/DECAL -- 96.7% of texels are transparent"
+   },
+   "albedo": {
+    "file": "PineNeedles001_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.01713,
+    "luma_p05": 0.0,
+    "luma_p50": 0.0,
+    "luma_p95": 0.14111,
+    "rgb_mean_linear": [
+     0.02391,
+     0.01549,
+     0.01333
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.856,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8123,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8560)",
+     "file": "PineNeedles001_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.856,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8123,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.8560)",
+     "file": "PineNeedles001_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Rock016_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Rock016_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.07124,
+    "luma_p05": 0.03434,
+    "luma_p50": 0.06676,
+    "luma_p95": 0.12346,
+    "rgb_mean_linear": [
+     0.07314,
+     0.07082,
+     0.06978
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.8583,
+     "corr_red_vs_dH_dcol_CONTROL": -0.881,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8583)",
+     "file": "Rock016_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.8583,
+     "corr_red_vs_dH_dcol_CONTROL": -0.881,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.8583)",
+     "file": "Rock016_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Ground037_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Ground037_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.31257,
+    "luma_p05": 0.08042,
+    "luma_p50": 0.28707,
+    "luma_p95": 0.63418,
+    "rgb_mean_linear": [
+     0.34406,
+     0.32233,
+     0.12322
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.8312,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8326,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8312)",
+     "file": "Ground037_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.8312,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8326,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.8312)",
+     "file": "Ground037_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Rock051_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Rock051_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.18051,
+    "luma_p05": 0.06066,
+    "luma_p50": 0.16694,
+    "luma_p95": 0.34191,
+    "rgb_mean_linear": [
+     0.19114,
+     0.18137,
+     0.14073
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.7727,
+     "corr_red_vs_dH_dcol_CONTROL": -0.7331,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.7727)",
+     "file": "Rock051_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.7727,
+     "corr_red_vs_dH_dcol_CONTROL": -0.7331,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.7727)",
+     "file": "Rock051_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Snow007A_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Snow007A_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.83571,
+    "luma_p05": 0.76433,
+    "luma_p50": 0.83639,
+    "luma_p95": 0.9056,
+    "rgb_mean_linear": [
+     0.72799,
+     0.85422,
+     0.96959
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.9049,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8907,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.9049)",
+     "file": "Snow007A_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.9049,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8907,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.9049)",
+     "file": "Snow007A_4K-PNG_NormalGL.png"
+    }
+   }
+  },
+  {
+   "scan": "Gravel021_4K-PNG",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "Gravel021_4K-PNG_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.03911,
+    "luma_p05": 0.00689,
+    "luma_p50": 0.02971,
+    "luma_p95": 0.10161,
+    "rgb_mean_linear": [
+     0.04012,
+     0.03956,
+     0.03171
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.856,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8474,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8560)",
+     "file": "Gravel021_4K-PNG_NormalDX.png"
+    },
+    "GL": {
+     "corr_green_vs_dH_drow": 0.856,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8474,
+     "measured": "GL",
+     "verdict": "consistent with GL (green vs dH/drow +0.8560)",
+     "file": "Gravel021_4K-PNG_NormalGL.png"
+    }
+   }
+  }
+ ]
+}

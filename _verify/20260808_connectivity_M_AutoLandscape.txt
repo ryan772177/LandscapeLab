@@ -1,0 +1,52 @@
+ARTEFACT UNDER AUDIT  (B-VERIFY-HASH)
+  path     : LandscapeLab/Content/Materials/M_AutoLandscape.uasset
+  size     : 129174 bytes
+  sha256   : 3d38821ee4091c1b9bdb7c67a77e2403cc25941215c7a72d121bb0b5f30831ca
+  git HEAD : 84ed4096  (builder at 236358db: the triplanar _val/_pin fix
+             and the _wz -> _wz_axis shadowing fix)
+  taken    : 2026-08-08, editor PID 25720, /Game/Alpine opened COLD
+             from disk this session
+
+  BEFORE QUOTING THIS FILE, assert the sha256 above still matches the
+  material on disk. If it does not, this result describes other bytes.
+  That failure has happened twice on this material already.
+======================================================================
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+READ-ONLY: mutates no asset, saves nothing.
+
+  - FA570A0240B4901729D8409D20CCA5D6 (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+expressions in graph : 262
+outputs driven       : 3 (MP_BASE_COLOR, MP_NORMAL, MP_ROUGHNESS)
+custom outputs seeded: 1 (MaterialExpressionLandscapeGrassOutput)
+reachable from output: 262
+accessor calls / errors: 262 / 0
+
+TextureSample nodes reaching an output:
+  T_Alpine_Macro               connected 1   ORPHANED 0
+  T_Alpine_Variants            connected 1   ORPHANED 0
+  T_Alpine_Weights             connected 1   ORPHANED 0
+  T_Ground037_C                connected 2   ORPHANED 0
+  T_Ground037_D                connected 1   ORPHANED 0
+  T_Ground037_N                connected 1   ORPHANED 0
+  T_Ground037_R                connected 1   ORPHANED 0
+  T_Rock026_C                  connected 4   ORPHANED 0
+  T_Rock026_D                  connected 1   ORPHANED 0
+  T_Rock026_N                  connected 1   ORPHANED 0
+  T_Rock026_R                  connected 1   ORPHANED 0
+  T_Rock051_C                  connected 4   ORPHANED 0
+  T_Rock051_D                  connected 1   ORPHANED 0
+  T_Rock051_N                  connected 1   ORPHANED 0
+  T_Rock051_R                  connected 1   ORPHANED 0
+  T_Snow006_C                  connected 2   ORPHANED 0
+  T_Snow006_N                  connected 1   ORPHANED 0
+  T_Snow006_R                  connected 1   ORPHANED 0
+  T_WildGrass_C                connected 2   ORPHANED 0
+  T_WildGrass_D                connected 1   ORPHANED 0
+  T_WildGrass_N                connected 1   ORPHANED 0
+  T_WildGrass_R                connected 1   ORPHANED 0
+
+VERDICT: CONNECTED � all 262 expressions are reachable from a material output.
+This is reachability, not correctness: it proves nothing
+about WHAT the graph computes, only that no node is
+contributing to nothing.

@@ -1,0 +1,23 @@
+{
+ "asset_key": "crystal_spire",
+ "name": "SM_CrystalSpire_Forge",
+ "views": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az000.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az045.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az090.jpg"
+ ],
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260901,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/crystal_spire/SM_CrystalSpire_Forge_raw.obj",
+ "out_report": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/crystal_spire/generate_report.json"
+}

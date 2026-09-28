@@ -1,0 +1,25 @@
+  residency mode: NEAR-FIELD — 16 components within 600 m of the camera
+bench_capture — profile target, 3 job(s), 3840x2160, temporal x8
+  out: C:\Users\Admin\UE5LandscapePipeline\_verify\bench\2026-09-07\target
+  residency: expect 16 landscape components, 180 warm-up frames, probe REQUIRED
+  - C7B0BE1C465D255EA9667CACEDEFADA0 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  cvar config read-back matches request on every job
+  render finished in 15 s (poll: {'final_window_title': 'LandscapeLab - Unreal Editor'})
+  residency read-back (0 probe line(s)):
+    Bench_target_near_ground NO VERDICT no probe line for this shot -- 'I could not look' is not 'it was there'
+    Bench_target_mid_slope   NO VERDICT no probe line for this shot -- 'I could not look' is not 'it was there'
+    Bench_target_vista       NO VERDICT no probe line for this shot -- 'I could not look' is not 'it was there'
+  engine applied 0/13 cvars; resolution lines []
+  WARNING: not seen in the engine log: ['sg.ShadowQuality', 'sg.AntiAliasingQuality', 'sg.PostProcessQuality', 'sg.FoliageQuality', 'sg.ViewDistanceQuality', 'sg.TextureQuality', 'sg.EffectsQuality', 'sg.ShadingQuality', 'sg.GlobalIlluminationQuality', 'sg.ReflectionQuality', 'r.ScreenPercentage', 'r.Nanite.MaxPixelsPerEdge', 'r.Shadow.Virtual.ResolutionLodBiasDirectional']
+
+  near_ground  [3840, 2160]  _verify/bench/2026-09-07/target/near_ground.png  luma 0.9513
+  mid_slope    [3840, 2160]  _verify/bench/2026-09-07/target/mid_slope.png  luma 1.0000
+  vista        [3840, 2160]  _verify/bench/2026-09-07/target/vista.png  luma 0.9959
+  sidecar: _verify\bench\2026-09-07\bench_run_target.json
+  content gate: using derivation from _verify\bench\2026-09-05\bench_stations_derived.json
+
+REFUSE (NO VERDICT): residency. The frames exist and may even look plausible, but the world was not established to be there when they were taken, so they are not measurements.
+  Bench_target_near_ground NO VERDICT — no probe line for this shot -- 'I could not look' is not 'it was there'
+  Bench_target_mid_slope   NO VERDICT — no probe line for this shot -- 'I could not look' is not 'it was there'
+  Bench_target_vista       NO VERDICT — no probe line for this shot -- 'I could not look' is not 'it was there'
+  Sidecar written anyway: _verify\bench\2026-09-07\bench_run_target.json

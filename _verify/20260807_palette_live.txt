@@ -1,0 +1,87 @@
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+palette entries: 38
+free RAM: 1.18 GB, floor 0.90 GB. One mesh per call; a partial run is DECLARED.
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+  boulder_medium_01          ok    nanite False  slots 1    tris 4136      free 4.14GB
+  boulder_medium_02          ok    nanite False  slots 1    tris 2712      free 4.14GB
+  volcanic_rock_01           ok    nanite False  slots 1    tris 16257     free 4.14GB
+  boulder_small              ok    nanite False  slots 1    tris 2572      free 4.14GB
+  cliff_face_01              ok    nanite False  slots 1    tris 29154     free 4.13GB
+  mountain_rock              ok    nanite False  slots 1    tris 9088      free 4.07GB
+  mountain_rock_closed       ok    nanite False  slots 1    tris 15320     free 4.06GB
+  ground_reveal_rock_001     ok    nanite False  slots 1    tris 13536     free 4.03GB
+  ground_reveal_rock_002     ok    nanite False  slots 1    tris 10589     free 4.03GB
+  hero_boulder_large         ok    nanite False  slots 1    tris 13998     free 4.02GB
+  scree_bend                 ok    nanite False  slots 1    tris 27354     free 3.99GB
+  scree_slab_001             ok    nanite False  slots 1    tris 33855     free 3.97GB
+  scree_slab_001a            ok    nanite False  slots 1    tris 15566     free 3.93GB
+  scree_slab_001b            ok    nanite False  slots 1    tris 20218     free 3.93GB
+  scree_slab_002a            ok    nanite False  slots 1    tris 15425     free 3.91GB
+  scree_slab_002b            ok    nanite False  slots 1    tris 11947     free 3.91GB
+  hill_tree                  ok    nanite False  slots 5    tris 49495     free 3.91GB
+  hill_tree_tall             ok    nanite False  slots 5    tris 58321     free 3.82GB
+  scots_pine_broad           ok    nanite False  slots 5    tris 60120     free 3.85GB
+  scots_pine_tall            ok    nanite False  slots 5    tris 27824     free 3.63GB
+  field_grass                ok    nanite False  slots 3    tris 765       free 3.56GB
+  heather_clumps             ok    nanite False  slots 1    tris 376       free 3.57GB
+  heather_clumps_wp          ok    nanite False  slots 2    tris 376       free 3.58GB
+  fern_01                    ok    nanite False  slots 1    tris 1923      free 3.57GB
+  fern_02                    ok    nanite False  slots 1    tris 1826      free 3.57GB
+  fern_03                    ok    nanite False  slots 1    tris 1812      free 3.58GB
+  bog_myrtle                 ok    nanite False  slots 2    tris 2537      free 3.58GB
+  bog_myrtle_bush_01         ok    nanite False  slots 1    tris 2867      free 3.57GB
+  bog_myrtle_bush_02         ok    nanite False  slots 1    tris 6124      free 3.57GB
+  river_rock                 ok    nanite False  slots 1    tris 2038      free 3.57GB
+  dead_leaves                ok    nanite False  slots 1    tris 4791      free 3.54GB
+  dead_leaves_flat           ok    nanite False  slots 1    tris 4791      free 3.50GB
+  tree_stump                 ok    nanite False  slots 1    tris 5853      free 3.55GB
+  vegetation_debris          ok    nanite False  slots 1    tris 4538      free 3.55GB
+  buttercup_patch            ok    nanite False  slots 2    tris 274       free 3.55GB
+  field_scabious             ok    nanite False  slots 3    tris 3362      free 3.55GB
+  yarrow                     ok    nanite False  slots 1    tris 2410      free 3.55GB
+  yarrow_03                  ok    nanite False  slots 1    tris 2846      free 3.54GB
+
+wrote C:\Users\ryanb\UE5LandscapePipeline\Free\_measured\palette_live.json (38 of 38 entries)
+
+NANITE, from the reflected settings (the palette says 'UNKNOWN — registry tag absent' for every entry):
+  enabled  0
+  disabled 38
+  COULD NOT READ 0
+
+material_slots: registry TAG vs LOADED mesh — 23 disagreement(s) of 38 compared
+  boulder_medium_01            palette 2    loaded 1
+  boulder_medium_02            palette 2    loaded 1
+  volcanic_rock_01             palette 5    loaded 1
+  boulder_small                palette 4    loaded 1
+  mountain_rock_closed         palette 4    loaded 1
+  ground_reveal_rock_001       palette 2    loaded 1
+  ground_reveal_rock_002       palette 7    loaded 1
+  hero_boulder_large           palette 3    loaded 1
+  scree_slab_001               palette 5    loaded 1
+  scree_slab_001a              palette 12   loaded 1
+  scree_slab_001b              palette 4    loaded 1
+  hill_tree                    palette 6    loaded 5
+  field_grass                  palette 5    loaded 3
+  heather_clumps               palette 5    loaded 1
+  heather_clumps_wp            palette 5    loaded 2
+  bog_myrtle_bush_01           palette 2    loaded 1
+  bog_myrtle_bush_02           palette 4    loaded 1
+  river_rock                   palette 2    loaded 1
+  tree_stump                   palette 4    loaded 1
+  vegetation_debris            palette 4    loaded 1
+  buttercup_patch              palette 11   loaded 2
+  yarrow                       palette 2    loaded 1
+  yarrow_03                    palette 3    loaded 1
+
+triangles: registry TAG vs LOADED LOD0 — 0 disagreement(s)
+
+SOURCE: loaded StaticMesh properties. The palette's `measured`
+block is a registry TAG scan taken with zero assets loaded —
+a different representation, which is why this is evidence and
+not a re-read of the same number.
+This measures the ASSET. It does NOT spawn or render anything,
+so it does not make any entry `verified` under the palette's
+own policy — that still needs a spawn and a frame.
+
+VERDICT: DISAGREEMENTS PRESENT (23 slots, 0 triangles).

@@ -1,0 +1,333 @@
+{
+  "_what": "E3: frame cost measured in a STANDALONE -game process, at the four ratified perf stations.",
+  "_not_a_ratification": "recipes/perf_budgets.json is LAW and is untouched. This is a second instrument reported beside it. Whether any budget should move is an operator decision.",
+  "engine": "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "project": "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "level": "/Game/Alpine8K",
+  "requested_res": [
+    3840,
+    2160
+  ],
+  "fov_h_deg": 90.0,
+  "eye_height_cm": 175.0,
+  "settle_s": 120.0,
+  "margin_s": 20.0,
+  "min_window_s": 25.0,
+  "frames_requested": 60000,
+  "z_source": "heightmap-derived + eye height; a PLACEMENT AID, not a trace. perf_budgets.json requires an in-editor trace; the measured gap at near_ground is 2.3 cm and the standalone pawn collides.",
+  "camera_command": "BugItGo (not ViewActor): it takes the ratified coordinates directly and needs no named camera actor. The log is checked for the echo AND for 'not recognized'.",
+  "zones": {
+    "plaza": {
+      "zone": "plaza",
+      "cmd": [
+        "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+        "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+        "/Game/Alpine8K",
+        "-game",
+        "-windowed",
+        "-ResX=3840",
+        "-ResY=2160",
+        "-ExecCmds=r.setRes 3840x2160w,BugItGo -210800.0 278800.0 18847.2 -2.0 -12.8 0,CsvProfile frames=60000",
+        "-nosplash",
+        "-NoLoadingScreen",
+        "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\perf_standalone_plaza.log"
+      ],
+      "exec_cmds": "r.setRes 3840x2160w,BugItGo -210800.0 278800.0 18847.2 -2.0 -12.8 0,CsvProfile frames=60000",
+      "camera": {
+        "x_cm": -210800.0,
+        "y_cm": 278800.0,
+        "z_cm": 18847.159914549484,
+        "pitch_deg": -2.0,
+        "yaw_deg": -12.8
+      },
+      "requested_res": [
+        3840,
+        2160
+      ],
+      "dwell_s": 165.0,
+      "log": "LandscapeLab\\Saved\\Logs\\perf_standalone_plaza.log",
+      "viewport_res_readback": [
+        3840,
+        2160
+      ],
+      "res_matches_request": true,
+      "config_setres_seen": [
+        1280,
+        720
+      ],
+      "pc_location_logged": null,
+      "camera_moved": null,
+      "command_not_recognized": false,
+      "csv": "_verify\\perf\\standalone_2026-09-10_range768\\standalone_2026-09-07\\plaza.csv",
+      "frames_total": 13347,
+      "frames_dropped_from_front": 10972,
+      "window_s_measured": 25.0,
+      "window_ok": true,
+      "capture_s_total": 140.5,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 2375,
+          "mean": 10.737,
+          "p50": 10.722,
+          "p90": 11.855,
+          "max": 36.998
+        },
+        "GameThreadTime": {
+          "n": 2374,
+          "mean": 3.62,
+          "p50": 3.652,
+          "p90": 4.36,
+          "max": 36.868
+        },
+        "RenderThreadTime": {
+          "n": 2374,
+          "mean": 10.716,
+          "p50": 10.667,
+          "p90": 11.438,
+          "max": 13.65
+        },
+        "GPUTime": {
+          "n": 2374,
+          "mean": 9.444,
+          "p50": 9.362,
+          "p90": 9.802,
+          "max": 11.82
+        }
+      }
+    },
+    "main_street": {
+      "zone": "main_street",
+      "cmd": [
+        "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+        "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+        "/Game/Alpine8K",
+        "-game",
+        "-windowed",
+        "-ResX=3840",
+        "-ResY=2160",
+        "-ExecCmds=r.setRes 3840x2160w,BugItGo -204847.3 278048.0 18870.6 -2.0 -12.9 0,CsvProfile frames=60000",
+        "-nosplash",
+        "-NoLoadingScreen",
+        "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\perf_standalone_main_street.log"
+      ],
+      "exec_cmds": "r.setRes 3840x2160w,BugItGo -204847.3 278048.0 18870.6 -2.0 -12.9 0,CsvProfile frames=60000",
+      "camera": {
+        "x_cm": -204847.3,
+        "y_cm": 278048.0,
+        "z_cm": 18870.59777218281,
+        "pitch_deg": -2.0,
+        "yaw_deg": -12.9
+      },
+      "requested_res": [
+        3840,
+        2160
+      ],
+      "dwell_s": 165.0,
+      "log": "LandscapeLab\\Saved\\Logs\\perf_standalone_main_street.log",
+      "viewport_res_readback": [
+        3840,
+        2160
+      ],
+      "res_matches_request": true,
+      "config_setres_seen": [
+        1280,
+        720
+      ],
+      "pc_location_logged": null,
+      "camera_moved": null,
+      "command_not_recognized": false,
+      "csv": "_verify\\perf\\standalone_2026-09-10_range768\\standalone_2026-09-07\\main_street.csv",
+      "frames_total": 19576,
+      "frames_dropped_from_front": 16292,
+      "window_s_measured": 25.0,
+      "window_ok": true,
+      "capture_s_total": 149.0,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 3284,
+          "mean": 7.694,
+          "p50": 7.676,
+          "p90": 8.224,
+          "max": 9.597
+        },
+        "GameThreadTime": {
+          "n": 3283,
+          "mean": 2.603,
+          "p50": 2.483,
+          "p90": 3.151,
+          "max": 4.224
+        },
+        "RenderThreadTime": {
+          "n": 3283,
+          "mean": 7.684,
+          "p50": 7.669,
+          "p90": 8.188,
+          "max": 9.6
+        },
+        "GPUTime": {
+          "n": 3283,
+          "mean": 6.547,
+          "p50": 6.498,
+          "p90": 6.877,
+          "max": 7.388
+        }
+      }
+    },
+    "treeline": {
+      "zone": "treeline",
+      "cmd": [
+        "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+        "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+        "/Game/Alpine8K",
+        "-game",
+        "-windowed",
+        "-ResX=3840",
+        "-ResY=2160",
+        "-ExecCmds=r.setRes 3840x2160w,BugItGo -190000.0 100000.0 63367.4 -2.0 105.0 0,CsvProfile frames=60000",
+        "-nosplash",
+        "-NoLoadingScreen",
+        "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\perf_standalone_treeline.log"
+      ],
+      "exec_cmds": "r.setRes 3840x2160w,BugItGo -190000.0 100000.0 63367.4 -2.0 105.0 0,CsvProfile frames=60000",
+      "camera": {
+        "x_cm": -190000.0,
+        "y_cm": 100000.0,
+        "z_cm": 63367.37048905165,
+        "pitch_deg": -2.0,
+        "yaw_deg": 105.0
+      },
+      "requested_res": [
+        3840,
+        2160
+      ],
+      "dwell_s": 165.0,
+      "log": "LandscapeLab\\Saved\\Logs\\perf_standalone_treeline.log",
+      "viewport_res_readback": [
+        3840,
+        2160
+      ],
+      "res_matches_request": true,
+      "config_setres_seen": [
+        1280,
+        720
+      ],
+      "pc_location_logged": null,
+      "camera_moved": null,
+      "command_not_recognized": false,
+      "csv": "_verify\\perf\\standalone_2026-09-10_range768\\standalone_2026-09-07\\treeline.csv",
+      "frames_total": 17299,
+      "frames_dropped_from_front": 14395,
+      "window_s_measured": 25.0,
+      "window_ok": true,
+      "capture_s_total": 148.9,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 2904,
+          "mean": 8.701,
+          "p50": 8.673,
+          "p90": 9.637,
+          "max": 11.938
+        },
+        "GameThreadTime": {
+          "n": 2904,
+          "mean": 3.05,
+          "p50": 2.811,
+          "p90": 4.005,
+          "max": 5.431
+        },
+        "RenderThreadTime": {
+          "n": 2904,
+          "mean": 8.693,
+          "p50": 8.663,
+          "p90": 9.196,
+          "max": 11.898
+        },
+        "GPUTime": {
+          "n": 2904,
+          "mean": 7.491,
+          "p50": 7.426,
+          "p90": 7.86,
+          "max": 8.447
+        }
+      }
+    },
+    "vista": {
+      "zone": "vista",
+      "cmd": [
+        "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+        "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+        "/Game/Alpine8K",
+        "-game",
+        "-windowed",
+        "-ResX=3840",
+        "-ResY=2160",
+        "-ExecCmds=r.setRes 3840x2160w,BugItGo -216400.0 63600.0 76426.2 -4.0 60.0 0,CsvProfile frames=60000",
+        "-nosplash",
+        "-NoLoadingScreen",
+        "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\perf_standalone_vista.log"
+      ],
+      "exec_cmds": "r.setRes 3840x2160w,BugItGo -216400.0 63600.0 76426.2 -4.0 60.0 0,CsvProfile frames=60000",
+      "camera": {
+        "x_cm": -216400.0,
+        "y_cm": 63600.0,
+        "z_cm": 76426.16350041961,
+        "pitch_deg": -4.0,
+        "yaw_deg": 60.0
+      },
+      "requested_res": [
+        3840,
+        2160
+      ],
+      "dwell_s": 165.0,
+      "log": "LandscapeLab\\Saved\\Logs\\perf_standalone_vista.log",
+      "viewport_res_readback": [
+        3840,
+        2160
+      ],
+      "res_matches_request": true,
+      "config_setres_seen": [
+        1280,
+        720
+      ],
+      "pc_location_logged": null,
+      "camera_moved": null,
+      "command_not_recognized": false,
+      "csv": "_verify\\perf\\standalone_2026-09-10_range768\\standalone_2026-09-07\\vista.csv",
+      "frames_total": 15167,
+      "frames_dropped_from_front": 12614,
+      "window_s_measured": 25.0,
+      "window_ok": true,
+      "capture_s_total": 148.5,
+      "stats_ms": {
+        "FrameTime": {
+          "n": 2553,
+          "mean": 9.82,
+          "p50": 9.807,
+          "p90": 10.894,
+          "max": 34.807
+        },
+        "GameThreadTime": {
+          "n": 2552,
+          "mean": 3.577,
+          "p50": 3.614,
+          "p90": 4.265,
+          "max": 35.995
+        },
+        "RenderThreadTime": {
+          "n": 2552,
+          "mean": 9.803,
+          "p50": 9.767,
+          "p90": 10.494,
+          "max": 13.246
+        },
+        "GPUTime": {
+          "n": 2552,
+          "mean": 8.538,
+          "p50": 8.436,
+          "p90": 8.856,
+          "max": 9.367
+        }
+      }
+    }
+  }
+}

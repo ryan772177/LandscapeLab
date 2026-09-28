@@ -1,0 +1,414 @@
+﻿00:02.250  blend            | Read blend: "C:\Users\Admin\Documents\Groom_Test_26_06_28_vfull_52.blend"
+__GEXP__{
+  "blender": "5.2.0 LTS",
+  "addon": {
+    "module": "GroomExporter",
+    "enabled": true,
+    "loaded": true,
+    "version": "(0, 2, 0)",
+    "blender_min": "(5, 1, 0)",
+    "name": "Groom Exporter",
+    "file": "C:\\Users\\Admin\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\GroomExporter\\__init__.py"
+  },
+  "operators": {
+    "add_attribute_node": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "add_curve_node": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "add_custom_attribute_node": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "add_export_node": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "addcustomnode": {
+      "description": "(undocumented operator)",
+      "params": [
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        }
+      ]
+    },
+    "buttonexport": {
+      "description": "Process the export.",
+      "params": [
+        {
+          "id": "filepath",
+          "type": "STRING",
+          "description": "Filepath used for exporting the file",
+          "default": ""
+        },
+        {
+          "id": "check_existing",
+          "type": "BOOLEAN",
+          "description": "Check and warn on overwriting existing files",
+          "default": true
+        },
+        {
+          "id": "filter_glob",
+          "type": "STRING",
+          "description": "",
+          "default": "*.abc"
+        },
+        {
+          "id": "groom_scale",
+          "type": "FLOAT",
+          "description": "The scale between blender and Unreal Engine, blender its normally 0,01 of UE",
+          "default": 1.0
+        },
+        {
+          "id": "groom_width_scale",
+          "type": "BOOLEAN",
+          "description": "Apply the scale transformation to the groom width",
+          "default": true
+        },
+        {
+          "id": "groom_radius_to_diameter",
+          "type": "BOOLEAN",
+          "description": "Multiply the Strand Radius*2, to get the diameter, Unreal Engine uses Diameter.",
+          "default": true
+        },
+        {
+          "id": "groom_animation",
+          "type": "BOOLEAN",
+          "description": "Export the animation data from the selected frames",
+          "default": false
+        },
+        {
+          "id": "use_frame_start",
+          "type": "INT",
+          "description": "First frame to export",
+          "default": 1
+        },
+        {
+          "id": "use_frame_end",
+          "type": "INT",
+          "description": "Last frame to export",
+          "default": 250
+        },
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_execution",
+          "type": "BOOLEAN",
+          "description": "",
+          "default": false
+        }
+      ]
+    },
+    "buttonfastsetter": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "buttonfillfastsetter": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "fillattributesnode": {
+      "description": "(undocumented operator)",
+      "params": [
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        }
+      ]
+    },
+    "groomtooltip": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "headertooltip": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "nodeupdate": {
+      "description": "(undocumented operator)",
+      "params": [
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        }
+      ]
+    },
+    "removecustomnode": {
+      "description": "(undocumented operator)",
+      "params": [
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "index",
+          "type": "INT",
+          "description": "",
+          "default": 0
+        }
+      ]
+    },
+    "selectcurves": {
+      "description": "(undocumented operator)",
+      "params": [
+        {
+          "id": "node_group",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        },
+        {
+          "id": "node_call",
+          "type": "STRING",
+          "description": "",
+          "default": ""
+        }
+      ]
+    },
+    "strandtooltip": {
+      "description": "(undocumented operator)",
+      "params": []
+    },
+    "vertextooltip": {
+      "description": "(undocumented operator)",
+      "params": []
+    }
+  },
+  "scene_props": {
+    "groom_properties": {
+      "type": "str"
+    },
+    "groom_qol": {
+      "type": "AbcGroomProperties",
+      "fields": {
+        "name": "",
+        "att_groom_root_uv": "surface_uv_coordinate",
+        "att_groom_guide": "",
+        "att_groom_id": "id",
+        "att_groom_closest_guides": "",
+        "att_groom_guide_weights": "",
+        "att_groom_knots": "",
+        "att_groom_orders": "",
+        "att_groom_cards_name": "",
+        "att_groom_color": "",
+        "att_groom_roughness": "",
+        "att_groom_width": "radius",
+        "att_groom_ao": "",
+        "att_groom_group_id": "",
+        "att_groom_group_name": "",
+        "att_groom_basis_type": "",
+        "att_groom_curve_type": ""
+      }
+    }
+  },
+  "window_manager_props": {},
+  "export_nodes": {
+    "Curly hair": [
+      {
+        "name": "Curve Selector",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Attribute Selector",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Export Information",
+        "bl_idname": "GroomExportNodeType",
+        "label": "",
+        "inputs": {
+          "Atts": "None"
+        }
+      },
+      {
+        "name": "Custom Attribute Selector",
+        "bl_idname": "GroomCustomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      }
+    ],
+    "Metahuman Braid Bun": [
+      {
+        "name": "Curve Selector",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Curve Selector.001",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Curve Selector.002",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Curve Selector.003",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Curve Selector.004",
+        "bl_idname": "GroomCurveNodeType",
+        "label": "",
+        "inputs": {}
+      },
+      {
+        "name": "Attribute Selector",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Attribute Selector.001",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Attribute Selector.002",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Attribute Selector.003",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Attribute Selector.004",
+        "bl_idname": "GroomAttributeNodeType",
+        "label": "",
+        "inputs": {
+          "Groom": "None"
+        }
+      },
+      {
+        "name": "Export Information",
+        "bl_idname": "GroomExportNodeType",
+        "label": "",
+        "inputs": {
+          "Atts": "None"
+        }
+      }
+    ]
+  },
+  "node_group_names": [
+    ".shape_range",
+    ".shape_range",
+    "Add Guide Object",
+    "Attach Hair Curves to Surface",
+    "Attachment Info",
+    "Capture Rest Geometry",
+    "Curl Hair Curves",
+    "Curly hair",
+    "Curve Info",
+    "Curve Info.003",
+    "Curve Root",
+    "Curve Root",
+    "Curve Root.001",
+    "Curve Root.004",
+    "Curve Segment.001",
+    "Curve Segment.003",
+    "Curve Tip",
+    "Curve Tip",
+    "Curve Tip.001",
+    "Curve Tip.003",
+    "GE_Set Guide Basic Info",
+    "GE_Set Guides Distances and Weights",
+    "Get Attachment Surface",
+    "Get Attachment Surface",
+    "Get Hair Surface Geometry",
+    "Get Rest Geometry",
+    "Get Rest Geometry",
+    "GroomExporter Curly Hair",
+    "Hair Curves Noise",
+    "Interpolate Hair Curves",
+    "Merge Guide and Weight it",
+    "Metahuman Braid Bun",
+    "Rest Surface",
+    "Restore Curve Segment Length.001",
+    "Restore Curve Segment Length.003",
+    "Roll Hair Curves",
+    "Set Attachment Surface",
+    "Set Hair Curve Profile",
+    "Shrinkwrap Hair Curves",
+    "Smooth Hair Curves",
+    "Surface Deform",
+    "shape_range.001",
+    "shape_range.004",
+    "voxelyze hair for AO"
+  ]
+}
+Blender 5.2.0 LTS (hash fbe6228777e7 built 2026-07-14 01:35:40)
+
+Blender quit

@@ -1,0 +1,33 @@
+{
+ "source": "SM_Church_Forge_split.fbx",
+ "scale_to_cm": 1845.0,
+ "world_m_per_authored_unit": 20.1705,
+ "up_axis": "y",
+ "slots": {
+  "M_Church_Stone": {
+   "samples": 53907,
+   "metres_per_uv_median": 50.3359,
+   "p25": 50.2161,
+   "p75": 50.9007
+  },
+  "M_Church_Plaster": {
+   "samples": 87372,
+   "metres_per_uv_median": 50.5388,
+   "p25": 50.2198,
+   "p75": 53.6765
+  },
+  "M_Church_Copper": {
+   "samples": 12492,
+   "metres_per_uv_median": 53.3058,
+   "p25": 50.626,
+   "p75": 58.3628
+  },
+  "M_Church_Roof": {
+   "samples": 26229,
+   "metres_per_uv_median": 54.2779,
+   "p25": 50.6723,
+   "p75": 61.3239
+  }
+ },
+ "_how_to_use": "tiling = metres_per_uv_median / tile_m, where tile_m is the real-world size the texture depicts. Poly Haven publishes that; the operator-generated tiles do not, so theirs is a declared intent rather than a measurement."
+}

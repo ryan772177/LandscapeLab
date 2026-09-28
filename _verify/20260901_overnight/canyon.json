@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "biome_id": "canyon",
+  "display_name": "Side project: canyon",
+  "heightmap": {
+    "source": "terrain/canyon.png",
+    "format": "png16",
+    "resolution": 1009,
+    "section_size": 63,
+    "sections_per_component": 2,
+    "component_count": 8
+  },
+  "landscape": {
+    "level_path": "/Game/Canyon",
+    "actor_name": "Landscape_canyon",
+    "location_cm": [
+      -201800.0,
+      -201800.0,
+      100000.0
+    ],
+    "scale_xy_cm": 400.0,
+    "z_scale_cm": 200000.0
+  },
+  "stamps": {
+    "base": "terrain/canyon_base.png",
+    "output": "terrain/canyon_stamped.png",
+    "catalogue": "terrain/stampit_catalogue.json",
+    "allow_edge_clip": true,
+    "placements": [
+      {
+        "id": "canyon_massif",
+        "stamp_sha256": "19f7b810e36d7d9e0fc13890217b85caa33406ff28a5aa0dccf338619bf90df3",
+        "centre_m": [
+          0.0,
+          0.0
+        ],
+        "size_m": 3600.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 420.0,
+        "falloff": 0.4,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "rim_crags_nw",
+        "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+        "centre_m": [
+          -1300.0,
+          -1300.0
+        ],
+        "size_m": 1200.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 468.1,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "rim_crags_se",
+        "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+        "centre_m": [
+          1300.0,
+          1300.0
+        ],
+        "size_m": 1200.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 180.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "floor_bed",
+        "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+        "centre_m": [
+          -180.0,
+          0.0
+        ],
+        "size_m": 700.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 25.0,
+        "falloff": 0.55,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.2,
+        "falloff_jitter_scale": 0.25,
+        "anchor_m": 75.0
+      },
+      {
+        "id": "ledge_city",
+        "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+        "centre_m": [
+          -720.0,
+          -540.0
+        ],
+        "size_m": 560.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 12.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.15,
+        "falloff_jitter_scale": 0.25,
+        "anchor_m": 255.0
+      }
+    ]
+  },
+  "engine": {
+    "target_version": "5.8",
+    "on_version_mismatch": "abort"
+  },
+  "material": {
+    "parent_material": "/Game/Materials/M_Canyon",
+    "height_jitter_m": 45.0,
+    "height_jitter_scale_m": 700.0,
+    "layers": [
+      {
+        "name": "Snow",
+        "base_color": [
+          0.92,
+          0.52,
+          0.38
+        ],
+        "roughness": 0.85,
+        "slope_deg": [
+          0.0,
+          34.0
+        ],
+        "height_m": [
+          340.0,
+          2000.0
+        ],
+        "blend_sharpness": 0.35,
+        "texture": "textures/spike_rock.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0,
+        "surface": "Snow006"
+      },
+      {
+        "name": "Rock",
+        "base_color": [
+          0.85,
+          0.4,
+          0.28
+        ],
+        "roughness": 0.85,
+        "slope_deg": [
+          26.0,
+          90.0
+        ],
+        "height_m": [
+          0.0,
+          2000.0
+        ],
+        "blend_sharpness": 0.7,
+        "texture": "textures/spike_rock.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0,
+        "surface": "Rock051",
+        "sub_surface": {
+          "surface": "Rock026",
+          "height_contrast": 0.35
+        }
+      },
+      {
+        "name": "Grass",
+        "base_color": [
+          0.95,
+          0.72,
+          0.52
+        ],
+        "roughness": 0.6,
+        "slope_deg": [
+          0.0,
+          26.0
+        ],
+        "height_m": [
+          0.0,
+          340.0
+        ],
+        "blend_sharpness": 0.5,
+        "texture": "textures/spike_dirt.png",
+        "tiling_m": 2.1,
+        "macro_tiling_m": 98.7,
+        "surface": "WildGrass",
+        "sub_surface": {
+          "surface": "Ground037",
+          "height_contrast": 0.35
+        }
+      }
+    ],
+    "weightmap": "textures/canyon_weights.png",
+    "forest_floor": {
+      "layer": "Grass",
+      "height_m": [
+        60.0,
+        160.0
+      ],
+      "feather_m": 25.0,
+      "tint": [
+        0.55,
+        0.42,
+        0.32
+      ],
+      "strength": 0.4
+    },
+    "variant_map": "textures/canyon_variants.png",
+    "triplanar": {
+      "layers": [
+        "Rock"
+      ],
+      "slope_deg": [
+        45.0,
+        50.0
+      ],
+      "sharpness": 2.0
+    },
+    "macro_variation": {
+      "seed": 20260803,
+      "map_resolution": 1024,
+      "feature_scale_m": [
+        800.0,
+        2700.0
+      ],
+      "strength": 0.1,
+      "chroma_ratio": 0.3
+    },
+    "displacement": {
+      "enabled": true,
+      "amplitude_m": 0.4
+    }
+  },
+  "lighting": {
+    "sun": {
+      "elevation_deg": 22.0,
+      "azimuth_deg": 265.0,
+      "intensity_lux": 130000.0,
+      "temperature_kelvin": 4500.0,
+      "light_shaft_bloom": true
+    },
+    "sky": {
+      "type": "physical",
+      "intensity": 1.8,
+      "color": [
+        0.1177,
+        0.1156,
+        0.191
+      ]
+    },
+    "fog": {
+      "enabled": true,
+      "density": 0.0026071428571428574,
+      "start_distance_m": 1500.0,
+      "volumetric": true,
+      "height_datum_m": 90.0,
+      "half_height_m": 200.0
+    },
+    "exposure": {
+      "method": "manual",
+      "compensation_ev": -3.3,
+      "_solve": "SOLVED FOR THIS SCENE 2026-08-14, not ported. Measured on diag_topdown (9 km, whole-map coverage) with the SKY MASKED OUT by local-variance: terrain-only linear luma 0.4135 against the solver target 0.3201 for sunlit terrain at albedo 0.2675, giving -1.786 - log2(0.4135/0.3201) = -1.923. THREE DENOMINATORS WERE TRIED AND THEY DISAGREE BY 0.13 EV, which is why the masking matters: whole-frame including sky gives 0.3470 -> -1.902 (the frame is ~57% sky at 9 km, so that is a sky-weighted average); a 4 km all-terrain probe gives 0.3805 -> -2.035 but samples only the central massif, which is snow-biased against a map that is 21.56% snow. Only the masked whole-map figure matches the area-weighted albedo the solver assumes. CROSS-CHECK: /Game/Alpine s Lumen-corrected -1.897 was derived independently for this same terrain, material and lighting, and agrees to 0.026 EV. That is confirmation by re-derivation, NOT a port -- and note the AlpineLab_8129 case where porting -1.897 would have been wrong, because that is a different mountain.",
+      "_solve_caveat": "THE SOLVE IS APPROXIMATE AND THE RESIDUAL IS NOT SMALL. Applying -1.923 moved the measured terrain-only linear from 0.4134 to 0.3909, where linear scaling predicted 0.3760 and the target is 0.3201. IT CANNOT CONVERGE BY CONSTRUCTION: the decoded PNG is POST-TONEMAP and the solver target 0.3201 is a PRE-TONEMAP scene value, and the filmic curve is compressive in this range -- a 0.137 EV step yielded -5.4% where linear arithmetic says -9.1%. This limitation applies to every exposure check this project has made by decoding a screenshot, including /Game/Alpine s 0.3169-vs-0.3201 agreement, which is closer than the method can actually resolve. The value is therefore anchored on TWO things that do not share this flaw: the measured brightness ORDERING (this scene reads brighter than the -1.786 reference) and agreement to 0.026 EV with alpine s independently-derived -1.897 for the same terrain, material and lighting. Frames at -1.923 read sRGB mean 0.610 with 0.000% blown. A proper solve needs the pre-tonemap value, which a screenshot cannot give. OPEN."
+    }
+  },
+  "capture": {
+    "output_dir": "captures/canyon",
+    "resolution": [
+      2032,
+      1273
+    ],
+    "cameras": [
+      {
+        "name": "canyon_final",
+        "location_cm": [
+          -6000.0,
+          95000.0,
+          90281.83413443198
+        ],
+        "rotation_deg": [
+          -30.0,
+          -93.0,
+          0.0
+        ],
+        "fov_deg": 72.0
+      }
+    ]
+  },
+  "foliage": {
+    "density_per_hectare": 22.0,
+    "seed": 20260731,
+    "species": [
+      {
+        "name": "Meadow",
+        "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+        "layer": "Grass",
+        "slope_deg": [
+          0.0,
+          29.0
+        ],
+        "height_m": [
+          0.0,
+          730.0
+        ],
+        "scale_range": [
+          0.9,
+          1.6
+        ],
+        "system": "grass",
+        "cull_distance_m": 50.0,
+        "density_per_10m2": 120.0,
+        "varieties": [
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_tiny_a_LOD0",
+            "share": 0.55,
+            "scale_range": [
+              1.3,
+              2.4
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
+            "share": 0.25,
+            "scale_range": [
+              0.9,
+              1.5
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
+            "share": 0.12,
+            "scale_range": [
+              1.0,
+              1.7
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
+            "share": 0.08,
+            "scale_range": [
+              0.9,
+              1.6
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SpruceSapling",
+        "mesh": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+        "layer": "Snow",
+        "weight_share": 0.2,
+        "slope_deg": [
+          0.0,
+          22.0
+        ],
+        "height_m": [
+          340.0,
+          520.0
+        ],
+        "flow_bias": 0.45,
+        "scale_range": [
+          0.6,
+          1.6
+        ],
+        "align_to_normal": 0.15,
+        "cull_distance_m": 180.0,
+        "sink_depth_m": 0.1,
+        "closure": {
+          "at_low": 1.0,
+          "at_high": 0.55
+        },
+        "override_materials": [
+          "/Game/Materials/PN_NoWind/MI_spruce_small_05_trunk_nowind",
+          "/Game/Materials/PN_NoWind/MI_spruce_small_05_leaf_nowind",
+          "/Game/Materials/PN_NoWind/MI_spruce_small_05_branch_nowind"
+        ],
+        "collision": {
+          "enabled": "query_only",
+          "profile": "FoliageBlockQueryOnly",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "Blueberry",
+        "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+        "layer": "Grass",
+        "slope_deg": [
+          0.0,
+          26.0
+        ],
+        "height_m": [
+          60.0,
+          520.0
+        ],
+        "scale_range": [
+          0.8,
+          1.4
+        ],
+        "system": "grass",
+        "cull_distance_m": 45.0,
+        "density_per_10m2": 12.0,
+        "varieties": [
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_01",
+            "share": 0.14,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_01_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_02",
+            "share": 0.12,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_02_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+            "share": 0.12,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_03_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_04",
+            "share": 0.1,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_04_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_05",
+            "share": 0.08,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_05_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_06",
+            "share": 0.18,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_06_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_07",
+            "share": 0.14,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_07_nowind"
+            ]
+          },
+          {
+            "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_08",
+            "share": 0.12,
+            "scale_range": [
+              0.8,
+              1.4
+            ],
+            "override_materials": [
+              "/Game/Materials/PN_NoWind/MI_MI_Blueberry_08_nowind"
+            ]
+          }
+        ]
+      }
+    ],
+    "rock_scatter": {
+      "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19). Read by BOTH the Pass 2 landscape material's scree sub-surface mask AND Pass 3's talus mesh scatter. Defined once here; neither consumer may keep its own copy. These are properties of rock, not style knobs.",
+      "repose_deg": 35.0,
+      "cliff_source_slope_deg": 45.0,
+      "source_smooth_m": 16.0,
+      "runout_m": 120.0,
+      "mfd_exponent": 1.3,
+      "max_steps": 2400,
+      "saturation": 0.03,
+      "_max_steps_note": "RESOLUTION-DEPENDENT, and the ONLY member of this block that is not a property of rock. It is a solver ITERATION BUDGET denominated in CELLS. talus_deposit decays carried mass by trans=exp(-spacing_m/L) per step, so at 1 m spacing mass decays 0.83%/step where 4 m spacing decays 3.3%, and the starting supply is 16x larger on 16x the cells. 600 (tuned at 2017) refused to converge at 8129 with 108.2550 units still in transit; ~1450 are needed and 2400 = 600 x (8129/2017) gives margin. SCALE THIS WITH 1/spacing."
+    },
+    "canopy": {
+      "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19), sibling to rock_scatter. The canopy radius is a MEASURED property of the tree, not a style knob, and any consumer that clusters under trees reads it from here. Currently read by rock_scatter.py via placement_priors.canopy_occupancy for Pass 5 ground clutter.",
+      "_source": "Free/_measured/fir_tree_01.json -> object fir_tree_01_c_LOD0, dims_xyz [6.305939, 5.96624, 14.520583] m. radius_m is the mean horizontal half-extent: (6.305939 + 5.96624) / 4 = 3.068 m. This is the mesh PLACED as Conifer (foliage.species[].mesh ends fir_tree_01_c_LOD0), not the higher-poly _a or _b variants, which measure 6.534 x 6.427 and 5.613 x 6.057.",
+      "plan": "alpine_Conifer.json",
+      "radius_m": 3.068
+    }
+  }
+}

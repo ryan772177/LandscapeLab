@@ -1,0 +1,97 @@
+﻿
+=== ITERATION 0 ===
+  level          /Game/Scratch/Concept01_Loop   saved True
+  greyboxes      19   kit roofs 16   cleared 36   route: already current
+  chalets        16   recipe range [12, 20]
+  chalet walls   400 cm  (2 storeys x 2.0 m)
+  chalet SILHOUETTE 738 cm  (walls + kit roof -- what is seen)
+  church nave    1107 cm  = 1.50x silhouette   (recipe 1.50x)
+  church spire   1845 cm  = 2.50x silhouette   (recipe 2.50x)
+  camera fov     60.0 (read back)  rot [-0.0, 1.799, 0.0]
+  chalet bearings 11.0 .. 33.2 deg, half-FOV 30.0, OUTSIDE 4
+
+  DELTAS MEASURABLE WITHOUT A RENDER:
+    framing       4 chalet(s) outside the 60 deg frame
+    fov           outermost recorded feature sits at 1.00 of the half-width -- a feature the reader saw INSIDE the image cannot be on the boundary
+
+  SCOPE OF THAT VERDICT -- 5 dimensions measured, 5 NOT:
+    measured      count: chalets placed vs the concept's recorded count_range
+    measured      framing: chalet angular extent vs the camera half-FOV
+    measured      nave: height as a ratio of the chalet silhouette, vs the ruling
+    measured      spire: height as a ratio of the chalet silhouette, vs the ruling
+    measured      fov: outermost recorded terrain feature vs 0.95 of the half-width
+    NOT measured  FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.
+    NOT measured  MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.
+    NOT measured  OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.
+    NOT measured  LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.
+    NOT measured  Anything needing a pixel. That is the render half, by construction.
+
+=== ITERATION 1 ===
+  level          /Game/Scratch/Concept01_Loop   saved True
+  greyboxes      19   kit roofs 16   cleared 36   route: already current
+  chalets        16   recipe range [12, 20]
+  chalet walls   400 cm  (2 storeys x 2.0 m)
+  chalet SILHOUETTE 738 cm  (walls + kit roof -- what is seen)
+  church nave    1107 cm  = 1.50x silhouette   (recipe 1.50x)
+  church spire   1845 cm  = 2.50x silhouette   (recipe 2.50x)
+  camera fov     66.7 (read back)  rot [-0.0, 2.031, 0.0]
+  chalet bearings 11.0 .. 33.2 deg, half-FOV 33.4, OUTSIDE 1
+
+  DELTAS MEASURABLE WITHOUT A RENDER:
+    framing       1 chalet(s) outside the 67 deg frame
+
+  SCOPE OF THAT VERDICT -- 5 dimensions measured, 5 NOT:
+    measured      count: chalets placed vs the concept's recorded count_range
+    measured      framing: chalet angular extent vs the camera half-FOV
+    measured      nave: height as a ratio of the chalet silhouette, vs the ruling
+    measured      spire: height as a ratio of the chalet silhouette, vs the ruling
+    measured      fov: outermost recorded terrain feature vs 0.95 of the half-width
+    NOT measured  FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.
+    NOT measured  MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.
+    NOT measured  OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.
+    NOT measured  LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.
+    NOT measured  Anything needing a pixel. That is the render half, by construction.
+
+=== ITERATION 2 ===
+  level          /Game/Scratch/Concept01_Loop   saved True
+  greyboxes      19   kit roofs 16   cleared 0   route: already current
+  chalets        16   recipe range [12, 20]
+  chalet walls   400 cm  (2 storeys x 2.0 m)
+  chalet SILHOUETTE 738 cm  (walls + kit roof -- what is seen)
+  church nave    1107 cm  = 1.50x silhouette   (recipe 1.50x)
+  church spire   1845 cm  = 2.50x silhouette   (recipe 2.50x)
+  camera fov     78.6 (read back)  rot [-0.0, 2.472, 0.0]
+  chalet bearings 11.0 .. 33.2 deg, half-FOV 39.3, OUTSIDE 0
+
+  no render-free deltas remain
+
+  SCOPE OF THAT VERDICT -- 5 dimensions measured, 5 NOT:
+    measured      count: chalets placed vs the concept's recorded count_range
+    measured      framing: chalet angular extent vs the camera half-FOV
+    measured      nave: height as a ratio of the chalet silhouette, vs the ruling
+    measured      spire: height as a ratio of the chalet silhouette, vs the ruling
+    measured      fov: outermost recorded terrain feature vs 0.95 of the half-width
+    NOT measured  FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.
+    NOT measured  MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.
+    NOT measured  OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.
+    NOT measured  LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.
+    NOT measured  Anything needing a pixel. That is the render half, by construction.
+
+ITERATION 2 -- FOV DERIVED FROM CHALET EXTENTS
+  terrain outermost 30.00 deg / 0.95 -> needs half-width 31.58
+  chalet edge max   35.39 deg / 0.90 -> needs half-width 39.32
+  BINDING: chalet edges   fov 66.7 -> 78.6 deg
+  the edge bearing is FOV-INVARIANT (35.39 in iter0 AND iter1),
+  so this is a one-shot correction, not a loop step.
+
+WHAT CHANGED BETWEEN THE ITERATIONS, and why each
+  fov  60.0 -> 66.7 deg   so the outermost recorded feature sits at 0.90
+       of the half-width instead of exactly 1.00 on the boundary
+  pitch 1.799 -> 2.031 deg  re-derived, because pitch depends on the
+       vertical FOV and the vertical FOV depends on the horizontal
+  church: schema 1.1 SPLITS it -- nave 1.5x and spire 2.5x of the
+       chalet silhouette. The old contradiction between the prose
+       and height_class is GONE rather than averaged, so both
+       iterations already carry the ruled shape.
+
+  wrote _verify/20260830_loop/loop_v0.json

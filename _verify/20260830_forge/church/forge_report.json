@@ -1,0 +1,231 @@
+{
+ "asset": "church",
+ "name": "SM_Church_Forge",
+ "asset_class": "hero_prop",
+ "max_tris": 60000,
+ "stages": {
+  "1_input_floors": "ok (4 views)",
+  "2_ai_guard": "not run (generation reused)",
+  "3_generate": "REUSED existing obj",
+  "4_retopo": "381364 -> 60000 tris",
+  "5_pivot": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "6_uv": "smart_project (MACHINE unwrap, greybox-grade)",
+  "7_intake": "ok (TRIANGLES within budget; NOT a topology claim -- genus 61)",
+  "10_scale": "ok -- 1845.0 cm top against a 1845.0 cm target (error 0.0 cm), orientation gate PASSED, level /Game/Scratch/Forge_church"
+ },
+ "scale_target_cm": 1341.25,
+ "scale_why": "2.5 x 536.5 (chalet_silhouette_cm)",
+ "generate": {
+  "candidate": "TRELLIS multi-view",
+  "asset": "church",
+  "name": "SM_Church_Forge",
+  "inputs": [
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az000.png.jpg",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az035.png.jpg",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az090.png.jpg",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az270.png.jpg"
+  ],
+  "n_views": 4,
+  "model_repo": "JeffreyXiang/TRELLIS-image-large",
+  "seed": 20260830,
+  "sampler": {
+   "sparse_structure": {
+    "steps": 12,
+    "cfg_strength": 7.5
+   },
+   "slat": {
+    "steps": 12,
+    "cfg_strength": 3
+   }
+  },
+  "error": null,
+  "vram_free_before_MiB": 15045,
+  "vram_total_MiB": 16303,
+  "load_s": 21.4,
+  "input_sizes": [
+   [
+    "church_az000.png.jpg",
+    1024,
+    1024
+   ],
+   [
+    "church_az035.png.jpg",
+    1024,
+    1024
+   ],
+   [
+    "church_az090.png.jpg",
+    1024,
+    1024
+   ],
+   [
+    "church_az270.png.jpg",
+    1024,
+    1024
+   ]
+  ],
+  "run_s": 5.5,
+  "vertices": 190562,
+  "faces": 381364,
+  "extent": [
+   0.7629,
+   0.3948,
+   0.9147
+  ],
+  "thin_over_long": 0.4317,
+  "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/church/SM_Church_Forge_raw.obj",
+  "out_obj_bytes": 13991394,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "euler_characteristic": -120,
+  "genus": 61,
+  "vram_peak_MiB": 10082,
+  "wall_s": 28.1
+ },
+ "finish": {
+  "ok": true,
+  "error": null,
+  "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\church\\SM_Church_Forge_raw.obj",
+  "asset_class": "hero_prop",
+  "max_tris": 60000,
+  "before": {
+   "verts": 190562,
+   "edges": 572046,
+   "faces": 381364,
+   "triangles": 381364,
+   "euler_characteristic": -120,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 61,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [],
+   "has_uvs": false
+  },
+  "decimate_ratio": 0.15733,
+  "decimated": true,
+  "pivot": {
+   "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+   "moved_by": [
+    -0.013818,
+    0.001189,
+    0.450269
+   ],
+   "z_min_after": 0.0,
+   "base_at_origin": true
+  },
+  "uv_action": "smart_project (MACHINE unwrap, greybox-grade)",
+  "after": {
+   "verts": 29880,
+   "edges": 90000,
+   "faces": 60000,
+   "triangles": 60000,
+   "euler_characteristic": -120,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 61,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [
+    "UVMap"
+   ],
+   "has_uvs": true
+  },
+  "bbox_after": {
+   "min": [
+    -0.3815,
+    -0.19747,
+    0.0
+   ],
+   "max": [
+    0.3815,
+    0.19747,
+    0.9147
+   ]
+  },
+  "export_rotation": {
+   "applied_deg": [
+    -90.0,
+    0.0,
+    0.0
+   ],
+   "method": "direct vertex write (operator transform_apply is context-dependent and silently did not take headless)",
+   "z_extent_after_rot": 0.39494,
+   "y_extent_after_rot": 0.9147,
+   "_expect": "z_extent should now equal the pre-rotation Y (0.395) and y_extent the pre-rotation Z (0.915)",
+   "_why": "the FBX round trip rotates +90 about X; this cancels it so UE receives the asset upright. Applied after all measurement, so bbox_after remains Blender-space."
+  },
+  "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\church\\SM_Church_Forge.fbx",
+  "out_fbx_bytes": 2466460,
+  "tri_within_budget": true,
+  "genus_before_after": [
+   61,
+   61
+  ],
+  "genus_reduced": false,
+  "_genus_finding": "DECIMATION DID NOT REDUCE GENUS and was never going to -- edge collapse preserves topology. The triangle budget is met and the handles remain. Closing them needs a real retopology or hole-filling pass, which is a separate unit and is NOT claimed here."
+ },
+ "wall_s": 8.2,
+ "assets_row": "| SM_Church_Forge | GENERATED | TRELLIS (MIT) | generated from operator concept references | 60000 tris (hero_prop ceiling 60000) | watertight True, genus 61 | UVs: smart_project (MACHINE unwrap, greybox-grade) |",
+ "forge_log_line": "| SM_Church_Forge | hero_prop | 4 views | gen 5.5s / VRAM 10082 MiB (REUSED) | 381364 -> 60000 tris | genus 61 -> 61 | UVs True | 8.2 s total |",
+ "stage10": {
+  "ok": true,
+  "error": null,
+  "deleted_stale_asset": "/Game/Scratch/ForgeChurch/SM_Church_Forge",
+  "imported_paths": [
+   "/Game/Scratch/ForgeChurch/SM_Church_Forge.SM_Church_Forge"
+  ],
+  "mesh_package": "/Game/Scratch/ForgeChurch/SM_Church_Forge",
+  "mesh_tris": 60000,
+  "mesh_uv_channels": 1,
+  "level": "/Game/Scratch/Forge_church",
+  "level_overwritten": false,
+  "raw_height_cm": 91.47,
+  "ue_raw_extent_cm": [
+   76.3,
+   39.49,
+   91.47
+  ],
+  "blender_bbox_size": [
+   0.763,
+   0.39494,
+   0.9147
+  ],
+  "shape_ratios_expected": [
+   0.4318,
+   0.8342,
+   1.0
+  ],
+  "shape_ratios_measured": [
+   0.4318,
+   0.8341,
+   1.0
+  ],
+  "orientation_ok": true,
+  "scale_applied": 20.17046,
+  "_scale_derivation": "target 1845.0 cm from 2.5 x 738.0 (chalet_silhouette_cm); scale = target / MEASURED raw height, then READ BACK from the placed actor rather than assumed to have applied",
+  "top_cm": 1845.0,
+  "base_cm": 0.0,
+  "footprint_cm": [
+   1539.0,
+   796.6
+  ],
+  "target_cm": 1845.0,
+  "height_error_cm": 0.0,
+  "height_within_1pct": true,
+  "roof_pivot_drop_cm": 201.49,
+  "chalet_silhouette_cm": 738.0,
+  "chalet_roof_base_cm": 400.0,
+  "chalet_wall_top_cm": 400.0,
+  "chalet_assembly_ok": true,
+  "ratio_against": "chalet_silhouette_cm",
+  "ratio_target": 2.5,
+  "ratio_measured": 2.5,
+  "ratio_within_2pct": true,
+  "saved": true
+ },
+ "stage10_frames": [
+  "church_beside_kit.png"
+ ]
+}

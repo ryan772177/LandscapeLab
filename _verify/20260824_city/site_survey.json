@@ -1,0 +1,75 @@
+{
+  "_what": "candidate city sites, measured from the heightmap",
+  "recipe": "recipes/alpine_8k.json",
+  "heightmap": "terrain/alpine_8k.png",
+  "heightmap_px": [
+    8129,
+    8129
+  ],
+  "evaluation": {
+    "cell_m": 8.0,
+    "px_per_cell": 8,
+    "_scale_is_declared": "flatness is evaluated at the scale a CITY occupies, not per vertex; a bar without its denominator is the unit-2 defect",
+    "max_slope_deg": 12.0,
+    "foothill_pct": 40.0,
+    "foothill_elev_bar_m": 399.6,
+    "min_radius_m": 120.0
+  },
+  "terrain": {
+    "elev_m_min": 0.0,
+    "elev_m_max": 1552.5,
+    "buildable_frac_of_map": 0.1515,
+    "_denominator": "fraction of the WHOLE map, foothill band included",
+    "regions_found": 7139
+  },
+  "candidates": [
+    {
+      "rank_by": "largest inscribed circle",
+      "centre_world_cm": [
+        -210800.0,
+        278800.0
+      ],
+      "centre_cell": [
+        244,
+        856
+      ],
+      "usable_radius_m": 184.2,
+      "region_area_ha": 109.8,
+      "elev_m": {
+        "mean": 215.7,
+        "min": 181.0,
+        "max": 288.8
+      },
+      "slope_deg": {
+        "mean": 6.25,
+        "p90": 10.32,
+        "max": 12.0
+      },
+      "centre_elev_m": 186.7
+    },
+    {
+      "rank_by": "largest inscribed circle",
+      "centre_world_cm": [
+        183600.0,
+        5200.0
+      ],
+      "centre_cell": [
+        737,
+        514
+      ],
+      "usable_radius_m": 125.0,
+      "region_area_ha": 64.8,
+      "elev_m": {
+        "mean": 370.5,
+        "min": 350.2,
+        "max": 399.6
+      },
+      "slope_deg": {
+        "mean": 6.24,
+        "p90": 10.39,
+        "max": 12.0
+      },
+      "centre_elev_m": 370.7
+    }
+  ]
+}

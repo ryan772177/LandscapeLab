@@ -1,0 +1,17 @@
+{
+  "_note": "Cycle C3. PaintColor is PROVEN INERT (impossible blue at 2x moved the frame by less than its own drift) and is restored to neutral here rather than left carrying a value that does nothing but would read as a setting. hairRedness and hairDye are both weak: redness 0.28->0.0 plus dye [1,1,1]->[0.70,0.90,1.28] bought only R-B +18.6 -> +10.8 on the midtone. The warm cast is the melanin model itself. WhiteAmount is the one untried parameter whose mechanism matches the target -- grey desaturates toward the cool neutral the breakdown asks for -- and it sits at 0.",
+  "targets": [
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Cards",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Helmet"
+  ],
+  "scalars": {
+    "WhiteAmount": 0.55,
+    "WhiteMelininLow": 0.30,
+    "WhiteMelininHigh": 0.10,
+    "WhiteMelaninVariation": 0.30
+  },
+  "vectors": {
+    "PaintColor": [1.0, 1.0, 1.0]
+  }
+}

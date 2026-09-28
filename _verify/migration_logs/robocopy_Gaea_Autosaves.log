@@ -1,0 +1,149 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Monday, August 10, 2026 8:43:44 PM
+   Source : C:\Users\ryanb\AppData\Roaming\QuadSpinner\
+     Dest : \\192.168.1.10\Migration\Gaea_Autosaves\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:3 /W:5 
+
+------------------------------------------------------------------------------
+
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\
+	  New Dir          3	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\
+	    New File  		     656	49f06fd6-3a7f-af72-5191-7a384a4e67b1.dat
+	    New File  		      43	edition.dat
+	    New File  		   11216	update.manifest
+	  New Dir         44	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Autosaves\
+	    New File  		   13414	AlpineLabe_v1_2026-08-09_17-45-58.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_17-45-58.terrain.reason
+	    New File  		   14286	AlpineLabe_v1_2026-08-09_17-56-03.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_17-56-03.terrain.reason
+	    New File  		   15794	AlpineLabe_v1_2026-08-09_18-24-34.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_18-24-34.terrain.reason
+	    New File  		   15840	AlpineLabe_v1_2026-08-09_18-34-39.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_18-34-39.terrain.reason
+	    New File  		   16227	AlpineLabe_v1_2026-08-09_18-52-54.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_18-52-54.terrain.reason
+	    New File  		   16227	AlpineLabe_v1_2026-08-09_19-02-59.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_19-02-59.terrain.reason
+	    New File  		   16227	AlpineLabe_v1_2026-08-09_19-12-59.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_19-12-59.terrain.reason
+	    New File  		   16227	AlpineLabe_v1_2026-08-09_19-23-04.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_19-23-04.terrain.reason
+	    New File  		   16227	AlpineLabe_v1_2026-08-09_19-33-09.terrain
+	    New File  		      15	AlpineLabe_v1_2026-08-09_19-33-09.terrain.reason
+	    New File  		   16290	Recovery.terrain
+	    New File  		    3247	Recovery2026-07-28_17-23-46.terrain
+	    New File  		    2893	Recovery2026-07-28_21-41-48.terrain
+	    New File  		   14282	Recovery2026-08-09_17-53-28.terrain
+	    New File  		    2893	Untitled_2026-07-28_17-17-25.terrain
+	    New File  		      15	Untitled_2026-07-28_17-17-25.terrain.reason
+	    New File  		    3607	Untitled_2026-07-28_17-32-21.terrain
+	    New File  		      15	Untitled_2026-07-28_17-32-21.terrain.reason
+	    New File  		    3607	Untitled_2026-07-28_17-42-26.terrain
+	    New File  		      15	Untitled_2026-07-28_17-42-26.terrain.reason
+	    New File  		    3607	Untitled_2026-07-28_17-52-31.terrain
+	    New File  		      15	Untitled_2026-07-28_17-52-31.terrain.reason
+	    New File  		    2893	Untitled_2026-07-31_21-04-05.terrain
+	    New File  		      15	Untitled_2026-07-31_21-04-05.terrain.reason
+	    New File  		    2893	Untitled_2026-07-31_21-14-10.terrain
+	    New File  		      15	Untitled_2026-07-31_21-14-10.terrain.reason
+	    New File  		    2893	Untitled_2026-07-31_21-24-15.terrain
+	    New File  		      15	Untitled_2026-07-31_21-24-15.terrain.reason
+	    New File  		    2893	Untitled_2026-07-31_21-34-20.terrain
+	    New File  		      15	Untitled_2026-07-31_21-34-20.terrain.reason
+	    New File  		    5595	Untitled_2026-08-09_17-13-33.terrain
+	    New File  		      15	Untitled_2026-08-09_17-13-33.terrain.reason
+	    New File  		    7691	Untitled_2026-08-09_17-23-38.terrain
+	    New File  		      15	Untitled_2026-08-09_17-23-38.terrain.reason
+	    New File  		    7691	Untitled_2026-08-09_17-33-43.terrain
+	    New File  		      15	Untitled_2026-08-09_17-33-43.terrain.reason
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Cache\
+	  New Dir         11	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Logs\
+	    New File  		     808	2026-07-27_21-39-34.txt
+	    New File  		     812	2026-07-27_21-41-31.txt
+	    New File  		    1069	2026-07-27_21-45-42.txt
+	    New File  		    2153	2026-07-28_17-21-38.txt
+	    New File  		     837	2026-07-28_21-38-20.txt
+	    New File  		    4034	2026-07-31_20-53-49.txt
+	    New File  		     812	2026-08-01_23-13-42.txt
+	    New File  		    1999	2026-08-09_17-02-53.txt
+	    New File  		    1802	2026-08-09_18-04-18.txt
+	    New File  		       0	2026-08-09_19-23-11-SWARM.txt
+	    New File  		    1930	Devices.txt
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Macros\
+	  New Dir          9	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Settings\
+	    New File  		       1	eco.dat
+	    New File  		     178	gaea-super.mru
+	    New File  		     178	gaea-tor.mru
+	    New File  		     131	locations.mru
+	    New File  		       1	Onboard.dat
+	    New File  		    1077	Preferences.options
+	    New File  		     386	usage.stats
+	    New File  		     937	User.options
+	    New File  		       7	whatsnew.dat
+	  New Dir          3	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Thumbnails\
+	    New File  		   14012	3a9386f38d2ce983a761e5e439586173.jpg
+	    New File  		     631	c0c42e7a4bc6f0668c7f81a903dda2e0.jpg
+	    New File  		   14012	fc976f961310c8125ee674ed1f698350.jpg
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Updates\
+	  New Dir          0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Installers\
+	  New Dir          1	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Installers\Gaea\
+	    New File  		  67.1 m	Gaea-2.3.0.1.exe
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        12         0         0         0         0
+   Files :        71        71         0         0         0         0
+   Bytes :   67.40 m   67.40 m         0         0         0         0
+   Times :   0:00:08   0:00:07                       0:00:00   0:00:00
+
+
+   Speed :           9,930,286 Bytes/sec.
+   Speed :             568.216 MegaBytes/min.
+   Ended : Monday, August 10, 2026 8:43:52 PM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Monday, August 10, 2026 9:23:36 PM
+   Source : C:\Users\ryanb\AppData\Roaming\QuadSpinner\
+     Dest : \\192.168.1.10\Migration\Gaea_Autosaves\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:3 /W:5 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\
+	                   3	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\
+	                  44	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Autosaves\
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Cache\
+	                  11	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Logs\
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Macros\
+	                   9	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Settings\
+	                   3	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Thumbnails\
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Gaea\2.0\Updates\
+	                   0	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Installers\
+	                   1	C:\Users\ryanb\AppData\Roaming\QuadSpinner\Installers\Gaea\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12         0        12         0         0         0
+   Files :        71         0        71         0         0         0
+   Bytes :   67.40 m         0   67.40 m         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Monday, August 10, 2026 9:23:37 PM
+

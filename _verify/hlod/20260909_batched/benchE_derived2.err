@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Admin\UE5LandscapePipeline\scripts\bench_capture.py", line 1100, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\Admin\UE5LandscapePipeline\scripts\bench_capture.py", line 1081, in main
+    print("  %-24s %s — %s" % (r["job"], r["verdict"],
+                               ~^^^^^^^
+KeyError: 'job'

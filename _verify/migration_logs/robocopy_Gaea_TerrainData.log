@@ -1,0 +1,81 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Monday, August 10, 2026 8:43:35 PM
+   Source : C:\Dev\LandscapeLab\
+     Dest : \\192.168.1.10\Migration\Gaea_TerrainData\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:3 /W:5 
+
+------------------------------------------------------------------------------
+
+	  New Dir          0	C:\Dev\LandscapeLab\
+	  New Dir          0	C:\Dev\LandscapeLab\TerrainData\
+	  New Dir          1	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\
+	    New File  		   16227	AlpineLabe_v1.terrain
+	  New Dir          6	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\
+	    New File  		  13.3 m	AlpineLab_v1_Height_normalized.png
+	    New File  		   4.1 m	Erosion2_Deposits.png
+	    New File  		   4.0 m	Erosion2_Flow.png
+	    New File  		  12.1 m	Erosion2_Wear.png
+	    New File  		   3.3 m	SnowMask_Out.png
+	    New File  		  515099	Snow_Snow.png
+	  New Dir          7	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\UE5_Ready\
+	    New File  		  27.2 m	AlpineLabHeight.png
+	    New File  		  27.2 m	AlpineLab_v1_Height_normalized.png
+	    New File  		   4.8 m	Erosion2_Deposits.png
+	    New File  		  10.4 m	Erosion2_Flow.png
+	    New File  		  20.8 m	Erosion2_Wear.png
+	    New File  		   4.0 m	SnowMask_Out.png
+	    New File  		   1.2 m	Snow_Snow.png
+	  New Dir          1	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\_archive\
+	    New File  		  10.4 m	Snow_Out.png
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         6         0         0         0         0
+   Files :        15        15         0         0         0         0
+   Bytes :  143.90 m  143.90 m         0         0         0         0
+   Times :   0:00:08   0:00:07                       0:00:00   0:00:00
+
+
+   Speed :           20,081,984 Bytes/sec.
+   Speed :            1,149.100 MegaBytes/min.
+   Ended : Monday, August 10, 2026 8:43:44 PM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Monday, August 10, 2026 9:23:36 PM
+   Source : C:\Dev\LandscapeLab\
+     Dest : \\192.168.1.10\Migration\Gaea_TerrainData\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:3 /W:5 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\Dev\LandscapeLab\
+	                   0	C:\Dev\LandscapeLab\TerrainData\
+	                   1	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\
+	                   6	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\
+	                   7	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\UE5_Ready\
+	                   1	C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\002\_archive\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         6         0         6         0         0         0
+   Files :        15         0        15         0         0         0
+   Bytes :  143.90 m         0  143.90 m         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Monday, August 10, 2026 9:23:36 PM
+

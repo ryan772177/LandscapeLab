@@ -1,0 +1,7 @@
+# RUN THIS FROM POWERSHELL, NOT GIT BASH.
+# Git Bash (MSYS2) rewrites arguments that look like absolute POSIX
+# paths against the Git install root, so --set DEST=/Game/Scratch/X
+# arrives as DEST=C:/Program Files/Git/Game/Scratch/X and the payload's
+# delete-guard refuses. In Git Bash, prefix MSYS_NO_PATHCONV=1.
+# Measured 2026-08-30; see R-FORGE REJECTED.
+python scripts/ue_exec.py scripts/forge_scale_payload.txt --set SRC=C:/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/SM_WoodStack_Forge.fbx --set DEST=/Game/Scratch/ForgeWoodStack --set NAME=SM_WoodStack_Forge --set LEVEL=/Game/Scratch/Forge_wood_stack --set LABEL=Forge_WoodStack --set TARGET_CM=120.0 --set "SCALE_WHY=declared height_cm" --set RATIO_TARGET=0.0 --set RATIO_AGAINST= --set OVERWRITE=0 --set EXP_X=0.99302 --set EXP_Y=0.61326 --set EXP_Z=0.75245 --timeout 25

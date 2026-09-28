@@ -1,0 +1,231 @@
+{
+ "_what": "ground-scan surface stats",
+ "_crop_px": 1024,
+ "_stride": 4,
+ "scans": [
+  {
+   "scan": "forest_floor_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "forest_floor_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.27605,
+    "luma_p05": 0.05416,
+    "luma_p50": 0.22369,
+    "luma_p95": 0.67874,
+    "rgb_mean_linear": [
+     0.40392,
+     0.25356,
+     0.12229
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.7672,
+     "corr_red_vs_dH_dcol_CONTROL": -0.7643,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.7672)",
+     "file": "forest_floor_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "gray_rocks_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "gray_rocks_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.17946,
+    "luma_p05": 0.06636,
+    "luma_p50": 0.16399,
+    "luma_p95": 0.34497,
+    "rgb_mean_linear": [
+     0.20145,
+     0.17689,
+     0.14008
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.2721,
+     "corr_red_vs_dH_dcol_CONTROL": -0.2808,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.2721)",
+     "file": "gray_rocks_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "rocks_ground_04_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "rocks_ground_04_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.22277,
+    "luma_p05": 0.10677,
+    "luma_p50": 0.21902,
+    "luma_p95": 0.34776,
+    "rgb_mean_linear": [
+     0.25137,
+     0.21891,
+     0.17677
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.2186,
+     "corr_red_vs_dH_dcol_CONTROL": -0.1473,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.2186)",
+     "file": "rocks_ground_04_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "gravel_ground_01_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "gravel_ground_01_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.24947,
+    "luma_p05": 0.08421,
+    "luma_p50": 0.23901,
+    "luma_p95": 0.44907,
+    "rgb_mean_linear": [
+     0.30368,
+     0.24255,
+     0.15836
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.8905,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8992,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8905)",
+     "file": "gravel_ground_01_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "river_small_rocks_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "river_small_rocks_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.16342,
+    "luma_p05": 0.05646,
+    "luma_p50": 0.16335,
+    "luma_p95": 0.27119,
+    "rgb_mean_linear": [
+     0.19938,
+     0.1579,
+     0.11219
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.564,
+     "corr_red_vs_dH_dcol_CONTROL": -0.5504,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.5640)",
+     "file": "river_small_rocks_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "rocky_trail_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "rocky_trail_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.23746,
+    "luma_p05": 0.1096,
+    "luma_p50": 0.22827,
+    "luma_p95": 0.3948,
+    "rgb_mean_linear": [
+     0.30311,
+     0.22651,
+     0.15268
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.5158,
+     "corr_red_vs_dH_dcol_CONTROL": -0.5351,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.5158)",
+     "file": "rocky_trail_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  },
+  {
+   "scan": "snow_02_4k",
+   "opacity": {
+    "has_opacity_map": false,
+    "verdict": "no opacity map -- fully covering by construction"
+   },
+   "albedo": {
+    "file": "snow_02_4K_Color.png",
+    "space": "LINEAR (sRGB-decoded)",
+    "luma_mean": 0.37968,
+    "luma_p05": 0.30054,
+    "luma_p50": 0.38755,
+    "luma_p95": 0.42948,
+    "rgb_mean_linear": [
+     0.37893,
+     0.37883,
+     0.39029
+    ]
+   },
+   "normals": {
+    "DX": {
+     "corr_green_vs_dH_drow": -0.8047,
+     "corr_red_vs_dH_dcol_CONTROL": -0.8071,
+     "measured": "DX",
+     "verdict": "consistent with DX (green vs dH/drow -0.8047)",
+     "file": "snow_02_4K_NormalDX.png"
+    },
+    "GL": {
+     "error": "absent"
+    }
+   }
+  }
+ ]
+}

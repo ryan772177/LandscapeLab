@@ -1,0 +1,4 @@
+# raw profiler CSVs (~18 MB each) are local evidence; the perf_standalone*.json
+# sidecars carry the reduced GPU p90 / VRAM / read-back stats. Reproducible by
+# re-running scripts/perf_standalone.py --hide-foliage.
+*.csv

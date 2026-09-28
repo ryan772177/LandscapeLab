@@ -1,0 +1,83 @@
+{
+ "ok": true,
+ "error": null,
+ "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\church\\SM_Church_Forge_raw.obj",
+ "asset_class": "hero_prop",
+ "max_tris": 60000,
+ "before": {
+  "verts": 190562,
+  "edges": 572046,
+  "faces": 381364,
+  "triangles": 381364,
+  "euler_characteristic": -120,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 61,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [],
+  "has_uvs": false
+ },
+ "decimate_ratio": 0.15733,
+ "decimated": true,
+ "pivot": {
+  "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "moved_by": [
+   -0.013818,
+   0.001189,
+   0.450269
+  ],
+  "z_min_after": 0.0,
+  "base_at_origin": true
+ },
+ "uv_action": "smart_project (MACHINE unwrap, greybox-grade)",
+ "after": {
+  "verts": 29880,
+  "edges": 90000,
+  "faces": 60000,
+  "triangles": 60000,
+  "euler_characteristic": -120,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 61,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [
+   "UVMap"
+  ],
+  "has_uvs": true
+ },
+ "bbox_after": {
+  "min": [
+   -0.3815,
+   -0.19747,
+   0.0
+  ],
+  "max": [
+   0.3815,
+   0.19747,
+   0.9147
+  ]
+ },
+ "export_rotation": {
+  "applied_deg": [
+   -90.0,
+   0.0,
+   0.0
+  ],
+  "method": "direct vertex write (operator transform_apply is context-dependent and silently did not take headless)",
+  "z_extent_after_rot": 0.39494,
+  "y_extent_after_rot": 0.9147,
+  "_expect": "z_extent should now equal the pre-rotation Y (0.395) and y_extent the pre-rotation Z (0.915)",
+  "_why": "the FBX round trip rotates +90 about X; this cancels it so UE receives the asset upright. Applied after all measurement, so bbox_after remains Blender-space."
+ },
+ "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\church\\SM_Church_Forge.fbx",
+ "out_fbx_bytes": 2466460,
+ "tri_within_budget": true,
+ "genus_before_after": [
+  61,
+  61
+ ],
+ "genus_reduced": false,
+ "_genus_finding": "DECIMATION DID NOT REDUCE GENUS and was never going to -- edge collapse preserves topology. The triangle budget is met and the handles remain. Closing them needs a real retopology or hole-filling pass, which is a separate unit and is NOT claimed here."
+}

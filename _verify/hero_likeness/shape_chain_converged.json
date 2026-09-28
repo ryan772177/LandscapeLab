@@ -1,0 +1,184 @@
+{
+ "_what": "THE CONVERGED SHAPE CHAIN. Five feathered geometry edits applied to the CANONICAL DNA in this order, then imported whole-rig. Rebuilt from canonical every iteration -- never chained onto an already edited DNA -- so a mis-estimated ratio re-aims the whole move instead of compounding.",
+ "_replay": "Run these seven edit_dna_geometry calls in order from hero/dna/MHC_AlpineHero_Head.dna, then sanctioned_import.py --whole-rig with the final DNA. The result is deterministic: the same commands reproduced a byte-identical DNA earlier tonight.",
+ "reference": "hero/reference/hero_face_bald_frontal.jpg (SHAPE target only)",
+ "edits_in_order": [
+  {
+   "region": "chin_jaw",
+   "box_min": [
+    -12.0,
+    148.0,
+    4.0
+   ],
+   "box_max": [
+    12.0,
+    158.0,
+    15.0
+   ],
+   "feather": 2.5,
+   "delta_cm": [
+    0.0,
+    -0.372,
+    0.0
+   ],
+   "drives": "chin_height"
+  },
+  {
+   "region": "jaw_width L",
+   "box_min": [
+    4.0,
+    148.0,
+    -3.0
+   ],
+   "box_max": [
+    19.5,
+    160.0,
+    13.0
+   ],
+   "feather": 2.5,
+   "delta_cm": [
+    0.09,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "region": "jaw_width R",
+   "box_min": [
+    -19.5,
+    148.0,
+    -3.0
+   ],
+   "box_max": [
+    -4.0,
+    160.0,
+    13.0
+   ],
+   "feather": 2.5,
+   "delta_cm": [
+    -0.09,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "region": "cheek_width L",
+   "box_min": [
+    5.0,
+    155.0,
+    -2.0
+   ],
+   "box_max": [
+    19.5,
+    162.5,
+    13.0
+   ],
+   "feather": 1.5,
+   "delta_cm": [
+    0.098,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "region": "cheek_width R",
+   "box_min": [
+    -19.5,
+    155.0,
+    -2.0
+   ],
+   "box_max": [
+    -5.0,
+    162.5,
+    13.0
+   ],
+   "feather": 1.5,
+   "delta_cm": [
+    -0.098,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "region": "temple_width L RE-AIMED",
+   "box_min": [
+    7.0,
+    163.0,
+    -5.0
+   ],
+   "box_max": [
+    19.5,
+    172.0,
+    11.0
+   ],
+   "feather": 1.5,
+   "delta_cm": [
+    0.148,
+    0.0,
+    0.0
+   ],
+   "_why_reaimed": "the manifest box at Y 171..177 sits on the CROWN and delivered 0.16 cm of width per side-cm; its landmark is near the eye band. Y 163..172 delivers 1.03 -- 6.4x."
+  },
+  {
+   "region": "temple_width R RE-AIMED",
+   "box_min": [
+    -19.5,
+    163.0,
+    -5.0
+   ],
+   "box_max": [
+    -7.0,
+    172.0,
+    11.0
+   ],
+   "feather": 1.5,
+   "delta_cm": [
+    -0.148,
+    0.0,
+    0.0
+   ]
+  }
+ ],
+ "final_dna": {
+  "path": "LandscapeLab/Saved/HeroDNA/shape_i5.dna",
+  "sha256": "7c3a0dc6f3127195076640c731d2b71ae3c2e4176a87feabcb31b36a86ab9b9e"
+ },
+ "convergence": [
+  {
+   "iter": 1,
+   "residual_cm": 1.8308,
+   "_note": "OVERSHOT -- worse than canonical"
+  },
+  {
+   "iter": 2,
+   "residual_cm": 0.726
+  },
+  {
+   "iter": 3,
+   "residual_cm": 0.5245
+  },
+  {
+   "iter": 4,
+   "residual_cm": 0.4122
+  },
+  {
+   "iter": 5,
+   "residual_cm": 0.1668,
+   "_note": "all four regions inside the 0.15 cm deadband"
+  }
+ ],
+ "canonical_residual_cm": 1.5382,
+ "closed_fraction": 0.892,
+ "final_per_region_residual_cm": {
+  "chin_height": 0.0162,
+  "jaw_width": 0.0013,
+  "cheek_width": 0.0977,
+  "temple_width": 0.0516
+ },
+ "unaddressable_residual_cm": {
+  "brow_height": -0.573,
+  "_note": "the LARGEST single residual on the board and geometry cannot reach it frontally -- the landmark sits in the eye band, which is the ruler. The reference's brow shelf is substantially a SHADOW; it belongs to presentation lighting, not to the mesh.",
+  "nose_bridge": 0.1745
+ },
+ "_honest_limit": "The 7-scalar metric is 89% closed and the rendered face is still smooth, young and round-ish against a weathered 40s reference. Widths at three heights plus a chin drop cannot express age, brow shelf, skin or eyes. The metric converging is not the likeness converging."
+}

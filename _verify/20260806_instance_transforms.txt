@@ -1,0 +1,88 @@
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+plan      : foliage/alpine_Conifer.json
+mesh      : /Game/Meshes/fir_tree_01_c_LOD0
+plan rows : 157554   declared count: 157554
+READ-ONLY. Sample is SEEDED and DECLARED: n=400, seed=20260806.
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+engine components matching the mesh: 1044
+engine instance total              : 157554
+
+COUNT   engine 157554 vs plan 157554   delta 0
+
+XY residual to the NEAREST plan entry (cm)  n=400
+   median 0.000   p90 0.000   p99 0.000   max 0.000
+Z  residual, engine minus that plan entry (cm)
+   median 0.000   p90 0.000   p99 0.000   max 0.000
+   signed mean +0.000
+
+outside tolerance: XY 0/400 (>1.0 cm), Z 0/400 (>1.0 cm)
+
+SOURCE: engine get_instance_transform(world_space=True) — this
+shares NO code and NO file with the plan. It is the different
+representation Pass 3 and Pass 4 were both missing.
+It answers 'is the instance where the plan put it', NOT 'is it
+on the ground' — grounding stays trace_grounding's question.
+
+VERDICT: every sampled instance coincides with a planned one
+within 1.0 cm XY and 1.0 cm Z. Sample n=400 of 157554, seed 20260806.
+=== BOULDER ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+plan      : foliage/alpine_Boulder.json
+mesh      : /Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001
+plan rows : 759   declared count: 759
+READ-ONLY. Sample is SEEDED and DECLARED: n=300, seed=20260806.
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+engine components matching the mesh: 504
+engine instance total              : 759
+
+COUNT   engine 759 vs plan 759   delta 0
+
+XY residual to the NEAREST plan entry (cm)  n=300
+   median 0.000   p90 0.000   p99 0.000   max 0.000
+Z  residual, engine minus that plan entry (cm)
+   median 0.000   p90 0.000   p99 0.000   max 0.000
+   signed mean +0.000
+
+outside tolerance: XY 0/300 (>1.0 cm), Z 0/300 (>1.0 cm)
+
+SOURCE: engine get_instance_transform(world_space=True) — this
+shares NO code and NO file with the plan. It is the different
+representation Pass 3 and Pass 4 were both missing.
+It answers 'is the instance where the plan put it', NOT 'is it
+on the ground' — grounding stays trace_grounding's question.
+
+VERDICT: every sampled instance coincides with a planned one
+within 1.0 cm XY and 1.0 cm Z. Sample n=300 of 759, seed 20260806.
+=== NEGATIVE CONTROL (plan shifted 250 cm; must FAIL) ===
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+plan      : foliage/alpine_Conifer.json
+mesh      : /Game/Meshes/fir_tree_01_c_LOD0
+plan rows : 157554   declared count: 157554
+READ-ONLY. Sample is SEEDED and DECLARED: n=120, seed=20260806.
+
+  - 53D8D56040244E79F5777C9D19F111DD (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+engine components matching the mesh: 1044
+engine instance total              : 157554
+
+NEGATIVE CONTROL ACTIVE: plan shifted +250.0 cm in X, Y and Z.
+Expect XY residual ~ 353.6 cm and |Z| ~ 250.0 cm. If this still reads 0.000, the comparison is not comparing.
+
+COUNT   engine 157554 vs plan 157554   delta 0
+
+XY residual to the NEAREST plan entry (cm)  n=120
+   median 353.553   p90 353.553   p99 353.553   max 353.553
+Z  residual, engine minus that plan entry (cm)
+   median 250.000   p90 250.000   p99 347.090   max 372.900
+   signed mean -248.410
+
+outside tolerance: XY 120/120 (>1.0 cm), Z 120/120 (>1.0 cm)
+
+SOURCE: engine get_instance_transform(world_space=True) — this
+shares NO code and NO file with the plan. It is the different
+representation Pass 3 and Pass 4 were both missing.
+It answers 'is the instance where the plan put it', NOT 'is it
+on the ground' — grounding stays trace_grounding's question.
+
+VERDICT: RESIDUALS EXCEED TOLERANCE.

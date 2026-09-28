@@ -1,0 +1,56 @@
+ARTEFACT UNDER AUDIT  (B-VERIFY-HASH)
+  path     : LandscapeLab/Content/Materials/M_AutoLandscape.uasset
+  size     : 129174 bytes
+  sha256   : 3d38821ee4091c1b9bdb7c67a77e2403cc25941215c7a72d121bb0b5f30831ca
+  git HEAD : 84ed4096  (builder at 236358db: the triplanar _val/_pin fix
+             and the _wz -> _wz_axis shadowing fix)
+  taken    : 2026-08-08, editor PID 25720, /Game/Alpine opened COLD
+             from disk this session
+
+  BEFORE QUOTING THIS FILE, assert the sha256 above still matches the
+  material on disk. If it does not, this result describes other bytes.
+  That failure has happened twice on this material already.
+======================================================================
+REPO_ROOT : C:\Users\ryanb\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+
+  - FA570A0240B4901729D8409D20CCA5D6 (user=ryanb, machine=RYANN, project=LandscapeLab): MATCH
+graph expressions: before 262, after 262; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Ground037_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Ground037_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock026_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock026_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock051_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock051_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Snow006_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_WildGrass_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_WildGrass_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Alpine_Macro                     SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Variants                  SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Weights                   SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+
+31 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.

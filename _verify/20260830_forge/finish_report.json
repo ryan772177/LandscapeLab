@@ -1,0 +1,62 @@
+{
+ "ok": true,
+ "error": null,
+ "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_bakeoff\\church_trellis_multi.obj",
+ "asset_class": "hero_prop",
+ "max_tris": 60000,
+ "before": {
+  "verts": 190498,
+  "edges": 571842,
+  "faces": 381228,
+  "triangles": 381228,
+  "euler_characteristic": -116,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 59,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [],
+  "has_uvs": false
+ },
+ "decimate_ratio": 0.157386,
+ "decimated": true,
+ "pivot": {
+  "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "moved_by": [
+   -0.01382,
+   0.00118,
+   0.450278
+  ],
+  "z_min_after": 0.0,
+  "base_at_origin": true
+ },
+ "after": {
+  "verts": 29883,
+  "edges": 89997,
+  "faces": 59998,
+  "triangles": 59998,
+  "euler_characteristic": -116,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 59,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [],
+  "has_uvs": false
+ },
+ "bbox_after": {
+  "min": [
+   -0.38149,
+   -0.19749,
+   0.0
+  ],
+  "max": [
+   0.38149,
+   0.19749,
+   0.91472
+  ]
+ },
+ "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\SM_Church_Forge.fbx",
+ "out_fbx_bytes": 1833292,
+ "within_budget": true
+}

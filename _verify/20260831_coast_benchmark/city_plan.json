@@ -1,0 +1,7409 @@
+{
+  "_produced_by": "scripts/plan_city.py",
+  "_recipe": "_verify/20260831_coast_benchmark/city_recipe.json",
+  "_biome": "_verify/20260831_coast_benchmark/coast_bench.json",
+  "_terrain_source": "terrain/coast_bench.png",
+  "_heights_are_a_PLAN": "pad heights come from the HEIGHTMAP. The collidable surface is a different representation and has disagreed with it before; the placer re-grounds every volume by engine trace.",
+  "city_id": "coast_bench_harbor",
+  "level_path": "/Game/CoastBench",
+  "seed": 20260824,
+  "site_centre_cm": [
+    -14200.0,
+    35400.0
+  ],
+  "usable_radius_cm": 9330.0,
+  "extent_radius_cm": 17000.0,
+  "plaza_radius_cm": 1400.0,
+  "counts": {
+    "buildings": 84,
+    "roofs": 84,
+    "spire": 1,
+    "streets": 289,
+    "streets_rejected_grade": 25,
+    "streets_rejected_cutfill": 0,
+    "streets_pruned_disconnected": 0,
+    "landmark": 1
+  },
+  "_street_counts_are_separate": "grade and cut/fill are counted apart because they refuse for different physical reasons, and a single total cannot say which bar is binding. The shipped metric before 2026-08-25 reported one number, 883, and it read as difficult terrain when it was a roughness statistic standing in for a grade.",
+  "_street_network_is_one_piece": "streets are pruned to the connected component containing the PLAZA. Segments in any other piece cannot be walked to from the town centre and are dropped rather than placed.",
+  "rejected": {
+    "outside_radius": 0,
+    "in_plaza": 0,
+    "pad_cut_fill": 12,
+    "pad_slope": 13,
+    "overlap": 141,
+    "on_street": 0
+  },
+  "_rejected_is_reported": "a planner that silently drops candidates cannot be told apart from one that never generated them",
+  "pad_z_cm": {
+    "min": 2734.0,
+    "max": 3553.8,
+    "spread": 819.8
+  },
+  "buildings": [
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -9481.0,
+        36453.4,
+        3357.6
+      ],
+      "pad_z_cm": 2757.6,
+      "yaw_deg": 98.14,
+      "size_cm": [
+        827.5,
+        819.0,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.284,
+      "pad_cut_fill_m": 0.081,
+      "pad_slope_deg": 1.0
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -10952.9,
+        38328.5,
+        3355.8
+      ],
+      "pad_z_cm": 2755.8,
+      "yaw_deg": 133.63,
+      "size_cm": [
+        1110.0,
+        779.6,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.257,
+      "pad_cut_fill_m": 0.061,
+      "pad_slope_deg": 0.6
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -13219.8,
+        39783.2,
+        3369.0
+      ],
+      "pad_z_cm": 2769.0,
+      "yaw_deg": 172.33,
+      "size_cm": [
+        766.8,
+        1091.9,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.264,
+      "pad_cut_fill_m": 0.045,
+      "pad_slope_deg": 0.43
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -15057.4,
+        39621.5,
+        3374.8
+      ],
+      "pad_z_cm": 2774.8,
+      "yaw_deg": 190.18,
+      "size_cm": [
+        846.7,
+        814.4,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.253,
+      "pad_cut_fill_m": 0.026,
+      "pad_slope_deg": 0.33
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -16733.2,
+        37884.1,
+        3379.6
+      ],
+      "pad_z_cm": 2779.6,
+      "yaw_deg": 231.51,
+      "size_cm": [
+        1106.7,
+        936.6,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.209,
+      "pad_cut_fill_m": 0.078,
+      "pad_slope_deg": 0.8
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -17945.7,
+        36154.4,
+        3408.4
+      ],
+      "pad_z_cm": 2808.4,
+      "yaw_deg": 258.01,
+      "size_cm": [
+        960.7,
+        727.9,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.225,
+      "pad_cut_fill_m": 0.21,
+      "pad_slope_deg": 1.94
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -17668.5,
+        34584.8,
+        3417.4
+      ],
+      "pad_z_cm": 2817.4,
+      "yaw_deg": 291.22,
+      "size_cm": [
+        765.9,
+        956.2,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.21,
+      "pad_cut_fill_m": 0.198,
+      "pad_slope_deg": 1.88
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -16550.1,
+        31417.5,
+        3418.7
+      ],
+      "pad_z_cm": 2818.7,
+      "yaw_deg": 336.99,
+      "size_cm": [
+        873.4,
+        1193.3,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.272,
+      "pad_cut_fill_m": 0.11,
+      "pad_slope_deg": 1.02
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -13884.2,
+        31567.3,
+        3400.8
+      ],
+      "pad_z_cm": 2800.8,
+      "yaw_deg": 360.19,
+      "size_cm": [
+        788.9,
+        1058.1,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.226,
+      "pad_cut_fill_m": 0.047,
+      "pad_slope_deg": 0.5
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -15017.5,
+        30518.3,
+        3417.5
+      ],
+      "pad_z_cm": 2817.5,
+      "yaw_deg": 358.11,
+      "size_cm": [
+        825.8,
+        700.0,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.291,
+      "pad_cut_fill_m": 0.058,
+      "pad_slope_deg": 0.8
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -11802.4,
+        32275.5,
+        3394.4
+      ],
+      "pad_z_cm": 2794.4,
+      "yaw_deg": 392.41,
+      "size_cm": [
+        919.3,
+        804.4,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.232,
+      "pad_cut_fill_m": 0.115,
+      "pad_slope_deg": 1.28
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -9973.9,
+        33302.8,
+        3366.3
+      ],
+      "pad_z_cm": 2766.3,
+      "yaw_deg": 416.08,
+      "size_cm": [
+        915.4,
+        1046.0,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.278,
+      "pad_cut_fill_m": 0.206,
+      "pad_slope_deg": 1.98
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -10706.8,
+        34896.5,
+        3389.4
+      ],
+      "pad_z_cm": 2789.4,
+      "yaw_deg": 434.85,
+      "size_cm": [
+        869.6,
+        842.6,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.208,
+      "pad_cut_fill_m": 0.079,
+      "pad_slope_deg": 0.96
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -8158.3,
+        38358.0,
+        3334.0
+      ],
+      "pad_z_cm": 2734.0,
+      "yaw_deg": 116.05,
+      "size_cm": [
+        774.7,
+        1077.6,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.396,
+      "pad_cut_fill_m": 0.088,
+      "pad_slope_deg": 0.81
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -7859.5,
+        36270.6,
+        3341.5
+      ],
+      "pad_z_cm": 2741.5,
+      "yaw_deg": 100.1,
+      "size_cm": [
+        731.5,
+        700.0,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.376,
+      "pad_cut_fill_m": 0.068,
+      "pad_slope_deg": 0.97
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -9886.5,
+        41251.4,
+        3240.1
+      ],
+      "pad_z_cm": 2740.1,
+      "yaw_deg": 151.11,
+      "size_cm": [
+        1091.3,
+        799.9,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.428,
+      "pad_cut_fill_m": 0.087,
+      "pad_slope_deg": 0.83
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -14494.1,
+        42250.0,
+        3271.3
+      ],
+      "pad_z_cm": 2771.3,
+      "yaw_deg": 179.97,
+      "size_cm": [
+        765.7,
+        907.9,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.403,
+      "pad_cut_fill_m": 0.083,
+      "pad_slope_deg": 0.75
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -15723.6,
+        42137.2,
+        3265.5
+      ],
+      "pad_z_cm": 2765.5,
+      "yaw_deg": 195.28,
+      "size_cm": [
+        911.3,
+        815.8,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.406,
+      "pad_cut_fill_m": 0.066,
+      "pad_slope_deg": 0.64
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -17923.8,
+        40349.5,
+        3386.6
+      ],
+      "pad_z_cm": 2786.6,
+      "yaw_deg": 210.46,
+      "size_cm": [
+        700.0,
+        939.3,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.364,
+      "pad_cut_fill_m": 0.058,
+      "pad_slope_deg": 0.65
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -20310.1,
+        39287.9,
+        3349.9
+      ],
+      "pad_z_cm": 2849.9,
+      "yaw_deg": 233.1,
+      "size_cm": [
+        943.9,
+        827.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.426,
+      "pad_cut_fill_m": 0.319,
+      "pad_slope_deg": 3.74
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -19802.5,
+        37014.1,
+        3491.5
+      ],
+      "pad_z_cm": 2891.5,
+      "yaw_deg": 251.25,
+      "size_cm": [
+        803.5,
+        925.7,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.343,
+      "pad_cut_fill_m": 0.5,
+      "pad_slope_deg": 6.14
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -21377.6,
+        33720.6,
+        3588.6
+      ],
+      "pad_z_cm": 3088.6,
+      "yaw_deg": 283.23,
+      "size_cm": [
+        1076.3,
+        737.4,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.434,
+      "pad_cut_fill_m": 0.312,
+      "pad_slope_deg": 3.28
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -19529.8,
+        33049.1,
+        3519.1
+      ],
+      "pad_z_cm": 2919.1,
+      "yaw_deg": 293.81,
+      "size_cm": [
+        833.4,
+        974.7,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.343,
+      "pad_cut_fill_m": 0.539,
+      "pad_slope_deg": 5.66
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -18525.4,
+        30001.4,
+        3371.2
+      ],
+      "pad_z_cm": 2871.2,
+      "yaw_deg": 315.44,
+      "size_cm": [
+        965.9,
+        863.8,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.407,
+      "pad_cut_fill_m": 0.18,
+      "pad_slope_deg": 2.07
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -16626.2,
+        29729.0,
+        3438.3
+      ],
+      "pad_z_cm": 2838.3,
+      "yaw_deg": 338.27,
+      "size_cm": [
+        837.2,
+        1038.4,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.363,
+      "pad_cut_fill_m": 0.107,
+      "pad_slope_deg": 1.07
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -14745.8,
+        28634.9,
+        3419.4
+      ],
+      "pad_z_cm": 2819.4,
+      "yaw_deg": 353.15,
+      "size_cm": [
+        1046.7,
+        1500.0,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.399,
+      "pad_cut_fill_m": 0.077,
+      "pad_slope_deg": 0.48
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -12998.7,
+        28883.6,
+        3407.4
+      ],
+      "pad_z_cm": 2807.4,
+      "yaw_deg": 362.71,
+      "size_cm": [
+        935.0,
+        835.9,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.39,
+      "pad_cut_fill_m": 0.072,
+      "pad_slope_deg": 0.81
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -10135.1,
+        31291.2,
+        3352.3
+      ],
+      "pad_z_cm": 2752.3,
+      "yaw_deg": 400.14,
+      "size_cm": [
+        976.4,
+        759.7,
+        1200.0
+      ],
+      "storeys": 6,
+      "radial_frac": 0.34,
+      "pad_cut_fill_m": 0.065,
+      "pad_slope_deg": 0.73
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -7436.2,
+        34342.4,
+        3247.8
+      ],
+      "pad_z_cm": 2747.8,
+      "yaw_deg": 435.1,
+      "size_cm": [
+        916.4,
+        966.5,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.403,
+      "pad_cut_fill_m": 0.064,
+      "pad_slope_deg": 0.5
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_Roof_05",
+      "loc_cm": [
+        -7940.1,
+        32125.2,
+        3253.6
+      ],
+      "pad_z_cm": 2753.6,
+      "yaw_deg": 422.15,
+      "size_cm": [
+        750.5,
+        1258.7,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.416,
+      "pad_cut_fill_m": 0.072,
+      "pad_slope_deg": 0.56
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -4774.8,
+        37740.3,
+        3373.0
+      ],
+      "pad_z_cm": 2873.0,
+      "yaw_deg": 106.39,
+      "size_cm": [
+        770.9,
+        937.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.571,
+      "pad_cut_fill_m": 0.658,
+      "pad_slope_deg": 7.38
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -5603.2,
+        39504.6,
+        3381.1
+      ],
+      "pad_z_cm": 2881.1,
+      "yaw_deg": 122.43,
+      "size_cm": [
+        951.9,
+        739.8,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.56,
+      "pad_cut_fill_m": 0.497,
+      "pad_slope_deg": 5.75
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -8080.0,
+        41530.6,
+        3285.2
+      ],
+      "pad_z_cm": 2785.2,
+      "yaw_deg": 134.0,
+      "size_cm": [
+        849.3,
+        1077.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.51,
+      "pad_cut_fill_m": 0.501,
+      "pad_slope_deg": 4.86
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -10796.0,
+        43707.8,
+        3306.5
+      ],
+      "pad_z_cm": 2806.5,
+      "yaw_deg": 162.14,
+      "size_cm": [
+        871.3,
+        1014.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.528,
+      "pad_cut_fill_m": 0.419,
+      "pad_slope_deg": 4.05
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -15751.4,
+        45055.1,
+        3303.8
+      ],
+      "pad_z_cm": 2803.8,
+      "yaw_deg": 189.18,
+      "size_cm": [
+        801.7,
+        1044.4,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.575,
+      "pad_cut_fill_m": 0.48,
+      "pad_slope_deg": 4.37
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -13435.0,
+        45046.1,
+        3345.2
+      ],
+      "pad_z_cm": 2845.2,
+      "yaw_deg": 181.83,
+      "size_cm": [
+        835.8,
+        1004.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.569,
+      "pad_cut_fill_m": 0.564,
+      "pad_slope_deg": 5.78
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -21231.0,
+        41105.3,
+        3314.5
+      ],
+      "pad_z_cm": 2814.5,
+      "yaw_deg": 224.57,
+      "size_cm": [
+        1058.3,
+        724.7,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.533,
+      "pad_cut_fill_m": 0.269,
+      "pad_slope_deg": 2.39
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -17415.1,
+        43303.2,
+        3269.2
+      ],
+      "pad_z_cm": 2769.2,
+      "yaw_deg": 203.39,
+      "size_cm": [
+        816.0,
+        955.2,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.502,
+      "pad_cut_fill_m": 0.079,
+      "pad_slope_deg": 0.83
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -23239.6,
+        38295.2,
+        3545.3
+      ],
+      "pad_z_cm": 3045.3,
+      "yaw_deg": 259.26,
+      "size_cm": [
+        810.6,
+        986.4,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.558,
+      "pad_cut_fill_m": 0.322,
+      "pad_slope_deg": 3.59
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -23027.5,
+        36791.2,
+        3593.8
+      ],
+      "pad_z_cm": 3093.8,
+      "yaw_deg": 257.3,
+      "size_cm": [
+        733.3,
+        774.8,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.526,
+      "pad_cut_fill_m": 0.385,
+      "pad_slope_deg": 5.55
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -21893.4,
+        30525.7,
+        3551.8
+      ],
+      "pad_z_cm": 3051.8,
+      "yaw_deg": 298.43,
+      "size_cm": [
+        963.1,
+        786.0,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.536,
+      "pad_cut_fill_m": 0.542,
+      "pad_slope_deg": 6.33
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -23476.5,
+        33127.3,
+        3748.7
+      ],
+      "pad_z_cm": 3248.7,
+      "yaw_deg": 276.37,
+      "size_cm": [
+        784.0,
+        1000.6,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.562,
+      "pad_cut_fill_m": 0.591,
+      "pad_slope_deg": 6.69
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -19384.8,
+        28315.4,
+        3440.9
+      ],
+      "pad_z_cm": 2940.9,
+      "yaw_deg": 330.77,
+      "size_cm": [
+        863.2,
+        1111.7,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.516,
+      "pad_cut_fill_m": 0.448,
+      "pad_slope_deg": 4.38
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -18166.3,
+        26525.5,
+        3435.2
+      ],
+      "pad_z_cm": 2935.2,
+      "yaw_deg": 330.89,
+      "size_cm": [
+        868.0,
+        1089.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.572,
+      "pad_cut_fill_m": 0.88,
+      "pad_slope_deg": 7.64
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -12376.3,
+        27193.3,
+        3289.6
+      ],
+      "pad_z_cm": 2789.6,
+      "yaw_deg": 374.88,
+      "size_cm": [
+        978.2,
+        873.3,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.495,
+      "pad_cut_fill_m": 0.096,
+      "pad_slope_deg": 1.1
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -15148.7,
+        26329.5,
+        3316.7
+      ],
+      "pad_z_cm": 2816.7,
+      "yaw_deg": 347.99,
+      "size_cm": [
+        901.4,
+        781.6,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.536,
+      "pad_cut_fill_m": 0.085,
+      "pad_slope_deg": 1.03
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -8085.6,
+        29719.4,
+        3250.1
+      ],
+      "pad_z_cm": 2750.1,
+      "yaw_deg": 409.04,
+      "size_cm": [
+        1481.1,
+        1269.3,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.491,
+      "pad_cut_fill_m": 0.063,
+      "pad_slope_deg": 0.46
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -8785.8,
+        27479.1,
+        3250.2
+      ],
+      "pad_z_cm": 2750.2,
+      "yaw_deg": 401.05,
+      "size_cm": [
+        738.5,
+        1083.3,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.564,
+      "pad_cut_fill_m": 0.058,
+      "pad_slope_deg": 0.5
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -10575.7,
+        27406.8,
+        3269.1
+      ],
+      "pad_z_cm": 2769.1,
+      "yaw_deg": 387.58,
+      "size_cm": [
+        825.6,
+        1023.7,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.516,
+      "pad_cut_fill_m": 0.08,
+      "pad_slope_deg": 0.8
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -5359.1,
+        33799.8,
+        3255.9
+      ],
+      "pad_z_cm": 2755.9,
+      "yaw_deg": 446.61,
+      "size_cm": [
+        1365.2,
+        876.8,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.529,
+      "pad_cut_fill_m": 0.087,
+      "pad_slope_deg": 0.71
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -3539.7,
+        40378.8,
+        3717.9
+      ],
+      "pad_z_cm": 3317.9,
+      "yaw_deg": 116.14,
+      "size_cm": [
+        1001.0,
+        735.1,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.692,
+      "pad_cut_fill_m": 1.239,
+      "pad_slope_deg": 13.22
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -2862.0,
+        38503.1,
+        3644.6
+      ],
+      "pad_z_cm": 3244.6,
+      "yaw_deg": 103.83,
+      "size_cm": [
+        1031.1,
+        784.9,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.691,
+      "pad_cut_fill_m": 1.278,
+      "pad_slope_deg": 13.25
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -9643.9,
+        46120.9,
+        3602.1
+      ],
+      "pad_z_cm": 3202.1,
+      "yaw_deg": 164.34,
+      "size_cm": [
+        1011.6,
+        763.7,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.685,
+      "pad_cut_fill_m": 1.227,
+      "pad_slope_deg": 13.18
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -12674.9,
+        47173.5,
+        3577.0
+      ],
+      "pad_z_cm": 3177.0,
+      "yaw_deg": 166.43,
+      "size_cm": [
+        1103.8,
+        1500.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.698,
+      "pad_cut_fill_m": 1.703,
+      "pad_slope_deg": 12.16
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -21315.5,
+        44131.1,
+        3278.0
+      ],
+      "pad_z_cm": 2778.0,
+      "yaw_deg": 223.61,
+      "size_cm": [
+        797.3,
+        1066.9,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.663,
+      "pad_cut_fill_m": 0.066,
+      "pad_slope_deg": 0.62
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -18076.5,
+        45266.6,
+        3302.0
+      ],
+      "pad_z_cm": 2802.0,
+      "yaw_deg": 208.77,
+      "size_cm": [
+        1459.6,
+        1500.0,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.624,
+      "pad_cut_fill_m": 0.748,
+      "pad_slope_deg": 4.24
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -26041.2,
+        38094.6,
+        3458.2
+      ],
+      "pad_z_cm": 3058.2,
+      "yaw_deg": 260.35,
+      "size_cm": [
+        958.7,
+        759.4,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.714,
+      "pad_cut_fill_m": 0.413,
+      "pad_slope_deg": 4.74
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -23860.2,
+        40362.4,
+        3392.8
+      ],
+      "pad_z_cm": 2892.8,
+      "yaw_deg": 244.17,
+      "size_cm": [
+        827.0,
+        700.0,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.639,
+      "pad_cut_fill_m": 0.295,
+      "pad_slope_deg": 4.06
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -25658.1,
+        31597.1,
+        3909.8
+      ],
+      "pad_z_cm": 3509.8,
+      "yaw_deg": 285.3,
+      "size_cm": [
+        863.6,
+        928.4,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.71,
+      "pad_cut_fill_m": 0.48,
+      "pad_slope_deg": 5.77
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -25974.9,
+        34553.1,
+        3730.2
+      ],
+      "pad_z_cm": 3330.2,
+      "yaw_deg": 280.71,
+      "size_cm": [
+        701.3,
+        1096.2,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.694,
+      "pad_cut_fill_m": 0.405,
+      "pad_slope_deg": 4.22
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -21795.9,
+        26471.5,
+        3701.0
+      ],
+      "pad_z_cm": 3301.0,
+      "yaw_deg": 314.03,
+      "size_cm": [
+        1044.0,
+        796.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.69,
+      "pad_cut_fill_m": 0.952,
+      "pad_slope_deg": 10.33
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -22286.9,
+        28429.3,
+        3585.5
+      ],
+      "pad_z_cm": 3085.5,
+      "yaw_deg": 309.26,
+      "size_cm": [
+        821.4,
+        940.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.628,
+      "pad_cut_fill_m": 0.546,
+      "pad_slope_deg": 5.84
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -17335.3,
+        23595.6,
+        3337.9
+      ],
+      "pad_z_cm": 2937.9,
+      "yaw_deg": 341.03,
+      "size_cm": [
+        935.5,
+        873.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.718,
+      "pad_cut_fill_m": 0.824,
+      "pad_slope_deg": 9.24
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -15039.1,
+        23649.9,
+        3215.7
+      ],
+      "pad_z_cm": 2815.7,
+      "yaw_deg": 353.44,
+      "size_cm": [
+        828.4,
+        1004.6,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.693,
+      "pad_cut_fill_m": 0.103,
+      "pad_slope_deg": 1.16
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -11298.7,
+        24648.4,
+        3272.2
+      ],
+      "pad_z_cm": 2772.2,
+      "yaw_deg": 375.08,
+      "size_cm": [
+        863.8,
+        918.1,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.655,
+      "pad_cut_fill_m": 0.065,
+      "pad_slope_deg": 0.66
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -7037.5,
+        26728.8,
+        3257.8
+      ],
+      "pad_z_cm": 2757.8,
+      "yaw_deg": 404.03,
+      "size_cm": [
+        876.3,
+        891.6,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.662,
+      "pad_cut_fill_m": 0.044,
+      "pad_slope_deg": 0.54
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -3775.3,
+        29474.3,
+        3193.7
+      ],
+      "pad_z_cm": 2793.7,
+      "yaw_deg": 424.62,
+      "size_cm": [
+        1489.6,
+        1227.7,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.705,
+      "pad_cut_fill_m": 0.665,
+      "pad_slope_deg": 3.67
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -3349.4,
+        34581.9,
+        3406.0
+      ],
+      "pad_z_cm": 2906.0,
+      "yaw_deg": 444.91,
+      "size_cm": [
+        926.6,
+        830.4,
+        1000.0
+      ],
+      "storeys": 5,
+      "radial_frac": 0.64,
+      "pad_cut_fill_m": 0.845,
+      "pad_slope_deg": 9.6
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -19292.3,
+        48196.9,
+        3502.1
+      ],
+      "pad_z_cm": 3102.1,
+      "yaw_deg": 205.78,
+      "size_cm": [
+        773.3,
+        1049.3,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.81,
+      "pad_cut_fill_m": 1.124,
+      "pad_slope_deg": 11.4
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -23169.1,
+        45668.7,
+        3221.1
+      ],
+      "pad_z_cm": 2821.1,
+      "yaw_deg": 215.25,
+      "size_cm": [
+        922.8,
+        700.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.802,
+      "pad_cut_fill_m": 0.343,
+      "pad_slope_deg": 3.82
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House07_Roof01",
+      "loc_cm": [
+        -26149.6,
+        40977.4,
+        3331.5
+      ],
+      "pad_z_cm": 2931.5,
+      "yaw_deg": 239.13,
+      "size_cm": [
+        1234.5,
+        729.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.776,
+      "pad_cut_fill_m": 0.488,
+      "pad_slope_deg": 4.06
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -27469.5,
+        37968.8,
+        3542.3
+      ],
+      "pad_z_cm": 3142.3,
+      "yaw_deg": 260.89,
+      "size_cm": [
+        985.6,
+        779.3,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.795,
+      "pad_cut_fill_m": 0.462,
+      "pad_slope_deg": 5.32
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House03_RoofC",
+      "loc_cm": [
+        -28408.5,
+        36233.1,
+        3711.0
+      ],
+      "pad_z_cm": 3311.0,
+      "yaw_deg": 268.4,
+      "size_cm": [
+        747.6,
+        1078.6,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.837,
+      "pad_cut_fill_m": 0.591,
+      "pad_slope_deg": 6.19
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -25535.0,
+        27717.1,
+        3798.5
+      ],
+      "pad_z_cm": 3398.5,
+      "yaw_deg": 303.24,
+      "size_cm": [
+        872.9,
+        1046.8,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.805,
+      "pad_cut_fill_m": 0.949,
+      "pad_slope_deg": 9.91
+    },
+    {
+      "kind": "building",
+      "roof_servable": false,
+      "roof_candidate": null,
+      "loc_cm": [
+        -28732.6,
+        33937.1,
+        3920.1
+      ],
+      "pad_z_cm": 3520.1,
+      "yaw_deg": 274.21,
+      "size_cm": [
+        984.2,
+        1500.0,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.859,
+      "pad_cut_fill_m": 1.062,
+      "pad_slope_deg": 7.75
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -27186.1,
+        32768.8,
+        3912.7
+      ],
+      "pad_z_cm": 3512.7,
+      "yaw_deg": 279.44,
+      "size_cm": [
+        740.5,
+        906.1,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.779,
+      "pad_cut_fill_m": 0.52,
+      "pad_slope_deg": 6.28
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -21667.1,
+        24413.9,
+        3906.0
+      ],
+      "pad_z_cm": 3506.0,
+      "yaw_deg": 333.24,
+      "size_cm": [
+        1027.3,
+        781.7,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.781,
+      "pad_cut_fill_m": 0.548,
+      "pad_slope_deg": 5.54
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -19507.0,
+        23023.0,
+        3710.4
+      ],
+      "pad_z_cm": 3310.4,
+      "yaw_deg": 329.97,
+      "size_cm": [
+        1055.0,
+        866.9,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.792,
+      "pad_cut_fill_m": 1.252,
+      "pad_slope_deg": 11.98
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -24106.0,
+        25284.3,
+        3953.8
+      ],
+      "pad_z_cm": 3553.8,
+      "yaw_deg": 310.69,
+      "size_cm": [
+        759.4,
+        957.2,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.833,
+      "pad_cut_fill_m": 0.425,
+      "pad_slope_deg": 4.48
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -15331.4,
+        22287.6,
+        3212.6
+      ],
+      "pad_z_cm": 2812.6,
+      "yaw_deg": 359.18,
+      "size_cm": [
+        833.3,
+        1074.1,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.774,
+      "pad_cut_fill_m": 0.122,
+      "pad_slope_deg": 1.23
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -17921.8,
+        22010.9,
+        3473.8
+      ],
+      "pad_z_cm": 3073.8,
+      "yaw_deg": 337.1,
+      "size_cm": [
+        1058.7,
+        874.2,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.817,
+      "pad_cut_fill_m": 1.235,
+      "pad_slope_deg": 13.02
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -12923.7,
+        22155.5,
+        3176.9
+      ],
+      "pad_z_cm": 2776.9,
+      "yaw_deg": 359.12,
+      "size_cm": [
+        1054.5,
+        1058.7,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.783,
+      "pad_cut_fill_m": 0.102,
+      "pad_slope_deg": 1.08
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House02_Roof",
+      "loc_cm": [
+        -7977.0,
+        24011.9,
+        3160.0
+      ],
+      "pad_z_cm": 2760.0,
+      "yaw_deg": 384.83,
+      "size_cm": [
+        894.2,
+        933.3,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.763,
+      "pad_cut_fill_m": 0.021,
+      "pad_slope_deg": 0.2
+    },
+    {
+      "kind": "building",
+      "roof_servable": true,
+      "roof_candidate": "SM_House08_Roof",
+      "loc_cm": [
+        -5069.4,
+        25106.0,
+        3173.6
+      ],
+      "pad_z_cm": 2773.6,
+      "yaw_deg": 403.33,
+      "size_cm": [
+        969.2,
+        807.8,
+        800.0
+      ],
+      "storeys": 4,
+      "radial_frac": 0.809,
+      "pad_cut_fill_m": 0.047,
+      "pad_slope_deg": 0.5
+    }
+  ],
+  "landmark": {
+    "kind": "landmark",
+    "loc_cm": [
+      -12316.0,
+      36719.2,
+      4473.9
+    ],
+    "pad_z_cm": 2773.9,
+    "yaw_deg": 0.0,
+    "size_cm": [
+      1100.0,
+      1100.0,
+      3400.0
+    ],
+    "pad_cut_fill_m": 0.07
+  },
+  "spire": {
+    "kind": "spire",
+    "loc_cm": [
+      -12316.0,
+      36719.2,
+      4473.9
+    ],
+    "pad_z_cm": 2773.9,
+    "base_z_cm": 6173.9,
+    "yaw_deg": 0.0,
+    "size_cm": [
+      1078.0,
+      1078.0,
+      1600.0
+    ]
+  },
+  "roofs": [
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -9481.0,
+        36453.4,
+        3357.6
+      ],
+      "pad_z_cm": 2757.6,
+      "eaves_z_cm": 3957.6,
+      "yaw_deg": 98.14,
+      "roll_deg": 45.0,
+      "size_cm": [
+        907.5,
+        678.1,
+        678.1
+      ],
+      "ridge_height_cm": 479.5
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -10952.9,
+        38328.5,
+        3355.8
+      ],
+      "pad_z_cm": 2755.8,
+      "eaves_z_cm": 3955.8,
+      "yaw_deg": 133.63,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1190.0,
+        650.3,
+        650.3
+      ],
+      "ridge_height_cm": 459.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -13219.8,
+        39783.2,
+        3369.0
+      ],
+      "pad_z_cm": 2769.0,
+      "eaves_z_cm": 3969.0,
+      "yaw_deg": 262.33,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1171.9,
+        641.2,
+        641.2
+      ],
+      "ridge_height_cm": 453.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15057.4,
+        39621.5,
+        3374.8
+      ],
+      "pad_z_cm": 2774.8,
+      "eaves_z_cm": 3974.8,
+      "yaw_deg": 190.18,
+      "roll_deg": 45.0,
+      "size_cm": [
+        926.7,
+        674.9,
+        674.9
+      ],
+      "ridge_height_cm": 477.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -16733.2,
+        37884.1,
+        3379.6
+      ],
+      "pad_z_cm": 2779.6,
+      "eaves_z_cm": 3979.6,
+      "yaw_deg": 231.51,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1186.7,
+        761.3,
+        761.3
+      ],
+      "ridge_height_cm": 538.3
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17945.7,
+        36154.4,
+        3408.4
+      ],
+      "pad_z_cm": 2808.4,
+      "eaves_z_cm": 4008.4,
+      "yaw_deg": 258.01,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1040.7,
+        613.7,
+        613.7
+      ],
+      "ridge_height_cm": 433.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17668.5,
+        34584.8,
+        3417.4
+      ],
+      "pad_z_cm": 2817.4,
+      "eaves_z_cm": 4017.4,
+      "yaw_deg": 21.22,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1036.2,
+        640.6,
+        640.6
+      ],
+      "ridge_height_cm": 452.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -16550.1,
+        31417.5,
+        3418.7
+      ],
+      "pad_z_cm": 2818.7,
+      "eaves_z_cm": 4018.7,
+      "yaw_deg": 66.99,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1273.3,
+        716.6,
+        716.6
+      ],
+      "ridge_height_cm": 506.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -13884.2,
+        31567.3,
+        3400.8
+      ],
+      "pad_z_cm": 2800.8,
+      "eaves_z_cm": 4000.8,
+      "yaw_deg": 90.19,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1138.1,
+        656.8,
+        656.8
+      ],
+      "ridge_height_cm": 464.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15017.5,
+        30518.3,
+        3417.5
+      ],
+      "pad_z_cm": 2817.5,
+      "eaves_z_cm": 4017.5,
+      "yaw_deg": 358.11,
+      "roll_deg": 45.0,
+      "size_cm": [
+        905.8,
+        594.0,
+        594.0
+      ],
+      "ridge_height_cm": 420.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -11802.4,
+        32275.5,
+        3394.4
+      ],
+      "pad_z_cm": 2794.4,
+      "eaves_z_cm": 3994.4,
+      "yaw_deg": 32.41,
+      "roll_deg": 45.0,
+      "size_cm": [
+        999.3,
+        667.8,
+        667.8
+      ],
+      "ridge_height_cm": 472.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -9973.9,
+        33302.8,
+        3366.3
+      ],
+      "pad_z_cm": 2766.3,
+      "eaves_z_cm": 3966.3,
+      "yaw_deg": 146.08,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1126.0,
+        746.3,
+        746.3
+      ],
+      "ridge_height_cm": 527.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -10706.8,
+        34896.5,
+        3389.4
+      ],
+      "pad_z_cm": 2789.4,
+      "eaves_z_cm": 3989.4,
+      "yaw_deg": 74.85,
+      "roll_deg": 45.0,
+      "size_cm": [
+        949.6,
+        694.8,
+        694.8
+      ],
+      "ridge_height_cm": 491.3
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -8158.3,
+        38358.0,
+        3334.0
+      ],
+      "pad_z_cm": 2734.0,
+      "eaves_z_cm": 3934.0,
+      "yaw_deg": 206.05,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1157.6,
+        646.8,
+        646.8
+      ],
+      "ridge_height_cm": 457.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -7859.5,
+        36270.6,
+        3341.5
+      ],
+      "pad_z_cm": 2741.5,
+      "eaves_z_cm": 3941.5,
+      "yaw_deg": 100.1,
+      "roll_deg": 45.0,
+      "size_cm": [
+        811.5,
+        594.0,
+        594.0
+      ],
+      "ridge_height_cm": 420.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -9886.5,
+        41251.4,
+        3240.1
+      ],
+      "pad_z_cm": 2740.1,
+      "eaves_z_cm": 3740.1,
+      "yaw_deg": 151.11,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1171.3,
+        664.6,
+        664.6
+      ],
+      "ridge_height_cm": 469.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -14494.1,
+        42250.0,
+        3271.3
+      ],
+      "pad_z_cm": 2771.3,
+      "eaves_z_cm": 3771.3,
+      "yaw_deg": 269.97,
+      "roll_deg": 45.0,
+      "size_cm": [
+        987.9,
+        640.4,
+        640.4
+      ],
+      "ridge_height_cm": 452.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15723.6,
+        42137.2,
+        3265.5
+      ],
+      "pad_z_cm": 2765.5,
+      "eaves_z_cm": 3765.5,
+      "yaw_deg": 195.28,
+      "roll_deg": 45.0,
+      "size_cm": [
+        991.3,
+        675.9,
+        675.9
+      ],
+      "ridge_height_cm": 477.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17923.8,
+        40349.5,
+        3386.6
+      ],
+      "pad_z_cm": 2786.6,
+      "eaves_z_cm": 3986.6,
+      "yaw_deg": 300.46,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1019.3,
+        594.0,
+        594.0
+      ],
+      "ridge_height_cm": 420.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -20310.1,
+        39287.9,
+        3349.9
+      ],
+      "pad_z_cm": 2849.9,
+      "eaves_z_cm": 3849.9,
+      "yaw_deg": 233.1,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1023.9,
+        683.8,
+        683.8
+      ],
+      "ridge_height_cm": 483.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -19802.5,
+        37014.1,
+        3491.5
+      ],
+      "pad_z_cm": 2891.5,
+      "eaves_z_cm": 4091.5,
+      "yaw_deg": 341.25,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1005.7,
+        667.2,
+        667.2
+      ],
+      "ridge_height_cm": 471.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21377.6,
+        33720.6,
+        3588.6
+      ],
+      "pad_z_cm": 3088.6,
+      "eaves_z_cm": 4088.6,
+      "yaw_deg": 283.23,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1156.3,
+        620.4,
+        620.4
+      ],
+      "ridge_height_cm": 438.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -19529.8,
+        33049.1,
+        3519.1
+      ],
+      "pad_z_cm": 2919.1,
+      "eaves_z_cm": 4119.1,
+      "yaw_deg": 23.81,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1054.7,
+        688.3,
+        688.3
+      ],
+      "ridge_height_cm": 486.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -18525.4,
+        30001.4,
+        3371.2
+      ],
+      "pad_z_cm": 2871.2,
+      "eaves_z_cm": 3871.2,
+      "yaw_deg": 315.44,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1045.9,
+        709.8,
+        709.8
+      ],
+      "ridge_height_cm": 501.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -16626.2,
+        29729.0,
+        3438.3
+      ],
+      "pad_z_cm": 2838.3,
+      "eaves_z_cm": 4038.3,
+      "yaw_deg": 68.27,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1118.4,
+        691.0,
+        691.0
+      ],
+      "ridge_height_cm": 488.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -14745.8,
+        28634.9,
+        3419.4
+      ],
+      "pad_z_cm": 2819.4,
+      "eaves_z_cm": 4019.4,
+      "yaw_deg": 83.15,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1580.0,
+        839.1,
+        839.1
+      ],
+      "ridge_height_cm": 593.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -12998.7,
+        28883.6,
+        3407.4
+      ],
+      "pad_z_cm": 2807.4,
+      "eaves_z_cm": 4007.4,
+      "yaw_deg": 2.71,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1015.0,
+        690.1,
+        690.1
+      ],
+      "ridge_height_cm": 487.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -10135.1,
+        31291.2,
+        3352.3
+      ],
+      "pad_z_cm": 2752.3,
+      "eaves_z_cm": 3952.3,
+      "yaw_deg": 40.14,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1056.4,
+        636.2,
+        636.2
+      ],
+      "ridge_height_cm": 449.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -7436.2,
+        34342.4,
+        3247.8
+      ],
+      "pad_z_cm": 2747.8,
+      "eaves_z_cm": 3747.8,
+      "yaw_deg": 165.1,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1046.5,
+        747.0,
+        747.0
+      ],
+      "ridge_height_cm": 528.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -7940.1,
+        32125.2,
+        3253.6
+      ],
+      "pad_z_cm": 2753.6,
+      "eaves_z_cm": 3753.6,
+      "yaw_deg": 152.15,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1338.7,
+        629.7,
+        629.7
+      ],
+      "ridge_height_cm": 445.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -4774.8,
+        37740.3,
+        3373.0
+      ],
+      "pad_z_cm": 2873.0,
+      "eaves_z_cm": 3873.0,
+      "yaw_deg": 196.39,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1017.1,
+        644.1,
+        644.1
+      ],
+      "ridge_height_cm": 455.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -5603.2,
+        39504.6,
+        3381.1
+      ],
+      "pad_z_cm": 2881.1,
+      "eaves_z_cm": 3881.1,
+      "yaw_deg": 122.43,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1031.9,
+        622.1,
+        622.1
+      ],
+      "ridge_height_cm": 439.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -8080.0,
+        41530.6,
+        3285.2
+      ],
+      "pad_z_cm": 2785.2,
+      "eaves_z_cm": 3785.2,
+      "yaw_deg": 224.0,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1157.1,
+        699.5,
+        699.5
+      ],
+      "ridge_height_cm": 494.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -10796.0,
+        43707.8,
+        3306.5
+      ],
+      "pad_z_cm": 2806.5,
+      "eaves_z_cm": 3806.5,
+      "yaw_deg": 252.14,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1094.1,
+        715.1,
+        715.1
+      ],
+      "ridge_height_cm": 505.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15751.4,
+        45055.1,
+        3303.8
+      ],
+      "pad_z_cm": 2803.8,
+      "eaves_z_cm": 3803.8,
+      "yaw_deg": 279.18,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1124.4,
+        665.9,
+        665.9
+      ],
+      "ridge_height_cm": 470.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -13435.0,
+        45046.1,
+        3345.2
+      ],
+      "pad_z_cm": 2845.2,
+      "eaves_z_cm": 3845.2,
+      "yaw_deg": 271.83,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1084.1,
+        690.0,
+        690.0
+      ],
+      "ridge_height_cm": 487.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21231.0,
+        41105.3,
+        3314.5
+      ],
+      "pad_z_cm": 2814.5,
+      "eaves_z_cm": 3814.5,
+      "yaw_deg": 224.57,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1138.3,
+        611.4,
+        611.4
+      ],
+      "ridge_height_cm": 432.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17415.1,
+        43303.2,
+        3269.2
+      ],
+      "pad_z_cm": 2769.2,
+      "eaves_z_cm": 3769.2,
+      "yaw_deg": 293.39,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1035.2,
+        676.0,
+        676.0
+      ],
+      "ridge_height_cm": 478.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -23239.6,
+        38295.2,
+        3545.3
+      ],
+      "pad_z_cm": 3045.3,
+      "eaves_z_cm": 4045.3,
+      "yaw_deg": 349.26,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1066.4,
+        672.2,
+        672.2
+      ],
+      "ridge_height_cm": 475.3
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -23027.5,
+        36791.2,
+        3593.8
+      ],
+      "pad_z_cm": 3093.8,
+      "eaves_z_cm": 4093.8,
+      "yaw_deg": 347.3,
+      "roll_deg": 45.0,
+      "size_cm": [
+        854.8,
+        617.5,
+        617.5
+      ],
+      "ridge_height_cm": 436.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21893.4,
+        30525.7,
+        3551.8
+      ],
+      "pad_z_cm": 3051.8,
+      "eaves_z_cm": 4051.8,
+      "yaw_deg": 298.43,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1043.1,
+        654.8,
+        654.8
+      ],
+      "ridge_height_cm": 463.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -23476.5,
+        33127.3,
+        3748.7
+      ],
+      "pad_z_cm": 3248.7,
+      "eaves_z_cm": 4248.7,
+      "yaw_deg": 6.37,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1080.6,
+        653.4,
+        653.4
+      ],
+      "ridge_height_cm": 462.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -19384.8,
+        28315.4,
+        3440.9
+      ],
+      "pad_z_cm": 2940.9,
+      "eaves_z_cm": 3940.9,
+      "yaw_deg": 60.77,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1191.7,
+        709.4,
+        709.4
+      ],
+      "ridge_height_cm": 501.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -18166.3,
+        26525.5,
+        3435.2
+      ],
+      "pad_z_cm": 2935.2,
+      "eaves_z_cm": 3935.2,
+      "yaw_deg": 60.89,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1169.1,
+        712.8,
+        712.8
+      ],
+      "ridge_height_cm": 504.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -12376.3,
+        27193.3,
+        3289.6
+      ],
+      "pad_z_cm": 2789.6,
+      "eaves_z_cm": 3789.6,
+      "yaw_deg": 14.88,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1058.2,
+        716.5,
+        716.5
+      ],
+      "ridge_height_cm": 506.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15148.7,
+        26329.5,
+        3316.7
+      ],
+      "pad_z_cm": 2816.7,
+      "eaves_z_cm": 3816.7,
+      "yaw_deg": 347.99,
+      "roll_deg": 45.0,
+      "size_cm": [
+        981.4,
+        651.7,
+        651.7
+      ],
+      "ridge_height_cm": 460.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -8085.6,
+        29719.4,
+        3250.1
+      ],
+      "pad_z_cm": 2750.1,
+      "eaves_z_cm": 3750.1,
+      "yaw_deg": 49.04,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1561.1,
+        996.5,
+        996.5
+      ],
+      "ridge_height_cm": 704.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -8785.8,
+        27479.1,
+        3250.2
+      ],
+      "pad_z_cm": 2750.2,
+      "eaves_z_cm": 3750.2,
+      "yaw_deg": 131.05,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1163.3,
+        621.2,
+        621.2
+      ],
+      "ridge_height_cm": 439.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -10575.7,
+        27406.8,
+        3269.1
+      ],
+      "pad_z_cm": 2769.1,
+      "eaves_z_cm": 3769.1,
+      "yaw_deg": 117.58,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1103.7,
+        682.8,
+        682.8
+      ],
+      "ridge_height_cm": 482.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -5359.1,
+        33799.8,
+        3255.9
+      ],
+      "pad_z_cm": 2755.9,
+      "eaves_z_cm": 3755.9,
+      "yaw_deg": 86.61,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1445.2,
+        719.0,
+        719.0
+      ],
+      "ridge_height_cm": 508.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -3539.7,
+        40378.8,
+        3717.9
+      ],
+      "pad_z_cm": 3317.9,
+      "eaves_z_cm": 4117.9,
+      "yaw_deg": 116.14,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1081.0,
+        618.8,
+        618.8
+      ],
+      "ridge_height_cm": 437.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -2862.0,
+        38503.1,
+        3644.6
+      ],
+      "pad_z_cm": 3244.6,
+      "eaves_z_cm": 4044.6,
+      "yaw_deg": 103.83,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1111.1,
+        654.0,
+        654.0
+      ],
+      "ridge_height_cm": 462.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -9643.9,
+        46120.9,
+        3602.1
+      ],
+      "pad_z_cm": 3202.1,
+      "eaves_z_cm": 4002.1,
+      "yaw_deg": 164.34,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1091.6,
+        639.0,
+        639.0
+      ],
+      "ridge_height_cm": 451.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -12674.9,
+        47173.5,
+        3577.0
+      ],
+      "pad_z_cm": 3177.0,
+      "eaves_z_cm": 3977.0,
+      "yaw_deg": 256.43,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1580.0,
+        879.5,
+        879.5
+      ],
+      "ridge_height_cm": 621.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21315.5,
+        44131.1,
+        3278.0
+      ],
+      "pad_z_cm": 2778.0,
+      "eaves_z_cm": 3778.0,
+      "yaw_deg": 313.61,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1146.9,
+        662.8,
+        662.8
+      ],
+      "ridge_height_cm": 468.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -18076.5,
+        45266.6,
+        3302.0
+      ],
+      "pad_z_cm": 2802.0,
+      "eaves_z_cm": 3802.0,
+      "yaw_deg": 298.77,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1580.0,
+        1131.1,
+        1131.1
+      ],
+      "ridge_height_cm": 799.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -26041.2,
+        38094.6,
+        3458.2
+      ],
+      "pad_z_cm": 3058.2,
+      "eaves_z_cm": 3858.2,
+      "yaw_deg": 260.35,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1038.7,
+        636.0,
+        636.0
+      ],
+      "ridge_height_cm": 449.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -23860.2,
+        40362.4,
+        3392.8
+      ],
+      "pad_z_cm": 2892.8,
+      "eaves_z_cm": 3892.8,
+      "yaw_deg": 244.17,
+      "roll_deg": 45.0,
+      "size_cm": [
+        907.0,
+        594.0,
+        594.0
+      ],
+      "ridge_height_cm": 420.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -25658.1,
+        31597.1,
+        3909.8
+      ],
+      "pad_z_cm": 3509.8,
+      "eaves_z_cm": 4309.8,
+      "yaw_deg": 15.3,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1008.4,
+        709.7,
+        709.7
+      ],
+      "ridge_height_cm": 501.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -25974.9,
+        34553.1,
+        3730.2
+      ],
+      "pad_z_cm": 3330.2,
+      "eaves_z_cm": 4130.2,
+      "yaw_deg": 10.71,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1176.2,
+        594.9,
+        594.9
+      ],
+      "ridge_height_cm": 420.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21795.9,
+        26471.5,
+        3701.0
+      ],
+      "pad_z_cm": 3301.0,
+      "eaves_z_cm": 4101.0,
+      "yaw_deg": 314.03,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1124.0,
+        661.9,
+        661.9
+      ],
+      "ridge_height_cm": 468.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -22286.9,
+        28429.3,
+        3585.5
+      ],
+      "pad_z_cm": 3085.5,
+      "eaves_z_cm": 4085.5,
+      "yaw_deg": 39.26,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1020.1,
+        679.8,
+        679.8
+      ],
+      "ridge_height_cm": 480.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17335.3,
+        23595.6,
+        3337.9
+      ],
+      "pad_z_cm": 2937.9,
+      "eaves_z_cm": 3737.9,
+      "yaw_deg": 341.03,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1015.5,
+        716.3,
+        716.3
+      ],
+      "ridge_height_cm": 506.5
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15039.1,
+        23649.9,
+        3215.7
+      ],
+      "pad_z_cm": 2815.7,
+      "eaves_z_cm": 3615.7,
+      "yaw_deg": 83.44,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1084.6,
+        684.8,
+        684.8
+      ],
+      "ridge_height_cm": 484.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -11298.7,
+        24648.4,
+        3272.2
+      ],
+      "pad_z_cm": 2772.2,
+      "eaves_z_cm": 3772.2,
+      "yaw_deg": 105.08,
+      "roll_deg": 45.0,
+      "size_cm": [
+        998.1,
+        709.8,
+        709.8
+      ],
+      "ridge_height_cm": 501.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -7037.5,
+        26728.8,
+        3257.8
+      ],
+      "pad_z_cm": 2757.8,
+      "eaves_z_cm": 3757.8,
+      "yaw_deg": 134.03,
+      "roll_deg": 45.0,
+      "size_cm": [
+        971.6,
+        718.6,
+        718.6
+      ],
+      "ridge_height_cm": 508.1
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -3775.3,
+        29474.3,
+        3193.7
+      ],
+      "pad_z_cm": 2793.7,
+      "eaves_z_cm": 3593.7,
+      "yaw_deg": 64.62,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1569.6,
+        967.1,
+        967.1
+      ],
+      "ridge_height_cm": 683.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -3349.4,
+        34581.9,
+        3406.0
+      ],
+      "pad_z_cm": 2906.0,
+      "eaves_z_cm": 3906.0,
+      "yaw_deg": 84.91,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1006.6,
+        686.2,
+        686.2
+      ],
+      "ridge_height_cm": 485.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -19292.3,
+        48196.9,
+        3502.1
+      ],
+      "pad_z_cm": 3102.1,
+      "eaves_z_cm": 3902.1,
+      "yaw_deg": 295.78,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1129.3,
+        645.8,
+        645.8
+      ],
+      "ridge_height_cm": 456.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -23169.1,
+        45668.7,
+        3221.1
+      ],
+      "pad_z_cm": 2821.1,
+      "eaves_z_cm": 3621.1,
+      "yaw_deg": 215.25,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1002.8,
+        594.0,
+        594.0
+      ],
+      "ridge_height_cm": 420.0
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -26149.6,
+        40977.4,
+        3331.5
+      ],
+      "pad_z_cm": 2931.5,
+      "eaves_z_cm": 3731.5,
+      "yaw_deg": 239.13,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1314.5,
+        614.5,
+        614.5
+      ],
+      "ridge_height_cm": 434.5
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -27469.5,
+        37968.8,
+        3542.3
+      ],
+      "pad_z_cm": 3142.3,
+      "eaves_z_cm": 3942.3,
+      "yaw_deg": 260.89,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1065.6,
+        650.0,
+        650.0
+      ],
+      "ridge_height_cm": 459.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -28408.5,
+        36233.1,
+        3711.0
+      ],
+      "pad_z_cm": 3311.0,
+      "eaves_z_cm": 4111.0,
+      "yaw_deg": 358.4,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1158.6,
+        627.6,
+        627.6
+      ],
+      "ridge_height_cm": 443.8
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -25535.0,
+        27717.1,
+        3798.5
+      ],
+      "pad_z_cm": 3398.5,
+      "eaves_z_cm": 4198.5,
+      "yaw_deg": 33.24,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1126.8,
+        716.2,
+        716.2
+      ],
+      "ridge_height_cm": 506.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -28732.6,
+        33937.1,
+        3920.1
+      ],
+      "pad_z_cm": 3520.1,
+      "eaves_z_cm": 4320.1,
+      "yaw_deg": 4.21,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1580.0,
+        794.9,
+        794.9
+      ],
+      "ridge_height_cm": 562.1
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -27186.1,
+        32768.8,
+        3912.7
+      ],
+      "pad_z_cm": 3512.7,
+      "eaves_z_cm": 4312.7,
+      "yaw_deg": 9.44,
+      "roll_deg": 45.0,
+      "size_cm": [
+        986.1,
+        622.6,
+        622.6
+      ],
+      "ridge_height_cm": 440.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -21667.1,
+        24413.9,
+        3906.0
+      ],
+      "pad_z_cm": 3506.0,
+      "eaves_z_cm": 4306.0,
+      "yaw_deg": 333.24,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1107.3,
+        651.7,
+        651.7
+      ],
+      "ridge_height_cm": 460.9
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -19507.0,
+        23023.0,
+        3710.4
+      ],
+      "pad_z_cm": 3310.4,
+      "eaves_z_cm": 4110.4,
+      "yaw_deg": 329.97,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1135.0,
+        712.0,
+        712.0
+      ],
+      "ridge_height_cm": 503.4
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -24106.0,
+        25284.3,
+        3953.8
+      ],
+      "pad_z_cm": 3553.8,
+      "eaves_z_cm": 4353.8,
+      "yaw_deg": 40.69,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1037.2,
+        636.0,
+        636.0
+      ],
+      "ridge_height_cm": 449.7
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -15331.4,
+        22287.6,
+        3212.6
+      ],
+      "pad_z_cm": 2812.6,
+      "eaves_z_cm": 3612.6,
+      "yaw_deg": 89.18,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1154.1,
+        688.2,
+        688.2
+      ],
+      "ridge_height_cm": 486.6
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -17921.8,
+        22010.9,
+        3473.8
+      ],
+      "pad_z_cm": 3073.8,
+      "eaves_z_cm": 3873.8,
+      "yaw_deg": 337.1,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1138.7,
+        717.1,
+        717.1
+      ],
+      "ridge_height_cm": 507.1
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -12923.7,
+        22155.5,
+        3176.9
+      ],
+      "pad_z_cm": 2776.9,
+      "eaves_z_cm": 3576.9,
+      "yaw_deg": 89.12,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1138.7,
+        844.6,
+        844.6
+      ],
+      "ridge_height_cm": 597.2
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -7977.0,
+        24011.9,
+        3160.0
+      ],
+      "pad_z_cm": 2760.0,
+      "eaves_z_cm": 3560.0,
+      "yaw_deg": 114.83,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1013.3,
+        731.3,
+        731.3
+      ],
+      "ridge_height_cm": 517.1
+    },
+    {
+      "kind": "roof",
+      "loc_cm": [
+        -5069.4,
+        25106.0,
+        3173.6
+      ],
+      "pad_z_cm": 2773.6,
+      "eaves_z_cm": 3573.6,
+      "yaw_deg": 43.33,
+      "roll_deg": 45.0,
+      "size_cm": [
+        1049.2,
+        670.2,
+        670.2
+      ],
+      "ridge_height_cm": 473.9
+    }
+  ],
+  "streets": [
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11225.7,
+        35791.6,
+        2785.0
+      ],
+      "yaw_deg": 97.5,
+      "pitch_deg": -0.676,
+      "roll_deg": 0.418,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11428.4,
+        36548.1,
+        2774.9
+      ],
+      "yaw_deg": 112.5,
+      "pitch_deg": -0.584,
+      "roll_deg": 0.463,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11819.9,
+        37226.3,
+        2769.3
+      ],
+      "yaw_deg": 127.5,
+      "pitch_deg": -0.329,
+      "roll_deg": 0.298,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -12373.7,
+        37780.1,
+        2762.1
+      ],
+      "yaw_deg": 142.5,
+      "pitch_deg": -0.319,
+      "roll_deg": 0.197,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -13051.9,
+        38171.6,
+        2765.1
+      ],
+      "yaw_deg": 157.5,
+      "pitch_deg": 0.307,
+      "roll_deg": 0.003,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -13808.4,
+        38374.3,
+        2768.0
+      ],
+      "yaw_deg": 172.5,
+      "pitch_deg": 0.022,
+      "roll_deg": 0.033,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -14591.6,
+        38374.3,
+        2766.7
+      ],
+      "yaw_deg": 187.5,
+      "pitch_deg": 0.077,
+      "roll_deg": 0.043,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -15348.1,
+        38171.6,
+        2768.0
+      ],
+      "yaw_deg": 202.5,
+      "pitch_deg": 0.097,
+      "roll_deg": -0.027,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16026.3,
+        37780.1,
+        2772.9
+      ],
+      "yaw_deg": 217.5,
+      "pitch_deg": 0.54,
+      "roll_deg": -0.05,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16580.1,
+        37226.3,
+        2781.4
+      ],
+      "yaw_deg": 232.5,
+      "pitch_deg": 0.719,
+      "roll_deg": -0.051,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16971.6,
+        36548.1,
+        2792.6
+      ],
+      "yaw_deg": 247.5,
+      "pitch_deg": 0.821,
+      "roll_deg": -0.277,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -17174.3,
+        35791.6,
+        2801.2
+      ],
+      "yaw_deg": 262.5,
+      "pitch_deg": 0.506,
+      "roll_deg": -0.703,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -17174.3,
+        35008.4,
+        2805.9
+      ],
+      "yaw_deg": 277.5,
+      "pitch_deg": 0.136,
+      "roll_deg": -0.898,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16971.6,
+        34251.9,
+        2804.4
+      ],
+      "yaw_deg": 292.5,
+      "pitch_deg": -0.218,
+      "roll_deg": -0.625,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16580.1,
+        33573.7,
+        2803.3
+      ],
+      "yaw_deg": 307.5,
+      "pitch_deg": 0.179,
+      "roll_deg": -0.306,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -16026.3,
+        33019.9,
+        2807.6
+      ],
+      "yaw_deg": 322.5,
+      "pitch_deg": 0.094,
+      "roll_deg": 0.083,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -15348.1,
+        32628.4,
+        2807.8
+      ],
+      "yaw_deg": 337.5,
+      "pitch_deg": -0.088,
+      "roll_deg": 0.348,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -14591.6,
+        32425.7,
+        2806.3
+      ],
+      "yaw_deg": 352.5,
+      "pitch_deg": -0.055,
+      "roll_deg": 0.39,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -13808.4,
+        32425.7,
+        2806.3
+      ],
+      "yaw_deg": 367.5,
+      "pitch_deg": 0.054,
+      "roll_deg": 0.522,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -13051.9,
+        32628.4,
+        2807.9
+      ],
+      "yaw_deg": 382.5,
+      "pitch_deg": 0.097,
+      "roll_deg": 0.396,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -12373.7,
+        33019.9,
+        2807.6
+      ],
+      "yaw_deg": 397.5,
+      "pitch_deg": -0.175,
+      "roll_deg": 0.194,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11819.9,
+        33573.7,
+        2803.3
+      ],
+      "yaw_deg": 412.5,
+      "pitch_deg": -0.349,
+      "roll_deg": 0.004,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11428.4,
+        34251.9,
+        2798.1
+      ],
+      "yaw_deg": 427.5,
+      "pitch_deg": -0.34,
+      "roll_deg": 0.005,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 0,
+      "loc_cm": [
+        -11225.7,
+        35008.4,
+        2791.0
+      ],
+      "yaw_deg": 442.5,
+      "pitch_deg": -0.552,
+      "roll_deg": 0.199,
+      "len_cm": 785.4,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -8846.2,
+        36104.8,
+        2752.0
+      ],
+      "yaw_deg": 97.5,
+      "pitch_deg": -0.112,
+      "roll_deg": 0.562,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -9211.1,
+        37466.5,
+        2748.0
+      ],
+      "yaw_deg": 112.5,
+      "pitch_deg": -0.175,
+      "roll_deg": 0.564,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -9915.9,
+        38687.3,
+        2745.5
+      ],
+      "yaw_deg": 127.5,
+      "pitch_deg": -0.113,
+      "roll_deg": 0.657,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -10912.7,
+        39684.1,
+        2749.4
+      ],
+      "yaw_deg": 142.5,
+      "pitch_deg": 0.476,
+      "roll_deg": 0.31,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -12133.5,
+        40388.9,
+        2764.4
+      ],
+      "yaw_deg": 157.5,
+      "pitch_deg": 0.611,
+      "roll_deg": -0.15,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -13495.2,
+        40753.8,
+        2772.9
+      ],
+      "yaw_deg": 172.5,
+      "pitch_deg": 0.234,
+      "roll_deg": -0.128,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -14904.8,
+        40753.8,
+        2778.6
+      ],
+      "yaw_deg": 187.5,
+      "pitch_deg": -0.106,
+      "roll_deg": 0.115,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -16266.5,
+        40388.9,
+        2774.4
+      ],
+      "yaw_deg": 202.5,
+      "pitch_deg": 0.183,
+      "roll_deg": 0.201,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -17487.3,
+        39684.1,
+        2784.1
+      ],
+      "yaw_deg": 217.5,
+      "pitch_deg": 0.501,
+      "roll_deg": -0.161,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -18484.1,
+        38687.3,
+        2797.4
+      ],
+      "yaw_deg": 232.5,
+      "pitch_deg": 0.788,
+      "roll_deg": -0.776,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -19188.9,
+        37466.5,
+        2833.0
+      ],
+      "yaw_deg": 247.5,
+      "pitch_deg": 2.586,
+      "roll_deg": -2.513,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -19553.8,
+        36104.8,
+        2900.6
+      ],
+      "yaw_deg": 262.5,
+      "pitch_deg": 1.899,
+      "roll_deg": -4.268,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -19553.8,
+        34695.2,
+        2921.3
+      ],
+      "yaw_deg": 277.5,
+      "pitch_deg": -0.534,
+      "roll_deg": -4.633,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -19188.9,
+        33333.5,
+        2885.7
+      ],
+      "yaw_deg": 292.5,
+      "pitch_deg": -1.051,
+      "roll_deg": -3.938,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -18484.1,
+        32112.7,
+        2869.5
+      ],
+      "yaw_deg": 307.5,
+      "pitch_deg": -1.313,
+      "roll_deg": -2.4,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -17487.3,
+        31115.9,
+        2832.0
+      ],
+      "yaw_deg": 322.5,
+      "pitch_deg": -0.631,
+      "roll_deg": -0.967,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -16266.5,
+        30411.1,
+        2831.2
+      ],
+      "yaw_deg": 337.5,
+      "pitch_deg": -0.365,
+      "roll_deg": -0.595,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -14904.8,
+        30046.2,
+        2819.4
+      ],
+      "yaw_deg": 352.5,
+      "pitch_deg": -0.318,
+      "roll_deg": -0.357,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -13495.2,
+        30046.2,
+        2809.6
+      ],
+      "yaw_deg": 367.5,
+      "pitch_deg": -0.554,
+      "roll_deg": -0.348,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -12133.5,
+        30411.1,
+        2787.6
+      ],
+      "yaw_deg": 382.5,
+      "pitch_deg": -1.188,
+      "roll_deg": 0.131,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -10912.7,
+        31115.9,
+        2761.8
+      ],
+      "yaw_deg": 397.5,
+      "pitch_deg": -0.703,
+      "roll_deg": 0.504,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -9915.9,
+        32112.7,
+        2750.6
+      ],
+      "yaw_deg": 412.5,
+      "pitch_deg": -0.274,
+      "roll_deg": 0.744,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -9211.1,
+        33333.5,
+        2749.3
+      ],
+      "yaw_deg": 427.5,
+      "pitch_deg": 0.064,
+      "roll_deg": 0.966,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 1,
+      "loc_cm": [
+        -8846.2,
+        34695.2,
+        2753.4
+      ],
+      "yaw_deg": 442.5,
+      "pitch_deg": 0.129,
+      "roll_deg": 0.774,
+      "len_cm": 1413.7,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -6437.6,
+        36164.5,
+        2736.9
+      ],
+      "yaw_deg": 95.62,
+      "pitch_deg": -0.036,
+      "roll_deg": -0.799,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -6735.9,
+        37664.2,
+        2742.8
+      ],
+      "yaw_deg": 106.88,
+      "pitch_deg": 0.177,
+      "roll_deg": -1.858,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -7321.0,
+        39076.9,
+        2744.8
+      ],
+      "yaw_deg": 118.12,
+      "pitch_deg": 0.103,
+      "roll_deg": -2.307,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -8170.5,
+        40348.3,
+        2738.0
+      ],
+      "yaw_deg": 129.38,
+      "pitch_deg": -0.329,
+      "roll_deg": -2.022,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -9251.7,
+        41429.5,
+        2739.5
+      ],
+      "yaw_deg": 140.62,
+      "pitch_deg": 0.439,
+      "roll_deg": -1.389,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -10523.1,
+        42279.0,
+        2756.6
+      ],
+      "yaw_deg": 151.88,
+      "pitch_deg": 0.523,
+      "roll_deg": -0.805,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -11935.8,
+        42864.1,
+        2768.6
+      ],
+      "yaw_deg": 163.12,
+      "pitch_deg": 0.184,
+      "roll_deg": -0.37,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -13435.5,
+        43162.4,
+        2768.1
+      ],
+      "yaw_deg": 174.38,
+      "pitch_deg": -0.079,
+      "roll_deg": -0.029,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -14964.5,
+        43162.4,
+        2758.0
+      ],
+      "yaw_deg": 185.62,
+      "pitch_deg": -0.293,
+      "roll_deg": 0.264,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -16464.2,
+        42864.1,
+        2768.7
+      ],
+      "yaw_deg": 196.88,
+      "pitch_deg": 0.538,
+      "roll_deg": 0.296,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -17876.9,
+        42279.0,
+        2783.1
+      ],
+      "yaw_deg": 208.12,
+      "pitch_deg": 0.496,
+      "roll_deg": 0.289,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -19148.3,
+        41429.5,
+        2795.2
+      ],
+      "yaw_deg": 219.38,
+      "pitch_deg": 0.472,
+      "roll_deg": 0.056,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -20229.5,
+        40348.3,
+        2817.2
+      ],
+      "yaw_deg": 230.62,
+      "pitch_deg": 1.793,
+      "roll_deg": -0.457,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21079.0,
+        39076.9,
+        2893.7
+      ],
+      "yaw_deg": 241.88,
+      "pitch_deg": 3.681,
+      "roll_deg": -1.306,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21664.1,
+        37664.2,
+        2990.1
+      ],
+      "yaw_deg": 253.12,
+      "pitch_deg": 2.78,
+      "roll_deg": -2.524,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21962.4,
+        36164.5,
+        3045.2
+      ],
+      "yaw_deg": 264.38,
+      "pitch_deg": 1.903,
+      "roll_deg": -3.089,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21962.4,
+        34635.5,
+        3085.7
+      ],
+      "yaw_deg": 275.62,
+      "pitch_deg": 1.491,
+      "roll_deg": -2.864,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21664.1,
+        33135.8,
+        3121.1
+      ],
+      "yaw_deg": 286.88,
+      "pitch_deg": -0.425,
+      "roll_deg": -3.547,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -21079.0,
+        31723.1,
+        3046.2
+      ],
+      "yaw_deg": 298.12,
+      "pitch_deg": -4.091,
+      "roll_deg": -3.462,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -20229.5,
+        30451.7,
+        2940.0
+      ],
+      "yaw_deg": 309.38,
+      "pitch_deg": -2.95,
+      "roll_deg": -2.368,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -19148.3,
+        29370.5,
+        2904.8
+      ],
+      "yaw_deg": 320.62,
+      "pitch_deg": -0.826,
+      "roll_deg": -2.142,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -17876.9,
+        28521.0,
+        2865.7
+      ],
+      "yaw_deg": 331.88,
+      "pitch_deg": -1.543,
+      "roll_deg": -1.179,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -16464.2,
+        27935.9,
+        2834.1
+      ],
+      "yaw_deg": 343.12,
+      "pitch_deg": -0.912,
+      "roll_deg": -0.189,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -14964.5,
+        27637.6,
+        2816.4
+      ],
+      "yaw_deg": 354.38,
+      "pitch_deg": -0.557,
+      "roll_deg": 0.209,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -13435.5,
+        27637.6,
+        2802.4
+      ],
+      "yaw_deg": 365.62,
+      "pitch_deg": -0.381,
+      "roll_deg": 0.466,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -11935.8,
+        27935.9,
+        2791.4
+      ],
+      "yaw_deg": 376.88,
+      "pitch_deg": -0.827,
+      "roll_deg": 0.324,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -10523.1,
+        28521.0,
+        2768.4
+      ],
+      "yaw_deg": 388.12,
+      "pitch_deg": -0.671,
+      "roll_deg": 0.129,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -9251.7,
+        29370.5,
+        2748.7
+      ],
+      "yaw_deg": 399.37,
+      "pitch_deg": -0.487,
+      "roll_deg": -0.002,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -8170.5,
+        30451.7,
+        2749.9
+      ],
+      "yaw_deg": 410.63,
+      "pitch_deg": 0.365,
+      "roll_deg": -0.164,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -7321.0,
+        31723.1,
+        2758.4
+      ],
+      "yaw_deg": 421.88,
+      "pitch_deg": 0.123,
+      "roll_deg": -0.278,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -6735.9,
+        33135.8,
+        2754.7
+      ],
+      "yaw_deg": 433.12,
+      "pitch_deg": -0.182,
+      "roll_deg": -0.369,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 2,
+      "loc_cm": [
+        -6437.6,
+        34635.5,
+        2748.0
+      ],
+      "yaw_deg": 444.38,
+      "pitch_deg": -0.427,
+      "roll_deg": -0.225,
+      "len_cm": 1531.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4028.5,
+        36162.2,
+        2882.0
+      ],
+      "yaw_deg": 94.29,
+      "pitch_deg": 1.868,
+      "roll_deg": -6.88,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4255.7,
+        37669.7,
+        2928.2
+      ],
+      "yaw_deg": 102.86,
+      "pitch_deg": 1.573,
+      "roll_deg": -8.139,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4705.1,
+        39126.5,
+        2962.8
+      ],
+      "yaw_deg": 111.43,
+      "pitch_deg": 1.176,
+      "roll_deg": -9.07,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -5366.5,
+        40500.0,
+        2987.2
+      ],
+      "yaw_deg": 120.0,
+      "pitch_deg": 0.15,
+      "roll_deg": -9.451,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -6225.3,
+        41759.6,
+        2977.7
+      ],
+      "yaw_deg": 128.57,
+      "pitch_deg": -0.435,
+      "roll_deg": -9.381,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -7262.2,
+        42877.1,
+        2963.6
+      ],
+      "yaw_deg": 137.14,
+      "pitch_deg": -0.618,
+      "roll_deg": -9.42,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -8454.1,
+        43827.6,
+        2943.2
+      ],
+      "yaw_deg": 145.71,
+      "pitch_deg": -0.717,
+      "roll_deg": -9.227,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -9774.4,
+        44589.9,
+        2924.5
+      ],
+      "yaw_deg": 154.29,
+      "pitch_deg": -0.547,
+      "roll_deg": -8.295,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -11193.5,
+        45146.8,
+        2917.4
+      ],
+      "yaw_deg": 162.86,
+      "pitch_deg": -0.514,
+      "roll_deg": -7.46,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -12679.8,
+        45486.1,
+        2901.7
+      ],
+      "yaw_deg": 171.43,
+      "pitch_deg": -0.576,
+      "roll_deg": -6.777,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -14200.0,
+        45600.0,
+        2867.2
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": -1.548,
+      "roll_deg": -6.105,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -15720.2,
+        45486.1,
+        2834.6
+      ],
+      "yaw_deg": 188.57,
+      "pitch_deg": -1.618,
+      "roll_deg": -4.959,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -17206.5,
+        45146.8,
+        2794.1
+      ],
+      "yaw_deg": 197.14,
+      "pitch_deg": -1.171,
+      "roll_deg": -2.909,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -18625.6,
+        44589.9,
+        2767.9
+      ],
+      "yaw_deg": 205.71,
+      "pitch_deg": -0.529,
+      "roll_deg": -0.876,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -19945.9,
+        43827.6,
+        2773.7
+      ],
+      "yaw_deg": 214.29,
+      "pitch_deg": 0.515,
+      "roll_deg": 0.194,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -21137.8,
+        42877.1,
+        2788.3
+      ],
+      "yaw_deg": 222.86,
+      "pitch_deg": 0.486,
+      "roll_deg": 0.07,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -22174.7,
+        41759.6,
+        2802.3
+      ],
+      "yaw_deg": 231.43,
+      "pitch_deg": 1.254,
+      "roll_deg": 0.754,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -23033.5,
+        40500.0,
+        2868.1
+      ],
+      "yaw_deg": 240.0,
+      "pitch_deg": 3.688,
+      "roll_deg": 2.049,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -23694.9,
+        39126.5,
+        2980.4
+      ],
+      "yaw_deg": 248.57,
+      "pitch_deg": 4.178,
+      "roll_deg": 2.371,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -24144.3,
+        37669.7,
+        3082.8
+      ],
+      "yaw_deg": 257.14,
+      "pitch_deg": 3.477,
+      "roll_deg": 1.465,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -24371.5,
+        36162.2,
+        3178.8
+      ],
+      "yaw_deg": 265.71,
+      "pitch_deg": 3.386,
+      "roll_deg": -0.341,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -24371.5,
+        34637.8,
+        3266.7
+      ],
+      "yaw_deg": 274.29,
+      "pitch_deg": 2.686,
+      "roll_deg": -3.092,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -24144.3,
+        33130.3,
+        3306.3
+      ],
+      "yaw_deg": 282.86,
+      "pitch_deg": 0.937,
+      "roll_deg": -5.126,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -23694.9,
+        31673.5,
+        3288.1
+      ],
+      "yaw_deg": 291.43,
+      "pitch_deg": -3.36,
+      "roll_deg": -6.212,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -23033.5,
+        30300.0,
+        3149.9
+      ],
+      "yaw_deg": 300.0,
+      "pitch_deg": -4.889,
+      "roll_deg": -5.437,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -22174.7,
+        29040.4,
+        3045.5
+      ],
+      "yaw_deg": 308.57,
+      "pitch_deg": -1.773,
+      "roll_deg": -4.452,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -21137.8,
+        27922.9,
+        3059.1
+      ],
+      "yaw_deg": 317.14,
+      "pitch_deg": 0.926,
+      "roll_deg": -5.973,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -19945.9,
+        26972.4,
+        3070.6
+      ],
+      "yaw_deg": 325.71,
+      "pitch_deg": -0.701,
+      "roll_deg": -8.063,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -18625.6,
+        26210.1,
+        3002.6
+      ],
+      "yaw_deg": 334.29,
+      "pitch_deg": -4.655,
+      "roll_deg": -6.721,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -17206.5,
+        25653.2,
+        2871.4
+      ],
+      "yaw_deg": 342.86,
+      "pitch_deg": -3.466,
+      "roll_deg": -2.474,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -15720.2,
+        25313.9,
+        2831.3
+      ],
+      "yaw_deg": 351.43,
+      "pitch_deg": -0.726,
+      "roll_deg": -0.403,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -14200.0,
+        25200.0,
+        2810.7
+      ],
+      "yaw_deg": 360.0,
+      "pitch_deg": -0.971,
+      "roll_deg": -0.04,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -12679.8,
+        25313.9,
+        2788.0
+      ],
+      "yaw_deg": 368.57,
+      "pitch_deg": -0.663,
+      "roll_deg": 0.071,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -11193.5,
+        25653.2,
+        2772.0
+      ],
+      "yaw_deg": 377.14,
+      "pitch_deg": -0.413,
+      "roll_deg": 0.099,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -9774.4,
+        26210.1,
+        2761.6
+      ],
+      "yaw_deg": 385.71,
+      "pitch_deg": -0.449,
+      "roll_deg": 0.023,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -8454.1,
+        26972.4,
+        2749.9
+      ],
+      "yaw_deg": 394.29,
+      "pitch_deg": -0.174,
+      "roll_deg": -0.211,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -7262.2,
+        27922.9,
+        2753.8
+      ],
+      "yaw_deg": 402.86,
+      "pitch_deg": 0.208,
+      "roll_deg": -0.237,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -6225.3,
+        29040.4,
+        2758.8
+      ],
+      "yaw_deg": 411.43,
+      "pitch_deg": 0.172,
+      "roll_deg": -0.122,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -5366.5,
+        30300.0,
+        2764.0
+      ],
+      "yaw_deg": 420.0,
+      "pitch_deg": 0.068,
+      "roll_deg": -0.208,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4705.1,
+        31673.5,
+        2766.2
+      ],
+      "yaw_deg": 428.57,
+      "pitch_deg": 0.498,
+      "roll_deg": -0.989,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4255.7,
+        33130.3,
+        2785.0
+      ],
+      "yaw_deg": 437.14,
+      "pitch_deg": 1.13,
+      "roll_deg": -2.965,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 3,
+      "loc_cm": [
+        -4028.5,
+        34637.8,
+        2829.0
+      ],
+      "yaw_deg": 445.71,
+      "pitch_deg": 2.075,
+      "roll_deg": -5.189,
+      "len_cm": 1525.9,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -1623.0,
+        36160.8,
+        3335.5
+      ],
+      "yaw_deg": 93.46,
+      "pitch_deg": 3.817,
+      "roll_deg": -15.068,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -1806.4,
+        37671.2,
+        3423.9
+      ],
+      "yaw_deg": 100.38,
+      "pitch_deg": 2.93,
+      "roll_deg": -16.568,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -2170.5,
+        39148.5,
+        3503.9
+      ],
+      "yaw_deg": 107.31,
+      "pitch_deg": 3.184,
+      "roll_deg": -18.607,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -2710.1,
+        40571.2,
+        3574.6
+      ],
+      "yaw_deg": 114.23,
+      "pitch_deg": 2.465,
+      "roll_deg": -20.627,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -3417.2,
+        41918.5,
+        3604.9
+      ],
+      "yaw_deg": 121.15,
+      "pitch_deg": -0.45,
+      "roll_deg": -21.001,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -4281.5,
+        43170.7,
+        3580.9
+      ],
+      "yaw_deg": 128.08,
+      "pitch_deg": -1.544,
+      "roll_deg": -20.147,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -5290.5,
+        44309.5,
+        3527.8
+      ],
+      "yaw_deg": 135.0,
+      "pitch_deg": -1.962,
+      "roll_deg": -18.08,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -6429.3,
+        45318.5,
+        3501.2
+      ],
+      "yaw_deg": 141.92,
+      "pitch_deg": -0.497,
+      "roll_deg": -16.401,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -7681.5,
+        46182.8,
+        3490.9
+      ],
+      "yaw_deg": 148.85,
+      "pitch_deg": -0.557,
+      "roll_deg": -16.449,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -9028.8,
+        46889.9,
+        3461.7
+      ],
+      "yaw_deg": 155.77,
+      "pitch_deg": -1.6,
+      "roll_deg": -16.56,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -10451.5,
+        47429.5,
+        3414.1
+      ],
+      "yaw_deg": 162.69,
+      "pitch_deg": -1.875,
+      "roll_deg": -16.316,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -11928.8,
+        47793.6,
+        3354.8
+      ],
+      "yaw_deg": 169.62,
+      "pitch_deg": -2.183,
+      "roll_deg": -15.035,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -13439.2,
+        47977.0,
+        3302.2
+      ],
+      "yaw_deg": 176.54,
+      "pitch_deg": -2.612,
+      "roll_deg": -13.21,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -14960.8,
+        47977.0,
+        3215.3
+      ],
+      "yaw_deg": 183.46,
+      "pitch_deg": -3.706,
+      "roll_deg": -11.38,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -16471.2,
+        47793.6,
+        3113.6
+      ],
+      "yaw_deg": 190.38,
+      "pitch_deg": -3.973,
+      "roll_deg": -9.406,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -17948.5,
+        47429.5,
+        3013.0
+      ],
+      "yaw_deg": 197.31,
+      "pitch_deg": -3.599,
+      "roll_deg": -7.439,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -19371.2,
+        46889.9,
+        2920.5
+      ],
+      "yaw_deg": 204.23,
+      "pitch_deg": -3.11,
+      "roll_deg": -5.609,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -20718.5,
+        46182.8,
+        2845.2
+      ],
+      "yaw_deg": 211.15,
+      "pitch_deg": -2.482,
+      "roll_deg": -4.009,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -21970.7,
+        45318.5,
+        2794.7
+      ],
+      "yaw_deg": 218.08,
+      "pitch_deg": -1.264,
+      "roll_deg": -2.163,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -23109.5,
+        44309.5,
+        2782.0
+      ],
+      "yaw_deg": 225.0,
+      "pitch_deg": 0.11,
+      "roll_deg": -0.355,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -24118.5,
+        43170.7,
+        2797.3
+      ],
+      "yaw_deg": 231.92,
+      "pitch_deg": 1.253,
+      "roll_deg": 0.129,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -24982.8,
+        41918.5,
+        2849.3
+      ],
+      "yaw_deg": 238.85,
+      "pitch_deg": 2.484,
+      "roll_deg": -0.717,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -25689.9,
+        40571.2,
+        2923.8
+      ],
+      "yaw_deg": 245.77,
+      "pitch_deg": 3.231,
+      "roll_deg": -1.45,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26229.5,
+        39148.5,
+        3019.3
+      ],
+      "yaw_deg": 252.69,
+      "pitch_deg": 3.414,
+      "roll_deg": -2.178,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26593.6,
+        37671.2,
+        3106.1
+      ],
+      "yaw_deg": 259.62,
+      "pitch_deg": 3.42,
+      "roll_deg": -3.113,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26777.0,
+        36160.8,
+        3199.9
+      ],
+      "yaw_deg": 266.54,
+      "pitch_deg": 4.175,
+      "roll_deg": -3.038,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26777.0,
+        34639.2,
+        3329.6
+      ],
+      "yaw_deg": 273.46,
+      "pitch_deg": 5.054,
+      "roll_deg": -2.087,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26593.6,
+        33128.8,
+        3466.3
+      ],
+      "yaw_deg": 280.38,
+      "pitch_deg": 4.689,
+      "roll_deg": -2.211,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -26229.5,
+        31651.5,
+        3548.9
+      ],
+      "yaw_deg": 287.31,
+      "pitch_deg": 1.188,
+      "roll_deg": -3.333,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -25689.9,
+        30228.8,
+        3522.5
+      ],
+      "yaw_deg": 294.23,
+      "pitch_deg": -3.865,
+      "roll_deg": -4.491,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -24982.8,
+        28881.5,
+        3355.0
+      ],
+      "yaw_deg": 301.15,
+      "pitch_deg": -6.878,
+      "roll_deg": -5.381,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -24118.5,
+        27629.3,
+        3257.8
+      ],
+      "yaw_deg": 308.08,
+      "pitch_deg": 2.08,
+      "roll_deg": -7.304,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -23109.5,
+        26490.5,
+        3384.7
+      ],
+      "yaw_deg": 315.0,
+      "pitch_deg": 4.032,
+      "roll_deg": -8.757,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -21970.7,
+        25481.5,
+        3456.6
+      ],
+      "yaw_deg": 321.92,
+      "pitch_deg": 0.736,
+      "roll_deg": -7.295,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -20718.5,
+        24617.2,
+        3412.5
+      ],
+      "yaw_deg": 328.85,
+      "pitch_deg": -4.03,
+      "roll_deg": -5.41,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -19371.2,
+        23910.1,
+        3252.0
+      ],
+      "yaw_deg": 335.77,
+      "pitch_deg": -7.626,
+      "roll_deg": -4.776,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -16471.2,
+        23006.4,
+        2847.5
+      ],
+      "yaw_deg": 349.62,
+      "pitch_deg": -3.889,
+      "roll_deg": -1.215,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -14960.8,
+        22823.0,
+        2808.8
+      ],
+      "yaw_deg": 356.54,
+      "pitch_deg": -0.923,
+      "roll_deg": 0.147,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -13439.2,
+        22823.0,
+        2786.9
+      ],
+      "yaw_deg": 363.46,
+      "pitch_deg": -0.776,
+      "roll_deg": 0.337,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -11928.8,
+        23006.4,
+        2769.0
+      ],
+      "yaw_deg": 370.38,
+      "pitch_deg": -0.529,
+      "roll_deg": 0.59,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -10451.5,
+        23370.5,
+        2760.6
+      ],
+      "yaw_deg": 377.31,
+      "pitch_deg": -0.038,
+      "roll_deg": 0.28,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -9028.8,
+        23910.1,
+        2763.9
+      ],
+      "yaw_deg": 384.23,
+      "pitch_deg": -0.143,
+      "roll_deg": -0.05,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -7681.5,
+        24617.2,
+        2759.6
+      ],
+      "yaw_deg": 391.15,
+      "pitch_deg": 0.185,
+      "roll_deg": -0.127,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -6429.3,
+        25481.5,
+        2764.9
+      ],
+      "yaw_deg": 398.08,
+      "pitch_deg": 0.163,
+      "roll_deg": -0.351,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -5290.5,
+        26490.5,
+        2768.8
+      ],
+      "yaw_deg": 405.0,
+      "pitch_deg": -0.073,
+      "roll_deg": -0.364,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -4281.5,
+        27629.3,
+        2767.6
+      ],
+      "yaw_deg": 411.92,
+      "pitch_deg": 0.486,
+      "roll_deg": -0.979,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -3417.2,
+        28881.5,
+        2807.7
+      ],
+      "yaw_deg": 418.85,
+      "pitch_deg": 2.629,
+      "roll_deg": -3.297,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -2710.1,
+        30228.8,
+        2891.3
+      ],
+      "yaw_deg": 425.77,
+      "pitch_deg": 3.741,
+      "roll_deg": -6.383,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -2170.5,
+        31651.5,
+        2995.8
+      ],
+      "yaw_deg": 432.69,
+      "pitch_deg": 4.014,
+      "roll_deg": -9.021,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -1806.4,
+        33128.8,
+        3106.4
+      ],
+      "yaw_deg": 439.62,
+      "pitch_deg": 4.31,
+      "roll_deg": -11.158,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "ring",
+      "ring": 4,
+      "loc_cm": [
+        -1623.0,
+        34639.2,
+        3227.6
+      ],
+      "yaw_deg": 446.54,
+      "pitch_deg": 4.572,
+      "roll_deg": -13.238,
+      "len_cm": 1522.5,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -12242.9,
+        35400.0,
+        2792.4
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": 0.034,
+      "roll_deg": -0.656,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -11128.6,
+        35400.0,
+        2787.3
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": -0.419,
+      "roll_deg": -0.64,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -10014.3,
+        35400.0,
+        2777.4
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": -1.035,
+      "roll_deg": -0.453,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -8900.0,
+        35400.0,
+        2755.0
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": -0.792,
+      "roll_deg": -0.031,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -7785.7,
+        35400.0,
+        2740.6
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": -0.289,
+      "roll_deg": -0.328,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -6671.4,
+        35400.0,
+        2741.1
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": -0.04,
+      "roll_deg": -0.476,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -5557.1,
+        35400.0,
+        2749.1
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": 1.609,
+      "roll_deg": 0.398,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 0,
+      "loc_cm": [
+        -4442.9,
+        35400.0,
+        2814.7
+      ],
+      "yaw_deg": 0.0,
+      "pitch_deg": 4.975,
+      "roll_deg": 1.506,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -12616.6,
+        36550.4,
+        2774.8
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": -0.384,
+      "roll_deg": -0.501,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -11715.2,
+        37205.3,
+        2769.1
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": -0.384,
+      "roll_deg": -0.363,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -10813.7,
+        37860.3,
+        2759.8
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": -0.584,
+      "roll_deg": -0.286,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -9912.2,
+        38515.3,
+        2747.5
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": -0.722,
+      "roll_deg": -0.202,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -9010.7,
+        39170.2,
+        2736.2
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": -0.493,
+      "roll_deg": -0.141,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -8109.3,
+        39825.2,
+        2732.2
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": 1.39,
+      "roll_deg": -0.265,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 1,
+      "loc_cm": [
+        -7207.8,
+        40480.1,
+        2791.9
+      ],
+      "yaw_deg": 36.0,
+      "pitch_deg": 4.462,
+      "roll_deg": -0.376,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -13595.2,
+        37261.4,
+        2766.0
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": -0.315,
+      "roll_deg": 0.01,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -13250.9,
+        38321.1,
+        2766.8
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": -0.019,
+      "roll_deg": 0.199,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -12906.5,
+        39380.9,
+        2764.3
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": 0.04,
+      "roll_deg": 0.342,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -12562.2,
+        40440.6,
+        2767.7
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": 0.164,
+      "roll_deg": 0.561,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -12217.9,
+        41500.3,
+        2768.1
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": -0.088,
+      "roll_deg": 0.491,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -11873.5,
+        42560.1,
+        2765.5
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": 0.206,
+      "roll_deg": 0.327,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -11529.2,
+        43619.8,
+        2785.9
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": 2.289,
+      "roll_deg": -0.054,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 2,
+      "loc_cm": [
+        -11184.9,
+        44679.6,
+        2866.8
+      ],
+      "yaw_deg": 72.0,
+      "pitch_deg": 6.047,
+      "roll_deg": -0.343,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -14804.8,
+        37261.4,
+        2767.0
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": -0.255,
+      "roll_deg": 0.28,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -15149.1,
+        38321.1,
+        2768.0
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": 0.148,
+      "roll_deg": 0.012,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -15493.5,
+        39380.9,
+        2774.0
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": 0.215,
+      "roll_deg": -0.066,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -15837.8,
+        40440.6,
+        2774.1
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": -0.152,
+      "roll_deg": -0.019,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -16182.1,
+        41500.3,
+        2770.2
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": -0.085,
+      "roll_deg": 0.353,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -16526.5,
+        42560.1,
+        2770.5
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": -0.105,
+      "roll_deg": 0.523,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -16870.8,
+        43619.8,
+        2763.3
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": -0.271,
+      "roll_deg": 0.221,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -17215.1,
+        44679.6,
+        2774.1
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": 1.704,
+      "roll_deg": -0.58,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -17559.5,
+        45739.3,
+        2829.7
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": 4.093,
+      "roll_deg": -1.776,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 3,
+      "loc_cm": [
+        -17903.8,
+        46799.1,
+        2931.8
+      ],
+      "yaw_deg": 108.0,
+      "pitch_deg": 6.165,
+      "roll_deg": -3.007,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -15783.4,
+        36550.4,
+        2780.0
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.038,
+      "roll_deg": 0.743,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -16684.8,
+        37205.3,
+        2782.3
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.17,
+      "roll_deg": 0.67,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -17586.3,
+        37860.3,
+        2788.7
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.375,
+      "roll_deg": 0.505,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -18487.8,
+        38515.3,
+        2797.5
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.804,
+      "roll_deg": 0.816,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -19389.3,
+        39170.2,
+        2818.7
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.85,
+      "roll_deg": 1.758,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -20290.7,
+        39825.2,
+        2831.9
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.694,
+      "roll_deg": 2.539,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -21192.2,
+        40480.1,
+        2836.7
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": -0.225,
+      "roll_deg": 2.928,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -22093.7,
+        41135.1,
+        2823.5
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": -0.924,
+      "roll_deg": 2.549,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -22995.2,
+        41790.1,
+        2807.9
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": -0.19,
+      "roll_deg": 1.758,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -23896.6,
+        42445.0,
+        2812.5
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": -0.15,
+      "roll_deg": 1.553,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -24798.1,
+        43100.0,
+        2812.2
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.591,
+      "roll_deg": 1.851,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -25699.6,
+        43754.9,
+        2824.3
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 0.593,
+      "roll_deg": 2.287,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -26601.1,
+        44409.9,
+        2834.9
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 1.015,
+      "roll_deg": 2.042,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 4,
+      "loc_cm": [
+        -27502.6,
+        45064.9,
+        2876.6
+      ],
+      "yaw_deg": 144.0,
+      "pitch_deg": 3.241,
+      "roll_deg": 1.843,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -16157.1,
+        35400.0,
+        2789.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 0.286,
+      "roll_deg": 0.468,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -17271.4,
+        35400.0,
+        2805.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 0.712,
+      "roll_deg": 0.367,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -18385.7,
+        35400.0,
+        2831.2
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 2.826,
+      "roll_deg": 0.757,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -19500.0,
+        35400.0,
+        2910.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 4.433,
+      "roll_deg": 1.116,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -20614.3,
+        35400.0,
+        2989.0
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 3.906,
+      "roll_deg": 1.194,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -21728.6,
+        35400.0,
+        3055.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 2.808,
+      "roll_deg": 1.311,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -22842.9,
+        35400.0,
+        3115.5
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 4.185,
+      "roll_deg": 1.467,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -23957.1,
+        35400.0,
+        3206.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 3.089,
+      "roll_deg": 2.379,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -25071.4,
+        35400.0,
+        3235.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 1.428,
+      "roll_deg": 4.184,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -26185.7,
+        35400.0,
+        3247.2
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 0.355,
+      "roll_deg": 5.037,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -27300.0,
+        35400.0,
+        3291.4
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 4.201,
+      "roll_deg": 4.557,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -28414.3,
+        35400.0,
+        3385.3
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 3.513,
+      "roll_deg": 4.495,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -29528.6,
+        35400.0,
+        3425.0
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 2.163,
+      "roll_deg": 4.697,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 5,
+      "loc_cm": [
+        -30642.9,
+        35400.0,
+        3485.7
+      ],
+      "yaw_deg": 180.0,
+      "pitch_deg": 4.123,
+      "roll_deg": 3.982,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -15783.4,
+        34249.6,
+        2804.4
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 0.019,
+      "roll_deg": 0.404,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -16684.8,
+        33594.7,
+        2803.8
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 0.407,
+      "roll_deg": 0.169,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -17586.3,
+        32939.7,
+        2824.6
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 1.517,
+      "roll_deg": -0.389,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -18487.8,
+        32284.7,
+        2867.0
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 2.605,
+      "roll_deg": -1.245,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -19389.3,
+        31629.8,
+        2910.0
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 2.179,
+      "roll_deg": -2.593,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -20290.7,
+        30974.8,
+        2958.2
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 2.467,
+      "roll_deg": -3.879,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -21192.2,
+        30319.9,
+        2992.7
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 1.897,
+      "roll_deg": -3.49,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -22093.7,
+        29664.9,
+        3049.5
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 3.289,
+      "roll_deg": -3.427,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -22995.2,
+        29009.9,
+        3109.9
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 3.737,
+      "roll_deg": -3.507,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -23896.6,
+        28355.0,
+        3187.0
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 5.283,
+      "roll_deg": -2.483,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -24798.1,
+        27700.0,
+        3293.1
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 5.691,
+      "roll_deg": -1.703,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -25699.6,
+        27045.1,
+        3418.7
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 5.992,
+      "roll_deg": -1.269,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -26601.1,
+        26390.1,
+        3521.0
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 4.454,
+      "roll_deg": -0.915,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 6,
+      "loc_cm": [
+        -27502.6,
+        25735.1,
+        3596.2
+      ],
+      "yaw_deg": 216.0,
+      "pitch_deg": 2.939,
+      "roll_deg": -0.025,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -14804.8,
+        33538.6,
+        2807.7
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.166,
+      "roll_deg": -0.029,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -15149.1,
+        32478.9,
+        2806.4
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": -0.192,
+      "roll_deg": -0.144,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -15493.5,
+        31419.1,
+        2811.3
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.75,
+      "roll_deg": -0.188,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -15837.8,
+        30359.4,
+        2825.3
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.522,
+      "roll_deg": -0.501,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -16182.1,
+        29299.7,
+        2834.9
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.302,
+      "roll_deg": -0.844,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -16526.5,
+        28239.9,
+        2837.1
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.059,
+      "roll_deg": -0.918,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -16870.8,
+        27180.2,
+        2846.7
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 0.952,
+      "roll_deg": -1.532,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -17215.1,
+        26120.4,
+        2865.9
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 1.678,
+      "roll_deg": -3.151,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -17559.5,
+        25060.7,
+        2919.9
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 4.089,
+      "roll_deg": -5.136,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -17903.8,
+        24000.9,
+        3013.4
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 3.871,
+      "roll_deg": -7.177,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -18248.1,
+        22941.2,
+        3088.8
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 6.004,
+      "roll_deg": -8.498,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -18592.5,
+        21881.4,
+        3199.3
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 3.108,
+      "roll_deg": -8.75,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -18936.8,
+        20821.7,
+        3201.3
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": -2.067,
+      "roll_deg": -8.434,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 7,
+      "loc_cm": [
+        -19281.1,
+        19761.9,
+        3177.2
+      ],
+      "yaw_deg": 252.0,
+      "pitch_deg": 1.187,
+      "roll_deg": -6.0,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -13595.2,
+        33538.6,
+        2807.7
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": 0.249,
+      "roll_deg": -0.095,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -13250.9,
+        32478.9,
+        2806.4
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.581,
+      "roll_deg": 0.169,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -12906.5,
+        31419.1,
+        2791.8
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.085,
+      "roll_deg": -0.321,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -12562.2,
+        30359.4,
+        2796.5
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": 0.006,
+      "roll_deg": -1.065,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -12217.9,
+        29299.7,
+        2796.6
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.236,
+      "roll_deg": -1.24,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -11873.5,
+        28239.9,
+        2790.2
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.343,
+      "roll_deg": -1.004,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -11529.2,
+        27180.2,
+        2776.5
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.564,
+      "roll_deg": -0.773,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -11184.9,
+        26120.4,
+        2771.1
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.193,
+      "roll_deg": -0.478,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -10840.5,
+        25060.7,
+        2768.3
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.154,
+      "roll_deg": -0.198,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -10496.2,
+        24000.9,
+        2765.7
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.284,
+      "roll_deg": -0.114,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -10151.9,
+        22941.2,
+        2759.2
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.007,
+      "roll_deg": 0.19,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -9807.5,
+        21881.4,
+        2761.9
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": 0.135,
+      "roll_deg": 0.364,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -9463.2,
+        20821.7,
+        2761.9
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": -0.058,
+      "roll_deg": 0.078,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 8,
+      "loc_cm": [
+        -9118.9,
+        19761.9,
+        2762.2
+      ],
+      "yaw_deg": 288.0,
+      "pitch_deg": 0.105,
+      "roll_deg": -0.057,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -12616.6,
+        34249.6,
+        2804.1
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.186,
+      "roll_deg": -0.387,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -11715.2,
+        33594.7,
+        2802.8
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": -0.124,
+      "roll_deg": -0.373,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -10813.7,
+        32939.7,
+        2785.6
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": -1.906,
+      "roll_deg": -0.191,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -9912.2,
+        32284.7,
+        2752.0
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": -0.988,
+      "roll_deg": -0.19,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -9010.7,
+        31629.8,
+        2743.5
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.225,
+      "roll_deg": 0.132,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -8109.3,
+        30974.8,
+        2753.2
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.282,
+      "roll_deg": 0.392,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -7207.8,
+        30319.9,
+        2756.2
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.18,
+      "roll_deg": 0.258,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -6306.3,
+        29664.9,
+        2758.8
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.175,
+      "roll_deg": 0.198,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -5404.8,
+        29009.9,
+        2761.9
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.124,
+      "roll_deg": 0.123,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -4503.4,
+        28355.0,
+        2765.2
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 0.382,
+      "roll_deg": 0.297,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -3601.9,
+        27700.0,
+        2787.0
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 2.291,
+      "roll_deg": 1.799,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -2700.4,
+        27045.1,
+        2853.3
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 4.898,
+      "roll_deg": 4.037,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    },
+    {
+      "kind": "spoke",
+      "spoke": 9,
+      "loc_cm": [
+        -1798.9,
+        26390.1,
+        2974.1
+      ],
+      "yaw_deg": 324.0,
+      "pitch_deg": 7.557,
+      "roll_deg": 5.898,
+      "len_cm": 1114.3,
+      "width_cm": 700.0
+    }
+  ],
+  "_input_sha256": {
+    "scripts/plan_city.py": "c70ad130b0514f7254cb84a694570043bc464120a5b4cc245e7dfdeacba14ce6",
+    "_verify/20260831_coast_benchmark/city_recipe.json": "f6c8cc512fdfa8e2779c31fa4e377daa09b7c981c1e14c43cd2c04d35bea982b",
+    "_verify/20260831_coast_benchmark/coast_bench.json": "478107b915cc65ee3d915ad71abc162014775538e405fb8b62219b8177a34551",
+    "terrain/coast_bench.png": "90f01ae8f9265daf29c47a3d02c062d1ba657e64b794c5e2b4e3a173750805f4"
+  }
+}

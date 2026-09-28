@@ -1,0 +1,37 @@
+{
+  "reference": "hero/reference/hero_face_bald_frontal.jpg",
+  "reference_regions": {
+    "jaw_width": 1.711739370224275,
+    "cheek_width": 2.1212592106824184,
+    "temple_width": 2.1363364071237534,
+    "nose_bridge": 0.23094152039356086,
+    "eye_spacing": 0.5107583628620855,
+    "chin_height": -1.8190848337609051,
+    "brow_height": 0.2168637129513657
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "png": "fit_i1_r1_20260819T052808Z.png",
+      "total_abs_delta_ipd": 0.21301,
+      "ipd_px": 424.066,
+      "regions": {
+        "chin_height": -0.04214,
+        "jaw_width": -0.11287,
+        "cheek_width": 0.019,
+        "temple_width": 0.03901
+      },
+      "commands": {
+        "chin_height": -0.192,
+        "jaw_width": -0.1644,
+        "temple_width": 0.1084
+      },
+      "cumulative_cm": {
+        "chin_height": -0.192,
+        "jaw_width": -0.1644,
+        "cheek_width": 0.0,
+        "temple_width": 0.1084
+      }
+    }
+  ]
+}

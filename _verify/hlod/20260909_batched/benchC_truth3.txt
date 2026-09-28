@@ -1,0 +1,10 @@
+bench_capture — profile target, 1 job(s), 3840x2160, temporal x8
+  out: C:\Users\Admin\UE5LandscapePipeline\_verify\bench\2026-09-07\target
+  residency: expect 1024 landscape components, 180 warm-up frames, probe REQUIRED
+  instrument: TRUTH — editor, force-loaded, HighResShot. Expecting 1024/1024 components.
+  - C7B0BE1C465D255EA9667CACEDEFADA0 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  editor census after force-load: 256 proxies, 1024/1024 components, 217102 foliage instances
+  shoot near_ground ...
+  near_ground  [3840, 2160]  luma 0.3634  featureless 17.9%
+  sidecar: _verify\bench\2026-09-07\bench_run_target.json
+OK — truth frames captured at full residency.

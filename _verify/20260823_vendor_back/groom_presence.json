@@ -1,0 +1,222 @@
+{
+  "stamp": "vback",
+  "subject": "HeroInWorld",
+  "out_dir": "C:/Users/Admin/UE5LandscapePipeline/_verify/20260823_vendor_back",
+  "delta_threshold": 8.0,
+  "floor_factor": 3.0,
+  "tolerance": 0.3,
+  "reproduced": true,
+  "crown_min_frac": 0.1,
+  "required": [
+    "Beard",
+    "Mustache",
+    "Eyebrows",
+    "Hair"
+  ],
+  "pass1": {
+    "floor_px": 2058,
+    "control_px": 367288,
+    "results": {
+      "Beard": {
+        "changed_px": 14939,
+        "frac_of_stable": 0.00592946637977877,
+        "changed_px_whole_frame": 300844,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          1103.1417096191178,
+          893.6646361871611
+        ],
+        "crown_px": 1756,
+        "crown_frac": 0.11754468170560278,
+        "verdict": "PRESENT"
+      },
+      "Eyebrows": {
+        "changed_px": 7563,
+        "frac_of_stable": 0.0030018444494455338,
+        "changed_px_whole_frame": 293267,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          1122.2670897791882,
+          682.632156551633
+        ],
+        "crown_px": 5628,
+        "crown_frac": 0.7441491471638239,
+        "verdict": "PRESENT"
+      },
+      "Hair": {
+        "changed_px": 55462,
+        "frac_of_stable": 0.02201352596260058,
+        "changed_px_whole_frame": 378536,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          982.3596877141106,
+          551.6218491940427
+        ],
+        "crown_px": 44540,
+        "crown_frac": 0.8030723738776099,
+        "verdict": "PRESENT"
+      },
+      "Mustache": {
+        "changed_px": 3962,
+        "frac_of_stable": 0.0015725648167001461,
+        "changed_px_whole_frame": 292615,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          1128.4235234729933,
+          785.251135790005
+        ],
+        "crown_px": 1754,
+        "crown_frac": 0.44270570418980315,
+        "verdict": "ABSENT"
+      }
+    }
+  },
+  "final": {
+    "floor_px": 2076,
+    "bar_px": 6228.0,
+    "control_px": 368572,
+    "control_component": "Face",
+    "stable_px": 2523017,
+    "total_px": 4194304,
+    "aa": {
+      "was": 4,
+      "set": 0,
+      "read_back": 0
+    },
+    "viewport": {
+      "loc": [
+        354538.0,
+        -321445.0,
+        31195.47
+      ],
+      "rot": [
+        0.0,
+        -5.0,
+        36.0
+      ]
+    },
+    "frame_count": 478551,
+    "grooms": {
+      "Hair": {
+        "groom": "Hair_M_SideSweptFringe",
+        "binding": "Hair_M_SideSweptFringe_Binding",
+        "visible": true
+      },
+      "Eyebrows": {
+        "groom": "Eyebrows_M_Dense",
+        "binding": "Eyebrows_M_Dense_Binding",
+        "visible": true
+      },
+      "Mustache": {
+        "groom": "Mustache_S_Full",
+        "binding": "Mustache_S_Full_Binding",
+        "visible": true
+      },
+      "Beard": {
+        "groom": "Beard_S_Full",
+        "binding": "Beard_S_Full_Binding",
+        "visible": true
+      }
+    },
+    "results": {
+      "Beard": {
+        "changed_px": 15207,
+        "frac_of_stable": 0.006027307782706181,
+        "changed_px_whole_frame": 302089,
+        "bbox": [
+          2,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          1104.4641283619385,
+          896.5062142434405
+        ],
+        "crown_px": 1743,
+        "crown_frac": 0.11461826790293944,
+        "verdict": "PRESENT"
+      },
+      "Eyebrows": {
+        "changed_px": 7834,
+        "frac_of_stable": 0.0031050127684434945,
+        "changed_px_whole_frame": 293930,
+        "bbox": [
+          1,
+          0,
+          2047,
+          2044
+        ],
+        "centroid": [
+          1131.145902476385,
+          701.1239468981363
+        ],
+        "crown_px": 5713,
+        "crown_frac": 0.7292570845034465,
+        "verdict": "PRESENT"
+      },
+      "Hair": {
+        "changed_px": 55271,
+        "frac_of_stable": 0.021906709308736328,
+        "changed_px_whole_frame": 378665,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2047
+        ],
+        "centroid": [
+          982.476886613233,
+          552.6815147183876
+        ],
+        "crown_px": 44288,
+        "crown_frac": 0.8012881981509291,
+        "verdict": "PRESENT"
+      },
+      "Mustache": {
+        "changed_px": 4082,
+        "frac_of_stable": 0.00161790427888516,
+        "changed_px_whole_frame": 293625,
+        "bbox": [
+          0,
+          0,
+          2047,
+          2043
+        ],
+        "centroid": [
+          1148.4407153356199,
+          798.0347868691817
+        ],
+        "crown_px": 1767,
+        "crown_frac": 0.4328760411562959,
+        "verdict": "ABSENT"
+      }
+    }
+  },
+  "drift": {
+    "Beard": 0.017623462878937332,
+    "Eyebrows": 0.03459280061271381,
+    "Hair": 0.0034437993581190726,
+    "Mustache": 0.02939735423811857
+  }
+}

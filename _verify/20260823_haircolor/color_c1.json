@@ -1,0 +1,22 @@
+{
+  "_note": "Cycle C1. Target from the operator's breakdown: shadow #141517, midtone #2A2C31, highlight #52565D -- all COOL (B > G > R). The measured baseline is warm at every zone (midtone R-B +18.6, highlight +51.8) and its highlight is 4.2x its midtone where the target is 2.0x. So: redness out, a cool dye in, and the highlights darkened.",
+  "targets": [
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Cards",
+    "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/MI_WI_Hair_M_SideSweptFringe_None_1_Hair_Helmet"
+  ],
+  "scalars": {
+    "hairRedness": 0.02,
+    "HighlightsRedness": 0.02,
+    "OmbreRedness": 0.02,
+    "RegionRedness": 0.02,
+    "HighlightsMelanin": 0.55,
+    "TRTIntensity": 0.04
+  },
+  "vectors": {
+    "hairDye": [0.86, 0.95, 1.12],
+    "HighlightshairDye": [0.86, 0.95, 1.12],
+    "OmbrehairDye": [0.86, 0.95, 1.12],
+    "RegionhairDye": [0.86, 0.95, 1.12]
+  }
+}

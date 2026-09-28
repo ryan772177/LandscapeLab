@@ -1,0 +1,79 @@
+
+=== batch_00 (attempt 1) ===
+    cells in section: 191   over_5mb now: 705
+    [  0.2 min] 1/191  approve=0 reject=0  vram=344 peak=344  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y18
+    [  0.5 min] 191/191  approve=0 reject=191  vram=128 peak=1181  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y5
+    done rc=1 in 0.5 min | built=191 approve=0 reject=191 | over5mb 705 -> 705 (-0) | vram peak 1181 MiB | true_exit=True | written=16 torn=0 last_write_to_exit=18.615s
+warning: in the working copy of '_verify/hlod/20260909_batched/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/20260909_batched/batch_00.log', LF will be replaced by CRLF the next time Git touches it
+[main 1616ebd8] HLOD batch 00: 191 built, over-5MB 705 -> 705, 0.5 min, VRAM peak 1181 MiB
+ 4 files changed, 3365 insertions(+), 1 deletion(-)
+ create mode 100644 _verify/hlod/20260909_batched/_commitmsg.txt
+ create mode 100644 _verify/hlod/20260909_batched/batch_00.log
+ create mode 100644 _verify/hlod/20260909_batched/driver_batch00.txt
+
+FINAL census: {"packages_listed": 2267, "packages_present": 2267, "packages_missing": 0, "missing_sample": [], "over_5mb": 705, "under_3mb": 1473, "shorter_than_1kb": 0, "total_bytes": 10426625137, "total_gb": 10.427}
+stride: [
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+    "bytes": 83176,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+    "bytes": 74225,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+    "bytes": 7684845,
+    "band": "STALE>5MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+    "bytes": 53978,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+    "bytes": 247437,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+    "bytes": 113638,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+    "bytes": 1307668,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+    "bytes": 1189640,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+    "bytes": 75943,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+    "bytes": 22158033,
+    "band": "STALE>5MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+    "bytes": 312585,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+    "bytes": 15318845,
+    "band": "STALE>5MB"
+  }
+]
+
+NOT DONE: 705 packages still over 5 MB.

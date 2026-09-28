@@ -1,0 +1,116 @@
+{
+ "_what": "THE DECISIVE TEST for import_whole_rig=True, run on an EXPENDABLE duplicate. Does the whole-rig path hold its own measurement at an edited state, and does a commanded edit render 1:1?",
+ "_why": "The parametric path (import_whole_rig=False) degrades its own reproducibility about 4x once edits accumulate -- 0.27 cm floor at cumulative 0.3..0.7 cm against 0.0698 cm canonical -- because FitToFaceDna re-solves the whole parametric state on every import. That ceiling is what this test is aimed at.",
+ "session_utc": "20260819T04",
+ "character_under_test": "/Game/Hero/MHC_AlpineHero_Scratch  (duplicate; the working character and the master were never written)",
+ "dna_edited": {
+  "path": "LandscapeLab/Saved/HeroDNA/wholerig_chin_down2cm.dna",
+  "sha256": "ff9e44b11848e9e41e06082b94461d257771a1aa462a63b732abb6d19ecaf1f9",
+  "_provenance": "regenerated from the canonical DNA through the manifest's own chin_jaw region, and BYTE-IDENTICAL to the prior session's jaw_down2cm_feathered.dna -- so the fit-path and whole-rig arms consumed the same bytes.",
+  "region": "chin_jaw",
+  "delta_cm": [
+   0.0,
+   -2.0,
+   0.0
+  ],
+  "feather_band_cm": 2.5,
+  "weighted_vertices": 6703,
+  "core_vertices": 1661
+ },
+ "floors": {
+  "0_scratch_parametric_canonical": {
+   "measured_utc": "20260819T042126Z",
+   "p90_ipd": 0.006187,
+   "p90_cm": 0.0463,
+   "max_cm": 0.07048,
+   "pair_spread_ratio": 1.98,
+   "shots": [
+    "noise_a",
+    "noise_b",
+    "noise_c",
+    "noise_d"
+   ],
+   "cycle_assemble": true,
+   "settle": 2
+  },
+  "A_wholerig_canonical_dna": {
+   "measured_utc": "20260819T042857Z",
+   "p90_ipd": 0.011188,
+   "p90_cm": 0.08371,
+   "max_cm": 0.1324,
+   "pair_spread_ratio": 3.82,
+   "shots": [
+    "noise_a",
+    "noise_b",
+    "noise_c",
+    "noise_d"
+   ],
+   "cycle_assemble": true,
+   "settle": 2
+  },
+  "B_wholerig_edited_dna": {
+   "measured_utc": "20260819T043715Z",
+   "p90_ipd": 0.007575,
+   "p90_cm": 0.05593,
+   "max_cm": 0.08259,
+   "pair_spread_ratio": 1.96,
+   "shots": [
+    "noise_a",
+    "noise_b",
+    "noise_c",
+    "noise_d"
+   ],
+   "cycle_assemble": true,
+   "settle": 2
+  },
+  "_reference_fit_path": {
+   "canonical_cm": 0.0698,
+   "edited_cm": 0.27,
+   "edited_spread": 5.52,
+   "gate": "REFUSED",
+   "_note": "measured on the working character earlier the same session / the session before, fit path, cumulative 0.3..0.7 cm"
+  }
+ },
+ "identity_arm": {
+  "render_delta_p90_cm": 0.0486,
+  "x_floor": 1.05,
+  "passed": true,
+  "per_measure_agreement_vs_pre_import_cm": {
+   "chin_height": 0.005,
+   "jaw_width": 0.001,
+   "brow_height": 0.003,
+   "nose_bridge": 0.004
+  },
+  "_note": "state 0 (parametric canonical) vs state A (whole-rig canonical DNA): every landmark measure agrees within 0.005 cm, an order below the floor. A whole-rig import of the canonical DNA reproduces the parametric face."
+ },
+ "chin_ratio": {
+  "commanded_cm": -2.0,
+  "rendered_cm": -1.96132,
+  "ratio": 0.9807,
+  "frame_sd_cm": 0.013,
+  "frames": {
+   "A": 6,
+   "B": 5
+  },
+  "_fit_path_comparator": {
+   "rendered_cm": -2.1553,
+   "ratio": 1.078,
+   "_same_dna_bytes": true
+  }
+ },
+ "out_of_region_movement_cm": {
+  "jaw_width": 0.068,
+  "cheek_width": 0.064,
+  "temple_width": 0.029,
+  "eye_spacing": 0.007,
+  "brow_height": -0.125,
+  "nose_bridge": -0.211,
+  "_floor_cm": 0.0559,
+  "_reading": "jaw/cheek/temple/eye sit at or near the floor -- the edit is REGIONAL. brow_height and nose_bridge moved 2x-4x the floor while sitting entirely outside the edit box (box tops at Y 160.5; the eyes are at Y 165.6+ and were provably untouched -- the edit self-verified 512 zero-weight vertices). Pose moved with them: roll -0.06 -> +0.60 deg, yaw_frac 0.5029 -> 0.5209, ipd 429 -> 422 px. NOT a rigid pitch (a pitch foreshortens chin and brow TOGETHER; here chin lengthened 15% while brow shortened 6%). Most likely the LANDMARK MODEL re-fitting to an out-of-distribution long jaw, i.e. instrument bias, not geometry. UNRESOLVED, and it bounds the ratio's accuracy at about 0.1-0.2 cm rather than at the 0.013 cm frame spread."
+ },
+ "body_type_lock": {
+  "fixed_body_type_after_two_wholerig_imports": false,
+  "_note": "MEASURED, NOT CONCLUDED. The reflected `fixed_body_type` flag reads False on the scratch after two whole-rig imports, the same as the master. The asset is dirty and unsaved, and the lock may live somewhere this flag does not report. The manifest's _import_whole_rig_cost claim is NOT confirmed and NOT refuted."
+ },
+ "verdict": "PASS on both criteria"
+}

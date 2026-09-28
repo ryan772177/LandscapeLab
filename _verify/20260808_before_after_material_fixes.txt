@@ -1,0 +1,121 @@
+BEFORE/AFTER: THE TWO MATERIAL FIXES, MEASURED FROM FRAMES ALREADY ON DISK
+2026-08-08.  Produced during the audit of "VS stuido Work.txt".
+
+WHAT THIS IS
+  The record said the triplanar LOOK was "unmeasured, attended". The render
+  half was in fact already capturable offline: three complete 19-frame sets
+  spanning both fixes were sitting in captures/alpine/. Only the GPU cost
+  needs the viewport.
+
+WHY EACH COMPARISON IS SINGLE-VARIABLE (verified, not assumed)
+  git log fb9a1bc2..75802995 -- scripts/make_landscape_material.py recipes/alpine.json
+      -> 75802995 only, the triplanar _val/_pin fix at :1631
+  git log 75802995..236358db -- (same two paths)
+      -> 236358db only, the _wz -> _wz_axis shadowing fix at :1352
+  Nothing else touched the builder or the recipe between the captures.
+
+CLOUD STATE WAS MEASURED, NOT READ FROM THE NARRATIVE
+  Sky-band luma std, per camera, against two read_cloud_state controls
+  (044118Z ACTIVE, 051749Z INERT). Controls separate on 12 of 18 cameras.
+    044840Z  labelled no_clouds  -> tracks the OFF control to 4 dp on every
+             camera. The transcript's claim that clouds were still on is
+             WRONG for the 18 frames that wrote: the cvars were typed during
+             the ridge_wide shader stall, and ridge_wide is the one frame
+             that timed out and never wrote.
+    170819Z  never read by anyone -> also clouds OFF.
+
+THE NOISE FLOOR IS NOT OPTIONAL
+  044840Z vs 054655Z are two runs at the SAME commit with the SAME cloud
+  state, so everything they differ by is capture noise. LESSONS 2026-08-06:
+  two identical-settings runs once differed by up to 26% on a stranded-pixel
+  metric and a +8% mean was nearly read as confirmation.
+========================================================================
+NOISE FLOOR  same commit, same clouds, two runs
+camera                   mae  %lum>0.01
+cliff_face           0.00115      0.00%
+rock_grounding       0.00220      2.41%
+snowline_detail      0.00128      1.32%
+lod_near             0.00323      4.73%
+forest_floor         0.00408     12.76%
+verify_ground        0.01163     24.50%
+player_eye           0.00339     10.59%
+diag_topdown         0.00250      5.72%
+sweep_0060           0.00117      0.00%
+sweep_0350           0.00138      1.07%
+sweep_1200           0.00160      1.69%
+sweep_2000           0.00214      4.10%
+                     0.00298   <- mean mae over 12 cameras
+
+========================================================================
+TRIPLANAR    fb9a1bc2 inert -> 75802995 live   (clouds ON both)
+camera                   mae  %lum>0.01
+cliff_face           0.00956     59.66%
+rock_grounding       0.07011     81.05%
+snowline_detail      0.01257     43.13%
+lod_near             0.01582     51.34%
+forest_floor         0.03111     72.22%
+verify_ground        0.01475     33.51%
+player_eye           0.03717     61.33%
+diag_topdown         0.00474     18.28%
+sweep_0060           0.00874     70.29%
+sweep_0350           0.01634     63.47%
+sweep_1200           0.01321     73.03%
+sweep_2000           0.06351     68.40%
+                     0.02480   <- mean mae over 12 cameras
+
+========================================================================
+_wz_axis     75802995 bug -> 236358db fixed    (clouds OFF both)
+camera                   mae  %lum>0.01
+cliff_face           0.00133      0.26%
+rock_grounding       0.03952     61.40%
+snowline_detail      0.00184      3.78%
+lod_near             0.00361      5.02%
+forest_floor         0.01267     34.93%
+verify_ground        0.05774     84.95%
+player_eye           0.00587     18.17%
+diag_topdown         0.00647     16.98%
+sweep_0060           0.00101      0.00%
+sweep_0350           0.00167      2.17%
+sweep_1200           0.00126      0.86%
+sweep_2000           0.01988     36.45%
+                     0.01274   <- mean mae over 12 cameras
+
+========================================================================
+WHAT THE NUMBERS SAY
+
+TRIPLANAR clears the noise floor by 8.3x on the mean (0.02480 vs 0.00298)
+and the SPATIAL PATTERN MATCHES THE FEATURE'S OWN GEOMETRY:
+
+  rock_grounding   32x noise   low camera aimed at rock
+  sweep_2000       30x noise
+  player_eye       11x noise
+  cliff_face      8.3x noise, 59.66% of pixels changed
+  diag_topdown    1.9x noise, the WEAKEST -- and it is the DISCRIMINATING
+                  CONTROL, not a disappointment. Looking straight down,
+                  every surface faces the camera, |N.z| ~ 1, and the
+                  triplanar blend collapses to the top-down projection by
+                  construction. The one camera where the feature predicts
+                  near-identity is the one camera that barely moved.
+
+_wz_axis clears the noise floor by 4.3x on the mean (0.01274 vs 0.00298),
+and its pattern likewise matches its mechanism -- the forest-floor tint
+band (:1987) reads world-Z, so cameras spanning altitude move and cameras
+at one elevation do not:
+
+  rock_grounding    18x noise
+  sweep_2000       9.3x noise
+  verify_ground    5.0x noise, 84.95% of pixels changed
+  forest_floor     3.1x noise
+  cliff_face       1.2x noise  -- NO CHANGE, single elevation, rock wall
+  sweep_0060      BELOW noise  -- NO CHANGE
+
+WHAT THIS DOES NOT ESTABLISH, AND IT IS THE IMPORTANT PART
+
+1. NOT that the cliffs look BETTER. This proves the frames DIFFER and that
+   the difference is where each mechanism predicts. Whether the result is
+   the right LOOK is a judgement, and it is Ryan's, not a statistic's.
+2. NOT the GPU cost. Rock albedo went 1 sample -> 3 on an iGPU already at
+   75-94 ms. Still unmeasured, still needs an attended viewport reading.
+3. The triplanar pair spans TWO SESSIONS two days apart; the noise floor is
+   WITHIN one session. A cross-session floor could be larger than 0.00298.
+   The diag_topdown control is what carries this result, not the magnitude.

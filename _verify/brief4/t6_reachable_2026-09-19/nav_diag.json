@@ -1,0 +1,106 @@
+{
+ "ok": false,
+ "error": null,
+ "recastnavmesh_count": 1,
+ "nav_chunk_actors": 64,
+ "water_actor_count": 554,
+ "water_collision_sample": [
+  {
+   "label": "Water_D_headwater_03",
+   "comp": "StaticMeshComponent0",
+   "collision_enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>"
+  },
+  {
+   "label": "Water_cascade_pool_11171_26",
+   "comp": "StaticMeshComponent0",
+   "collision_enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>"
+  },
+  {
+   "label": "Water_cascade_pool_11171_47",
+   "comp": "StaticMeshComponent0",
+   "collision_enabled": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>"
+  }
+ ],
+ "samples": {
+  "plaza": {
+   "ground_z_m": 186.7,
+   "hit_class": "LandscapeStreamingProxy",
+   "ground_z_nowater_m": 186.7,
+   "hit_class_nowater": "LandscapeStreamingProxy",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "main_street": {
+   "ground_z_m": 188.3,
+   "hit_class": "WorldPartitionHLOD",
+   "ground_z_nowater_m": 188.3,
+   "hit_class_nowater": "WorldPartitionHLOD",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "treeline": {
+   "ground_z_m": 631.9,
+   "hit_class": "LandscapeStreamingProxy",
+   "ground_z_nowater_m": 631.9,
+   "hit_class_nowater": "LandscapeStreamingProxy",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "vista": {
+   "ground_z_m": 762.5,
+   "hit_class": "LandscapeStreamingProxy",
+   "ground_z_nowater_m": 762.5,
+   "hit_class_nowater": "LandscapeStreamingProxy",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "NW_corner": {
+   "ground_z_m": 400.3,
+   "hit_class": "WorldPartitionHLOD",
+   "ground_z_nowater_m": 400.3,
+   "hit_class_nowater": "WorldPartitionHLOD",
+   "projects_at_ground": false,
+   "projects_nowater": false
+  },
+  "NE_corner": {
+   "ground_z_m": 290.4,
+   "hit_class": "WorldPartitionHLOD",
+   "ground_z_nowater_m": 290.4,
+   "hit_class_nowater": "WorldPartitionHLOD",
+   "projects_at_ground": false,
+   "projects_nowater": false
+  },
+  "SW_corner": {
+   "ground_z_m": 243.1,
+   "hit_class": "WorldPartitionHLOD",
+   "ground_z_nowater_m": 243.1,
+   "hit_class_nowater": "WorldPartitionHLOD",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "SE_corner": {
+   "ground_z_m": 740.1,
+   "hit_class": "WorldPartitionHLOD",
+   "ground_z_nowater_m": 740.1,
+   "hit_class_nowater": "WorldPartitionHLOD",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "centre": {
+   "ground_z_m": 787.3,
+   "hit_class": "LandscapeStreamingProxy",
+   "ground_z_nowater_m": 787.3,
+   "hit_class_nowater": "LandscapeStreamingProxy",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  },
+  "north_mid": {
+   "ground_z_m": 804.4,
+   "hit_class": "LandscapeStreamingProxy",
+   "ground_z_nowater_m": 804.4,
+   "hit_class_nowater": "LandscapeStreamingProxy",
+   "projects_at_ground": true,
+   "projects_nowater": true
+  }
+ }
+}

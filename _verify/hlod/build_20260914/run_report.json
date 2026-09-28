@@ -1,0 +1,24 @@
+{
+ "_what": "per-batch table and per-layer attribution for this run",
+ "_built_marker_note": "'#### Built N ####' counts cells VISITED, not built, and is deliberately not used",
+ "run_dir": "_verify\\hlod\\build_20260914",
+ "planned_batches": 12,
+ "total_cells": 2267,
+ "batches_done": 1,
+ "cells_done": 191,
+ "approve": 191,
+ "reject": 0,
+ "vram_peak_mb": 14701,
+ "elapsed_min": 64.4,
+ "per_layer": {
+  "Alpine8K_HLODLayer_Instanced": {
+   "approve": 104,
+   "reject": 0
+  },
+  "Alpine8K_HLODLayer_Merged": {
+   "approve": 87,
+   "reject": 0
+  }
+ },
+ "batches_with_untrustworthy_pairing": []
+}

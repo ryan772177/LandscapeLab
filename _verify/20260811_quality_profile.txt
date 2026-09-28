@@ -1,0 +1,106 @@
+20260811 â€” THE CAPABLE-GPU QUALITY PROFILE: measured, then pinned
+================================================================
+
+INTERVENTION (render state only at measurement time):
+  r.Nanite.MaxPixelsPerEdge                     4.0 -> 1.0
+  r.Lumen.HardwareRayTracing.LightingMode         0 -> 1
+  r.Shadow.Virtual.ResolutionLodBiasDirectional   0 -> -0.5
+  sg.GlobalIlluminationQuality                    0 -> 3
+  sg.ReflectionQuality                            0 -> 3
+
+The sg.* GROUPS were confirmed to have APPLIED by reading the
+cvars BaseScalability.ini expands at @3 â€” a different instrument
+than the setter (NN8):
+  r.LumenScene.SurfaceCache.AtlasSize     4096   ok
+  r.Lumen.FinalGatherMethod                  1   ok
+  r.Lumen.DiffuseIndirect.Allow              1   ok
+  r.Lumen.Reflections.DownsampleFactor       1   ok
+  r.Lumen.Reflections.Allow                  1   ok
+  r.SSR.Quality                              3   ok
+
+wp.Runtime.HLOD was REFUSED by render_condition and correctly so:
+it is an FAutoConsoleCommand, not a variable, so it can never read
+back and an ini entry would set nothing.
+
+================================================================
+A. THE QUALITY CVARS ALONE   5080disp -> 5080hq
+================================================================
+NOISE FLOOR from a same-settings pair (triplanar_no_clouds@20260808T044840Z vs triplanar_no_clouds@20260808T054655Z, 18 stations)
+  worst |delta| between two runs that should be identical: 2.08%
+  Anything at or under this is NOT SEPARATED from run-to-run variation.
+
+EDGE ENERGY  5080disp -> 5080hq   (whole frame, 19 stations)
+
+  station                before      after    change
+  verify_ground        0.030491   0.041681   +36.70%  
+  forest_floor         0.022434   0.028550   +27.26%  
+  sweep_0060           0.013073   0.016044   +22.73%  
+  sweep_0150           0.015094   0.017151   +13.63%  
+  cliff_face           0.010498   0.011884   +13.20%  
+  lod_far              0.009093   0.010167   +11.82%  
+  rock_grounding       0.032473   0.035897   +10.55%  
+  lod_near             0.007360   0.008084    +9.83%  
+  diag_topdown         0.017966   0.019662    +9.44%  
+  sweep_0350           0.021012   0.022332    +6.28%  
+  verify_aerial        0.020292   0.021227    +4.61%  
+  ridge_wide           0.011946   0.012308    +3.04%  
+  sweep_2000           0.040516   0.041735    +3.01%  
+  snowline_detail      0.009490   0.009670    +1.90%  (in noise)
+  trunk_base           0.029007   0.029530    +1.80%  (in noise)
+  diag_oblique         0.020123   0.020296    +0.86%  (in noise)
+  sweep_1200           0.019578   0.019684    +0.54%  (in noise)
+  player_eye           0.024707   0.024665    -0.17%  (in noise)
+  sweep_0700           0.013880   0.013705    -1.26%  (in noise)
+
+  mean change    +9.25%
+  median change  +6.28%
+  gained on      17 of 19 stations
+  above the 2.08% noise floor: 13 of 19
+
+Source artefact: the PNG pixels. This shares its source with
+compare_images.py, so the two cannot corroborate each other —
+they ask different questions of one artefact. Edge energy says
+whether high-frequency structure appeared, NOT whether the
+frame looks better.
+
+================================================================
+B. THE WHOLE INTERVENTION   5080sp100 -> 5080hq
+   (displacement + landscape Nanite + the quality profile)
+================================================================
+NOISE FLOOR from a same-settings pair (triplanar_no_clouds@20260808T044840Z vs triplanar_no_clouds@20260808T054655Z, 18 stations)
+  worst |delta| between two runs that should be identical: 2.08%
+  Anything at or under this is NOT SEPARATED from run-to-run variation.
+
+EDGE ENERGY  5080sp100 -> 5080hq   (whole frame, 19 stations)
+
+  station                before      after    change
+  lod_near             0.006549   0.008084   +23.42%  
+  lod_far              0.008291   0.010167   +22.63%  
+  verify_ground        0.035970   0.041681   +15.88%  
+  verify_aerial        0.018950   0.021227   +12.02%  
+  rock_grounding       0.032336   0.035897   +11.01%  
+  trunk_base           0.026716   0.029530   +10.53%  
+  forest_floor         0.025876   0.028550   +10.34%  
+  diag_topdown         0.017914   0.019662    +9.76%  
+  diag_oblique         0.018592   0.020296    +9.16%  
+  sweep_2000           0.038441   0.041735    +8.57%  
+  cliff_face           0.011069   0.011884    +7.36%  
+  ridge_wide           0.011703   0.012308    +5.18%  
+  sweep_0700           0.013186   0.013705    +3.94%  
+  snowline_detail      0.009315   0.009670    +3.81%  
+  sweep_0350           0.021836   0.022332    +2.27%  
+  player_eye           0.025101   0.024665    -1.74%  (in noise)
+  sweep_0150           0.017621   0.017151    -2.67%  
+  sweep_1200           0.020414   0.019684    -3.58%  
+  sweep_0060           0.017003   0.016044    -5.64%  
+
+  mean change    +7.49%
+  median change  +8.57%
+  gained on      15 of 19 stations
+  above the 2.08% noise floor: 18 of 19
+
+Source artefact: the PNG pixels. This shares its source with
+compare_images.py, so the two cannot corroborate each other —
+they ask different questions of one artefact. Edge energy says
+whether high-frequency structure appeared, NOT whether the
+frame looks better.

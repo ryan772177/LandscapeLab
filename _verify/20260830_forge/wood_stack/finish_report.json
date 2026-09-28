@@ -1,0 +1,83 @@
+{
+ "ok": true,
+ "error": null,
+ "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\wood_stack\\SM_WoodStack_Forge_raw.obj",
+ "asset_class": "prop_small",
+ "max_tris": 15000,
+ "before": {
+  "verts": 1400074,
+  "edges": 4202568,
+  "faces": 2801712,
+  "triangles": 2801712,
+  "euler_characteristic": -782,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 392,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [],
+  "has_uvs": false
+ },
+ "decimate_ratio": 0.005354,
+ "decimated": true,
+ "pivot": {
+  "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "moved_by": [
+   0.002818,
+   -0.000129,
+   0.374303
+  ],
+  "z_min_after": 0.0,
+  "base_at_origin": true
+ },
+ "uv_action": "smart_project (MACHINE unwrap, greybox-grade)",
+ "after": {
+  "verts": 6718,
+  "edges": 22500,
+  "faces": 15000,
+  "triangles": 15000,
+  "euler_characteristic": -782,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "genus": 392,
+  "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+  "uv_layers": [
+   "UVMap"
+  ],
+  "has_uvs": true
+ },
+ "bbox_after": {
+  "min": [
+   -0.49651,
+   -0.30663,
+   0.0
+  ],
+  "max": [
+   0.49651,
+   0.30663,
+   0.75245
+  ]
+ },
+ "export_rotation": {
+  "applied_deg": [
+   -90.0,
+   0.0,
+   0.0
+  ],
+  "method": "direct vertex write (operator transform_apply is context-dependent and silently did not take headless)",
+  "z_extent_after_rot": 0.61327,
+  "y_extent_after_rot": 0.75245,
+  "_expect": "z_extent should now equal the pre-rotation Y (0.395) and y_extent the pre-rotation Z (0.915)",
+  "_why": "the FBX round trip rotates +90 about X; this cancels it so UE receives the asset upright. Applied after all measurement, so bbox_after remains Blender-space."
+ },
+ "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\wood_stack\\SM_WoodStack_Forge.fbx",
+ "out_fbx_bytes": 700652,
+ "tri_within_budget": true,
+ "genus_before_after": [
+  392,
+  392
+ ],
+ "genus_reduced": false,
+ "_genus_finding": "DECIMATION DID NOT REDUCE GENUS and was never going to -- edge collapse preserves topology. The triangle budget is met and the handles remain. Closing them needs a real retopology or hole-filling pass, which is a separate unit and is NOT claimed here."
+}

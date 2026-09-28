@@ -1,0 +1,69 @@
+{
+ "label": "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-2_Y0",
+ "command": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/Alpine8K",
+  "-run=WorldPartitionBuilderCommandlet",
+  "-Builder=WorldPartitionHLODsBuilder",
+  "-noxgecontroller",
+  "-AllowCommandletRendering",
+  "-unattended",
+  "-nosplash",
+  "-nopause",
+  "-abslog=C:/Users/Admin/UE5LandscapePipeline/_verify/hlod/pilot_landscape_2026-09-14\\offdisk.log",
+  "-BuildHLODs",
+  "-BuildSingleHLOD=Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-2_Y0"
+ ],
+ "returncode": 1,
+ "minutes": 0.252,
+ "vram_before_mb": 11,
+ "vram_peak_mb": 223,
+ "log": "_verify/hlod/pilot_landscape_2026-09-14/offdisk.log",
+ "scan": {
+  "last_index": 1,
+  "total": 1,
+  "last_cell": "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-2_Y0",
+  "approve": 1,
+  "reject": 0,
+  "built": 1,
+  "to_build": 1,
+  "fatal": [],
+  "vram_at_fault_mb": null,
+  "log_errors": 2,
+  "log_warnings": 2
+ },
+ "attribution": {
+  "log": "offdisk.log",
+  "by_layer": {
+   "Alpine8K_HLODLayer_Instanced": {
+    "layer": "Alpine8K_HLODLayer_Instanced",
+    "ApproveRebuild": 1,
+    "RejectRebuild": 0,
+    "other": 0,
+    "source_layers": {
+     "Alpine8K_MainPartition": 1
+    },
+    "total": 1
+   }
+  },
+  "cells": [
+   {
+    "i": 1,
+    "n": 1,
+    "layer": "Alpine8K_HLODLayer_Instanced",
+    "cell": "Alpine8K_MainPartition_L2_X-2_Y0",
+    "decision": "ApproveRebuild"
+   }
+  ],
+  "n_building_lines": 1,
+  "n_decisions": 1,
+  "decisions_without_a_cell": 0,
+  "cells_without_a_decision": 0,
+  "_pairing": "each decision is attributed to the most recent preceding `Building HLOD actor` line; the FOLDER is the layer, the cell name is the source",
+  "approved": 1,
+  "rejected": 0,
+  "trustworthy": true
+ },
+ "true_exit": true
+}

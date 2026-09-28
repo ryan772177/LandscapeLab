@@ -1,0 +1,34 @@
+{
+  "_what_this_is": "Acceptance brief for the brief_loop convergence demo: the coast layout brief plus machine-checkable acceptance criteria. The demo recipe is DEGRADED back to the defective state the manual benchmark started from.",
+  "acceptance": [
+    {
+      "id": "harbor_cove",
+      "kind": "flat_site",
+      "placement": "harbor_cove",
+      "at_m": [
+        -250.0,
+        250.0
+      ],
+      "box_m": 320.0,
+      "elev_m": [
+        20.0,
+        60.0
+      ],
+      "slope_mean_deg_max": 5.0
+    },
+    {
+      "id": "north_peaks",
+      "kind": "peak",
+      "placement": "north_peaks",
+      "at_m": [
+        500.0,
+        -1450.0
+      ],
+      "box_m": 800.0,
+      "max_elev_m": [
+        600.0,
+        1400.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+ "candidate": "TRELLIS multi-view",
+ "asset": "crystal_spire",
+ "name": "SM_CrystalSpire_Forge",
+ "inputs": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az000.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az045.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/crystal_spire_refs/crystal_az090.jpg"
+ ],
+ "n_views": 3,
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260901,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "error": null,
+ "vram_free_before_MiB": 15045,
+ "vram_total_MiB": 16303,
+ "load_s": 22.9,
+ "input_sizes": [
+  [
+   "crystal_az000.jpg",
+   1024,
+   1024
+  ],
+  [
+   "crystal_az045.jpg",
+   1024,
+   1024
+  ],
+  [
+   "crystal_az090.jpg",
+   1024,
+   1024
+  ]
+ ],
+ "run_s": 6.3,
+ "vertices": 187704,
+ "faces": 375448,
+ "extent": [
+  0.461,
+  0.4209,
+  0.9998
+ ],
+ "thin_over_long": 0.421,
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/crystal_spire/SM_CrystalSpire_Forge_raw.obj",
+ "out_obj_bytes": 13751770,
+ "boundary_edges": 0,
+ "nonmanifold_edges": 0,
+ "watertight": true,
+ "euler_characteristic": -20,
+ "genus": 11,
+ "vram_peak_MiB": 10362,
+ "wall_s": 30.5
+}

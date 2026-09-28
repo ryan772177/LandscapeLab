@@ -1,0 +1,56 @@
+﻿  - 6B7A5CA74866B85576ADD591E1DF79C4 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "deleted_stale_asset": "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge",
+  "imported_paths": [
+    "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge.SM_WoodStack_Forge"
+  ],
+  "mesh_package": "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge",
+  "mesh_tris": 14996,
+  "mesh_uv_channels": 1,
+  "level": "/Game/Scratch/Forge_wood_stack",
+  "level_overwritten": false,
+  "raw_height_cm": 75.245,
+  "ue_raw_extent_cm": [
+    99.3,
+    61.33,
+    75.25
+  ],
+  "blender_bbox_size": [
+    0.99302,
+    0.61326,
+    0.75245
+  ],
+  "shape_ratios_expected": [
+    0.6176,
+    0.7577,
+    1.0
+  ],
+  "shape_ratios_measured": [
+    0.6176,
+    0.7577,
+    1.0
+  ],
+  "orientation_ok": true,
+  "scale_applied": 1.59478,
+  "_scale_derivation": "target 120.0 cm from declared height_cm; scale = target / MEASURED raw height, then READ BACK from the placed actor rather than assumed to have applied",
+  "top_cm": 120.0,
+  "base_cm": 0.0,
+  "footprint_cm": [
+    158.4,
+    97.8
+  ],
+  "target_cm": 120.0,
+  "height_error_cm": 0.0,
+  "height_within_1pct": true,
+  "roof_pivot_drop_cm": 201.49,
+  "chalet_silhouette_cm": 738.0,
+  "chalet_roof_base_cm": 400.0,
+  "chalet_wall_top_cm": 400.0,
+  "chalet_assembly_ok": true,
+  "ratio_against": null,
+  "_no_ratio": "this asset declares a flat height_cm, not ratio_against, so there is NO ruled ratio to score. The companion is present as a scale reference only; chalet_silhouette_cm is measured, not compared.",
+  "saved": true
+}
+(26.7 s)

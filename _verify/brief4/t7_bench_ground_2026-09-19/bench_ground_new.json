@@ -1,0 +1,73 @@
+{
+ "_what": "Bench_ground, derived 2026-09-11 (RULED)",
+ "label": "Bench_ground",
+ "camera_string": "373600.0,269600.0,77987.6,-20.0,180.0,0.0",
+ "location_cm": [
+  373600.0,
+  269600.0,
+  77987.6
+ ],
+ "rotation_deg_pitch_yaw_roll": [
+  -20.0,
+  180.0,
+  0.0
+ ],
+ "eye_m": 1.7,
+ "ground_z_m": 778.18,
+ "meadow_weight": 0.7451,
+ "band_rows_full_res": [
+  354.0,
+  246.0
+ ],
+ "min_band_rows_required": 160,
+ "canopy_px_lower_half": 0,
+ "canopy_px_total": 0,
+ "forward_curvature": 0.529072,
+ "forward_rise_m": 112.1,
+ "grass_occluded_frac": 0.7244,
+ "scored_at_res": [
+  640,
+  360
+ ],
+ "coarse_score": 255.0,
+ "search_stats": {
+  "rejected": {
+   "canopy": 1037,
+   "convex": 381
+  },
+  "candidates": 318,
+  "shortlisted": 40,
+  "refined": 40,
+  "top5": [
+   [
+    354.0,
+    246.0
+   ],
+   [
+    78.0,
+    270.0
+   ],
+   [
+    366.0,
+    60.0
+   ],
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ]
+ },
+ "meadow_sites_considered": 217,
+ "views_tried": 1736,
+ "fov_h_deg": 90.0,
+ "res": [
+  3840,
+  2160
+ ],
+ "_v2": "grass modelled as Beer-Lambert extinction inside its 50 m cull; concavity a GATE; shortlist re-scored at 640x360. v1 predicted 405/375 and the render gave 55/0 (LESSONS 2026-09-11l).",
+ "bands_clear_floor": true
+}

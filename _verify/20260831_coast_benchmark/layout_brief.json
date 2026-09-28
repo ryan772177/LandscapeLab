@@ -1,0 +1,154 @@
+{
+  "_what_this_is": "Benchmark #2 of the concept->landscape brief extractor (side project). Hand-authored from Free/gemini_v1/concept_coast.jpg. Same conventions as the spike: world metres, origin centre, +x east, +y SOUTH.",
+  "source_image": "Free/gemini_v1/concept_coast.jpg",
+  "camera_hypothesis": {
+    "viewer": "elevated south rim over the cove, looking north"
+  },
+  "world": {
+    "extent_m": 4032.0,
+    "resolution_px": 1009,
+    "metres_per_vertex": 4.0,
+    "z_range_m": 2000.0
+  },
+  "terrain_entities": [
+    {
+      "id": "ocean_shelf",
+      "read": "glowing sea filling the left third, flat to the horizon",
+      "world": "west third carved low and flat; SEA LEVEL IS NEW - v0 approximates water as lowest terrain, no water body"
+    },
+    {
+      "id": "coastal_cliffs",
+      "read": "tall cliffs with waterfalls dropping into the sea, left-centre",
+      "world": "N-S cliff band at the coast edge"
+    },
+    {
+      "id": "harbor_cove",
+      "read": "small lantern-lit harbor town in a sheltered cove, centre",
+      "world": "low flat shelf at the coast, centre of map"
+    },
+    {
+      "id": "north_peaks",
+      "read": "large snow-capped massif behind the coast, upper right",
+      "world": "north edge, tallest"
+    },
+    {
+      "id": "northeast_peaks",
+      "read": "secondary jagged peaks with purple crystal veins, right",
+      "world": "north-east corner"
+    },
+    {
+      "id": "east_highland",
+      "read": "forested rising ground right of the cove",
+      "world": "east flank, moderate"
+    },
+    {
+      "id": "south_vantage",
+      "read": "rocky foreground rim with twisted pines",
+      "world": "south edge"
+    }
+  ],
+  "lighting_measured": {
+    "_source": "scripts/analyse_concept.py band 0.5-0.75, 2026-08-31",
+    "haze": "min-luma 0.075 -> 0.228 with distance: strong aerial haze",
+    "instrument_note": "LIGHT SPLIT band caught the GLOWING SEA, not sunlit ground (R-B sunlit -0.201, teal). NEW TOOL FINDING: on coastal concepts the open-ground band premise fails; the extractor needs a water mask before the light split.",
+    "sunlit_rb_split": -0.201,
+    "minluma_rise": 0.153,
+    "_water_contamination": "sunlit band caught the glowing sea; rb split is CONTAMINATED and the kelvin it implies (cool) contradicts the visible sunset. lighting_geometry overrides warmth via sunlit_rb_split_override.",
+    "sunlit_rb_split_override": 0.04
+  },
+  "out_of_scope_v0": [
+    "water rendering",
+    "sea level as a real plane",
+    "waterfalls",
+    "harbor meshes",
+    "airships"
+  ],
+  "lighting_geometry": {
+    "_provenance": "hand-read: sunset over the sea left of frame (west), viewer facing north from the south rim",
+    "sun_elevation_deg": 6.0,
+    "sun_azimuth_deg": 275.0,
+    "fog_height_datum_m": 30.0,
+    "fog_half_height_m": 150.0,
+    "_azimuth_calibration": "sunset over the sea WEST of a north-facing viewer; UE azimuth is compass-style (0=N,90=E) - calibrated from the coast_render iteration",
+    "exposure_compensation_ev_override": -3.5,
+    "_ev_experiment": "2026-09-02 controlled test: one variable (EV -1.923 -> -3.5), same camera, game view; if the frame darkens ~1.6 EV the knob works and per-world luma matching closes"
+  },
+  "render_camera": {
+    "at_m": [
+      150.0,
+      1300.0
+    ],
+    "height_above_ground_m": 230.0,
+    "pitch_deg": -13.0,
+    "yaw_deg": -110.9,
+    "fov": 72.0,
+    "_provenance": "i3: raised high over the forest roll, yaw computed toward the cove centre"
+  },
+  "water": {
+    "kind": "sea",
+    "label": "WaterPlane_coast",
+    "centre_cm": [
+      -130000.0,
+      0.0
+    ],
+    "level_cm": 1400.0,
+    "scale_xy": [
+      1450.0,
+      4100.0
+    ],
+    "color_linear": [
+      0.013,
+      0.1,
+      0.115
+    ],
+    "roughness": 0.04,
+    "opacity": 0.62,
+    "_provenance": "RECARVED 2026-09-02: ocean floor converged into [4,20] m so the sea at 14 m sits BELOW the 27-43 m cove; the west-shelf-only workaround is retired"
+  },
+  "acceptance": [
+    {
+      "id": "harbor_cove",
+      "kind": "flat_site",
+      "placement": "harbor_cove",
+      "at_m": [
+        -250.0,
+        250.0
+      ],
+      "box_m": 320.0,
+      "elev_m": [
+        20.0,
+        60.0
+      ],
+      "slope_mean_deg_max": 5.0
+    },
+    {
+      "id": "ocean_floor",
+      "kind": "flat_site",
+      "placement": "ocean_shelf",
+      "at_m": [
+        -1300.0,
+        0.0
+      ],
+      "box_m": 600.0,
+      "elev_m": [
+        4.0,
+        20.0
+      ],
+      "slope_mean_deg_max": 7.0
+    },
+    {
+      "id": "north_peaks",
+      "kind": "peak",
+      "placement": "north_peaks",
+      "at_m": [
+        500.0,
+        -1450.0
+      ],
+      "box_m": 800.0,
+      "max_elev_m": [
+        600.0,
+        1400.0
+      ]
+    }
+  ]
+}

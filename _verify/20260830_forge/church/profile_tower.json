@@ -1,0 +1,641 @@
+{
+ "source": "SM_Church_Forge.fbx",
+ "verts": 29880,
+ "polys": 60000,
+ "material_slots": [],
+ "up_min": 0.0,
+ "up_max": 0.9147,
+ "up_span": 0.9147,
+ "up_axis": "y",
+ "up_axis_index": 1,
+ "axis_spans": {
+  "x": 0.763,
+  "y": 0.9147,
+  "z": 0.39494
+ },
+ "expected_up_span": 0.9147,
+ "tower_axis": [
+  -0.255,
+  -0.0013
+ ],
+ "mesh_centre": [
+  0.0,
+  0.0
+ ],
+ "tower_axis_offset": 0.255,
+ "axis_from_frac": 0.65,
+ "_axis_note": "radius is measured about the TOWER axis, not the mesh centre. The offset between them is why the first profile showed no dome bulge: it was measuring distance-from-nave-centre, which grows with the tower's lateral offset and swamps the dome's own radius.",
+ "slices": [
+  {
+   "i": 0,
+   "z_lo_frac": 0.0,
+   "z_hi_frac": 0.0167,
+   "z_lo": 0.0,
+   "z_hi": 0.0152,
+   "verts": 1459,
+   "r_max": 0.626,
+   "r_mean": 0.2854
+  },
+  {
+   "i": 1,
+   "z_lo_frac": 0.0167,
+   "z_hi_frac": 0.0333,
+   "z_lo": 0.0152,
+   "z_hi": 0.0305,
+   "verts": 1192,
+   "r_max": 0.6265,
+   "r_mean": 0.3303
+  },
+  {
+   "i": 2,
+   "z_lo_frac": 0.0333,
+   "z_hi_frac": 0.05,
+   "z_lo": 0.0305,
+   "z_hi": 0.0457,
+   "verts": 1213,
+   "r_max": 0.6255,
+   "r_mean": 0.3427
+  },
+  {
+   "i": 3,
+   "z_lo_frac": 0.05,
+   "z_hi_frac": 0.0667,
+   "z_lo": 0.0457,
+   "z_hi": 0.061,
+   "verts": 1086,
+   "r_max": 0.6247,
+   "r_mean": 0.3386
+  },
+  {
+   "i": 4,
+   "z_lo_frac": 0.0667,
+   "z_hi_frac": 0.0833,
+   "z_lo": 0.061,
+   "z_hi": 0.0762,
+   "verts": 1194,
+   "r_max": 0.6228,
+   "r_mean": 0.3435
+  },
+  {
+   "i": 5,
+   "z_lo_frac": 0.0833,
+   "z_hi_frac": 0.1,
+   "z_lo": 0.0762,
+   "z_hi": 0.0915,
+   "verts": 1123,
+   "r_max": 0.6224,
+   "r_mean": 0.3525
+  },
+  {
+   "i": 6,
+   "z_lo_frac": 0.1,
+   "z_hi_frac": 0.1167,
+   "z_lo": 0.0915,
+   "z_hi": 0.1067,
+   "verts": 1850,
+   "r_max": 0.6214,
+   "r_mean": 0.3328
+  },
+  {
+   "i": 7,
+   "z_lo_frac": 0.1167,
+   "z_hi_frac": 0.1333,
+   "z_lo": 0.1067,
+   "z_hi": 0.122,
+   "verts": 588,
+   "r_max": 0.6202,
+   "r_mean": 0.2697
+  },
+  {
+   "i": 8,
+   "z_lo_frac": 0.1333,
+   "z_hi_frac": 0.15,
+   "z_lo": 0.122,
+   "z_hi": 0.1372,
+   "verts": 434,
+   "r_max": 0.621,
+   "r_mean": 0.3523
+  },
+  {
+   "i": 9,
+   "z_lo_frac": 0.15,
+   "z_hi_frac": 0.1667,
+   "z_lo": 0.1372,
+   "z_hi": 0.1525,
+   "verts": 409,
+   "r_max": 0.62,
+   "r_mean": 0.2752
+  },
+  {
+   "i": 10,
+   "z_lo_frac": 0.1667,
+   "z_hi_frac": 0.1833,
+   "z_lo": 0.1525,
+   "z_hi": 0.1677,
+   "verts": 592,
+   "r_max": 0.6198,
+   "r_mean": 0.2914
+  },
+  {
+   "i": 11,
+   "z_lo_frac": 0.1833,
+   "z_hi_frac": 0.2,
+   "z_lo": 0.1677,
+   "z_hi": 0.1829,
+   "verts": 781,
+   "r_max": 0.62,
+   "r_mean": 0.3083
+  },
+  {
+   "i": 12,
+   "z_lo_frac": 0.2,
+   "z_hi_frac": 0.2167,
+   "z_lo": 0.1829,
+   "z_hi": 0.1982,
+   "verts": 1064,
+   "r_max": 0.6436,
+   "r_mean": 0.3805
+  },
+  {
+   "i": 13,
+   "z_lo_frac": 0.2167,
+   "z_hi_frac": 0.2333,
+   "z_lo": 0.1982,
+   "z_hi": 0.2134,
+   "verts": 920,
+   "r_max": 0.638,
+   "r_mean": 0.3836
+  },
+  {
+   "i": 14,
+   "z_lo_frac": 0.2333,
+   "z_hi_frac": 0.25,
+   "z_lo": 0.2134,
+   "z_hi": 0.2287,
+   "verts": 673,
+   "r_max": 0.613,
+   "r_mean": 0.3609
+  },
+  {
+   "i": 15,
+   "z_lo_frac": 0.25,
+   "z_hi_frac": 0.2667,
+   "z_lo": 0.2287,
+   "z_hi": 0.2439,
+   "verts": 595,
+   "r_max": 0.5904,
+   "r_mean": 0.4154
+  },
+  {
+   "i": 16,
+   "z_lo_frac": 0.2667,
+   "z_hi_frac": 0.2833,
+   "z_lo": 0.2439,
+   "z_hi": 0.2592,
+   "verts": 525,
+   "r_max": 0.5679,
+   "r_mean": 0.3873
+  },
+  {
+   "i": 17,
+   "z_lo_frac": 0.2833,
+   "z_hi_frac": 0.3,
+   "z_lo": 0.2592,
+   "z_hi": 0.2744,
+   "verts": 903,
+   "r_max": 0.556,
+   "r_mean": 0.3205
+  },
+  {
+   "i": 18,
+   "z_lo_frac": 0.3,
+   "z_hi_frac": 0.3167,
+   "z_lo": 0.2744,
+   "z_hi": 0.2897,
+   "verts": 1431,
+   "r_max": 0.5527,
+   "r_mean": 0.3153
+  },
+  {
+   "i": 19,
+   "z_lo_frac": 0.3167,
+   "z_hi_frac": 0.3333,
+   "z_lo": 0.2897,
+   "z_hi": 0.3049,
+   "verts": 911,
+   "r_max": 0.5503,
+   "r_mean": 0.3246
+  },
+  {
+   "i": 20,
+   "z_lo_frac": 0.3333,
+   "z_hi_frac": 0.35,
+   "z_lo": 0.3049,
+   "z_hi": 0.3201,
+   "verts": 743,
+   "r_max": 0.5492,
+   "r_mean": 0.3025
+  },
+  {
+   "i": 21,
+   "z_lo_frac": 0.35,
+   "z_hi_frac": 0.3667,
+   "z_lo": 0.3201,
+   "z_hi": 0.3354,
+   "verts": 638,
+   "r_max": 0.5494,
+   "r_mean": 0.2791
+  },
+  {
+   "i": 22,
+   "z_lo_frac": 0.3667,
+   "z_hi_frac": 0.3833,
+   "z_lo": 0.3354,
+   "z_hi": 0.3506,
+   "verts": 606,
+   "r_max": 0.4726,
+   "r_mean": 0.2379
+  },
+  {
+   "i": 23,
+   "z_lo_frac": 0.3833,
+   "z_hi_frac": 0.4,
+   "z_lo": 0.3506,
+   "z_hi": 0.3659,
+   "verts": 563,
+   "r_max": 0.4691,
+   "r_mean": 0.2432
+  },
+  {
+   "i": 24,
+   "z_lo_frac": 0.4,
+   "z_hi_frac": 0.4167,
+   "z_lo": 0.3659,
+   "z_hi": 0.3811,
+   "verts": 636,
+   "r_max": 0.4664,
+   "r_mean": 0.2244
+  },
+  {
+   "i": 25,
+   "z_lo_frac": 0.4167,
+   "z_hi_frac": 0.4333,
+   "z_lo": 0.3811,
+   "z_hi": 0.3964,
+   "verts": 526,
+   "r_max": 0.4636,
+   "r_mean": 0.2277
+  },
+  {
+   "i": 26,
+   "z_lo_frac": 0.4333,
+   "z_hi_frac": 0.45,
+   "z_lo": 0.3964,
+   "z_hi": 0.4116,
+   "verts": 469,
+   "r_max": 0.4612,
+   "r_mean": 0.232
+  },
+  {
+   "i": 27,
+   "z_lo_frac": 0.45,
+   "z_hi_frac": 0.4667,
+   "z_lo": 0.4116,
+   "z_hi": 0.4269,
+   "verts": 443,
+   "r_max": 0.4587,
+   "r_mean": 0.2387
+  },
+  {
+   "i": 28,
+   "z_lo_frac": 0.4667,
+   "z_hi_frac": 0.4833,
+   "z_lo": 0.4269,
+   "z_hi": 0.4421,
+   "verts": 397,
+   "r_max": 0.457,
+   "r_mean": 0.2619
+  },
+  {
+   "i": 29,
+   "z_lo_frac": 0.4833,
+   "z_hi_frac": 0.5,
+   "z_lo": 0.4421,
+   "z_hi": 0.4574,
+   "verts": 426,
+   "r_max": 0.4555,
+   "r_mean": 0.2482
+  },
+  {
+   "i": 30,
+   "z_lo_frac": 0.5,
+   "z_hi_frac": 0.5167,
+   "z_lo": 0.4574,
+   "z_hi": 0.4726,
+   "verts": 457,
+   "r_max": 0.4544,
+   "r_mean": 0.2364
+  },
+  {
+   "i": 31,
+   "z_lo_frac": 0.5167,
+   "z_hi_frac": 0.5333,
+   "z_lo": 0.4726,
+   "z_hi": 0.4878,
+   "verts": 247,
+   "r_max": 0.4546,
+   "r_mean": 0.1839
+  },
+  {
+   "i": 32,
+   "z_lo_frac": 0.5333,
+   "z_hi_frac": 0.55,
+   "z_lo": 0.4878,
+   "z_hi": 0.5031,
+   "verts": 310,
+   "r_max": 0.0845,
+   "r_mean": 0.066
+  },
+  {
+   "i": 33,
+   "z_lo_frac": 0.55,
+   "z_hi_frac": 0.5667,
+   "z_lo": 0.5031,
+   "z_hi": 0.5183,
+   "verts": 390,
+   "r_max": 0.0749,
+   "r_mean": 0.0472
+  },
+  {
+   "i": 34,
+   "z_lo_frac": 0.5667,
+   "z_hi_frac": 0.5833,
+   "z_lo": 0.5183,
+   "z_hi": 0.5336,
+   "verts": 398,
+   "r_max": 0.0746,
+   "r_mean": 0.0397
+  },
+  {
+   "i": 35,
+   "z_lo_frac": 0.5833,
+   "z_hi_frac": 0.6,
+   "z_lo": 0.5336,
+   "z_hi": 0.5488,
+   "verts": 293,
+   "r_max": 0.0739,
+   "r_mean": 0.0386
+  },
+  {
+   "i": 36,
+   "z_lo_frac": 0.6,
+   "z_hi_frac": 0.6167,
+   "z_lo": 0.5488,
+   "z_hi": 0.5641,
+   "verts": 318,
+   "r_max": 0.0728,
+   "r_mean": 0.0369
+  },
+  {
+   "i": 37,
+   "z_lo_frac": 0.6167,
+   "z_hi_frac": 0.6333,
+   "z_lo": 0.5641,
+   "z_hi": 0.5793,
+   "verts": 262,
+   "r_max": 0.0738,
+   "r_mean": 0.0441
+  },
+  {
+   "i": 38,
+   "z_lo_frac": 0.6333,
+   "z_hi_frac": 0.65,
+   "z_lo": 0.5793,
+   "z_hi": 0.5946,
+   "verts": 318,
+   "r_max": 0.0733,
+   "r_mean": 0.0383
+  },
+  {
+   "i": 39,
+   "z_lo_frac": 0.65,
+   "z_hi_frac": 0.6667,
+   "z_lo": 0.5946,
+   "z_hi": 0.6098,
+   "verts": 115,
+   "r_max": 0.0821,
+   "r_mean": 0.0555
+  },
+  {
+   "i": 40,
+   "z_lo_frac": 0.6667,
+   "z_hi_frac": 0.6833,
+   "z_lo": 0.6098,
+   "z_hi": 0.625,
+   "verts": 332,
+   "r_max": 0.0895,
+   "r_mean": 0.0621
+  },
+  {
+   "i": 41,
+   "z_lo_frac": 0.6833,
+   "z_hi_frac": 0.7,
+   "z_lo": 0.625,
+   "z_hi": 0.6403,
+   "verts": 237,
+   "r_max": 0.06,
+   "r_mean": 0.0484
+  },
+  {
+   "i": 42,
+   "z_lo_frac": 0.7,
+   "z_hi_frac": 0.7167,
+   "z_lo": 0.6403,
+   "z_hi": 0.6555,
+   "verts": 253,
+   "r_max": 0.0618,
+   "r_mean": 0.0474
+  },
+  {
+   "i": 43,
+   "z_lo_frac": 0.7167,
+   "z_hi_frac": 0.7333,
+   "z_lo": 0.6555,
+   "z_hi": 0.6708,
+   "verts": 247,
+   "r_max": 0.0724,
+   "r_mean": 0.0573
+  },
+  {
+   "i": 44,
+   "z_lo_frac": 0.7333,
+   "z_hi_frac": 0.75,
+   "z_lo": 0.6708,
+   "z_hi": 0.686,
+   "verts": 188,
+   "r_max": 0.0757,
+   "r_mean": 0.0634
+  },
+  {
+   "i": 45,
+   "z_lo_frac": 0.75,
+   "z_hi_frac": 0.7667,
+   "z_lo": 0.686,
+   "z_hi": 0.7013,
+   "verts": 139,
+   "r_max": 0.0769,
+   "r_mean": 0.0661
+  },
+  {
+   "i": 46,
+   "z_lo_frac": 0.7667,
+   "z_hi_frac": 0.7833,
+   "z_lo": 0.7013,
+   "z_hi": 0.7165,
+   "verts": 196,
+   "r_max": 0.0762,
+   "r_mean": 0.0631
+  },
+  {
+   "i": 47,
+   "z_lo_frac": 0.7833,
+   "z_hi_frac": 0.8,
+   "z_lo": 0.7165,
+   "z_hi": 0.7318,
+   "verts": 238,
+   "r_max": 0.0706,
+   "r_mean": 0.0571
+  },
+  {
+   "i": 48,
+   "z_lo_frac": 0.8,
+   "z_hi_frac": 0.8167,
+   "z_lo": 0.7318,
+   "z_hi": 0.747,
+   "verts": 182,
+   "r_max": 0.0616,
+   "r_mean": 0.0438
+  },
+  {
+   "i": 49,
+   "z_lo_frac": 0.8167,
+   "z_hi_frac": 0.8333,
+   "z_lo": 0.747,
+   "z_hi": 0.7623,
+   "verts": 147,
+   "r_max": 0.0413,
+   "r_mean": 0.0248
+  },
+  {
+   "i": 50,
+   "z_lo_frac": 0.8333,
+   "z_hi_frac": 0.85,
+   "z_lo": 0.7623,
+   "z_hi": 0.7775,
+   "verts": 65,
+   "r_max": 0.0226,
+   "r_mean": 0.0135
+  },
+  {
+   "i": 51,
+   "z_lo_frac": 0.85,
+   "z_hi_frac": 0.8667,
+   "z_lo": 0.7775,
+   "z_hi": 0.7927,
+   "verts": 30,
+   "r_max": 0.0148,
+   "r_mean": 0.0111
+  },
+  {
+   "i": 52,
+   "z_lo_frac": 0.8667,
+   "z_hi_frac": 0.8833,
+   "z_lo": 0.7927,
+   "z_hi": 0.808,
+   "verts": 21,
+   "r_max": 0.0104,
+   "r_mean": 0.0079
+  },
+  {
+   "i": 53,
+   "z_lo_frac": 0.8833,
+   "z_hi_frac": 0.9,
+   "z_lo": 0.808,
+   "z_hi": 0.8232,
+   "verts": 40,
+   "r_max": 0.013,
+   "r_mean": 0.008
+  },
+  {
+   "i": 54,
+   "z_lo_frac": 0.9,
+   "z_hi_frac": 0.9167,
+   "z_lo": 0.8232,
+   "z_hi": 0.8385,
+   "verts": 39,
+   "r_max": 0.0132,
+   "r_mean": 0.0068
+  },
+  {
+   "i": 55,
+   "z_lo_frac": 0.9167,
+   "z_hi_frac": 0.9333,
+   "z_lo": 0.8385,
+   "z_hi": 0.8537,
+   "verts": 5,
+   "r_max": 0.0055,
+   "r_mean": 0.0037
+  },
+  {
+   "i": 56,
+   "z_lo_frac": 0.9333,
+   "z_hi_frac": 0.95,
+   "z_lo": 0.8537,
+   "z_hi": 0.869,
+   "verts": 5,
+   "r_max": 0.0077,
+   "r_mean": 0.0063
+  },
+  {
+   "i": 57,
+   "z_lo_frac": 0.95,
+   "z_hi_frac": 0.9667,
+   "z_lo": 0.869,
+   "z_hi": 0.8842,
+   "verts": 4,
+   "r_max": 0.0052,
+   "r_mean": 0.0027
+  },
+  {
+   "i": 58,
+   "z_lo_frac": 0.9667,
+   "z_hi_frac": 0.9833,
+   "z_lo": 0.8842,
+   "z_hi": 0.8995,
+   "verts": 4,
+   "r_max": 0.0072,
+   "r_mean": 0.0063
+  },
+  {
+   "i": 59,
+   "z_lo_frac": 0.9833,
+   "z_hi_frac": 1.0,
+   "z_lo": 0.8995,
+   "z_hi": 0.9147,
+   "verts": 10,
+   "r_max": 0.007,
+   "r_mean": 0.0052
+  }
+ ],
+ "dome_neck_slice": {
+  "i": 59,
+  "z_lo_frac": 0.9833,
+  "z_hi_frac": 1.0,
+  "z_lo": 0.8995,
+  "z_hi": 0.9147,
+  "verts": 10,
+  "r_max": 0.007,
+  "r_mean": 0.0052
+ },
+ "_dome_neck_meaning": "walking DOWN from the top, the first slice where r_max stops decreasing -- i.e. the narrowest point under the bulge. That is the dome spring line, measured from the geometry rather than picked off a render."
+}

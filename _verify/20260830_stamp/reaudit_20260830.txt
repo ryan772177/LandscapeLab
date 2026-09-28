@@ -1,0 +1,78 @@
+NOTE: the tree is DIRTY. The HISTORY instrument reads COMMITS, so uncommitted edits to a recipe or a planner are invisible to it. REPRODUCE reads the working tree and does see them.
+
+city/alpine_basin_reachable_lattice.json   fresh by HISTORY   (2 inputs)
+      ok  STAMP MATCHES     2 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/city_reachable_lattice_payload.txt takes no --out, so it cannot be run to a temp path and must not be run to its real one
+city/alpine_basin_town_plan.json           STALE by HISTORY   (4 inputs)
+      _produced_by         scripts/plan_city.py   committed AFTER the plan
+      _recipe              recipes/city.json   committed AFTER the plan
+      !!  STAMP DIFFERS     4 inputs hashed
+          recipes/city.json                recorded ed61d0b7b400  actual 85f1e7abcc8b
+          scripts/plan_city.py             recorded 72118abd4195  actual c70ad130b051
+      !!  DIFFERS            23deb72288ce vs 3a9a8aa00b1f
+city/alpine_basin_town_plan_roofbias.json  fresh by HISTORY   (4 inputs)
+      ok  STAMP MATCHES     4 inputs hashed
+      ok  REPRODUCES         3a9a8aa00b1f vs 3a9a8aa00b1f
+city/alpine_basin_town_reachable.json      STALE by HISTORY   (2 inputs)
+      _recipe              recipes/city.json   committed AFTER the plan
+      !!  STAMP DIFFERS     2 inputs hashed
+          recipes/city.json                recorded 1a86693e4c2d  actual 85f1e7abcc8b
+      ..  WAIVED, DECLARED   recipes/city.json moved because buildings.storey_m was ruled 3.2 -> 2.0 (kit wall-course height). THIS SIDECAR MEASURES REACHABILITY, which depends on building FOOTPRINTS and the STREET network -- and both were proven BYTE-IDENTICAL across the change: building XY, footprint size, yaw and pad_z all identical on 303 of 303, streets identical, landmark and spire identical. Only building height, roof z and the stamp moved. So no reachability row can have changed. Re-measuring requires scripts/city_reachable_region_payload.txt in a live editor; this waiver is recorded instead of faking the stamp, and RETIRES the moment the sidecar is re-measured. BACKLOG carries that.
+      ??  CANNOT REPRODUCE   scripts/city_reachable_region_payload.txt takes no --out, so it cannot be run to a temp path and must not be run to its real one
+encounters/alpine_8k_all.json              fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ok  REPRODUCES         656fd267b495 vs 656fd267b495
+encounters/alpine_8k_verified.json         fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     5 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/adopt_verified_encounters.py needs arguments beyond --out that this checker cannot supply (the following arguments are required: --rows). The STAMP still proves its inputs are unchanged.
+foliage/alpine_8k_Conifer.json             fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/place_foliage.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_8k_ConiferPine.json         fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/place_foliage.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_8k_SpruceSapling.json       fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/place_foliage.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_8k_SpruceSub.json           fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/place_foliage.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_Boulder.json                fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_CliffFace.json              fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_CliffOutcrop.json           fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_CliffOutcropB.json          fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_Conifer.json                fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/place_foliage.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_TalusChannel.json           fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_TalusField.json             fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_TalusFieldB.json            fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_TalusFieldC.json            fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+foliage/alpine_TreeStump.json              fresh by HISTORY   (3 inputs)
+      ok  STAMP MATCHES     3 inputs hashed
+      ??  CANNOT REPRODUCE   scripts/rock_scatter.py takes no --out, so it cannot be run to a temp path and must not be run to its real one
+
+NOT PLANS -- no instance/encounter/row payload, so there is
+nothing here to be stale about: 1
+  - foliage/alpinelab_scatter.json
+
+STALE OR UNREPRODUCIBLE: 1
+  - city/alpine_basin_town_plan.json
+
+A plan its producer will not reproduce is a plan nothing should consume. Re-run the producer, or record why the artefact is kept.

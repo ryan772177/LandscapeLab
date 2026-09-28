@@ -1,0 +1,95 @@
+{
+  "_what_this_is": "Benchmark #4 brief: concept_canyon. Carve-dominant terrain; crystal shards are LANDMARK MESHES.",
+  "source_image": "Free/gemini_v1/concept_canyon.jpg",
+  "terrain_entities": [
+    {
+      "id": "canyon_corridor",
+      "read": "deep winding red-rock gorge N-S with river at the base (v0: floor, no water)"
+    },
+    {
+      "id": "ledge_city",
+      "read": "fortified town on a wide ledge halfway up the west wall"
+    },
+    {
+      "id": "plateaus",
+      "read": "high desert plateau either side"
+    }
+  ],
+  "lighting_measured": {
+    "_source": "analyse_concept band 0.45-0.7, 2026-08-31",
+    "sunlit_rb_split": 0.274,
+    "minluma_rise": 0.061,
+    "sunlit_rgb": [
+      0.606,
+      0.408,
+      0.331
+    ]
+  },
+  "lighting_geometry": {
+    "_provenance": "hand-read: golden afternoon raking from the west, aerial view along the canyon",
+    "sun_elevation_deg": 22.0,
+    "sun_azimuth_deg": 265.0,
+    "fog_height_datum_m": 90.0,
+    "fog_half_height_m": 200.0,
+    "_azimuth_calibration": "golden raking from the west; compass azimuth",
+    "exposure_compensation_ev_override": -3.3,
+    "_ev_calibration": "canyon: render 0.73 at -1.923 vs concept 0.29 ; 2026-09-02 luma-matching pass"
+  },
+  "acceptance": [
+    {
+      "id": "canyon_floor",
+      "kind": "flat_site",
+      "placement": "floor_bed",
+      "at_m": [
+        -180.0,
+        0.0
+      ],
+      "box_m": 240.0,
+      "elev_m": [
+        60.0,
+        140.0
+      ],
+      "slope_mean_deg_max": 8.0
+    },
+    {
+      "id": "ledge_city",
+      "kind": "flat_site",
+      "placement": "ledge_city",
+      "at_m": [
+        -720.0,
+        -540.0
+      ],
+      "box_m": 200.0,
+      "elev_m": [
+        235.0,
+        295.0
+      ],
+      "slope_mean_deg_max": 6.0
+    },
+    {
+      "id": "west_rim",
+      "kind": "peak",
+      "placement": "rim_crags_nw",
+      "at_m": [
+        -1300.0,
+        -1300.0
+      ],
+      "box_m": 600.0,
+      "max_elev_m": [
+        420.0,
+        900.0
+      ]
+    }
+  ],
+  "render_camera": {
+    "at_m": [
+      -60.0,
+      950.0
+    ],
+    "height_above_ground_m": 520.0,
+    "pitch_deg": -30.0,
+    "yaw_deg": -93.0,
+    "fov": 72.0,
+    "_provenance": "i2: over the gorge axis looking north along it, aerial like the concept"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "_what_this_is": "Benchmark #3 brief: concept_highland_lake. Moonlit night is OUT OF v0 SCOPE for intensity; rendered day-for-night with 8500K sun + heavy fog, stated.",
+  "source_image": "Free/gemini_v2/concept_highland_dusk.jpg",
+  "terrain_entities": [
+    {
+      "id": "lake_basin",
+      "read": "still lake filling centre frame; v0 renders the flat bed, no water"
+    },
+    {
+      "id": "village_terrace",
+      "read": "monastery village on rocky rise east of the lake"
+    },
+    {
+      "id": "north_massif",
+      "read": "mountain bowl behind the lake"
+    },
+    {
+      "id": "crystal_island",
+      "read": "LANDMARK MESH, not terrain"
+    }
+  ],
+  "lighting_measured": {
+    "_source": "analyse_concept band 0.6-0.85 on the DUSK variant, 2026-09-02",
+    "sunlit_rb_split": 0.232,
+    "minluma_rise": 0.109,
+    "sunlit_rgb": [
+      0.742,
+      0.597,
+      0.509
+    ]
+  },
+  "lighting_geometry": {
+    "_provenance": "DUSK VARIANT adopted (operator supplied it to sidestep day-for-night): warm low sun just past set, NW of a north-facing viewer",
+    "sun_elevation_deg": 7.0,
+    "sun_azimuth_deg": 300.0,
+    "fog_height_datum_m": 30.0,
+    "fog_half_height_m": 60.0,
+    "_azimuth_calibration": "moon high right (east) of a north-facing viewer; compass azimuth",
+    "sky_intensity": 0.8,
+    "fog_density_override": 0.0008,
+    "_overrides_note": "day-for-night: -4.4 EV (the engine attenuates the solar constant itself; exposure is the dimming knob per apply_lighting schema), thin fog",
+    "_ev_calibration": "highland: effective EV was NOT -4.4 (frame bright); calibrating from the -1.923 family baseline ; 2026-09-02 luma-matching pass",
+    "_ev_note": "EV override removed: highland does not respond to EV (parked anomaly); the dusk mood needs warm kelvin + geometry only"
+  },
+  "acceptance": [
+    {
+      "id": "lake_basin",
+      "kind": "flat_site",
+      "placement": "lake_basin",
+      "at_m": [
+        0.0,
+        -250.0
+      ],
+      "box_m": 400.0,
+      "elev_m": [
+        22.0,
+        42.0
+      ],
+      "slope_mean_deg_max": 3.0
+    },
+    {
+      "id": "village_site",
+      "kind": "flat_site",
+      "placement": "village_terrace",
+      "at_m": [
+        700.0,
+        150.0
+      ],
+      "box_m": 200.0,
+      "elev_m": [
+        50.0,
+        90.0
+      ],
+      "slope_mean_deg_max": 6.0
+    },
+    {
+      "id": "north_peaks",
+      "kind": "peak",
+      "placement": "north_massif",
+      "at_m": [
+        0.0,
+        -1500.0
+      ],
+      "box_m": 700.0,
+      "max_elev_m": [
+        550.0,
+        1200.0
+      ]
+    }
+  ],
+  "render_camera": {
+    "at_m": [
+      -150.0,
+      850.0
+    ],
+    "height_above_ground_m": 30.0,
+    "pitch_deg": -6.0,
+    "yaw_deg": -80.0,
+    "fov": 64.0,
+    "_provenance": "i3: slight NE bearing so the village terrace east of the lake enters frame"
+  },
+  "water": {
+    "kind": "lake",
+    "label": "WaterPlane_highland",
+    "centre_cm": [
+      0.0,
+      -25000.0
+    ],
+    "level_cm": 3300.0,
+    "scale_xy": [
+      1500.0,
+      1500.0
+    ],
+    "color_linear": [
+      0.01,
+      0.055,
+      0.075
+    ],
+    "roughness": 0.04,
+    "opacity": 0.7,
+    "_provenance": "lake bed measured 27-43 m; surface declared 33 m; night-teal color read off the concept"
+  }
+}

@@ -1,0 +1,100 @@
+{
+ "source": "Medival House _.fbx",
+ "scale_to_cm": 1460.53,
+ "objects": [
+  {
+   "object": "Medival_House_BezierCurve_001",
+   "polys": 1680,
+   "slots": [
+    "Material_002"
+   ]
+  },
+  {
+   "object": "Medival_House_Door",
+   "polys": 3994,
+   "slots": [
+    "Material.001",
+    "Material_008"
+   ]
+  },
+  {
+   "object": "Medival_House_House",
+   "polys": 18026,
+   "slots": [
+    "Material.001",
+    "Material_007",
+    "Material_009",
+    "Material_003",
+    "Material_001",
+    "Material_004",
+    "Material_006",
+    "Material_005"
+   ]
+  }
+ ],
+ "world_m_per_authored_unit": 0.01,
+ "up_axis": "z",
+ "slots": {
+  "Material_002": {
+   "samples": 5040,
+   "metres_per_uv_median": 0.8836,
+   "p25": 0.3121,
+   "p75": 1.3883
+  },
+  "Material.001": {
+   "samples": 8480,
+   "metres_per_uv_median": 0.5426,
+   "p25": 0.0916,
+   "p75": 1.2125
+  },
+  "Material_008": {
+   "samples": 1512,
+   "metres_per_uv_median": 0.0608,
+   "p25": 0.0586,
+   "p75": 0.0787
+  },
+  "Material_007": {
+   "samples": 456,
+   "metres_per_uv_median": 2.7769,
+   "p25": 1.2099,
+   "p75": 4.3239
+  },
+  "Material_009": {
+   "samples": 6356,
+   "metres_per_uv_median": 2.0609,
+   "p25": 1.1258,
+   "p75": 4.2457
+  },
+  "Material_003": {
+   "samples": 12,
+   "metres_per_uv_median": 8.8333,
+   "p25": 7.6502,
+   "p75": 9.4676
+  },
+  "Material_001": {
+   "samples": 168,
+   "metres_per_uv_median": 0.8108,
+   "p25": 0.6496,
+   "p75": 6.6834
+  },
+  "Material_004": {
+   "samples": 38316,
+   "metres_per_uv_median": 0.3104,
+   "p25": 0.1837,
+   "p75": 0.4561
+  },
+  "Material_006": {
+   "samples": 174,
+   "metres_per_uv_median": 1.0283,
+   "p25": 0.2623,
+   "p75": 5.8236
+  },
+  "Material_005": {
+   "samples": 78,
+   "metres_per_uv_median": 8.8502,
+   "p25": 8.7364,
+   "p75": 9.8439
+  }
+ },
+ "_how_to_use": "tiling = metres_per_uv_median / tile_m, where tile_m is the real-world size the texture depicts. Poly Haven publishes that; the operator-generated tiles do not, so theirs is a declared intent rather than a measurement."
+}

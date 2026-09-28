@@ -1,0 +1,139 @@
+{
+ "_what": "check_perf-conforming view of the E3 standalone measurement. DERIVED, not a new measurement: stats_ms copied VERBATIM per zone from _verify/perf/standalone_2026-09-07/perf_standalone.json (rule 9 provenance; NN0: one source, one measurement). Created 2026-09-10 for the budget re-ratification.",
+ "_measurement_class": "STANDALONE -game process, 4K (3840x2160 read back from CsvProfiler metadata), FOV 90, BugItGo at the ratified 2026-09-05 cameras; 2670-3737 frames per station",
+ "_source": "_verify/perf/standalone_2026-09-07/perf_standalone.json",
+ "stations": [
+  {
+   "zone": "plaza",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2670,
+     "mean": 9.328,
+     "p50": 9.325,
+     "p90": 10.3,
+     "max": 11.609
+    },
+    "GameThreadTime": {
+     "n": 2670,
+     "mean": 3.386,
+     "p50": 3.493,
+     "p90": 3.975,
+     "max": 4.824
+    },
+    "RenderThreadTime": {
+     "n": 2670,
+     "mean": 9.317,
+     "p50": 9.27,
+     "p90": 9.853,
+     "max": 11.747
+    },
+    "GPUTime": {
+     "n": 2670,
+     "mean": 8.149,
+     "p50": 8.13,
+     "p90": 8.334,
+     "max": 8.643
+    }
+   }
+  },
+  {
+   "zone": "main_street",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3560,
+     "mean": 6.951,
+     "p50": 6.946,
+     "p90": 8.263,
+     "max": 10.144
+    },
+    "GameThreadTime": {
+     "n": 3560,
+     "mean": 3.235,
+     "p50": 3.283,
+     "p90": 4.052,
+     "max": 5.044
+    },
+    "RenderThreadTime": {
+     "n": 3560,
+     "mean": 6.938,
+     "p50": 6.908,
+     "p90": 7.391,
+     "max": 9.336
+    },
+    "GPUTime": {
+     "n": 3560,
+     "mean": 5.822,
+     "p50": 5.811,
+     "p90": 5.945,
+     "max": 6.321
+    }
+   }
+  },
+  {
+   "zone": "treeline",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3737,
+     "mean": 6.602,
+     "p50": 6.578,
+     "p90": 7.774,
+     "max": 9.391
+    },
+    "GameThreadTime": {
+     "n": 3737,
+     "mean": 3.171,
+     "p50": 3.223,
+     "p90": 3.96,
+     "max": 4.982
+    },
+    "RenderThreadTime": {
+     "n": 3737,
+     "mean": 6.589,
+     "p50": 6.552,
+     "p90": 6.994,
+     "max": 9.152
+    },
+    "GPUTime": {
+     "n": 3737,
+     "mean": 5.482,
+     "p50": 5.466,
+     "p90": 5.578,
+     "max": 5.908
+    }
+   }
+  },
+  {
+   "zone": "vista",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3104,
+     "mean": 7.959,
+     "p50": 7.957,
+     "p90": 8.914,
+     "max": 10.461
+    },
+    "GameThreadTime": {
+     "n": 3103,
+     "mean": 3.203,
+     "p50": 3.261,
+     "p90": 3.852,
+     "max": 4.591
+    },
+    "RenderThreadTime": {
+     "n": 3103,
+     "mean": 7.947,
+     "p50": 7.952,
+     "p90": 8.37,
+     "max": 9.605
+    },
+    "GPUTime": {
+     "n": 3103,
+     "mean": 6.84,
+     "p50": 6.818,
+     "p90": 6.988,
+     "max": 7.264
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,460 @@
+{
+ "_what": "ground-scan intake probe",
+ "scans": [
+  {
+   "folder": "forest_floor_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "forest_floor_4K_AmbientOcclusion.png",
+      "bytes": 40157377,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "color": [
+     {
+      "file": "forest_floor_4K_Color.png",
+      "bytes": 97681938,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "forest_floor_4K_Displacement.png",
+      "bytes": 36483297,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "normal": [
+     {
+      "file": "forest_floor_4K_NormalDX.png",
+      "bytes": 92591639,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "forest_floor_4K_Roughness.png",
+      "bytes": 41347303,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "2.14x2.14",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "gray_rocks_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "gray_rocks_4K_AmbientOcclusion.png",
+      "bytes": 28421576,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "gray_rocks_4K_Color.png",
+      "bytes": 92475086,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "gray_rocks_4K_Displacement.png",
+      "bytes": 23667874,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "normal": [
+     {
+      "file": "gray_rocks_4K_NormalDX.png",
+      "bytes": 95485973,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "gray_rocks_4K_Roughness.png",
+      "bytes": 39667099,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "1.8x1.8",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "rocks_ground_04_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "rocks_ground_04_4K_AmbientOcclusion.png",
+      "bytes": 10253004,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "rocks_ground_04_4K_Color.png",
+      "bytes": 27914529,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "rocks_ground_04_4K_Displacement.png",
+      "bytes": 22894663,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 4
+     }
+    ],
+    "normal": [
+     {
+      "file": "rocks_ground_04_4K_NormalDX.png",
+      "bytes": 33196173,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "rocks_ground_04_4K_Roughness.png",
+      "bytes": 10383628,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "2.0x2.0",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "gravel_ground_01_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "gravel_ground_01_4K_AmbientOcclusion.png",
+      "bytes": 10802225,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "gravel_ground_01_4K_Color.png",
+      "bytes": 37477384,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "gravel_ground_01_4K_Displacement.png",
+      "bytes": 30831076,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 4
+     }
+    ],
+    "normal": [
+     {
+      "file": "gravel_ground_01_4K_NormalDX.png",
+      "bytes": 36539019,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "gravel_ground_01_4K_Roughness.png",
+      "bytes": 9203840,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "3.0x3.0",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "river_small_rocks_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "river_small_rocks_4K_AmbientOcclusion.png",
+      "bytes": 13633388,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "color": [
+     {
+      "file": "river_small_rocks_4K_Color.png",
+      "bytes": 30772541,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "river_small_rocks_4K_Displacement.png",
+      "bytes": 26701238,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 2
+     }
+    ],
+    "normal": [
+     {
+      "file": "river_small_rocks_4K_NormalDX.png",
+      "bytes": 35767263,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "river_small_rocks_4K_Roughness.png",
+      "bytes": 9709154,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "2.9x2.9",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "rocky_trail_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "rocky_trail_4K_AmbientOcclusion.png",
+      "bytes": 15876996,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "rocky_trail_4K_Color.png",
+      "bytes": 105402677,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 6
+     }
+    ],
+    "height": [
+     {
+      "file": "rocky_trail_4K_Displacement.png",
+      "bytes": 24716897,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ],
+    "normal": [
+     {
+      "file": "rocky_trail_4K_NormalDX.png",
+      "bytes": 111335407,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 6
+     }
+    ],
+    "roughness": [
+     {
+      "file": "rocky_trail_4K_Roughness.png",
+      "bytes": 29166541,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "2.0x2.0",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  },
+  {
+   "folder": "snow_02_4k",
+   "n_files": 6,
+   "maps": {
+    "ao": [
+     {
+      "file": "snow_02_4K_AmbientOcclusion.png",
+      "bytes": 10049893,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ],
+    "color": [
+     {
+      "file": "snow_02_4K_Color.png",
+      "bytes": 19466528,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "height": [
+     {
+      "file": "snow_02_4K_Displacement.png",
+      "bytes": 27710127,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 16,
+      "colour_type": 4
+     }
+    ],
+    "normal": [
+     {
+      "file": "snow_02_4K_NormalDX.png",
+      "bytes": 34241953,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 2
+     }
+    ],
+    "roughness": [
+     {
+      "file": "snow_02_4K_Roughness.png",
+      "bytes": 6132467,
+      "width": 4096,
+      "height": 4096,
+      "bit_depth": 8,
+      "colour_type": 0
+     }
+    ]
+   },
+   "other": [
+    "INTAKE.json"
+   ],
+   "physical_size": {
+    "metres": "2.0x2.0",
+    "source": "INTAKE.json (polyhaven, vendor-published)"
+   },
+   "height_bit_depth": 16,
+   "height_verdict": "OK -- 16-bit height"
+  }
+ ]
+}

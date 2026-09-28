@@ -1,0 +1,1794 @@
+{
+  "run_dir": "C:/Users/Admin/UE5LandscapePipeline/_verify/hlod/20260909_batched",
+  "batches": 12,
+  "manifest": "C:/Users/Admin/UE5LandscapePipeline/_verify/hlod/20260909_batched\\HLODBuildManifest.ini",
+  "engine_version": "5.8.1-56057345+++UE5+Release-5.8",
+  "guids_total": 2267,
+  "section_sizes": {
+    "HLODBuilder0": 191,
+    "HLODBuilder1": 191,
+    "HLODBuilder10": 185,
+    "HLODBuilder11": 185,
+    "HLODBuilder2": 190,
+    "HLODBuilder3": 190,
+    "HLODBuilder4": 190,
+    "HLODBuilder5": 190,
+    "HLODBuilder6": 190,
+    "HLODBuilder7": 189,
+    "HLODBuilder8": 188,
+    "HLODBuilder9": 188
+  },
+  "baseline_census": {
+    "packages_listed": 2267,
+    "packages_present": 2267,
+    "packages_missing": 0,
+    "missing_sample": [],
+    "over_5mb": 705,
+    "under_3mb": 1473,
+    "shorter_than_1kb": 0,
+    "total_bytes": 10426625137,
+    "total_gb": 10.427
+  },
+  "baseline_stride": [
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+      "bytes": 83176,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+      "bytes": 74225,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+      "bytes": 7684845,
+      "band": "STALE>5MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+      "bytes": 53978,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+      "bytes": 247437,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+      "bytes": 113638,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+      "bytes": 1307668,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+      "bytes": 1189640,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+      "bytes": 75943,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+      "bytes": 22158033,
+      "band": "STALE>5MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+      "bytes": 312585,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+      "bytes": 15318845,
+      "band": "STALE>5MB"
+    }
+  ],
+  "records": [
+    {
+      "batch": 0,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_00.log",
+      "returncode": 1,
+      "minutes": 0.5,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 191,
+      "cells_in_batch": 191,
+      "approve_rebuild": 0,
+      "reject_rebuild": 191,
+      "built_reported": 191,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y5",
+      "packages_written": 16,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 18.615,
+      "vram_peak_mb": 1181,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 2,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 705,
+      "over_5mb_after": 705,
+      "over_5mb_delta": 0,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 705,
+        "under_3mb": 1473,
+        "shorter_than_1kb": 0,
+        "total_bytes": 10426625137,
+        "total_gb": 10.427
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 7684845,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 53978,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113638,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 75943,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ]
+    },
+    {
+      "batch": 0,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_00.log",
+      "returncode": 1,
+      "minutes": 61.2,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 191,
+      "cells_in_batch": 191,
+      "approve_rebuild": 191,
+      "reject_rebuild": 0,
+      "built_reported": 191,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y5",
+      "packages_written": 191,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 14.868,
+      "vram_peak_mb": 15801,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 4,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 705,
+      "over_5mb_after": 651,
+      "over_5mb_delta": 54,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 651,
+        "under_3mb": 1530,
+        "shorter_than_1kb": 0,
+        "total_bytes": 9744894895,
+        "total_gb": 9.745
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 7684845,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 53978,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113638,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 927,
+        "MeshApproximate(3)": 115
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 850,
+        "MeshApproximate(3)": 192
+      },
+      "stale_before": 927,
+      "stale_after": 850,
+      "stale_delta": 77,
+      "current_after": 192
+    },
+    {
+      "batch": 1,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_01.log",
+      "returncode": 1,
+      "minutes": 75.23,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 191,
+      "cells_in_batch": 191,
+      "approve_rebuild": 191,
+      "reject_rebuild": 0,
+      "built_reported": 191,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y10",
+      "packages_written": 191,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 19.899,
+      "vram_peak_mb": 15777,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 4,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 651,
+      "over_5mb_after": 593,
+      "over_5mb_delta": 58,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 593,
+        "under_3mb": 1595,
+        "shorter_than_1kb": 0,
+        "total_bytes": 8985215101,
+        "total_gb": 8.985
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 53978,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 850,
+        "MeshApproximate(3)": 192
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 773,
+        "MeshApproximate(3)": 269
+      },
+      "stale_before": 850,
+      "stale_after": 773,
+      "stale_delta": 77,
+      "current_after": 269
+    },
+    {
+      "batch": 2,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_02.log",
+      "returncode": 1,
+      "minutes": 65.11,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 190,
+      "cells_in_batch": 190,
+      "approve_rebuild": 190,
+      "reject_rebuild": 0,
+      "built_reported": 190,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y14",
+      "packages_written": 190,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 16.885,
+      "vram_peak_mb": 15573,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 5,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 593,
+      "over_5mb_after": 539,
+      "over_5mb_delta": 54,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 539,
+        "under_3mb": 1657,
+        "shorter_than_1kb": 0,
+        "total_bytes": 8338062285,
+        "total_gb": 8.338
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 53978,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 773,
+        "MeshApproximate(3)": 269
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 696,
+        "MeshApproximate(3)": 346
+      },
+      "stale_before": 773,
+      "stale_after": 696,
+      "stale_delta": 77,
+      "current_after": 346
+    },
+    {
+      "batch": 3,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_03.log",
+      "returncode": 1,
+      "minutes": 69.97,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 190,
+      "cells_in_batch": 190,
+      "approve_rebuild": 190,
+      "reject_rebuild": 0,
+      "built_reported": 190,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-16",
+      "packages_written": 190,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 14.766,
+      "vram_peak_mb": 15792,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 4,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 539,
+      "over_5mb_after": 475,
+      "over_5mb_delta": 64,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 475,
+        "under_3mb": 1725,
+        "shorter_than_1kb": 0,
+        "total_bytes": 7587086266,
+        "total_gb": 7.587
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 696,
+        "MeshApproximate(3)": 346
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 619,
+        "MeshApproximate(3)": 423
+      },
+      "stale_before": 696,
+      "stale_after": 619,
+      "stale_delta": 77,
+      "current_after": 423
+    },
+    {
+      "batch": 4,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_04.log",
+      "returncode": 1,
+      "minutes": 67.99,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 190,
+      "cells_in_batch": 190,
+      "approve_rebuild": 190,
+      "reject_rebuild": 0,
+      "built_reported": 190,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X0_Y1",
+      "packages_written": 190,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 13.501,
+      "vram_peak_mb": 15765,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 7,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 475,
+      "over_5mb_after": 419,
+      "over_5mb_delta": 56,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 419,
+        "under_3mb": 1788,
+        "shorter_than_1kb": 0,
+        "total_bytes": 6870430957,
+        "total_gb": 6.87
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 619,
+        "MeshApproximate(3)": 423
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 542,
+        "MeshApproximate(3)": 500
+      },
+      "stale_before": 619,
+      "stale_after": 542,
+      "stale_delta": 77,
+      "current_after": 500
+    },
+    {
+      "batch": 5,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_05.log",
+      "returncode": 1,
+      "minutes": 62.41,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 190,
+      "cells_in_batch": 190,
+      "approve_rebuild": 190,
+      "reject_rebuild": 0,
+      "built_reported": 190,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y7",
+      "packages_written": 190,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 19.837,
+      "vram_peak_mb": 15829,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 6,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 419,
+      "over_5mb_after": 362,
+      "over_5mb_delta": 57,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 362,
+        "under_3mb": 1850,
+        "shorter_than_1kb": 0,
+        "total_bytes": 6179709667,
+        "total_gb": 6.18
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 542,
+        "MeshApproximate(3)": 500
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 465,
+        "MeshApproximate(3)": 577
+      },
+      "stale_before": 542,
+      "stale_after": 465,
+      "stale_delta": 77,
+      "current_after": 577
+    },
+    {
+      "batch": 6,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_06.log",
+      "returncode": 1,
+      "minutes": 74.68,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 190,
+      "cells_in_batch": 190,
+      "approve_rebuild": 190,
+      "reject_rebuild": 0,
+      "built_reported": 190,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y2",
+      "packages_written": 190,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 15.075,
+      "vram_peak_mb": 15815,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 3,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 362,
+      "over_5mb_after": 301,
+      "over_5mb_delta": 61,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 301,
+        "under_3mb": 1916,
+        "shorter_than_1kb": 0,
+        "total_bytes": 5350935272,
+        "total_gb": 5.351
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74225,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshMerge(1)": 465,
+        "MeshApproximate(3)": 577
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 654,
+        "MeshMerge(1)": 388
+      },
+      "stale_before": 465,
+      "stale_after": 388,
+      "stale_delta": 77,
+      "current_after": 654
+    },
+    {
+      "batch": 7,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_07.log",
+      "returncode": 1,
+      "minutes": 65.77,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 189,
+      "cells_in_batch": 189,
+      "approve_rebuild": 189,
+      "reject_rebuild": 0,
+      "built_reported": 189,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y2",
+      "packages_written": 189,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 12.545,
+      "vram_peak_mb": 15718,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 3,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 301,
+      "over_5mb_after": 240,
+      "over_5mb_delta": 61,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 240,
+        "under_3mb": 1985,
+        "shorter_than_1kb": 0,
+        "total_bytes": 4634191362,
+        "total_gb": 4.634
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1307668,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1189640,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 15318845,
+          "band": "STALE>5MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 654,
+        "MeshMerge(1)": 388
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 732,
+        "MeshMerge(1)": 310
+      },
+      "stale_before": 388,
+      "stale_after": 310,
+      "stale_delta": 78,
+      "current_after": 732
+    },
+    {
+      "batch": 8,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_08.log",
+      "returncode": 1,
+      "minutes": 64.66,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 188,
+      "cells_in_batch": 188,
+      "approve_rebuild": 188,
+      "reject_rebuild": 0,
+      "built_reported": 188,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y-6",
+      "packages_written": 188,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 12.989,
+      "vram_peak_mb": 15708,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 4,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 240,
+      "over_5mb_after": 180,
+      "over_5mb_delta": 60,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 180,
+        "under_3mb": 2051,
+        "shorter_than_1kb": 0,
+        "total_bytes": 3910408766,
+        "total_gb": 3.91
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1306549,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1197866,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 1121918,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 732,
+        "MeshMerge(1)": 310
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 810,
+        "MeshMerge(1)": 232
+      },
+      "stale_before": 310,
+      "stale_after": 232,
+      "stale_delta": 78,
+      "current_after": 810
+    },
+    {
+      "batch": 9,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_09.log",
+      "returncode": 3,
+      "minutes": 70.6,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 188,
+      "cells_in_batch": 188,
+      "approve_rebuild": 188,
+      "reject_rebuild": 0,
+      "built_reported": 188,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X0_Y15",
+      "packages_written": 188,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 15.939,
+      "vram_peak_mb": 15753,
+      "vram_at_fault_mb": 9359.09,
+      "log_errors": null,
+      "log_warnings": null,
+      "errors_over_baseline": null,
+      "completed": true,
+      "fatal": [
+        {
+          "signature": "gpu_crash",
+          "line": "[2026.09.07-05.38.47:959][188]LogD3D12RHI: Error: GPU crash detected:"
+        },
+        {
+          "signature": "device_removed",
+          "line": "- Device 0 Removed: DXGI_ERROR_DRIVER_INTERNAL_ERROR"
+        },
+        {
+          "signature": "reserved_resource",
+          "line": "[2026.09.07-05.38.47:959][188]LogD3D12RHI: Error: Adapter->CreateReservedResource( Desc, GetGPUMask(), InCreateD3D12Access, InResourceStateMode, InCreateD3D12Access, nullptr, &NewResource, Name, false) failed"
+        }
+      ],
+      "over_5mb_before": 180,
+      "over_5mb_after": 123,
+      "over_5mb_delta": 57,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 123,
+        "under_3mb": 2122,
+        "shorter_than_1kb": 0,
+        "total_bytes": 3157300287,
+        "total_gb": 3.157
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1306549,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1197866,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 1121918,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 810,
+        "MeshMerge(1)": 232
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 888,
+        "MeshMerge(1)": 154
+      },
+      "stale_before": 232,
+      "stale_after": 154,
+      "stale_delta": 78,
+      "current_after": 888
+    },
+    {
+      "batch": 9,
+      "attempt": 2,
+      "log": "_verify/hlod/20260909_batched/batch_09_retry.log",
+      "returncode": 3,
+      "minutes": 66.39,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 188,
+      "cells_in_batch": 188,
+      "approve_rebuild": 188,
+      "reject_rebuild": 0,
+      "built_reported": 188,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X0_Y15",
+      "packages_written": 188,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 17.819,
+      "vram_peak_mb": 15931,
+      "vram_at_fault_mb": 7403.46,
+      "log_errors": null,
+      "log_warnings": null,
+      "errors_over_baseline": null,
+      "completed": true,
+      "fatal": [
+        {
+          "signature": "reserved_resource",
+          "line": "[2026.09.07-06.45.15:939][188]LogD3D12RHI: Error: Adapter->CreateReservedResource( Desc, GetGPUMask(), InCreateD3D12Access, InResourceStateMode, InCreateD3D12Access, nullptr, &NewResource, Name, false) failed"
+        },
+        {
+          "signature": "gpu_crash",
+          "line": "[2026.09.07-06.45.15:939][188]LogD3D12RHI: Error: GPU crash detected:"
+        },
+        {
+          "signature": "device_removed",
+          "line": "- Device 0 Removed: DXGI_ERROR_DRIVER_INTERNAL_ERROR"
+        }
+      ],
+      "over_5mb_before": 123,
+      "over_5mb_after": 123,
+      "over_5mb_delta": 0,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 123,
+        "under_3mb": 2122,
+        "shorter_than_1kb": 0,
+        "total_bytes": 3157368870,
+        "total_gb": 3.157
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83176,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247437,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1306549,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1197866,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 22158033,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312585,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 1121918,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 888,
+        "MeshMerge(1)": 154
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 888,
+        "MeshMerge(1)": 154
+      },
+      "stale_before": 154,
+      "stale_after": 154,
+      "stale_delta": 0,
+      "current_after": 888
+    },
+    {
+      "batch": 10,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_10.log",
+      "returncode": 1,
+      "minutes": 67.93,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 185,
+      "cells_in_batch": 185,
+      "approve_rebuild": 185,
+      "reject_rebuild": 0,
+      "built_reported": 185,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9",
+      "packages_written": 185,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 19.858,
+      "vram_peak_mb": 15841,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 3,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 123,
+      "over_5mb_after": 64,
+      "over_5mb_delta": 59,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 64,
+        "under_3mb": 2189,
+        "shorter_than_1kb": 0,
+        "total_bytes": 2399580909,
+        "total_gb": 2.4
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83314,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247570,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1306549,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1197866,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 1075264,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312718,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 1121918,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 888,
+        "MeshMerge(1)": 154
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 965,
+        "MeshMerge(1)": 77
+      },
+      "stale_before": 154,
+      "stale_after": 77,
+      "stale_delta": 77,
+      "current_after": 965
+    },
+    {
+      "batch": 11,
+      "attempt": 1,
+      "log": "_verify/hlod/20260909_batched/batch_11.log",
+      "returncode": 1,
+      "minutes": 70.78,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 185,
+      "cells_in_batch": 185,
+      "approve_rebuild": 185,
+      "reject_rebuild": 0,
+      "built_reported": 185,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0",
+      "packages_written": 185,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 15.63,
+      "vram_peak_mb": 15900,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 3,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 64,
+      "over_5mb_after": 0,
+      "over_5mb_delta": 64,
+      "census_after": {
+        "packages_listed": 2267,
+        "packages_present": 2267,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 0,
+        "under_3mb": 2258,
+        "shorter_than_1kb": 0,
+        "total_bytes": 1580119416,
+        "total_gb": 1.58
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+          "bytes": 83314,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+          "bytes": 74362,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+          "bytes": 1274672,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+          "bytes": 54115,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+          "bytes": 247570,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+          "bytes": 113775,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+          "bytes": 1306549,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+          "bytes": 1197866,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+          "bytes": 76080,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+          "bytes": 1075264,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+          "bytes": 312718,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+          "bytes": 1121918,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 965,
+        "MeshMerge(1)": 77
+      },
+      "layers_after": {
+        "Instancing(0)": 1225,
+        "MeshApproximate(3)": 1042
+      },
+      "stale_before": 77,
+      "stale_after": 0,
+      "stale_delta": 77,
+      "current_after": 1042
+    }
+  ],
+  "final_census": {
+    "packages_listed": 2267,
+    "packages_present": 2267,
+    "packages_missing": 0,
+    "missing_sample": [],
+    "over_5mb": 0,
+    "under_3mb": 2258,
+    "shorter_than_1kb": 0,
+    "total_bytes": 1580119416,
+    "total_gb": 1.58
+  },
+  "final_stride": [
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+      "bytes": 83314,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+      "bytes": 74362,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+      "bytes": 1274672,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+      "bytes": 54115,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+      "bytes": 247570,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+      "bytes": 113775,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+      "bytes": 1306549,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+      "bytes": 1197866,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+      "bytes": 76080,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+      "bytes": 1075264,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+      "bytes": 312718,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+      "bytes": 1121918,
+      "band": "rebuilt<3MB"
+    }
+  ],
+  "final_layers": {
+    "Instancing(0)": 1225,
+    "MeshApproximate(3)": 1042
+  }
+}

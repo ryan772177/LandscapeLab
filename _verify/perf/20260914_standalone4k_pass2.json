@@ -1,0 +1,148 @@
+{
+ "_what": "check_perf-conforming view of a STANDALONE -game run. Stats are copied VERBATIM from _source; this file measures nothing itself.",
+ "_measurement_class": "STANDALONE -game process, 4K ([3840, 2160] read back from CsvProfiler metadata), FOV 90.0, BugItGo at the ratified stations.",
+ "_source": "_verify/perf/pass2_table/standalone_2026-09-14/perf_standalone.json",
+ "declared_loading_range_cm": 51200,
+ "_declared_loading_range_provenance": "recipes/alpine_8k.json streaming.main_loading_range_cm. A DECLARATION copied from the recipe, NOT read back from the run -- perf_standalone does not record the range in force.",
+ "_independent_of_budgets": true,
+ "_independence_note": "Source is a NEW run; the ratified budgets were derived from standalone_2026-09-07, so checking this against them is a real comparison.",
+ "_shader_dispatch": {
+  "noxgecontroller": false,
+  "no_remote_shader_compile": false,
+  "local_ddc_path_override": null
+ },
+ "stations": [
+  {
+   "zone": "plaza",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2384,
+     "mean": 10.483,
+     "p50": 10.468,
+     "p90": 11.732,
+     "max": 13.247
+    },
+    "GameThreadTime": {
+     "n": 2383,
+     "mean": 3.501,
+     "p50": 3.564,
+     "p90": 4.281,
+     "max": 5.583
+    },
+    "RenderThreadTime": {
+     "n": 2383,
+     "mean": 10.476,
+     "p50": 10.43,
+     "p90": 11.142,
+     "max": 12.494
+    },
+    "GPUTime": {
+     "n": 2383,
+     "mean": 9.198,
+     "p50": 9.216,
+     "p90": 9.449,
+     "max": 10.883
+    }
+   }
+  },
+  {
+   "zone": "main_street",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3344,
+     "mean": 7.433,
+     "p50": 7.428,
+     "p90": 8.013,
+     "max": 10.073
+    },
+    "GameThreadTime": {
+     "n": 3343,
+     "mean": 2.548,
+     "p50": 2.446,
+     "p90": 3.038,
+     "max": 3.954
+    },
+    "RenderThreadTime": {
+     "n": 3343,
+     "mean": 7.424,
+     "p50": 7.414,
+     "p90": 7.982,
+     "max": 9.614
+    },
+    "GPUTime": {
+     "n": 3343,
+     "mean": 6.294,
+     "p50": 6.258,
+     "p90": 6.58,
+     "max": 6.953
+    }
+   }
+  },
+  {
+   "zone": "treeline",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3073,
+     "mean": 8.029,
+     "p50": 8.037,
+     "p90": 9.047,
+     "max": 10.371
+    },
+    "GameThreadTime": {
+     "n": 3072,
+     "mean": 3.283,
+     "p50": 3.355,
+     "p90": 3.982,
+     "max": 4.928
+    },
+    "RenderThreadTime": {
+     "n": 3072,
+     "mean": 8.017,
+     "p50": 8.007,
+     "p90": 8.504,
+     "max": 10.31
+    },
+    "GPUTime": {
+     "n": 3072,
+     "mean": 6.837,
+     "p50": 6.793,
+     "p90": 7.133,
+     "max": 7.524
+    }
+   }
+  },
+  {
+   "zone": "vista",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2662,
+     "mean": 9.299,
+     "p50": 9.288,
+     "p90": 10.287,
+     "max": 11.656
+    },
+    "GameThreadTime": {
+     "n": 2661,
+     "mean": 3.553,
+     "p50": 3.62,
+     "p90": 4.14,
+     "max": 5.16
+    },
+    "RenderThreadTime": {
+     "n": 2661,
+     "mean": 9.289,
+     "p50": 9.261,
+     "p90": 9.892,
+     "max": 11.521
+    },
+    "GPUTime": {
+     "n": 2661,
+     "mean": 8.023,
+     "p50": 7.986,
+     "p90": 8.312,
+     "max": 8.74
+    }
+   }
+  }
+ ]
+}

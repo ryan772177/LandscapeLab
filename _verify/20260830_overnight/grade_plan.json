@@ -1,0 +1,87 @@
+{
+ "jobs": [
+  {
+   "role": "beam_wood",
+   "mode": "darken",
+   "new": "refs/textures_v1/beam_wood_tiled.jpg",
+   "replaced": "rough_wood_diff_2k.jpg",
+   "swapped": {
+    "luma": 0.37264336803211884,
+    "sat": 0.17519316172396882,
+    "warmth": 0.06815246133243336,
+    "detail": 0.06714601033754423
+   },
+   "original": {
+    "luma": 0.38752029349289685,
+    "sat": 0.1834301437057827,
+    "warmth": 0.07554300065134084,
+    "detail": 0.08646837419765345
+   },
+   "target_sat": 0.17519316172396882,
+   "target_warmth": 0.06815246133243336,
+   "k_sat": 1.0,
+   "k_warm": 1.0,
+   "k_luma": 0.9
+  },
+  {
+   "role": "roof_tiles",
+   "mode": "chroma",
+   "new": "refs/textures_v1/roof_tiles_tiled.jpg",
+   "replaced": "grey_roof_01_diff_4k.jpg",
+   "swapped": {
+    "luma": 0.4467290322561825,
+    "sat": 0.10467273459147361,
+    "warmth": 0.042341052784639246,
+    "detail": 0.16173308680995882
+   },
+   "original": {
+    "luma": 0.3363060807225283,
+    "sat": 0.0651020698513668,
+    "warmth": 0.01967058322008918,
+    "detail": 0.1207989553594588
+   },
+   "target_sat": 0.0848874022214202,
+   "target_warmth": 0.031005818002364214,
+   "k_sat": 1.0,
+   "k_warm": 0.7322874474525451,
+   "k_luma": 1.0
+  },
+  {
+   "role": "wall_planks_b",
+   "mode": "chroma",
+   "new": "refs/textures_v1/wall_planks_b_tiled.jpg",
+   "replaced": "brown_planks_03_diff_2k.jpg",
+   "swapped": {
+    "luma": 0.47372847278819363,
+    "sat": 0.6707194976544377,
+    "warmth": 0.420380439010321,
+    "detail": 0.1305494357315987
+   },
+   "original": {
+    "luma": 0.3945273017193289,
+    "sat": 0.17887147749051646,
+    "warmth": 0.06921122775358311,
+    "detail": 0.11897856436397873
+   },
+   "target_sat": 0.4247954875724771,
+   "target_warmth": 0.24479583338195207,
+   "k_sat": 0.6342010903358462,
+   "k_warm": 0.8609340834617611,
+   "k_luma": 1.0
+  }
+ ],
+ "written": [
+  [
+   "beam_wood",
+   "refs/textures_v1/beam_wood_graded.jpg"
+  ],
+  [
+   "roof_tiles",
+   "refs/textures_v1/roof_tiles_graded.jpg"
+  ],
+  [
+   "wall_planks_b",
+   "refs/textures_v1/wall_planks_b_graded.jpg"
+  ]
+ ]
+}

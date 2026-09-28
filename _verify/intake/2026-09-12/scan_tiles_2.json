@@ -1,0 +1,60 @@
+{
+ "_what": "per-scan tile derivation, 2026-09-12",
+ "camera": {
+  "fov_h": 90.0,
+  "res": [
+   3840,
+   2160
+  ],
+  "near_m": 3.0,
+  "texels_per_m_needed": 814.9
+ },
+ "_note": "derived tile depends ONLY on resolution and viewing distance; stated size says whether the scan is being stretched. Both are reported; neither is averaged.",
+ "rows": [
+  {
+   "scan": "PineNeedles001_4K-PNG",
+   "albedo_px": 4096,
+   "stated_physical_m": null,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": null,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "Rock016_4K-PNG",
+   "albedo_px": 4096,
+   "stated_physical_m": null,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": null,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "Ground037_4K-PNG",
+   "albedo_px": 4096,
+   "stated_physical_m": null,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": null,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  }
+ ]
+}

@@ -1,0 +1,120 @@
+{
+ "_what": "per-scan tile derivation, 2026-09-12",
+ "camera": {
+  "fov_h": 90.0,
+  "res": [
+   3840,
+   2160
+  ],
+  "near_m": 3.0,
+  "texels_per_m_needed": 814.9
+ },
+ "_note": "derived tile depends ONLY on resolution and viewing distance; stated size says whether the scan is being stretched. Both are reported; neither is averaged.",
+ "rows": [
+  {
+   "scan": "forest_floor_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 2.14,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 2.35,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "gray_rocks_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 1.8,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 2.79,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "rocks_ground_04_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 2.0,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 2.51,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "gravel_ground_01_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 3.0,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 1.68,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "river_small_rocks_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 2.9,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 1.73,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "rocky_trail_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 2.0,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 2.51,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  },
+  {
+   "scan": "snow_02_4k",
+   "albedo_px": 4096,
+   "stated_physical_m": 2.0,
+   "derived_tile_m": 5.027,
+   "texels_per_m_at_derived_tile": 814.9,
+   "texels_per_m_needed": 814.9,
+   "stretch_vs_stated": 2.51,
+   "repeat_visible_from_m": 288.0,
+   "repeat_visible_to_m": 2304.0,
+   "height_verdict": "OK -- 16-bit height",
+   "repeat_cpd_at_300m": 1.042,
+   "csf_threshold_at_300m": 0.0115,
+   "in_sensitive_band_at_300m": true
+  }
+ ]
+}

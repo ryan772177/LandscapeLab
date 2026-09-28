@@ -1,0 +1,97 @@
+{
+ "candidate": "TRELLIS multi-view",
+ "inputs": [
+  "church_az000.png.jpg",
+  "church_az035.png.jpg",
+  "church_az090.png.jpg",
+  "church_az270.png.jpg"
+ ],
+ "n_views": 4,
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "sampler_params_source": "example_multi_image.py (steps 12 / cfg 7.5, steps 12 / cfg 3). The single-view bakeoff used pipeline DEFAULTS -- this run differs from its baseline in view count AND sampler params.",
+ "mode": "stochastic (run_multi_image default)",
+ "error": null,
+ "baselines": {
+  "flat_sheet_single_view": {
+   "thin_over_long": 0.0114,
+   "vertices": 74904,
+   "extent": [
+    0.5603,
+    0.0114,
+    1.0009
+   ],
+   "input_source_pixels": 9200
+  },
+  "castle_positive_control": {
+   "thin_over_long": 0.8491,
+   "vertices": 570703,
+   "extent": [
+    0.8773,
+    0.8509,
+    1.0022
+   ]
+  }
+ },
+ "vram_free_before_MiB": 15045,
+ "vram_total_MiB": 16303,
+ "load_s": 21.3,
+ "input_sizes": [
+  [
+   "church_az000.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az035.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az090.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az270.png.jpg",
+   1024,
+   1024
+  ]
+ ],
+ "run_s": 5.4,
+ "vertices": 190498,
+ "faces": 381228,
+ "bbox_min": [
+  -0.3676,
+  -0.1986,
+  -0.4502
+ ],
+ "bbox_max": [
+  0.3953,
+  0.1963,
+  0.4644
+ ],
+ "extent": [
+  0.7629,
+  0.3949,
+  0.9147
+ ],
+ "thin_over_long": 0.4317,
+ "verdict_vs_flat_sheet": "VOLUMETRIC",
+ "obj": "church_trellis_multi.obj",
+ "obj_bytes": 13986302,
+ "edge_use_histogram": {
+  "2": 571842
+ },
+ "boundary_edges": 0,
+ "nonmanifold_edges": 0,
+ "euler_V_E_F": [
+  190498,
+  571842,
+  381228
+ ],
+ "euler_characteristic": -116,
+ "watertight": true,
+ "watertight_method": "every edge used by exactly 2 faces; boundary=1-use, nonmanifold=>2-use",
+ "vram_peak_MiB": 10082,
+ "wall_s": 27.8
+}

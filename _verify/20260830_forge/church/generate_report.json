@@ -1,0 +1,68 @@
+{
+ "candidate": "TRELLIS multi-view",
+ "asset": "church",
+ "name": "SM_Church_Forge",
+ "inputs": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az000.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az035.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az090.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az270.png.jpg"
+ ],
+ "n_views": 4,
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260830,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "error": null,
+ "vram_free_before_MiB": 15045,
+ "vram_total_MiB": 16303,
+ "load_s": 21.4,
+ "input_sizes": [
+  [
+   "church_az000.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az035.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az090.png.jpg",
+   1024,
+   1024
+  ],
+  [
+   "church_az270.png.jpg",
+   1024,
+   1024
+  ]
+ ],
+ "run_s": 5.5,
+ "vertices": 190562,
+ "faces": 381364,
+ "extent": [
+  0.7629,
+  0.3948,
+  0.9147
+ ],
+ "thin_over_long": 0.4317,
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/church/SM_Church_Forge_raw.obj",
+ "out_obj_bytes": 13991394,
+ "boundary_edges": 0,
+ "nonmanifold_edges": 0,
+ "watertight": true,
+ "euler_characteristic": -120,
+ "genus": 61,
+ "vram_peak_MiB": 10082,
+ "wall_s": 28.1
+}

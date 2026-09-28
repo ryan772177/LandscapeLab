@@ -1,0 +1,24 @@
+{
+ "asset_key": "church",
+ "name": "SM_Church_Forge",
+ "views": [
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az000.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az035.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az090.png.jpg",
+  "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/church_refs/church_az270.png.jpg"
+ ],
+ "model_repo": "JeffreyXiang/TRELLIS-image-large",
+ "seed": 20260830,
+ "sampler": {
+  "sparse_structure": {
+   "steps": 12,
+   "cfg_strength": 7.5
+  },
+  "slat": {
+   "steps": 12,
+   "cfg_strength": 3
+  }
+ },
+ "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/church/SM_Church_Forge_raw.obj",
+ "out_report": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/church/generate_report.json"
+}

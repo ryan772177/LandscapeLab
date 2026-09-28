@@ -1,0 +1,304 @@
+{
+ "scope": {
+  "measured_dimensions": [
+   "count: chalets placed vs the concept's recorded count_range",
+   "framing: chalet angular extent vs the camera half-FOV",
+   "nave: height as a ratio of the chalet silhouette, vs the ruling",
+   "spire: height as a ratio of the chalet silhouette, vs the ruling",
+   "fov: outermost recorded terrain feature vs 0.95 of the half-width",
+   "plausibility: the chalet SILHOUETTE, and every ratio-scored height derived from it, against an ABSOLUTE band -- the only check that can catch a wrong reference, because a ratio cannot"
+  ],
+  "not_measured": [
+   "FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.",
+   "MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.",
+   "OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.",
+   "LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.",
+   "Anything needing a pixel. That is the render half, by construction."
+  ],
+  "_what_deltas_empty_means": "converged on the measured_dimensions listed here, and on nothing else"
+ },
+ "iteration_0": {
+  "cfg": {
+   "level": "/Game/Scratch/Concept01_Loop",
+   "iteration": "iter0",
+   "offset_y_m": 0.0,
+   "sun_elevation_deg": 12.0,
+   "sun_yaw_deg": -75.0,
+   "exposure_ev": -1.923,
+   "village_bearing_deg": 22.0,
+   "village_distance_m": 220.0,
+   "cluster_radius_m": 45.0,
+   "chalet_count": 16,
+   "chalet_footprint_m": [
+    10.0,
+    8.0
+   ],
+   "chalet_storeys": 2,
+   "nave_ratio": 1.5,
+   "spire_ratio": 2.5,
+   "storey_m": 2.0,
+   "roof_package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+   "camera_height_m": 1.8,
+   "camera_pitch_deg": 1.799,
+   "fov_horizontal_deg": 60.0
+  },
+  "result": {
+   "ok": true,
+   "error": null,
+   "greybox_count": 19,
+   "kit_roof_count": 16,
+   "deferred": [
+    "terrain: peak, basin, slope, stream -- no landform on this stage",
+    "clutter: wood_stack, river_stone, track -- not placed in v0",
+    "chalet WALLS are greyboxes; only the roofs are kit assets"
+   ],
+   "measured": {
+    "house_silhouette_used_cm": 738.0,
+    "camera_fov_readback": 60.0,
+    "camera_rot_readback": [
+     -0.0,
+     1.799,
+     0.0
+    ],
+    "camera_loc": [
+     0.0,
+     0.0,
+     180.0
+    ],
+    "chalets_placed": 16,
+    "chalet_wall_height_cm": 400.0,
+    "chalet_silhouette_cm": 738.0,
+    "church_spire_top_cm": 1845.0,
+    "church_nave_top_cm": 1107.0,
+    "nave_over_silhouette": 1.5,
+    "spire_over_silhouette": 2.5,
+    "chalet_bearing_min_deg": 10.99,
+    "chalet_bearing_max_deg": 33.22,
+    "half_fov_deg": 30.0,
+    "chalets_outside_frame": 4,
+    "chalet_edge_bearing_max_deg": 35.39,
+    "chalets_centre_outside_frame": 1
+   },
+   "level_route": "already current",
+   "current_level": "/Game/Scratch/Concept01_Loop.Concept01_Loop",
+   "cleared_prior_actors": 36,
+   "stage_built": false,
+   "ground_scale": 15662.5,
+   "roof_pivot_drop_cm": 201.49,
+   "saved": true
+  },
+  "deltas": [
+   [
+    "framing",
+    "4 chalet(s) outside the 60 deg frame"
+   ],
+   [
+    "fov",
+    "outermost recorded feature sits at 1.00 of the half-width -- a feature the reader saw INSIDE the image cannot be on the boundary"
+   ]
+  ],
+  "measured_dimensions": [
+   "count: chalets placed vs the concept's recorded count_range",
+   "framing: chalet angular extent vs the camera half-FOV",
+   "nave: height as a ratio of the chalet silhouette, vs the ruling",
+   "spire: height as a ratio of the chalet silhouette, vs the ruling",
+   "fov: outermost recorded terrain feature vs 0.95 of the half-width",
+   "plausibility: the chalet SILHOUETTE, and every ratio-scored height derived from it, against an ABSOLUTE band -- the only check that can catch a wrong reference, because a ratio cannot"
+  ],
+  "not_measured": [
+   "FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.",
+   "MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.",
+   "OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.",
+   "LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.",
+   "Anything needing a pixel. That is the render half, by construction."
+  ]
+ },
+ "iteration_1": {
+  "cfg": {
+   "level": "/Game/Scratch/Concept01_Loop",
+   "iteration": "iter1",
+   "offset_y_m": 3000.0,
+   "sun_elevation_deg": 12.0,
+   "sun_yaw_deg": -75.0,
+   "exposure_ev": -1.923,
+   "village_bearing_deg": 22.0,
+   "village_distance_m": 220.0,
+   "cluster_radius_m": 45.0,
+   "chalet_count": 16,
+   "chalet_footprint_m": [
+    10.0,
+    8.0
+   ],
+   "chalet_storeys": 2,
+   "nave_ratio": 1.5,
+   "spire_ratio": 2.5,
+   "storey_m": 2.0,
+   "roof_package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+   "camera_height_m": 1.8,
+   "camera_pitch_deg": 2.031,
+   "fov_horizontal_deg": 66.7
+  },
+  "result": {
+   "ok": true,
+   "error": null,
+   "greybox_count": 19,
+   "kit_roof_count": 16,
+   "deferred": [
+    "terrain: peak, basin, slope, stream -- no landform on this stage",
+    "clutter: wood_stack, river_stone, track -- not placed in v0",
+    "chalet WALLS are greyboxes; only the roofs are kit assets"
+   ],
+   "measured": {
+    "house_silhouette_used_cm": 738.0,
+    "camera_fov_readback": 66.69999694824219,
+    "camera_rot_readback": [
+     -0.0,
+     2.031,
+     0.0
+    ],
+    "camera_loc": [
+     0.0,
+     300000.0,
+     180.0
+    ],
+    "chalets_placed": 16,
+    "chalet_wall_height_cm": 400.0,
+    "chalet_silhouette_cm": 738.0,
+    "church_spire_top_cm": 1845.0,
+    "church_nave_top_cm": 1107.0,
+    "nave_over_silhouette": 1.5,
+    "spire_over_silhouette": 2.5,
+    "chalet_bearing_min_deg": 10.99,
+    "chalet_bearing_max_deg": 33.22,
+    "half_fov_deg": 33.35,
+    "chalets_outside_frame": 1,
+    "chalet_edge_bearing_max_deg": 35.39,
+    "chalets_centre_outside_frame": 0
+   },
+   "level_route": "already current",
+   "current_level": "/Game/Scratch/Concept01_Loop.Concept01_Loop",
+   "cleared_prior_actors": 36,
+   "stage_built": false,
+   "ground_scale": 15662.5,
+   "roof_pivot_drop_cm": 201.49,
+   "saved": true
+  },
+  "deltas": [
+   [
+    "framing",
+    "1 chalet(s) outside the 67 deg frame"
+   ]
+  ],
+  "measured_dimensions": [
+   "count: chalets placed vs the concept's recorded count_range",
+   "framing: chalet angular extent vs the camera half-FOV",
+   "nave: height as a ratio of the chalet silhouette, vs the ruling",
+   "spire: height as a ratio of the chalet silhouette, vs the ruling",
+   "fov: outermost recorded terrain feature vs 0.95 of the half-width",
+   "plausibility: the chalet SILHOUETTE, and every ratio-scored height derived from it, against an ABSOLUTE band -- the only check that can catch a wrong reference, because a ratio cannot"
+  ],
+  "not_measured": [
+   "FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.",
+   "MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.",
+   "OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.",
+   "LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.",
+   "Anything needing a pixel. That is the render half, by construction."
+  ]
+ },
+ "iteration_2": {
+  "cfg": {
+   "level": "/Game/Scratch/Concept01_Loop",
+   "iteration": "iter2",
+   "offset_y_m": 6000.0,
+   "sun_elevation_deg": 12.0,
+   "sun_yaw_deg": -75.0,
+   "exposure_ev": -1.923,
+   "village_bearing_deg": 22.0,
+   "village_distance_m": 220.0,
+   "cluster_radius_m": 45.0,
+   "chalet_count": 16,
+   "chalet_footprint_m": [
+    10.0,
+    8.0
+   ],
+   "chalet_storeys": 2,
+   "nave_ratio": 1.5,
+   "spire_ratio": 2.5,
+   "storey_m": 2.0,
+   "roof_package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+   "camera_height_m": 1.8,
+   "camera_pitch_deg": 2.472,
+   "fov_horizontal_deg": 78.6
+  },
+  "result": {
+   "ok": true,
+   "error": null,
+   "greybox_count": 19,
+   "kit_roof_count": 16,
+   "deferred": [
+    "terrain: peak, basin, slope, stream -- no landform on this stage",
+    "clutter: wood_stack, river_stone, track -- not placed in v0",
+    "chalet WALLS are greyboxes; only the roofs are kit assets"
+   ],
+   "measured": {
+    "house_silhouette_used_cm": 738.0,
+    "camera_fov_readback": 78.5999984741211,
+    "camera_rot_readback": [
+     -0.0,
+     2.472,
+     0.0
+    ],
+    "camera_loc": [
+     0.0,
+     600000.0,
+     180.0
+    ],
+    "chalets_placed": 16,
+    "chalet_wall_height_cm": 400.0,
+    "chalet_silhouette_cm": 738.0,
+    "church_spire_top_cm": 1845.0,
+    "church_nave_top_cm": 1107.0,
+    "nave_over_silhouette": 1.5,
+    "spire_over_silhouette": 2.5,
+    "chalet_bearing_min_deg": 10.99,
+    "chalet_bearing_max_deg": 33.22,
+    "half_fov_deg": 39.3,
+    "chalets_outside_frame": 0,
+    "chalet_edge_bearing_max_deg": 35.39,
+    "chalets_centre_outside_frame": 0
+   },
+   "level_route": "already current",
+   "current_level": "/Game/Scratch/Concept01_Loop.Concept01_Loop",
+   "cleared_prior_actors": 36,
+   "stage_built": false,
+   "ground_scale": 15662.5,
+   "roof_pivot_drop_cm": 201.49,
+   "saved": true
+  },
+  "deltas": [],
+  "fov_derivation": {
+   "terrain_bmax_deg": 30.0,
+   "terrain_margin": 0.95,
+   "chalet_edge_max_deg": 35.39,
+   "chalet_margin": 0.9,
+   "binding": "chalet edges",
+   "fov_deg": 78.6,
+   "one_shot_because": "chalet_edge_bearing_max_deg is FOV-invariant -- 35.39 measured in iter0 AND iter1 across a FOV and an offset change -- because solve() derives only pitch from FOV and camera XY never moves"
+  },
+  "measured_dimensions": [
+   "count: chalets placed vs the concept's recorded count_range",
+   "framing: chalet angular extent vs the camera half-FOV",
+   "nave: height as a ratio of the chalet silhouette, vs the ruling",
+   "spire: height as a ratio of the chalet silhouette, vs the ruling",
+   "fov: outermost recorded terrain feature vs 0.95 of the half-width",
+   "plausibility: the chalet SILHOUETTE, and every ratio-scored height derived from it, against an ABSOLUTE band -- the only check that can catch a wrong reference, because a ratio cannot"
+  ],
+  "not_measured": [
+   "FIT -- whether a kit roof SEATS on the wall box it covers. The roofs splay wider than their walls in both iterations and no delta above can see it (found 2026-08-30 by looking at the frame, not by the loop). Roof-to-footprint fit is RULING 4's territory -- the planner that biases footprints toward servable roofs is the code that must seat them.",
+   "MATERIAL -- albedo, tonal range, exposure. The stage ground is untextured white and the loop is content with that.",
+   "OCCLUSION -- whether nearer geometry hides what the bearings say is visible. Bearings are computed, not traced.",
+   "LANDFORM -- terrain is DEFERRED on this stage, so nothing about a silhouette read against a hillside is tested.",
+   "Anything needing a pixel. That is the render half, by construction."
+  ]
+ }
+}

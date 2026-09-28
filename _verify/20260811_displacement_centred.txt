@@ -1,0 +1,206 @@
+20260811 â€” DISPLACEMENT RE-CENTRED PER MAP (forced-mip normalisation)
+====================================================================
+
+material : /Game/Materials/M_AutoLandscape
+sha256   : e43b02eb7dd35ad198a9d6e877561fdfdf2ba75f471cf07d1cb4637a323ea360
+bytes    : 146494
+previous : 2e0f68ad24db2f63b026986cf6e48de8d63766d96beda0ca697abbc499e238e9  (137454 B)
+
+THE CHANGE. center 0.5 is not neutral for these maps -- measured
+means 0.5257 (Ground037) to 0.7602 (Rock026), so up to half the
++/-40 cm amplitude was a per-surface DC offset, with a ~19 cm step
+at layer boundaries that is not relief. _centred_height now adds a
+second sample of each map forced to its smallest mip
+(TMVM_MIP_LEVEL, const_mip_value 15) and computes
+    centred = raw - mipped + center
+so the neutral is READ FROM THE TEXTURE rather than declared. No
+derived record to drift when a map is reimported or recompressed.
+
+THE OPEN RISK DID NOT MATERIALISE: TMVM_MIP_LEVEL compiles on the
+Nanite tessellation path here. 'compiled clean', grass output still
+seeded.
+
+NODE DELTA IS EXACTLY AS DESIGNED: 278 -> 298 expressions, +20 =
+5 mip samples + 5 subtracts + 5 adds + 5 constants, one set per
+surface height map. Every _D map now reads 'connected 2' (raw +
+forced-mip) where it read 1 before.
+
+THE RE-CENTRING TOUCHES ONLY THE DISPLACEMENT PATH. The sub-surface
+HeightLerp keeps the UNCENTRED samples: that blend compares two
+heights against each other, and shifting them by different
+constants would change which surface wins.
+
+NOT YET MEASURED IN A RENDER. The 5080hqfix capture was still
+running when this was written. EXPECT A SMALL NUMBER: this recovers
+a DC offset and a layer-boundary step, not high-frequency
+structure, so edge energy is a WEAK instrument for it and a null
+result would not mean the fix did nothing.
+
+====================================================================
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+READ-ONLY: mutates no asset, saves nothing.
+
+  - 1CB62644400FDA4E89FE6ABE575EA3EF (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+expressions in graph : 298
+outputs driven       : 1 (MP_MATERIAL_ATTRIBUTES)
+custom outputs seeded: 1 (MaterialExpressionLandscapeGrassOutput)
+reachable from output: 298
+accessor calls / errors: 298 / 0
+
+TextureSample nodes reaching an output:
+  T_Alpine_Macro               connected 1   ORPHANED 0
+  T_Alpine_Variants            connected 1   ORPHANED 0
+  T_Alpine_Weights             connected 1   ORPHANED 0
+  T_Ground037_C                connected 2   ORPHANED 0
+  T_Ground037_D                connected 2   ORPHANED 0
+  T_Ground037_N                connected 1   ORPHANED 0
+  T_Ground037_R                connected 1   ORPHANED 0
+  T_Rock026_C                  connected 4   ORPHANED 0
+  T_Rock026_D                  connected 2   ORPHANED 0
+  T_Rock026_N                  connected 1   ORPHANED 0
+  T_Rock026_R                  connected 1   ORPHANED 0
+  T_Rock051_C                  connected 4   ORPHANED 0
+  T_Rock051_D                  connected 2   ORPHANED 0
+  T_Rock051_N                  connected 1   ORPHANED 0
+  T_Rock051_R                  connected 1   ORPHANED 0
+  T_Snow006_C                  connected 2   ORPHANED 0
+  T_Snow006_D                  connected 2   ORPHANED 0
+  T_Snow006_N                  connected 1   ORPHANED 0
+  T_Snow006_R                  connected 1   ORPHANED 0
+  T_WildGrass_C                connected 2   ORPHANED 0
+  T_WildGrass_D                connected 2   ORPHANED 0
+  T_WildGrass_N                connected 1   ORPHANED 0
+  T_WildGrass_R                connected 1   ORPHANED 0
+
+VERDICT: CONNECTED — all 298 expressions are reachable from a material output.
+This is reachability, not correctness: it proves nothing
+about WHAT the graph computes, only that no node is
+contributing to nothing.
+
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+material  : /Game/Materials/M_AutoLandscape
+
+  - 1CB62644400FDA4E89FE6ABE575EA3EF (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+graph expressions: before 298, after 298; scratch nodes left at (-9000,-9000): 0
+
+texture                            declared                   engine expects             verdict
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Ground037_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Ground037_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Ground037_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Ground037_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock026_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock026_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock026_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock026_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Rock051_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock051_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Rock051_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Rock051_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_C                        SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_Snow006_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Snow006_D                        SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_Snow006_N                        SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_Snow006_R                        SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_C                      SAMPLERTYPE_COLOR          SAMPLERTYPE_COLOR          ok
+T_WildGrass_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_WildGrass_D                      SAMPLERTYPE_LINEAR_GRAYSCA SAMPLERTYPE_LINEAR_GRAYSCA ok
+T_WildGrass_N                      SAMPLERTYPE_NORMAL         SAMPLERTYPE_NORMAL         ok
+T_WildGrass_R                      SAMPLERTYPE_MASKS          SAMPLERTYPE_MASKS          ok
+T_Alpine_Macro                     SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Variants                  SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+T_Alpine_Weights                   SAMPLERTYPE_LINEAR_COLOR   SAMPLERTYPE_LINEAR_COLOR   ok
+
+37 sampler(s) audited, 0 mismatch(es).
+
+This audit read the BUILT graph and asked the ENGINE what each
+asset needs. It shares no code with the builder's own check.
+
+====================================================================
+THE RENDER MEASUREMENT â€” 5080hq -> 5080hqfix
+====================================================================
+
+18 of 19 stations. ridge_wide was NOT WRITTEN by the 5080hqfix
+capture (which still exited 0) and is excluded, declared.
+
+NOISE FLOOR from a same-settings pair (triplanar_no_clouds@20260808T044840Z vs triplanar_no_clouds@20260808T054655Z, 18 stations)
+  worst |delta| between two runs that should be identical: 2.08%
+  Anything at or under this is NOT SEPARATED from run-to-run variation.
+
+EDGE ENERGY  5080hq -> 5080hqfix   (whole frame, 18 stations)
+
+  station                before      after    change
+  diag_oblique         0.020296   0.020841    +2.69%  
+  verify_ground        0.041681   0.042432    +1.80%  (in noise)
+  diag_topdown         0.019662   0.019986    +1.65%  (in noise)
+  trunk_base           0.029530   0.029892    +1.23%  (in noise)
+  sweep_1200           0.019684   0.019909    +1.15%  (in noise)
+  lod_near             0.008084   0.008096    +0.15%  (in noise)
+  sweep_0700           0.013705   0.013692    -0.10%  (in noise)
+  lod_far              0.010167   0.010136    -0.30%  (in noise)
+  rock_grounding       0.035897   0.035779    -0.33%  (in noise)
+  verify_aerial        0.021227   0.021147    -0.38%  (in noise)
+  snowline_detail      0.009670   0.009624    -0.47%  (in noise)
+  cliff_face           0.011884   0.011663    -1.86%  (in noise)
+  sweep_0350           0.022332   0.021838    -2.21%  
+  sweep_2000           0.041735   0.040790    -2.26%  
+  player_eye           0.024665   0.024059    -2.46%  
+  sweep_0060           0.016044   0.015581    -2.89%  
+  sweep_0150           0.017151   0.016286    -5.05%  
+  forest_floor         0.028550   0.026840    -5.99%  
+
+  mean change    -0.87%
+  median change  -0.33%
+  gained on      6 of 18 stations
+  above the 2.08% noise floor: 7 of 18
+  present in only one tag (excluded): ridge_wide
+
+Source artefact: the PNG pixels. This shares its source with
+compare_images.py, so the two cannot corroborate each other —
+they ask different questions of one artefact. Edge energy says
+whether high-frequency structure appeared, NOT whether the
+frame looks better.
+
+READING IT. mean -0.87%, median -0.33%, 11 of 18 inside the noise
+floor. THIS IS THE EXPECTED RESULT AND IT IS NOT A NULL FINDING
+ABOUT THE FIX -- it is a null finding about the INSTRUMENT, and
+the reason is structural rather than a matter of effect size:
+
+  CENTRING CHANGES THE DC OFFSET, NOT THE RELIEF AMPLITUDE.
+  Worked on Rock026 (mean 0.7602, p05 0.61, p95 0.86) at
+  magnitude 0.16 and scale_z 500:
+     before   (raw - 0.5)  * 0.16 * 500  =  +8.8 .. +28.8 cm
+     after    (raw - mean) * 0.16 * 500  =  -12.0 ..  +8.0 cm
+  Both spans are 20 cm. The surface moved DOWN by ~20 cm and the
+  relief is identical. Mean gradient magnitude cannot see a
+  uniform Z shift, so it could not have confirmed this fix even
+  if the fix were perfect.
+
+WHAT IS ACTUALLY VERIFIED: the fix is STRUCTURALLY correct --
+298/298 reachable with 0 orphans, +20 nodes exactly as designed,
+every _D map connected twice, 37 samplers clean, compiles clean,
+and TMVM_MIP_LEVEL works on the Nanite tessellation path.
+
+WHAT IS NOT VERIFIED (standing rule 10): that it LOOKS better.
+The two things it corrects -- a per-surface DC lift and a ~19 cm
+step at layer boundaries -- have NO INSTRUMENT in this project.
+The argument for keeping it is analytic, not measured: half the
+amplitude was being spent as a constant, and a step at a layer
+boundary is not terrain. Do not cite a render as evidence for it.
+
+ONE THING THE FRAMES DID SETTLE: grass SPAWNS. The 5080hqfix
+forest_floor frame shows dense tufts across foreground and
+midground, which closes the visual half of the grass check that
+was deferred when landscape Nanite went on.

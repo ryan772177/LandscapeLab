@@ -1,0 +1,101 @@
+20260812 - THE GAEA GRAPH, READABLE FOR THE FIRST TIME
+=====================================================
+
+project : C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\AlpineLabe_v1.terrain
+bytes   : 16227
+
+DECLARED EXTENT
+  Width  5000.0   Height 2500.0   Ratio 0.5
+
+  !! `Height` IS THE PROJECT RANGE, NOT THIS BUILD'S SPAN.
+     Reading it as the span is how a landscape ends up 2.7x too
+     tall and entirely plausible (R-GAEA). The SPAN comes from
+     the exported height's occupancy, recorded by
+     rebuild_terrain.py in height_normalization.json.
+
+  !! `Width` is the extent the graph was AUTHORED at. It is
+     independent of export resolution and of the UE landscape
+     size, so a mismatch is not an error -- but erosion
+     parameters were tuned against THIS width, and importing
+     at a different one stretches those features.
+
+NODES (6)
+  [ 599] Snow         name='Snow'
+           Duration           0.4066604
+           Intensity          0.40226594
+           Melt               0.450141
+           RealScale          False
+           Seed               59434
+           SettleThaw         0.3619003
+           SnowLine           0.056395777
+  [ 650] Ridge        name='Ridge'
+           Seed               38804
+  [ 654] Erosion2     name='Erosion2'
+           Downcutting        0.4531411
+           Duration           21.648195
+           ErosionScale       1413.2517
+           Seed               15025
+  [ 750] Combine      name='Combine'
+           Mode               Max
+           PortCount          2
+  [ 849] Autolevel    name='SnowMask'
+           RenderIntentOverride Mask
+  [ 877] Mountain     name='Mountain'
+           Height             2.032038
+           Scale              0.74927175
+           Seed               22109
+
+WIRING
+  877 (Mountain).Out  ->  750 (Combine).In
+  650 (Ridge).Out  ->  750 (Combine).Input2
+  750 (Combine).Out  ->  654 (Erosion2).In
+  654 (Erosion2).Out  ->  599 (Snow).In
+  599 (Snow).Depth  ->  849 (SnowMask).In
+
+EXPORTS (3)
+  Erosion2         <- node 654 (Erosion2), PNG16
+  Snow             <- node 599 (Snow), PNG16
+  SnowMask         <- node 849 (SnowMask), PNG16
+
+REFERENCE INTEGRITY
+  $id defined : 82
+  $ref used   : 23
+  every $ref resolves to a real $id.
+  (This is the acceptance test any future WRITER must pass. Parameter edits preserve it by construction; adding or removing nodes does not.)
+
+PREDICTED BUILD OUTPUT vs verify_build.SPEC
+  (predicted = one file per exporting output port, {base}_{Port}.png)
+  Erosion2_Deposits.png                    ok
+  Erosion2_Flow.png                        ok
+  Erosion2_Wear.png                        ok
+  SnowMask_Out.png                         ok
+  Snow_Snow.png                            ok
+  Snow_Out.png                             excluded by design: un-normalized original height — superseded b
+
+  derived downstream, not from Gaea: AlpineLabHeight.png, AlpineLab_v1_Height_normalized.png
+  the graph predicts exactly the SPEC's Gaea-sourced files.
+
+PREDICTION vs AN ACTUAL BUILD  (C:\Dev\LandscapeLab\TerrainData\AlpineLab_v1\006)
+  predicted : 6
+  on disk   : 6  (excluding 2 derived)
+    Erosion2_Deposits.png                    ok
+    Erosion2_Flow.png                        ok
+    Erosion2_Wear.png                        ok
+    SnowMask_Out.png                         ok
+    Snow_Out.png                             ok
+    Snow_Snow.png                            ok
+  THE RULE REPRODUCES THIS BUILD EXACTLY.
+
+READ-ONLY: nothing was written.
+
+POSITIVE CONTROLS — the shipped graph must be ACCEPTED
+  accepted  shipped graph, all gates                             rc=0
+
+NEGATIVE CONTROLS — each must be REFUSED
+  refused   a save node DISABLED (build would omit 3 maps)       rc=4
+  refused   a save definition REMOVED                            rc=4
+  refused   an output port stops EXPORTING                       rc=4
+  refused   a DANGLING $ref (careless structural edit)           rc=3
+  refused   prediction vs a build MISSING files                  rc=6
+
+FAILURES: none

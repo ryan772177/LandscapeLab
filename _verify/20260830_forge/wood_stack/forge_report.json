@@ -1,0 +1,227 @@
+{
+ "asset": "wood_stack",
+ "name": "SM_WoodStack_Forge",
+ "asset_class": "prop_small",
+ "max_tris": 15000,
+ "stages": {
+  "1_input_floors": "ok (4 views)",
+  "2_ai_guard": "all 4 views cleared (--strict)",
+  "3_generate": "ok",
+  "4_retopo": "2801712 -> 15000 tris",
+  "5_pivot": "base-centre: XY at footprint centre, Z at lowest vertex",
+  "6_uv": "smart_project (MACHINE unwrap, greybox-grade)",
+  "7_intake": "ok (TRIANGLES within budget; NOT a topology claim -- genus 392)",
+  "10_scale": "ok -- 120.0 cm top against a 120.0 cm target (error 0.0 cm), orientation gate PASSED, level /Game/Scratch/ForgeScale_WoodStack"
+ },
+ "scale_target_cm": 120.0,
+ "scale_why": "declared height_cm",
+ "generate": {
+  "candidate": "TRELLIS multi-view",
+  "asset": "wood_stack",
+  "name": "SM_WoodStack_Forge",
+  "inputs": [
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az000.png",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az035.png",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az090.png",
+   "/mnt/c/Users/Admin/UE5LandscapePipeline/refs/wood_stack_refs/wood_stack_az180.png"
+  ],
+  "n_views": 4,
+  "model_repo": "JeffreyXiang/TRELLIS-image-large",
+  "seed": 20260830,
+  "sampler": {
+   "sparse_structure": {
+    "steps": 12,
+    "cfg_strength": 7.5
+   },
+   "slat": {
+    "steps": 12,
+    "cfg_strength": 3
+   }
+  },
+  "error": null,
+  "vram_free_before_MiB": 15045,
+  "vram_total_MiB": 16303,
+  "load_s": 21.3,
+  "input_sizes": [
+   [
+    "wood_stack_az000.png",
+    1024,
+    1024
+   ],
+   [
+    "wood_stack_az035.png",
+    1024,
+    1024
+   ],
+   [
+    "wood_stack_az090.png",
+    1024,
+    1024
+   ],
+   [
+    "wood_stack_az180.png",
+    1024,
+    1024
+   ]
+  ],
+  "run_s": 55.7,
+  "vertices": 1400074,
+  "faces": 2801712,
+  "extent": [
+   0.9939,
+   0.6132,
+   0.7531
+  ],
+  "thin_over_long": 0.617,
+  "out_obj": "/mnt/c/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/SM_WoodStack_Forge_raw.obj",
+  "out_obj_bytes": 108976605,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "watertight": true,
+  "euler_characteristic": -782,
+  "genus": 392,
+  "vram_peak_MiB": 14870,
+  "wall_s": 87.5
+ },
+ "finish": {
+  "ok": true,
+  "error": null,
+  "src": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\wood_stack\\SM_WoodStack_Forge_raw.obj",
+  "asset_class": "prop_small",
+  "max_tris": 15000,
+  "before": {
+   "verts": 1400074,
+   "edges": 4202568,
+   "faces": 2801712,
+   "triangles": 2801712,
+   "euler_characteristic": -782,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 392,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [],
+   "has_uvs": false
+  },
+  "decimate_ratio": 0.005354,
+  "decimated": true,
+  "pivot": {
+   "rule": "base-centre: XY at footprint centre, Z at lowest vertex",
+   "moved_by": [
+    0.002818,
+    -0.000129,
+    0.374303
+   ],
+   "z_min_after": 0.0,
+   "base_at_origin": true
+  },
+  "uv_action": "smart_project (MACHINE unwrap, greybox-grade)",
+  "after": {
+   "verts": 6718,
+   "edges": 22500,
+   "faces": 15000,
+   "triangles": 15000,
+   "euler_characteristic": -782,
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0,
+   "watertight": true,
+   "genus": 392,
+   "_genus_note": "(2 - chi) / 2, valid only for a closed orientable surface; None when not watertight",
+   "uv_layers": [
+    "UVMap"
+   ],
+   "has_uvs": true
+  },
+  "bbox_after": {
+   "min": [
+    -0.49651,
+    -0.30663,
+    0.0
+   ],
+   "max": [
+    0.49651,
+    0.30663,
+    0.75245
+   ]
+  },
+  "export_rotation": {
+   "applied_deg": [
+    -90.0,
+    0.0,
+    0.0
+   ],
+   "method": "direct vertex write (operator transform_apply is context-dependent and silently did not take headless)",
+   "z_extent_after_rot": 0.61327,
+   "y_extent_after_rot": 0.75245,
+   "_expect": "z_extent should now equal the pre-rotation Y (0.395) and y_extent the pre-rotation Z (0.915)",
+   "_why": "the FBX round trip rotates +90 about X; this cancels it so UE receives the asset upright. Applied after all measurement, so bbox_after remains Blender-space."
+  },
+  "out_fbx": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20260830_forge\\wood_stack\\SM_WoodStack_Forge.fbx",
+  "out_fbx_bytes": 700652,
+  "tri_within_budget": true,
+  "genus_before_after": [
+   392,
+   392
+  ],
+  "genus_reduced": false,
+  "_genus_finding": "DECIMATION DID NOT REDUCE GENUS and was never going to -- edge collapse preserves topology. The triangle budget is met and the handles remain. Closing them needs a real retopology or hole-filling pass, which is a separate unit and is NOT claimed here."
+ },
+ "wall_s": 133.3,
+ "assets_row": "| `/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge` | **GENERATED** -- TRELLIS (MIT) from 4 operator concept references (`refs/wood_stack_refs/{wood_stack_az000.png,wood_stack_az035.png,wood_stack_az090.png,wood_stack_az180.png}`), seed 20260830 | TRELLIS **MIT**; the references are the operator's own. All 4 cleared `ai_input_guard.py --strict` BEFORE the weights loaded (R-AIGATE) | generated from operator concept references | 15000 tris (prop_small ceiling 15000), watertight True, **genus 392 -- topological noise NOT removed**, UVs: smart_project (MACHINE unwrap, greybox-grade) | NO -- stage 10 not yet run in a verified editor |",
+ "forge_log_line": "| SM_WoodStack_Forge | prop_small | 4 views | gen 55.7s / VRAM 14870 MiB | 2801712 -> 15000 tris | genus 392 -> 392 | UVs True | 133.3 s total |",
+ "assets_md": "row written by stage 8's function after the stage-8 fix",
+ "stage10_command": "python scripts/ue_exec.py scripts/forge_scale_payload.txt --set SRC=C:/Users/Admin/UE5LandscapePipeline/_verify/20260830_forge/wood_stack/SM_WoodStack_Forge.fbx --set DEST=/Game/Scratch/ForgeWoodStack --set NAME=SM_WoodStack_Forge --set TARGET_CM=120.0 --set EXP_X=0.99302 --set EXP_Y=0.61326 --set EXP_Z=0.75245 --timeout 25",
+ "stage10": {
+  "ok": true,
+  "error": null,
+  "deleted_stale_asset": "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge",
+  "imported_paths": [
+   "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge.SM_WoodStack_Forge"
+  ],
+  "mesh_package": "/Game/Scratch/ForgeWoodStack/SM_WoodStack_Forge",
+  "mesh_tris": 14996,
+  "mesh_uv_channels": 1,
+  "level": "/Game/Scratch/ForgeScale_WoodStack",
+  "raw_height_cm": 75.245,
+  "ue_raw_extent_cm": [
+   99.3,
+   61.33,
+   75.25
+  ],
+  "blender_bbox_size": [
+   0.99302,
+   0.61326,
+   0.75245
+  ],
+  "shape_ratios_expected": [
+   0.6176,
+   0.7577,
+   1.0
+  ],
+  "shape_ratios_measured": [
+   0.6176,
+   0.7577,
+   1.0
+  ],
+  "orientation_ok": true,
+  "scale_applied": 1.59478,
+  "_scale_derivation": "target 120.0 cm from declared height_cm; scale = target / MEASURED raw height, then READ BACK from the placed actor rather than assumed to have applied",
+  "top_cm": 120.0,
+  "base_cm": 0.0,
+  "footprint_cm": [
+   158.4,
+   97.8
+  ],
+  "target_cm": 120.0,
+  "height_error_cm": 0.0,
+  "height_within_1pct": true,
+  "chalet_silhouette_cm": 536.5,
+  "ratio_against": null,
+  "_no_ratio": "this asset declares a flat height_cm, not ratio_against, so there is NO ruled ratio to score. The companion is present as a scale reference only; chalet_silhouette_cm is measured, not compared.",
+  "saved": true
+ },
+ "stage10_frames": [
+  "woodstack_beside_kit.png",
+  "woodstack_closeup.png"
+ ]
+}

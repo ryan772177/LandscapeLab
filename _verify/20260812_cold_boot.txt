@@ -1,0 +1,54 @@
+20260812 — COLD-BOOT VERIFICATION: the world loads, and the config delivers
+==========================================================================
+
+PROCESS: editor PID 16156 closed cleanly (nothing dirty, no save
+prompt) after 83,893 s uptime. Fresh editor PID 10900 launched,
+came up on an EMPTY untitled world — so nothing about the landscape
+was inherited — then open_level.py --discard loaded the Alpine
+level, verified by read-back. New node 78F6C944.
+
+THIS IS THE INSTRUMENT THE PASS 1 FAILURE DEFINES. Pass 1 sat
+recorded as 'DONE, pushed and verified' for three days while the
+live world was a different heightmap, because every check read the
+in-memory landscape or an engine-authored side-record. A cold open
+in a process that never saw the in-memory state is the only thing
+that closes a SAVED clause.
+
+  - 78F6C9444176775B9492D0AAFDFCE167 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+level                : /Game/Alpine.Alpine
+
+=== 1. DOES THE WORLD LOAD FROM THE SAVED BYTES? ===
+  landscape actors     : 257
+  enable_nanite        : 257
+  with Nanite component: 256
+  with a BUILT mesh    : 256
+  unreadable           : 0
+
+=== 2. DOES THE PINNED CONFIG DELIVER ON A COLD BOOT? ===
+  r.Nanite.MaxPixelsPerEdge                        1.0        want 1.0      ok
+  r.Nanite.Tessellation                            1.0        want 1.0      ok
+  r.DynamicGlobalIlluminationMethod                1.0        want 1.0      ok
+  r.ReflectionMethod                               1.0        want 1.0      ok
+  r.Lumen.HardwareRayTracing                       1.0        want 1.0      ok
+  r.Lumen.HardwareRayTracing.LightingMode          1.0        want 1.0      ok
+  r.Shadow.Virtual.ResolutionLodBiasDirectional    -0.5       want -0.5     ok
+  r.ScreenPercentage                               100.0      want 100.0    ok
+  sg.GlobalIlluminationQuality                     3.0        want 3.0      ok
+  sg.ReflectionQuality                             3.0        want 3.0      ok
+  r.Lumen.DiffuseIndirect.Allow                    1.0        want 1.0      ok
+  r.Lumen.FinalGatherMethod                        1.0        want 1.0      ok
+  r.LumenScene.SurfaceCache.AtlasSize              4096.0     want 4096.0   ok
+  r.Lumen.Reflections.Allow                        1.0        want 1.0      ok
+  r.Lumen.Reflections.DownsampleFactor             1.0        want 1.0      ok
+  r.SSR.Quality                                    3.0        want 3.0      ok
+  grass.DensityScale                               1.0        want 1.0      ok
+  foliage.DensityScale                             1.0        want 1.0      ok
+  r.ViewDistanceScale                              1.0        want 1.0      ok
+
+=== 3. THE MATERIAL, RELOADED FROM DISK ===
+  use_material_attributes      True
+  enable_tessellation          True
+  magnitude                    0.1599999964237213
+  center                       0.5
+
+CONFIG: every pinned value is in effect on a cold boot.

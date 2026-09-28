@@ -1,0 +1,89 @@
+{
+ "_what": "THE GAIN TABLE for the whole-rig exact-application path: what a commanded DNA vertex delta actually delivers at the RENDERED landmark, per (region x mask). Attenuation is a property of the PAIR, never of the region alone.",
+ "_measured": "2026-08-19, scratch duplicates, locked camera (distance_cm 84.087153, bit-identical across an editor restart), cm/px 0.017454, landmark measures at FIXED scale.",
+ "_how_to_use": "command_cm = wanted_render_cm / ratio. For MIRRORED width regions the command is PER SIDE and the wanted figure is the WIDTH, so command_per_side = wanted_width / (2 * ratio).",
+ "regions": {
+  "chin_jaw / chin_height": {
+   "box_min": [
+    -12.0,
+    148.0,
+    4.0
+   ],
+   "box_max": [
+    12.0,
+    158.0,
+    15.0
+   ],
+   "feather_band_cm": 2.5,
+   "mirrored": false,
+   "weighted_vertices": 6703,
+   "core_vertices": 1661,
+   "commanded_cm": -2.0,
+   "rendered_cm": -1.9626,
+   "ratio": 0.981,
+   "depth": 1,
+   "frames": 12,
+   "frame_sd_cm": 0.013
+  },
+  "jaw_width": {
+   "box_min": [
+    4.0,
+    148.0,
+    -3.0
+   ],
+   "box_max": [
+    19.5,
+    160.0,
+    13.0
+   ],
+   "feather_band_cm": 2.5,
+   "mirrored": true,
+   "weighted_vertices": 3385,
+   "core_vertices": 570,
+   "commanded_cm_per_side": 1.0,
+   "commanded_width_cm": 2.0,
+   "depth1": {
+    "rendered_cm": 1.1609,
+    "ratio": 0.5805
+   },
+   "depth2_chained_onto_chin": {
+    "rendered_cm": 1.3959,
+    "ratio": 0.6979
+   },
+   "_depth_note": "CHAINING RAISED DELIVERY, 0.58 -> 0.70. There is no depth penalty in the measured range; the two numbers bracket the mask's own variability."
+  },
+  "temple_width": {
+   "_status": "UNMEASURED",
+   "mirrored": true
+  },
+  "cheek_width": {
+   "_status": "UNMEASURED",
+   "mirrored": true,
+   "_note": "inside the deadband against the reference, so it does not need a gain to fit"
+  }
+ },
+ "mask_delivery_is_positional": {
+  "_what": "The same mask delivers different fractions at different places, so a ratio is only meaningful for the LANDMARK it was measured at.",
+  "jaw_mask_at_the_heads_widest_vertices_cm": 0.1876,
+  "jaw_mask_commanded_cm": 1.0,
+  "fraction": 0.188,
+  "_source": "read_dna_meshes bounds, wholerig_chin_down2cm.dna vs depth2_chin_jaw.dna -- a DIFFERENT REPRESENTATION from the render (the DNA on disk)."
+ },
+ "fit_path_comparators": {
+  "chin_same_dna_bytes": {
+   "rendered_cm": -2.1553,
+   "ratio": 1.078
+  },
+  "_note": "the parametric path OVER-delivers where whole-rig lands near 1:1, and its reproducibility collapses at edited states (0.27 cm floor vs 0.056 cm)."
+ },
+ "residual_vs_reference": {
+  "_reference": "hero/reference/hero_face_bald_frontal.jpg (the SHAPE target; hero_example_pic.jpg is APPEARANCE ONLY)",
+  "_state": "canonical, unedited",
+  "chin_height_cm": -0.316,
+  "jaw_width_cm": -0.846,
+  "temple_width_cm": 0.292,
+  "cheek_width_cm": 0.142,
+  "total_abs_cm": 1.596,
+  "_signs": "delta = target - current. chin negative = chin must go LOWER; jaw negative = jaw must NARROW."
+ }
+}

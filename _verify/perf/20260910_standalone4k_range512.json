@@ -1,0 +1,143 @@
+{
+ "_what": "check_perf-conforming view of the 512 m-range standalone measurement (the ruled fallback). DERIVED, stats verbatim from _verify/perf/standalone_2026-09-10_range512/standalone_2026-09-07/perf_standalone.json (rule 9; NN0: one measurement).",
+ "_measurement_class": "STANDALONE -game process, 4K, FOV 90, BugItGo at the ratified cameras; RUNTIME GRID 512 m / instanced HLOD 2 km (Brief 3 Task 0 fallback)",
+ "_source": "_verify/perf/standalone_2026-09-10_range512/standalone_2026-09-07/perf_standalone.json",
+ "stations": [
+  {
+   "zone": "plaza",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2383,
+     "mean": 10.648,
+     "p50": 10.629,
+     "p90": 11.902,
+     "max": 34.456
+    },
+    "GameThreadTime": {
+     "n": 2382,
+     "mean": 3.542,
+     "p50": 3.567,
+     "p90": 4.307,
+     "max": 34.756
+    },
+    "RenderThreadTime": {
+     "n": 2382,
+     "mean": 10.63,
+     "p50": 10.569,
+     "p90": 11.207,
+     "max": 13.107
+    },
+    "GPUTime": {
+     "n": 2382,
+     "mean": 9.411,
+     "p50": 9.334,
+     "p90": 9.766,
+     "max": 11.593
+    }
+   }
+  },
+  {
+   "zone": "main_street",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3271,
+     "mean": 7.727,
+     "p50": 7.723,
+     "p90": 8.556,
+     "max": 10.349
+    },
+    "GameThreadTime": {
+     "n": 3270,
+     "mean": 2.951,
+     "p50": 2.727,
+     "p90": 3.866,
+     "max": 5.361
+    },
+    "RenderThreadTime": {
+     "n": 3270,
+     "mean": 7.717,
+     "p50": 7.7,
+     "p90": 8.304,
+     "max": 10.002
+    },
+    "GPUTime": {
+     "n": 3270,
+     "mean": 6.554,
+     "p50": 6.507,
+     "p90": 6.9,
+     "max": 7.438
+    }
+   }
+  },
+  {
+   "zone": "treeline",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3020,
+     "mean": 8.325,
+     "p50": 8.297,
+     "p90": 8.949,
+     "max": 11.073
+    },
+    "GameThreadTime": {
+     "n": 3019,
+     "mean": 2.701,
+     "p50": 2.459,
+     "p90": 3.592,
+     "max": 5.268
+    },
+    "RenderThreadTime": {
+     "n": 3019,
+     "mean": 8.314,
+     "p50": 8.289,
+     "p90": 8.779,
+     "max": 10.657
+    },
+    "GPUTime": {
+     "n": 3019,
+     "mean": 7.146,
+     "p50": 7.089,
+     "p90": 7.521,
+     "max": 7.963
+    }
+   }
+  },
+  {
+   "zone": "vista",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2574,
+     "mean": 9.761,
+     "p50": 9.769,
+     "p90": 10.866,
+     "max": 31.866
+    },
+    "GameThreadTime": {
+     "n": 2574,
+     "mean": 3.522,
+     "p50": 3.57,
+     "p90": 4.266,
+     "max": 31.961
+    },
+    "RenderThreadTime": {
+     "n": 2574,
+     "mean": 9.744,
+     "p50": 9.688,
+     "p90": 10.445,
+     "max": 11.67
+    },
+    "GPUTime": {
+     "n": 2574,
+     "mean": 8.484,
+     "p50": 8.39,
+     "p90": 8.818,
+     "max": 9.371
+    }
+   }
+  }
+ ],
+ "declared_loading_range_cm": 51200,
+ "_declared_loading_range_cm": "declared_loading_range_cm added 2026-09-11 (RULED): the range this measurement was taken at, previously stated only inside _measurement_class. check_perf selects the artefact whose range matches the world's instead of the newest by mtime. No stat changed.",
+ "_superseded_by": "_verify/perf/20260914_standalone4k_pass2.json",
+ "_superseded_reason": "Measured 2026-09-10, BEFORE two world-changing operations on 2026-09-14: the full HLOD rebuild of all 2,267 cells (build_20260914b) and the landscape HLOD texture cap going 1024 -> 4096 on all 256 L2 cells. by_declared_range holds that a perf artefact is only evidence about the world it was measured in; this one no longer describes this world. It is KEPT and still cited by RECIPES.md and research/audit/claims_ledger.json -- it is removed from GATE DISCOVERY only. Reverse by deleting _superseded_by."
+}

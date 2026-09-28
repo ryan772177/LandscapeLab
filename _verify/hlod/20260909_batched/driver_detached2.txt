@@ -1,0 +1,492 @@
+
+=== batch_10 (attempt 1) ===
+    cells in section: 185   stale(MeshMerge(1)) now: 154
+    [  0.2 min] 0/0  approve=0 reject=0  vram=399 peak=399  -
+    [  0.5 min] 4/185  approve=4 reject=0  vram=1862 peak=1862  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y10
+    [  0.8 min] 4/185  approve=4 reject=0  vram=3298 peak=3298  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y10
+    [  1.2 min] 7/185  approve=7 reject=0  vram=3382 peak=3382  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y-5
+    [  1.5 min] 10/185  approve=10 reject=0  vram=3430 peak=3430  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y7
+    [  1.8 min] 13/185  approve=13 reject=0  vram=3430 peak=3430  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y13
+    [  2.2 min] 13/185  approve=13 reject=0  vram=3478 peak=3478  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y13
+    [  2.5 min] 13/185  approve=13 reject=0  vram=3478 peak=3478  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y13
+    [  2.9 min] 13/185  approve=13 reject=0  vram=3478 peak=3478  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y13
+    [  3.2 min] 16/185  approve=16 reject=0  vram=3527 peak=3527  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y-13
+    [  3.5 min] 19/185  approve=19 reject=0  vram=3527 peak=3527  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X10_Y-6
+    [  3.9 min] 19/185  approve=19 reject=0  vram=3575 peak=3575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X10_Y-6
+    [  4.2 min] 19/185  approve=19 reject=0  vram=3575 peak=3575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X10_Y-6
+    [  4.5 min] 22/185  approve=22 reject=0  vram=3623 peak=3623  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y-1
+    [  4.9 min] 25/185  approve=25 reject=0  vram=3672 peak=3672  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y5
+    [  5.2 min] 28/185  approve=28 reject=0  vram=3672 peak=3672  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-4
+    [  5.5 min] 28/185  approve=28 reject=0  vram=3720 peak=3720  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-4
+    [  5.9 min] 28/185  approve=28 reject=0  vram=3720 peak=3720  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-4
+    [  6.2 min] 31/185  approve=31 reject=0  vram=3752 peak=3752  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y9
+    [  6.6 min] 31/185  approve=31 reject=0  vram=3834 peak=3834  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y9
+    [  6.9 min] 34/185  approve=34 reject=0  vram=3882 peak=3882  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y0
+    [  7.2 min] 37/185  approve=37 reject=0  vram=3882 peak=3882  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y2
+    [  7.6 min] 37/185  approve=37 reject=0  vram=3962 peak=3962  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y2
+    [  7.9 min] 39/185  approve=39 reject=0  vram=4552 peak=4552  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y7
+    [  8.2 min] 39/185  approve=39 reject=0  vram=4552 peak=4552  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y7
+    [  8.6 min] 41/185  approve=41 reject=0  vram=4596 peak=4596  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-14
+    [  8.9 min] 41/185  approve=41 reject=0  vram=4665 peak=4665  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-14
+    [  9.2 min] 41/185  approve=41 reject=0  vram=4665 peak=4665  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-14
+    [  9.6 min] 43/185  approve=43 reject=0  vram=4708 peak=4708  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y-15
+    [  9.9 min] 43/185  approve=43 reject=0  vram=4757 peak=4757  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y-15
+    [ 10.3 min] 45/185  approve=45 reject=0  vram=5205 peak=5205  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y6
+    [ 10.6 min] 45/185  approve=45 reject=0  vram=5205 peak=5205  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y6
+    [ 10.9 min] 47/185  approve=47 reject=0  vram=5233 peak=5233  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y14
+    [ 11.3 min] 49/185  approve=49 reject=0  vram=5265 peak=5265  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y15
+    [ 11.6 min] 49/185  approve=49 reject=0  vram=5346 peak=5346  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y15
+    [ 11.9 min] 51/185  approve=51 reject=0  vram=5346 peak=5346  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-2
+    [ 12.3 min] 51/185  approve=51 reject=0  vram=5394 peak=5394  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-2
+    [ 12.6 min] 53/185  approve=53 reject=0  vram=6002 peak=6002  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-3_Y-4
+    [ 12.9 min] 55/185  approve=55 reject=0  vram=6014 peak=6014  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-16
+    [ 13.3 min] 55/185  approve=55 reject=0  vram=6062 peak=6062  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-16
+    [ 13.6 min] 57/185  approve=57 reject=0  vram=6126 peak=6126  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-13
+    [ 14.0 min] 57/185  approve=57 reject=0  vram=6126 peak=6126  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-13
+    [ 14.3 min] 57/185  approve=57 reject=0  vram=6202 peak=6202  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-13
+    [ 14.6 min] 57/185  approve=57 reject=0  vram=6202 peak=6202  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-13
+    [ 15.0 min] 57/185  approve=57 reject=0  vram=6202 peak=6202  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-13
+    [ 15.3 min] 59/185  approve=59 reject=0  vram=6223 peak=6223  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y-1
+    [ 15.7 min] 61/185  approve=61 reject=0  vram=6271 peak=6271  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y0
+    [ 16.0 min] 63/185  approve=63 reject=0  vram=6303 peak=6303  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-9
+    [ 16.3 min] 63/185  approve=63 reject=0  vram=6369 peak=6369  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-9
+    [ 16.7 min] 63/185  approve=63 reject=0  vram=6369 peak=6369  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-9
+    [ 17.0 min] 65/185  approve=65 reject=0  vram=6383 peak=6383  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y15
+    [ 17.3 min] 65/185  approve=65 reject=0  vram=6431 peak=6431  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y15
+    [ 17.7 min] 65/185  approve=65 reject=0  vram=6431 peak=6431  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y15
+    [ 18.0 min] 67/185  approve=67 reject=0  vram=6480 peak=6480  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y13
+    [ 18.3 min] 69/185  approve=69 reject=0  vram=6560 peak=6560  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y7
+    [ 18.7 min] 73/185  approve=73 reject=0  vram=7089 peak=7089  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-2_Y-3
+    [ 19.0 min] 73/185  approve=73 reject=0  vram=7089 peak=7089  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-2_Y-3
+    [ 19.4 min] 75/185  approve=75 reject=0  vram=7101 peak=7101  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-12
+    [ 19.7 min] 75/185  approve=75 reject=0  vram=7149 peak=7149  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-12
+    [ 20.0 min] 77/185  approve=77 reject=0  vram=7181 peak=7181  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y3
+    [ 20.4 min] 77/185  approve=77 reject=0  vram=7181 peak=7181  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y3
+    [ 20.7 min] 77/185  approve=77 reject=0  vram=7247 peak=7247  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y3
+    [ 21.0 min] 79/185  approve=79 reject=0  vram=7278 peak=7278  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y13
+    [ 21.4 min] 81/185  approve=81 reject=0  vram=7278 peak=7278  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y11
+    [ 21.7 min] 81/185  approve=81 reject=0  vram=7326 peak=7326  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y11
+    [ 22.0 min] 83/185  approve=83 reject=0  vram=7773 peak=7773  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y1
+    [ 22.4 min] 83/185  approve=83 reject=0  vram=7773 peak=7773  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y1
+    [ 22.7 min] 85/185  approve=85 reject=0  vram=7817 peak=7817  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-4
+    [ 23.1 min] 85/185  approve=85 reject=0  vram=7865 peak=7865  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-4
+    [ 23.4 min] 87/185  approve=87 reject=0  vram=7933 peak=7933  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-7
+    [ 23.7 min] 87/185  approve=87 reject=0  vram=8013 peak=8013  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-7
+    [ 24.1 min] 87/185  approve=87 reject=0  vram=8013 peak=8013  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-7
+    [ 24.4 min] 87/185  approve=87 reject=0  vram=8013 peak=8013  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-7
+    [ 24.7 min] 89/185  approve=89 reject=0  vram=8429 peak=8429  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y5
+    [ 25.1 min] 89/185  approve=89 reject=0  vram=8429 peak=8429  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y5
+    [ 25.4 min] 90/185  approve=89 reject=0  vram=8409 peak=8429  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-16_Y13
+    [ 25.7 min] 91/185  approve=91 reject=0  vram=8441 peak=8441  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y13
+    [ 26.1 min] 91/185  approve=91 reject=0  vram=8507 peak=8507  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y13
+    [ 26.4 min] 93/185  approve=93 reject=0  vram=8553 peak=8553  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-15
+    [ 26.8 min] 93/185  approve=93 reject=0  vram=8553 peak=8553  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-15
+    [ 27.1 min] 93/185  approve=93 reject=0  vram=8621 peak=8621  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-15
+    [ 27.4 min] 93/185  approve=93 reject=0  vram=8621 peak=8621  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-15
+    [ 27.8 min] 95/185  approve=95 reject=0  vram=8985 peak=8985  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y1
+    [ 28.1 min] 95/185  approve=95 reject=0  vram=8985 peak=8985  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y1
+    [ 28.4 min] 97/185  approve=97 reject=0  vram=9014 peak=9014  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y-16
+    [ 28.8 min] 99/185  approve=99 reject=0  vram=9078 peak=9078  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y14
+    [ 29.1 min] 99/185  approve=99 reject=0  vram=9078 peak=9078  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y14
+    [ 29.4 min] 99/185  approve=99 reject=0  vram=9151 peak=9151  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y14
+    [ 29.8 min] 99/185  approve=99 reject=0  vram=9151 peak=9151  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y14
+    [ 30.1 min] 99/185  approve=99 reject=0  vram=9151 peak=9151  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X1_Y14
+    [ 30.5 min] 101/185  approve=101 reject=0  vram=9256 peak=9256  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y-13
+    [ 30.8 min] 101/185  approve=101 reject=0  vram=9256 peak=9256  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-7_Y-13
+    [ 31.1 min] 103/185  approve=103 reject=0  vram=9302 peak=9302  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y12
+    [ 31.5 min] 103/185  approve=103 reject=0  vram=9376 peak=9376  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y12
+    [ 31.8 min] 103/185  approve=103 reject=0  vram=9376 peak=9376  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y12
+    [ 32.1 min] 103/185  approve=103 reject=0  vram=9376 peak=9376  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y12
+    [ 32.5 min] 105/185  approve=105 reject=0  vram=9415 peak=9415  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y12
+    [ 32.8 min] 105/185  approve=105 reject=0  vram=9487 peak=9487  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y12
+    [ 33.2 min] 105/185  approve=105 reject=0  vram=9487 peak=9487  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y12
+    [ 33.5 min] 105/185  approve=105 reject=0  vram=9487 peak=9487  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y12
+    [ 33.8 min] 107/185  approve=107 reject=0  vram=9543 peak=9543  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X4_Y2
+    [ 34.2 min] 109/185  approve=109 reject=0  vram=9575 peak=9575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-14
+    [ 34.5 min] 109/185  approve=109 reject=0  vram=9647 peak=9647  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-14
+    [ 34.8 min] 109/185  approve=109 reject=0  vram=9647 peak=9647  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-14
+    [ 35.2 min] 111/185  approve=111 reject=0  vram=9688 peak=9688  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y6
+    [ 35.5 min] 111/185  approve=111 reject=0  vram=9688 peak=9688  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y6
+    [ 35.9 min] 111/185  approve=111 reject=0  vram=9758 peak=9758  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y6
+    [ 36.2 min] 111/185  approve=111 reject=0  vram=9758 peak=9758  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y6
+    [ 36.5 min] 112/185  approve=112 reject=0  vram=9768 peak=9768  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-13_Y3
+    [ 36.9 min] 113/185  approve=113 reject=0  vram=9816 peak=9816  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y3
+    [ 37.2 min] 115/185  approve=115 reject=0  vram=10296 peak=10296  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X0_Y3
+    [ 37.5 min] 115/185  approve=115 reject=0  vram=10296 peak=10296  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X0_Y3
+    [ 37.9 min] 117/185  approve=117 reject=0  vram=10325 peak=10325  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y1
+    [ 38.2 min] 119/185  approve=119 reject=0  vram=10389 peak=10389  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X2_Y14
+    [ 38.6 min] 119/185  approve=119 reject=0  vram=10458 peak=10458  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X2_Y14
+    [ 38.9 min] 119/185  approve=119 reject=0  vram=10458 peak=10458  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X2_Y14
+    [ 39.2 min] 121/185  approve=121 reject=0  vram=10505 peak=10505  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 39.6 min] 121/185  approve=121 reject=0  vram=10505 peak=10505  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 39.9 min] 121/185  approve=121 reject=0  vram=10585 peak=10585  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 40.3 min] 121/185  approve=121 reject=0  vram=10585 peak=10585  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 40.6 min] 121/185  approve=121 reject=0  vram=10585 peak=10585  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 40.9 min] 121/185  approve=121 reject=0  vram=10585 peak=10585  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y8
+    [ 41.3 min] 123/185  approve=123 reject=0  vram=10553 peak=10585  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y8
+    [ 41.6 min] 123/185  approve=123 reject=0  vram=10634 peak=10634  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y8
+    [ 42.0 min] 125/185  approve=125 reject=0  vram=10666 peak=10666  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-7
+    [ 42.3 min] 125/185  approve=125 reject=0  vram=10714 peak=10714  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-7
+    [ 42.6 min] 125/185  approve=125 reject=0  vram=10714 peak=10714  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-7
+    [ 43.0 min] 127/185  approve=127 reject=0  vram=11161 peak=11161  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y0
+    [ 43.3 min] 127/185  approve=127 reject=0  vram=11161 peak=11161  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y0
+    [ 43.6 min] 129/185  approve=129 reject=0  vram=11237 peak=11237  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-2
+    [ 44.0 min] 129/185  approve=129 reject=0  vram=11309 peak=11309  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-2
+    [ 44.3 min] 129/185  approve=129 reject=0  vram=11309 peak=11309  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-2
+    [ 44.7 min] 129/185  approve=129 reject=0  vram=11309 peak=11309  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-2
+    [ 45.0 min] 133/185  approve=133 reject=0  vram=11366 peak=11366  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y0
+    [ 45.3 min] 133/185  approve=133 reject=0  vram=11433 peak=11433  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y0
+    [ 45.7 min] 133/185  approve=133 reject=0  vram=11433 peak=11433  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y0
+    [ 46.0 min] 135/185  approve=135 reject=0  vram=11414 peak=11433  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-12_Y-8
+    [ 46.3 min] 137/185  approve=137 reject=0  vram=11527 peak=11527  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y13
+    [ 46.7 min] 137/185  approve=137 reject=0  vram=11599 peak=11599  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y13
+    [ 47.0 min] 137/185  approve=137 reject=0  vram=11599 peak=11599  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y13
+    [ 47.4 min] 137/185  approve=137 reject=0  vram=11599 peak=11599  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y13
+    [ 47.7 min] 139/185  approve=139 reject=0  vram=12055 peak=12055  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y2
+    [ 48.0 min] 141/185  approve=141 reject=0  vram=12035 peak=12055  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y5
+    [ 48.4 min] 141/185  approve=141 reject=0  vram=12084 peak=12084  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y5
+    [ 48.7 min] 143/185  approve=143 reject=0  vram=12132 peak=12132  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y-14
+    [ 49.0 min] 145/185  approve=145 reject=0  vram=12164 peak=12164  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-5
+    [ 49.4 min] 145/185  approve=145 reject=0  vram=12212 peak=12212  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-5
+    [ 49.7 min] 145/185  approve=145 reject=0  vram=12212 peak=12212  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-5
+    [ 50.0 min] 147/185  approve=147 reject=0  vram=12692 peak=12692  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y-7
+    [ 50.4 min] 147/185  approve=147 reject=0  vram=12692 peak=12692  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y-7
+    [ 50.7 min] 149/185  approve=149 reject=0  vram=12704 peak=12704  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-9
+    [ 51.1 min] 149/185  approve=149 reject=0  vram=12752 peak=12752  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-9
+    [ 51.4 min] 151/185  approve=151 reject=0  vram=12800 peak=12800  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X2_Y4
+    [ 51.7 min] 153/185  approve=153 reject=0  vram=13248 peak=13248  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y7
+    [ 52.1 min] 153/185  approve=153 reject=0  vram=13248 peak=13248  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y7
+    [ 52.4 min] 153/185  approve=153 reject=0  vram=13248 peak=13248  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y7
+    [ 52.7 min] 155/185  approve=155 reject=0  vram=13293 peak=13293  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y10
+    [ 53.1 min] 155/185  approve=155 reject=0  vram=13371 peak=13371  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y10
+    [ 53.4 min] 155/185  approve=155 reject=0  vram=13371 peak=13371  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y10
+    [ 53.8 min] 155/185  approve=155 reject=0  vram=13371 peak=13371  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-4_Y10
+    [ 54.1 min] 157/185  approve=157 reject=0  vram=13408 peak=13408  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y13
+    [ 54.4 min] 157/185  approve=157 reject=0  vram=13408 peak=13408  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y13
+    [ 54.8 min] 157/185  approve=157 reject=0  vram=13487 peak=13487  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y13
+    [ 55.1 min] 157/185  approve=157 reject=0  vram=13487 peak=13487  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y13
+    [ 55.4 min] 159/185  approve=159 reject=0  vram=13520 peak=13520  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y15
+    [ 55.8 min] 159/185  approve=159 reject=0  vram=13520 peak=13520  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y15
+    [ 56.1 min] 159/185  approve=159 reject=0  vram=13589 peak=13589  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y15
+    [ 56.5 min] 161/185  approve=161 reject=0  vram=14016 peak=14016  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-7_Y-6
+    [ 56.8 min] 161/185  approve=161 reject=0  vram=14016 peak=14016  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-7_Y-6
+    [ 57.1 min] 161/185  approve=161 reject=0  vram=13996 peak=14016  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-7_Y-6
+    [ 57.5 min] 163/185  approve=163 reject=0  vram=14076 peak=14076  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X3_Y13
+    [ 57.8 min] 165/185  approve=165 reject=0  vram=14108 peak=14108  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-11
+    [ 58.2 min] 165/185  approve=165 reject=0  vram=14174 peak=14174  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-11
+    [ 58.5 min] 165/185  approve=165 reject=0  vram=14174 peak=14174  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-11
+    [ 58.8 min] 167/185  approve=167 reject=0  vram=14636 peak=14636  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X5_Y-2
+    [ 59.2 min] 167/185  approve=167 reject=0  vram=14636 peak=14636  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X5_Y-2
+    [ 59.5 min] 169/185  approve=169 reject=0  vram=14648 peak=14648  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y-4
+    [ 59.8 min] 169/185  approve=169 reject=0  vram=14648 peak=14648  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y-4
+    [ 60.2 min] 169/185  approve=169 reject=0  vram=14716 peak=14716  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y-4
+    [ 60.5 min] 169/185  approve=169 reject=0  vram=14716 peak=14716  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y-4
+    [ 60.8 min] 171/185  approve=171 reject=0  vram=15176 peak=15176  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y-7
+    [ 61.2 min] 171/185  approve=171 reject=0  vram=15176 peak=15176  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y-7
+    [ 61.5 min] 173/185  approve=173 reject=0  vram=15205 peak=15205  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y4
+    [ 61.8 min] 175/185  approve=175 reject=0  vram=15524 peak=15524  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y6
+    [ 62.2 min] 175/185  approve=175 reject=0  vram=15524 peak=15524  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y6
+    [ 62.5 min] 177/185  approve=177 reject=0  vram=15519 peak=15524  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y0
+    [ 62.9 min] 177/185  approve=177 reject=0  vram=15519 peak=15524  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y0
+    [ 63.2 min] 179/185  approve=179 reject=0  vram=15563 peak=15563  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-13
+    [ 63.5 min] 179/185  approve=179 reject=0  vram=15563 peak=15563  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-13
+    [ 63.9 min] 179/185  approve=179 reject=0  vram=15631 peak=15631  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-13
+    [ 64.2 min] 179/185  approve=179 reject=0  vram=15631 peak=15631  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y-13
+    [ 64.5 min] 181/185  approve=181 reject=0  vram=15644 peak=15644  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y1
+    [ 64.9 min] 181/185  approve=181 reject=0  vram=15724 peak=15724  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y1
+    [ 65.2 min] 183/185  approve=183 reject=0  vram=15756 peak=15756  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y14
+    [ 65.6 min] 183/185  approve=183 reject=0  vram=15756 peak=15756  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y14
+    [ 65.9 min] 183/185  approve=183 reject=0  vram=15826 peak=15826  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y14
+    [ 66.2 min] 183/185  approve=183 reject=0  vram=15826 peak=15826  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y14
+    [ 66.6 min] 185/185  approve=185 reject=0  vram=15836 peak=15836  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9
+    [ 66.9 min] 185/185  approve=185 reject=0  vram=15836 peak=15836  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9
+    [ 67.3 min] 185/185  approve=185 reject=0  vram=15841 peak=15841  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9
+    [ 67.6 min] 185/185  approve=185 reject=0  vram=15841 peak=15841  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9
+    [ 67.9 min] 185/185  approve=185 reject=0  vram=187 peak=15841  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y9
+    done rc=1 in 67.9 min | approve=185 reject=0 | STALE 154 -> 77 (-77), current=965 | vram peak 15841 MiB | true_exit=True | written=185 torn=0 last_write_to_exit=19.858s
+[main f1abac82] HLOD batch 10: 77 cells de-staled, 154 -> 77 left, 67.9 min, VRAM peak 15841 MiB
+ 4 files changed, 2643 insertions(+), 7 deletions(-)
+
+=== batch_11 (attempt 1) ===
+    cells in section: 185   stale(MeshMerge(1)) now: 77
+    [  0.2 min] 0/0  approve=0 reject=0  vram=399 peak=399  -
+    [  0.5 min] 4/185  approve=4 reject=0  vram=1862 peak=1862  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y9
+    [  0.8 min] 4/185  approve=4 reject=0  vram=3299 peak=3299  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y9
+    [  1.2 min] 7/185  approve=7 reject=0  vram=3333 peak=3333  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y-12
+    [  1.5 min] 10/185  approve=10 reject=0  vram=3382 peak=3382  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X0_Y10
+    [  1.8 min] 13/185  approve=13 reject=0  vram=3430 peak=3430  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y-5
+    [  2.2 min] 13/185  approve=13 reject=0  vram=3479 peak=3479  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y-5
+    [  2.5 min] 13/185  approve=13 reject=0  vram=3479 peak=3479  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y-5
+    [  2.9 min] 16/185  approve=16 reject=0  vram=3479 peak=3479  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X13_Y-14
+    [  3.2 min] 16/185  approve=16 reject=0  vram=3527 peak=3527  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X13_Y-14
+    [  3.5 min] 16/185  approve=16 reject=0  vram=3527 peak=3527  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X13_Y-14
+    [  3.9 min] 19/185  approve=19 reject=0  vram=3575 peak=3575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y3
+    [  4.2 min] 22/185  approve=22 reject=0  vram=3575 peak=3575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-5
+    [  4.6 min] 22/185  approve=22 reject=0  vram=3575 peak=3575  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-5
+    [  4.9 min] 22/185  approve=22 reject=0  vram=3624 peak=3624  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-5
+    [  5.2 min] 22/185  approve=22 reject=0  vram=3624 peak=3624  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-5
+    [  5.6 min] 25/185  approve=25 reject=0  vram=3672 peak=3672  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y-9
+    [  5.9 min] 28/185  approve=28 reject=0  vram=3720 peak=3720  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-12
+    [  6.2 min] 30/185  approve=30 reject=0  vram=3720 peak=3720  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-21_Y-29
+    [  6.6 min] 31/185  approve=31 reject=0  vram=3834 peak=3834  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y-15
+    [  6.9 min] 31/185  approve=31 reject=0  vram=3834 peak=3834  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y-15
+    [  7.2 min] 34/185  approve=34 reject=0  vram=3946 peak=3946  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-3_Y7
+    [  7.6 min] 37/185  approve=37 reject=0  vram=3995 peak=3995  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-12_Y-2
+    [  7.9 min] 39/185  approve=39 reject=0  vram=4554 peak=4554  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y5
+    [  8.2 min] 39/185  approve=39 reject=0  vram=4554 peak=4554  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y5
+    [  8.6 min] 41/185  approve=41 reject=0  vram=4566 peak=4566  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X10_Y3
+    [  8.9 min] 41/185  approve=41 reject=0  vram=4614 peak=4614  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X10_Y3
+    [  9.3 min] 43/185  approve=43 reject=0  vram=5067 peak=5067  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y7
+    [  9.6 min] 43/185  approve=43 reject=0  vram=5067 peak=5067  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y7
+    [  9.9 min] 45/185  approve=45 reject=0  vram=5494 peak=5494  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y3
+    [ 10.3 min] 45/185  approve=45 reject=0  vram=5494 peak=5494  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y3
+    [ 10.6 min] 47/185  approve=47 reject=0  vram=5506 peak=5506  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-16
+    [ 10.9 min] 47/185  approve=47 reject=0  vram=5587 peak=5587  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-16
+    [ 11.3 min] 49/185  approve=49 reject=0  vram=5635 peak=5635  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X5_Y2
+    [ 11.6 min] 51/185  approve=51 reject=0  vram=5715 peak=5715  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-3
+    [ 11.9 min] 53/185  approve=53 reject=0  vram=6163 peak=6163  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y-6
+    [ 12.3 min] 53/185  approve=53 reject=0  vram=6163 peak=6163  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X1_Y-6
+    [ 12.6 min] 55/185  approve=55 reject=0  vram=6175 peak=6175  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-1
+    [ 12.9 min] 55/185  approve=55 reject=0  vram=6244 peak=6244  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-1
+    [ 13.3 min] 55/185  approve=55 reject=0  vram=6244 peak=6244  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-1
+    [ 13.6 min] 57/185  approve=57 reject=0  vram=6287 peak=6287  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-14
+    [ 14.0 min] 57/185  approve=57 reject=0  vram=6287 peak=6287  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-14
+    [ 14.3 min] 57/185  approve=57 reject=0  vram=6352 peak=6352  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-14
+    [ 14.6 min] 57/185  approve=57 reject=0  vram=6352 peak=6352  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-14
+    [ 15.0 min] 59/185  approve=59 reject=0  vram=6384 peak=6384  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-10
+    [ 15.3 min] 63/185  approve=63 reject=0  vram=6496 peak=6496  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-8
+    [ 15.6 min] 63/185  approve=63 reject=0  vram=6496 peak=6496  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-8
+    [ 16.0 min] 63/185  approve=63 reject=0  vram=6563 peak=6563  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-8
+    [ 16.3 min] 63/185  approve=63 reject=0  vram=6563 peak=6563  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-8
+    [ 16.6 min] 65/185  approve=65 reject=0  vram=6592 peak=6592  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X7_Y-16
+    [ 17.0 min] 67/185  approve=67 reject=0  vram=6688 peak=6688  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-7
+    [ 17.3 min] 67/185  approve=67 reject=0  vram=6762 peak=6762  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-7
+    [ 17.7 min] 67/185  approve=67 reject=0  vram=6762 peak=6762  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-7
+    [ 18.0 min] 69/185  approve=69 reject=0  vram=7218 peak=7218  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y7
+    [ 18.3 min] 69/185  approve=69 reject=0  vram=7218 peak=7218  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y7
+    [ 18.7 min] 69/185  approve=69 reject=0  vram=7218 peak=7218  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y7
+    [ 19.0 min] 71/185  approve=71 reject=0  vram=7230 peak=7230  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y6
+    [ 19.3 min] 71/185  approve=71 reject=0  vram=7298 peak=7298  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y6
+    [ 19.7 min] 71/185  approve=71 reject=0  vram=7298 peak=7298  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y6
+    [ 20.0 min] 73/185  approve=73 reject=0  vram=7311 peak=7311  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-16
+    [ 20.4 min] 73/185  approve=73 reject=0  vram=7359 peak=7359  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X6_Y-16
+    [ 20.7 min] 75/185  approve=75 reject=0  vram=7391 peak=7391  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y8
+    [ 21.0 min] 75/185  approve=75 reject=0  vram=7460 peak=7460  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y8
+    [ 21.4 min] 75/185  approve=75 reject=0  vram=7460 peak=7460  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y8
+    [ 21.7 min] 77/185  approve=77 reject=0  vram=7535 peak=7535  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y13
+    [ 22.1 min] 77/185  approve=77 reject=0  vram=7606 peak=7606  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y13
+    [ 22.4 min] 77/185  approve=77 reject=0  vram=7606 peak=7606  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y13
+    [ 22.7 min] 79/185  approve=79 reject=0  vram=8034 peak=8034  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y-7
+    [ 23.1 min] 79/185  approve=79 reject=0  vram=8034 peak=8034  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-6_Y-7
+    [ 23.4 min] 81/185  approve=81 reject=0  vram=8046 peak=8046  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-13
+    [ 23.7 min] 81/185  approve=81 reject=0  vram=8046 peak=8046  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-13
+    [ 24.1 min] 81/185  approve=81 reject=0  vram=8111 peak=8111  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-13
+    [ 24.4 min] 81/185  approve=81 reject=0  vram=8111 peak=8111  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-13
+    [ 24.7 min] 83/185  approve=83 reject=0  vram=8159 peak=8159  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-12
+    [ 25.1 min] 83/185  approve=83 reject=0  vram=8232 peak=8232  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-12
+    [ 25.4 min] 83/185  approve=83 reject=0  vram=8232 peak=8232  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-12
+    [ 25.7 min] 85/185  approve=85 reject=0  vram=8686 peak=8686  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y-2
+    [ 26.1 min] 85/185  approve=85 reject=0  vram=8686 peak=8686  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y-2
+    [ 26.4 min] 87/185  approve=87 reject=0  vram=8698 peak=8698  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y2
+    [ 26.8 min] 87/185  approve=87 reject=0  vram=8698 peak=8698  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y2
+    [ 27.1 min] 87/185  approve=87 reject=0  vram=8766 peak=8766  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y2
+    [ 27.4 min] 87/185  approve=87 reject=0  vram=8767 peak=8767  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X11_Y2
+    [ 27.8 min] 89/185  approve=89 reject=0  vram=8795 peak=8795  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y3
+    [ 28.1 min] 91/185  approve=91 reject=0  vram=8866 peak=8866  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y8
+    [ 28.5 min] 91/185  approve=91 reject=0  vram=8948 peak=8948  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y8
+    [ 28.8 min] 91/185  approve=91 reject=0  vram=8948 peak=8948  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y8
+    [ 29.1 min] 91/185  approve=91 reject=0  vram=8948 peak=8948  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y8
+    [ 29.5 min] 91/185  approve=91 reject=0  vram=8948 peak=8948  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y8
+    [ 29.8 min] 93/185  approve=93 reject=0  vram=8963 peak=8963  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y2
+    [ 30.1 min] 93/185  approve=93 reject=0  vram=9012 peak=9012  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y2
+    [ 30.5 min] 95/185  approve=95 reject=0  vram=9459 peak=9459  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y-4
+    [ 30.8 min] 95/185  approve=95 reject=0  vram=9459 peak=9459  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X4_Y-4
+    [ 31.1 min] 97/185  approve=97 reject=0  vram=9503 peak=9503  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y10
+    [ 31.5 min] 97/185  approve=97 reject=0  vram=9503 peak=9503  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y10
+    [ 31.8 min] 97/185  approve=97 reject=0  vram=9606 peak=9606  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y10
+    [ 32.2 min] 97/185  approve=97 reject=0  vram=9606 peak=9606  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y10
+    [ 32.5 min] 99/185  approve=99 reject=0  vram=10030 peak=10030  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-8_Y-5
+    [ 32.8 min] 99/185  approve=99 reject=0  vram=10030 peak=10030  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-8_Y-5
+    [ 33.2 min] 101/185  approve=101 reject=0  vram=10618 peak=10618  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-3_Y-3
+    [ 33.5 min] 101/185  approve=101 reject=0  vram=10618 peak=10618  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-3_Y-3
+    [ 33.8 min] 103/185  approve=103 reject=0  vram=10646 peak=10646  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y3
+    [ 34.2 min] 105/185  approve=105 reject=0  vram=10694 peak=10694  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y10
+    [ 34.5 min] 107/185  approve=107 reject=0  vram=10726 peak=10726  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-14
+    [ 34.8 min] 107/185  approve=107 reject=0  vram=10792 peak=10792  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-14
+    [ 35.2 min] 107/185  approve=107 reject=0  vram=10792 peak=10792  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-6_Y-14
+    [ 35.5 min] 109/185  approve=109 reject=0  vram=11222 peak=11222  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-2_Y-8
+    [ 35.8 min] 109/185  approve=109 reject=0  vram=11222 peak=11222  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-2_Y-8
+    [ 36.2 min] 111/185  approve=111 reject=0  vram=11649 peak=11649  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y-7
+    [ 36.5 min] 111/185  approve=111 reject=0  vram=11649 peak=11649  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X6_Y-7
+    [ 36.9 min] 113/185  approve=113 reject=0  vram=11693 peak=11693  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-10
+    [ 37.2 min] 113/185  approve=113 reject=0  vram=11693 peak=11693  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-10
+    [ 37.5 min] 113/185  approve=113 reject=0  vram=11766 peak=11766  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-10
+    [ 37.9 min] 113/185  approve=113 reject=0  vram=11766 peak=11766  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-10
+    [ 38.2 min] 115/185  approve=115 reject=0  vram=11790 peak=11790  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-2_Y-13
+    [ 38.5 min] 117/185  approve=117 reject=0  vram=12237 peak=12237  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y-8
+    [ 38.9 min] 117/185  approve=117 reject=0  vram=12237 peak=12237  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y-8
+    [ 39.2 min] 119/185  approve=119 reject=0  vram=12281 peak=12281  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-3
+    [ 39.6 min] 119/185  approve=119 reject=0  vram=12281 peak=12281  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-3
+    [ 39.9 min] 119/185  approve=119 reject=0  vram=12356 peak=12356  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-3
+    [ 40.2 min] 119/185  approve=119 reject=0  vram=12356 peak=12356  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y-3
+    [ 40.6 min] 121/185  approve=121 reject=0  vram=12361 peak=12361  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-4
+    [ 40.9 min] 121/185  approve=121 reject=0  vram=12361 peak=12361  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-4
+    [ 41.2 min] 121/185  approve=121 reject=0  vram=12432 peak=12432  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-4
+    [ 41.6 min] 121/185  approve=121 reject=0  vram=12432 peak=12432  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-13_Y-4
+    [ 41.9 min] 123/185  approve=123 reject=0  vram=12378 peak=12432  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y-4
+    [ 42.3 min] 123/185  approve=123 reject=0  vram=12426 peak=12432  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y-4
+    [ 42.6 min] 125/185  approve=125 reject=0  vram=12490 peak=12490  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y1
+    [ 42.9 min] 125/185  approve=125 reject=0  vram=12564 peak=12564  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y1
+    [ 43.3 min] 125/185  approve=125 reject=0  vram=12564 peak=12564  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y1
+    [ 43.6 min] 125/185  approve=125 reject=0  vram=12564 peak=12564  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y1
+    [ 44.0 min] 127/185  approve=127 reject=0  vram=12634 peak=12634  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y10
+    [ 44.3 min] 127/185  approve=127 reject=0  vram=12704 peak=12704  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y10
+    [ 44.6 min] 127/185  approve=127 reject=0  vram=12704 peak=12704  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y10
+    [ 45.0 min] 127/185  approve=127 reject=0  vram=12704 peak=12704  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y10
+    [ 45.3 min] 129/185  approve=129 reject=0  vram=12683 peak=12704  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-10
+    [ 45.6 min] 129/185  approve=129 reject=0  vram=12763 peak=12763  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y-10
+    [ 46.0 min] 131/185  approve=131 reject=0  vram=13210 peak=13210  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-7_Y-2
+    [ 46.3 min] 131/185  approve=131 reject=0  vram=13210 peak=13210  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-7_Y-2
+    [ 46.6 min] 133/185  approve=133 reject=0  vram=13254 peak=13254  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-15
+    [ 47.0 min] 133/185  approve=133 reject=0  vram=13254 peak=13254  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-15
+    [ 47.3 min] 133/185  approve=133 reject=0  vram=13322 peak=13322  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-15
+    [ 47.7 min] 133/185  approve=133 reject=0  vram=13322 peak=13322  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X15_Y-15
+    [ 48.0 min] 135/185  approve=135 reject=0  vram=13351 peak=13351  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y-14
+    [ 48.3 min] 137/185  approve=137 reject=0  vram=13798 peak=13798  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y-7
+    [ 48.7 min] 137/185  approve=137 reject=0  vram=13798 peak=13798  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y-7
+    [ 49.0 min] 139/185  approve=139 reject=0  vram=14257 peak=14257  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y-4
+    [ 49.3 min] 139/185  approve=139 reject=0  vram=14257 peak=14257  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y-4
+    [ 49.7 min] 139/185  approve=139 reject=0  vram=14257 peak=14257  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y-4
+    [ 50.0 min] 143/185  approve=143 reject=0  vram=14286 peak=14286  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y-3
+    [ 50.3 min] 143/185  approve=143 reject=0  vram=14334 peak=14334  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y-3
+    [ 50.7 min] 145/185  approve=145 reject=0  vram=14813 peak=14813  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y1
+    [ 51.0 min] 145/185  approve=145 reject=0  vram=14813 peak=14813  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X2_Y1
+    [ 51.3 min] 147/185  approve=147 reject=0  vram=15272 peak=15272  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-3_Y-6
+    [ 51.7 min] 147/185  approve=147 reject=0  vram=15272 peak=15272  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-3_Y-6
+    [ 52.0 min] 149/185  approve=149 reject=0  vram=15284 peak=15284  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y7
+    [ 52.4 min] 149/185  approve=149 reject=0  vram=15333 peak=15333  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-16_Y7
+    [ 52.7 min] 150/185  approve=149 reject=0  vram=15333 peak=15333  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-5_Y1
+    [ 53.0 min] 151/185  approve=151 reject=0  vram=15556 peak=15556  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y1
+    [ 53.4 min] 151/185  approve=151 reject=0  vram=15556 peak=15556  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-5_Y1
+    [ 53.7 min] 153/185  approve=153 reject=0  vram=15566 peak=15566  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y4
+    [ 54.0 min] 153/185  approve=153 reject=0  vram=15566 peak=15566  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y4
+    [ 54.4 min] 155/185  approve=155 reject=0  vram=15610 peak=15610  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y15
+    [ 54.7 min] 155/185  approve=155 reject=0  vram=15681 peak=15681  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y15
+    [ 55.1 min] 155/185  approve=155 reject=0  vram=15681 peak=15681  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y15
+    [ 55.4 min] 156/185  approve=155 reject=0  vram=15681 peak=15681  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-1_Y2
+    [ 55.7 min] 157/185  approve=157 reject=0  vram=15707 peak=15707  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-1_Y2
+    [ 56.1 min] 159/185  approve=159 reject=0  vram=15739 peak=15739  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-15
+    [ 56.4 min] 159/185  approve=159 reject=0  vram=15787 peak=15787  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-15
+    [ 56.7 min] 159/185  approve=159 reject=0  vram=15787 peak=15787  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-15
+    [ 57.1 min] 161/185  approve=161 reject=0  vram=15819 peak=15819  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-12
+    [ 57.4 min] 161/185  approve=161 reject=0  vram=15856 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-12
+    [ 57.8 min] 161/185  approve=161 reject=0  vram=15856 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X12_Y-12
+    [ 58.1 min] 163/185  approve=163 reject=0  vram=15835 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-1
+    [ 58.4 min] 163/185  approve=163 reject=0  vram=15819 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-1
+    [ 58.8 min] 163/185  approve=163 reject=0  vram=15819 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X8_Y-1
+    [ 59.1 min] 165/185  approve=165 reject=0  vram=15851 peak=15856  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-5
+    [ 59.5 min] 165/185  approve=165 reject=0  vram=15868 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-5
+    [ 59.8 min] 167/185  approve=167 reject=0  vram=15571 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y1
+    [ 60.1 min] 167/185  approve=167 reject=0  vram=15571 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y1
+    [ 60.5 min] 167/185  approve=167 reject=0  vram=15571 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X7_Y1
+    [ 60.8 min] 169/185  approve=169 reject=0  vram=15566 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y-6
+    [ 61.1 min] 169/185  approve=169 reject=0  vram=15566 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X3_Y-6
+    [ 61.5 min] 171/185  approve=171 reject=0  vram=15578 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y15
+    [ 61.8 min] 171/185  approve=171 reject=0  vram=15627 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X14_Y15
+    [ 62.1 min] 173/185  approve=173 reject=0  vram=15659 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y7
+    [ 62.5 min] 173/185  approve=173 reject=0  vram=15659 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y7
+    [ 62.8 min] 173/185  approve=173 reject=0  vram=15729 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y7
+    [ 63.2 min] 173/185  approve=173 reject=0  vram=15729 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y7
+    [ 63.5 min] 175/185  approve=175 reject=0  vram=15771 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y15
+    [ 63.8 min] 175/185  approve=175 reject=0  vram=15840 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y15
+    [ 64.2 min] 175/185  approve=175 reject=0  vram=15840 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-11_Y15
+    [ 64.5 min] 177/185  approve=177 reject=0  vram=15851 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y-14
+    [ 64.9 min] 177/185  approve=177 reject=0  vram=15851 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y-14
+    [ 65.2 min] 177/185  approve=177 reject=0  vram=15868 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y-14
+    [ 65.5 min] 177/185  approve=177 reject=0  vram=15868 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-14_Y-14
+    [ 65.9 min] 179/185  approve=179 reject=0  vram=15868 peak=15868  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-12
+    [ 66.2 min] 179/185  approve=179 reject=0  vram=15900 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-12
+    [ 66.5 min] 179/185  approve=179 reject=0  vram=15900 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X9_Y-12
+    [ 66.9 min] 181/185  approve=181 reject=0  vram=15884 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X0_Y-16
+    [ 67.2 min] 181/185  approve=181 reject=0  vram=15900 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X0_Y-16
+    [ 67.6 min] 183/185  approve=183 reject=0  vram=15869 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y13
+    [ 67.9 min] 183/185  approve=183 reject=0  vram=15869 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y13
+    [ 68.3 min] 183/185  approve=183 reject=0  vram=15851 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y13
+    [ 68.6 min] 183/185  approve=183 reject=0  vram=15851 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y13
+    [ 68.9 min] 183/185  approve=183 reject=0  vram=15851 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-5_Y13
+    [ 69.3 min] 185/185  approve=185 reject=0  vram=15854 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0
+    [ 69.6 min] 185/185  approve=185 reject=0  vram=15854 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0
+    [ 69.9 min] 185/185  approve=185 reject=0  vram=15862 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0
+    [ 70.3 min] 185/185  approve=185 reject=0  vram=15862 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0
+    [ 70.6 min] 185/185  approve=185 reject=0  vram=13241 peak=15900  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-15_Y0
+    done rc=1 in 70.8 min | approve=185 reject=0 | STALE 77 -> 0 (-77), current=1042 | vram peak 15900 MiB | true_exit=True | written=185 torn=0 last_write_to_exit=15.63s
+[main 8e67a856] HLOD batch 11: 77 cells de-staled, 77 -> 0 left, 70.8 min, VRAM peak 15900 MiB
+ 5 files changed, 5102 insertions(+), 3 deletions(-)
+ create mode 100644 _verify/hlod/20260909_batched/batch_11.log
+
+FINAL size census:  {"packages_listed": 2267, "packages_present": 2267, "packages_missing": 0, "missing_sample": [], "over_5mb": 0, "under_3mb": 2258, "shorter_than_1kb": 0, "total_bytes": 1580119416, "total_gb": 1.58}
+FINAL layer census: {"Instancing(0)": 1225, "MeshApproximate(3)": 1042}
+stride: [
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0Q/DKJMHCNOJVQ3B91V5L9MBR.uasset",
+    "bytes": 83314,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CE/DO6QC5AL64EY5SIU10UUS9.uasset",
+    "bytes": 74362,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/PI/SZVE7ZGLCX2FMHCVGFETCT.uasset",
+    "bytes": 1274672,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/W1/9D380KWAFQT5NTIDCGJ1OI.uasset",
+    "bytes": 54115,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/4R/56DLZH2YIZ2V1EPMRRH951.uasset",
+    "bytes": 247570,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8U/9I7XOABPKG20YVAK77BRC7.uasset",
+    "bytes": 113775,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/A6/CDROMIEJQ3EN6AEAKDCOLF.uasset",
+    "bytes": 1306549,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/MY/6IIL0NHEG83W6FBD8WLGZN.uasset",
+    "bytes": 1197866,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/RT/68FRW6C10MPDDKZZNNIX8F.uasset",
+    "bytes": 76080,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/0R/ISYU0YC9C5QHDYGLW3PS6U.uasset",
+    "bytes": 1075264,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/CW/R8BH2GDZ5SEUVMVG81LJYH.uasset",
+    "bytes": 312718,
+    "band": "rebuilt<3MB"
+  },
+  {
+    "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/Q3/JAT3HKZ0RHXZSVOEDHODVC.uasset",
+    "bytes": 1121918,
+    "band": "rebuilt<3MB"
+  }
+]
+
+WORLD UNIFORM: no cell records MeshMerge(1), all 2267 packages present.

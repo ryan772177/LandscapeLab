@@ -1,0 +1,848 @@
+{
+ "_what": "Body silhouette measurements, orthographic, absolute cm.",
+ "runs": [
+  {
+   "utc": "20260819T130050Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "baseline_scratch2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T130050Z.png",
+   "png_plate": "body_plate_20260819T130050Z.png",
+   "measures": {
+    "stature_cm": 148.535,
+    "hip_cm": 17.7734,
+    "waist_cm": 34.2773,
+    "chest_cm": 26.6601,
+    "shoulder_cm": 25.1367,
+    "shoulder_band_max_cm": 27.4218,
+    "coverage_frac": 0.04242,
+    "mask_rows": 585
+   }
+  },
+  {
+   "utc": "20260819T130344Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "baseline_scratch2_frontal",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T130344Z.png",
+   "png_plate": "body_plate_20260819T130344Z.png",
+   "measures": {
+    "shoulder_cm": 47.2265,
+    "shoulder_z": 250143.365,
+    "chest_cm": 94.453,
+    "chest_z": 250110.4258,
+    "waist_cm": 110.703,
+    "waist_z": 250095.3288,
+    "hip_cm": 109.1796,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 56.1132,
+    "body_top_z": 250146.226,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.551,
+    "coverage_frac": 0.07299,
+    "shoulder_over_hip": 0.4326,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T130441Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "baseline_scratch2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T130441Z.png",
+   "png_plate": "body_plate_20260819T130441Z.png",
+   "measures": {
+    "shoulder_cm": 0.0,
+    "shoulder_z": 250143.365,
+    "chest_cm": 10.1562,
+    "chest_z": 250110.4258,
+    "waist_cm": 0.0,
+    "waist_z": 250095.3288,
+    "hip_cm": 0.0,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": null,
+    "shoulder_full_span_cm": 47.2265,
+    "body_top_z": 250146.226,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.551,
+    "coverage_frac": 0.07299,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T130535Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "baseline_scratch2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T130535Z.png",
+   "png_plate": "body_plate_20260819T130535Z.png",
+   "measures": {
+    "shoulder_cm": 7.6172,
+    "shoulder_z": 250143.365,
+    "chest_cm": 28.9453,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 56.1132,
+    "shoulder_full_span_cm": 47.2265,
+    "body_top_z": 250146.226,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.551,
+    "coverage_frac": 0.07299,
+    "shoulder_over_hip": 0.2239,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T130633Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "baseline_scratch2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T130633Z.png",
+   "png_plate": "body_plate_20260819T130633Z.png",
+   "measures": {
+    "shoulder_cm": 52.3046,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.9453,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 56.3671,
+    "shoulder_full_span_cm": 52.3046,
+    "body_top_z": 250146.226,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.551,
+    "coverage_frac": 0.07299,
+    "shoulder_over_hip": 1.5373,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T130856Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "height_190_CONTROL",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T130856Z.png",
+   "png_plate": "body_plate_20260819T130856Z.png",
+   "measures": {
+    "shoulder_cm": 37.0703,
+    "shoulder_z": 250140.868,
+    "chest_cm": 29.9609,
+    "chest_z": 250110.4258,
+    "waist_cm": 34.0234,
+    "waist_z": 250095.3288,
+    "hip_cm": 36.0547,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 58.9062,
+    "shoulder_full_span_cm": 64.9999,
+    "body_top_z": 250156.128,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 159.453,
+    "coverage_frac": 0.07801,
+    "shoulder_over_hip": 1.0282,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T130955Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "height_178_baseline",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T130955Z.png",
+   "png_plate": "body_plate_20260819T130955Z.png",
+   "measures": {
+    "shoulder_cm": 37.3242,
+    "shoulder_z": 250140.868,
+    "chest_cm": 29.9609,
+    "chest_z": 250110.4258,
+    "waist_cm": 34.0234,
+    "waist_z": 250095.3288,
+    "hip_cm": 36.0547,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 58.9062,
+    "shoulder_full_span_cm": 64.9999,
+    "body_top_z": 250156.128,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 159.453,
+    "coverage_frac": 0.07798,
+    "shoulder_over_hip": 1.0352,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131119Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "height_205",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131119Z.png",
+   "png_plate": "body_plate_20260819T131119Z.png",
+   "measures": {
+    "shoulder_cm": 53.0664,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.6914,
+    "chest_z": 250110.4258,
+    "waist_cm": 33.0078,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.5312,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 57.3828,
+    "shoulder_full_span_cm": 53.0664,
+    "body_top_z": 250145.972,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.297,
+    "coverage_frac": 0.07297,
+    "shoulder_over_hip": 1.5368,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131200Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "repeat_no_change_1",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131200Z.png",
+   "png_plate": "body_plate_20260819T131200Z.png",
+   "measures": {
+    "shoulder_cm": 35.5468,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.9453,
+    "chest_z": 250110.4258,
+    "waist_cm": 36.0547,
+    "waist_z": 250095.3288,
+    "hip_cm": 38.3398,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 39.6093,
+    "shoulder_full_span_cm": 89.121,
+    "body_top_z": 250169.077,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 172.402,
+    "coverage_frac": 0.0845,
+    "shoulder_over_hip": 0.9272,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131221Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "repeat_no_change_2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131221Z.png",
+   "png_plate": "body_plate_20260819T131221Z.png",
+   "measures": {
+    "shoulder_cm": 35.5468,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.9453,
+    "chest_z": 250110.4258,
+    "waist_cm": 36.0547,
+    "waist_z": 250095.3288,
+    "hip_cm": 38.3398,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 39.6093,
+    "shoulder_full_span_cm": 89.121,
+    "body_top_z": 250169.077,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 172.402,
+    "coverage_frac": 0.0845,
+    "shoulder_over_hip": 0.9272,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131358Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "height_178_settled",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131358Z_s2.png",
+   "png_plate": "body_plate_20260819T131358Z_s2.png",
+   "measures": {
+    "shoulder_cm": 53.0664,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.4375,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 57.3828,
+    "shoulder_full_span_cm": 53.0664,
+    "body_top_z": 250145.972,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.297,
+    "coverage_frac": 0.07284,
+    "shoulder_over_hip": 1.5597,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131538Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "mascfem_-2.0",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131538Z_s1.png",
+   "png_plate": "body_plate_20260819T131538Z_s1.png",
+   "measures": {
+    "shoulder_cm": 54.082,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.4375,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.7539,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.2773,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 58.9062,
+    "shoulder_full_span_cm": 54.082,
+    "body_top_z": 250145.718,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.043,
+    "coverage_frac": 0.07394,
+    "shoulder_over_hip": 1.5778,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T131642Z",
+   "character": "/Game/Hero/MHC_AlpineHero_BodyTest",
+   "label": "mascfem_2.0",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_3",
+   "png_subject": "body_subject_20260819T131642Z_s2.png",
+   "png_plate": "body_plate_20260819T131642Z_s2.png",
+   "measures": {
+    "shoulder_cm": 19.5508,
+    "shoulder_z": 250140.868,
+    "chest_cm": 30.9765,
+    "chest_z": 250110.4258,
+    "waist_cm": 33.0078,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.7851,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 50.7812,
+    "shoulder_full_span_cm": 48.496,
+    "body_top_z": 250146.733,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 150.058,
+    "coverage_frac": 0.07031,
+    "shoulder_over_hip": 0.562,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T132033Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch",
+   "label": "wholerig_scratch_baseline",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_9",
+   "png_subject": "body_subject_20260819T132033Z_s1.png",
+   "png_plate": "body_plate_20260819T132033Z_s1.png",
+   "measures": {
+    "shoulder_cm": 52.3046,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.9453,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 56.3671,
+    "shoulder_full_span_cm": 52.3046,
+    "body_top_z": 250146.226,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.551,
+    "coverage_frac": 0.07299,
+    "shoulder_over_hip": 1.5373,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T132145Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch",
+   "label": "wholerig_scratch_mf_plus2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_9",
+   "png_subject": "body_subject_20260819T132145Z_s2.png",
+   "png_plate": "body_plate_20260819T132145Z_s2.png",
+   "measures": {
+    "shoulder_cm": 19.5508,
+    "shoulder_z": 250140.868,
+    "chest_cm": 30.9765,
+    "chest_z": 250110.4258,
+    "waist_cm": 33.2617,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.7851,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 50.7812,
+    "shoulder_full_span_cm": 48.496,
+    "body_top_z": 250146.733,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 150.058,
+    "coverage_frac": 0.07036,
+    "shoulder_over_hip": 0.562,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T132356Z",
+   "character": "/Game/Hero/MHC_AlpineHero_Scratch2",
+   "label": "scratch2_mascfem_minus2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_1",
+   "png_subject": "body_subject_20260819T132356Z_s1.png",
+   "png_plate": "body_plate_20260819T132356Z_s1.png",
+   "measures": {
+    "shoulder_cm": 54.082,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.4375,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 58.9062,
+    "shoulder_full_span_cm": 54.082,
+    "body_top_z": 250145.718,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.043,
+    "coverage_frac": 0.0739,
+    "shoulder_over_hip": 1.5896,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  },
+  {
+   "utc": "20260819T132550Z",
+   "character": "/Game/Hero/MHC_AlpineHero",
+   "label": "WORKING_mascfem_minus2",
+   "camera": {
+    "location": [
+     -600.0,
+     0.0,
+     250073.1005
+    ],
+    "ortho_width": 260.0,
+    "res": 1024,
+    "cm_per_px": 0.253906,
+    "projection": "<CameraProjectionMode.ORTHOGRAPHIC: 1>"
+   },
+   "body_mesh": "/Engine/Transient.UnrealEdEngine_0:MetaHumanCharacterEditorSubsystem_0.BodyMesh_5",
+   "png_subject": "body_subject_20260819T132550Z_s1.png",
+   "png_plate": "body_plate_20260819T132550Z_s1.png",
+   "measures": {
+    "shoulder_cm": 54.082,
+    "shoulder_z": 250140.868,
+    "chest_cm": 28.4375,
+    "chest_z": 250110.4258,
+    "waist_cm": 32.5,
+    "waist_z": 250095.3288,
+    "hip_cm": 34.0234,
+    "hip_z": 250091.0078,
+    "shoulder_band_max_cm": 58.9062,
+    "shoulder_full_span_cm": 54.082,
+    "body_top_z": 250145.718,
+    "body_bottom_z": 249996.929,
+    "body_height_cm": 149.043,
+    "coverage_frac": 0.0739,
+    "shoulder_over_hip": 1.5896,
+    "bone_world_z": {
+     "root": 250000.0,
+     "pelvis": 250091.0078,
+     "spine_01": 250095.3288,
+     "spine_03": 250110.4258,
+     "spine_05": 250132.8763,
+     "clavicle_l": 250143.365,
+     "clavicle_r": 250143.365,
+     "upperarm_l": 250140.868,
+     "upperarm_r": 250140.868,
+     "neck_01": 250149.5599,
+     "head": 250160.5776,
+     "foot_l": 250008.358,
+     "thigh_l": 250090.8444
+    }
+   }
+  }
+ ]
+}

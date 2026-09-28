@@ -1,0 +1,89 @@
+20260809 — TERRAIN LOOK UNDER THE RENDER CONDITION (clouds OFF, Lumen ON)
+
+Condition set by `scripts/render_condition.py` and READ BACK on every
+cvar, because CURRENT STATE records execute_console_command returning
+clean while changing nothing:
+
+    r.VolumetricCloud                  1 -> 0   ok
+    r.DynamicGlobalIlluminationMethod  0 -> 1   ok
+    r.ReflectionMethod                 0 -> 1   ok
+
+Render state only. No config file touched, no asset saved, no restart.
+19 frames, tag `lumen_on_clouds_off`, commit f3e1c018.
+
+FINDING 1 — LUMEN COSTS 0.22 STOPS OF EXPOSURE, AS 2.1 PREDICTED
+
+Ground luma (bottom 45% of ridge_wide), sRGB decoded to linear:
+
+    R13's solved target                      0.3201
+    Lumen OFF (2026-08-09 062907Z)           0.3012    -5.9%
+    Lumen ON  (2026-08-09 065559Z)           0.3730   +16.5%
+
+Lumen adds +23.8% ground brightness = +0.308 stops. Nothing is blown at
+either setting (>0.99 on 0.000% of pixels), so this is a level shift, not
+clipping.
+
+    EXPOSURE BIAS -1.786 -> -2.007 EV to return to R13's target.
+
+NOT APPLIED. -1.786 was SOLVED, not tuned (R13), and replacing a solved
+value with an arithmetic correction derived from one camera is the wrong
+shape — the solver should be re-run under the Lumen condition. What is
+established here is the SIZE and DIRECTION of the correction, and that
+the proposal's 2.1 dependency is real rather than theoretical.
+
+FINDING 2 — THE MAP EDGE IS VISIBLE, AND FOG CANNOT HIDE IT
+
+From `ridge_wide` (camera 1654 m altitude) the landscape ENDS in frame as
+a hard vertical cut against flat haze. Located by per-column stddev over
+the mid-lower band:
+
+    x=1792   std 0.1209   terrain
+    x=1832   std 0.0196   FLAT — no terrain
+    x=1872   std 0.0199   FLAT
+
+so the edge sits at about 95% across a 1920-wide frame. Crop kept at
+scratchpad/map_edge.png; it is unmistakable, a sheer boundary with
+nothing beyond it.
+
+**AND THE FOG CANNOT BE TUNED TO COVER IT.** `atmosphere_solve.py` on the
+shipped values (density 0.0015, half_height 202 m, datum 101 m):
+
+    camera 300 m    8 km ->  0.3889 opacity
+    camera 800 m    8 km ->  0.0848
+    camera 1200 m   8 km ->  0.0222
+
+Exponential height fog is HEIGHT-limited by construction. A camera at
+1654 m sits far above a 202 m half-height layer and receives almost none
+of it, which is why the distant terrain still reads as a hard silhouette.
+The pinkish distance wash in that frame is SkyAtmosphere aerial
+perspective, not the height fog.
+
+So the map edge is a CAMERA-ROUTING or DISTANT-GEOMETRY problem, not a
+fog problem. Raising fog density to hide it would fog the ground stations
+(which already sit at 0.389 at 8 km) to hide something only the high
+cameras can see.
+
+FINDING 3 — THE FOG MAY NOT BE WRONG AT ALL
+
+The clip proposal calls fog "applied, rendering, NEVER TUNED" and
+"showing heavy aerial haze at 8.7 km", which reads as a defect. Checked
+against physics rather than against the adjective: by Koschmieder,
+sigma = 3.912 / V, so an 8 km opacity of 0.3889 corresponds to a visual
+range of about 65 km — clean alpine air on a clear day. That is a
+defensible value, not an obviously wrong one.
+
+**"Untuned" here means NEVER VERIFIED, not KNOWN BAD**, and the two are
+different claims. The value that deserves scrutiny is not density but
+`start_distance_m: 1500`, a hard cutoff giving exactly zero aerial
+perspective inside 1.5 km where real perspective begins immediately and
+merely weakly. That is a candidate defect and has NOT been tested.
+
+WHAT IS NOT DONE
+
+- The exposure re-solve under Lumen (needs atmosphere_solve run in the
+  Lumen condition, not an arithmetic patch).
+- Any fog change. Nothing was altered.
+- The `start_distance_m` question.
+- Whether Lumen looks BETTER — that is Ryan's judgement, not a statistic.
+  The measured facts are: +0.308 stops, no clipping, and no crash on an
+  iGPU that has hung once.

@@ -1,0 +1,55 @@
+SOURCE (reading A): recipe stamps block + compositor mask (composite_stamps._stamp_mask_and_sample)
+SOURCE (reading B): terrain/alpine_heightmap_v2.png pixels
+PROVENANCE: heightmap sha == sidecar output_sha256; recipe stamps block sha == sidecar stamps_block_sha256; all stamp files match placement hashes.  ALL VERIFIED.
+
+READING A - outer contributing radius CV (bar >= 0.05)
+  method: per-720-bin max radius of mask>0 pixels, boundary-tainted bins excluded
+  foothill_basin_east          cv 0.082  (geometric baseline 0.000, excluded bins 0)  ok
+  foothill_basin_southwest     cv 0.067  (geometric baseline 0.001, excluded bins 0)  ok
+  summit_massif_north          cv 0.064  (geometric baseline 0.001, excluded bins 0)  ok
+  summit_massif_south          cv 0.152  (geometric baseline 0.106, excluded bins 0)  ok
+  summit_massif_south_shoulder cv 0.052  (geometric baseline 0.001, excluded bins 0)  ok
+  spine_aretes                 cv 0.047  (geometric baseline 0.000, excluded bins 0)  BELOW BAR
+    spine_aretes recorded CV was 0.089; measured 0.047 here.
+  cliff_band_west              cv 0.033  (geometric baseline 0.001, excluded bins 0)  BELOW BAR
+  outcrops_mid                 cv 0.056  (geometric baseline 0.001, excluded bins 0)  ok
+  drainage_south               cv 0.061  (geometric baseline 0.001, excluded bins 0)  ok
+
+  CALIBRATION WARNING — the bar and these numbers may not be
+  the same statistic. Recorded band 0.089-0.367 over EIGHT
+  placements (schema.md:824); measured here 0.033-0.152
+  over 9, every one lower — a systematic offset, which
+  points at the derivation, not the ground. The recorded
+  procedure is not in the repo and NO GATE ENFORCES the bar.
+  What IS established: this procedure is written down, and
+  its synthetic controls prove it discriminates (jitter 0 ->
+  CV ~0 and below bar; jitter 0.45 -> clears it). Treat the
+  below-bar rows as A RANKING to re-derive the bar against,
+  not as a spec violation to act on.
+
+READING B - polished falloff spots (window 32 px = 128 m; abs bar 0.5 m, rel bar 0.4, slope >= 12.0 deg, cluster >= 6 windows)
+  REFERENCE population: cells NOT in any falloff annulus (2219284 of 4068289, 54.6%). The ground under test is EXCLUDED from the control it is scored against.
+  reference median |lap|, slope  5-15 deg : 0.781 m    (reference cells 567214)
+  reference median |lap|, slope 15-30 deg : 1.250 m    (reference cells 743681)
+  reference median |lap|, slope 30-45 deg : 2.383 m    (reference cells 572447)
+  reference median |lap|, slope 45-90 deg : 2.422 m    (reference cells 218740)
+  flagged windows: 23   clusters: 13   spots (>= 6 windows): 0
+  cluster-size distribution: 2 of size 5, 2 of size 2, 9 of size 1
+  sub-threshold clusters (below the 6-window spot bar, reported so a scale choice cannot read as an absence):
+    5 window(s) at (1459, 26) m, med|lap| 0.27 m, slope 19 deg, score 0.30, annulus of spine_aretes
+    5 window(s) at (-512, 2330) m, med|lap| 0.35 m, slope 16 deg, score 0.31, annulus of drainage_south
+    2 window(s) at (-192, 2048) m, med|lap| 0.29 m, slope 14 deg, score 0.29, annulus of drainage_south
+    2 window(s) at (-2944, 2240) m, med|lap| 0.45 m, slope 16 deg, score 0.36, annulus of foothill_basin_southwest
+    1 window(s) at (1664, -1280) m, med|lap| 0.47 m, slope 15 deg, score 0.38, annulus of foothill_basin_east
+    1 window(s) at (1408, -512) m, med|lap| 0.47 m, slope 17 deg, score 0.38, annulus of spine_aretes
+    1 window(s) at (-2816, 1792) m, med|lap| 0.39 m, slope 19 deg, score 0.31, annulus of foothill_basin_southwest
+    1 window(s) at (-1536, 1792) m, med|lap| 0.35 m, slope 16 deg, score 0.28, annulus of drainage_south
+    ... and 5 more
+  largest cluster: 5 window(s) = 0.082 km2 (spot bar 6 windows = 0.098 km2)
+  NEAR-BAR: 2 cluster(s) at 5 windows against a next-largest of 2 — the distribution separates these from the rest independently of the bar.
+
+VERDICT: FINDINGS PRESENT
+  - spine_aretes: outer-contour CV 0.047 is below 0.05 UNDER THIS PROCEDURE — see the calibration warning below before reading it as a spec violation
+  - cliff_band_west: outer-contour CV 0.033 is below 0.05 UNDER THIS PROCEDURE — see the calibration warning below before reading it as a spec violation
+  - near-bar polished cluster: 5 windows (0.082 km2) at (1459, 26) m, slope 19 deg, 30% of the reference relief for its band, in the spine_aretes annulus — one window under the 6-window spot bar, which was set before measurement
+  - near-bar polished cluster: 5 windows (0.082 km2) at (-512, 2330) m, slope 16 deg, 31% of the reference relief for its band, in the drainage_south annulus — one window under the 6-window spot bar, which was set before measurement

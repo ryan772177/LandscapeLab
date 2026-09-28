@@ -1,0 +1,242 @@
+{
+ "_what": "Brief-4 water-set footprints + A/B inflow falls (RULING \u00a77)",
+ "cell_m": 4.0,
+ "near_m": 500.0,
+ "trace_steps": 400,
+ "z_mapping": {
+  "metres_per_16bit_unit": 0.039063096,
+  "height_m_of_unit_0": 0.0,
+  "world_origin_cm": [
+   -406400.0,
+   -406400.0,
+   128000.0
+  ]
+ },
+ "lakes": [
+  {
+   "key": "A",
+   "name": "A_east_basin",
+   "id": 4893,
+   "level_m": 180.0,
+   "area_ha_derived": 125.5,
+   "area_ha_hydro": 125.5,
+   "control_pass": true,
+   "max_depth_m": 155.2,
+   "shoreline_km": 5.9,
+   "centroid_col_row": [
+    1737.0,
+    813.7
+   ],
+   "bbox_col_row": [
+    1571,
+    642,
+    1907,
+    1011
+   ],
+   "footprint_cells": 78425,
+   "inflow_candidates_considered": 9,
+   "inflow_candidates_draining": 9,
+   "inflow_candidates": [
+    {
+     "col_row": [
+      1708,
+      1050
+     ],
+     "drop_m": 16.6,
+     "elevation_m": 263.1,
+     "contributing_km2": 2.221,
+     "dist_to_shore_m": 193.9,
+     "world_cm": [
+      276800.0,
+      13600.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1537,
+      750
+     ],
+     "drop_m": 14.4,
+     "elevation_m": 281.4,
+     "contributing_km2": 5.387,
+     "dist_to_shore_m": 136.0,
+     "world_cm": [
+      208400.0,
+      -106400.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1849,
+      717
+     ],
+     "drop_m": 13.7,
+     "elevation_m": 192.9,
+     "contributing_km2": 4.667,
+     "dist_to_shore_m": 17.0,
+     "world_cm": [
+      333200.0,
+      -119600.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1551,
+      748
+     ],
+     "drop_m": 12.8,
+     "elevation_m": 234.1,
+     "contributing_km2": 5.388,
+     "dist_to_shore_m": 80.0,
+     "world_cm": [
+      214000.0,
+      -107200.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1510,
+      738
+     ],
+     "drop_m": 11.9,
+     "elevation_m": 347.3,
+     "contributing_km2": 5.383,
+     "dist_to_shore_m": 245.2,
+     "world_cm": [
+      197600.0,
+      -111200.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1558,
+      749
+     ],
+     "drop_m": 11.1,
+     "elevation_m": 212.0,
+     "contributing_km2": 5.388,
+     "dist_to_shore_m": 52.0,
+     "world_cm": [
+      216800.0,
+      -106800.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1717,
+      999
+     ],
+     "drop_m": 10.1,
+     "elevation_m": 184.2,
+     "contributing_km2": 2.234,
+     "dist_to_shore_m": 8.0,
+     "world_cm": [
+      280400.0,
+      -6800.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1544,
+      748
+     ],
+     "drop_m": 9.3,
+     "elevation_m": 253.0,
+     "contributing_km2": 5.387,
+     "dist_to_shore_m": 108.0,
+     "world_cm": [
+      211200.0,
+      -107200.0
+     ],
+     "drains_into_lake": true
+    },
+    {
+     "col_row": [
+      1716,
+      1012
+     ],
+     "drop_m": 8.3,
+     "elevation_m": 199.8,
+     "contributing_km2": 2.234,
+     "dist_to_shore_m": 48.2,
+     "world_cm": [
+      280000.0,
+      -1600.0
+     ],
+     "drains_into_lake": true
+    }
+   ],
+   "inflow_fall_pick": {
+    "col_row": [
+     1708,
+     1050
+    ],
+    "drop_m": 16.6,
+    "elevation_m": 263.1,
+    "contributing_km2": 2.221,
+    "dist_to_shore_m": 193.9,
+    "world_cm": [
+     276800.0,
+     13600.0
+    ],
+    "drains_into_lake": true
+   }
+  },
+  {
+   "key": "B",
+   "name": "B_town_tarn",
+   "id": 11877,
+   "level_m": 140.0,
+   "area_ha_derived": 13.6,
+   "area_ha_hydro": 13.6,
+   "control_pass": true,
+   "max_depth_m": 139.9,
+   "shoreline_km": 1.5,
+   "centroid_col_row": [
+    515.4,
+    1480.8
+   ],
+   "bbox_col_row": [
+    462,
+    1422,
+    574,
+    1542
+   ],
+   "footprint_cells": 8528,
+   "inflow_candidates_considered": 1,
+   "inflow_candidates_draining": 0,
+   "inflow_candidates": [],
+   "inflow_fall_pick": null
+  },
+  {
+   "key": "D",
+   "name": "D_headwater",
+   "id": 8377,
+   "level_m": 590.9,
+   "area_ha_derived": 49.6,
+   "area_ha_hydro": 49.6,
+   "control_pass": true,
+   "max_depth_m": 134.0,
+   "shoreline_km": 4.2,
+   "centroid_col_row": [
+    660.0,
+    1079.0
+   ],
+   "bbox_col_row": [
+    543,
+    908,
+    812,
+    1206
+   ],
+   "footprint_cells": 30996
+  }
+ ],
+ "positive_control_pass": true
+}

@@ -1,0 +1,24 @@
+  residency mode: NEAR-FIELD — 16 components within 600 m of the camera
+bench_capture — profile dev, 1 job(s), 2560x1440, temporal x1
+  out: C:\Users\Admin\UE5LandscapePipeline\_verify\bench\2026-09-07\dev_devcontrol
+  residency: expect 16 landscape components, 180 warm-up frames, probe REQUIRED
+  - C7B0BE1C465D255EA9667CACEDEFADA0 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  cvar config read-back matches request on every job
+  ... 15 s | LandscapeLab - Unreal Editor | log idle 0 s
+  ... 30 s | LandscapeLab - Unreal Editor | log idle 15 s
+  ... 46 s | LandscapeLab - Unreal Editor | log idle 30 s
+  ... 61 s | LandscapeLab - Unreal Editor | log idle 46 s
+  ... 76 s | LandscapeLab - Unreal Editor | log idle 61 s
+  ... 91 s | LandscapeLab - Unreal Editor | log idle 0 s
+  render finished in 107 s (poll: {'final_window_title': 'LandscapeLab - Unreal Editor'})
+  residency read-back (1 probe line(s)):
+    Bench_dev_near_ground    FAIL       8 of 16 landscape components resident (50.0%)
+  engine applied 13/13 cvars; resolution lines [[2560, 1440]]
+
+  near_ground  [2560, 1440]  _verify/bench/2026-09-07/dev_devcontrol/near_ground.png  luma 0.9485
+  sidecar: _verify\bench\2026-09-07\bench_run_dev_devcontrol.json
+  content gate: using derivation from _verify\bench\2026-09-05\bench_stations_derived.json
+
+REFUSE (FAIL): residency. The frames exist and may even look plausible, but the world was not established to be there when they were taken, so they are not measurements.
+  Bench_dev_near_ground    FAIL — 8 of 16 landscape components resident (50.0%)
+  Sidecar written anyway: _verify\bench\2026-09-07\bench_run_dev_devcontrol.json

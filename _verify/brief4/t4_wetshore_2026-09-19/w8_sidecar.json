@@ -1,0 +1,100 @@
+{
+ "_what": "Eight DERIVED layer weights (Brief 3 Task 2, sec 3.4-3.6). Weights sum to 1; precedence and formulas in derive_layer_weights docstring; nothing painted.",
+ "inputs": {
+  "heightmap": "terrain/alpine_8k.png",
+  "flow": "RESERVED, not read (gravel uses deposition; wet_shore uses water.json levels + hydro footprints, not flow)",
+  "water_recipe": "recipes/water.json",
+  "deposition": "terrain/alpine_8k_deposition.png",
+  "foliage_plans": [
+   "foliage\\alpine_8k_Conifer.json",
+   "foliage\\alpine_8k_ConiferPine.json",
+   "foliage\\alpine_8k_SpruceSub.json",
+   "foliage\\alpine_8k_SpruceSapling.json"
+  ],
+  "crown_radius_m": 3.068,
+  "instances": 217102
+ },
+ "channels": {
+  "a": [
+   "snow",
+   "rock",
+   "scree",
+   "forest_floor"
+  ],
+  "b": [
+   "wet_shore",
+   "dirt_path",
+   "gravel",
+   "meadow"
+  ],
+  "files": {
+   "a": "_verify/brief4/t4_wetshore_2026-09-19/w8a.png",
+   "b": "_verify/brief4/t4_wetshore_2026-09-19/w8b.png"
+  }
+ },
+ "constants": {
+  "snow_base_m": 730.0,
+  "_snow_base_m": "read from the recipe's Snow band floor, not a local constant",
+  "sun_azimuth_deg": 285.0,
+  "shaded_aspect_deg_from_plus_y": 165.0,
+  "_shaded_aspect": "DERIVED from the sun azimuth (the light's travel yaw; the shaded flank faces along it), never a map axis",
+  "snow_aspect_half_m": 125.0,
+  "rock_deg": [
+   29.0,
+   35.0
+  ],
+  "scree_deg": [
+   20.0,
+   32.0
+  ],
+  "scree_source_deg": 40.0,
+  "scree_runout_m": 60.0,
+  "canopy_cover_band": [
+   0.15,
+   0.45
+  ],
+  "gravel_max_slope_deg": 20.0,
+  "wet_shore_band_m": 4.0,
+  "wet_shore_ring_m": 8.0
+ },
+ "wet_shore": {
+  "_what": "damp shoreline ring of each placed lake (Brief 4 T4): adjacent to the lake footprint AND within wet_shore_band_m above the water level; NOT a global elevation band",
+  "levels_from": "recipes/water.json",
+  "footprints_from": "hydro_derive.level_slice on the committed 4x analysis heightmap (the hydrology tool of record); positive control vs water.json area_ha",
+  "lakes": [
+   {
+    "id": 4893,
+    "level_m": 180.0,
+    "footprint_ha": 125.5,
+    "footprint_cells_8k": 1254615
+   },
+   {
+    "id": 11877,
+    "level_m": 140.0,
+    "footprint_ha": 13.6,
+    "footprint_cells_8k": 136468
+   },
+   {
+    "id": 8377,
+    "level_m": 590.9,
+    "footprint_ha": 49.6,
+    "footprint_cells_8k": 495886
+   }
+  ],
+  "renders_as": "folds into the shader remainder (meadow/grass) at blockout; a distinct shore surface is a material-pass item (R-LAYERS5)"
+ },
+ "declared_zero": {
+  "dirt_path": "no path mask exists; the town's streets are ACTORS, not a landscape layer"
+ },
+ "units_note": "the brief's forest-floor threshold '0.3 crowns/m2' is read as 0.3 crown-area COVER (a canopy-cover figure); 0.3 trees/m2 is denser than any forest",
+ "coverage_fraction": {
+  "snow": 0.0992,
+  "rock": 0.423,
+  "scree": 0.1197,
+  "forest_floor": 0.1049,
+  "wet_shore": 0.0002,
+  "dirt_path": 0.0,
+  "gravel": 0.0052,
+  "meadow": 0.2478
+ }
+}
