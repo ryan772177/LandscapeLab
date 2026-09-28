@@ -61,6 +61,20 @@ drift and no script carries a machine-specific path.
 **This also settles which project directory is canonical** — see the
 untracked `LandscapeLab 5.8` duplicate flagged in CURRENT STATE.
 
+### The GitHub remote is a LITE MIRROR (ruled 2026-09-27, R-GITHUB-LITE)
+- `origin` = `https://github.com/ryan772177/LandscapeLab.git`, recreated
+  2026-09-27 after the account's free 10 GiB Git LFS quota was exhausted by
+  world-package history (22 GB of 37 GB). **GitHub holds the recipe; this
+  machine holds the world.** Local `main` is the full repo (world packages,
+  fence tags, D3 revert-to-tag); GitHub `main` = the `github-main` snapshot
+  branch built by `scripts/github_lite_snapshot.py`, which excludes
+  `LandscapeLab/Content/__ExternalActors__`, `__ExternalObjects__` and
+  `_verify/bench`. **Never push local `main` or a tag to GitHub** — one world
+  save (~1,000 LFS objects, ~260 MB) refills the quota. Share work with
+  `python scripts/github_lite_snapshot.py --push`.
+- There is no second copy of the world history: no external drive. The
+  world is pipeline output (rule 3); the recipe on GitHub rebuilds it.
+
 ### Hardware profile
 Low-spec config is locked in `RECIPES.md` R7 and lives in
 `LandscapeLab/Config/`. Lumen is **off for editing** and goes back on for

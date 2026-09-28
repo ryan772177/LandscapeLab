@@ -38101,3 +38101,29 @@ long-proven driver (D3, 09-22) starts failing at the SAME step, diff the ENVIRON
 
 RULE (driver hygiene, kept): the driver's pre-save wait + --timeout 25 stay -- they turned a silent rc-3 abort
 into a NAMED wait with a number (427 s), which is what made the FarField comparison readable.
+
+2026-09-27 | GITHUB LFS QUOTA -- the repo was recreated and GitHub now holds a SNAPSHOT without the world
+(R-GITHUB-LITE, ruled by Ryan: option 2, no external drive).
+
+What happened: every push after the P2 world run was refused with "This repository exceeded its LFS budget".
+Two "bumps" changed nothing because the account is on GitHub Free: 10 GiB of LFS storage, every object
+version ever pushed counts, and only deleting the repository frees it. Measured: history carried 37.2 GB of
+LFS over 43,209 objects -- 22.2 GB of it 42,066 versions of World Partition external-actor packages, ~1,000
+per world save. A history rewrite (git filter-repo) needs a second copy of a 64 GB .git; the disk had 13 GB
+free. So: scripts/github_lite_snapshot.py builds `github-main` = HEAD's tree minus __ExternalActors__ /
+__ExternalObjects__ / _verify/bench (hero binaries KEPT: not cheaply regenerable, and this machine is now the
+only copy of everything not on GitHub), one commit per snapshot with a leak gate; Ryan deleted and recreated
+the repo; the first push carried 6.05 GB over 419 objects. Local `main` is unchanged: full history, fence
+tags, the D3 driver's revert-to-tag, R-EDITOR-CLOSE -- all read local git only.
+
+RULE: the world packages are pipeline OUTPUT (rule 3: the recipe rebuilds the world); GitHub keeps the
+recipe, plans, scripts and docs. Never push local `main` or a tag to GitHub -- one world save would refill
+the quota. After a commit worth sharing: `python scripts/github_lite_snapshot.py --push`.
+
+RULE (cost): a world save is ~1,000 LFS objects / ~260 MB; any remote that meters LFS will meter that. Budget
+the remote by SAVES, not by repo size.
+
+OPERATIONAL: standing rule 2's no-force-delete hook blocks the agent even under an explicit ruling; the
+authorised cache deletion (32 GB of DDC / Intermediate / ShaderDebugInfo / Autosaves / Profiling /
+Screenshots / old logs / old _trash) ships as scripts/disk_cleanup_20260927.ps1 for the operator's own
+prompt (`! powershell -File ...`). The hook is doing its job; the human runs the delete.

@@ -1,4 +1,19 @@
-# CURRENT STATE — 2026-09-27 (BRIEF 7 P3a DENSITY DONE: 797,500 trees at the ruled caps, tag look-p3; P3b PCG clutter OWED; A2 closed; rocks withdrawn; world working)
+# CURRENT STATE — 2026-09-27 (BRIEF 7 P3a DENSITY DONE: 797,500 trees at the ruled caps, tag look-p3; P3b PCG clutter OWED; GitHub = lite mirror, first push PENDING on the LFS quota; A2 closed; rocks withdrawn; world working)
+
+> ⭐ **2026-09-27 (close) — GITHUB RECREATED AS A LITE MIRROR (R-GITHUB-LITE, Ryan: option 2). The
+> account's free 10 GiB LFS quota was exhausted by world-package history (22 GB of 37 GB); no external
+> drive; disk 13 GB free. Ryan deleted + recreated `ryan772177/LandscapeLab` (empty). Local `main` @
+> 527c5c3d is the FULL repo (world, fence tags `pre-p3-density-20260927`, `look-p3`, `a2-closed`, …,
+> D3 revert). `github-main` (built by `scripts/github_lite_snapshot.py`; excludes `__ExternalActors__`,
+> `__ExternalObjects__`, `_verify/bench`; hero binaries kept) = 6.05 GB LFS / 419 objects, ZERO world
+> packages. **FIRST PUSH STILL REFUSED** ("exceeded its LFS budget") on the empty repo → the quota is
+> account-level: monthly bandwidth (resets Oct 1) or storage not yet released after the delete. Check
+> Billing → Usage → Git LFS, then `git push origin github-main:main`. NEVER push local main or tags.**
+> - Disk: `scripts/disk_cleanup_20260927.ps1` (Ryan-authorised ~32 GB of regenerable caches + old
+>   `_trash`) runs from the operator prompt (`! powershell -File scripts/disk_cleanup_20260927.ps1`);
+>   the no-force-delete hook blocks the agent by design. NOT yet run.
+> - GitHub has NO commits right now (old repo deleted). Until the push lands, this laptop is the only copy
+>   of everything. PR #5's history is gone with the old repo; the record lives in LESSONS/RECIPES.
 
 > ⭐ **2026-09-27 — P3a DENSITY WORLD RUN PASSED, tag `look-p3`. World = 797,500 trees (from 185,385, ×4.30):
 > forest_floor m=1 (1.23× incl. the disc blend), plaza 2.40× (cap 2.157), treeline 5.81×, open 4.42× — the
