@@ -1,4 +1,24 @@
-# CURRENT STATE — 2026-09-28 (BRIEF 7 P3b CLUTTER DONE: 4 grass species, proxies re-saved, -game grass FINALLY spawning, tag look-p3b; P4 NEXT; GitHub = lite mirror (staged push landed); A2 closed; rocks withdrawn; world working)
+# CURRENT STATE — 2026-09-28 (BRIEF 7 P3b CLUTTER DONE, tag look-p3b; P4: FarField DROPPED by measurement, HLOD incremental rebuild RUNNING (~26 h total, resumable), P4 stills OWED after it; INDEX_look.md written; GitHub = lite mirror; world working)
+
+> ⭐ **2026-09-28 01:45 — P4 CHECKPOINT (Ryan asleep, "continue through phase 4").** FarField: DROPPED on the
+> brief's own criterion by the two existing measurements (09-25 A/B unchanged; 09-27 freeze root cause);
+> `r.LumenScene.FarField=0` stays. HLOD: the first plan (relative --run-dir → wrote under
+> Engine/Binaries/Win64, rule 1 incident, files left) crashed on unsaved HLOD actors for P3a's new cells
+> (RuntimeHashSetHLODGeneration.cpp:626); a real `-SetupHLODs` fixed it (2,107 HLOD actors, 886 destroyed,
+> `hlod_gitignore --apply` re-listed/ignored). 24-way manifest (`_verify/hlod/p4b_20260928/`, ~88 cells per
+> batch, S-9). **Incremental `--no-force` rebuild WORKS** (batch 0: approve 34 / reject 3 of the first 37)
+> **but costs ~50 s per approved cell → ~26 h for the world.** Batch 0 is the measured sample; the rest
+> runs unattended, resumable: `python scripts/hlod_build_batched.py run --no-force --start <N> --run-dir
+> <ABS>/_verify/hlod/p4b_20260928` (batches.json carries progress; never a relative run-dir). **P4 stills
+> (`p3b_clutter_run.py --stills-only --station-set p4 --stills-dir research/brief7/stills/p4
+> --still-suffix _look_p4 --skip-perf`) are OWED after the rebuild** — they need the 25 GB editor, which
+> cannot run beside the commandlet. `research/brief7/INDEX_look.md` written (per-phase changes, VRAM,
+> perf per station, skipped-and-why, FILLs). LESSONS 2026-09-28 (P4). Push = lite snapshot only.**
+> - HLOD packages are untracked + ignored (manifest `_verify/hlod/hlod_packages.txt`, 2,107); the rebuild
+>   touches no tracked file. Disk 28 GB free at launch; the runner's own disk/VRAM gates stand.
+> - NEXT SESSION: check `batches.json`; resume `--start N`; when all 24 are done → P4 stills (windowed
+>   Alpine8K, 7 cameras incl. slope + cliff_overlook) → LESSONS/RECIPES (R-HLOD amendment: incremental
+>   works on source changes; -SetupHLODs first) → tag `look-p4` → lite push → STOP, ASK L4.
 
 > ⭐ **2026-09-28 — BRIEF 7 P3b RUNTIME CLUTTER DONE, tag `look-p3b` (Ryan: "continue through phase 4").**
 > Four `system: grass` species in `alpine_8k.json`: MeadowFar (Grass layer, FieldGrass, 512 m, 0.6/10 m² =
@@ -17,8 +37,9 @@
 > 2026-09-28; LESSONS 2026-09-27c (six entries). GitHub: lite snapshot pushed after this block.**
 > - **Every -game perf number before 2026-09-28 (Brief 5 D3/D4/T4, P3a) was measured WITHOUT the meadow.**
 >   Budgets/tolerances derived from them stand as history; re-baselining is a desk/Ryan call (BACKLOG).
-> - Known defects carried: the `treeline` still (P3a's too) is a high aerial with no cells streamed —
->   the traced camera height disagrees with the heightmap; P4's station pass must refuse such a trace.
+> - CORRECTED 2026-09-28 00:40 (rule 10): the `treeline` still is NOT a defect — the station (= bench
+>   `mid_slope`, [-190000,100000]) is a snow slope at altitude looking across the basin; p0's
+>   `mid_slope_look.png` has the same framing. My earlier "camera hundreds of metres up" read was wrong.
 >   Deadwood proper (sticks/branches) is an asset gap: DragonCave/Atlantis_Ruins packs are gone from disk.
 > - Memory rule UPDATED: editor at Alpine8K = ~25 GB private (was 18); build assets on a light level;
 >   windowed Alpine8K sessions (stills, census, saves) still work under paging (7,234 MiB VRAM).

@@ -86,6 +86,18 @@ STATIONS = {
     "plaza": {"x": -210800.0, "y": 278800.0, "pitch": -2.0, "yaw": -12.8},
     "treeline": {"x": -190000.0, "y": 100000.0, "pitch": -2.0, "yaw": 105.0},
 }
+# Brief 7 P4 station pass: the five stations (perf_budgets spline + the derived
+# forest_floor) + slope (= bench mid_slope = treeline XY) + the far-slope
+# overlook that A2/FOG_TUNE used as the cliff/far-shading camera (cams.json camA).
+P4_STATIONS = {
+    "plaza": {"x": -210800.0, "y": 278800.0, "pitch": -2.0, "yaw": -12.8},
+    "main_street": {"x": -204847.3, "y": 278048.0, "pitch": -2.0, "yaw": -12.9},
+    "treeline": {"x": -190000.0, "y": 100000.0, "pitch": -2.0, "yaw": 105.0},
+    "vista": {"x": -216400.0, "y": 63600.0, "pitch": -4.0, "yaw": 60.0},
+    "forest_floor": {"x": -166400.0, "y": 192000.0, "pitch": -5.0, "yaw": 100.0},
+    "slope": {"x": -190000.0, "y": 100000.0, "pitch": -12.0, "yaw": 105.0},
+    "cliff_overlook": {"x": -201186.0, "y": 219000.0, "pitch": -9.0, "yaw": 270.0, "eye": 1599.8},
+}
 PERF = [
     ("forest_floor", os.path.join(BR5, "input", "forest_station.json")),
     ("open_max", os.path.join(BR5, "input", "open_max_station.json")),
@@ -273,6 +285,10 @@ def main():
                          "grass-type list from M_Alpine8K (a game world never does; -game had NO "
                          "landscape grass at all, GPUSceneInstanceCount tail 49,863 both runs)")
     ap.add_argument("--perf-tag", default="p3b_rtgrass", help="perf_standalone --tag prefix in --perf-only mode")
+    ap.add_argument("--station-set", default="p3b", choices=["p3b", "p4"],
+                    help="which camera set the stills phase shoots (p4 = five stations + slope + cliff_overlook)")
+    ap.add_argument("--stills-dir", default=None, help="override the stills output dir")
+    ap.add_argument("--still-suffix", default="_look_p3b")
     ap.add_argument("--stills-only", action="store_true",
                     help="windowed launch, Look stills + bench restore + close only (no measure/rebuild/read-back)")
     a = ap.parse_args()
@@ -507,21 +523,25 @@ def stills_and_close(a, fence):
 
     # ---- 8 stills --------------------------------------------------------
     stills = {}
-    for name, st in (STATIONS.items() if look_ok else []):
+    station_set = P4_STATIONS if a.station_set == "p4" else STATIONS
+    stills_dir = a.stills_dir or STILLS
+    os.makedirs(stills_dir, exist_ok=True)
+    for name, st in (station_set.items() if look_ok else []):
         if not look_ok:
             break
         rc, rep, _ = ue("brief7_place_cam_payload.txt",
-                        {"X": st["x"], "Y": st["y"], "PITCH": st["pitch"], "YAW": st["yaw"], "EYE": 175.0})
+                        {"X": st["x"], "Y": st["y"], "PITCH": st["pitch"], "YAW": st["yaw"],
+                         "EYE": st.get("eye", 175.0)})
         if not rep or not rep.get("ok"):
             stills[name] = {"error": "place_cam: %s" % (rep or "no JSON")}
             continue
         time.sleep(35)
-        rc, out, err = run([PY, os.path.join(SCRIPTS, "shoot.py"), "--name", name + "_look_p3b",
+        rc, out, err = run([PY, os.path.join(SCRIPTS, "shoot.py"), "--name", name + a.still_suffix,
                             # '=' form: a negative coordinate as a separate token reads as an
                             # option to argparse ("--loc: expected one argument", 2026-09-27).
                             "--loc=" + rep["shoot_loc"], "--rot=0,%s,%s" % (st["pitch"], st["yaw"]),
-                            "--outdir", STILLS, "--deadline", "600"], 700, "shoot")
-        png = os.path.join(STILLS, name + "_look_p3b.png")
+                            "--outdir", stills_dir, "--deadline", "600"], 700, "shoot")
+        png = os.path.join(stills_dir, name + a.still_suffix + ".png")
         stills[name] = {"rc": rc, "cam": rep.get("cam_loc"), "png": os.path.exists(png)}
         log("still %s rc=%s png=%s" % (name, rc, os.path.exists(png)))
         save()

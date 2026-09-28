@@ -38240,9 +38240,11 @@ THE NIGHT, in the order it happened, each with its root cause:
 5. Four stills lost to argparse: `--loc -166400.0,...` -- a negative first coordinate as its own token
    reads as an option ("argument --loc: expected one argument"). The '=' form. Re-shot.
 
-6. The "treeline" still is a pre-existing defect, P3a's `treeline_look_p3.png` is the same picture: the
-   traced camera sits hundreds of metres above the terrain and no cell is streamed in. Not P3b's; recorded
-   for the P4 station pass (trace vs heightmap disagreement must refuse, not shoot).
+6. WRONG READ, CORRECTED WITHIN THE HOUR (rule 10): I called the "treeline" still a defect ("camera
+   hundreds of metres above the terrain, nothing streamed"). It is the bench mid_slope station
+   ([-190000,100000], the same XY), a snow slope at altitude looking across the basin; p0's
+   mid_slope_look.png (pre-look) has the same framing. Nothing is wrong with the trace or the station.
+   RULE: before calling a still a defect, open the SAME station's earlier still.
 
 What the run PROVED: material EXACT/compiled, 7 grass types read back by read_grass_type.py (2/4/8/1/2/4/2
 varieties), `grass.DumpGrassData -bygrasstype` = ForestLitter/Shrub/Stones on 70 components each, the four
@@ -38255,3 +38257,36 @@ MEASURED (the D5 cost the brief owed since 2026-09-21), -game GPU p90 / VRAM pea
     open_max       12.707 ms           13.057 ms    +0.35
     plaza           9.588 ms            9.940 ms    +0.35    VRAM <= 5,276 MiB (abort 13,312)
 The brief's only clause -- halve the smallest class if forest_floor exceeds 40 ms -- is nowhere near.
+
+
+2026-09-28 | BRIEF 7 P4 (far field, HLOD, package) -- FarField dropped by measurement; the HLOD "changed cells"
+rebuild works incrementally but costs ~50 s per approved cell, i.e. ~26 h for this world.
+
+FAR FIELD: the brief's own clause is "keep if the far slopes gain shading, drop if not". Two measurements
+already answer it -- the 2026-09-25 vista/slope A/B (far band unchanged at FarField 1) and the 2026-09-27
+root-cause (FarField 1 froze the game thread after every mass add_instances). r.LumenScene.FarField=0 stays
+in DefaultEngine.ini with the reasoning; no third A/B was shot. Stated as a decision, not a measurement.
+
+HLOD, in order:
+1. `hlod_build_batched.py plan` with a RELATIVE --run-dir wrote the manifest and the commandlet log under
+   Engine/Binaries/Win64/_verify/... -- the commandlet resolves -abslog/-BuildManifest against its own cwd.
+   Standing rule 1 incident (writes outside the repo); the files were left in place (rule 1 forbids the
+   delete too) and are named here. RULE: --run-dir absolute, always; the 2026-09-14 audit run had done the
+   same and nobody wrote it down.
+2. That plan crashed anyway: Assertion `HLODActorDescInstance` at
+   WorldPartitionRuntimeHashSetHLODGeneration.cpp:626 while "Creating HLOD context". -SetupHLODs -ReportOnly
+   creates HLOD actors for NEW cells only in memory; `bConsiderUnsavedHLODActors` failed to find a handling
+   container for them, so the desc instance was null. The P3a regen (797k trees) populated cells that never
+   had an HLOD actor. FIX: a real `-SetupHLODs` first (2 m 51 s, PeakPhysMemory 21.6 GB): it created the
+   new actors and DESTROYED 886 unreferenced ones (2,267 -> 2,107 by signature). `hlod_gitignore.py --apply`
+   re-listed and ignored them (719 new untracked paths would otherwise have entered the next commit --
+   R-HLOD 08e's order, again). EXPECTED_PACKAGES in the batched runner is now 2107. RULE: after any run that
+   adds populated cells, `-SetupHLODs` (real, not ReportOnly) BEFORE the manifest plan.
+3. The incremental path WORKS now: batch 0 `--no-force` (91 cells) -> HLODRebuildPolicyHashCompare
+   ApproveRebuild 34 / RejectRebuild 3 in the first 37 (the 2026-09-09 "skip does not work" was about a
+   LAYER change hashing equal; a SOURCE-ACTOR change hashes different, as HLODSourceActorsFromCell.cpp
+   :213-220 says). But ~50 s per approved cell (Merged L0 cells voxelise/merge/bake), VRAM peak 10,455 MiB,
+   RAM 4.2 GB free beside the commandlet: 2,107 cells x ~0.9 approve x 50 s = ~26 h. Not a night's work.
+   DECISION: batch 0 is the measured sample; the remaining batches run unattended and resumable
+   (`run --no-force --start N`, batches.json), the P4 station stills follow the rebuild in a later session.
+   Stated plainly in STATE and INDEX_look.md (rule 10).

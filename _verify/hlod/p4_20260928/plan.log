@@ -1,0 +1,5 @@
+preflight  editors=0  RAM avail=(21.1033935546875, 31.43492889404297) GB  VRAM used=13 MiB
+marker     _verify/hlod/p4_20260928\BUILD_START_MARKER
+census     {"packages_listed": 2267, "packages_present": 2267, "packages_missing": 0, "missing_sample": [], "over_5mb": 256, "under_3mb": 2002, "shorter_than_1kb": 0, "total_bytes": 16231363118, "total_gb": 16.231}
+manifest   -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionHLODsBuilder -noxgecontroller -AllowCommandletRendering -unattended -nosplash -nopause -abslog=_verify/hlod/p4_20260928\manifest_setup.log -SetupHLODs -ReportOnly -BuildManifest=_verify/hlod/p4_20260928\HLODBuildManifest.ini -BuilderCount=24
+manifest   rc=3 in 0.5 min (rc is NOT a failure signal here)

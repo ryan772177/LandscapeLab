@@ -1,0 +1,107 @@
+{
+  "run_dir": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\hlod\\p4b_20260928",
+  "batches": 24,
+  "manifest": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\hlod\\p4b_20260928\\HLODBuildManifest.ini",
+  "engine_version": "5.8.1-56057345+++UE5+Release-5.8",
+  "guids_total": 2107,
+  "section_sizes": {
+    "HLODBuilder0": 91,
+    "HLODBuilder1": 91,
+    "HLODBuilder10": 88,
+    "HLODBuilder11": 87,
+    "HLODBuilder12": 87,
+    "HLODBuilder13": 87,
+    "HLODBuilder14": 87,
+    "HLODBuilder15": 86,
+    "HLODBuilder16": 86,
+    "HLODBuilder17": 86,
+    "HLODBuilder18": 86,
+    "HLODBuilder19": 86,
+    "HLODBuilder2": 91,
+    "HLODBuilder20": 86,
+    "HLODBuilder21": 86,
+    "HLODBuilder22": 86,
+    "HLODBuilder23": 86,
+    "HLODBuilder3": 91,
+    "HLODBuilder4": 91,
+    "HLODBuilder5": 89,
+    "HLODBuilder6": 89,
+    "HLODBuilder7": 88,
+    "HLODBuilder8": 88,
+    "HLODBuilder9": 88
+  },
+  "baseline_census": {
+    "packages_listed": 2107,
+    "packages_present": 2107,
+    "packages_missing": 0,
+    "missing_sample": [],
+    "over_5mb": 256,
+    "under_3mb": 1845,
+    "shorter_than_1kb": 0,
+    "total_bytes": 16149104768,
+    "total_gb": 16.149
+  },
+  "baseline_stride": [
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0I/MX2OXG3AWJUXBENVOOJH5M.uasset",
+      "bytes": 9739,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CR/OKF9QK7BK1F4L9EKO3ITAP.uasset",
+      "bytes": 54666497,
+      "band": "STALE>5MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/N6/DR4J1TVVNUYPLP6LF9EPAA.uasset",
+      "bytes": 1259017,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/UG/Q1DVCP3MVL6PVK9DF28SWU.uasset",
+      "bytes": 1833099,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/34/AN8AUDBTL4W9LTZS3RD9K4.uasset",
+      "bytes": 52302721,
+      "band": "STALE>5MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8G/KF5M9NO3DPHVXEG6KVDYJG.uasset",
+      "bytes": 9749,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/BZ/5Y607MWLTYY93UV4MLXG90.uasset",
+      "bytes": 1928808,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/NY/Z15100A49UZNXK078TSCQ4.uasset",
+      "bytes": 8400,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/X5/X0Y8O50HD5MSKJR7Z61QK9.uasset",
+      "bytes": 1202541,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/24/0T2Q4JZLU8X8LZWNWD1DOZ.uasset",
+      "bytes": 8412,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/H8/A0SDRE05H41BU1Q759ZBB0.uasset",
+      "bytes": 8400,
+      "band": "rebuilt<3MB"
+    },
+    {
+      "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/TR/9VVCHQ93BS1LSA4ACBD1O1.uasset",
+      "bytes": 8400,
+      "band": "rebuilt<3MB"
+    }
+  ],
+  "records": []
+}

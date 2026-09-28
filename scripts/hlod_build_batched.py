@@ -213,7 +213,7 @@ STALE_LAYER = "MeshMerge(1)"
 CURRENT_LAYER = "MeshApproximate(3)"
 
 PACKAGE_LIST = os.path.join(REPO_ROOT, "_verify", "hlod", "hlod_packages.txt")
-EXPECTED_PACKAGES = 2267
+EXPECTED_PACKAGES = 2107   # 2026-09-28: -SetupHLODs after the P3a regen destroyed 886 unreferenced HLOD actors and created new ones; hlod_gitignore.py --apply listed 2,107 by signature (was 2267)
 
 # The mixed-world bands, from CURRENT STATE / LESSONS 2026-09-08i. A cell over
 # this is old MeshMerge output (~329k triangles); the rebuilt cells land near

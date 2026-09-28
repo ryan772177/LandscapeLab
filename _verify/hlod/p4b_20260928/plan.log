@@ -1,0 +1,8 @@
+preflight  editors=0  RAM avail=(22.955066680908203, 31.43492889404297) GB  VRAM used=13 MiB
+marker     C:\Users\Admin\UE5LandscapePipeline\_verify\hlod\p4b_20260928\BUILD_START_MARKER
+census     {"packages_listed": 2107, "packages_present": 2107, "packages_missing": 0, "missing_sample": [], "over_5mb": 256, "under_3mb": 1845, "shorter_than_1kb": 0, "total_bytes": 16149104768, "total_gb": 16.149}
+manifest   -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionHLODsBuilder -noxgecontroller -AllowCommandletRendering -unattended -nosplash -nopause -abslog=C:\Users\Admin\UE5LandscapePipeline\_verify\hlod\p4b_20260928\manifest_setup.log -SetupHLODs -ReportOnly -BuildManifest=C:\Users\Admin\UE5LandscapePipeline\_verify\hlod\p4b_20260928\HLODBuildManifest.ini -BuilderCount=24
+manifest   rc=1 in 0.4 min (rc is NOT a failure signal here)
+manifest   sections=24 guids=2107 general={'BuilderCount': '24', 'EngineVersion': '5.8.1-56057345+++UE5+Release-5.8'}
+readback   ReportOnly wrote nothing: 0 of 2107 packages changed
+plan       OK -> C:\Users\Admin\UE5LandscapePipeline\_verify\hlod\p4b_20260928\batches.json
