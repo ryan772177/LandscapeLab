@@ -1,0 +1,26 @@
+[P3B 23:23:17] run: python.exe resource_guard.py
+[P3B 23:23:17]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Canyon
+mode              : OFFSCREEN (no main window; end on R-EDITOR-CLOSE's kill path)
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 23:23:25] launched PIDs [28288]; waiting for bootstrap
+[P3B 23:23:51] editor ready after 26 s
+[P3B 23:23:52] free RAM 15.98 GB, ShaderCompileWorker x0, editor WS 5.22 GB; waiting for the load/DDC to settle
+[P3B 23:24:10] RAM settled: 16.01 GB free after 18 s
+[P3B 23:24:10] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 23:24:35]   -> rc=0 in 25s
+[P3B 23:24:35] level /Game/Canyon.Canyon; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry']]
+[P3B 23:24:35] run: python.exe measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat
+[P3B 23:25:00]   -> rc=0 in 25s
+[P3B 23:25:00] run: python.exe import_heightmap.py --recipe alpine_8k.json --offline
+[P3B 23:25:01]   -> rc=2 in 0s
+[P3B 23:25:01] build map /Game/Canyon: rebuilding M_Alpine8K IN PLACE without --assign (already assigned to the Alpine8K landscape since 2026-09-25; the asset path is unchanged)
+[P3B 23:25:01] run: python.exe make_landscape_material.py --recipe alpine_8k.json --timeout 25 --build-level /Game/Canyon
+[P3B 23:25:26]   -> rc=1 in 25s
+[P3B 23:25:26] ABORT: make_landscape_material rc=1
+[P3B 23:25:27] killed PID 28288
+[P3B 23:25:33] revert checkout rc=0 
+[P3B 23:25:33] revert: moved 0 new packages; diff vs fence clean=True
+[P3B 23:25:33] P3B ABORT
+[P3B 23:25:38] P3B ABORT (exception) SystemExit(3)

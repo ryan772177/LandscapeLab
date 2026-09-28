@@ -1,0 +1,50 @@
+[P3B 23:26:34] run: python.exe resource_guard.py
+[P3B 23:26:34]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Canyon
+mode              : OFFSCREEN (no main window; end on R-EDITOR-CLOSE's kill path)
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 23:26:42] launched PIDs [33368]; waiting for bootstrap
+[P3B 23:27:08] editor ready after 26 s
+[P3B 23:27:09] free RAM 15.85 GB, ShaderCompileWorker x0, editor WS 5.24 GB; waiting for the load/DDC to settle
+[P3B 23:27:26] RAM settled: 15.89 GB free after 19 s
+[P3B 23:27:26] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 23:27:52]   -> rc=0 in 25s
+[P3B 23:27:52] level /Game/Canyon.Canyon; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry']]
+[P3B 23:27:52] run: python.exe measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat
+[P3B 23:28:17]   -> rc=0 in 25s
+[P3B 23:28:17] run: python.exe import_heightmap.py --recipe alpine_8k.json --offline
+[P3B 23:28:17]   -> rc=2 in 0s
+[P3B 23:28:17] build map /Game/Canyon: rebuilding M_Alpine8K IN PLACE without --assign (already assigned to the Alpine8K landscape since 2026-09-25; the asset path is unchanged)
+[P3B 23:28:17] run: python.exe make_landscape_material.py --recipe alpine_8k.json --timeout 25 --build-level /Game/Canyon
+[P3B 23:28:45]   -> rc=0 in 27s
+[P3B 23:28:46] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_MeadowFar --expect-varieties 1 --timeout 60
+[P3B 23:29:46]   -> rc=0 in 60s
+[P3B 23:29:46] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestLitter --expect-varieties 2 --timeout 60
+[P3B 23:30:47]   -> rc=0 in 60s
+[P3B 23:30:47] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestShrub --expect-varieties 4 --timeout 60
+[P3B 23:31:47]   -> rc=0 in 60s
+[P3B 23:31:47] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestStones --expect-varieties 2 --timeout 60
+[P3B 23:32:48]   -> rc=0 in 60s
+[P3B 23:32:48] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_Meadow --expect-varieties 4 --timeout 60
+[P3B 23:33:48]   -> rc=0 in 60s
+[P3B 23:33:48] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_GroundClutter --expect-varieties 2 --timeout 60
+[P3B 23:34:48]   -> rc=0 in 60s
+[P3B 23:34:48] run: python.exe read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_Blueberry --expect-varieties 8 --timeout 60
+[P3B 23:35:49]   -> rc=0 in 60s
+[P3B 23:35:49] read-back OK for 7 grass types
+[P3B 23:35:49] build map run: stills need the Alpine8K world in a WINDOWED editor -- run --stills-only next
+[P3B 23:35:49] run: python.exe ue_exec.py dirty_package_census_payload.txt --timeout 25
+[P3B 23:36:14]   -> rc=0 in 25s
+[P3B 23:36:16] killed PID 33368
+[P3B 23:36:21] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_forest_floor --station-json forest_station.json --station-name forest_floor
+[P3B 23:38:11]   -> rc=0 in 109s
+[P3B 23:38:11] perf forest_floor: {'rc': 0, 'line': 'forest_floor ok       window 25.0 s  GPU p90 12.363  Game p90 4.249  VRAM peak 4994 MiB', 'gpu_p90_ms': 12.363, 'game_p90_ms': 4.249, 'vram_peak_mib': 4994, 'over_ceiling': False}
+[P3B 23:38:11] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_open_max --station-json open_max_station.json --station-name open_max
+[P3B 23:39:59]   -> rc=0 in 109s
+[P3B 23:39:59] perf open_max: {'rc': 0, 'line': 'open_max     ok       window 25.0 s  GPU p90 12.707  Game p90 3.996  VRAM peak 5023 MiB', 'gpu_p90_ms': 12.707, 'game_p90_ms': 3.996, 'vram_peak_mib': 5023, 'over_ceiling': False}
+[P3B 23:39:59] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_plaza --only plaza
+[P3B 23:41:48]   -> rc=0 in 109s
+[P3B 23:41:48] perf plaza: {'rc': 0, 'line': 'plaza        ok       window 25.0 s  GPU p90 9.588  Game p90 4.152  VRAM peak 4975 MiB', 'gpu_p90_ms': 9.588, 'game_p90_ms': 4.152, 'vram_peak_mib': 4975, 'over_ceiling': False}
+[P3B 23:41:48] P3B DONE
+[P3B 23:41:53] P3B ABORT (exception) SystemExit(0)

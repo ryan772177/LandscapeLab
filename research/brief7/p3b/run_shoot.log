@@ -1,0 +1,80 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name forest_floor_look_p3b --loc -166400.0,192000.0,21203.5 --rot 0,-5.0,100.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=2 dt=0s
+
+--- stderr ---
+usage: shoot.py [-h] --name NAME --loc LOC --rot ROT [--fov FOV] [--mult MULT]
+                [--res RES] --outdir OUTDIR [--project-root PROJECT_ROOT]
+                [--deadline DEADLINE]
+shoot.py: error: argument --loc: expected one argument
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name forest_floor_ground_look_p3b --loc -166400.0,192000.0,21203.5 --rot 0,-25.0,100.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=2 dt=0s
+
+--- stderr ---
+usage: shoot.py [-h] --name NAME --loc LOC --rot ROT [--fov FOV] [--mult MULT]
+                [--res RES] --outdir OUTDIR [--project-root PROJECT_ROOT]
+                [--deadline DEADLINE]
+shoot.py: error: argument --loc: expected one argument
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name plaza_look_p3b --loc -210800.0,278800.0,18846.8 --rot 0,-2.0,-12.8 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=2 dt=0s
+
+--- stderr ---
+usage: shoot.py [-h] --name NAME --loc LOC --rot ROT [--fov FOV] [--mult MULT]
+                [--res RES] --outdir OUTDIR [--project-root PROJECT_ROOT]
+                [--deadline DEADLINE]
+shoot.py: error: argument --loc: expected one argument
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name treeline_look_p3b --loc -190000.0,100000.0,63366.2 --rot 0,-2.0,105.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=2 dt=0s
+
+--- stderr ---
+usage: shoot.py [-h] --name NAME --loc LOC --rot ROT [--fov FOV] [--mult MULT]
+                [--res RES] --outdir OUTDIR [--project-root PROJECT_ROOT]
+                [--deadline DEADLINE]
+shoot.py: error: argument --loc: expected one argument
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name forest_floor_look_p3b --loc=-166400.0,192000.0,21203.5 --rot=0,-5.0,100.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=0 dt=31s
+issuing the shot (discovery 25 s, payload returns immediately)
+  shot command      HighResShot 2032x1273
+  camera read-back  loc [-166400.0, 192000.0, 21203.5]  rot [0.0, -5.0, 100.0]  fov None
+  max_loc_err_cm 0.0  max_rot_err_deg 0.0
+  issued. polling C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor host-side (deadline 600 s)
+FRAME ON DISK after 4 s
+  src   C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor\HighresScreenshot00000.png
+  dst   C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter\forest_floor_look_p3b.png  (5101148 bytes)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name forest_floor_ground_look_p3b --loc=-166400.0,192000.0,21203.5 --rot=0,-25.0,100.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=0 dt=31s
+issuing the shot (discovery 25 s, payload returns immediately)
+  shot command      HighResShot 2032x1273
+  camera read-back  loc [-166400.0, 192000.0, 21203.5]  rot [0.0, -25.0, 100.0]  fov None
+  max_loc_err_cm 0.0  max_rot_err_deg 0.0
+  issued. polling C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor host-side (deadline 600 s)
+FRAME ON DISK after 4 s
+  src   C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor\HighresScreenshot00001.png
+  dst   C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter\forest_floor_ground_look_p3b.png  (5725986 bytes)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name plaza_look_p3b --loc=-210800.0,278800.0,18846.8 --rot=0,-2.0,-12.8 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=0 dt=31s
+issuing the shot (discovery 25 s, payload returns immediately)
+  shot command      HighResShot 2032x1273
+  camera read-back  loc [-210800.0, 278800.0, 18846.8]  rot [0.0, -2.0, -12.8]  fov None
+  max_loc_err_cm 0.0  max_rot_err_deg 0.0
+  issued. polling C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor host-side (deadline 600 s)
+FRAME ON DISK after 4 s
+  src   C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor\HighresScreenshot00002.png
+  dst   C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter\plaza_look_p3b.png  (5136004 bytes)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\shoot.py --name treeline_look_p3b --loc=-190000.0,100000.0,63366.2 --rot=0,-2.0,105.0 --outdir C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter --deadline 600 rc=0 dt=31s
+issuing the shot (discovery 25 s, payload returns immediately)
+  shot command      HighResShot 2032x1273
+  camera read-back  loc [-190000.0, 100000.0, 63366.2]  rot [0.0, -2.0, 105.0]  fov None
+  max_loc_err_cm 0.0  max_rot_err_deg 0.0
+  issued. polling C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor host-side (deadline 600 s)
+FRAME ON DISK after 4 s
+  src   C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/Screenshots/WindowsEditor\HighresScreenshot00003.png
+  dst   C:\Users\Admin\UE5LandscapePipeline\research\brief7\stills\p3b_clutter\treeline_look_p3b.png  (4553565 bytes)
+
+--- stderr ---
+

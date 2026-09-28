@@ -1,0 +1,21 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_plaza --only plaza rc=0 dt=109s
+  plaza        ok       window 25.0 s  GPU p90 9.588  Game p90 4.152  VRAM peak 4975 MiB
+VRAM peak across stations: 4975 MiB vs 13312 abort (+8337 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_plaza.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_rtgrass_plaza --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --only plaza rc=0 dt=109s
+  plaza        ok       window 25.0 s  GPU p90 9.574  Game p90 4.164  VRAM peak 4991 MiB
+VRAM peak across stations: 4991 MiB vs 13312 abort (+8321 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_rtgrass_plaza.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_final_plaza --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --only plaza rc=0 dt=109s
+  plaza        ok       window 25.0 s  GPU p90 9.94  Game p90 4.088  VRAM peak 5251 MiB
+VRAM peak across stations: 5251 MiB vs 13312 abort (+8061 headroom)
+wrote _verify\perf\standalone_2026-09-28\perf_standalone_p3b_final_plaza.json
+
+--- stderr ---
+

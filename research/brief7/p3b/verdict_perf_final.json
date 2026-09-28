@@ -1,0 +1,42 @@
+{
+ "started": "2026-09-28T00:14:32",
+ "phases": {
+  "perf": {
+   "forest_floor": {
+    "rc": 0,
+    "line": "forest_floor ok       window 25.0 s  GPU p90 12.904  Game p90 4.368  VRAM peak 5276 MiB",
+    "gpu_p90_ms": 12.904,
+    "game_p90_ms": 4.368,
+    "vram_peak_mib": 5276,
+    "over_ceiling": false
+   },
+   "open_max": {
+    "rc": 0,
+    "line": "open_max     ok       window 25.0 s  GPU p90 13.057  Game p90 4.203  VRAM peak 5172 MiB",
+    "gpu_p90_ms": 13.057,
+    "game_p90_ms": 4.203,
+    "vram_peak_mib": 5172,
+    "over_ceiling": false
+   },
+   "plaza": {
+    "rc": 0,
+    "line": "plaza        ok       window 25.0 s  GPU p90 9.94  Game p90 4.088  VRAM peak 5251 MiB",
+    "gpu_p90_ms": 9.94,
+    "game_p90_ms": 4.088,
+    "vram_peak_mib": 5251,
+    "over_ceiling": false
+   }
+  }
+ },
+ "aborted": null,
+ "notes": [],
+ "mode": {
+  "offscreen": false,
+  "stills_only": false,
+  "skip_perf": false,
+  "build_map": null,
+  "perf_only": true
+ },
+ "fence_tag": "pre-p3b-clutter-20260927",
+ "finished": "2026-09-28T00:20:00"
+}

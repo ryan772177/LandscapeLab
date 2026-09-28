@@ -1,0 +1,84 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/DragonCave/Meshes/SM_LeafPile01 --mesh /Game/DragonCave/Meshes/SM_TreeBranch09 --mesh /Game/Atlantis_Ruins/Meshes/SM_Sticks_Medium_00 --mesh /Game/Atlantis_Ruins/Meshes/SM_Sticks_Small_10 --mesh /Game/DragonCave/Meshes/SM_StoneDebris01_ --mesh /Game/Atlantis_Ruins/Meshes/SM_Rocks_04 rc=4 dt=26s
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+READ-ONLY on the world: loads assets, places nothing, saves nothing.
+meshes    : 7
+  - FA2B98D6447246A299BD3D91769E1CD2 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  SM_FieldGrass_01                         ok=True err=None
+  SM_LeafPile01                            ok=False err=asset does not exist
+  SM_TreeBranch09                          ok=False err=asset does not exist
+  SM_Sticks_Medium_00                      ok=False err=asset does not exist
+  SM_Sticks_Small_10                       ok=False err=asset does not exist
+  SM_StoneDebris01_                        ok=False err=asset does not exist
+  SM_Rocks_04                              ok=False err=asset does not exist
+raw rows -> Free\_measured\brief7_p3b_clutter.json
+registry  -> Free\_measured\engine_derived.json: 7 rows written, 1 ok, 6 refused
+  SM_FieldGrass_01                 ok=True xy=0.0685 base_z=-0.0223 h=0.233 nanite=False lods=[765, 278, 18] 
+  SM_LeafPile01                    ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+  SM_TreeBranch09                  ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+  SM_Sticks_Medium_00              ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+  SM_Sticks_Small_10               ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+  SM_StoneDebris01_                ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+  SM_Rocks_04                      ok=False xy=None base_z=None h=None nanite=None lods=None asset does not exist
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat rc=4 dt=25s
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+READ-ONLY on the world: loads assets, places nothing, saves nothing.
+meshes    : 3
+  - 300A4BB842B81FFACB7874A9C9EDB75D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+STOP: 1.70 GB free below the 3.0 GB floor; partial run DECLARED
+PARTIAL: 0 of 3 measured
+raw rows -> Free\_measured\brief7_p3b_clutter.json
+registry  -> Free\_measured\engine_derived.json: 0 rows written, 0 ok, 0 refused
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat rc=0 dt=25s
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+READ-ONLY on the world: loads assets, places nothing, saves nothing.
+meshes    : 3
+  - 6A6D8E7C4F308B848D2427B68A5176EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  SM_FieldGrass_01                         ok=True err=None
+  SM_DeadLeaves                            ok=True err=None
+  SM_DeadLeaves_Flat                       ok=True err=None
+raw rows -> Free\_measured\brief7_p3b_clutter.json
+registry  -> Free\_measured\engine_derived.json: 3 rows written, 3 ok, 0 refused
+  SM_FieldGrass_01                 ok=True xy=0.0685 base_z=-0.0223 h=0.233 nanite=False lods=[765, 278, 18] 
+  SM_DeadLeaves                    ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+  SM_DeadLeaves_Flat               ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat rc=0 dt=25s
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+READ-ONLY on the world: loads assets, places nothing, saves nothing.
+meshes    : 3
+  - 03AB2AD44E75EEDCD891CCA490CA42A7 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  SM_FieldGrass_01                         ok=True err=None
+  SM_DeadLeaves                            ok=True err=None
+  SM_DeadLeaves_Flat                       ok=True err=None
+raw rows -> Free\_measured\brief7_p3b_clutter.json
+registry  -> Free\_measured\engine_derived.json: 3 rows written, 3 ok, 0 refused
+  SM_FieldGrass_01                 ok=True xy=0.0685 base_z=-0.0223 h=0.233 nanite=False lods=[765, 278, 18] 
+  SM_DeadLeaves                    ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+  SM_DeadLeaves_Flat               ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat rc=0 dt=25s
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+READ-ONLY on the world: loads assets, places nothing, saves nothing.
+meshes    : 3
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  SM_FieldGrass_01                         ok=True err=None
+  SM_DeadLeaves                            ok=True err=None
+  SM_DeadLeaves_Flat                       ok=True err=None
+raw rows -> Free\_measured\brief7_p3b_clutter.json
+registry  -> Free\_measured\engine_derived.json: 3 rows written, 3 ok, 0 refused
+  SM_FieldGrass_01                 ok=True xy=0.0685 base_z=-0.0223 h=0.233 nanite=False lods=[765, 278, 18] 
+  SM_DeadLeaves                    ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+  SM_DeadLeaves_Flat               ok=True xy=0.0206 base_z=-0.0131 h=0.157 nanite=False lods=[4791, 2394, 238] 
+
+--- stderr ---
+

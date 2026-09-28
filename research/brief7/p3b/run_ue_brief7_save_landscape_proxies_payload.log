@@ -1,0 +1,44 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_save_landscape_proxies_payload.txt --timeout 25 --set BATCH=32 --set APPLY=True rc=0 dt=199s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "proxies": 256,
+  "landscapes": 1,
+  "packages": 257,
+  "batches": 9,
+  "saved_ok": 257,
+  "batch_failures": [],
+  "dirty_before": 0,
+  "dirty_after": 0,
+  "grass_types_sample_before": {
+    "components": 4,
+    "actor": "LandscapeStreamingProxy_3_3_0",
+    "grass_types": [
+      "/Game/Foliage/GT_alpine_8k_GroundClutter",
+      "/Game/Foliage/GT_alpine_8k_Meadow",
+      "/Game/Foliage/GT_alpine_8k_Blueberry",
+      "/Game/Foliage/GT_alpine_8k_MeadowFar",
+      "/Game/Foliage/GT_alpine_8k_ForestLitter",
+      "/Game/Foliage/GT_alpine_8k_ForestShrub",
+      "/Game/Foliage/GT_alpine_8k_ForestStones"
+    ]
+  },
+  "grass_types_sample_after": {
+    "components": 4,
+    "actor": "LandscapeStreamingProxy_3_3_0",
+    "grass_types": [
+      "/Game/Foliage/GT_alpine_8k_GroundClutter",
+      "/Game/Foliage/GT_alpine_8k_Meadow",
+      "/Game/Foliage/GT_alpine_8k_Blueberry",
+      "/Game/Foliage/GT_alpine_8k_MeadowFar",
+      "/Game/Foliage/GT_alpine_8k_ForestLitter",
+      "/Game/Foliage/GT_alpine_8k_ForestShrub",
+      "/Game/Foliage/GT_alpine_8k_ForestStones"
+    ]
+  }
+}
+(198.9 s)
+
+--- stderr ---
+

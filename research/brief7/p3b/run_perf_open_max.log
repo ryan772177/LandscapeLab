@@ -1,0 +1,21 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_open_max --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\open_max_station.json --station-name open_max rc=0 dt=109s
+  open_max     ok       window 25.0 s  GPU p90 12.707  Game p90 3.996  VRAM peak 5023 MiB
+VRAM peak across stations: 5023 MiB vs 13312 abort (+8289 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_open_max.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_rtgrass_open_max --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\open_max_station.json --station-name open_max rc=0 dt=109s
+  open_max     ok       window 25.0 s  GPU p90 12.665  Game p90 3.935  VRAM peak 4993 MiB
+VRAM peak across stations: 4993 MiB vs 13312 abort (+8319 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_rtgrass_open_max.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_final_open_max --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\open_max_station.json --station-name open_max rc=0 dt=109s
+  open_max     ok       window 25.0 s  GPU p90 13.057  Game p90 4.203  VRAM peak 5172 MiB
+VRAM peak across stations: 5172 MiB vs 13312 abort (+8140 headroom)
+wrote _verify\perf\standalone_2026-09-28\perf_standalone_p3b_final_open_max.json
+
+--- stderr ---
+

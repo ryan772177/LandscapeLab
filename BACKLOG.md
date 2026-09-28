@@ -3201,3 +3201,8 @@ HighResShot poll in a FRESH editor leaves near-field foliage at card LODs (visib
 research/brief7/stills/p0_L0/near_ground_look.png); a warm editor renders full geometry. Clean
 near-field deliverable stills need a longer settle (more ticks) or a warm-up pass before the shot.
 Add a --settle option to shoot.py / a foliage-LOD-resolved wait. | S |`
+
+`2026-09-28 | Deadwood clutter meshes (sticks, branches, stumps at foot level) | ForestLitter ships as leaf-litter patches only: the DragonCave / Atlantis_Ruins deadwood the P2 inventory named is not on disk (packs gitignored, absent). KiteDemo has no sticks. An intake (ASSETS row, licence) before the class can read as deadwood. R-P3-CLUTTER. | S`
+`2026-09-28 | Re-baseline every -game perf number taken before 2026-09-28 | They were measured with NO landscape grass (the proxies' grass-type lists were never saved; LESSONS 2026-09-27c #4). Brief 5 D3/D4/T4 budgets, perf_budgets.json tolerances and the T4 'structural floor' rest on grass-less captures. Desk/Ryan ruling on whether to re-derive. | M`
+`2026-09-28 | treeline station still is a high aerial with nothing streamed | P3a and P3b both shot it: the traced camera sits hundreds of metres above the heightmap at (-190000, 100000) and no cell loads in 35 s. place_cam must compare trace vs heightmap z and refuse over ~20 m; the station itself may need re-derivation (R-BENCHSTATION). Blocks a clean P4 station pass. | S`
+`2026-09-28 | Editor memory at 797k trees: 25 GB private on 31.4 GB | Every editor session on Alpine8K now pages; builds moved to a light level (R-P3-CLUTTER). Options to measure: WP editor loading region instead of load-all, foliage editor data, texture pool. | M`

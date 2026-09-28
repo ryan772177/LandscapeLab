@@ -1843,6 +1843,161 @@
       ]
      }
     ]
+   },
+   {
+    "name": "MeadowFar",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.9,
+     1.4
+    ],
+    "system": "grass",
+    "cull_distance_m": 512.0,
+    "density_per_10m2": 0.6,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px."
+   },
+   {
+    "name": "ForestLitter",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves",
+    "layer": "ForestFloor",
+    "slope_deg": [
+     0.0,
+     32.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.8,
+     1.2
+    ],
+    "system": "grass",
+    "cull_distance_m": 90.0,
+    "density_per_10m2": 2.0,
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves",
+      "share": 0.5,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat",
+      "share": 0.5,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     }
+    ],
+    "_why": "Brief 7 Phase 3b, 2026-09-27: clutter class LARGE (litter) on the ForestFloor layer -- 'forest zones first'. Electric Dreams places WoodenSticksAndTwigs at 500 per 1000x1000 uu (5/m2, Nanite, never culled) in a 3.3 km painted showcase; this world's ForestFloor covers whole valleys, so 0.2/m2 in a 90 m disc (pi*90^2*0.2 = 5,089 instances) is the opening density under R-AESTHETIC-1 (perf recorded, not gated; the brief's own 'halve the smallest class if forest_floor > 40 ms' is the only clause). MESHES: KiteDemo SM_DeadLeaves / SM_DeadLeaves_Flat (82x89x15 cm leaf-litter patches, 4,791 tris, 4096 px). The DragonCave / Atlantis_Ruins deadwood the P2 inventory listed (LeafPile01, TreeBranch09, Sticks_*) is NOT ON DISK -- those packs are gitignored and absent from Content/ (measured live 2026-09-27: 'asset does not exist'); the inventory was registry-only and never loaded them. Deadwood proper (sticks, branches) is an ASSET GAP, recorded in BACKLOG."
+   },
+   {
+    "name": "ForestShrub",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03",
+    "layer": "ForestFloor",
+    "slope_deg": [
+     0.0,
+     32.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.8,
+     1.3
+    ],
+    "system": "grass",
+    "cull_distance_m": 80.0,
+    "density_per_10m2": 3.0,
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03",
+      "share": 0.3,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_02",
+      "share": 0.3,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_01",
+      "share": 0.2,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2",
+      "share": 0.2,
+      "scale_range": [
+       0.8,
+       1.3
+      ]
+     }
+    ],
+    "_why": "Brief 7 Phase 3b, 2026-09-27: clutter class MID (shrubs) on ForestFloor. Ferns 1-2 m (1.8-1.9k tris, 3 LODs, pivots measured base_z -0.006..-0.011 m in Free/_measured/rock_pivots.json) + heather clumps (376 tris, base_z -0.047). 0.3/m2 in an 80 m disc = 6,032 instances. Blueberry (Grass layer, 45 m, RULED) stays the meadow-side understory; this is the woodland one."
+   },
+   {
+    "name": "ForestStones",
+    "mesh": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+    "layer": "ForestFloor",
+    "slope_deg": [
+     0.0,
+     35.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.7,
+     1.2
+    ],
+    "system": "grass",
+    "cull_distance_m": 60.0,
+    "density_per_10m2": 4.0,
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+      "share": 0.6,
+      "scale_range": [
+       0.5,
+       1.1
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+      "share": 0.4,
+      "scale_range": [
+       0.35,
+       0.7
+      ]
+     }
+    ],
+    "_why": "Brief 7 Phase 3b, 2026-09-27: clutter class SMALL (stones) on ForestFloor. Electric Dreams' SmallStonesPack runs 800 per 1000x1000 uu (8/m2, Nanite, never culled); here 0.4/m2 in a 60 m disc = 4,524 instances. MESHES: KiteDemo SM_River_Rock_01 (49x56x39 cm) at 0.5-1.1x and SM_Boulder05a (89x90x43 cm) at 0.35-0.7x -- the same two meshes GroundClutter uses on the Grass layer, scaled down for the woodland floor; both carry measured base pivots (rock_pivots.json: base_z -0.066 / -0.073 m). StoneDebris01_ / Rocks_04 from the P2 inventory are NOT ON DISK (DragonCave / Atlantis_Ruins packs absent, measured live 2026-09-27)."
    }
   ],
   "rock_scatter": {
@@ -1862,7 +2017,8 @@
    "_source": "Free/_measured/pve_spruce.json -> /Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A (the mesh PLACED as Conifer in THIS recipe), get_bounds extent_cm [518.4675903320312, 517.9763793945312, 1465.6336669921875] = half-extents. radius_m is the mean horizontal half-extent: (5.184676 + 5.179764) / 2 = 5.182 m. Until 2026-09-26 this block carried 3.068 m, fir_tree_01_c_LOD0's number copied verbatim from recipes/alpine.json into a recipe whose Conifer is a different tree (rule 9: a copied-true claim is not a verified claim; caught by the rocks audit).",
    "plan": "alpine_8k_Conifer.json",
    "radius_m": 5.182
-  }
+  },
+  "_p3b_2026_09_27": "Brief 7 Phase 3b runtime clutter: four grass species added (MeadowFar, ForestLitter, ForestShrub, ForestStones). Realised by the landscape-material rebuild (grass_entries -> GT_alpine_8k_<name>, R-CULLDERIVE read-back), NOT by a PCG graph: PCG authoring from Python was proven only as a 3-node spike whose cost was never captured (LESSONS 2026-09-21), while the grass system is the ratified carpet mechanism (6d) with a builder, validator and independent read-back. The technique the brief names (runtime generation near the camera, hierarchical densities, HISM output, forest zones first) is what the grass system does. Deviations stated: 'meadow grass to 512 m on the fine grid' is a COARSE far tier (see MeadowFar._why); 'Nanite clutter cull 0' has no grass equivalent (a LandscapeGrassType with EndCullDistance 0 generates nothing), so each class carries a finite cull sized to its disc count. R-P3-CLUTTER."
  },
  "streaming": {
   "main_loading_range_cm": 51200,

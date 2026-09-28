@@ -1,0 +1,203 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\make_landscape_material.py --recipe C:\Users\Admin\UE5LandscapePipeline\recipes\alpine_8k.json --timeout 25 rc=6 dt=25s
+--- resource guard: landscape material rebuild ---
+  RAM: 15.8 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 31248)
+  texture plan : 22 sampled textures across 5 band(s)
+  displacement : per-layer, ref 0.200 m -> magnitude 0.08000 at center 0.5
+                 ForestFloor    0.040 m  (k 0.200)
+                 Grass          0.030 m  (k 0.150)
+                 Rock           0.200 m  (k 1.000)
+                 Scree          0.060 m  (k 0.300)
+                 Snow           0.020 m  (k 0.100)
+                 (scale_z 500.0 cm/unit; the engine default 4.0 would be +/-10.0 m here)
+                 OUTPUT PATH: use_material_attributes + MakeMaterialAttributes
+REPO_ROOT       : C:\Users\Admin\UE5LandscapePipeline
+Material        : /Game/Materials/M_Alpine8K
+Assign to       : (not assigning)
+
+  Snow     rgb [1.0, 1.0, 1.0]  rough 0.3
+     slope 0.0..48.0 deg  feather 9.0 deg
+     height 730.0..2560.0 m  feather 115 m
+     texture /Game/Textures/T_Alpine_8k_Snow
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+  Rock     rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 29.0..90.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture /Game/Textures/T_Alpine_8k_Rock
+       detail 2 m   macro 188 m   albedo = base_color * 4 * samples
+  Scree    rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 20.0..32.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture (none) â€” flat base_color
+  ForestFloor rgb [1.0, 1.0, 1.0]  rough 0.75
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture (none) â€” flat base_color
+  Grass    rgb [1.0, 1.0, 1.0]  rough 0.6
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture /Game/Textures/T_Alpine_8k_Grass
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+
+--- editor identity gate (conduct rule 7) ---
+  - 6A6D8E7C4F308B848D2427B68A5176EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  VERIFIED: 6A6D8E7C4F308B848D2427B68A5176EB (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab)
+
+--- level gate (recipe landscape.level_path) ---
+REFUSE: recipe targets '/Game/Alpine8K' but the editor has '/Game/Canyon' open
+
+  Conduct rule 7 verified the PROJECT, and it matches.
+  This is a different check: the wrong WORLD is open
+  inside the right project. Open '/Game/Alpine8K' and re-run.
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\make_landscape_material.py --recipe C:\Users\Admin\UE5LandscapePipeline\recipes\alpine_8k.json --timeout 25 --build-level /Game/Canyon rc=1 dt=25s
+--- resource guard: landscape material rebuild ---
+  RAM: 16.0 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 35992)
+  texture plan : 22 sampled textures across 5 band(s)
+  displacement : per-layer, ref 0.200 m -> magnitude 0.08000 at center 0.5
+                 ForestFloor    0.040 m  (k 0.200)
+                 Grass          0.030 m  (k 0.150)
+                 Rock           0.200 m  (k 1.000)
+                 Scree          0.060 m  (k 0.300)
+                 Snow           0.020 m  (k 0.100)
+                 (scale_z 500.0 cm/unit; the engine default 4.0 would be +/-10.0 m here)
+                 OUTPUT PATH: use_material_attributes + MakeMaterialAttributes
+REPO_ROOT       : C:\Users\Admin\UE5LandscapePipeline
+Material        : /Game/Materials/M_Alpine8K
+Assign to       : (not assigning)
+
+  Snow     rgb [1.0, 1.0, 1.0]  rough 0.3
+     slope 0.0..48.0 deg  feather 9.0 deg
+     height 730.0..2560.0 m  feather 115 m
+     texture /Game/Textures/T_Alpine_8k_Snow
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+  Rock     rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 29.0..90.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture /Game/Textures/T_Alpine_8k_Rock
+       detail 2 m   macro 188 m   albedo = base_color * 4 * samples
+  Scree    rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 20.0..32.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture (none) â€” flat base_color
+  ForestFloor rgb [1.0, 1.0, 1.0]  rough 0.75
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture (none) â€” flat base_color
+  Grass    rgb [1.0, 1.0, 1.0]  rough 0.6
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture /Game/Textures/T_Alpine_8k_Grass
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+
+--- editor identity gate (conduct rule 7) ---
+  - 03AB2AD44E75EEDCD891CCA490CA42A7 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  VERIFIED: 03AB2AD44E75EEDCD891CCA490CA42A7 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab)
+
+--- level gate (recipe landscape.level_path) ---
+  --build-level '/Game/Canyon': the gate asserts THIS level; the recipe's '/Game/Alpine8K' is not required open for an in-place asset rebuild without assignment
+  level /Game/Canyon
+
+ERROR: ValueError: grass species 'MeadowFar' has cull_distance_m 512.0 m; it must be in (0, 250]. R11 locks Meadow at 50 m and measured raising it as strictly worse.
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\make_landscape_material.py --recipe C:\Users\Admin\UE5LandscapePipeline\recipes\alpine_8k.json --timeout 25 --build-level /Game/Canyon rc=0 dt=27s
+--- resource guard: landscape material rebuild ---
+  RAM: 15.9 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 26920)
+  texture plan : 22 sampled textures across 5 band(s)
+  displacement : per-layer, ref 0.200 m -> magnitude 0.08000 at center 0.5
+                 ForestFloor    0.040 m  (k 0.200)
+                 Grass          0.030 m  (k 0.150)
+                 Rock           0.200 m  (k 1.000)
+                 Scree          0.060 m  (k 0.300)
+                 Snow           0.020 m  (k 0.100)
+                 (scale_z 500.0 cm/unit; the engine default 4.0 would be +/-10.0 m here)
+                 OUTPUT PATH: use_material_attributes + MakeMaterialAttributes
+REPO_ROOT       : C:\Users\Admin\UE5LandscapePipeline
+Material        : /Game/Materials/M_Alpine8K
+Assign to       : (not assigning)
+
+  Snow     rgb [1.0, 1.0, 1.0]  rough 0.3
+     slope 0.0..48.0 deg  feather 9.0 deg
+     height 730.0..2560.0 m  feather 115 m
+     texture /Game/Textures/T_Alpine_8k_Snow
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+  Rock     rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 29.0..90.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture /Game/Textures/T_Alpine_8k_Rock
+       detail 2 m   macro 188 m   albedo = base_color * 4 * samples
+  Scree    rgb [1.0, 1.0, 1.0]  rough 0.85
+     slope 20.0..32.0 deg  feather 3.6 deg
+     height 0.0..2560.0 m  feather 46 m
+     texture (none) â€” flat base_color
+  ForestFloor rgb [1.0, 1.0, 1.0]  rough 0.75
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture (none) â€” flat base_color
+  Grass    rgb [1.0, 1.0, 1.0]  rough 0.6
+     slope 0.0..29.0 deg  feather 6.0 deg
+     height 0.0..730.0 m  feather 77 m
+     texture /Game/Textures/T_Alpine_8k_Grass
+       detail 5 m   macro 188 m   albedo = base_color * 4 * samples
+
+--- editor identity gate (conduct rule 7) ---
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  VERIFIED: B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab)
+
+--- level gate (recipe landscape.level_path) ---
+  --build-level '/Game/Canyon': the gate asserts THIS level; the recipe's '/Game/Alpine8K' is not required open for an in-place asset rebuild without assignment
+  level /Game/Canyon
+
+  material reused (find-or-create)
+  graph clear  : 110 survived delete_all_material_expressions, 0 remaining after the explicit total clear
+  graph assert : EXACT match to spec
+  compiled clean
+
+  --- grass types (schema v1.10) ---
+  GroundClutter  ->  /Game/Foliage/GT_alpine_8k_GroundClutter
+      SM_Boulder05a                       0.900 /10m2   overrides: none
+      SM_River_Rock_01                    0.600 /10m2   overrides: none
+      2 variety(ies), densities sum to 1.5 against a species total of 1.5
+  Meadow  ->  /Game/Foliage/GT_alpine_8k_Meadow
+      grass_medium_01_tiny_a_LOD0        66.000 /10m2   overrides: none
+      grass_medium_01_tall_a_LOD0        30.000 /10m2   overrides: none
+      grass_medium_01_small_a_LOD0       14.400 /10m2   overrides: none
+      grass_medium_01_mid_b_LOD0          9.600 /10m2   overrides: none
+      4 variety(ies), densities sum to 120.0 against a species total of 120.0
+  Blueberry  ->  /Game/Foliage/GT_alpine_8k_Blueberry
+      Blueberry_01                        1.680 /10m2   overrides: MI_MI_Blueberry_01_nowind
+      Blueberry_02                        1.440 /10m2   overrides: MI_MI_Blueberry_02_nowind
+      Blueberry_03                        1.440 /10m2   overrides: MI_MI_Blueberry_03_nowind
+      Blueberry_04                        1.200 /10m2   overrides: MI_MI_Blueberry_04_nowind
+      Blueberry_05                        0.960 /10m2   overrides: MI_MI_Blueberry_05_nowind
+      Blueberry_06                        2.160 /10m2   overrides: MI_MI_Blueberry_06_nowind
+      Blueberry_07                        1.680 /10m2   overrides: MI_MI_Blueberry_07_nowind
+      Blueberry_08                        1.440 /10m2   overrides: MI_MI_Blueberry_08_nowind
+      8 variety(ies), densities sum to 12.0 against a species total of 12.0
+  MeadowFar  ->  /Game/Foliage/GT_alpine_8k_MeadowFar
+      SM_FieldGrass_01                    0.600 /10m2   overrides: none
+      1 variety(ies), densities sum to 0.6 against a species total of 0.6
+  ForestLitter  ->  /Game/Foliage/GT_alpine_8k_ForestLitter
+      SM_DeadLeaves                       1.000 /10m2   overrides: none
+      SM_DeadLeaves_Flat                  1.000 /10m2   overrides: none
+      2 variety(ies), densities sum to 2.0 against a species total of 2.0
+  ForestShrub  ->  /Game/Foliage/GT_alpine_8k_ForestShrub
+      SM_Fern_03                          0.900 /10m2   overrides: none
+      SM_Fern_02                          0.900 /10m2   overrides: none
+      SM_Fern_01                          0.600 /10m2   overrides: none
+      SM_Heather_Mesh_Clumps2             0.600 /10m2   overrides: none
+      4 variety(ies), densities sum to 3.0 against a species total of 3.0
+  ForestStones  ->  /Game/Foliage/GT_alpine_8k_ForestStones
+      SM_River_Rock_01                    2.400 /10m2   overrides: none
+      SM_Boulder05a                       1.600 /10m2   overrides: none
+      2 variety(ies), densities sum to 4.0 against a species total of 4.0
+  grass output wired to 7 layer mask(s)
+
+--- stderr ---
+

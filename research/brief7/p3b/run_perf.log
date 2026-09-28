@@ -1,0 +1,10 @@
+[P3B 23:42:39] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_rtgrass_forest_floor --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json forest_station.json --station-name forest_floor
+[P3B 23:44:27]   -> rc=0 in 109s
+[P3B 23:44:27] perf forest_floor: {'rc': 0, 'line': 'forest_floor ok       window 25.0 s  GPU p90 12.413  Game p90 4.067  VRAM peak 4995 MiB', 'gpu_p90_ms': 12.413, 'game_p90_ms': 4.067, 'vram_peak_mib': 4995, 'over_ceiling': False}
+[P3B 23:44:28] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_rtgrass_open_max --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json open_max_station.json --station-name open_max
+[P3B 23:46:16]   -> rc=0 in 109s
+[P3B 23:46:16] perf open_max: {'rc': 0, 'line': 'open_max     ok       window 25.0 s  GPU p90 12.665  Game p90 3.935  VRAM peak 4993 MiB', 'gpu_p90_ms': 12.665, 'game_p90_ms': 3.935, 'vram_peak_mib': 4993, 'over_ceiling': False}
+[P3B 23:46:16] run: python.exe perf_standalone.py --noxgecontroller --tag p3b_rtgrass_plaza --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --only plaza
+[P3B 23:48:05]   -> rc=0 in 109s
+[P3B 23:48:05] perf plaza: {'rc': 0, 'line': 'plaza        ok       window 25.0 s  GPU p90 9.574  Game p90 4.164  VRAM peak 4991 MiB', 'gpu_p90_ms': 9.574, 'game_p90_ms': 4.164, 'vram_peak_mib': 4991, 'over_ceiling': False}
+[P3B 23:48:05] P3B DONE

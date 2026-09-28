@@ -296,8 +296,8 @@ re-downloadable); paths recorded here instead.
 | asset | source | licence | on disk | tier | role | verified |
 |---|---|---|---|---|---|---|
 | Open World Demo Collection (Kite) | Fab / Epic | Fab Standard — UE only | `Content/KiteDemo` — 272 files, 6,527 MB (270 uasset + 2 umap; 110 T, 37 M, 29 SM, 25 MI) | as shipped | **highest-value batch** — rocks, cliffs, ground, vegetation. Highland rocks/cliffs are alpine candidates | **NO** |
-| Dragon Cave | Fab | Fab Standard — UE only | `Content/DragonCave` — 333 files, 5,050 MB (115 SM, 130 T, 66 MI) | as shipped | POI / dungeon inventory | **NO** |
-| Atlantis Ruins | Fab | Fab Standard — UE only | `Content/Atlantis_Ruins` — 274 files, 3,369 MB (37 SM, 158 T, 54 MI, **12 SK** skeletal fish/turtle/crab) | as shipped | POI / dungeon inventory | **NO** |
+| Dragon Cave | Fab | Fab Standard — UE only | `Content/DragonCave` — 333 files, 5,050 MB (115 SM, 130 T, 66 MI) **— NOT ON DISK 2026-09-27** (gitignored pack; absent from Content/, measured live: `asset does not exist`; the registry dump `Free/_measured/fab_registry_DragonCave.json` survives it) | as shipped | POI / dungeon inventory | **NO** |
+| Atlantis Ruins | Fab | Fab Standard — UE only | `Content/Atlantis_Ruins` — 274 files, 3,369 MB (37 SM, 158 T, 54 MI, **12 SK** skeletal fish/turtle/crab) **— NOT ON DISK 2026-09-27** (gitignored pack; absent from Content/, measured live; registry dump survives) | as shipped | POI / dungeon inventory | **NO** |
 | UE template content | Engine template | Epic EULA | `Content/Mannequin` (26), `ThirdPerson` (6), `ThirdPersonBP` (5), `Geometry` (4) | n/a | mannequin is the **retarget target** for GASP | **NO** |
 
 ### WEB-DOWNLOAD branch — staged, not yet imported

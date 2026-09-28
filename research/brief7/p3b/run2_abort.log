@@ -1,0 +1,17 @@
+[P3B 22:10:03] run: python.exe resource_guard.py
+[P3B 22:10:03]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : WINDOWED -- the viewport Present path that took the GPU on 2026-09-12 is live
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 22:10:11] launched PIDs [27252]; waiting for bootstrap
+[P3B 22:11:12] editor ready after 61 s
+[P3B 22:11:12] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 22:11:38]   -> rc=0 in 26s
+[P3B 22:11:38] level /Game/Alpine8K.Alpine8K; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry']]
+[P3B 22:11:38] run: python.exe measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves --mesh /Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat
+[P3B 22:12:03]   -> rc=4 in 25s
+[P3B 22:12:03] ABORT: measure_clutter_meshes rc=4 (a mesh failed the pivot contract or could not be measured)
+[P3B 22:12:04] killed PID 27252
+[P3B 22:12:09] P3B ABORT
+[P3B 22:12:14] P3B ABORT (exception) SystemExit(3)

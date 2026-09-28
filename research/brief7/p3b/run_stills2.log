@@ -1,0 +1,51 @@
+[P3B 00:02:50] run: python.exe resource_guard.py
+[P3B 00:02:51]   -> rc=0 in 0s
+moved PackageRestoreData.json -> C:\Users\Admin\UE5LandscapePipeline\_trash\autosaves_launch_20260928000252 (no Restore modal)
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : WINDOWED -- the viewport Present path that took the GPU on 2026-09-12 is live
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 00:02:59] launched PIDs [26164]; waiting for bootstrap
+[P3B 00:04:03] editor ready after 64 s
+[P3B 00:04:04] stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 0.82 GB
+[P3B 00:04:06] RAM settled: 0.94 GB free after 3 s
+[P3B 00:04:06] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 00:04:32]   -> rc=0 in 25s
+[P3B 00:04:32] level /Game/Alpine8K.Alpine8K; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry'], ['MeadowFar', '/Game/Foliage/GT_alpine_8k_MeadowFar'], ['ForestLitter', '/Game/Foliage/GT_alpine_8k_ForestLitter'], ['ForestShrub', '/Game/Foliage/GT_alpine_8k_ForestShrub'], ['ForestStones', '/Game/Foliage/GT_alpine_8k_ForestStones']]
+[P3B 00:04:32] stills-only mode: skipping measure / validate / rebuild / read-back
+[P3B 00:04:32] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"]
+[P3B 00:04:57]   -> rc=0 in 25s
+[P3B 00:04:57] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look
+[P3B 00:05:22]   -> rc=0 in 25s
+[P3B 00:05:22] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 00:05:48]   -> rc=0 in 25s
+[P3B 00:05:48] dwell 45 s at forest_floor for grass generation
+[P3B 00:06:33] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"]
+[P3B 00:06:58]   -> rc=0 in 25s
+[P3B 00:07:06] grass dump lines: 9
+[P3B 00:07:06] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 00:07:32]   -> rc=0 in 25s
+[P3B 00:08:07] run: python.exe shoot.py --name forest_floor_look_p3b --loc=-166400.0,192000.0,21203.5 --rot=0,-5.0,100.0 --outdir p3b_clutter --deadline 600
+[P3B 00:08:38]   -> rc=0 in 31s
+[P3B 00:08:38] still forest_floor rc=0 png=True
+[P3B 00:08:38] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-25.0 --set YAW=100.0 --set EYE=175.0
+[P3B 00:09:04]   -> rc=0 in 25s
+[P3B 00:09:39] run: python.exe shoot.py --name forest_floor_ground_look_p3b --loc=-166400.0,192000.0,21203.5 --rot=0,-25.0,100.0 --outdir p3b_clutter --deadline 600
+[P3B 00:10:10]   -> rc=0 in 31s
+[P3B 00:10:10] still forest_floor_ground rc=0 png=True
+[P3B 00:10:10] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-210800.0 --set Y=278800.0 --set PITCH=-2.0 --set YAW=-12.8 --set EYE=175.0
+[P3B 00:10:35]   -> rc=0 in 25s
+[P3B 00:11:10] run: python.exe shoot.py --name plaza_look_p3b --loc=-210800.0,278800.0,18846.8 --rot=0,-2.0,-12.8 --outdir p3b_clutter --deadline 600
+[P3B 00:11:42]   -> rc=0 in 31s
+[P3B 00:11:42] still plaza rc=0 png=True
+[P3B 00:11:42] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-2.0 --set YAW=105.0 --set EYE=175.0
+[P3B 00:12:07]   -> rc=0 in 25s
+[P3B 00:12:42] run: python.exe shoot.py --name treeline_look_p3b --loc=-190000.0,100000.0,63366.2 --rot=0,-2.0,105.0 --outdir p3b_clutter --deadline 600
+[P3B 00:13:14]   -> rc=0 in 31s
+[P3B 00:13:14] still treeline rc=0 png=True
+[P3B 00:13:14] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=bench
+[P3B 00:13:39]   -> rc=0 in 25s
+[P3B 00:13:39] run: python.exe ue_exec.py dirty_package_census_payload.txt --timeout 25
+[P3B 00:14:04]   -> rc=0 in 25s
+[P3B 00:14:09] killed PID 26164
+[P3B 00:14:15] P3B DONE

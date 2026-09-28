@@ -1,0 +1,34 @@
+{
+ "started": "2026-09-27T22:13:08",
+ "phases": {
+  "guard": {
+   "rc": 0,
+   "tail": "REPO_ROOT : C:\\Users\\Admin\\UE5LandscapePipeline\nlock file : C:\\Users\\Admin\\UE5LandscapePipeline\\.heavy-op.lock\nmemory    : 22.2 GB free of 31.4 GB\nheld by   : nobody"
+  },
+  "launch": {
+   "pids": [
+    13304
+   ],
+   "ready_s": 61
+  },
+  "ram_settle": {
+   "free_gb": 1.65,
+   "waited_s": 906
+  }
+ },
+ "aborted": "exception: SystemExit(3)",
+ "notes": [],
+ "fence_tag": "pre-p3b-clutter-20260927",
+ "pre_shas": {
+  "LandscapeLab/Content/Materials/M_Alpine8K.uasset": "3e26459cad8e4ae3301c87074660ec1fdd4ba5b8",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_Meadow.uasset": "c76a5b4c0c2d9d027c1aae07a235f4918b138540",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_GroundClutter.uasset": "eba17200fb6dfe5fad92c1a3ac7618eb50f8de73",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_Blueberry.uasset": "e192f5b9dd8d0436717349d691279edadc7b018c"
+ },
+ "pre_gt_all": [
+  "GT_alpine_8k_Blueberry.uasset",
+  "GT_alpine_8k_GroundClutter.uasset",
+  "GT_alpine_8k_Meadow.uasset"
+ ],
+ "pre_gt_untracked": []
+}

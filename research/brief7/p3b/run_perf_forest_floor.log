@@ -1,0 +1,21 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_forest_floor --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\forest_station.json --station-name forest_floor rc=0 dt=109s
+  forest_floor ok       window 25.0 s  GPU p90 12.363  Game p90 4.249  VRAM peak 4994 MiB
+VRAM peak across stations: 4994 MiB vs 13312 abort (+8318 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_forest_floor.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_rtgrass_forest_floor --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\forest_station.json --station-name forest_floor rc=0 dt=109s
+  forest_floor ok       window 25.0 s  GPU p90 12.413  Game p90 4.067  VRAM peak 4995 MiB
+VRAM peak across stations: 4995 MiB vs 13312 abort (+8317 headroom)
+wrote _verify\perf\standalone_2026-09-27\perf_standalone_p3b_rtgrass_forest_floor.json
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\perf_standalone.py --noxgecontroller --tag p3b_final_forest_floor --set-cvar grass.GrassMap.UseRuntimeGeneration 1 --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\forest_station.json --station-name forest_floor rc=0 dt=109s
+  forest_floor ok       window 25.0 s  GPU p90 12.904  Game p90 4.368  VRAM peak 5276 MiB
+VRAM peak across stations: 5276 MiB vs 13312 abort (+8036 headroom)
+wrote _verify\perf\standalone_2026-09-28\perf_standalone_p3b_final_forest_floor.json
+
+--- stderr ---
+

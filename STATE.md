@@ -1,4 +1,32 @@
-# CURRENT STATE — 2026-09-27 (BRIEF 7 P3a DENSITY DONE: 797,500 trees at the ruled caps, tag look-p3; P3b PCG clutter OWED; GitHub = lite mirror, first push LANDED 21:05 (staged tree push); A2 closed; rocks withdrawn; world working)
+# CURRENT STATE — 2026-09-28 (BRIEF 7 P3b CLUTTER DONE: 4 grass species, proxies re-saved, -game grass FINALLY spawning, tag look-p3b; P4 NEXT; GitHub = lite mirror (staged push landed); A2 closed; rocks withdrawn; world working)
+
+> ⭐ **2026-09-28 — BRIEF 7 P3b RUNTIME CLUTTER DONE, tag `look-p3b` (Ryan: "continue through phase 4").**
+> Four `system: grass` species in `alpine_8k.json`: MeadowFar (Grass layer, FieldGrass, 512 m, 0.6/10 m² =
+> the coarse far tier), ForestLitter / ForestShrub / ForestStones (ForestFloor layer; DeadLeaves,
+> ferns+heather, River_Rock+Boulder05a). Realised through the grass system, NOT a PCG graph (CC's call:
+> builder + validator + read-back exist; PCG-from-Python was a 3-node spike). Material rebuilt on
+> `/Game/Canyon` (`--build-level`, no --assign) because the Alpine8K editor is **25 GB private at 797k
+> trees** (0.5–1.7 GB free; windowed or offscreen). Validator/builder cull ceiling 512 m + disc guard
+> (ONE definition). **THE FINDING: -game had NO landscape grass, ever** (GPUSceneInstanceCount 49,863
+> with and without the new types) — a game world never re-derives a component's grass-type list; fixed
+> by re-saving all 256 landscape proxies + Landscape (257 pkgs, commit 765ead18) AND
+> `grass.GrassMap.UseRuntimeGeneration=1` in the ini. **-game GPU p90 forest_floor 12.904 (was 12.363) /
+> open_max 13.057 (12.707) / plaza 9.940 (9.588) ms; instances 49,863 → 57,126; VRAM ≤ 5,276 MiB** — the D5
+> clutter cost, recorded. `grass.DumpGrassData`: forest types on 70 components, meadow types on 79. Stills
+> `research/brief7/stills/p3b_clutter/` (visual gate = Ryan). R-P3-CLUTTER; R-CULLDERIVE AMENDED
+> 2026-09-28; LESSONS 2026-09-27c (six entries). GitHub: lite snapshot pushed after this block.**
+> - **Every -game perf number before 2026-09-28 (Brief 5 D3/D4/T4, P3a) was measured WITHOUT the meadow.**
+>   Budgets/tolerances derived from them stand as history; re-baselining is a desk/Ryan call (BACKLOG).
+> - Known defects carried: the `treeline` still (P3a's too) is a high aerial with no cells streamed —
+>   the traced camera height disagrees with the heightmap; P4's station pass must refuse such a trace.
+>   Deadwood proper (sticks/branches) is an asset gap: DragonCave/Atlantis_Ruins packs are gone from disk.
+> - Memory rule UPDATED: editor at Alpine8K = ~25 GB private (was 18); build assets on a light level;
+>   windowed Alpine8K sessions (stills, census, saves) still work under paging (7,234 MiB VRAM).
+> - Editor closed (kill path, 2 runtime-toggled OFPA actors dirty, restore data moved aside at next launch).
+>   No editor running. **NEXT: P4** — FarField A/B (already DROPPED by measurement 09-25/27: record),
+>   HLOD stale count + batched rebuild (≤96 cells/batch, S-9), five stations + slope + cliff `pre-look` vs
+>   `look-p4`, INDEX_look.md, push.
+
 
 > ⭐ **2026-09-27 (close) — GITHUB RECREATED AS A LITE MIRROR (R-GITHUB-LITE, Ryan: option 2). The
 > account's free 10 GiB LFS quota was exhausted by world-package history (22 GB of 37 GB); no external

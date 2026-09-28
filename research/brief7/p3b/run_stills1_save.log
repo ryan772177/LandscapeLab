@@ -1,0 +1,54 @@
+[P3B 23:49:49] run: python.exe resource_guard.py
+[P3B 23:49:49]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : WINDOWED -- the viewport Present path that took the GPU on 2026-09-12 is live
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 23:49:57] launched PIDs [35444]; waiting for bootstrap
+[P3B 23:50:58] editor ready after 61 s
+[P3B 23:50:59] stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 0.75 GB
+[P3B 23:51:01] RAM settled: 0.73 GB free after 3 s
+[P3B 23:51:01] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 23:51:27]   -> rc=0 in 25s
+[P3B 23:51:27] level /Game/Alpine8K.Alpine8K; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry'], ['MeadowFar', '/Game/Foliage/GT_alpine_8k_MeadowFar'], ['ForestLitter', '/Game/Foliage/GT_alpine_8k_ForestLitter'], ['ForestShrub', '/Game/Foliage/GT_alpine_8k_ForestShrub'], ['ForestStones', '/Game/Foliage/GT_alpine_8k_ForestStones']]
+[P3B 23:51:27] stills-only mode: skipping measure / validate / rebuild / read-back
+[P3B 23:51:27] saving landscape proxies (PreSave -> BuildGrassMaps): batches of 32; this is a WORLD write
+[P3B 23:51:27] run: python.exe ue_exec.py brief7_save_landscape_proxies_payload.txt --timeout 25 --set BATCH=32 --set APPLY=True
+[P3B 23:54:46]   -> rc=0 in 199s
+[P3B 23:54:46] saved 257 packages (256 proxies, 1 landscapes), dirty after 0; grass sample before {'components': 4, 'actor': 'LandscapeStreamingProxy_3_3_0', 'grass_types': ['/Game/Foliage/GT_alpine_8k_GroundClutter', '/Game/Foliage/GT_alpine_8k_Meadow', '/Game/Foliage/GT_alpine_8k_Blueberry', '/Game/Foliage/GT_alpine_8k_MeadowFar', '/Game/Foliage/GT_alpine_8k_ForestLitter', '/Game/Foliage/GT_alpine_8k_ForestShrub', '/Game/Foliage/GT_alpine_8k_ForestStones']} after {'components': 4, 'actor': 'LandscapeStreamingProxy_3_3_0', 'grass_types': ['/Game/Foliage/GT_alpine_8k_GroundClutter', '/Game/Foliage/GT_alpine_8k_Meadow', '/Game/Foliage/GT_alpine_8k_Blueberry', '/Game/Foliage/GT_alpine_8k_MeadowFar', '/Game/Foliage/GT_alpine_8k_ForestLitter', '/Game/Foliage/GT_alpine_8k_ForestShrub', '/Game/Foliage/GT_alpine_8k_ForestStones']}
+[P3B 23:54:46] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"]
+[P3B 23:55:12]   -> rc=0 in 26s
+[P3B 23:55:12] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look
+[P3B 23:55:37]   -> rc=0 in 26s
+[P3B 23:55:37] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 23:56:03]   -> rc=0 in 25s
+[P3B 23:56:03] dwell 45 s at forest_floor for grass generation
+[P3B 23:56:48] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"]
+[P3B 23:57:13]   -> rc=0 in 25s
+[P3B 23:57:21] grass dump lines: 9
+[P3B 23:57:21] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 23:57:47]   -> rc=0 in 25s
+[P3B 23:58:22] run: python.exe shoot.py --name forest_floor_look_p3b --loc -166400.0,192000.0,21203.5 --rot 0,-5.0,100.0 --outdir p3b_clutter --deadline 600
+[P3B 23:58:22]   -> rc=2 in 0s
+[P3B 23:58:22] still forest_floor rc=2 png=False
+[P3B 23:58:22] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-25.0 --set YAW=100.0 --set EYE=175.0
+[P3B 23:58:47]   -> rc=0 in 25s
+[P3B 23:59:22] run: python.exe shoot.py --name forest_floor_ground_look_p3b --loc -166400.0,192000.0,21203.5 --rot 0,-25.0,100.0 --outdir p3b_clutter --deadline 600
+[P3B 23:59:22]   -> rc=2 in 0s
+[P3B 23:59:22] still forest_floor_ground rc=2 png=False
+[P3B 23:59:22] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-210800.0 --set Y=278800.0 --set PITCH=-2.0 --set YAW=-12.8 --set EYE=175.0
+[P3B 23:59:48]   -> rc=0 in 25s
+[P3B 00:00:23] run: python.exe shoot.py --name plaza_look_p3b --loc -210800.0,278800.0,18846.8 --rot 0,-2.0,-12.8 --outdir p3b_clutter --deadline 600
+[P3B 00:00:23]   -> rc=2 in 0s
+[P3B 00:00:23] still plaza rc=2 png=False
+[P3B 00:00:23] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-2.0 --set YAW=105.0 --set EYE=175.0
+[P3B 00:00:48]   -> rc=0 in 25s
+[P3B 00:01:23] run: python.exe shoot.py --name treeline_look_p3b --loc -190000.0,100000.0,63366.2 --rot 0,-2.0,105.0 --outdir p3b_clutter --deadline 600
+[P3B 00:01:23]   -> rc=2 in 0s
+[P3B 00:01:23] still treeline rc=2 png=False
+[P3B 00:01:23] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=bench
+[P3B 00:01:49]   -> rc=0 in 25s
+[P3B 00:01:49] run: python.exe ue_exec.py dirty_package_census_payload.txt --timeout 25
+[P3B 00:02:14]   -> rc=0 in 25s
+[P3B 00:02:19] killed PID 35444
+[P3B 00:02:25] P3B DONE

@@ -1,0 +1,60 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\dirty_package_census_payload.txt --timeout 25 rc=0 dt=25s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "dirty": [],
+  "dirty_count": 0,
+  "level": "/Game/Canyon.Canyon",
+  "clean": true
+}
+(25.3 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\dirty_package_census_payload.txt --timeout 25 rc=0 dt=25s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "dirty": [
+    {
+      "kind": "map",
+      "package": "/Game/__ExternalActors__/Alpine8K/3/XP/BPW0LO1X38VYGTUYN044BC"
+    },
+    {
+      "kind": "map",
+      "package": "/Game/__ExternalActors__/Alpine8K/A/YU/TFX5OZE9RR4THA2TVWQ9UZ"
+    }
+  ],
+  "dirty_count": 2,
+  "level": "/Game/Alpine8K.Alpine8K",
+  "clean": false
+}
+(25.4 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\dirty_package_census_payload.txt --timeout 25 rc=0 dt=25s
+  - 7E726CC242D8F7B354A0FEABE53305DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "dirty": [
+    {
+      "kind": "map",
+      "package": "/Game/__ExternalActors__/Alpine8K/3/XP/BPW0LO1X38VYGTUYN044BC"
+    },
+    {
+      "kind": "map",
+      "package": "/Game/__ExternalActors__/Alpine8K/A/YU/TFX5OZE9RR4THA2TVWQ9UZ"
+    }
+  ],
+  "dirty_count": 2,
+  "level": "/Game/Alpine8K.Alpine8K",
+  "clean": false
+}
+(25.3 s)
+
+--- stderr ---
+

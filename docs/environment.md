@@ -21,6 +21,12 @@
   resource_guard.available_gb with the alpine editor resident) — the
   number resource_guard's WARN_FREE_GB=4.0 is calibrated against;
   the retired 16 GB machine's "~1.8 GB free" figure is history.
+  **SUPERSEDED 2026-09-28 for Alpine8K at 797k trees: the editor is ~25 GB
+  PRIVATE (19 GB working set, the rest paged) and leaves 0.5–1.7 GB free,
+  windowed or offscreen, warm DDC or cold (measured runs 2–5, LESSONS
+  2026-09-27c #2). Build ASSETS on a light level (`/Game/Canyon`,
+  5.4 GB, 15.9 GB free); take stills / census / saves on Alpine8K under
+  paging. resource_guard's 4.0 GB WARN fires on every Alpine8K session now.**
   *Superseded, and kept because every GPU number on the board is
   calibrated to it:* HP OmniBook, Intel Core Ultra 5 225U integrated
   GPU, 15.4 GB RAM, 14 logical cores. **Every frame-cost figure in

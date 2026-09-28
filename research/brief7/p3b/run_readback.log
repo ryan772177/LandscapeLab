@@ -1,0 +1,86 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_MeadowFar --expect-varieties 1 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_MeadowFar  [LandscapeGrassType]
+
+  SM_FieldGrass_01             0.600 /10m2   cull   51200 cm   overrides: NONE
+
+  1 variety(ies), densities sum to 0.6
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestLitter --expect-varieties 2 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_ForestLitter  [LandscapeGrassType]
+
+  SM_DeadLeaves                1.000 /10m2   cull    9000 cm   overrides: NONE
+  SM_DeadLeaves_Flat           1.000 /10m2   cull    9000 cm   overrides: NONE
+
+  2 variety(ies), densities sum to 2.0
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestShrub --expect-varieties 4 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_ForestShrub  [LandscapeGrassType]
+
+  SM_Fern_03                   0.900 /10m2   cull    8000 cm   overrides: NONE
+  SM_Fern_02                   0.900 /10m2   cull    8000 cm   overrides: NONE
+  SM_Fern_01                   0.600 /10m2   cull    8000 cm   overrides: NONE
+  SM_Heather_Mesh_Clumps2      0.600 /10m2   cull    8000 cm   overrides: NONE
+
+  4 variety(ies), densities sum to 3.0
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_ForestStones --expect-varieties 2 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_ForestStones  [LandscapeGrassType]
+
+  SM_River_Rock_01             2.400 /10m2   cull    6000 cm   overrides: NONE
+  SM_Boulder05a                1.600 /10m2   cull    6000 cm   overrides: NONE
+
+  2 variety(ies), densities sum to 4.0
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_Meadow --expect-varieties 4 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_Meadow  [LandscapeGrassType]
+
+  grass_medium_01_tiny_a_LOD0  66.000 /10m2   cull    5000 cm   overrides: NONE
+  grass_medium_01_tall_a_LOD0  30.000 /10m2   cull    5000 cm   overrides: NONE
+  grass_medium_01_small_a_LOD0  14.400 /10m2   cull    5000 cm   overrides: NONE
+  grass_medium_01_mid_b_LOD0   9.600 /10m2   cull    5000 cm   overrides: NONE
+
+  4 variety(ies), densities sum to 120.0
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_GroundClutter --expect-varieties 2 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_GroundClutter  [LandscapeGrassType]
+
+  SM_Boulder05a                0.900 /10m2   cull    7000 cm   overrides: NONE
+  SM_River_Rock_01             0.600 /10m2   cull    7000 cm   overrides: NONE
+
+  2 variety(ies), densities sum to 1.5
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_Blueberry --expect-varieties 8 --timeout 60 rc=0 dt=60s
+  - B9EA97A54A424C953E9721A67D49E092 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+/Game/Foliage/GT_alpine_8k_Blueberry  [LandscapeGrassType]
+
+  Blueberry_01                 1.680 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_01_nowind
+  Blueberry_02                 1.440 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_02_nowind
+  Blueberry_03                 1.440 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_03_nowind
+  Blueberry_04                 1.200 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_04_nowind
+  Blueberry_05                 0.960 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_05_nowind
+  Blueberry_06                 2.160 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_06_nowind
+  Blueberry_07                 1.680 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_07_nowind
+  Blueberry_08                 1.440 /10m2   cull    4500 cm   overrides: MI_MI_Blueberry_08_nowind
+
+  8 variety(ies), densities sum to 12.0
+
+--- stderr ---
+

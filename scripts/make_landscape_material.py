@@ -3778,11 +3778,24 @@ def _grass_cull_cm(sp):
             "at 12 tufts/m2 is about 5.4 billion instances."
             .format(sp.get("name"), v))
     v = float(v)
-    if not (0.0 < v <= 250.0) or v != v:
+    _max = import_heightmap.GRASS_CULL_MAX_M          # ONE definition (n-n 24)
+    if not (0.0 < v <= _max) or v != v:
         raise ValueError(
             "grass species {0!r} has cull_distance_m {1} m; it must be in "
-            "(0, 250]. R11 locks Meadow at 50 m and measured raising it "
-            "as strictly worse.".format(sp.get("name"), v))
+            "(0, {2}]. R11 locks Meadow at 50 m; the ceiling is the streaming "
+            "range and the disc guard bounds the count."
+            .format(sp.get("name"), v, _max))
+    # GRASS DISC GUARD, the same one the validator applies (2026-09-27):
+    # pi*cull^2*density/10 instances in the cull disc.
+    d = sp.get("density_per_10m2")
+    if isinstance(d, (int, float)) and not isinstance(d, bool) and d > 0:
+        disc = math.pi * v * v * float(d) / 10.0
+        if disc > import_heightmap.GRASS_DISC_MAX_INSTANCES:
+            raise ValueError(
+                "grass species {0!r}: cull {1} m x density {2} per 10 m2 = "
+                "{3:,.0f} instances in the cull disc, over the guard of "
+                "{4:,.0f}.".format(sp.get("name"), v, d, disc,
+                                     import_heightmap.GRASS_DISC_MAX_INSTANCES))
     return v * 100.0
 
 
@@ -3959,6 +3972,15 @@ def main(argv=None):
     p.add_argument("--recipe", default=DEFAULT_RECIPE)
     p.add_argument("--timeout", type=float, default=6.0)
     p.add_argument("--assign", action="store_true")
+    p.add_argument("--build-level", default=None,
+                   help="level the gate must find open INSTEAD of the recipe's "
+                        "landscape.level_path -- for rebuilding the material ASSET "
+                        "while a light level is open. Refused with --assign: "
+                        "assignment needs the recipe's own world. Added 2026-09-27 "
+                        "(Brief 7 P3b): the 797k-tree Alpine8K editor sits at "
+                        "25 GB private on this 31.4 GB host and leaves no room for "
+                        "a shader-compiling rebuild; M_Alpine8K is already assigned "
+                        "and the rebuild is in place at the same path.")
     try:
         args = p.parse_args(argv)
     except SystemExit as exc:
@@ -4128,6 +4150,16 @@ def main(argv=None):
         # on this path runs _validate_landscape, so gate_level validates
         # its own expected value (fail closed on an unusable expectation).
         want_level = (recipe.get("landscape") or {}).get("level_path")
+        if args.build_level:
+            if args.assign:
+                print("REFUSE: --build-level cannot be combined with --assign: "
+                      "assignment binds the material to the landscape of the "
+                      "recipe's own world, which is not the level open here.")
+                return 6
+            print("  --build-level {0!r}: the gate asserts THIS level; the "
+                  "recipe's {1!r} is not required open for an in-place asset "
+                  "rebuild without assignment".format(args.build_level, want_level))
+            want_level = args.build_level
         ok_level, detail = verify_landscape.gate_level(
             remote_exec, remote, node["node_id"], want_level, _lvl_runner)
         if not ok_level:

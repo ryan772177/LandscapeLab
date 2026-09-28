@@ -665,6 +665,20 @@ _COLLISION_KEYS = {"enabled", "profile", "navigable_geometry", "capsule"}
 _CAPSULE_KEYS = {"radius_cm", "z_min_cm", "z_max_cm", "basis"}
 
 
+# GRASS DISC GUARD ceiling: instances one grass species may put in its own
+# cull disc (pi*cull_m^2*density_per_10m2/10). 150,000 = ~1.6x the ruled
+# Meadow disc (94,248 at 50 m / 120 per 10 m2, R11), so every shipped species
+# passes with room and a 512 m far tier is bounded to ~1.8 per 10 m2. Added
+# 2026-09-27 (Brief 7 P3b) with the cull ceiling's move from 250 to 512 m.
+GRASS_DISC_MAX_INSTANCES = 150000.0
+# The cull ceiling, ONE definition: make_landscape_material._grass_cull_cm reads
+# both constants from here (non-negotiable 24 -- the validator and the builder
+# must not be able to disagree about what a legal grass cull is; on 2026-09-27
+# they did, for exactly one run, when the validator moved to 512 and the
+# builder's own copy still said 250).
+GRASS_CULL_MAX_M = 512.0
+
+
 def _validate_collision(sp, tag, system):
     """v1.23. `collision` is REQUIRED on every INSTANCED species.
 
@@ -1327,15 +1341,43 @@ def _validate_foliage(f, recipe):
             # over-reach. R11 locks Meadow at 50 m and measured raising
             # it as strictly worse, and 250 m is already ~24x that cost.
             cv = sp.get("cull_distance_m")
-            if not _is_num(cv) or not 0.0 < cv <= 250.0:
+            if not _is_num(cv) or not 0.0 < cv <= GRASS_CULL_MAX_M:
                 e.append("{0}.cull_distance_m is REQUIRED for "
-                         "system='grass' and must be in (0, 250] metres; "
+                         "system='grass' and must be in (0, " + str(GRASS_CULL_MAX_M) + "] metres; "
                          "got {1!r}. Omitting it does not mean 'engine "
                          "default' — the builder substitutes 12000.0 m, "
                          "which at 12 tufts/m2 is ~5.4 billion instances "
                          "and is how this project lost the GPU to a TDR "
-                         "timeout once already. R11 locks Meadow at 50 m."
+                         "timeout once already. R11 locks Meadow at 50 m; "
+                         "512 m is the streaming range (perception."
+                         "_cull_ceiling), and the grass DISC GUARD bounds "
+                         "the count a cull can reach."
                          .format(tag, cv))
+            # GRASS DISC GUARD (Brief 7 P3b, 2026-09-27). The TDR class the
+            # cull bound exists for is a COUNT, not a distance: pi*cull^2*
+            # density is what the engine spawns around the camera. Raising
+            # the distance ceiling from 250 to 512 m (the streaming range,
+            # so a far tier of ground cover can represent the 50-512 m band
+            # the perception block records as unrepresented) is only safe
+            # with the count bounded here. Meadow's ruled 50 m / 120 per
+            # 10 m2 = 94,248 (R11's own figure) passes; a 512 m species must
+            # stay under ~1.8 per 10 m2 to pass (MeadowFar's 0.6 = 49,413,
+            # 3x headroom); the 12 km default that
+            # hung the GPU would read 5.4 billion and be refused twice.
+            dv = sp.get("density_per_10m2")
+            if _is_num(cv) and _is_num(dv) and cv > 0.0 and dv > 0.0:
+                disc = math.pi * cv * cv * dv / 10.0
+                if disc > GRASS_DISC_MAX_INSTANCES:
+                    e.append("{0}: cull_distance_m {1} x density_per_10m2 "
+                             "{2} = {3:,.0f} instances in the cull disc "
+                             "(pi*cull^2*density/10), over the grass disc "
+                             "guard of {4:,.0f}. Lower the density or the "
+                             "cull; do not raise the guard to silence "
+                             "this -- Meadow at its ruled 50 m / 120 is "
+                             "94,248 and that is the calibrated cost "
+                             "(R11)."
+                             .format(tag, cv, dv, disc,
+                                     GRASS_DISC_MAX_INSTANCES))
         elif "density_per_10m2" in sp:
             e.append("{0}.density_per_10m2 applies only to "
                      "system='grass'".format(tag))

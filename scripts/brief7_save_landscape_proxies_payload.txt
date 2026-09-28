@@ -1,0 +1,81 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+# SAVE THE LANDSCAPE PROXIES so their per-component grass-type list follows
+# the material (Brief 7 P3b, 2026-09-27). A game world never re-derives that
+# list from the material -- ULandscapeComponent::UpdateGrassTypes is called
+# only for editor worlds (LandscapeSubsystem.cpp:806-818) -- while a TRUE
+# editor save of a proxy runs ALandscapeProxy::PreSave -> BuildGrassMaps()
+# (Landscape.cpp:4265-4290), which refreshes NamedGrassTypes from
+# M_Alpine8K and builds the maps. Measured before this payload existed:
+# -game GPUSceneInstanceCount tail 49,863 with and without the new grass
+# types, i.e. NO landscape grass in -game at all.
+# Same chunked idiom as scripts/save_foliage_actors.py (only_dirty=False:
+# the in-memory grass-type update does not mark the package dirty).
+BATCH = __BATCH__
+APPLY = __APPLY__
+_out = {"ok": False, "error": None, "proxies": 0, "landscapes": 0, "packages": 0,
+        "batches": 0, "saved_ok": 0, "batch_failures": [], "dirty_before": None,
+        "dirty_after": None, "grass_types_sample_before": None,
+        "grass_types_sample_after": None}
+try:
+    _els = _u.EditorLoadingAndSavingUtils
+    _out["dirty_before"] = len(_els.get_dirty_content_packages())
+    _sub = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _seen = {}
+    _sample = None
+    for _a in _sub.get_all_level_actors():
+        if isinstance(_a, _u.LandscapeStreamingProxy):
+            _out["proxies"] += 1
+        elif isinstance(_a, _u.Landscape):
+            _out["landscapes"] += 1
+        else:
+            continue
+        if _sample is None and isinstance(_a, _u.LandscapeStreamingProxy):
+            _sample = _a
+        try:
+            _p = _a.get_package()
+        except Exception:
+            _p = None
+        if _p is not None:
+            _seen[_p.get_path_name()] = _p
+
+    def _grass_sample(_actor):
+        # best-effort read-back of one component's grass-type list (rule 12);
+        # None = accessor not reflected, which is reported, not hidden.
+        try:
+            _comps = _actor.get_components_by_class(_u.LandscapeComponent)
+            if not _comps:
+                return {"components": 0}
+            _c = _comps[0]
+            _gt = None
+            for _name in ("get_grass_types", "get_grass_types_bp"):
+                if hasattr(_c, _name):
+                    _gt = getattr(_c, _name)()
+                    break
+            return {"components": len(_comps), "actor": str(_actor.get_actor_label()),
+                    "grass_types": None if _gt is None else
+                    [str(_t.get_path_name()).split(".")[0] for _t in _gt if _t]}
+        except Exception as _ge:
+            return {"error": str(_ge)[:160]}
+
+    if _sample is not None:
+        _out["grass_types_sample_before"] = _grass_sample(_sample)
+    _pkgs = list(_seen.values())
+    _out["packages"] = len(_pkgs)
+    if APPLY and _pkgs:
+        for _i in range(0, len(_pkgs), BATCH):
+            _chunk = _pkgs[_i:_i + BATCH]
+            _out["batches"] += 1
+            _ok = _els.save_packages(_chunk, False)
+            if _ok:
+                _out["saved_ok"] += len(_chunk)
+            else:
+                _out["batch_failures"].append({"first": _i, "count": len(_chunk)})
+    if _sample is not None:
+        _out["grass_types_sample_after"] = _grass_sample(_sample)
+    _out["dirty_after"] = len(_els.get_dirty_content_packages())
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:400])
+print("__LL__" + _json.dumps(_out, default=str))

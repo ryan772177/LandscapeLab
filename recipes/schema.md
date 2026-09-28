@@ -592,7 +592,7 @@ validation error rather than an ignored field:
 | Key | Type | Notes |
 |-----|------|-------|
 | `density_per_10m2` | float | Engine unit, passed through unchanged. NOT converted from `density_per_hectare`, and grass does NOT draw from the persistent-instance budget — nothing is stored, so there is nothing to cap. |
-| `cull_distance_m` | float | End cull distance. Start cull is derived at 75% of it. |
+| `cull_distance_m` | float | End cull distance, (0, 512] m. Start cull is derived at 75% of it. **AMENDED 2026-09-27 (Brief 7 P3b):** the ceiling was 250 m; it is now the 512 m streaming range, and the validator adds a GRASS DISC GUARD -- `pi*cull^2*density_per_10m2/10 <= 150,000` instances -- because the GPU-hang class the ceiling guards is a count, not a distance (Meadow at its ruled 50 m / 120 is 94,248). A far tier such as `MeadowFar` (512 m, 0.6 per 10 m2 = 49,400) is what the raise is for. |
 
 `weight_share` is meaningless for `grass` and must be absent: there is no
 shared instance budget to take a share of. `place_foliage.py` skips

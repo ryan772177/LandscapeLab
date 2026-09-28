@@ -38171,3 +38171,87 @@ with unrelated commits is a no-op for pack size.
 Leftover: GitHub made `seed-research` the default branch (first ref ever pushed) and refuses to delete
 it; `seed-hero` and `seed-_verify` are gone. Ryan switches the default to `main` in Settings, then
 `git push origin --delete seed-research`.
+
+
+2026-09-27c | BRIEF 7 P3b (runtime ground clutter) -- delivered through the GRASS SYSTEM, not a PCG graph, and
+the night's real finding: the game had NO landscape grass at all until the landscape proxies were re-saved.
+
+DECISION (CC, under Ryan's "continue through phase 4"): the brief's "PCG runtime hierarchical graph" is
+realised as four `system: grass` species (MeadowFar on the Grass layer; ForestLitter / ForestShrub /
+ForestStones on the ForestFloor layer -- "forest zones first"). PCG authoring from Python was proven only as
+a 3-node spike whose cost was never captured (2026-09-21) and Electric Dreams' PCGDemo_Forest is 410 nodes;
+the grass system already has a builder, a validator, an independent read-back (R-CULLDERIVE) and the ONE
+direct instrument (R11: `grass.DumpGrassData -bygrasstype`). Runtime generation near the camera,
+hierarchical densities and HISM output -- the technique -- is what the grass system does. Deviations stated
+in the recipe (foliage._p3b_2026_09_27): "meadow grass to 512 m on the fine grid" is a COARSE far tier
+(FieldGrass clumps at 0.6 per 10 m2 to 512 m; the fine grid at 12 tufts/m2 to 512 m would be 9.9 M
+instances); "Nanite clutter cull 0" has no grass equivalent (EndCullDistance 0 generates nothing).
+
+THE NIGHT, in the order it happened, each with its root cause:
+
+1. The P2 clutter inventory named DragonCave / Atlantis_Ruins meshes that are NOT ON DISK ("asset does not
+   exist" x6, run 1). The packs are gitignored and absent from Content/; the inventory was registry-only and
+   never loaded a mesh; ASSETS.md still listed both as on disk. Swapped to KiteDemo-only meshes; ASSETS rows
+   corrected. RULE: a registry row proves a mesh EXISTED when the registry was dumped, nothing more; load it
+   (or `find` it) before a recipe names it.
+
+2. Free RAM 0.7-1.7 GB with the Alpine8K editor open (runs 2-5), windowed OR offscreen, warm DDC or cold:
+   the 797k-tree world puts the editor at 25-26 GB PRIVATE (19 GB working set, the rest paged) on a
+   31.4 GB host, with kernel pools 2.3 GB, cache 1.8 GB and GPU shared 2.4 GB completing the machine. The
+   2026-09-16 "editor 18 GB / 10.6 GB free" figure is HISTORY as of the P3a density. First read as a cold
+   DDC rebuild (the operator's cleanup had deleted LandscapeLab/DerivedDataCache and the log showed 342
+   "AssetCompile memory estimate is greater than available" lines) -- partly true, but a warm-DDC relaunch
+   measured the same 25.4 GB. FIX for the material build: make_landscape_material needs the loaded world
+   only for --assign (payload :3727) and M_Alpine8K is assigned since 2026-09-25, so the rebuild ran on
+   /Game/Canyon (25 external actors; editor 5.4 GB, 15.9 GB free) with the new `--build-level` on the
+   builder's rule-11 gate (refused together with --assign). RULE: a shader-compiling rebuild does not run
+   beside this world; build the ASSET on a light level, take stills on the real one.
+
+3. The builder carried its OWN copy of the grass cull ceiling ("(0, 250]", "bounded identically to the
+   validator's rule -- non-negotiable 24") and the two disagreed for one run once the validator moved to
+   512 m. R-CULLDERIVE REJECTED already says grep the field's consumers; I amended one of two. Now ONE
+   definition: import_heightmap.GRASS_CULL_MAX_M / GRASS_DISC_MAX_INSTANCES, read by both. The disc guard
+   (pi*cull^2*density_per_10m2/10 <= 150,000) is what makes 512 m safe: the GPU-hang class the old ceiling
+   guarded is a COUNT (Meadow's ruled disc is 94,248), not a distance.
+
+4. THE FINDING. After the rebuild, -game GPU p90 read 12.363 / 12.707 / 9.588 ms against P3a's 12.377 /
+   12.689 / 9.62 -- unchanged for +65k instances in the forest_floor disc. The CSV profiler's
+   GPUSceneInstanceCount settled at 49,863 in both captures; Meadow alone would be ~94k in its disc. So the
+   game world spawns NO landscape grass, and never did: every -game perf number since the grass system was
+   adopted (2026-08-08) was taken without the meadow. Engine (UE 5.8 Runtime/Landscape):
+     - LandscapeSubsystem.cpp:806-818  Component->UpdateGrassTypes() -- the per-component grass-type list
+       is refreshed from the material ONLY for a non-game world; a game world uses the list SAVED on each
+       ULandscapeComponent (NamedGrassTypes).
+     - LandscapeSubsystem.cpp:843  grass-map generation starts in a game world only with
+       grass.GrassMap.UseRuntimeGeneration; otherwise it reads the GrassData serialised in the proxies
+       (IsGrassMapOutdated is WITH_EDITOR, LandscapeGrass.cpp:1167).
+     - Landscape.cpp:4265-4290  ALandscapeProxy::PreSave on a TRUE editor save calls BuildGrassMaps(),
+       which refreshes the list and builds the maps.
+   The landscape proxies had never been re-saved after a grass-type change, so their lists were empty (or
+   pre-8K). FIX, two parts, both read back: (a) grass.GrassMap.UseRuntimeGeneration=1 in [SystemSettings]
+   (maps come from the material each session, editor and -game alike; "LogConfig: Set CVar" + the
+   re-query echo in the -game log); (b) scripts/brief7_save_landscape_proxies_payload.txt saves all 256
+   LandscapeStreamingProxy + Landscape packages from the editor (199 s, batches of 32, 0 dirty after; the
+   sampled component's list reads all 7 types). RULE: a grass-type change is not shipped until the landscape
+   proxies are re-saved; the cvar alone does not do it. RULE (rule 13's shape): a perf number that does not
+   move when the content moves is measuring the instrument -- the instance COUNT beside the ms is what made
+   the silence visible.
+
+5. Four stills lost to argparse: `--loc -166400.0,...` -- a negative first coordinate as its own token
+   reads as an option ("argument --loc: expected one argument"). The '=' form. Re-shot.
+
+6. The "treeline" still is a pre-existing defect, P3a's `treeline_look_p3.png` is the same picture: the
+   traced camera sits hundreds of metres above the terrain and no cell is streamed in. Not P3b's; recorded
+   for the P4 station pass (trace vs heightmap disagreement must refuse, not shoot).
+
+What the run PROVED: material EXACT/compiled, 7 grass types read back by read_grass_type.py (2/4/8/1/2/4/2
+varieties), `grass.DumpGrassData -bygrasstype` = ForestLitter/Shrub/Stones on 70 components each, the four
+Grass-layer types on 79 (non-zero weights, R11's instrument), Look and bench profiles read back, editor
+VRAM peak 7,234 MiB, stills at forest_floor / forest_floor_ground / plaza / treeline.
+
+MEASURED (the D5 cost the brief owed since 2026-09-21), -game GPU p90 / VRAM peak, R-AESTHETIC-1 recorded:
+    station        P3a / stale maps    P3b final    delta
+    forest_floor   12.363 ms           12.904 ms    +0.54    (GPUSceneInstanceCount tail 49,863 -> 57,126)
+    open_max       12.707 ms           13.057 ms    +0.35
+    plaza           9.588 ms            9.940 ms    +0.35    VRAM <= 5,276 MiB (abort 13,312)
+The brief's only clause -- halve the smallest class if forest_floor exceeds 40 ms -- is nowhere near.

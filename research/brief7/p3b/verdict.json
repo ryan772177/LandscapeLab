@@ -1,0 +1,85 @@
+{
+ "started": "2026-09-28T00:02:50",
+ "phases": {
+  "guard": {
+   "rc": 0,
+   "tail": "REPO_ROOT : C:\\Users\\Admin\\UE5LandscapePipeline\nlock file : C:\\Users\\Admin\\UE5LandscapePipeline\\.heavy-op.lock\nmemory    : 22.6 GB free of 31.4 GB\nheld by   : nobody"
+  },
+  "launch": {
+   "pids": [
+    26164
+   ],
+   "ready_s": 64
+  },
+  "ram_settle": {
+   "free_gb": 0.88,
+   "shader_workers": 0,
+   "editor_ws_gb": 18.91,
+   "waited_s": 2
+  },
+  "level_check": {
+   "ok": true,
+   "error": null,
+   "world_path": "/Game/Alpine8K.Alpine8K",
+   "world_name": "Alpine8K",
+   "is_alpine8k": true,
+   "grass_output_inputs": [
+    [
+     "GroundClutter",
+     "/Game/Foliage/GT_alpine_8k_GroundClutter"
+    ],
+    [
+     "Meadow",
+     "/Game/Foliage/GT_alpine_8k_Meadow"
+    ],
+    [
+     "Blueberry",
+     "/Game/Foliage/GT_alpine_8k_Blueberry"
+    ],
+    [
+     "MeadowFar",
+     "/Game/Foliage/GT_alpine_8k_MeadowFar"
+    ],
+    [
+     "ForestLitter",
+     "/Game/Foliage/GT_alpine_8k_ForestLitter"
+    ],
+    [
+     "ForestShrub",
+     "/Game/Foliage/GT_alpine_8k_ForestShrub"
+    ],
+    [
+     "ForestStones",
+     "/Game/Foliage/GT_alpine_8k_ForestStones"
+    ]
+   ]
+  }
+ },
+ "aborted": null,
+ "notes": [
+  "stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 0.82 GB"
+ ],
+ "mode": {
+  "offscreen": false,
+  "stills_only": true,
+  "skip_perf": true,
+  "build_map": null
+ },
+ "fence_tag": "pre-p3b-clutter-20260927",
+ "pre_shas": {
+  "LandscapeLab/Content/Materials/M_Alpine8K.uasset": "6fadc78a410475457425d436b811319ed04e9155",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_Meadow.uasset": "c76a5b4c0c2d9d027c1aae07a235f4918b138540",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_GroundClutter.uasset": "eba17200fb6dfe5fad92c1a3ac7618eb50f8de73",
+  "LandscapeLab/Content/Foliage/GT_alpine_8k_Blueberry.uasset": "e192f5b9dd8d0436717349d691279edadc7b018c"
+ },
+ "pre_gt_all": [
+  "GT_alpine_8k_Blueberry.uasset",
+  "GT_alpine_8k_ForestLitter.uasset",
+  "GT_alpine_8k_ForestShrub.uasset",
+  "GT_alpine_8k_ForestStones.uasset",
+  "GT_alpine_8k_GroundClutter.uasset",
+  "GT_alpine_8k_Meadow.uasset",
+  "GT_alpine_8k_MeadowFar.uasset"
+ ],
+ "pre_gt_untracked": []
+}

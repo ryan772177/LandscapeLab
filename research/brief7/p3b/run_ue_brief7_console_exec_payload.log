@@ -1,0 +1,52 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"] rc=0 dt=26s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "issued": [
+    "grass.FlushCache"
+  ]
+}
+(25.7 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"] rc=0 dt=25s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "issued": [
+    "grass.DumpGrassData -bygrasstype"
+  ]
+}
+(25.4 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"] rc=0 dt=25s
+  - 7E726CC242D8F7B354A0FEABE53305DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "issued": [
+    "grass.FlushCache"
+  ]
+}
+(25.3 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"] rc=0 dt=25s
+  - 7E726CC242D8F7B354A0FEABE53305DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "issued": [
+    "grass.DumpGrassData -bygrasstype"
+  ]
+}
+(25.4 s)
+
+--- stderr ---
+

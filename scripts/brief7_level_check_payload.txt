@@ -1,0 +1,32 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+# Standing rule 11: ASK WHICH LEVEL is loaded before any shot or mutation.
+# Read-only. Reports the editor world's path/name and whether it is Alpine8K
+# ("Alpine8K" excludes the pre-8K "/Game/Alpine"). Also reports the recipe
+# grass types currently referenced by M_Alpine8K's LandscapeGrassOutput so a
+# rebuild can be judged against what was there before.
+_out = {"ok": False, "error": None}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["world_path"] = _w.get_path_name() if _w else None
+    _out["world_name"] = _w.get_name() if _w else None
+    _out["is_alpine8k"] = bool(_w and "Alpine8K" in _w.get_path_name())
+    _gt = []
+    try:
+        _mat = _u.EditorAssetLibrary.load_asset("/Game/Materials/M_Alpine8K")
+        if _mat is not None:
+            for _e in _u.MaterialEditingLibrary.get_material_expressions(_mat) if hasattr(_u.MaterialEditingLibrary, "get_material_expressions") else []:
+                if isinstance(_e, _u.MaterialExpressionLandscapeGrassOutput):
+                    for _gi in (_e.get_editor_property("grass_types") or []):
+                        _t = _gi.get_editor_property("grass_type")
+                        _gt.append([str(_gi.get_editor_property("name")),
+                                    _t.get_path_name().split(".")[0] if _t else None])
+    except Exception as _ge:
+        _out["grass_output_error"] = str(_ge)[:200]
+    _out["grass_output_inputs"] = _gt
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:300])
+print("__LL__" + _json.dumps(_out, default=str))

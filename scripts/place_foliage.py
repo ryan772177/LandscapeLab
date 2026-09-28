@@ -129,7 +129,13 @@ from make_landscape_material import mask_plan  # noqa: E402
 # before that capture and is not re-measurable until it is placed post-merge),
 # so its derived cull cannot be computed and it MUST be excluded explicitly
 # rather than silently fall back -- which is what check_derived_culls asserts.
-GROUND_COVER = {"Meadow", "Blueberry", "GroundClutter"}
+# Brief 7 Phase 3b (2026-09-27): the four runtime-clutter grass species are
+# the same class -- grass-system carpets on the Grass / ForestFloor layers at
+# their authored culls (MeadowFar 512 m is the coarse far tier that IS the
+# representation of the 50-512 m band). None has a measured placed height in
+# the 2026-09-05 bench, so they are excluded explicitly, like GroundClutter.
+GROUND_COVER = {"Meadow", "Blueberry", "GroundClutter",
+                "MeadowFar", "ForestLitter", "ForestShrub", "ForestStones"}
 
 # THE FLOOR, as a fraction of the ruled count. A plan that places below
 # this fraction of what the ruling asked for is REFUSED (D-3, gate F-1 /

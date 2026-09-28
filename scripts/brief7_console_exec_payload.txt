@@ -1,0 +1,18 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+# Issue a list of console commands in the editor and return. CMDS is a Python
+# list literal substituted by ue_exec --set CMDS=[...] (the driver passes it
+# from python subprocess list args, so PowerShell quote-stripping -- R-UEEXEC --
+# never sees it). Console OUTPUT is not returned here: it lands in
+# LandscapeLab/Saved/Logs/LandscapeLab.log, which the host reads afterwards.
+_cmds = __CMDS__
+_out = {"ok": False, "error": None, "issued": []}
+try:
+    for _c in _cmds:
+        _u.SystemLibrary.execute_console_command(None, _c)
+        _out["issued"].append(_c)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:300])
+print("__LL__" + _json.dumps(_out, default=str))

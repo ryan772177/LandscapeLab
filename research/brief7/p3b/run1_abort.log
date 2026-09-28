@@ -1,0 +1,17 @@
+[P3B 22:05:15] run: python.exe resource_guard.py
+[P3B 22:05:15]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : WINDOWED -- the viewport Present path that took the GPU on 2026-09-12 is live
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 22:05:23] launched PIDs [28772]; waiting for bootstrap
+[P3B 22:06:59] editor ready after 96 s
+[P3B 22:06:59] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 22:07:25]   -> rc=0 in 25s
+[P3B 22:07:25] level /Game/Alpine8K.Alpine8K; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry']]
+[P3B 22:07:25] run: python.exe measure_clutter_meshes.py --group brief7_p3b_clutter --timeout 25 --mesh /Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01 --mesh /Game/DragonCave/Meshes/SM_LeafPile01 --mesh /Game/DragonCave/Meshes/SM_TreeBranch09 --mesh /Game/Atlantis_Ruins/Meshes/SM_Sticks_Medium_00 --mesh /Game/Atlantis_Ruins/Meshes/SM_Sticks_Small_10 --mesh /Game/DragonCave/Meshes/SM_StoneDebris01_ --mesh /Game/Atlantis_Ruins/Meshes/SM_Rocks_04
+[P3B 22:07:50]   -> rc=4 in 26s
+[P3B 22:07:50] ABORT: measure_clutter_meshes rc=4 (a mesh failed the pivot contract or could not be measured)
+[P3B 22:07:51] killed PID 28772
+[P3B 22:07:56] P3B ABORT
+[P3B 22:08:01] P3B ABORT (exception) SystemExit(3)

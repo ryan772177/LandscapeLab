@@ -1,0 +1,180 @@
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look rc=0 dt=26s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "profile": "look",
+  "rig_editor_hidden": [
+    "HeroStage_Key",
+    "HeroStage_Fill",
+    "HeroStage_Rim"
+  ],
+  "ppv_look_enabled": true,
+  "sun_pitch": -35.0,
+  "sun_elevation_deg": 35.0,
+  "fog": {
+    "fog_density": 0.001500000013038516,
+    "start_distance": 15000.0
+  },
+  "atmosphere": {
+    "aerial_pespective_view_distance_scale": 1.0,
+    "mie_scattering_scale": 0.009999999776482582,
+    "rayleigh_scattering_scale": 0.03310000151395798
+  },
+  "sg_applied": {
+    "ViewDistanceQuality": 3,
+    "AntiAliasingQuality": 3,
+    "ShadowQuality": 3,
+    "GlobalIlluminationQuality": 3,
+    "ReflectionQuality": 3,
+    "PostProcessQuality": 3,
+    "TextureQuality": 3,
+    "EffectsQuality": 3,
+    "FoliageQuality": 3,
+    "ShadingQuality": 3
+  },
+  "readback": {
+    "sg.ShadowQuality": 3.0,
+    "sg.PostProcessQuality": 3.0,
+    "r.AntiAliasingMethod": 4.0
+  }
+}
+(25.6 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=bench rc=0 dt=25s
+  - 4D6A42474ED95842D1B6539965E4725D (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "profile": "bench",
+  "rig_editor_hidden": [
+    "HeroStage_Key",
+    "HeroStage_Fill",
+    "HeroStage_Rim"
+  ],
+  "ppv_look_enabled": false,
+  "sun_pitch": -12.0,
+  "sun_elevation_deg": 12.0,
+  "fog": {
+    "fog_density": 0.0041600000113248825,
+    "start_distance": 0.0
+  },
+  "atmosphere": {
+    "aerial_pespective_view_distance_scale": 1.0,
+    "mie_scattering_scale": 0.009999999776482582,
+    "rayleigh_scattering_scale": 0.03310000151395798
+  },
+  "sg_applied": {
+    "ViewDistanceQuality": 1,
+    "AntiAliasingQuality": 1,
+    "ShadowQuality": 1,
+    "GlobalIlluminationQuality": 3,
+    "ReflectionQuality": 3,
+    "PostProcessQuality": 1,
+    "TextureQuality": 1,
+    "EffectsQuality": 1,
+    "FoliageQuality": 1,
+    "ShadingQuality": 1
+  },
+  "readback": {
+    "sg.ShadowQuality": 1.0,
+    "sg.PostProcessQuality": 1.0,
+    "r.AntiAliasingMethod": 4.0
+  }
+}
+(25.3 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look rc=0 dt=25s
+  - 7E726CC242D8F7B354A0FEABE53305DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "profile": "look",
+  "rig_editor_hidden": [
+    "HeroStage_Key",
+    "HeroStage_Fill",
+    "HeroStage_Rim"
+  ],
+  "ppv_look_enabled": true,
+  "sun_pitch": -35.0,
+  "sun_elevation_deg": 35.0,
+  "fog": {
+    "fog_density": 0.001500000013038516,
+    "start_distance": 15000.0
+  },
+  "atmosphere": {
+    "aerial_pespective_view_distance_scale": 1.0,
+    "mie_scattering_scale": 0.009999999776482582,
+    "rayleigh_scattering_scale": 0.03310000151395798
+  },
+  "sg_applied": {
+    "ViewDistanceQuality": 3,
+    "AntiAliasingQuality": 3,
+    "ShadowQuality": 3,
+    "GlobalIlluminationQuality": 3,
+    "ReflectionQuality": 3,
+    "PostProcessQuality": 3,
+    "TextureQuality": 3,
+    "EffectsQuality": 3,
+    "FoliageQuality": 3,
+    "ShadingQuality": 3
+  },
+  "readback": {
+    "sg.ShadowQuality": 3.0,
+    "sg.PostProcessQuality": 3.0,
+    "r.AntiAliasingMethod": 4.0
+  }
+}
+(25.3 s)
+
+--- stderr ---
+
+### C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\ue_exec.py C:\Users\Admin\UE5LandscapePipeline\scripts\brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=bench rc=0 dt=25s
+  - 7E726CC242D8F7B354A0FEABE53305DE (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "ok": true,
+  "error": null,
+  "profile": "bench",
+  "rig_editor_hidden": [
+    "HeroStage_Key",
+    "HeroStage_Fill",
+    "HeroStage_Rim"
+  ],
+  "ppv_look_enabled": false,
+  "sun_pitch": -12.0,
+  "sun_elevation_deg": 12.0,
+  "fog": {
+    "fog_density": 0.0041600000113248825,
+    "start_distance": 0.0
+  },
+  "atmosphere": {
+    "aerial_pespective_view_distance_scale": 1.0,
+    "mie_scattering_scale": 0.009999999776482582,
+    "rayleigh_scattering_scale": 0.03310000151395798
+  },
+  "sg_applied": {
+    "ViewDistanceQuality": 1,
+    "AntiAliasingQuality": 1,
+    "ShadowQuality": 1,
+    "GlobalIlluminationQuality": 3,
+    "ReflectionQuality": 3,
+    "PostProcessQuality": 1,
+    "TextureQuality": 1,
+    "EffectsQuality": 1,
+    "FoliageQuality": 1,
+    "ShadingQuality": 1
+  },
+  "readback": {
+    "sg.ShadowQuality": 1.0,
+    "sg.PostProcessQuality": 1.0,
+    "r.AntiAliasingMethod": 4.0
+  }
+}
+(25.4 s)
+
+--- stderr ---
+
