@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "src": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/hero_src/hero_base.blend",
+  "params": {
+    "fringe_length_scale": 1.15,
+    "fringe_clump_count": 6,
+    "fringe_gap_strength": 0.4,
+    "fringe_forward_pull": 0.02,
+    "fringe_zone_fwd": -0.15,
+    "fringe_zone_up_lo": -0.2,
+    "fringe_zone_up_hi": 0.05,
+    "part_close": 0.012,
+    "fringe_pull_ramp": 2.8,
+    "crown_lift": 0.012,
+    "crown_spike_noise": 0.01,
+    "side_length_scale": 1.35,
+    "ear_clearance": -0.018,
+    "temple_wing": 0.0,
+    "nape_length_scale": 1.3,
+    "layer_falloff": 0.12,
+    "clump_scale": 0.55,
+    "clump_count": 140,
+    "clump_index_block": 0,
+    "strand_noise_amp": 0.002,
+    "strand_noise_freq": 5.0,
+    "flyaway_density": 0.04,
+    "flyaway_amp": 0.01,
+    "tip_trim_variance": 0.6,
+    "global_length_scale": 1.0,
+    "global_sweep_x": 0.0,
+    "global_sweep_z": 0.0,
+    "sweep_ramp": 1.6,
+    "rot_up_deg": 14.0,
+    "rot_side_deg": -6.0,
+    "hem_tuck": 0.02,
+    "stray_clamp_m": 0.15,
+    "gravity_drop": 0.045,
+    "gravity_ramp": 2.0,
+    "face_repel": 1.0,
+    "face_repel_margin": 0.25,
+    "frame_up": "+z",
+    "frame_fwd": "-y",
+    "length_unit": 100.0,
+    "seed": 20260822
+  },
+  "unknown_params": [],
+  "label": "030 -- 028's TEXTURE AND LEAN on the hero, with its LENGTH multipliers dropped and gravity added. 029 rendered a flared mane: 028's length scales were tuned to bring a LONG pack groom under a 24 cm clamp, and the hero's authored hair is 12 cm at the top, so the clamp never bound and the lengthening ran free -- outward, because his strands follow the scalp normal. The reference is a shaggy layered cut that falls CLOSE to the head down to the jaw, so: lengths back toward 1.0, sides raised only enough to reach the jaw, the temple wing killed, the sides tucked in, and a real gravity drop doing the draping.",
+  "frame": {
+    "head": [
+      -0.025,
+      -2.09888,
+      169.24362
+    ],
+    "scalp_r": 9.29326,
+    "fit_resid_p90": 0.7084,
+    "roots": 48000,
+    "up": "+z",
+    "fwd": "-y",
+    "side": [
+      1.0,
+      0.0,
+      -0.0
+    ]
+  },
+  "length_params_scaled_by": 100.0,
+  "final_clamp": {
+    "curves_clamped": 11748,
+    "max_len_cm_before": 21.669,
+    "max_len_cm_after": 15.0
+  },
+  "face_repel": {
+    "points_in_zone_before": 1078,
+    "points_in_zone_after": 1040,
+    "strength": 1.0,
+    "margin_units": 2.3233,
+    "zone_source": "author_hero_hair.py face_zone_y_frac/face_zone_z_frac"
+  },
+  "stats": {
+    "curves": 48000,
+    "points": 576000,
+    "length_mul": {
+      "min": 0.3551,
+      "p50": 0.972,
+      "max": 2.398
+    },
+    "region_curve_counts": {
+      "crown": 14545,
+      "fringe": 17576,
+      "side": 14197,
+      "temple": 2264,
+      "nape": 622
+    },
+    "moved_mean_cm": 2.8016,
+    "moved_max_cm": 17.9043
+  },
+  "blend": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/hero_030.blend"
+}

@@ -1,0 +1,122 @@
+{
+  "iter": "010",
+  "params_file": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/params/iter_010.json",
+  "stages": {
+    "edit": {
+      "ok": true,
+      "stats": {
+        "curves": 94408,
+        "points": 375774,
+        "length_mul": {
+          "min": 0.1829,
+          "p50": 1.3192,
+          "max": 6.0
+        },
+        "region_curve_counts": {
+          "crown": 13563,
+          "fringe": 37318,
+          "side": 8756,
+          "temple": 2388,
+          "nape": 24915
+        },
+        "moved_mean_cm": 2.6709,
+        "moved_max_cm": 201.8898
+      },
+      "blend": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/iter_010.blend",
+      "stage": "edit",
+      "secs": 3.6
+    },
+    "export": {
+      "ok": true,
+      "src": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/iter_010.blend",
+      "out": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/exports/iter_010.abc",
+      "culled": true,
+      "census": {
+        "curves": 94408,
+        "under_2pts": 1210,
+        "over_stray_len": 1,
+        "stray_threshold_m": 0.45,
+        "max_len_m": 0.5977,
+        "note": "carried, not removed -- see docstring"
+      },
+      "pre_export": {
+        "curves": 94408,
+        "points": 375774,
+        "attributes": [
+          "position",
+          "curve_type",
+          "handle_type_left",
+          "handle_type_right",
+          "handle_right",
+          "handle_left",
+          "radius"
+        ]
+      },
+      "identity_transform": true,
+      "export_result": [
+        "FINISHED"
+      ],
+      "bytes": 13145128,
+      "stage": "export",
+      "secs": 2.7
+    },
+    "verify": {
+      "ok": true,
+      "failures": [],
+      "checks": {
+        "curve_drift": 0.0,
+        "attributes_lost": []
+      },
+      "stage": "verify",
+      "secs": 2.3
+    },
+    "measure": {
+      "fringe_reach_cm": 0.095,
+      "fringe_reach_p90_cm": 3.471,
+      "forehead_cover_pct": 56.29,
+      "crown_rise_cm": -2.111,
+      "silhouette_w_cm": 16.277,
+      "ear_cover_pct": 97.82,
+      "grade_ratio": 0.513,
+      "tip_scatter_cm": 0.5028,
+      "scalp_exposed_pct": 0.0,
+      "ok": true,
+      "stage": "measure",
+      "secs": 3.3
+    },
+    "render": {
+      "ok": true,
+      "tag": "iter010",
+      "objects": [
+        "01_Center part curtains"
+      ],
+      "render_radius": 0.00018,
+      "views": {
+        "front": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/renders\\iter010_front.png",
+        "left": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/renders\\iter010_left.png",
+        "threequarter": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/renders\\iter010_threequarter.png"
+      },
+      "source_radius": 0.436611,
+      "proxy_fit": {
+        "centre": [
+          0.00017,
+          -1.52098,
+          -0.00288
+        ],
+        "radius": [
+          0.08806,
+          0.11922,
+          0.09983
+        ],
+        "hairline_y": -1.56681,
+        "brow_y": -1.51681,
+        "front_z": 0.09681,
+        "ear_x": 0.08327,
+        "ear_y": -1.53681
+      },
+      "compute": "GPU (3 devices)",
+      "stage": "render",
+      "secs": 48.9
+    }
+  }
+}

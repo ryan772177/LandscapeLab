@@ -1,0 +1,112 @@
+{
+  "image": "_verify/20260822_agents/nape_03/preview_front.png",
+  "frame_px": [
+    888,
+    900
+  ],
+  "title_strip_px": 0,
+  "background_luma": 59.0,
+  "mask_frac": {
+    "clay": 0.2279,
+    "hair": 0.0804
+  },
+  "_bust_centre_x_px": 442,
+  "_face_top_floor_px": 20,
+  "face": {
+    "top_row": 189,
+    "chin_row": 532,
+    "height_px": 343,
+    "width_px": 252,
+    "centre_x_px": 433.0,
+    "neck_width_px": 56
+  },
+  "crown_lift_frac": 0.4198,
+  "fringe_descent_frac_of_face_h": {
+    "midline": 1.0408,
+    "quarter_L": 0.9825,
+    "quarter_R": 1.0379,
+    "temple_L": 1.0087,
+    "temple_R": 0.9621
+  },
+  "central_cover": {
+    "_denominator": "the middle 50% of face width -- only a fringe can put hair here, so this is the fringe axis and band_cover is the silhouette-width axis",
+    "forehead_0.00_0.15": 0.2053,
+    "brow_0.15_0.28": 0.0,
+    "eye_0.28_0.42": 0.0092
+  },
+  "band_cover": {
+    "forehead_0.00_0.15": 0.6387,
+    "brow_0.15_0.28": 0.4433,
+    "eye_0.28_0.42": 0.476,
+    "ear_0.30_0.62": 0.3004,
+    "jaw_0.70_0.95": 0.0969,
+    "_note": "LEGACY, face_top-relative. Kept for continuity with earlier runs and SUPERSEDED by anat_cover below -- face_top moves with the hair, so these bands slide."
+  },
+  "anat_cover": {
+    "jaw": 0.0951,
+    "ear": 0.1915,
+    "eye": 0.2209,
+    "brow": 0.484,
+    "forehead": 0.4781,
+    "crown": 0.9605
+  },
+  "anat_central": {
+    "eye": 0.0007,
+    "brow": 0.0107,
+    "forehead": 0.0211,
+    "crown": 0.7365
+  },
+  "anat_anchors": {
+    "chin_row": 532,
+    "face_w_px": 252,
+    "shoulder_w_px": 689,
+    "_u": "u = (chin_row - row) / shoulder_w",
+    "_edges": {
+      "jaw": [
+        0.03,
+        0.14
+      ],
+      "ear": [
+        0.14,
+        0.31
+      ],
+      "eye": [
+        0.21,
+        0.29
+      ],
+      "brow": [
+        0.29,
+        0.35
+      ],
+      "forehead": [
+        0.35,
+        0.47
+      ],
+      "crown": [
+        0.47,
+        0.7
+      ]
+    }
+  },
+  "anat_crown_height_u": 0.7068,
+  "width_profile": [
+    1.5873,
+    1.5952,
+    1.627,
+    1.6587,
+    1.6905,
+    1.7063,
+    1.6587,
+    1.6587,
+    1.4603,
+    1.2698,
+    1.2063,
+    1.127,
+    1.1032,
+    0.9762,
+    1.4603,
+    1.9206
+  ],
+  "edge_roughness": 73.4505,
+  "hair_area_over_face_area": 1.0263
+}

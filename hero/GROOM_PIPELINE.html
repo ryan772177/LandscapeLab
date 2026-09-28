@@ -1,0 +1,399 @@
+<title>Mannequin to Groom</title>
+<style>
+:root{
+  --ground:#F2F3F1; --surface:#FFFFFF; --raise:#E9ECE9;
+  --ink:#14171A; --muted:#5E6A66; --faint:#8B948F;
+  --rule:#D8DCD8; --rule-strong:#BFC6C1;
+  --accent:#2F5D50; --accent-soft:#E2ECE7;
+  --bad:#8C3A2B; --bad-soft:#F4E6E2;
+  --good:#2F5D50;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#16181A; --surface:#1D2124; --raise:#23282B;
+    --ink:#E7EBE8; --muted:#9AA5A0; --faint:#727C77;
+    --rule:#2C3235; --rule-strong:#3B4347;
+    --accent:#7FB3A0; --accent-soft:#1E2C28;
+    --bad:#D98A76; --bad-soft:#2E211E;
+    --good:#7FB3A0;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16181A; --surface:#1D2124; --raise:#23282B;
+  --ink:#E7EBE8; --muted:#9AA5A0; --faint:#727C77;
+  --rule:#2C3235; --rule-strong:#3B4347;
+  --accent:#7FB3A0; --accent-soft:#1E2C28;
+  --bad:#D98A76; --bad-soft:#2E211E;
+  --good:#7FB3A0;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 96px;
+  display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.rail{position:sticky;top:0;align-self:start;padding:56px 0 0;
+  font-size:13px;line-height:1.45}
+@media(max-width:900px){nav.rail{display:none}}
+nav.rail h2{font:600 11px/1 var(--sans);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+nav.rail ol{list-style:none;margin:0;padding:0;display:flex;
+  flex-direction:column;gap:9px}
+nav.rail a{color:var(--muted);text-decoration:none;display:flex;gap:9px}
+nav.rail a:hover,nav.rail a:focus-visible{color:var(--accent)}
+nav.rail .n{font:600 11px/1.5 var(--mono);color:var(--faint);
+  font-variant-numeric:tabular-nums}
+main{min-width:0;padding-top:56px}
+header.top{border-bottom:2px solid var(--ink);padding-bottom:26px;margin-bottom:14px}
+.eyebrow{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 16px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5vw,52px);
+  line-height:1.05;letter-spacing:-.018em;margin:0 0 16px;text-wrap:balance}
+.standfirst{font-size:18px;line-height:1.55;color:var(--muted);
+  max-width:62ch;margin:0}
+section{padding:40px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+h2{font-family:var(--serif);font-weight:600;font-size:27px;line-height:1.2;
+  letter-spacing:-.012em;margin:0 0 6px;text-wrap:balance;
+  display:flex;gap:14px;align-items:baseline}
+h2 .n{font:600 13px/1 var(--mono);color:var(--accent);
+  font-variant-numeric:tabular-nums;flex:none;padding-top:2px}
+h3{font:600 15px/1.35 var(--sans);letter-spacing:-.005em;margin:26px 0 8px}
+h4{font:600 11px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);margin:22px 0 8px}
+p{margin:0 0 13px;max-width:70ch}
+ul,ol.body{margin:0 0 13px;padding-left:20px;max-width:70ch}
+li{margin:0 0 6px}
+code{font-family:var(--mono);font-size:.875em;background:var(--raise);
+  padding:.12em .38em;border-radius:3px;color:var(--ink)}
+pre{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  padding:14px 16px;overflow-x:auto;margin:0 0 16px;border-radius:0 3px 3px 0}
+pre code{background:none;padding:0;font-size:12.5px;line-height:1.62}
+.tbl{overflow-x:auto;margin:0 0 16px;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);
+  vertical-align:top}
+th{font:600 10.5px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);background:var(--raise);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font:600 10px/1.5 var(--sans);letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-ok{background:var(--accent-soft);color:var(--accent)}
+.p-bad{background:var(--bad-soft);color:var(--bad)}
+.note{border-left:3px solid var(--rule-strong);padding:2px 0 2px 16px;
+  margin:0 0 16px;color:var(--muted);max-width:66ch}
+.note strong{color:var(--ink)}
+.warn{border-left:3px solid var(--bad);background:var(--bad-soft);
+  padding:12px 16px;margin:0 0 16px;max-width:70ch}
+.warn strong{color:var(--bad)}
+.trap{background:var(--surface);border:1px solid var(--rule);padding:14px 16px;
+  margin:0 0 14px;max-width:70ch}
+.trap h5{font:600 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--bad);margin:0 0 7px}
+.trap p{margin:0;font-size:14.5px}
+.lede{font-size:17px;line-height:1.5;color:var(--muted);max-width:64ch;margin:0 0 18px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{padding:34px 0 0;color:var(--faint);font-size:13px;max-width:70ch}
+</style>
+
+<div class="wrap">
+<nav class="rail">
+  <h2>Stages</h2>
+  <ol>
+    <li><a href="#s1"><span class="n">01</span>Skeleton</a></li>
+    <li><a href="#s2"><span class="n">02</span>Character asset</a></li>
+    <li><a href="#s3"><span class="n">03</span>DNA &amp; face</a></li>
+    <li><a href="#s4"><span class="n">04</span>Body</a></li>
+    <li><a href="#s5"><span class="n">05</span>Textures</a></li>
+    <li><a href="#s6"><span class="n">06</span>Assemble</a></li>
+    <li><a href="#s7"><span class="n">07</span>Vendor grooms</a></li>
+    <li><a href="#s8"><span class="n">08</span>Authoring</a></li>
+    <li><a href="#s9"><span class="n">09</span>Alembic</a></li>
+    <li><a href="#s10"><span class="n">10</span>Ingest</a></li>
+    <li><a href="#s11"><span class="n">11</span>Binding</a></li>
+    <li><a href="#s12"><span class="n">12</span>Colour</a></li>
+    <li><a href="#s13"><span class="n">13</span>Gates</a></li>
+    <li><a href="#s14"><span class="n">14</span>The defect</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <p class="eyebrow">UE 5.8 · MetaHuman · Blender 5.2</p>
+  <h1>Mannequin to Groom</h1>
+  <p class="standfirst">The full chain as this project actually built it — skeleton, DNA, face, textures, assemble, groom authoring, Alembic, binding, colour, gates. Every value here was measured on this machine. Written to give a research effort the exact ground truth around one open defect: a groom that imports, binds, sits in the right place, and renders zero pixels.</p>
+</header>
+
+<section id="s0">
+<p class="lede">Read stages 8–11 and 14 if you only care about the open defect. Stages 1–7 are the ground it stands on, and several of the traps in them recur later in different clothes.</p>
+<div class="note"><strong>Status vocabulary.</strong> <span class="pill p-ok">proven</span> means it was executed and verified by a render or a second instrument. <span class="pill p-bad">refuted</span> means it was tried and measured not to work — those rows are the expensive ones and are recorded so nobody re-derives them.</div>
+</section>
+
+<section id="s1">
+<h2><span class="n">01</span>Skeleton, and which mannequin</h2>
+<p>Two 161-bone UE5 mannequin skeletons can coexist in one project and animations bound to one play as a <em>silent T-pose</em> on the other. Equal bone counts are not identity — compare the resolved skeleton <em>path</em>.</p>
+<div class="tbl"><table>
+<thead><tr><th>Skeleton</th><th class="num">Bones</th><th>UE5 markers</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td><code>UE4_Mannequin_Skeleton</code></td><td class="num">68</td><td>0 of 4</td><td>UE4 — wrong</td></tr>
+<tr><td>in-project GV pack <code>SK_Mannequin</code></td><td class="num">161</td><td>4 of 4</td><td>UE5, but no physics asset; LOD0 and LOD1 both 48,779 verts</td></tr>
+<tr><td>engine template <code>SKM_Manny</code></td><td class="num">161</td><td>4 of 4</td><td><span class="pill p-ok">chosen</span> carries <code>PA_Mannequin</code>, 3 control rigs, 102 anims</td></tr>
+</tbody></table></div>
+<p>Recipe <code>R-SKEL</code> is the identification procedure; <code>R-CHARACTER</code> declares movement. The mannequin matters for the <em>body</em> and animation; the MetaHuman face rides a separate <code>Face_Archetype_Skeleton</code> (875 bones).</p>
+</section>
+
+<section id="s2">
+<h2><span class="n">02</span>The MetaHuman character asset</h2>
+<p>Everything about the hero's identity lives in one asset: <code>/Game/Hero/MHC_AlpineHero</code>. A duplicate, <code>MHC_AlpineHero_Master</code>, is never imported into and never written — it is the restore point of last resort.</p>
+<h4>Enabling the plugin — the trap that cost four attempts</h4>
+<div class="trap"><h5>A plugin descriptor is a derived record</h5>
+<p><code>MetaHumanCharacter.uplugin</code> declares <strong>20</strong> plugin dependencies and <code>MetaHumanCoreTech</code> is <em>not one of them</em> — and it does not start without it. Every scripted route faithfully reproduced an incomplete declaration. Enable a plugin the way the editor enables it, at least once, before encoding it anywhere.</p></div>
+<p>Also: enabling a Beta plugin raises a confirmation modal. Through the UI a human answers it; raised at startup from a descriptor it blocks the game thread — the same thread that services Python remote execution, so the editor cannot report why it is stuck.</p>
+</section>
+
+<section id="s3">
+<h2><span class="n">03</span>DNA and the face</h2>
+<p>The face is driven by a MetaHuman DNA file. Canonical copy: <code>hero/dna/MHC_AlpineHero_Head.dna</code>, never edited in place.</p>
+<h4>The DNA's own coordinate system</h4>
+<pre><code>format 2.5;  axes X=Left  Y=Up  Z=Front;  cm
+
+head_lod0_mesh   X ±19.034   Y 140.878..178.439   Z −11.616..14.988
+teeth_lod0_mesh              Y 156.5..162.1
+eyes_lod0_mesh               Y 165.6..168.5</code></pre>
+<p><strong>The DNA is Y-up and UE is Z-up.</strong> Nothing converts. The jaw is <em>low Y</em>. Work in the declared space, and use <code>--flag=value</code> so argparse does not eat a negative coordinate.</p>
+
+<h4>The round trip that works</h4>
+<ol class="body">
+<li><code>edit_dna_geometry.py</code> — feathered region edit in the DNA's own space, self-verifying selected and untouched vertices (<code>R-HEROGEOM</code>).</li>
+<li><code>sanctioned_import.py</code> — <code>import_from_face_dna</code>, with an <code>--identity</code> arm and a <code>--restore</code> path (<code>R-HEROIMPORT</code>).</li>
+<li><code>use_preview_mesh.py</code> — re-point the transient preview face mesh after every assemble.</li>
+<li><code>capture_shot.py</code> against the locked camera from <code>build_capture_stage.py</code> (<code>R-HEROCAP</code>).</li>
+</ol>
+
+<div class="warn"><strong>An Epic docstring is wrong, and believing it costs a permanent decision.</strong> <code>ImportFromDNAParams.import_whole_rig</code> documents that when unchecked "the head DNA file will only be used for neck alignment". False. <code>MetaHumanCharacterEditorSubsystem.cpp:6647-6656</code> — the false branch calls the same <code>FitToFaceDna</code> and then <code>CommitFaceState</code>. What <code>import_whole_rig</code> adds is <code>CommitFaceDNA</code>, which makes the body type <strong>fixed and non-editable, permanently, per asset</strong>.</div>
+
+<h4>Refuted routes — do not re-derive</h4>
+<div class="tbl"><table>
+<thead><tr><th>Route</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td><code>UpdateJoints</code> neutral-joint writes</td><td><span class="pill p-bad">refuted</span> Y/Z coordinate mismatch; identity round trip failed by 164 cm on all three readers</td></tr>
+<tr><td>neutral joints via the sanctioned path</td><td><span class="pill p-bad">refuted</span> the fitter never reads them — 1.26× against an unedited DNA's 1.13×</td></tr>
+<tr><td>parametric fit as <em>author</em></td><td><span class="pill p-bad">refuted</span> 10× command amplification, 4× reproducibility loss at edited states. Retained as <em>verifier</em> only (0.07 cm)</td></tr>
+<tr><td><code>request_auto_rigging(blocking=True)</code></td><td><span class="pill p-bad">refuted</span> fatals the editor — <code>Assertion failed: IsValid() [SharedPointer.h:1133]</code>. <code>blocking=False</code> runs clean in ~25 s</td></tr>
+<tr><td><code>reload_packages</code> as undo</td><td><span class="pill p-bad">refuted</span> fatals the editor at address 0x470. The undo is a <strong>closed-editor disk restore</strong>, proven 0.1668 → 1.2531 → 0.1661 cm</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s4">
+<h2><span class="n">04</span>The body</h2>
+<p><code>Masculine/Feminine</code> on the body slider, range −2…+2. Two facts that are easy to get wrong:</p>
+<ul>
+<li><strong>Body drives the parametric face.</strong> −1.0 → −2.0 moves the jaw +0.468 cm (10.6× the noise floor). The same comparison on the <em>imported</em> face sits inside 1.2× floor. So body work before the lock changes the face; after, it does not.</li>
+<li><strong>UE struct arrays iterate as copies.</strong> A body-parameter write looked exactly like the advertised body lock until a positive control was put in the same run. The advertised permanent body-type lock <em>does not exist</em> — a scratch character edits its body identically after three whole-rig imports.</li>
+</ul>
+<p>Instrument: <code>scripts/hero_body/body_silhouette.py</code> — orthographic at 0.253906 cm/px, difference-mask silhouette, bone-anchored heights, settle-gated.</p>
+</section>
+
+<section id="s5">
+<h2><span class="n">05</span>Textures and materials</h2>
+<p>Skin textures cannot be extracted by script. The door is a UI command: <strong>MetaHuman Character → Save Face Textures</strong>, which writes the maps as PNGs. Order is load-bearing: <em>Create Full Rig</em> <strong>before</strong> <em>Download Texture Sources</em> — the other way round errors telling you to autorig.</p>
+<div class="trap"><h5>A setter that returns False on names it just listed</h5>
+<p><code>MaterialEditingLibrary.set_material_instance_texture_parameter_value</code> returns <strong>False</strong> for <code>Basecolor</code>/<code>Normal</code>/<code>Cavity</code> — names <code>get_texture_parameter_names</code> lists on the same instance. Write the <code>texture_parameter_values</code> array directly. A re-run also made an instance <em>its own parent</em>, because the tool took the slot's current material as the parent; walk up instead.</p></div>
+<p>The editor exports the <strong>face atlas only</strong>. Body maps go transient after the rig and cannot be recovered — the body ships on stock MetaHuman maps. That is a trade, not an accident.</p>
+</section>
+
+<section id="s6">
+<h2><span class="n">06</span>Assemble</h2>
+<p><code>build_meta_human</code> is reflected and works from Python; the <em>unpack</em> is not reflected anywhere in the 5.8 stub. Assemble writes <code>/Game/MetaHumans/</code>, not <code>/Game/Hero/Generated/</code>.</p>
+<div class="warn"><strong>Assemble leaves every package dirty and unsaved.</strong> It logs "MetaHuman Character assembly succeeded" and writes nothing. On 2026-08-16 that read as "Assemble did nothing" until <code>get_dirty_content_packages()</code> returned <strong>252</strong>.</div>
+<ul>
+<li><strong>The assemble and its save are one payload.</strong> The editor stopped answering remote execution immediately after <code>build_meta_human</code> twice; the first time it took 91 unsaved packages with it.</li>
+<li><strong><code>duplicate_asset</code> cannot carry transient MetaHuman meshes.</strong> Duplicated meshes have a degenerate reference pose — every bone within 6 mm of one point. Assembled: head 160.6 cm above root. Duplicated: 0.5 cm. 320× separation, with the known-bad meshes as the control.</li>
+</ul>
+</section>
+
+<section id="s7">
+<h2><span class="n">07</span>Vendor grooms — the working baseline</h2>
+<p>Four slots: <strong>Hair, Beard, Mustache, Eyebrows</strong>. Adding an item makes it <em>available</em>; it is not worn until the instance selects it.</p>
+<pre><code>col = subsystem.get_preview_collection(character)
+col.try_add_item_from_wardrobe_item(slot, wardrobe_item)   # available
+col.default_instance.set_single_slot_selection(slot, key)  # worn
+subsystem.on_edit_preview_collection(character)            # REQUIRED
+EditorAssetLibrary.save_asset(...)</code></pre>
+<p><code>on_edit_preview_collection</code> is not optional — the engine's own docstring says any code modifying the preview collection must call it to propagate edits back to the Character asset.</p>
+<div class="note"><strong>The pack ships 38 grooms and 36 bindings.</strong> <code>Hair_M_TwistedBraids</code> and <code>Hair_S_BrushCut</code> have no <code>&lt;name&gt;_Binding</code> sibling and are unreachable by the duplicate-a-binding route. Names come from the <em>asset</em>, not from the wardrobe item.</div>
+</section>
+
+<section id="s8">
+<h2><span class="n">08</span>Authoring a groom in Blender</h2>
+<p>Blender 5.2. A UE round trip costs ~4 minutes plus an editor; Blender answers the same shape question in ~40 seconds. <strong>Decide the shape in Blender; the UE trip proves the groom, not the haircut.</strong></p>
+<h4>The scripts</h4>
+<div class="tbl"><table>
+<thead><tr><th>Script</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>author_hero_hair.py</code></td><td>places roots on his own face mesh, writes <code>groom_root_uv</code> and radius; every PARAMS key overridable via <code>HAIR_&lt;KEY&gt;</code> env</td></tr>
+<tr><td><code>head_frame.py</code></td><td>the ONE measurement of head anatomy — brow, socket, crown, neck cut</td></tr>
+<tr><td><code>build_guide_stack.py</code></td><td>the demo's non-baked Geometry Nodes stack</td></tr>
+<tr><td><code>preview_hair.py</code></td><td>front/side/back + bare-head control, ~40 s</td></tr>
+<tr><td><code>validate_groom_export.py</code></td><td>the four properties UE consumes — run BEFORE importing</td></tr>
+<tr><td><code>snap_curves_to_surface.py</code></td><td>root relocation onto the target surface</td></tr>
+</tbody></table></div>
+
+<h4>The measured frame</h4>
+<pre><code>hero authoring blend   Z-up, CENTIMETRES, face points −Y
+skull sphere fit       centre (0.0038, −3.0978, 168.995)  radius 9.2274 cm
+crown 178.44   brow 167.24   eye socket 165.46   neck cut 157.47</code></pre>
+<div class="warn"><strong>The brow was wrong by 3.68 cm for the whole project.</strong> Two tools reported the eye band and <em>agreed</em> — <code>preview_hair.py</code> used <code>z_lo + 0.62…0.80 × height</code> and <code>author_hero_hair.py</code> gated the face zone at <code>face_zone_z_frac 0.80</code> of the same bounds. Same arithmetic in two files, so their agreement was one measurement, not two. It put the brow at 170.93; measured from the socket recess it is 167.24. Every guard "keeping hair out of his eyes" was defending his forehead, which is why four attempts at a fringe produced nothing.</div>
+
+<h4>Traps in the authoring loop</h4>
+<ul>
+<li><strong>A rebuild via <code>hair_curves.new</code> + <code>add_curves</code> on an existing groom crashes Blender</strong> (<code>EXCEPTION_ACCESS_VIOLATION</code>) — 5.2 exposes no add/remove on <code>Curves</code>. Building fresh is fine; <code>bpy.ops.curves.delete</code> is the supported removal path.</li>
+<li><strong>Rotate strands about their own root; do not translate their tips.</strong> Translation drags hair off the skull and uncovers scalp (left exposure 22.9 → 34.4%). A rigid rotation preserves every point's distance from its root. Rotation and translation <em>fight</em>: running both scored worse than rotation alone.</li>
+<li><strong>Every picker takes the largest Curves object</strong> and none consults visibility. A blend carrying a previous groom will have every downstream stage silently measure the wrong one.</li>
+</ul>
+</section>
+
+<section id="s9">
+<h2><span class="n">09</span>The Alembic contract</h2>
+<p>Export through the GroomExporter add-on, <em>not</em> <code>bpy.ops.wm.alembic_export</code>:</p>
+<pre><code>bpy.ops.groom.buttonexport(
+    filepath=out_abc, check_existing=False,
+    groom_scale=1.0,                 # the hero blend is already in cm
+    groom_width_scale=True,
+    groom_radius_to_diameter=True,
+    groom_animation=False, node_execution=False)</code></pre>
+<div class="tbl"><table>
+<thead><tr><th>Property</th><th>Why UE cares</th></tr></thead>
+<tbody>
+<tr><td>points per curve ≥ 2</td><td><code>GroomBuilder.cpp:2403</code> asserts <code>CurveNumVertices &gt;= 2</code> — a hard crash that killed an editor</td></tr>
+<tr><td><code>groom_root_uv</code></td><td>without it a binding can only project each root onto the nearest triangle — from a groom authored on another head, that is the <strong>jaw</strong></td></tr>
+<tr><td>radius &gt; 0</td><td>zero width draws zero pixels</td></tr>
+<tr><td>finite positions</td><td>one NaN can take out a whole group</td></tr>
+</tbody></table></div>
+<div class="trap"><h5>Two scale traps, both measured in UE not predicted</h5>
+<p>An export at <code>global_scale</code> 1.0 from a <em>metres</em> blend lands in UE at 1/100 and at the origin. And <code>global_scale</code> multiplies <code>radius</code> too — a constant 0.436611 became 43.7 UE units and the groom rendered as giant blocky ribbons. The width attribute is not stripped; it is present and wrong.</p></div>
+<div class="warn"><strong>The generic Alembic importer is not a valid read path for a groom .abc.</strong> Pointed at a groom that renders correctly in UE, <code>bpy.ops.wm.alembic_import</code> reports no <code>groom_root_uv</code> (the attribute <em>is</em> in the file), positions in the emitter's local space, and 5 points per curve where the file has 28. A verifier built on it refuses correct files. Verify on the <strong>blend</strong> before export, and on the <strong>UE import report</strong> after — UE is the consumer.</div>
+</section>
+
+<section id="s10">
+<h2><span class="n">10</span>Ingest into UE</h2>
+<p>The factory is <code>HairStrandsFactory</code> — not <code>GroomFactory</code>, not <code>AlembicImportFactory</code> (which produces static/skeletal meshes: it imports successfully and produces the wrong asset type).</p>
+<p><strong>Scale is verified, never corrected.</strong> A groom at the wrong scale still binds, still renders, and is silently wrong; auto-fixing hides an exporter mismatch the next groom inherits.</p>
+<pre><code>ue_exec.py &lt;payload&gt; --timeout 25       # 25, not 200</code></pre>
+<p><code>--timeout</code> is a <em>discovery window spent in full</em>. A 220 s value wasted four minutes per call while the import ran fine at 25.</p>
+</section>
+
+<section id="s11">
+<h2><span class="n">11</span>Binding</h2>
+<p>Three generations of this, and the history matters because the first two are still findable.</p>
+<div class="tbl"><table>
+<thead><tr><th>Approach</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td><code>create_new_groom_binding_asset_with_path</code></td><td><span class="pill p-bad">struck</span> the build never completes — <code>Waiting for groom bindings to be ready 0/1</code>, no error, no later line</td></tr>
+<tr><td><code>GroomBindingAsset.build()</code> from Python</td><td><span class="pill p-bad">refuted</span> reflected, and fatals the editor — <code>Assertion failed: IsUnlocked() [BulkData.cpp:596]</code></td></tr>
+<tr><td><code>LandscapeLabTools.build_groom_binding_for_mesh</code></td><td><span class="pill p-ok">proven</span> a C++ <code>UFUNCTION</code> doing the pipeline's own four steps, ~15 s</td></tr>
+</tbody></table></div>
+<pre><code>unreal.LandscapeLabTools.build_groom_binding_for_mesh(
+    source_binding,     # an ALREADY-BUILT binding (a vendor one)
+    target_mesh,        # the character's face mesh, READ off the actor
+    dest_binding_path,
+    dest_groom_path)
+ -> (out_binding_path, out_groom_path, b_out_success, out_error)</code></pre>
+<p><strong>Assign both returned assets.</strong> The deformation is baked into the groom <em>copy</em>, not only into the binding; assigning the original groom with the new binding is half the fix and renders like a total failure.</p>
+<p>All four internal steps are load-bearing, each measured by omission. The one that looks like housekeeping — stripping decimation around the RBF bake — is the one that put hair in the right place.</p>
+
+<h4>For a groom authored on its own target</h4>
+<p>Identity binding, source mesh empty. The RBF bake <em>fatals</em> on an identity binding — <code>GroomRBFDeformer.cpp:740</code>, <code>check()</code> on <code>RootDatas[GroupIndex].MeshPositions.IsValidIndex</code> — so it is guarded on <code>EffectiveSource != TargetMesh</code>. For a groom authored on the target's own head the transfer <em>is</em> the identity and the step was a no-op anyway (<code>R-GROOMBIND4</code>).</p>
+
+<div class="trap"><h5>The stale-component trap, and its one-line fix</h5>
+<p>The bind payload writes a groom <strong>copy</strong> each run. Rebuilding an asset that a live component already points at leaves the component holding a dead object behind a path that still reads back correctly — every property check passes and nothing draws. Sequence that works: <strong>bind → respawn the actor → bind again → colour → render.</strong></p></div>
+
+<h4>Guide correspondence — a cliff, not a gradient</h4>
+<pre><code>guide_every 20   2,400 guides   BALD
+guide_every  4  12,000 guides   BALD
+guide_every  1  48,000 guides   FULL HAIR</code></pre>
+<p>A gradient would mean density. A cliff at "every curve is its own guide" means <strong>correspondence</strong> — the only configuration in which each strand's nearest guide is itself and <em>Merge Guide and Weight it</em> cannot get the weights wrong. It is a workaround, not a repair.</p>
+</section>
+
+<section id="s12">
+<h2><span class="n">12</span>Colour</h2>
+<p>Ruled values: <strong>melanin 0.92, redness 0.28</strong>. The durable surface is the assembled material instance, not the component and not the preview.</p>
+<div class="warn"><strong>Writing <code>override_materials</code> NULLS the component's <code>binding_asset</code>.</strong> An unbound groom draws nothing, so the render goes bald while the colour tool reports success and every read-back is correct — the material looks guilty. Re-assert the binding <em>after</em> the material and check it; the payload refuses otherwise.</div>
+<ul>
+<li><code>groom_color.py</code> writes character <em>instance</em> parameters — a component-assigned groom never passes through the wardrobe, so it cannot be coloured that way.</li>
+<li>Enumerate the material variants: <code>MI_WI_Eyebrows_M_Dense_Hair</code> is a <em>stale</em> instance carrying no colour; the live one is the <code>None_1</code> variant.</li>
+<li>There is no <code>hairWhiteness</code> on this master — the family is <code>WhiteAmount</code> / <code>WhiteMelinin*</code>.</li>
+</ul>
+</section>
+
+<section id="s13">
+<h2><span class="n">13</span>Gates that actually discriminate</h2>
+<p><code>groom_presence.py</code> (<code>R-HEROGROOM</code>) hides each groom in turn and requires the picture to change. Three fail-closed properties, all measured:</p>
+<ul>
+<li><strong>Positive control</strong> — the face mesh, hidden through the same call in the same payload: ~1,471,000 px, 1,266× floor. Without it a null is "I could not look", not "absent".</li>
+<li><strong>Stability map</strong> — two captures of an <em>unchanged</em> subject differ over 11.3% of frame because the <em>forest</em> re-renders. Excluding those pixels took the floor 472,199 → ~1,100 px.</li>
+<li><strong>Reproduce</strong> — measured twice; &gt;30% drift is a refusal.</li>
+</ul>
+<div class="note"><strong>A verdict belongs to its framing.</strong> At 0.9 m all four grooms pass; at 6.2 m the entire face is ten thousand pixels. A landscape framing cannot carry a groom claim. The old checklist gate returned DELIVERABLE at every distance, because component properties are identical at all of them.</div>
+<div class="note"><strong>A groom converges over frames after its assets first become resident</strong>, once per editor session, not per spawn. Hair reads 33,743 px on the first capture and 96,246 on the second with nothing changed but the frames spent. Every "bald" render before that was measured too early.</div>
+</section>
+
+<section id="s14">
+<h2><span class="n">14</span>The open defect</h2>
+<p class="lede">A DiffLocks-generated groom imports clean, binds, sits in the right place at the right size — and renders zero pixels. This is the research target.</p>
+
+<h4>What is being compared</h4>
+<div class="tbl"><table>
+<thead><tr><th>Property</th><th>DiffLocks <span class="pill p-bad">bald</span></th><th>Procedural <span class="pill p-ok">draws</span></th></tr></thead>
+<tbody>
+<tr><td>curves</td><td class="num">100,943</td><td class="num">48,000</td></tr>
+<tr><td>points</td><td class="num">2,826,404</td><td class="num">576,000</td></tr>
+<tr><td>points per curve</td><td class="num">28</td><td class="num">12</td></tr>
+<tr><td>Blender radius</td><td class="num">0.018 uniform</td><td class="num">0.012–0.035 taper</td></tr>
+<tr><td>UE <code>hair_width</code></td><td class="num">0.01</td><td class="num">0.01</td></tr>
+<tr><td>bounds z (cm)</td><td class="num">153.4 – 180.8</td><td class="num">154.3 – 184.2</td></tr>
+<tr><td>guides</td><td class="num">10,094</td><td class="num">4,800</td></tr>
+<tr><td>root UV unique</td><td class="num">1,758 (1.74%)</td><td class="num">1,223 (2.55%)</td></tr>
+<tr><td>material slots</td><td>empty</td><td>empty</td></tr>
+<tr><td><code>data.surface</code></td><td>set</td><td>set</td></tr>
+<tr><td><code>curve_type</code></td><td>absent / poly</td><td>absent / poly</td></tr>
+<tr><td><strong>draws unbound</strong></td><td class="num">no — luma 50.23</td><td class="num">yes — 34.60</td></tr>
+<tr><td><strong>draws bound</strong></td><td class="num">no — luma 50.21</td><td class="num">yes — 34.94</td></tr>
+</tbody></table></div>
+
+<h4>Constraints any explanation must satisfy</h4>
+<ol class="body">
+<li><strong>It draws nothing with no binding at all.</strong> Standalone <code>GroomActor</code>, no binding asset. So it is not binding, skinning, guide correspondence, or the MetaHuman component — it is the GroomAsset in isolation.</li>
+<li><strong>UE knows exactly where it is.</strong> Component bounds are correct, so the position data reached UE and parsed. Not empty, not at the origin, not at 1/100.</li>
+<li><strong>The import reports full success</strong> — <code>GroomAsset</code>, 100,943 curves, delta 0.0000, 10,094 guides, no error, no warning.</li>
+<li><strong>Count is not the lever</strong> — 33,648 curves is equally bald.</li>
+<li><strong>Not width, material, <code>curve_type</code>, <code>data.surface</code>, or interpolation.</strong> Material was tested by <em>write</em> as well as read: the vendor's proven <code>MI_Hair</code> placed in the slot, read back, saved — still bald.</li>
+</ol>
+
+<h4>What remains</h4>
+<p>Two things differ and neither has a cheap probe: the <strong>strand point data</strong> itself (naturally varied generated geometry vs procedurally authored — segments ~0.3 cm after resampling from 0.32 mm, total strand length 8.20 cm mean against the working groom's ~20 cm), and the <strong>root UVs</strong>, sampled here by nearest-vertex rather than by the authoring tool's own placement.</p>
+<p>The hypothesis that fits every observation at once is that <strong>UE's groom builder produced empty render resources while still populating bounds and group info</strong> — the strand data passing validation but the strand-rendering buffer building empty. That is where I would point the search.</p>
+
+<h4>Source data</h4>
+<pre><code>DiffLocks payload   positions (100943, 256, 3) float32, Y-up REAL METRES
+                    sha256 97db0462…f96d2c, 100,943 strands, 29.6 s
+                    strand length mean 0.0815 m, max 0.1497 m
+registration        scalp.ply → hero scalp, similarity only
+                    scale 100.600 cm per metre   ← the metre-to-centimetre
+                    unit conversion, recovered from geometry
+                    crown lands within 0.03 cm; 0.00% roots on his face</code></pre>
+</section>
+
+<footer>
+<p>Every number here was measured on this machine — RTX 5080 Laptop, UE 5.8.1, Blender 5.2 LTS. Recipes referenced by ID live in <code>RECIPES.md</code>; the narrative behind each failure is in <code>LESSONS.md</code>. Where a claim could not be verified it is marked as such rather than rounded up.</p>
+</footer>
+</main>
+</div>

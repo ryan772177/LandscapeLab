@@ -1,0 +1,785 @@
+{
+  "addons_enabled": [
+    "AIHairToolkit",
+    "io_anim_bvh",
+    "bl_pkg",
+    "cycles",
+    "io_scene_fbx",
+    "io_scene_gltf2",
+    "GroomExporter",
+    "pose_library",
+    "io_curve_svg",
+    "io_mesh_uv_layout"
+  ],
+  "namespaces": {
+    "aihair": {
+      "apply_optimization": {
+        "label": "Apply Optimization",
+        "props": []
+      },
+      "first_run_setup": {
+        "label": "First-time Environment Setup",
+        "props": []
+      },
+      "generate_hair": {
+        "label": "Generate Hair",
+        "props": []
+      },
+      "stop_server": {
+        "label": "Stop Server",
+        "props": []
+      }
+    },
+    "constraint": {
+      "add_target": {
+        "label": "Add Target",
+        "props": []
+      },
+      "apply": {
+        "label": "Apply Constraint",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM",
+          "report:BOOLEAN"
+        ]
+      },
+      "childof_clear_inverse": {
+        "label": "Clear Inverse",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "childof_set_inverse": {
+        "label": "Set Inverse",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "copy": {
+        "label": "Duplicate Constraint",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM",
+          "report:BOOLEAN"
+        ]
+      },
+      "copy_to_selected": {
+        "label": "Copy Constraint To Selected",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "delete": {
+        "label": "Delete Constraint",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM",
+          "report:BOOLEAN"
+        ]
+      },
+      "disable_keep_transform": {
+        "label": "Disable and Keep Transform",
+        "props": []
+      },
+      "followpath_path_animate": {
+        "label": "Auto Animate Path",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM",
+          "frame_start:INT",
+          "length:INT"
+        ]
+      },
+      "limitdistance_reset": {
+        "label": "Reset Distance",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "move_down": {
+        "label": "Move Constraint Down",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "move_to_index": {
+        "label": "Move Constraint to Index",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM",
+          "index:INT"
+        ]
+      },
+      "move_up": {
+        "label": "Move Constraint Up",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "normalize_target_weights": {
+        "label": "Normalize Weights",
+        "props": []
+      },
+      "objectsolver_clear_inverse": {
+        "label": "Clear Inverse",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "objectsolver_set_inverse": {
+        "label": "Set Inverse",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      },
+      "remove_target": {
+        "label": "Remove Target",
+        "props": [
+          "index:INT"
+        ]
+      },
+      "stretchto_reset": {
+        "label": "Reset Original Length",
+        "props": [
+          "constraint:STRING",
+          "owner:ENUM"
+        ]
+      }
+    },
+    "dpaint": {
+      "bake": {
+        "label": "Dynamic Paint Bake",
+        "props": []
+      },
+      "output_toggle": {
+        "label": "Toggle Output Layer",
+        "props": [
+          "output:ENUM"
+        ]
+      },
+      "surface_slot_add": {
+        "label": "Add Surface Slot",
+        "props": []
+      },
+      "surface_slot_remove": {
+        "label": "Remove Surface Slot",
+        "props": []
+      },
+      "type_toggle": {
+        "label": "Toggle Type Active",
+        "props": [
+          "type:ENUM"
+        ]
+      }
+    },
+    "groom": {
+      "add_attribute_node": {
+        "label": "Add Attribute Node",
+        "props": []
+      },
+      "add_curve_node": {
+        "label": "Add Curve Node",
+        "props": []
+      },
+      "add_custom_attribute_node": {
+        "label": "Add Custom Attribute Node",
+        "props": []
+      },
+      "add_export_node": {
+        "label": "Add Export Node",
+        "props": []
+      },
+      "addcustomnode": {
+        "label": "AddAttributesNode",
+        "props": [
+          "node_group:STRING",
+          "node_call:STRING"
+        ]
+      },
+      "buttonexport": {
+        "label": "Export the selected curves",
+        "props": [
+          "filepath:STRING",
+          "check_existing:BOOLEAN",
+          "filter_glob:STRING",
+          "groom_scale:FLOAT",
+          "groom_width_scale:BOOLEAN",
+          "groom_radius_to_diameter:BOOLEAN",
+          "groom_animation:BOOLEAN",
+          "use_frame_start:INT",
+          "use_frame_end:INT",
+          "node_group:STRING",
+          "node_call:STRING",
+          "node_execution:BOOLEAN"
+        ]
+      },
+      "buttonfastsetter": {
+        "label": "Apply Attributes on selection",
+        "props": []
+      },
+      "buttonfillfastsetter": {
+        "label": "Fill Attributes from preferences",
+        "props": []
+      },
+      "fillattributesnode": {
+        "label": "FillAttsNode",
+        "props": [
+          "node_group:STRING",
+          "node_call:STRING"
+        ]
+      },
+      "groomtooltip": {
+        "label": "Tooltip_test",
+        "props": []
+      },
+      "headertooltip": {
+        "label": "Tooltip_test",
+        "props": []
+      },
+      "nodeupdate": {
+        "label": "UpdateAttributesNode",
+        "props": [
+          "node_group:STRING",
+          "node_call:STRING"
+        ]
+      },
+      "removecustomnode": {
+        "label": "RemoveAttributesNode",
+        "props": [
+          "node_group:STRING",
+          "node_call:STRING",
+          "index:INT"
+        ]
+      },
+      "selectcurves": {
+        "label": "Select Curves for debug purpose",
+        "props": [
+          "node_group:STRING",
+          "node_call:STRING"
+        ]
+      },
+      "strandtooltip": {
+        "label": "Tooltip_test",
+        "props": []
+      },
+      "vertextooltip": {
+        "label": "Tooltip_test",
+        "props": []
+      }
+    },
+    "paint": {
+      "add_simple_uvs": {
+        "label": "Add Simple UVs",
+        "props": []
+      },
+      "add_texture_paint_slot": {
+        "label": "Add Paint Slot",
+        "props": [
+          "type:ENUM",
+          "slot_type:ENUM",
+          "name:STRING",
+          "color:FLOAT",
+          "width:INT",
+          "height:INT",
+          "alpha:BOOLEAN",
+          "generated_type:ENUM",
+          "float:BOOLEAN",
+          "tiled:BOOLEAN",
+          "domain:ENUM",
+          "data_type:ENUM"
+        ]
+      },
+      "brush_colors_flip": {
+        "label": "Swap Colors",
+        "props": []
+      },
+      "face_select_all": {
+        "label": "(De)select All",
+        "props": [
+          "action:ENUM"
+        ]
+      },
+      "face_select_hide": {
+        "label": "Face Select Hide",
+        "props": [
+          "unselected:BOOLEAN"
+        ]
+      },
+      "face_select_less": {
+        "label": "Select Less",
+        "props": [
+          "face_step:BOOLEAN"
+        ]
+      },
+      "face_select_linked": {
+        "label": "Select Linked",
+        "props": []
+      },
+      "face_select_linked_pick": {
+        "label": "Select Linked Pick",
+        "props": [
+          "deselect:BOOLEAN"
+        ]
+      },
+      "face_select_loop": {
+        "label": "Select Loop",
+        "props": [
+          "select:BOOLEAN",
+          "extend:BOOLEAN"
+        ]
+      },
+      "face_select_more": {
+        "label": "Select More",
+        "props": [
+          "face_step:BOOLEAN"
+        ]
+      },
+      "face_vert_reveal": {
+        "label": "Reveal Faces/Vertices",
+        "props": [
+          "select:BOOLEAN"
+        ]
+      },
+      "grab_clone": {
+        "label": "Grab Clone",
+        "props": [
+          "delta:FLOAT"
+        ]
+      },
+      "hide_show": {
+        "label": "Hide/Show",
+        "props": [
+          "xmin:INT",
+          "xmax:INT",
+          "ymin:INT",
+          "ymax:INT",
+          "wait_for_input:BOOLEAN",
+          "action:ENUM",
+          "area:ENUM",
+          "use_front_faces_only:BOOLEAN"
+        ]
+      },
+      "hide_show_all": {
+        "label": "Hide/Show All",
+        "props": [
+          "action:ENUM"
+        ]
+      },
+      "hide_show_lasso_gesture": {
+        "label": "Hide/Show Lasso",
+        "props": [
+          "path:COLLECTION",
+          "use_smooth_stroke:BOOLEAN",
+          "smooth_stroke_factor:FLOAT",
+          "smooth_stroke_radius:INT",
+          "action:ENUM",
+          "area:ENUM",
+          "use_front_faces_only:BOOLEAN"
+        ]
+      },
+      "hide_show_line_gesture": {
+        "label": "Hide/Show Line",
+        "props": [
+          "xstart:INT",
+          "xend:INT",
+          "ystart:INT",
+          "yend:INT",
+          "flip:BOOLEAN",
+          "cursor:INT",
+          "action:ENUM",
+          "area:ENUM",
+          "use_front_faces_only:BOOLEAN",
+          "use_limit_to_segment:BOOLEAN"
+        ]
+      },
+      "hide_show_masked": {
+        "label": "Hide/Show Masked",
+        "props": [
+          "action:ENUM"
+        ]
+      },
+      "hide_show_polyline_gesture": {
+        "label": "Hide/Show Polyline",
+        "props": [
+          "path:COLLECTION",
+          "action:ENUM",
+          "area:ENUM",
+          "use_front_faces_only:BOOLEAN"
+        ]
+      },
+      "image_from_view": {
+        "label": "Image from View",
+        "props": [
+          "filepath:STRING"
+        ]
+      },
+      "image_paint": {
+        "label": "Image Paint",
+        "props": [
+          "stroke:COLLECTION",
+          "mode:ENUM",
+          "brush_toggle:ENUM",
+          "pen_flip:BOOLEAN"
+        ]
+      },
+      "mask_box_gesture": {
+        "label": "Mask Box Gesture",
+        "props": [
+          "xmin:INT",
+          "xmax:INT",
+          "ymin:INT",
+          "ymax:INT",
+          "wait_for_input:BOOLEAN",
+          "use_front_faces_only:BOOLEAN",
+          "mode:ENUM",
+          "value:FLOAT"
+        ]
+      },
+      "mask_flood_fill": {
+        "label": "Mask Flood Fill",
+        "props": [
+          "mode:ENUM",
+          "value:FLOAT"
+        ]
+      },
+      "mask_lasso_gesture": {
+        "label": "Mask Lasso Gesture",
+        "props": [
+          "path:COLLECTION",
+          "use_smooth_stroke:BOOLEAN",
+          "smooth_stroke_factor:FLOAT",
+          "smooth_stroke_radius:INT",
+          "use_front_faces_only:BOOLEAN",
+          "mode:ENUM",
+          "value:FLOAT"
+        ]
+      },
+      "mask_line_gesture": {
+        "label": "Mask Line Gesture",
+        "props": [
+          "xstart:INT",
+          "xend:INT",
+          "ystart:INT",
+          "yend:INT",
+          "flip:BOOLEAN",
+          "cursor:INT",
+          "use_front_faces_only:BOOLEAN",
+          "use_limit_to_segment:BOOLEAN",
+          "mode:ENUM",
+          "value:FLOAT"
+        ]
+      },
+      "mask_polyline_gesture": {
+        "label": "Mask Polyline Gesture",
+        "props": [
+          "path:COLLECTION",
+          "use_front_faces_only:BOOLEAN",
+          "mode:ENUM",
+          "value:FLOAT"
+        ]
+      },
+      "project_image": {
+        "label": "Project Image",
+        "props": [
+          "image:ENUM"
+        ]
+      },
+      "sample_color": {
+        "label": "Sample Color",
+        "props": [
+          "location:INT",
+          "merged:BOOLEAN",
+          "palette:BOOLEAN"
+        ]
+      },
+      "texture_paint_toggle": {
+        "label": "Texture Paint Mode",
+        "props": []
+      },
+      "vert_select_all": {
+        "label": "(De)select All",
+        "props": [
+          "action:ENUM"
+        ]
+      },
+      "vert_select_hide": {
+        "label": "Vertex Select Hide",
+        "props": [
+          "unselected:BOOLEAN"
+        ]
+      },
+      "vert_select_less": {
+        "label": "Select Less",
+        "props": [
+          "face_step:BOOLEAN"
+        ]
+      },
+      "vert_select_linked": {
+        "label": "Select Linked Vertices",
+        "props": []
+      },
+      "vert_select_linked_pick": {
+        "label": "Select Linked Vertices Pick",
+        "props": [
+          "select:BOOLEAN"
+        ]
+      },
+      "vert_select_loop": {
+        "label": "Select Loop",
+        "props": [
+          "select:BOOLEAN",
+          "extend:BOOLEAN"
+        ]
+      },
+      "vert_select_more": {
+        "label": "Select More",
+        "props": [
+          "face_step:BOOLEAN"
+        ]
+      },
+      "vert_select_ungrouped": {
+        "label": "Select Ungrouped",
+        "props": [
+          "extend:BOOLEAN"
+        ]
+      },
+      "vertex_color_brightness_contrast": {
+        "label": "Vertex Paint Brightness/Contrast",
+        "props": [
+          "brightness:FLOAT",
+          "contrast:FLOAT"
+        ]
+      },
+      "vertex_color_dirt": {
+        "label": "Dirty Vertex Colors",
+        "props": [
+          "blur_strength:FLOAT",
+          "blur_iterations:INT",
+          "clean_angle:FLOAT",
+          "dirt_angle:FLOAT",
+          "dirt_only:BOOLEAN",
+          "normalize:BOOLEAN"
+        ]
+      },
+      "vertex_color_from_weight": {
+        "label": "Vertex Color from Weight",
+        "props": []
+      },
+      "vertex_color_hsv": {
+        "label": "Vertex Paint Hue/Saturation/Value",
+        "props": [
+          "h:FLOAT",
+          "s:FLOAT",
+          "v:FLOAT"
+        ]
+      },
+      "vertex_color_invert": {
+        "label": "Vertex Paint Invert",
+        "props": []
+      },
+      "vertex_color_levels": {
+        "label": "Vertex Paint Levels",
+        "props": [
+          "offset:FLOAT",
+          "gain:FLOAT"
+        ]
+      },
+      "vertex_color_set": {
+        "label": "Set Vertex Colors",
+        "props": [
+          "use_alpha:BOOLEAN"
+        ]
+      },
+      "vertex_color_smooth": {
+        "label": "Smooth Vertex Colors",
+        "props": []
+      },
+      "vertex_paint": {
+        "label": "Vertex Paint",
+        "props": [
+          "stroke:COLLECTION",
+          "mode:ENUM",
+          "brush_toggle:ENUM",
+          "pen_flip:BOOLEAN",
+          "override_location:BOOLEAN"
+        ]
+      },
+      "vertex_paint_toggle": {
+        "label": "Vertex Paint Mode",
+        "props": []
+      },
+      "visibility_filter": {
+        "label": "Visibility Filter",
+        "props": [
+          "action:ENUM",
+          "iterations:INT",
+          "auto_iteration_count:BOOLEAN"
+        ]
+      },
+      "visibility_invert": {
+        "label": "Invert Visibility",
+        "props": []
+      },
+      "weight_from_bones": {
+        "label": "Weight from Bones",
+        "props": [
+          "type:ENUM"
+        ]
+      },
+      "weight_gradient": {
+        "label": "Weight Gradient",
+        "props": [
+          "type:ENUM",
+          "xstart:INT",
+          "xend:INT",
+          "ystart:INT",
+          "yend:INT",
+          "flip:BOOLEAN",
+          "cursor:INT"
+        ]
+      },
+      "weight_paint": {
+        "label": "Weight Paint",
+        "props": [
+          "stroke:COLLECTION",
+          "mode:ENUM",
+          "brush_toggle:ENUM",
+          "pen_flip:BOOLEAN",
+          "override_location:BOOLEAN"
+        ]
+      },
+      "weight_paint_toggle": {
+        "label": "Weight Paint Mode",
+        "props": []
+      },
+      "weight_sample": {
+        "label": "Weight Paint Sample Weight",
+        "props": []
+      },
+      "weight_sample_group": {
+        "label": "Weight Paint Sample Group",
+        "props": []
+      },
+      "weight_set": {
+        "label": "Set Weight",
+        "props": []
+      }
+    },
+    "paintcurve": {
+      "add_point": {
+        "label": "Add New Paint Curve Point",
+        "props": [
+          "location:INT"
+        ]
+      },
+      "add_point_slide": {
+        "label": "Add Curve Point and Slide",
+        "props": [
+          "PAINTCURVE_OT_add_point:POINTER",
+          "PAINTCURVE_OT_slide:POINTER"
+        ]
+      },
+      "cursor": {
+        "label": "Place Cursor",
+        "props": []
+      },
+      "delete_point": {
+        "label": "Remove Paint Curve Point",
+        "props": []
+      },
+      "draw": {
+        "label": "Draw Curve",
+        "props": []
+      },
+      "new": {
+        "label": "Add New Paint Curve",
+        "props": []
+      },
+      "select": {
+        "label": "Select Paint Curve Point",
+        "props": [
+          "location:INT",
+          "toggle:BOOLEAN",
+          "extend:BOOLEAN"
+        ]
+      },
+      "slide": {
+        "label": "Slide Paint Curve Point",
+        "props": [
+          "align:BOOLEAN",
+          "select:BOOLEAN"
+        ]
+      }
+    }
+  },
+  "panels": [
+    {
+      "class": "AIHAIR_OT_generate_hair",
+      "label": "Generate Hair",
+      "category": "",
+      "space": ""
+    },
+    {
+      "class": "AIHAIR_PT_main",
+      "label": "AI Hair Toolkit",
+      "category": "AI Hair Toolkit",
+      "space": "VIEW_3D"
+    },
+    {
+      "class": "GROOM_MT_GroomTooltip",
+      "label": "Groom Information",
+      "category": "",
+      "space": ""
+    },
+    {
+      "class": "GROOM_MT_StrandTooltip",
+      "label": "Strand Information",
+      "category": "",
+      "space": ""
+    },
+    {
+      "class": "PARTICLE_OT_hair_dynamics_preset_add",
+      "label": "Add Hair Dynamics Preset",
+      "category": "",
+      "space": ""
+    },
+    {
+      "class": "PARTICLE_PT_hair_dynamics",
+      "label": "Hair Dynamics",
+      "category": "",
+      "space": "PROPERTIES"
+    },
+    {
+      "class": "PARTICLE_PT_hair_dynamics_presets",
+      "label": "Hair Dynamics Presets",
+      "category": "",
+      "space": "PROPERTIES"
+    },
+    {
+      "class": "PARTICLE_PT_hair_shape",
+      "label": "Hair Shape",
+      "category": "",
+      "space": "PROPERTIES"
+    },
+    {
+      "class": "VIEW_3D_PT_Groom",
+      "label": "Groom Exporter",
+      "category": "Groom",
+      "space": "VIEW_3D"
+    },
+    {
+      "class": "VIEW_3D_PT_GroomQOL",
+      "label": "Groom Exporter Fast Setup",
+      "category": "Groom",
+      "space": "VIEW_3D"
+    }
+  ]
+}

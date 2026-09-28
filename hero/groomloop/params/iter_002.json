@@ -1,0 +1,22 @@
+{
+  "_label": "Mechanism fix run: spatial tip-convergent clumping + crown mask excluding the fringe. Keeps 001's fringe gains, kills its frizz (flyaway_amp and strand_noise cut hard, clumping raised to do the breakup instead). Also attacks grade_ratio 0.124 -- the source nape is 8x shorter than its crown and the spec wants the opposite.",
+  "fringe_length_scale": 1.35,
+  "fringe_forward_pull": 0.034,
+  "fringe_gap_strength": 0.30,
+  "fringe_clump_count": 7,
+  "crown_lift": 0.020,
+  "crown_spike_noise": 0.005,
+  "side_length_scale": 1.15,
+  "ear_clearance": 0.003,
+  "temple_wing": 0.005,
+  "nape_length_scale": 2.20,
+  "layer_falloff": 0.18,
+  "clump_scale": 0.35,
+  "clump_count": 300,
+  "strand_noise_amp": 0.0015,
+  "strand_noise_freq": 5.0,
+  "flyaway_density": 0.03,
+  "flyaway_amp": 0.008,
+  "tip_trim_variance": 0.18,
+  "stray_clamp_m": 0.30
+}

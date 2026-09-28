@@ -1,0 +1,64 @@
+{
+  "image": "hero/reference/appearance_groom_clay.jpg",
+  "frame_px": [
+    1014,
+    995
+  ],
+  "title_strip_px": 29,
+  "background_luma": 59.0,
+  "mask_frac": {
+    "clay": 0.2374,
+    "hair": 0.1037
+  },
+  "_face_top_floor_px": 23,
+  "face": {
+    "top_row": 216,
+    "chin_row": 607,
+    "height_px": 391,
+    "width_px": 296,
+    "centre_x_px": 481.5,
+    "neck_width_px": 63
+  },
+  "crown_lift_frac": 0.5166,
+  "fringe_descent_frac_of_face_h": {
+    "midline": 1.0384,
+    "quarter_L": 0.3606,
+    "quarter_R": 1.0384,
+    "temple_L": 0.9668,
+    "temple_R": 0.9668
+  },
+  "central_cover": {
+    "_denominator": "the middle 50% of face width -- only a fringe can put hair here, so this is the fringe axis and band_cover is the silhouette-width axis",
+    "forehead_0.00_0.15": 0.2696,
+    "brow_0.15_0.28": 0.0185,
+    "eye_0.28_0.42": 0.0014
+  },
+  "band_cover": {
+    "forehead_0.00_0.15": 0.7912,
+    "brow_0.15_0.28": 0.5201,
+    "eye_0.28_0.42": 0.3834,
+    "ear_0.30_0.62": 0.2953,
+    "jaw_0.70_0.95": 0.2268,
+    "_note": "bands are fractions of face height BELOW the forehead top, so they land on the same anatomy on any bust"
+  },
+  "width_profile": [
+    1.9764,
+    1.8885,
+    1.9291,
+    2.0101,
+    1.902,
+    1.8142,
+    1.8209,
+    1.6791,
+    1.5777,
+    1.5507,
+    1.5709,
+    1.375,
+    1.2061,
+    1.1047,
+    1.4899,
+    1.9358
+  ],
+  "edge_roughness": 88.4431,
+  "hair_area_over_face_area": 1.2418
+}

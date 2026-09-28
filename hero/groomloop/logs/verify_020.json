@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "abc": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/exports/iter_020.abc",
+  "checks": {
+    "curve_drift": 0.0,
+    "attributes_lost": []
+  },
+  "failures": [],
+  "got": {
+    "curves": 94408,
+    "points": 375774,
+    "attributes": [
+      "curve_type",
+      "handle_left",
+      "handle_right",
+      "handle_type_left",
+      "handle_type_right",
+      "position",
+      "radius",
+      "resolution"
+    ],
+    "bbox_min": [
+      -0.61166,
+      -2.11087,
+      -0.61534
+    ],
+    "bbox_max": [
+      0.57715,
+      -0.78567,
+      0.60511
+    ],
+    "bbox_dims": [
+      1.18881,
+      1.3252,
+      1.22045
+    ]
+  },
+  "expected": {
+    "curves": 94408,
+    "attributes": [
+      "position",
+      "curve_type",
+      "handle_type_left",
+      "handle_type_right",
+      "handle_right",
+      "handle_left",
+      "radius"
+    ]
+  }
+}

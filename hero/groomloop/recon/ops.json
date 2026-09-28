@@ -1,0 +1,584 @@
+{
+  "blender": "5.2.0 LTS",
+  "alembic_export": [
+    {
+      "id": "filepath",
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "id": "check_existing",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "filter_blender",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_backup",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_image",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_movie",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_python",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_font",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_sound",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_text",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_archive",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_btx",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_alembic",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "filter_usd",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_obj",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_volume",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_folder",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "filter_blenlib",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filemode",
+      "type": "INT",
+      "default": 8
+    },
+    {
+      "id": "display_type",
+      "type": "ENUM",
+      "default": "DEFAULT",
+      "items": [
+        "DEFAULT",
+        "LIST_VERTICAL",
+        "LIST_HORIZONTAL",
+        "THUMBNAIL"
+      ]
+    },
+    {
+      "id": "sort_method",
+      "type": "ENUM",
+      "default": "",
+      "items": []
+    },
+    {
+      "id": "filter_glob",
+      "type": "STRING",
+      "default": "*.abc"
+    },
+    {
+      "id": "start",
+      "type": "INT",
+      "default": -2147483648
+    },
+    {
+      "id": "end",
+      "type": "INT",
+      "default": -2147483648
+    },
+    {
+      "id": "xsamples",
+      "type": "INT",
+      "default": 1
+    },
+    {
+      "id": "gsamples",
+      "type": "INT",
+      "default": 1
+    },
+    {
+      "id": "sh_open",
+      "type": "FLOAT",
+      "default": 0.0
+    },
+    {
+      "id": "sh_close",
+      "type": "FLOAT",
+      "default": 1.0
+    },
+    {
+      "id": "selected",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "flatten",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "collection",
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "id": "uvs",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "packuv",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "normals",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "vcolors",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "orcos",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "face_sets",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "subdiv_schema",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "apply_subdiv",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "curves_as_mesh",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "use_instancing",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "global_scale",
+      "type": "FLOAT",
+      "default": 1.0
+    },
+    {
+      "id": "triangulate",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "quad_method",
+      "type": "ENUM",
+      "default": "SHORTEST_DIAGONAL",
+      "items": [
+        "BEAUTY",
+        "FIXED",
+        "FIXED_ALTERNATE",
+        "SHORTEST_DIAGONAL",
+        "LONGEST_DIAGONAL"
+      ]
+    },
+    {
+      "id": "ngon_method",
+      "type": "ENUM",
+      "default": "BEAUTY",
+      "items": [
+        "BEAUTY",
+        "CLIP"
+      ]
+    },
+    {
+      "id": "export_hair",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "export_particles",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "export_custom_properties",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "as_background_job",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "evaluation_mode",
+      "type": "ENUM",
+      "default": "RENDER",
+      "items": [
+        "RENDER",
+        "VIEWPORT"
+      ]
+    },
+    {
+      "id": "init_scene_frame_range",
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "alembic_import": [
+    {
+      "id": "filepath",
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "id": "directory",
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "id": "files",
+      "type": "COLLECTION"
+    },
+    {
+      "id": "check_existing",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_blender",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_backup",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_image",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_movie",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_python",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_font",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_sound",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_text",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_archive",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_btx",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_alembic",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "filter_usd",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_obj",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_volume",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filter_folder",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "filter_blenlib",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "filemode",
+      "type": "INT",
+      "default": 8
+    },
+    {
+      "id": "relative_path",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "display_type",
+      "type": "ENUM",
+      "default": "DEFAULT",
+      "items": [
+        "DEFAULT",
+        "LIST_VERTICAL",
+        "LIST_HORIZONTAL",
+        "THUMBNAIL"
+      ]
+    },
+    {
+      "id": "sort_method",
+      "type": "ENUM",
+      "default": "",
+      "items": []
+    },
+    {
+      "id": "filter_glob",
+      "type": "STRING",
+      "default": "*.abc"
+    },
+    {
+      "id": "scale",
+      "type": "FLOAT",
+      "default": 1.0
+    },
+    {
+      "id": "set_frame_range",
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "id": "validate_meshes",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "always_add_cache_reader",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "is_sequence",
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "id": "as_background_job",
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "groom_addon": {
+    "add_attribute_node": [],
+    "add_curve_node": [],
+    "add_custom_attribute_node": [],
+    "add_export_node": [],
+    "addcustomnode": [
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      }
+    ],
+    "buttonexport": [
+      {
+        "id": "filepath",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "check_existing",
+        "type": "BOOLEAN",
+        "default": true
+      },
+      {
+        "id": "filter_glob",
+        "type": "STRING",
+        "default": "*.abc"
+      },
+      {
+        "id": "groom_scale",
+        "type": "FLOAT",
+        "default": 1.0
+      },
+      {
+        "id": "groom_width_scale",
+        "type": "BOOLEAN",
+        "default": true
+      },
+      {
+        "id": "groom_radius_to_diameter",
+        "type": "BOOLEAN",
+        "default": true
+      },
+      {
+        "id": "groom_animation",
+        "type": "BOOLEAN",
+        "default": false
+      },
+      {
+        "id": "use_frame_start",
+        "type": "INT",
+        "default": 1
+      },
+      {
+        "id": "use_frame_end",
+        "type": "INT",
+        "default": 250
+      },
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_execution",
+        "type": "BOOLEAN",
+        "default": false
+      }
+    ],
+    "buttonfastsetter": [],
+    "buttonfillfastsetter": [],
+    "fillattributesnode": [
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      }
+    ],
+    "groomtooltip": [],
+    "headertooltip": [],
+    "nodeupdate": [
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      }
+    ],
+    "removecustomnode": [
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "index",
+        "type": "INT",
+        "default": 0
+      }
+    ],
+    "selectcurves": [
+      {
+        "id": "node_group",
+        "type": "STRING",
+        "default": ""
+      },
+      {
+        "id": "node_call",
+        "type": "STRING",
+        "default": ""
+      }
+    ],
+    "strandtooltip": [],
+    "vertextooltip": []
+  }
+}

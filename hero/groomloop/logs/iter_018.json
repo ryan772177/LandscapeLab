@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "src": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/source/SC_Hairstyle_Male_11.abc",
+  "params": {
+    "fringe_length_scale": 1.3,
+    "fringe_clump_count": 6,
+    "fringe_gap_strength": 0.42,
+    "fringe_forward_pull": 0.055,
+    "fringe_zone_fwd": -0.15,
+    "fringe_zone_up_lo": -0.2,
+    "fringe_zone_up_hi": 0.05,
+    "part_close": 0.012,
+    "fringe_pull_ramp": 2.8,
+    "crown_lift": 0.016,
+    "crown_spike_noise": 0.01,
+    "side_length_scale": 1.15,
+    "ear_clearance": -0.004,
+    "temple_wing": 0.004,
+    "nape_length_scale": 6.0,
+    "layer_falloff": 0.18,
+    "clump_scale": 0.6,
+    "clump_count": 90,
+    "strand_noise_amp": 0.002,
+    "strand_noise_freq": 5.0,
+    "flyaway_density": 0.04,
+    "flyaway_amp": 0.01,
+    "tip_trim_variance": 0.6,
+    "global_length_scale": 1.0,
+    "global_sweep_x": 0.0,
+    "global_sweep_z": 0.0,
+    "sweep_ramp": 1.6,
+    "rot_up_deg": 22.0,
+    "rot_side_deg": -12.0,
+    "hem_tuck": 0.02,
+    "stray_clamp_m": 0.26,
+    "seed": 20260822
+  },
+  "unknown_params": [],
+  "label": "Angle bracket around the A4 rotation win: rot_up 22, rot_side -12.",
+  "stats": {
+    "curves": 94408,
+    "points": 375774,
+    "length_mul": {
+      "min": 0.1829,
+      "p50": 1.4002,
+      "max": 6.0
+    },
+    "region_curve_counts": {
+      "crown": 13563,
+      "fringe": 37318,
+      "side": 8756,
+      "temple": 2388,
+      "nape": 24915
+    },
+    "moved_mean_cm": 2.9521,
+    "moved_max_cm": 201.0797
+  },
+  "blend": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/iter_018.blend"
+}

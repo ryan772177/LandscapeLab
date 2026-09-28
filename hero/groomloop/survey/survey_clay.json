@@ -1,0 +1,99 @@
+{
+  "producer": "survey_clay.py",
+  "reference": "hero/reference/appearance_groom_clay.jpg",
+  "sha256": "d331043ecd6629a40f33744419b140f96b374fc2b698056e6e82e72ca8cc17ac",
+  "frame_px": [
+    1042,
+    992
+  ],
+  "background_luma": 59.0,
+  "bust_bbox_px": {
+    "x": [
+      123,
+      909
+    ],
+    "y": [
+      41,
+      899
+    ]
+  },
+  "head": {
+    "top_row": 41,
+    "neck_row": 45,
+    "bottom_row": 44,
+    "height_px": 3,
+    "width_px": 80,
+    "centre_x_px": 483.0
+  },
+  "mask_frac": {
+    "clay": 0.2317,
+    "hair": 0.1156
+  },
+  "crown_lift_px": 41,
+  "crown_lift_frac": 13.6667,
+  "fringe_descent": {
+    "midline": {
+      "lowest_row": 616,
+      "descent_from_head_top_frac": 191.6667
+    },
+    "quarter_L": {
+      "lowest_row": 609,
+      "descent_from_head_top_frac": 189.3333
+    },
+    "quarter_R": {
+      "lowest_row": 620,
+      "descent_from_head_top_frac": 193.0
+    },
+    "half_L": {
+      "lowest_row": 602,
+      "descent_from_head_top_frac": 187.0
+    },
+    "half_R": {
+      "lowest_row": 622,
+      "descent_from_head_top_frac": 193.6667
+    }
+  },
+  "_bands_from_head_survey": {
+    "brow_frac_below_crown": 0.5339,
+    "eye_frac_below_crown": 0.6187,
+    "ear_band_frac_below_crown": [
+      0.5169,
+      0.7497
+    ],
+    "_note": "fractions of (crown_up - neck_cut_up) from survey_head.json"
+  },
+  "brow_band_cover": null,
+  "ear_band_cover": {
+    "rows": [
+      42,
+      43
+    ],
+    "cover_frac": 0.9691
+  },
+  "eye_band_cover": null,
+  "width_profile_half_over_head_half": [
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95,
+    13.95
+  ],
+  "edge_roughness": 94.296,
+  "hair_area_px": 119515,
+  "mask_dump": "_verify/20260822_hero_authored/CLAY_MASK.png"
+}

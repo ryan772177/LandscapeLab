@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "src": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/source/SC_Hairstyle_Male_11.abc",
+  "params": {
+    "fringe_length_scale": 1.0,
+    "fringe_clump_count": 6,
+    "fringe_gap_strength": 0.0,
+    "fringe_forward_pull": 0.0,
+    "fringe_zone_fwd": 0.2,
+    "fringe_zone_up_lo": -0.1,
+    "fringe_zone_up_hi": 0.45,
+    "part_close": 0.0,
+    "fringe_pull_ramp": 1.5,
+    "crown_lift": 0.0,
+    "crown_spike_noise": 0.0,
+    "side_length_scale": 1.0,
+    "ear_clearance": 0.0,
+    "temple_wing": 0.0,
+    "nape_length_scale": 1.0,
+    "layer_falloff": 0.0,
+    "clump_scale": 0.0,
+    "clump_count": 260,
+    "clump_index_block": 0,
+    "strand_noise_amp": 0.0,
+    "strand_noise_freq": 5.0,
+    "flyaway_density": 0.0,
+    "flyaway_amp": 0.02,
+    "tip_trim_variance": 0.0,
+    "global_length_scale": 1.0,
+    "global_sweep_x": 0.0,
+    "global_sweep_z": 0.0,
+    "sweep_ramp": 1.5,
+    "rot_up_deg": 0.0,
+    "rot_side_deg": 0.0,
+    "hem_tuck": 0.0,
+    "stray_clamp_m": 0.0,
+    "frame_up": "-y",
+    "frame_fwd": "+z",
+    "length_unit": 1.0,
+    "seed": 20260822
+  },
+  "unknown_params": [],
+  "label": "POSITIVE CONTROL: identity on the PACK groom in its own frame. The sphere fit must recover recon's independently measured head (0,-1.52098,0) r 0.105.",
+  "frame": {
+    "head": [
+      -0.00053,
+      -1.49797,
+      0.00887
+    ],
+    "scalp_r": 0.10293,
+    "fit_resid_p90": 0.01474,
+    "roots": 94408,
+    "up": "-y",
+    "fwd": "+z",
+    "side": [
+      -1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "stats": {
+    "curves": 94408,
+    "points": 375774,
+    "length_mul": {
+      "min": 1.0,
+      "p50": 1.0,
+      "max": 1.0
+    },
+    "region_curve_counts": {
+      "crown": 29867,
+      "fringe": 19535,
+      "side": 8841,
+      "temple": 1609,
+      "nape": 27051
+    },
+    "moved_mean_cm": 0.0,
+    "moved_max_cm": 0.0
+  },
+  "blend": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/pack_000.blend"
+}

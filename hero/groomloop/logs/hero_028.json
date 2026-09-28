@@ -1,0 +1,86 @@
+{
+  "ok": true,
+  "src": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/hero_src/hero_base.blend",
+  "params": {
+    "fringe_length_scale": 1.45,
+    "fringe_clump_count": 6,
+    "fringe_gap_strength": 0.4,
+    "fringe_forward_pull": 0.065,
+    "fringe_zone_fwd": -0.15,
+    "fringe_zone_up_lo": -0.2,
+    "fringe_zone_up_hi": 0.05,
+    "part_close": 0.012,
+    "fringe_pull_ramp": 2.8,
+    "crown_lift": 0.016,
+    "crown_spike_noise": 0.01,
+    "side_length_scale": 1.15,
+    "ear_clearance": -0.004,
+    "temple_wing": 0.004,
+    "nape_length_scale": 6.0,
+    "layer_falloff": 0.18,
+    "clump_scale": 0.55,
+    "clump_count": 90,
+    "clump_index_block": 0,
+    "strand_noise_amp": 0.002,
+    "strand_noise_freq": 5.0,
+    "flyaway_density": 0.04,
+    "flyaway_amp": 0.01,
+    "tip_trim_variance": 0.6,
+    "global_length_scale": 1.0,
+    "global_sweep_x": 0.0,
+    "global_sweep_z": 0.0,
+    "sweep_ramp": 1.6,
+    "rot_up_deg": 22.0,
+    "rot_side_deg": -12.0,
+    "hem_tuck": 0.02,
+    "stray_clamp_m": 0.24,
+    "frame_up": "+z",
+    "frame_fwd": "-y",
+    "length_unit": 100.0,
+    "seed": 20260822
+  },
+  "unknown_params": [],
+  "label": "028 PORTED TO THE HERO'S OWN AUTHORED GROOM. Identical to iter_028 except for the two changes the source forces: the frame/unit declaration, and clump_index_block disabled. Deliberately a STRAIGHT PORT so the first hero render measures 028's parameters rather than my guesses about them; adaptations come after looking.",
+  "frame": {
+    "head": [
+      -0.025,
+      -2.09888,
+      169.24362
+    ],
+    "scalp_r": 9.29326,
+    "fit_resid_p90": 0.7084,
+    "roots": 48000,
+    "up": "+z",
+    "fwd": "-y",
+    "side": [
+      1.0,
+      0.0,
+      -0.0
+    ]
+  },
+  "length_params_scaled_by": 100.0,
+  "final_clamp": {
+    "curves_clamped": 75,
+    "max_len_cm_before": 24.809,
+    "max_len_cm_after": 24.0
+  },
+  "stats": {
+    "curves": 48000,
+    "points": 576000,
+    "length_mul": {
+      "min": 0.3314,
+      "p50": 1.1011,
+      "max": 6.0
+    },
+    "region_curve_counts": {
+      "crown": 14545,
+      "fringe": 17576,
+      "side": 14197,
+      "temple": 2264,
+      "nape": 622
+    },
+    "moved_mean_cm": 2.7101,
+    "moved_max_cm": 21.284
+  },
+  "blend": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/blends/hero_028.blend"
+}

@@ -1,0 +1,29 @@
+{
+  "source": "hero/reference/hero_face_bald_frontal.jpg",
+  "source_sha256": "4cb7d442a87cee435262a0fc2e217709b9ee9c9d592242e4b3ef4238e018af1e",
+  "measurement": {
+    "image_w": 1375,
+    "image_h": 768,
+    "chroma_corner": 5.0,
+    "chroma_skin": 46.0,
+    "subject_top": 28,
+    "subject_bottom": 767,
+    "head_widest_row": 334,
+    "head_width": 448,
+    "head_centre_x": 682
+  },
+  "frame_factor": 1.42,
+  "chroma_thresh": 12.0,
+  "crop_box_x0y0x1y1": [
+    364,
+    0,
+    1000,
+    636
+  ],
+  "output": "hero/reference/hero_face_bald_headcrop.png",
+  "output_sha256": "c039ab4f6be7f667dd384b999f6aa843b48b34356a913be61c8797966add7f7c",
+  "output_size": [
+    636,
+    636
+  ]
+}

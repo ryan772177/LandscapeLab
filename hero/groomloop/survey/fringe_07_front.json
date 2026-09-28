@@ -1,0 +1,64 @@
+{
+  "image": "_verify/20260822_agents/fringe_07/preview_front.png",
+  "frame_px": [
+    888,
+    900
+  ],
+  "title_strip_px": 0,
+  "background_luma": 59.0,
+  "mask_frac": {
+    "clay": 0.2232,
+    "hair": 0.0951
+  },
+  "_face_top_floor_px": 22,
+  "face": {
+    "top_row": 201,
+    "chin_row": 532,
+    "height_px": 331,
+    "width_px": 286,
+    "centre_x_px": 382.5,
+    "neck_width_px": 56
+  },
+  "crown_lift_frac": 0.4713,
+  "fringe_descent_frac_of_face_h": {
+    "midline": 0.9909,
+    "quarter_L": 1.0846,
+    "quarter_R": 1.0453,
+    "temple_L": 1.0211,
+    "temple_R": 0.3625
+  },
+  "central_cover": {
+    "_denominator": "the middle 50% of face width -- only a fringe can put hair here, so this is the fringe axis and band_cover is the silhouette-width axis",
+    "forehead_0.00_0.15": 0.3628,
+    "brow_0.15_0.28": 0.0893,
+    "eye_0.28_0.42": 0.1471
+  },
+  "band_cover": {
+    "forehead_0.00_0.15": 0.7978,
+    "brow_0.15_0.28": 0.4739,
+    "eye_0.28_0.42": 0.5389,
+    "ear_0.30_0.62": 0.3685,
+    "jaw_0.70_0.95": 0.2078,
+    "_note": "bands are fractions of face height BELOW the forehead top, so they land on the same anatomy on any bust"
+  },
+  "width_profile": [
+    1.7937,
+    1.8357,
+    1.8427,
+    1.8776,
+    1.9196,
+    1.9615,
+    2.0385,
+    2.0804,
+    2.0664,
+    1.7028,
+    1.6748,
+    1.6469,
+    1.6049,
+    1.5,
+    1.6049,
+    2.0035
+  ],
+  "edge_roughness": 88.2033,
+  "hair_area_over_face_area": 1.3
+}

@@ -1,0 +1,48 @@
+{
+  "abc": "dl_FLIP28b_ue.abc",
+  "abc_sha256": "e9fb7ad727908158838c4fd711b98ccf8e601b465dc09ab462229633f4ee26f3",
+  "abc_bytes": 55051705,
+  "curves": 44252,
+  "points": 1239056,
+  "widths": {
+    "n": 1239056,
+    "min": 0.003125,
+    "mean": 0.01,
+    "max": 0.016875,
+    "all_zero": false
+  },
+  "root_uv": {
+    "n": 44252,
+    "unique": 1156,
+    "u": [
+      0.00996,
+      0.99512
+    ],
+    "v": [
+      0.59078,
+      0.99012
+    ],
+    "all_zero": false
+  },
+  "arb_params": [
+    "groom_group_id",
+    "groom_group_name",
+    "groom_root_uv"
+  ],
+  "pointers_set": [],
+  "ue_consumed_absent": [
+    "att_groom_ao",
+    "att_groom_closest_guides",
+    "att_groom_color",
+    "att_groom_guide",
+    "att_groom_guide_weights",
+    "att_groom_id",
+    "att_groom_roughness"
+  ],
+  "exporter_sha256_16": {
+    "ExporterOperators.py": "f8789a1d96cff066",
+    "AlembicGroomExporter.py": "03da8055937590c5"
+  },
+  "float_vector_patch": "applied",
+  "gate": "widths non-zero and root UVs distinct, verified by reopening the written file"
+}

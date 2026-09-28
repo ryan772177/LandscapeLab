@@ -1,0 +1,297 @@
+{
+  "ok": true,
+  "producer": "survey_head.py",
+  "blend": "C:\\Users\\Admin\\UE5LandscapePipeline\\hero\\groomloop\\hero_src\\hero_base.blend",
+  "head_object": "SKM_MHC_AlpineHero_FaceMesh.001",
+  "head_verts": 19284,
+  "mesh_bounds_up": [
+    140.878,
+    178.437
+  ],
+  "neck_cut_up": 157.466,
+  "neck_width": 12.158,
+  "frame": {
+    "centre": [
+      0.0038,
+      -3.0978,
+      168.995
+    ],
+    "radius": 9.2274,
+    "up": "+z",
+    "front": "-y",
+    "units": "centimetres (the hero authoring blend is Z-up in cm)",
+    "_face_sign_source": "author_hero_hair.py PARAMS face_sign_y = -1.0"
+  },
+  "skull_bands": {
+    "crown_up": 178.437,
+    "nose_tip_up": 163.294,
+    "eye_socket_up": 165.463,
+    "brow_up": 167.241,
+    "eye_band_up": [
+      163.686,
+      167.241
+    ],
+    "neck_cut_up": 157.466,
+    "_superseded": {
+      "fraction_brow_up": 170.925,
+      "_by_how_much_cm": 3.684,
+      "_evidence": "_verify/20260822_hero_authored/BROW_CHECK.png"
+    },
+    "_brow_reading": "the brow is the forward PEAK of the ridge just above the socket recess. It is anatomy, so styling moves around it and never moves it -- tying it to the hairline would shrink the eye protection whenever the hairline was lowered, which is the thing being protected."
+  },
+  "ears": {
+    "L": {
+      "tip": [
+        9.519,
+        -0.151,
+        166.607
+      ],
+      "up_span": [
+        162.716,
+        167.597
+      ],
+      "upper_third_up": 165.97,
+      "side_extent": 9.519
+    },
+    "R": {
+      "tip": [
+        -9.524,
+        -0.041,
+        166.606
+      ],
+      "up_span": [
+        162.986,
+        167.55
+      ],
+      "upper_third_up": 166.029,
+      "side_extent": 9.524
+    },
+    "_coverage_axis": "the sides brief scores EAR UPPER-THIRD COVERAGE: hair must cover from upper_third_up to up_span[1]. Below that the ear shows, which the clay target has at the lobe and not at the top."
+  },
+  "roots": 48000,
+  "hairline_sweep": [
+    {
+      "az_deg": -172.5,
+      "n": 4653,
+      "hairline_up": 166.459,
+      "hairline_up_norm": -0.2749
+    },
+    {
+      "az_deg": -157.5,
+      "n": 2959,
+      "hairline_up": 168.926,
+      "hairline_up_norm": -0.0075
+    },
+    {
+      "az_deg": -142.5,
+      "n": 2601,
+      "hairline_up": 169.487,
+      "hairline_up_norm": 0.0534
+    },
+    {
+      "az_deg": -127.5,
+      "n": 2096,
+      "hairline_up": 171.121,
+      "hairline_up_norm": 0.2304
+    },
+    {
+      "az_deg": -112.5,
+      "n": 1832,
+      "hairline_up": 165.531,
+      "hairline_up_norm": -0.3754
+    },
+    {
+      "az_deg": -97.5,
+      "n": 1649,
+      "hairline_up": 166.496,
+      "hairline_up_norm": -0.2708
+    },
+    {
+      "az_deg": -82.5,
+      "n": 1556,
+      "hairline_up": 171.869,
+      "hairline_up_norm": 0.3115
+    },
+    {
+      "az_deg": -67.5,
+      "n": 1448,
+      "hairline_up": 171.239,
+      "hairline_up_norm": 0.2432
+    },
+    {
+      "az_deg": -52.5,
+      "n": 1722,
+      "hairline_up": 170.827,
+      "hairline_up_norm": 0.1985
+    },
+    {
+      "az_deg": -37.5,
+      "n": 1951,
+      "hairline_up": 170.416,
+      "hairline_up_norm": 0.154
+    },
+    {
+      "az_deg": -22.5,
+      "n": 1625,
+      "hairline_up": 167.79,
+      "hairline_up_norm": -0.1306
+    },
+    {
+      "az_deg": -7.5,
+      "n": 1440,
+      "hairline_up": 173.419,
+      "hairline_up_norm": 0.4794
+    },
+    {
+      "az_deg": 7.5,
+      "n": 1167,
+      "hairline_up": 172.919,
+      "hairline_up_norm": 0.4252
+    },
+    {
+      "az_deg": 22.5,
+      "n": 1600,
+      "hairline_up": 167.767,
+      "hairline_up_norm": -0.1331
+    },
+    {
+      "az_deg": 37.5,
+      "n": 1572,
+      "hairline_up": 171.008,
+      "hairline_up_norm": 0.2182
+    },
+    {
+      "az_deg": 52.5,
+      "n": 1545,
+      "hairline_up": 171.346,
+      "hairline_up_norm": 0.2548
+    },
+    {
+      "az_deg": 67.5,
+      "n": 1414,
+      "hairline_up": 171.245,
+      "hairline_up_norm": 0.2438
+    },
+    {
+      "az_deg": 82.5,
+      "n": 1660,
+      "hairline_up": 171.481,
+      "hairline_up_norm": 0.2694
+    },
+    {
+      "az_deg": 97.5,
+      "n": 1731,
+      "hairline_up": 166.43,
+      "hairline_up_norm": -0.278
+    },
+    {
+      "az_deg": 112.5,
+      "n": 1742,
+      "hairline_up": 164.771,
+      "hairline_up_norm": -0.4578
+    },
+    {
+      "az_deg": 127.5,
+      "n": 2152,
+      "hairline_up": 171.129,
+      "hairline_up_norm": 0.2312
+    },
+    {
+      "az_deg": 142.5,
+      "n": 2186,
+      "hairline_up": 170.089,
+      "hairline_up_norm": 0.1185
+    },
+    {
+      "az_deg": 157.5,
+      "n": 2951,
+      "hairline_up": 169.502,
+      "hairline_up_norm": 0.055
+    },
+    {
+      "az_deg": 172.5,
+      "n": 2748,
+      "hairline_up": 166.462,
+      "hairline_up_norm": -0.2745
+    }
+  ],
+  "hairline_note": "TEMPLES COUNT AS FRONT. A hairline read as a single height puts the temple in the side region, and the brow wisps then live in the gap between the two -- measured, and it is why an earlier fix needed the hairline and the sweep to be one fact rather than two.",
+  "regions": {
+    "_coords": "normalised skull coords: u = (root - frame.centre) / frame.radius, then up = u.UP, fwd = u.FWD, side = u.SIDE. UP = +Z, FWD = -Y, SIDE = UP x FWD.",
+    "_form": "smoothstep(lo, hi, value); a root's weight is the product of its listed clauses, so bands overlap softly rather than partitioning.",
+    "_transposition_fixed": "THREE of these bands were written ASCENDING when they needed to select LOW values, so side_L, side_R and nape all selected the UPPER skull. The declared 'nape' was therefore the OCCIPUT, which is why its census read 18,531 -- about the same as crown's 18,076 -- and why the nape agent's brief told it the region held 622 roots. 622 was the WEIGHT SUM of the correctly-transposed band printed beside the wrong count, so the two numbers in the same row described different things. Found by the nape agent, which reproduced BOTH published numbers from one root cloud rather than believing either. Scope: this census is a REPORT, consumed by agent briefs; edit_engine.py computes its own region weights and was never affected, so no styling result is invalidated.",
+    "fringe": {
+      "fwd": [
+        0.1,
+        0.55
+      ],
+      "up": [
+        -0.3,
+        0.55
+      ],
+      "_owns": "locks breaking down over the brow"
+    },
+    "crown": {
+      "up": [
+        0.45,
+        0.95
+      ],
+      "_owns": "lift up-and-forward, chunky separated locks"
+    },
+    "side_L": {
+      "side": [
+        0.25,
+        0.8
+      ],
+      "up": [
+        0.45,
+        -0.6
+      ],
+      "_owns": "ear coverage and swept-back flow, left"
+    },
+    "side_R": {
+      "side": [
+        -0.25,
+        -0.8
+      ],
+      "up": [
+        0.45,
+        -0.6
+      ],
+      "_owns": "ear coverage and swept-back flow, right"
+    },
+    "nape": {
+      "fwd": [
+        -0.2,
+        -0.75
+      ],
+      "up": [
+        0.1,
+        -0.7
+      ],
+      "_owns": "taper to a soft point above the collar"
+    }
+  },
+  "region_census": {
+    "fringe": {
+      "roots_w>0.5": 10990,
+      "weight_sum": 10648.9
+    },
+    "crown": {
+      "roots_w>0.5": 18076,
+      "weight_sum": 17977.0
+    },
+    "side_L": {
+      "roots_w>0.5": 460,
+      "weight_sum": 629.4
+    },
+    "side_R": {
+      "roots_w>0.5": 375,
+      "weight_sum": 647.1
+    },
+    "nape": {
+      "roots_w>0.5": 284,
+      "weight_sum": 621.9
+    }
+  }
+}

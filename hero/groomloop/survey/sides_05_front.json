@@ -1,0 +1,64 @@
+{
+  "image": "C:\\Users\\Admin\\UE5LandscapePipeline\\hero\\groomloop\\survey\\..\\..\\..\\_verify\\20260822_agents\\sides_05\\preview_front.png",
+  "frame_px": [
+    888,
+    900
+  ],
+  "title_strip_px": 0,
+  "background_luma": 59.0,
+  "mask_frac": {
+    "clay": 0.2285,
+    "hair": 0.0841
+  },
+  "_face_top_floor_px": 19,
+  "face": {
+    "top_row": 191,
+    "chin_row": 532,
+    "height_px": 341,
+    "width_px": 245,
+    "centre_x_px": 434.0,
+    "neck_width_px": 58
+  },
+  "crown_lift_frac": 0.4311,
+  "fringe_descent_frac_of_face_h": {
+    "midline": 1.0411,
+    "quarter_L": 0.9883,
+    "quarter_R": 1.0381,
+    "temple_L": 0.956,
+    "temple_R": 0.9677
+  },
+  "central_cover": {
+    "_denominator": "the middle 50% of face width -- only a fringe can put hair here, so this is the fringe axis and band_cover is the silhouette-width axis",
+    "forehead_0.00_0.15": 0.1689,
+    "brow_0.15_0.28": 0.0,
+    "eye_0.28_0.42": 0.0186
+  },
+  "band_cover": {
+    "forehead_0.00_0.15": 0.6037,
+    "brow_0.15_0.28": 0.4448,
+    "eye_0.28_0.42": 0.4671,
+    "ear_0.30_0.62": 0.3,
+    "jaw_0.70_0.95": 0.2167,
+    "_note": "bands are fractions of face height BELOW the forehead top, so they land on the same anatomy on any bust"
+  },
+  "width_profile": [
+    1.6163,
+    1.6653,
+    1.6735,
+    1.6816,
+    1.6735,
+    1.6735,
+    1.6571,
+    1.5918,
+    1.5837,
+    1.5918,
+    1.5918,
+    1.6163,
+    1.6327,
+    1.4857,
+    1.4939,
+    1.9673
+  ],
+  "edge_roughness": 86.7255,
+  "hair_area_over_face_area": 1.0685
+}

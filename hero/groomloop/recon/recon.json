@@ -1,0 +1,156 @@
+{
+  "ok": true,
+  "abc": "C:/Users/Admin/UE5LandscapePipeline/hero/groomloop/source/SC_Hairstyle_Male_11.abc",
+  "blender": "5.2.0 LTS",
+  "scene_unit_scale": 1.0,
+  "scene_unit_system": "METRIC",
+  "import_result": [
+    "FINISHED"
+  ],
+  "object_count": 1,
+  "objects": [
+    {
+      "name": "01_Center part curtains",
+      "type": "CURVES",
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "parent": null,
+      "data_type": "Curves",
+      "curve_count": 94408,
+      "point_count": 375774,
+      "points_per_curve": {
+        "min": 1,
+        "max": 9,
+        "mean": 3.98,
+        "uniform": false
+      },
+      "attributes": [
+        {
+          "name": "position",
+          "domain": "POINT",
+          "data_type": "FLOAT_VECTOR"
+        },
+        {
+          "name": "curve_type",
+          "domain": "CURVE",
+          "data_type": "INT8"
+        },
+        {
+          "name": "handle_type_left",
+          "domain": "POINT",
+          "data_type": "INT8"
+        },
+        {
+          "name": "handle_type_right",
+          "domain": "POINT",
+          "data_type": "INT8"
+        },
+        {
+          "name": "handle_right",
+          "domain": "POINT",
+          "data_type": "FLOAT_VECTOR"
+        },
+        {
+          "name": "handle_left",
+          "domain": "POINT",
+          "data_type": "FLOAT_VECTOR"
+        },
+        {
+          "name": "radius",
+          "domain": "POINT",
+          "data_type": "FLOAT"
+        }
+      ],
+      "surface": null,
+      "surface_uv_map": "",
+      "bbox_min": [
+        -0.5664,
+        -2.0788,
+        -0.5553
+      ],
+      "bbox_max": [
+        0.5528,
+        0.4366,
+        0.5785
+      ],
+      "bbox_dims": [
+        1.1192,
+        2.5154,
+        1.1338
+      ]
+    }
+  ],
+  "type_histogram": {
+    "CURVES": 1
+  },
+  "scene_bbox_min": [
+    -0.5664,
+    -2.0788,
+    -0.5553
+  ],
+  "scene_bbox_max": [
+    0.5528,
+    0.4366,
+    0.5785
+  ],
+  "scene_bbox_dims": [
+    1.1192,
+    2.5154,
+    1.1338
+  ],
+  "export_operators": [
+    "groom.add_attribute_node",
+    "groom.add_curve_node",
+    "groom.add_custom_attribute_node",
+    "groom.add_export_node",
+    "groom.addcustomnode",
+    "groom.buttonexport",
+    "groom.buttonfastsetter",
+    "groom.buttonfillfastsetter",
+    "groom.fillattributesnode",
+    "groom.groomtooltip",
+    "groom.headertooltip",
+    "groom.nodeupdate",
+    "groom.removecustomnode",
+    "groom.selectcurves",
+    "groom.strandtooltip",
+    "groom.vertextooltip",
+    "wm.alembic_export",
+    "wm.alembic_import"
+  ],
+  "addons_enabled": [
+    "GroomExporter",
+    "bl_pkg",
+    "cycles",
+    "io_anim_bvh",
+    "io_curve_svg",
+    "io_mesh_uv_layout",
+    "io_scene_fbx",
+    "io_scene_gltf2",
+    "pose_library"
+  ]
+}
