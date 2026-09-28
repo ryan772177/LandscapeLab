@@ -1,0 +1,70 @@
+# probe_mesh_refpose — is a mesh's REFERENCE skeleton standing or collapsed?
+#
+# The failure was traced to the reference skeleton itself: in the duplicated
+# meshes every bone sits within 6 mm of one point, and an unposed skeletal
+# mesh should display its reference pose STANDING. So the reference pose is
+# testable without PIE at all -- spawn a SkeletalMeshActor with no animation
+# and read root against head.
+#
+# CARRIES ITS OWN NEGATIVE CONTROL. The /Game/Hero/Generated meshes are known
+# broken; if they read healthy here, this probe is not measuring what it
+# claims and its verdict on the assembled meshes is void. A test that has
+# only ever seen one answer has not been shown to discriminate.
+import json as _json
+import unreal as _unreal
+
+_TARGETS = [
+    ("assembled_face",
+     "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh"),
+    ("assembled_body",
+     "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh"),
+    ("CONTROL_known_bad_face", "/Game/Hero/Generated/SKM_HeroFace"),
+    ("CONTROL_known_bad_body", "/Game/Hero/Generated/SKM_HeroBody"),
+]
+
+_out = {"error": None, "results": []}
+_spawned = []
+try:
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _z = 300000.0
+    for _label, _path in _TARGETS:
+        _rec = {"which": _label, "path": _path}
+        _m = _unreal.EditorAssetLibrary.load_asset(_path)
+        _rec["loads"] = _m is not None
+        if _m is None:
+            _out["results"].append(_rec)
+            continue
+        _a = _els.spawn_actor_from_class(
+            _unreal.SkeletalMeshActor, _unreal.Vector(0.0, 0.0, _z),
+            _unreal.Rotator(0.0, 0.0, 0.0))
+        _spawned.append(_a)
+        _z += 1000.0
+        _c = _a.get_component_by_class(_unreal.SkeletalMeshComponent)
+        _c.set_skeletal_mesh_asset(_m)
+        try:
+            _r = _c.get_socket_location("root")
+            _h = _c.get_socket_location("head")
+            _rec["head_rise_cm"] = round(float(_h.z) - float(_r.z), 1)
+        except Exception as _e:
+            _rec["head_rise_cm"] = "UNREADABLE: " + str(_e)[:70]
+        try:
+            _nb = int(_c.get_num_bones())
+            _zs = []
+            _st = max(1, _nb // 20)
+            for _i in range(0, _nb, _st):
+                _zs.append(float(_c.get_socket_location(
+                    _c.get_bone_name(_i)).z))
+            _rec["bones"] = _nb
+            _rec["bone_z_spread_cm"] = round(max(_zs) - min(_zs), 1)
+        except Exception as _e:
+            _rec["bone_z_spread_cm"] = "UNREADABLE: " + str(_e)[:70]
+        _out["results"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    for _a in _spawned:
+        try:
+            _unreal.EditorLevelLibrary.destroy_actor(_a)
+        except Exception:
+            pass
+print("__LL__" + _json.dumps(_out, default=str))

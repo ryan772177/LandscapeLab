@@ -1,0 +1,116 @@
+{
+ "_what_this_is": "C0 donor-house material set. Seven roles, ten mesh slots.",
+ "_why_seven_not_ten": "Four slots (Material_001_ncl_1, _002, _004, _006) all reference the SAME source texture, rough_wood_diff_2k, so all four map to one role. That is consolidation, not a collision -- read from the mesh wiring at _verify/20260830_c0/slot_wiring.json, not assumed.",
+ "_measured_vs_authored": "albedo is a real file. normal is DERIVED from albedo luminance (an approximation -- see scripts/derive_material_maps.py). roughness_base is AUTHORED: there is no route from a diffuse photograph to a physical roughness, and a number with no ground truth must be labelled as one.",
+ "_normal_convention": "DX (green down). MEASURED, not assumed: derive_material_maps.py --calibrate labels ambientCG's ten vendor-labelled DX/GL files 10 of 10 correctly, red control +0.53 to +0.90.",
+ "schema": "1.0-c0",
+ "mesh": "/Game/Scratch/C0House/SM_C0_DonorHouse",
+ "pivot_base_error_cm": -39.81,
+ "unit_scale_check": {
+  "house_size_cm": [
+   1046.67,
+   1452.84,
+   1460.53
+  ],
+  "reference": "SM_MedievalModularWall2x2MD",
+  "reference_height_cm": 200.0,
+  "house_height_in_modules": 7.303,
+  "verdict": "1 uu = 1 cm confirmed; not a metres-scale Blender export"
+ },
+ "roles": {
+  "wall_planks_a": {
+   "albedo": "refs/textures_v1/wall_planks_a_tiled.jpg",
+   "replaces": "wood_planks_grey_diff_2k",
+   "slots": [
+    "Material_001"
+   ],
+   "roughness_base": 0.75,
+   "normal_strength": 8.0,
+   "source": "operator-generated, repaired for tiling",
+   "tile_m": 1.5,
+   "_tile_m": "MEASURED. Poly Haven publishes wood_planks_grey at 1500 x 1500 mm. This role's albedo replaces that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent."
+  },
+  "beam_wood": {
+   "albedo": "refs/textures_v1/beam_wood_graded.jpg",
+   "replaces": "rough_wood_diff_2k",
+   "slots": [
+    "Material_001_ncl_1",
+    "Material_002",
+    "Material_004",
+    "Material_006"
+   ],
+   "roughness_base": 0.85,
+   "normal_strength": 10.0,
+   "source": "operator-generated, repaired for tiling; GRADED 2026-08-30 per the operator's ruling",
+   "_albedo_before_grade": "refs/textures_v1/beam_wood_tiled.jpg",
+   "tile_m": 0.5,
+   "_tile_m": "MEASURED. Poly Haven publishes rough_wood at 500 x 500 mm. This role's albedo replaces that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent."
+  },
+  "roof_tiles": {
+   "albedo": "refs/textures_v1/roof_tiles_graded.jpg",
+   "replaces": "grey_roof_01_diff_4k",
+   "slots": [
+    "Material_003"
+   ],
+   "roughness_base": 0.7,
+   "normal_strength": 12.0,
+   "source": "operator-generated, repaired for tiling; GRADED 2026-08-30 per the operator's ruling",
+   "_albedo_before_grade": "refs/textures_v1/roof_tiles_tiled.jpg",
+   "tile_m": 8.0,
+   "_tile_m": "MEASURED. Poly Haven publishes grey_roof_01 at 8000 x 8000 mm. This role's albedo replaces that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent."
+  },
+  "plaster_wall": {
+   "albedo": "refs/textures_v1/plaster_wall_tiled.jpg",
+   "replaces": "concrete_wall_003_diff_2k",
+   "slots": [
+    "Material_005"
+   ],
+   "roughness_base": 0.9,
+   "normal_strength": 5.0,
+   "source": "operator-generated, repaired for tiling",
+   "tile_m": 3.0,
+   "_tile_m": "MEASURED. Poly Haven publishes concrete_wall_003 at 3000 x 3000 mm. This role's albedo replaces that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent."
+  },
+  "wall_planks_b": {
+   "albedo": "refs/textures_v1/wall_planks_b_graded.jpg",
+   "replaces": "brown_planks_03_diff_2k",
+   "slots": [
+    "Material_009"
+   ],
+   "roughness_base": 0.75,
+   "normal_strength": 8.0,
+   "source": "operator-generated, repaired for tiling; GRADED 2026-08-30 per the operator's ruling",
+   "_albedo_before_grade": "refs/textures_v1/wall_planks_b_tiled.jpg",
+   "tile_m": 1.0,
+   "_tile_m": "MEASURED. Poly Haven publishes brown_planks_03 at 1000 x 1000 mm. This role's albedo replaces that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent."
+  },
+  "rock_wall": {
+   "albedo": "refs/polyhaven/rock_wall_08_diff_2k.jpg",
+   "replaces": null,
+   "slots": [
+    "Material_007"
+   ],
+   "roughness_base": 0.8,
+   "normal_strength": 12.0,
+   "source": "Poly Haven CC0, KEPT -- the operator ruled no replacement",
+   "tile_m": 1.8,
+   "_tile_m": "MEASURED. Poly Haven publishes rock_wall_08 at 1800 x 1800 mm. This role's albedo IS that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent.",
+   "_albedo_repointed": "was Free/_intake/medieval_house_c0/source/Medival House _.fbm/rock_wall_08_diff_2k.jpg -- inside the AI-guard-refused .fbm. Repointed 2026-08-31 to the DIRECT polyhaven.com download, which is byte-identical (proven by hash). Nothing in a live material chain now reads from that directory."
+  },
+  "floor_worn": {
+   "albedo": "refs/polyhaven/concrete_floor_worn_001_diff_4k.jpg",
+   "replaces": null,
+   "slots": [
+    "Material_008"
+   ],
+   "roughness_base": 0.65,
+   "normal_strength": 6.0,
+   "source": "Poly Haven CC0, KEPT -- the operator ruled no replacement",
+   "tile_m": 3.0,
+   "_tile_m": "MEASURED. Poly Haven publishes concrete_floor_worn_001 at 3000 x 3000 mm. This role's albedo IS that texture on the same mesh with the same UVs, repaired for tiling rather than re-framed, so it depicts the same extent.",
+   "_albedo_repointed": "was Free/_intake/medieval_house_c0/source/Medival House _.fbm/concrete_floor_worn_001_diff_4k.jpg -- inside the AI-guard-refused .fbm. Repointed 2026-08-31 to the DIRECT polyhaven.com download, which is byte-identical (proven by hash). Nothing in a live material chain now reads from that directory."
+  }
+ },
+ "_grade_ruling": "+90% saturation and 4.0x warmth measured on the flat stage were ruled real and too far. wall_planks_b and roof_tiles graded toward the MIDPOINT of the two measured endpoints; beam_wood darkened 0.90x toward the concept chalets. Luminance DETAIL deliberately untouched -- that is what makes the timber read against the plaster, and the ruling asked to keep it. scripts/grade_albedo.py; targets and residuals in _verify/20260830_overnight/grade_plan.json.",
+ "_tiling_is_derived": "TILING IS COMPUTED, NEVER TYPED: tiling = metres_per_uv / tile_m, with metres_per_uv MEASURED per slot by the uv-density pass and tile_m measured above. Until 2026-08-31 the master's `Tiling` scalar sat at its 1.0 default and nothing ever wrote it, so all seven roles rendered at the machine unwrap's own density -- and, worse, at the SAME density as each other despite tile_m spanning 0.5 m (rough_wood) to 8.0 m (grey_roof_01), a 16x relative error between two roles on one house. EVERY C0 JUDGEMENT INCLUDING THE GRADE WAS MADE UNDER THAT."
+}

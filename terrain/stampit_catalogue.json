@@ -1,0 +1,1456 @@
+{
+ "category": "STAMP",
+ "count": 52,
+ "cross_tier_note": "NO cross-tier 'same map' relationship is recorded: the resolution folders hold independently generated terrains",
+ "identity": "sha256 of file bytes; name/folder are metadata only and are never used to match or dedupe",
+ "licence": "Fab Standard Licence \u2014 UE projects only",
+ "maps": [
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Alien_World_Bobble_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "69a72dc93349629b5ca543eb4694e6f4908857c59e5e2ca2f40421e6c86c530a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 28168.33525466919,
+    "min": 0.0,
+    "std": 11880.610834097488
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Alien_World_Bobble_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Alien_World_Swirl_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "6fe302e8331a79c67666077be40321470a9b75eb557d2b5126ec5a00513bcf60",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 17952.924260497093,
+    "min": 0.0,
+    "std": 12380.302946012305
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Alien_World_Swirl_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Alien_World_Voronian_03_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "b521681d95b1e82fb4529cd92e9c44c6e23ff3e89722c75b6225937c95a5317c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 27580.7232863307,
+    "min": 0.0,
+    "std": 13117.13330679361
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Alien_World_Voronian_03_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Canyon_04_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "19f7b810e36d7d9e0fc13890217b85caa33406ff28a5aa0dccf338619bf90df3",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 50207.38608926535,
+    "min": 0.0,
+    "std": 15919.947846632745
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Canyon_04_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "broad incised canyon with terraced walls",
+   "visual_note": "Reads arid; usable if the drainage is deep."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Canyon_18_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "a034ca3c722a79648baaa57032b9b68838ecfda1e0f1731106d7bef61005f8ec",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 28028.242052972317,
+    "min": 0.0,
+    "std": 22940.87041167392
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Canyon_18_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "ridge mass cut by a deep canyon",
+   "visual_note": "The ridge half is alpine-usable."
+  },
+  {
+   "alpine": "DOWNGRADED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Canyon_Shapes_03_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "23d611d5d5a5b693c6ee213abb7a2598290dfb0e2026e1eba8e3d78da654590a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 30694.66289228201,
+    "min": 0.0,
+    "std": 20380.53782462426
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Canyon_Shapes_03_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "blocky rectilinear canyon network, artificial-looking",
+   "visual_note": "The right angles read as authored, not eroded."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Craters_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "4d236406dd9792b4868d85376ef8000839d7e6e1d6264f71d5a099e7f89b9921",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 31779.359838962555,
+    "min": 0.0,
+    "std": 10592.897779775882
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Craters_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "crater",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "DOWNGRADED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dover_Cliffs_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "10f6b8286950f3cabbc5afe735a50b1b031586753375023e1782d28c9ee12272",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 37994.70819658041,
+    "min": 0.0,
+    "std": 16250.865319302035
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dover_Cliffs_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "rounded chalk downland, soft convex hills",
+   "visual_note": "A real cliff formation, but far too soft and rounded to read as alpine. Usable in a temperate coastal region."
+  },
+  {
+   "alpine": "DOWNGRADED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dover_Cliffs_15_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "3d40ae2868215dc6e736b83d3a5099337d0fd9269ea3519bcb5f8339f675a612",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 40179.33834731579,
+    "min": 0.0,
+    "std": 15075.907560066616
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dover_Cliffs_15_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "rounded chalk downland, soft convex hills",
+   "visual_note": "Same as _06."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dune_Shapes_10_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "4760153aba61ea3192f9d7bb8f5a969996425d2b13815604638ddf877bcd4abb",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 11793.486758112907,
+    "min": 0.0,
+    "std": 13842.003509114818
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dune_Shapes_10_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dunes_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "f64e5fd572d422b65f56d2732b9500ba85b9a0960e399e6f0303e92bba129cc0",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 28043.54864525795,
+    "min": 0.0,
+    "std": 13420.61966636868
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dunes_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dunes_11_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "89edacfce0701711a92eedbcd04b858d5e5fd2285567015c6b05db0028bcd3fd",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 26850.199905991554,
+    "min": 0.0,
+    "std": 13147.282788984892
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dunes_11_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Dunes_19_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "e3247c713f4127f40ec3d76d774bd5da680c81eca97430dc31aa3c144150359a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 3758.3649039268494,
+    "min": 0.0,
+    "std": 9338.337598542594
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Dunes_19_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Highlands_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "828f6ef35cb6aac16dc10f4b71f6d739056c1d838b9009d13c128e685157b41a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 32898.79358100891,
+    "min": 0.0,
+    "std": 15082.642944344416
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Highlands_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "highland",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "elongated parallel ridges, moderate relief",
+   "visual_note": "Good foothill-band ridging."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Highlands_09_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "6f99158b8d28d6fb3d18a5977234b4912ce59e01ba8958baf555909717046c28",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 45422.31110090017,
+    "min": 0.0,
+    "std": 9963.842554995055
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Highlands_09_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "highland",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "broad smooth elongated ridges",
+   "visual_note": "Smoother than _02; foothill only."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Impact_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "e03d380ae284e76dd27ac3af0ab164dfc3e54a99abf661f8211c4260c89b76e4",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 26296.096142053604,
+    "min": 0.0,
+    "std": 16422.772700442114
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Impact_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "crater",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Impact_14_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "16101398ba58f925fd35d7433894b4ac94aeef11fe75841937d466d2bf2218cc",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 28367.390226602554,
+    "min": 0.0,
+    "std": 10633.042233567197
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Impact_14_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "crater",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Islands_07_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "533b7953ca4b43a4c0057dc92b0073c4603924c27f4ab258f085ad5bd2c22a05",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 20838.067346453667,
+    "min": 0.0,
+    "std": 17216.352870574145
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Islands_07_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Islands_23_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "0835144cdc7133a1bbde70c5f8a6ef1927d28244276d101c3113f695e88f95dd",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 18009.871909737587,
+    "min": 0.0,
+    "std": 11571.853529489441
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Islands_23_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Meadows_04_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 31301.823816001415,
+    "min": 0.0,
+    "std": 16248.566171658356
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_04_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "softly dissected low relief with broad open floors",
+   "visual_note": "Used as foothill_basin_southwest with MIN to cap elevation."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Meadows_12_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "1fc11d745d803b7a654695fb98bb681f56e8f1ec7d7682bd5b1b3b391316730a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 30467.39373278618,
+    "min": 0.0,
+    "std": 18506.503587072435
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_12_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "low contrast, soft, near-featureless",
+   "visual_note": "Too flat to carry a basin floor on its own."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Meadows_28_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 42468.39815503359,
+    "min": 0.0,
+    "std": 10748.04008121692
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_28_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "broad low relief, gentle undulation",
+   "visual_note": "Used as foothill_basin_east with MIN to cap elevation."
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Monument_Desert_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "d66b84ee7a4807f615601747a5447572aee2442a43392183d6bde1094a8bf87f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 5114.732576310635,
+    "min": 0.0,
+    "std": 11515.76973592177
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Monument_Desert_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "mesa",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "isolated desert buttes on a flat pan",
+   "visual_note": "Correct for arid mesa country, wrong biome for alpine. Not a defect in the stamp."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Pride_Rocks_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "2f480cf3c91c8268c0b53f2b79b8d8881c5b739bc7f231f4ee779d5b8c84126f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 37210.764752686024,
+    "min": 0.0,
+    "std": 19258.556635579687
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "single large rounded rock mass",
+   "visual_note": "One big mass, less articulated than _02/_11."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Pride_Rocks_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 36086.695320189,
+    "min": 0.0,
+    "std": 16611.6459823344
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "angular blocky rock mass with sharp planar faces",
+   "visual_note": "Used as summit_massif_south."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Pride_Rocks_11_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 36782.81426233053,
+    "min": 0.0,
+    "std": 14699.463346706241
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_11_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "angular rock mass, more dissected than _02",
+   "visual_note": "Alternate summit."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rocky_Desert_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "134a18c21985d9621b1e5e7eb3d0a516105bcb703e2d6f22e7af5dd7444f2690",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 15146.997070133686,
+    "min": 0.0,
+    "std": 9777.561197292956
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rocky_Desert_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "desert",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rocky_Desert_12_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "a96769fcfebd916fa65f71a3922d2689d6245e315b2a2af54304018ba91032a9",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 17256.008563697338,
+    "min": 0.0,
+    "std": 10248.623035831353
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rocky_Desert_12_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "desert",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rocky_Plateaus_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "bd44a0ab996ea292f5ef0417ddd1251587421e2ad42909877755bc44e651726d",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 31609.39828455448,
+    "min": 0.0,
+    "std": 17849.85369026883
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rocky_Plateaus_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "plateau",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "single broad plateau mass with steep flanks",
+   "visual_note": "Usable as a shoulder or bench."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rolling_Hills_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "a53071540a2f89b103179530fe056810ea9808805176fdcd79319a38e7345eb9",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 29612.9953237772,
+    "min": 0.0,
+    "std": 13356.884821660487
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rolling_Hills_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "dense sharply-dissected hill field",
+   "visual_note": "Sharper than the name suggests. Foothill texture."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rough_Cliffs_18_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 18782.237618088722,
+    "min": 0.0,
+    "std": 19548.17341128469
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rough_Cliffs_18_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "sharp jagged high-relief ar\u00eates with deep shadowed faces",
+   "visual_note": "The best summit-massif stamp in the collection. Used as summit_massif_north."
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rugged_Rocks_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "c39c3ace53bf299d09f1b6ef991dbc548c4267d548602a5065ae4b8c925fe955",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 7564.133741915226,
+    "min": 0.0,
+    "std": 11456.645161228415
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Rocks_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "circular dome / crater rim",
+   "visual_note": "Filename tag `outcrop`; same radial family as _14."
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rugged_Rocks_14_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "ce0cc91ab19c27051f819cf3d54c4c02aba4327c26fe4665dde3ed2408a3d1b4",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 9305.728148937225,
+    "min": 0.0,
+    "std": 14104.992867041763
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Rocks_14_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "circular radial dome with a crater-like centre",
+   "visual_note": "Filename tag said `outcrop`. IT IS NOT AN OUTCROP. This was the ONE placement already committed to the recipe (`east_ridge_outcrops`, ADD 180 m) and it would have put a round bump on the east ridge. Caught only by looking."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rugged_Rocks_20_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "014e422cf63ac75575f7e2866f7ed099d61283707d1317cc428591f3fdf92104",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 18341.480232298374,
+    "min": 0.0,
+    "std": 12481.278787268671
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Rocks_20_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "outcrop",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "dense sharp rocky micro-relief",
+   "visual_note": "Good low-amplitude detail overlay; not a landform on its own."
+  },
+  {
+   "alpine": "SECONDARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rugged_Sedi_Rocks_08_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "b286181d341d5a75f963cb85d902743929167f460da9d54c8f6b5c7b5b3ba597",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 16288.46264910698,
+    "min": 0.0,
+    "std": 16517.167243858963
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Sedi_Rocks_08_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "sedimentary",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "one large sedimentary mass with a steep face",
+   "visual_note": "Singular rather than scattered."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Rugged_Sedi_Rocks_24_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "ef1d447ce98a7003959a1ff4680ca0b751525bc40ddd1ba3c5016f4c4ccf7910",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 12155.636407017708,
+    "min": 0.0,
+    "std": 13685.285958643908
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Sedi_Rocks_24_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "sedimentary",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "scattered low rock knolls on a broad surface",
+   "visual_note": "Used as outcrops_mid for mid-slope outcrop scatter."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Sandy_Beaches_05_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "24e6a1c1331362be12670f533783b9e2600a05061c7d29babb6a555cbacf2a72",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 19815.47170573473,
+    "min": 0.0,
+    "std": 16672.47449794645
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Sandy_Beaches_05_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "beach",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Seaside_Cliffs_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 33361.496471226215,
+    "min": 0.0,
+    "std": 24784.75337364415
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "parallel knife-edge spurs separated by deep linear troughs",
+   "visual_note": "Despite the name, reads as a parallel ar\u00eate system. Used as spine_aretes."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Seaside_Cliffs_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "4ac4b1b2f853b587ea0027bf1d1a427bdc76b235843fddb98318e08ff375536a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65534.0,
+    "mean": 36398.532240092754,
+    "min": 0.0,
+    "std": 24827.037038596893
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "parallel spur-and-trough system, slightly softer than _02",
+   "visual_note": "Alternate for spine_aretes."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Stranger_Lands_02_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "a894cab4dd508b62288b909c44f3aa235ad2b5e6332f0ea5a05fd3e1909a1272",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 35130.76888644695,
+    "min": 0.0,
+    "std": 13911.06807511648
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Stranger_Lands_02_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Stranger_Lands_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "6fb0eeb232d893011201d8a38eec35cf88643718d4734d2f410b44fd2d5c66a9",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 33201.5815859437,
+    "min": 0.0,
+    "std": 16272.896078829097
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Stranger_Lands_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Stranger_Lands_24_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "48f6efd76a41329796baa635494ea1f4d17aa764e1802e02d2a6cfa70ee54b14",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 29918.939107060432,
+    "min": 0.0,
+    "std": 14561.258778213758
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Stranger_Lands_24_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Terrace_Fields_15_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "fe726687066a703c9c7ba7c8f24987a7191bafb47e9c011b3c19ceb95966b0bc",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 30954.168949127197,
+    "min": 0.0,
+    "std": 15159.395529290774
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Terrace_Fields_15_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "terrace",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "man-made agricultural terracing, contour-following field walls",
+   "visual_note": "Filename tag `terrace` reads as a geological terrace. It is ANTHROPOGENIC. Would imply farming culture wherever placed \u2014 a world-building statement, not a landform."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Terraced_Cliffs_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "620ba332535b8a5de9bcbb2db526da59e1a501000fd41a11ede8015f0d668926",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 36723.62141388655,
+    "min": 0.0,
+    "std": 20675.658121351218
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Terraced_Cliffs_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "linear stepped cliff band, genuine geological terracing",
+   "visual_note": "The only true cliff BAND. Used as cliff_band_west. Unlike _06/_Drake this one matches its filename."
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Terraced_Cliffs_06_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "55ac8da3ad0626c8605ad759a6bd4cee50fb9eb0b1c66ab08c650427703816f1",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 12096.313369810581,
+    "min": 0.0,
+    "std": 13334.505193362776
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Terraced_Cliffs_06_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "volcanic cone with radial gullies",
+   "visual_note": "Filename tag `cliffs`. It is a cone, not a cliff band."
+  },
+  {
+   "alpine": "DISQUALIFIED",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Terraced_Cliffs_Drake_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "0dc2bbe2ddc12b5f93ea54a942a246b0170c6a62f0dfc973a8f17e0c7c790789",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 9932.819690823555,
+    "min": 0.0,
+    "std": 11170.717811130344
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Terraced_Cliffs_Drake_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "cliffs",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "volcanic cone with radial gullies",
+   "visual_note": "Filename tag `cliffs`. Same cone family as _06."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Tundra_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "58a83d5822dcef366e8fd800441c8583294693d11f4a22bf394ba0829a0adcee",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 20147.35146009922,
+    "min": 0.0,
+    "std": 15677.179880677324
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Tundra_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "tundra",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "dendritic mountain drainage, sharp ridge-and-valley",
+   "visual_note": "Excellent high-alpine dissection texture."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Tundra_11_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "4ef891a00d89e1f0aede7b6c95d45225603aa46326f4c52a4798be5ebb867ff7",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 25536.047117352486,
+    "min": 0.0,
+    "std": 15813.07997650565
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Tundra_11_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "tundra",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "dendritic mountain drainage, denser than _01",
+   "visual_note": "Excellent high-alpine dissection texture."
+  },
+  {
+   "alpine": "PRIMARY",
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Valleys_01_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "f346eef3eff75e4a183778c267e6e21fbfac7549cb3135aa948b5c8d6df9607b",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 13500.147617220879,
+    "min": 0.0,
+    "std": 12902.866113513763
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Valleys_01_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "valley",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "visual_character": "dendritic ridge-and-valley, well-incised",
+   "visual_note": "Used as drainage_south with MIN to carve."
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Volcano_03_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "9008a84798d355f310b632686b9bd2808b3b09fb3f7e87d0b382b87025ea92a0",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 12285.174191117287,
+    "min": 0.0,
+    "std": 14469.112710617039
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Volcano_03_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "volcano",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Volcano_10_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "adaec0fae54cb4a409017fde5797456c05ead18fb352fde6adb3cf3a0744c83c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 11672.607794165611,
+    "min": 0.0,
+    "std": 14383.197745172303
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Volcano_10_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "volcano",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "conforms_to_r11": true,
+   "filename": "HM_Volcano_20_Ex.png",
+   "folder": "Examples",
+   "has_alpha": false,
+   "hash": "87a1acad4fd9c18e9413e79eaf2dedbf1e8f836fb7ca1076962df8533fc36219",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 9699.71584457159,
+    "min": 0.0,
+    "std": 12721.294190442435
+   },
+   "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Volcano_20_Ex.png",
+   "resolution_px": [
+    4096,
+    4096
+   ],
+   "square": true,
+   "tag": "volcano",
+   "tag_source": "filename",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null
+  }
+ ],
+ "source": "Ultimate StampIT Collection for UE (Fab)",
+ "spec": "RECIPES.md R1 EXTERNAL HEIGHTMAP CATALOGUE SPEC"
+}

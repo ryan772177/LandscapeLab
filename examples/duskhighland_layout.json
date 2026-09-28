@@ -1,0 +1,193 @@
+{
+ "brief": {
+  "terrain_entities": [
+   {
+    "id": "lake_basin",
+    "read": "still lake filling centre frame; v1 renders bed + water plane"
+   },
+   {
+    "id": "village_terrace",
+    "read": "monastery village on rocky rise east of the lake"
+   },
+   {
+    "id": "north_massif",
+    "read": "mountain bowl behind the lake"
+   },
+   {
+    "id": "south_roll",
+    "read": "forested rolling ground the camera stands on"
+   }
+  ],
+  "lighting_geometry": {
+   "sun_elevation_deg": 7.0,
+   "sun_azimuth_deg": 300.0,
+   "fog_height_datum_m": 30.0,
+   "fog_half_height_m": 60.0,
+   "sky_intensity": 0.8,
+   "fog_density_override": 0.0008
+  },
+  "acceptance": [
+   {
+    "id": "lake_floor",
+    "kind": "flat_site",
+    "placement": "lake_basin",
+    "at_m": [
+     0.0,
+     -250.0
+    ],
+    "box_m": 400.0,
+    "elev_m": [
+     22.0,
+     42.0
+    ],
+    "slope_mean_deg_max": 3.0
+   },
+   {
+    "id": "village_site",
+    "kind": "flat_site",
+    "placement": "village_terrace",
+    "at_m": [
+     700.0,
+     150.0
+    ],
+    "box_m": 200.0,
+    "elev_m": [
+     200.0,
+     300.0
+    ],
+    "slope_mean_deg_max": 6.0
+   },
+   {
+    "id": "north_peaks",
+    "kind": "peak",
+    "placement": "north_massif",
+    "at_m": [
+     0.0,
+     -1500.0
+    ],
+    "box_m": 700.0,
+    "max_elev_m": [
+     550.0,
+     1200.0
+    ]
+   }
+  ],
+  "render_camera": {
+   "at_m": [
+    0.0,
+    900.0
+   ],
+   "height_above_ground_m": 120.0,
+   "pitch_deg": -12.0,
+   "yaw_deg": -90.0,
+   "fov": 64.0
+  },
+  "water": {
+   "kind": "lake",
+   "label": "WaterPlane_forge",
+   "centre_cm": [
+    0.0,
+    -25000.0
+   ],
+   "level_cm": 4150.0,
+   "scale_xy": [
+    1500.0,
+    1500.0
+   ],
+   "color_linear": [
+    0.01,
+    0.055,
+    0.075
+   ],
+   "roughness": 0.04,
+   "opacity": 0.7
+  },
+  "lighting_measured": {
+   "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+   "sunlit_rb_split": 0.232,
+   "minluma_rise": 0.109,
+   "sunlit_rgb": [
+    0.742,
+    0.597,
+    0.509
+   ]
+  },
+  "source_image": "examples/concept_highland_dusk.jpg"
+ },
+ "placements": [
+  {
+   "id": "north_massif",
+   "stamp_hash": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+   "centre_m": [
+    0.0,
+    -1500.0
+   ],
+   "size_m": 2200.0,
+   "rotation_deg": 0.0,
+   "blend": "ADD",
+   "amplitude_m": 700.0
+  },
+  {
+   "id": "west_ridge",
+   "stamp_hash": "39aa62479350d4541b6eb28d52c8a1c1a7d1d8b7559c8e43fd93cdf7cbcddb4d",
+   "centre_m": [
+    -1450.0,
+    -300.0
+   ],
+   "size_m": 1800.0,
+   "rotation_deg": 300.0,
+   "blend": "ADD",
+   "amplitude_m": 550.0
+  },
+  {
+   "id": "east_ridge",
+   "stamp_hash": "87e005b1640a5b5f182d90d38ed164401148f393fb1192a164a5a6c373c5efc4",
+   "centre_m": [
+    1500.0,
+    -400.0
+   ],
+   "size_m": 1700.0,
+   "rotation_deg": 250.0,
+   "blend": "ADD",
+   "amplitude_m": 520.0
+  },
+  {
+   "id": "south_roll",
+   "stamp_hash": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94",
+   "centre_m": [
+    0.0,
+    1500.0
+   ],
+   "size_m": 2000.0,
+   "rotation_deg": 0.0,
+   "blend": "ADD",
+   "amplitude_m": 180.0
+  },
+  {
+   "id": "lake_basin",
+   "stamp_hash": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+   "centre_m": [
+    0.0,
+    -250.0
+   ],
+   "size_m": 1500.0,
+   "rotation_deg": 0.0,
+   "blend": "MIN",
+   "amplitude_m": 25.0,
+   "anchor_m": 17.0
+  },
+  {
+   "id": "village_terrace",
+   "stamp_hash": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+   "centre_m": [
+    700.0,
+    150.0
+   ],
+   "size_m": 600.0,
+   "rotation_deg": 0.0,
+   "blend": "MAX",
+   "amplitude_m": 250.0,
+   "anchor_m": 0.0
+  }
+ ]
+}

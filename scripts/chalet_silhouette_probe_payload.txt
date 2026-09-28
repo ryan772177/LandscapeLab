@@ -1,0 +1,143 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# CHALET SILHOUETTE PROBE -- is 536.5 cm a measurement of the RIGHT THING?
+#
+# Ruling 1 sets the church spire at 2.5x the chalet SILHOUETTE, and every
+# scoring of that ruling has used 536.5 cm. This measures where that number
+# comes from, in the editor, from spawned actors.
+#
+# THE SUSPICION, from Free/_measured/kit_medievalvillage_v2.json:
+#   SM_House02_Roof  size 899.3 x 916.6 x 338.0   pivot_base_error_cm -201.49
+# Both concept_build_payload.txt and forge_scale_payload.txt place the roof at
+# Vector(x, y, WALL_TOP) -- the PIVOT goes to the wall top, so if the pivot is
+# not at the mesh base the roof sinks into the walls by exactly that error.
+#
+#   400.0 - 201.49 = 198.51 roof base;  198.51 + 338.0 = 536.5
+#
+# That arithmetic reproduces the number exactly, which is suggestive and is
+# NOT evidence. This payload measures it instead.
+#
+# Builds THREE things in a scratch level and measures each:
+#   A  the roof alone at z=0        -> the pivot-to-base offset, measured
+#   B  the assembly AS BUILT TODAY  -> roof pivot at the wall top
+#   C  the assembly CORRECTED       -> roof BASE at the wall top
+#
+# Read-only with respect to every existing asset: spawns into its own level
+# and saves nothing.
+
+WALL_W_CM = __WALL_W_CM__
+WALL_D_CM = __WALL_D_CM__
+WALL_CM = __WALL_CM__
+CHURCH_TOP_CM = __CHURCH_TOP_CM__
+RULED_RATIO = __RULED_RATIO__
+ROOF_PKG = r"__ROOF_PKG__"
+LEVEL = r"__LEVEL__"
+
+_out = {"ok": False, "error": None}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+
+    _roof = _eal.load_asset(ROOF_PKG)
+    if _roof is None:
+        raise RuntimeError("roof package not found: " + ROOF_PKG)
+    _out["roof_package"] = ROOF_PKG
+    _out["roof_name"] = str(_roof.get_name())
+    try:
+        _out["roof_tris_lod0"] = int(_roof.get_num_triangles(0))
+        _out["roof_material_slots"] = int(_roof.get_num_sections(0))
+    except Exception as _e0:
+        _out["roof_tri_error"] = str(_e0)
+
+    _les.new_level(LEVEL)
+    _out["level"] = LEVEL
+
+    _cube = _eal.load_asset("/Engine/BasicShapes/Cube")
+    _plane = _eal.load_asset("/Engine/BasicShapes/Plane")
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                      _u.Rotator(0, 0, 0))
+    _g.set_actor_label("Probe_Ground")
+    _g.set_actor_scale3d(_u.Vector(200.0, 200.0, 1.0))
+
+    # ---- A: the roof alone, pivot at z=0. Its base lands wherever the mesh
+    # says it does, and THAT is the offset every placement has to carry.
+    _ra = _eas.spawn_actor_from_object(_roof, _u.Vector(0.0, 0.0, 0.0),
+                                       _u.Rotator(0, 0, 0))
+    _ra.set_actor_label("Probe_Roof_PivotAtZero")
+    _o, _e = _ra.get_actor_bounds(False)
+    _base = float(_o.z - _e.z)
+    _top = float(_o.z + _e.z)
+    _out["roof_alone"] = {
+        "pivot_z": 0.0,
+        "base_z_cm": round(_base, 2),
+        "top_z_cm": round(_top, 2),
+        "height_cm": round(_top - _base, 2),
+        "footprint_cm": [round(float(_e.x * 2), 1), round(float(_e.y * 2), 1)],
+    }
+    # POSITIVE means the base sits BELOW the pivot, so placing the pivot at a
+    # wall top drops the roof into the walls by this much.
+    _pivot_drop = -_base
+    _out["pivot_drop_cm"] = round(_pivot_drop, 2)
+
+    # ---- B: the assembly as every payload builds it today -----------------
+    _wb = _eas.spawn_actor_from_object(
+        _cube, _u.Vector(4000.0, 0.0, WALL_CM * 0.5), _u.Rotator(0, 0, 0))
+    _wb.set_actor_label("Probe_B_Walls")
+    _wb.set_actor_scale3d(_u.Vector(WALL_W_CM / 100.0, WALL_D_CM / 100.0,
+                                    WALL_CM / 100.0))
+    _rb = _eas.spawn_actor_from_object(
+        _roof, _u.Vector(4000.0, 0.0, WALL_CM), _u.Rotator(0, 0, 0))
+    _rb.set_actor_label("Probe_B_Roof_AS_BUILT")
+    _ob, _eb = _rb.get_actor_bounds(False)
+    _wo, _we = _wb.get_actor_bounds(False)
+    _b_roof_base = float(_ob.z - _eb.z)
+    _b_sil = max(float(_ob.z + _eb.z), float(_wo.z + _we.z))
+    _out["as_built"] = {
+        "roof_placed_at_z": WALL_CM,
+        "roof_base_z_cm": round(_b_roof_base, 2),
+        "wall_top_cm": round(float(_wo.z + _we.z), 2),
+        "roof_sunk_into_walls_cm": round(float(_wo.z + _we.z) - _b_roof_base,
+                                         2),
+        "silhouette_cm": round(_b_sil, 1),
+    }
+
+    # ---- C: the same assembly with the roof BASE on the wall top ----------
+    _wc = _eas.spawn_actor_from_object(
+        _cube, _u.Vector(8000.0, 0.0, WALL_CM * 0.5), _u.Rotator(0, 0, 0))
+    _wc.set_actor_label("Probe_C_Walls")
+    _wc.set_actor_scale3d(_u.Vector(WALL_W_CM / 100.0, WALL_D_CM / 100.0,
+                                    WALL_CM / 100.0))
+    _rc = _eas.spawn_actor_from_object(
+        _roof, _u.Vector(8000.0, 0.0, WALL_CM + _pivot_drop),
+        _u.Rotator(0, 0, 0))
+    _rc.set_actor_label("Probe_C_Roof_CORRECTED")
+    _oc, _ec = _rc.get_actor_bounds(False)
+    _wo2, _we2 = _wc.get_actor_bounds(False)
+    _c_roof_base = float(_oc.z - _ec.z)
+    _c_sil = max(float(_oc.z + _ec.z), float(_wo2.z + _we2.z))
+    _out["corrected"] = {
+        "roof_placed_at_z": round(WALL_CM + _pivot_drop, 2),
+        "roof_base_z_cm": round(_c_roof_base, 2),
+        "wall_top_cm": round(float(_wo2.z + _we2.z), 2),
+        "base_meets_wall_top": bool(
+            abs(_c_roof_base - float(_wo2.z + _we2.z)) < 1.0),
+        "silhouette_cm": round(_c_sil, 1),
+    }
+
+    # ---- what that does to ruling 1 ---------------------------------------
+    _out["ruling_1"] = {
+        "church_top_cm": CHURCH_TOP_CM,
+        "ruled_ratio": RULED_RATIO,
+        "ratio_vs_as_built": round(CHURCH_TOP_CM / _b_sil, 3) if _b_sil else None,
+        "ratio_vs_corrected": round(CHURCH_TOP_CM / _c_sil, 3) if _c_sil else None,
+        "church_top_if_corrected_cm": round(RULED_RATIO * _c_sil, 1),
+        "church_shortfall_cm": round(RULED_RATIO * _c_sil - CHURCH_TOP_CM, 1),
+    }
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

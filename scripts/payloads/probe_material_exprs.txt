@@ -1,0 +1,41 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Which material-expression classes exist, and what does Custom expose?
+# The reflected surface is the contract; the last guess ('b_enabled') cost a
+# six-minute render.
+_out = {"ok": False, "error": None}
+try:
+    _want = ["MaterialExpressionCustom", "MaterialExpressionLogarithm2",
+             "MaterialExpressionLogarithm10", "MaterialExpressionDivide",
+             "MaterialExpressionComponentMask", "MaterialExpressionSceneTexture"]
+    _out["classes"] = {}
+    for _n in _want:
+        _out["classes"][_n] = hasattr(_u, _n)
+
+    if hasattr(_u, "MaterialExpressionCustom"):
+        _c = _u.MaterialExpressionCustom()
+        _props = []
+        for _p in dir(_c):
+            if _p.startswith("_"):
+                continue
+            try:
+                _v = _c.get_editor_property(_p)
+                _props.append([_p, type(_v).__name__, str(_v)[:50]])
+            except Exception:
+                pass
+        _out["custom_props"] = _props
+        _out["custom_input_struct"] = hasattr(_u, "CustomInput")
+        if hasattr(_u, "CustomInput"):
+            _ci = _u.CustomInput()
+            _out["custom_input_props"] = [
+                _p for _p in dir(_ci) if not _p.startswith("_")
+                and _p not in ("cast", "copy", "set_editor_properties",
+                               "get_editor_property", "set_editor_property")]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+    _out["trace"] = _tb.format_exc()[-500:]
+
+print("__LL__" + _json.dumps(_out, default=str))

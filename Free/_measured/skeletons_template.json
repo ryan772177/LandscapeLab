@@ -1,0 +1,97 @@
+{
+ "measured_by": "probe_skeleton",
+ "controls": [
+  "pelvis",
+  "hand_l"
+ ],
+ "ue5_markers": [
+  "spine_04",
+  "spine_05",
+  "clavicle_out_l",
+  "index_metacarpal_l"
+ ],
+ "assets": [
+  {
+   "path": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple",
+   "loaded": true,
+   "class": "SkeletalMesh",
+   "why": null,
+   "skeleton_path": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+   "bone_count": 161,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": true,
+    "spine_05": true,
+    "clavicle_out_l": true,
+    "index_metacarpal_l": true
+   },
+   "physics_asset": "/Game/Characters/Mannequins/Rigs/PA_Mannequin.PA_Mannequin",
+   "material_slots": 2,
+   "lods": 3,
+   "verts_per_lod": [
+    48705,
+    14925,
+    7504
+   ],
+   "sections_per_lod": [
+    2,
+    2,
+    2
+   ],
+   "bone_tree_len": 161
+  },
+  {
+   "path": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+   "loaded": true,
+   "class": "Skeleton",
+   "why": null,
+   "skeleton_path": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+   "bone_count": 161,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": true,
+    "spine_05": true,
+    "clavicle_out_l": true,
+    "index_metacarpal_l": true
+   },
+   "physics_asset": null,
+   "material_slots": null,
+   "lods": null,
+   "verts_per_lod": [],
+   "sections_per_lod": [],
+   "bone_tree_len": 161
+  },
+  {
+   "path": "/Game/Characters/Mannequins/Meshes/SKM_Quinn_Simple",
+   "loaded": true,
+   "class": "SkeletalMesh",
+   "why": null,
+   "skeleton_path": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+   "bone_count": 161,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": true,
+    "spine_05": true,
+    "clavicle_out_l": true,
+    "index_metacarpal_l": true
+   },
+   "physics_asset": "/Game/Characters/Mannequins/Rigs/PA_Mannequin.PA_Mannequin",
+   "material_slots": 2,
+   "lods": 3,
+   "verts_per_lod": [
+    45993,
+    14865,
+    7421
+   ],
+   "sections_per_lod": [
+    2,
+    2,
+    2
+   ],
+   "bone_tree_len": 161
+  }
+ ]
+}

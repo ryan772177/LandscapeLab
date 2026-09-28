@@ -1,0 +1,45 @@
+{
+ "_what": "The PLANTING-FIELD CONTRACT (D-4). Two fields from one derivation; see recipes/schema.md 'v1.17 \u2014 the planting-field contract'.",
+ "one_way_dependency": "planting field (canopy=0) -> placement -> canopy -> render weightmap. The render weightmap is NEVER read back into placement.",
+ "inputs": {
+  "heightmap": "terrain/alpine_8k.png",
+  "deposition": "terrain/alpine_8k_deposition.png",
+  "tree_species": [
+   "Conifer",
+   "ConiferPine",
+   "SpruceSub",
+   "SpruceSapling"
+  ],
+  "foliage_plans": [
+   "foliage/alpine_8k_Conifer.json",
+   "foliage/alpine_8k_ConiferPine.json",
+   "foliage/alpine_8k_SpruceSub.json",
+   "foliage/alpine_8k_SpruceSapling.json"
+  ],
+  "crown_radius_m": 3.068,
+  "instances_declared": 217102,
+  "instances_splatted": 217102
+ },
+ "outputs": {
+  "planting_field": "textures/alpine_8k_planting_planting.png",
+  "render_weightmap": "textures/alpine_8k_planting_render.png",
+  "note": "planting_field is what PLACEMENT must sample; render_weightmap is RENDER-only. Neither is the live textures/alpine_8k_weights.png."
+ },
+ "stored_channels": [
+  "snow",
+  "rock",
+  "scree",
+  "forest_floor"
+ ],
+ "remainder_layer": "Grass (the last layer; the shader remainder)",
+ "constants": {
+  "snow_base_m": 730.0,
+  "sun_azimuth_deg": 285.0
+ },
+ "field_stats": {
+  "planting_remainder_mean": 0.3581,
+  "render_remainder_mean": 0.2531,
+  "render_forest_floor_mean": 0.1049,
+  "max_planting_minus_render_remainder": 1.0
+ }
+}

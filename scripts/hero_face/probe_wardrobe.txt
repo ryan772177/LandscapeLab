@@ -1,0 +1,80 @@
+# probe_wardrobe — can the hero's hair and beard be set from Python?
+#
+# Ryan's ruled product look (the haired portrait) has long layered hair and a
+# full stubble beard. MetaHuman ships both as wardrobe items under
+# /MetaHumanCharacter/Optional/Grooms/Bindings/. What is NOT established is
+# whether a wardrobe item can be SELECTED from Python.
+#
+# STRICTLY READ ONLY. No save, no spawn, no commit. Three editors have
+# already died this session -- one to a blocking autorig, two to a save
+# deadlock reached through spawning the preview actor -- so this touches
+# neither path.
+#
+# It ENUMERATES rather than guessing: the same discipline that settled
+# EditorPerformanceSettings after three failed guesses at property names.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "unreadable": [], "collection": None,
+        "collection_props": None, "pipeline": None, "slot_names": None,
+        "palette_methods": None, "collection_methods": None,
+        "groom_assets_found": None}
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _col = _ss.get_preview_collection(_ch)
+    _out["collection"] = None if _col is None else _col.get_path_name()
+    if _col is not None:
+        _props = {}
+        for _p in ("unpack_folder_path", "unpack_path_mode", "pipeline"):
+            try:
+                _v = _col.get_editor_property(_p)
+                _props[_p] = str(_v)[:160]
+            except Exception as _e:
+                _out["unreadable"].append("collection." + _p + ": " + str(_e))
+        _out["collection_props"] = _props
+        _out["collection_methods"] = sorted(
+            [_m for _m in dir(_col)
+             if not _m.startswith("_") and ("item" in _m.lower()
+                                            or "slot" in _m.lower()
+                                            or "unpack" in _m.lower()
+                                            or "pipeline" in _m.lower())])[:40]
+        try:
+            _pl = _col.get_editor_property("pipeline")
+            if _pl is not None:
+                _out["pipeline"] = _pl.get_class().get_name()
+                _spec = None
+                try:
+                    _spec = _pl.get_specification()
+                except Exception as _e:
+                    _out["unreadable"].append("get_specification: " + str(_e))
+                if _spec is not None:
+                    try:
+                        _slots = _spec.get_editor_property("slots")
+                        _out["slot_names"] = sorted([str(_k) for _k in _slots.keys()])
+                    except Exception as _e:
+                        _out["unreadable"].append("slots: " + str(_e))
+        except Exception as _e:
+            _out["unreadable"].append("pipeline: " + str(_e))
+
+    # What can a Palette actually be told to do?
+    _out["palette_methods"] = sorted(
+        [_m for _m in dir(_unreal.MetaHumanCharacterPalette)
+         if not _m.startswith("_")])[:60]
+
+    # Confirm the groom wardrobe items are reachable as assets at all.
+    _reg = _unreal.AssetRegistryHelpers.get_asset_registry()
+    _found = []
+    for _p in ("/MetaHumanCharacter/Optional/Grooms/Bindings/Hair",
+               "/MetaHumanCharacter/Optional/Grooms/Bindings/Beards"):
+        for _a in _reg.get_assets_by_path(_p, True):
+            _found.append(str(_a.asset_name))
+    _out["groom_assets_found"] = len(_found)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

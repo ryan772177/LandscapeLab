@@ -1,0 +1,235 @@
+import json as _json
+import os as _os
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+# Park the editor viewport and take one HighResShot of the city.
+#
+# THE ROTATION IS READ BACK AND ASSERTED. `unreal.Rotator` is
+# (ROLL, PITCH, YAW) -- roll first -- and this project has put a camera at a
+# -25 degree ROLL while believing it set pitch, THREE separate times, and each
+# time the frame still looked plausible enough to ship. A read-back is the only
+# thing that separates "the call returned" from "the camera is where I asked".
+#
+# THE SHOT IS CONFIRMED BY A NEW FILE ON DISK, not by the console command
+# returning. `HighResShot` reports nothing useful, and this project has had a
+# capture tool print WROTE ... bytes and exit 0 four times over four
+# byte-identical black frames.
+
+LOC = __LOC__
+ROT = __ROT__
+NAME = "__NAME__"
+OUTDIR = r"__OUTDIR__"
+MULT = __MULT__
+# Explicit output resolution "WxH", or "" to use MULT instead.
+RES = "__RES__"
+# Horizontal FOV in degrees, or 0 to leave the viewport's own.
+#
+# ⛔ WITHOUT THIS THE CAMERA SOLVE IS UNTESTABLE. The Phase B loop derives a
+# horizontal FOV from the concept's recorded horizon fraction -- 60.0 for
+# iteration 0, 66.7 for iteration 1 -- and this payload previously set only
+# location and rotation, so every frame rendered at the viewport's default 90
+# and the solved number never reached a pixel. Two 15-minute captures would
+# have produced frames that could not answer the question they were taken for.
+FOV = __FOV__
+
+_out = {"ok": False, "error": None, "name": NAME}
+try:
+    # ABSOLUTE, because `Paths.project_saved_dir()` returns a RELATIVE path and
+    # the editor's working directory is the ENGINE BINARIES folder. Watching the
+    # relative path reported "no new screenshot appeared" over a shot that had
+    # been written correctly -- the same class as the ten frames this project
+    # once wrote into Program Files.
+    _shots = _u.Paths.convert_relative_path_to_full(
+        _os.path.join(_u.Paths.project_saved_dir(), "Screenshots",
+                      "WindowsEditor"))
+    _os.makedirs(_shots, exist_ok=True)
+    _before = set(_os.listdir(_shots))
+
+    _loc = _u.Vector(float(LOC[0]), float(LOC[1]), float(LOC[2]))
+    _rot = _u.Rotator(float(ROT[0]), float(ROT[1]), float(ROT[2]))
+    _u.EditorLevelLibrary.set_level_viewport_camera_info(_loc, _rot)
+
+    _rb_l, _rb_r = _u.EditorLevelLibrary.get_level_viewport_camera_info()
+    _out["requested"] = {"loc": [LOC[0], LOC[1], LOC[2]],
+                         "rot_roll_pitch_yaw": [ROT[0], ROT[1], ROT[2]]}
+    _out["readback"] = {"loc": [round(_rb_l.x, 1), round(_rb_l.y, 1),
+                               round(_rb_l.z, 1)],
+                        "rot_roll_pitch_yaw": [round(_rb_r.roll, 2),
+                                               round(_rb_r.pitch, 2),
+                                               round(_rb_r.yaw, 2)]}
+    _dl = max(abs(_rb_l.x - LOC[0]), abs(_rb_l.y - LOC[1]),
+              abs(_rb_l.z - LOC[2]))
+    _dr = max(abs(_rb_r.roll - ROT[0]), abs(_rb_r.pitch - ROT[1]),
+              abs(((_rb_r.yaw - ROT[2] + 180.0) % 360.0) - 180.0))
+    _out["max_loc_err_cm"] = round(_dl, 2)
+    _out["max_rot_err_deg"] = round(_dr, 2)
+    if _dl > 5.0 or _dr > 0.5:
+        raise RuntimeError("viewport did not take the requested transform")
+
+    # FOV, set AND READ BACK -- the reflected surface offers a getter, so this
+    # is verified rather than hoped for, exactly like the transform above.
+    if FOV and float(FOV) > 0.0:
+        _lesx = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+        _lesx.set_level_viewport_fov(float(FOV), "")
+        _gf = _lesx.get_level_viewport_fov("")
+        _out["fov_requested"] = float(FOV)
+        _out["fov_readback"] = None if _gf is None else round(float(_gf), 3)
+        if _gf is None:
+            raise RuntimeError("FOV read-back returned None -- cannot confirm "
+                               "the viewport took it, and an unverified FOV "
+                               "makes the camera solve untestable")
+        if abs(float(_gf) - float(FOV)) > 0.05:
+            raise RuntimeError(
+                "viewport FOV is %.3f, asked for %.3f" % (float(_gf), FOV))
+    else:
+        _out["fov_requested"] = None
+        _out["fov_readback"] = None
+
+    # ⛔ IS THE CAMERA UNDERGROUND? Encoded 2026-08-26, having been "named and
+    # NOT built" on 2026-08-25 -- a lesson recorded but not encoded fires twice,
+    # and this one already cost a 10-minute render of the terrain's UNDERSIDE
+    # with trees hanging downward.
+    #
+    # The camera was sited by adding height to the BASIN elevation, 900 m from
+    # the basin, where the ground is 458.9 m. It sat 122 m inside a hill. The
+    # transform assertion above passed perfectly, because the camera WAS where
+    # it was asked to be -- the request was wrong, not the placement.
+    #
+    # scripts/fix_camera_z.py covers RECIPE cameras. An ad-hoc --set LOC passes
+    # no guard at all, and the ad-hoc path is the one a person reaches for.
+    # This is the only place every camera necessarily passes through.
+    _eas_g = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign_g = [a for a in _eas_g.get_all_level_actors()
+              if isinstance(a, _u.InstancedFoliageActor)]
+    _hit_g = _u.SystemLibrary.line_trace_single(
+        _u.EditorLevelLibrary.get_editor_world(),
+        _u.Vector(_loc.x, _loc.y, _loc.z + 200000.0),
+        _u.Vector(_loc.x, _loc.y, _loc.z - 200000.0),
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign_g,
+        _u.DrawDebugTrace.NONE, True)
+    if _hit_g:
+        _gz = float(_hit_g.to_tuple()[4].z)
+        _out["ground_under_camera_cm"] = round(_gz, 1)
+        _out["camera_above_ground_cm"] = round(_loc.z - _gz, 1)
+        if _loc.z < _gz:
+            raise RuntimeError(
+                "REFUSE: the camera is %.1f m BELOW the ground at its own XY "
+                "(camera z %.1f, ground %.1f). It would render the terrain's "
+                "underside. Trace the ground at the camera's XY and place it "
+                "above -- the basin elevation is not the elevation where the "
+                "camera stands." % ((_gz - _loc.z) / 100.0, _loc.z, _gz))
+    else:
+        # NOT a pass. Unreadable is not "above ground".
+        _out["ground_under_camera_cm"] = None
+        _out["camera_above_ground_cm"] = None
+        _out["ground_check"] = ("COULD NOT LOOK -- no ground hit under the "
+                                "camera XY; the guard did not run")
+
+    # THE 72 NAV BOUNDS VOLUMES DRAW AS ORANGE WIREFRAME ACROSS THE SKY in
+    # every editor viewport render of this world. It was diagnosed on
+    # 2026-08-27b, written into CURRENT STATE as "every future editor render
+    # of this world needs it" -- and left OUT of the one payload every editor
+    # render passes through, so the next render would carry the wireframes
+    # too. A lesson recorded but not encoded fires twice; encoded here.
+    # ⭐ ONE MARKER. ue_exec.py substitutes scripts/render_preamble.txt here:
+    # every editor-only overlay off, selection cleared, each ShowFlag name
+    # verified against ShowFlagsValues.inl. Do not add flags to this payload --
+    # add them to the preamble, or the family starts splitting again.
+    __RENDER_PREAMBLE__
+
+    # let the world stream and the shot settle before capturing
+    for _i in range(90):
+        _u.SystemLibrary.execute_console_command(None, "r.Streaming.Boost 1")
+        _time.sleep(0.02)
+
+    # ⛔ THE WATCHER BUDGET IS THE TRAP THIS FILE ALREADY KNEW ABOUT AND KEPT.
+    # A HighResShot at multiplier 2 on this viewport (4064x2546) takes WELL over
+    # two minutes on this machine. The 2026-08-24 session recorded exactly that
+    # -- "a 120 s watcher gave up on a shot that landed at 01:51" -- wrote it
+    # into the commit message, and left the budget at 120 iterations. It fired
+    # again on 2026-08-25: the payload raised "no new screenshot appeared" while
+    # HighresScreenshot00085.png (22.9 MB) was still being written, and the
+    # frame had to be recovered by hand from Saved/Screenshots.
+    #
+    # A LESSON THAT IS RECORDED BUT NOT ENCODED IS A LESSON THAT FIRES TWICE.
+    # 600 s, and the elapsed time is REPORTED so the real cost stays visible
+    # instead of being rediscovered.
+    # MULTIPLIER IS A PARAMETER, because 2 is not free. At this viewport
+    # (4064x2546) multiplier 2 renders 8128x5092 and has taken 9 to 17 minutes
+    # in this session, and on the fifth shot it produced no file at all within
+    # 600 s while the editor went idle. Multiplier 1 is a quarter of the pixels
+    # and is ample for a verification frame; keep 2 for a deliverable.
+    # ⭐ PIN THE OUTPUT RESOLUTION. DO NOT RESIZE THE WINDOW.
+    #
+    # `HighResShot` takes EITHER "WxH" OR a multiplier -- UnrealClient.cpp:2459
+    # parses argument 0 with ParseResolution() and falls back to Atof() only if
+    # that fails, and :2470 states both forms in its own error message. With a
+    # multiplier the output is viewport-size x MULT, so the frame size follows
+    # whatever the editor window happens to be.
+    #
+    # On 2026-08-30 the concept pair came out 2032x1273 and 1263x1349 because
+    # the editor window was restored between the two shots -- `highres_shot.py`
+    # calls a differing resolution a different CALIBRATION CLASS, and the pair
+    # could not be diffed. Resizing the window to fix that would be treating
+    # the symptom; the resolution is a parameter of the COMMAND.
+    #
+    # 2032x1273 is the default in shoot.py because it is what the first
+    # delivered concept frame measured, so a reshoot stays comparable with what
+    # is already banked.
+    if RES:
+        _cmd = "HighResShot %s" % RES
+    else:
+        _cmd = "HighResShot %d" % int(MULT)
+    _u.SystemLibrary.execute_console_command(None, _cmd)
+    _out["shot_cmd"] = _cmd
+    _out["resolution_requested"] = RES or None
+    _out["multiplier"] = int(MULT)
+    # THE WATCHER NO LONGER WAITS HERE, AND THAT IS THE WHOLE FIX.
+    #
+    # This payload runs INSIDE the editor, on the GAME THREAD. `HighResShot`
+    # does not render synchronously -- it sets a flag, and the tiled capture
+    # completes over SUBSEQUENT ENGINE TICKS. A `_time.sleep()` loop here
+    # blocks the very thread that has to tick, so the frame CANNOT be written
+    # until the watcher gives up. The watcher was waiting for an event that
+    # its own waiting prevented.
+    #
+    # That single mechanism produced THREE separate recorded "mysteries":
+    #   * the watcher wrong 6 times out of 6, always ok:false over a real file
+    #   * the "unexplained 630 s post-capture wedge" -- the editor was not
+    #     wedged, it was blocked in this loop, and the log froze with it
+    #   * the OUTDIR copy below that had NEVER ONCE EXECUTED, because it sat
+    #     after the raise on a path that always raised
+    #
+    # Measured 2026-08-30: issued 19:11:58.122, gave up 19:25:59.442 after
+    # 841.3 s, frame written 19:26:00.244 -- 0.8 s later. Repeated with the
+    # editor FOREGROUNDED: 843 s vs 848 s at 100x the editor CPU, so window
+    # focus and tick throttling were never the cause. The independent witness
+    # is the LogEOSSDK heartbeat (~330 s, nothing to do with this payload),
+    # which goes silent for the whole block. R-CITYSHOT AMENDED 2026-08-30b.
+    #
+    # So: RETURN IMMEDIATELY and let the HOST poll, where sleeping costs the
+    # editor nothing. `before` is handed back so the host diffs against the
+    # exact listing taken before the command was issued, rather than
+    # re-deriving it and racing an unrelated capture.
+    #
+    # !! `ok` HERE MEANS "ISSUED", NOT "CAPTURED". The frame is not on disk
+    # when this returns. Nothing may report a shot as delivered on the
+    # strength of this JSON alone -- that is what `scripts/shoot.py` is for,
+    # and `frame_on_disk` is the field that answers the real question.
+    _out["shots_dir"] = _shots
+    _out["before"] = sorted(_before)
+    _out["outdir"] = OUTDIR
+    _out["issued"] = True
+    _out["frame_on_disk"] = False
+    _out["ok"] = True
+    _out["_host_must_poll"] = (
+        "The frame is NOT on disk yet and this payload deliberately did not "
+        "wait for it. Poll shots_dir for a .png absent from before[], let its "
+        "size settle, then copy it to outdir/name.png. scripts/shoot.py does "
+        "exactly this and is the supported entry point.")
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

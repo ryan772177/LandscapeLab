@@ -1,0 +1,151 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# HOW FAR CAN THE PLAYER ACTUALLY WALK? The corrected sweep.
+#
+# The 2026-08-26 rim sweep asked ONE path query from the plaza per sample and
+# concluded the basin was sealed at a median of 360 m. That was the query's
+# SEARCH BUDGET, not the world: a relay through an intermediate point reaches
+# ground the direct query calls unreachable, and the town's own numbers moved
+# from 653/838 streets to 789 and from 253/303 buildings to 303 once the same
+# correction was applied.
+#
+# So this walks OUTWARD IN STEPS and relays: each sample is queried from the
+# LAST POINT KNOWN REACHABLE on that ray, not from the plaza. A short query
+# between neighbours is not subject to the budget that defeats a long one, and
+# reachability over a navmesh is transitive when every leg is a real path.
+#
+# ** IT IS STILL A RAY, and a ray can be stopped by something the agent would
+#    simply walk around. A ray that stops is a LOWER BOUND on how far the
+#    player can get on that bearing -- never a wall. That is exactly the
+#    inference the previous sweep got wrong, so it is stated here rather than
+#    left to the reader.
+#
+# CONTROLS: the anchor must project (or nothing below means anything), and a
+# sample 50 km out must never be reachable.
+#
+# WRITES A FILE.
+
+CX, CY = -210800.0, 278800.0
+STEP_M = __STEP_M__
+D_MAX_M = __D_MAX_M__
+N_BEARINGS = __N_BEARINGS__
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actors = _eas.get_all_level_actors()
+
+    _CITY_TAG = "LandscapeLab.City"
+    _ign = []
+    for _a in _actors:
+        if isinstance(_a, _u.InstancedFoliageActor):
+            _ign.append(_a)
+            continue
+        try:
+            if _CITY_TAG in [str(_t) for _t in _a.tags]:
+                _ign.append(_a)
+        except Exception:
+            pass
+
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _nav = [a for a in _actors if a.get_class().get_name() == "RecastNavMesh"]
+    _bar = float(_nav[0].get_editor_property("agent_max_slope")) if _nav else None
+    _out["agent_max_slope"] = _bar
+    _out["nav_chunk_actors"] = len(
+        [a for a in _actors
+         if "NavigationDataChunkActor" in a.get_class().get_name()])
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    def _pathable(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return bool(_res == _SUCCESS)
+        except Exception:
+            return False
+
+    _anchor = _proj(CX, CY)
+    if _anchor is None:
+        raise RuntimeError("the anchor does not project -- COULD NOT LOOK")
+    _far = _proj(CX + 5000000.0, CY)
+    _out["control_50km_projects"] = _far is not None
+
+    _rays = []
+    for _b in range(N_BEARINGS):
+        _bd = 360.0 * _b / N_BEARINGS
+        _th = _math.radians(_bd)
+        _last = _anchor
+        _furthest = 0.0
+        _gaps = 0
+        _n = int(D_MAX_M / STEP_M)
+        for _i in range(1, _n + 1):
+            _d = _i * STEP_M
+            _x = CX + _d * 100.0 * _math.cos(_th)
+            _y = CY + _d * 100.0 * _math.sin(_th)
+            _p = _proj(_x, _y)
+            if _p is None:
+                _gaps += 1
+                continue
+            if _pathable(_last, _p):
+                _furthest = _d
+                _last = _p
+            else:
+                _gaps += 1
+        _rays.append({"bearing_deg": round(_bd, 1),
+                      "furthest_reachable_m": _furthest,
+                      "samples_not_relayed": _gaps})
+    _out["rays"] = _rays
+    _f = [r["furthest_reachable_m"] for r in _rays]
+    _out["furthest_overall_m"] = max(_f)
+    _out["median_furthest_m"] = sorted(_f)[len(_f) // 2]
+    _out["min_furthest_m"] = min(_f)
+    _out["step_m"] = STEP_M
+    _out["d_max_m"] = D_MAX_M
+    _out["_caveat"] = ("a ray that stops is a LOWER BOUND on that bearing, "
+                      "never a wall -- the agent may simply walk around what "
+                      "stopped the ray")
+
+    if not _os.path.isabs(OUT):
+        raise RuntimeError("OUT must be absolute")
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump({"_what": "furthest RELAY-reachable distance per bearing "
+                             "from the plaza, against the BUILT navmesh",
+                    "_method": "each sample queried from the last point known "
+                               "reachable on that ray, not from the plaza",
+                    "agent_max_slope": _bar, "step_m": STEP_M,
+                    "d_max_m": D_MAX_M, "rays": _rays}, _fh, indent=1)
+    _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

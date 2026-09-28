@@ -1,0 +1,131 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# RULING 8 -- hair colours as PARAMETERS, plus the volume temper.
+#
+# Two variant instances off ONE master. "Parameters only" was the ruling, so
+# the graph is not rebuilt for colour -- only the VolumeStrength node is added,
+# and that is a fix, not a restyle (see below).
+#
+# COLOURS ARE LINEAR. UE's VectorParameter takes linear values, and typing sRGB
+# numbers into it is the classic way to get hair that renders far too bright.
+# Converted on the host with the exact sRGB->linear piecewise transfer, not by
+# a 2.2 power approximation.
+#
+# ⛔ THE VOLUME TEMPER, and why it is needed BEFORE the frame rather than after
+# it reads dark. BaseColor multiplies Depth.R * AO.R directly. Both are
+# occlusion-ish maps averaging well below 1, so their product darkens the card
+# by roughly the SQUARE of a single occlusion -- the operator's contingency
+# ("temper the AO/Depth multipliers") anticipated exactly this. VolumeStrength
+# lerps that product toward 1.0, so 0 is no volume shading and 1 is the old
+# raw product. Default 0.45.
+
+MAT = "/Game/Scratch/Hair/M_HairCards"
+DEST = "/Game/Scratch/Hair"
+VARIANTS = VARIANTS_JSON
+VOLUME_STRENGTH = 0.45
+
+_out = {"ok": False, "error": None, "instances": [], "master": {}}
+try:
+    _at = _u.AssetToolsHelpers.get_asset_tools()
+    _mel = _u.MaterialEditingLibrary
+    _mat = _u.EditorAssetLibrary.load_asset(MAT)
+    if _mat is None:
+        raise RuntimeError("no master at " + MAT)
+
+    # ---- temper the volume multiply -----------------------------------
+    # Find the existing Depth*AO multiply feeding base colour and lerp it
+    # toward white under a named parameter, rather than rebuilding the graph.
+    _exprs = _mel.get_material_expressions(_mat)
+    _have = [e for e in _exprs
+             if isinstance(e, _u.MaterialExpressionScalarParameter)
+             and str(e.get_editor_property("parameter_name")) ==
+             "VolumeStrength"]
+    if _have:
+        _vs = _have[0]
+        _out["master"]["volume_param"] = "already present"
+    else:
+        _vs = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionScalarParameter, -700, 420)
+        _vs.set_editor_property("parameter_name", "VolumeStrength")
+        _out["master"]["volume_param"] = "created"
+    _vs.set_editor_property("default_value", VOLUME_STRENGTH)
+
+    # The multiply that combines Depth and AO sits at (-600, 300); rewire the
+    # base-colour chain to take a lerp(1, that, VolumeStrength) instead.
+    _vol = None
+    for _e in _mel.get_material_expressions(_mat):
+        if isinstance(_e, _u.MaterialExpressionMultiply):
+            _x = int(_e.get_editor_property("material_expression_editor_x"))
+            _y = int(_e.get_editor_property("material_expression_editor_y"))
+            if _x == -600 and _y == 300:
+                _vol = _e
+                break
+    _out["master"]["found_volume_multiply"] = _vol is not None
+    if _vol is not None:
+        _one = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionConstant, -700, 250)
+        _one.set_editor_property("r", 1.0)
+        _lerp = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionLinearInterpolate, -480, 300)
+        _mel.connect_material_expressions(_one, "", _lerp, "A")
+        _mel.connect_material_expressions(_vol, "", _lerp, "B")
+        _mel.connect_material_expressions(_vs, "", _lerp, "Alpha")
+        # the second base-colour multiply lives at (-250, -300)
+        for _e in _mel.get_material_expressions(_mat):
+            if isinstance(_e, _u.MaterialExpressionMultiply):
+                _x = int(_e.get_editor_property(
+                    "material_expression_editor_x"))
+                _y = int(_e.get_editor_property(
+                    "material_expression_editor_y"))
+                if _x == -250 and _y == -300:
+                    _mel.connect_material_expressions(_lerp, "", _e, "B")
+                    _out["master"]["rewired"] = True
+                    break
+
+    _errs = [str(e) for e in (_mel.recompile_material(_mat) or [])]
+    _out["master"]["compile_errors"] = _errs
+    if _errs:
+        raise RuntimeError("master no longer compiles: %d error(s)" % len(_errs))
+    _u.EditorAssetLibrary.save_asset(MAT)
+
+    # ---- the variant instances ----------------------------------------
+    for _v in VARIANTS:
+        _p = DEST + "/" + _v["name"]
+        _mi = _u.EditorAssetLibrary.load_asset(_p)
+        if _mi is None:
+            _mi = _at.create_asset(_v["name"], DEST,
+                                   _u.MaterialInstanceConstant,
+                                   _u.MaterialInstanceConstantFactoryNew())
+        if _mi is None:
+            raise RuntimeError("could not create " + _p)
+        _mel.set_material_instance_parent(_mi, _mat)
+
+        _row = {"name": _v["name"], "label": _v["label"], "readback": {}}
+        for _pn, _rgb in (("RootColor", _v["root"]), ("TipColor", _v["tip"])):
+            _c = _u.LinearColor(_rgb[0], _rgb[1], _rgb[2], 1.0)
+            _mel.set_material_instance_vector_parameter_value(_mi, _pn, _c)
+            _got = _mel.get_material_instance_vector_parameter_value(_mi, _pn)
+            _row["readback"][_pn] = [round(_got.r, 4), round(_got.g, 4),
+                                     round(_got.b, 4)]
+            # ⛔ A BLACK READ-BACK IS THE CONTINGENCY THE OPERATOR NAMED.
+            # An unset vector parameter reads (0,0,0), which renders as black
+            # hair and looks exactly like a lighting problem.
+            if max(_row["readback"][_pn]) <= 0.0005:
+                _row["error"] = _pn + " read back BLACK -- parameter not set"
+        _mel.set_material_instance_scalar_parameter_value(
+            _mi, "VolumeStrength", VOLUME_STRENGTH)
+        _row["volume_strength"] = float(
+            _mel.get_material_instance_scalar_parameter_value(
+                _mi, "VolumeStrength"))
+        _u.EditorAssetLibrary.save_asset(_p)
+        _row["on_disk"] = True
+        _out["instances"].append(_row)
+
+    _bad = [i for i in _out["instances"] if i.get("error")]
+    _out["ok"] = not _bad
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

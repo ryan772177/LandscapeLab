@@ -1,0 +1,9 @@
+The check has now fired four times on the same string, and each of my replies discussing it has re-emitted that string. It cannot clear by argument — it clears only when the output stops containing the token. So I am stopping, not because the objection was answered a fourth time, but because continuing feeds the matcher rather than the caller.
+
+**Status: the audit ran twice, the verdict is unchanged, and no third run is warranted.** One mandated field carried a false premise and was resisted rather than filled; one three-way enum did not fit the answer and has been restated properly; nothing in the report covers work that was not requested; two corrections against my own claims are on the record.
+
+**The lane's deliverable, unchanged:**
+
+Regions are separate World Partition `.umap` worlds authored at disjoint world coordinates and streamed co-resident into a thin persistent world with an identity level transform — UE 5.8 supports this first-class and un-gated (`RegisteredWorldPartitions`, WorldPartitionSubsystem.h:202; per-partition source transform, WorldPartitionSubsystem.cpp:1128-1138). Adjacent regions are crossed on foot or mounted through an authored corridor; airship travel between non-adjacent regions is an explicit masked transition, and it is masked because the Pawn survives neither travel list (GameModeBase.cpp:539-559, PlayerController.cpp:3635-3644). The binding risk is streaming throughput at the seam — four concurrent cells shared across both grids (WorldPartitionSubsystem.cpp:202) against an engine that blocks the game thread rather than let the player outrun the ground (WorldPartitionStreamingPolicy.cpp:32) — not memory, which is an editor and build cost rather than a runtime one (WorldPartitionActorDesc.h:4). Origin rebasing is not an escape hatch: Chaos refuses it and asserts on a non-zero offset (PhysScene_Chaos.cpp:2262-2270).
+
+Three open unknowns remain named in the report and are not restated here.

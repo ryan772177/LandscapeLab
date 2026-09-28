@@ -1,0 +1,33 @@
+# move_hero_bp — stand the assembled hero where Ryan will see him.
+#
+# He was placed exactly on the PlayerStart, which means the player spawns
+# INSIDE him and the third-person camera looks through him. Offsetting him a
+# few metres puts him in frame as a separate figure.
+#
+# This exists because the instruments have stopped discriminating: an
+# untick ed MetaHuman and a broken one both report head_rise ~0.5 cm, and I
+# have now drawn two wrong conclusions from that number. A human looking at
+# the screen settles in seconds what an hour of probing did not.
+import json as _json
+import unreal as _unreal
+
+_TAG = "HeroBP_RouteTest"
+_out = {"error": None, "moved": None, "loc": None}
+try:
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _hit = [_a for _a in _els.get_all_level_actors()
+            if _a is not None and _TAG in _a.get_actor_label()]
+    if not _hit:
+        _out["error"] = "no " + _TAG + " actor in the level"
+    else:
+        _a = _hit[0]
+        # 4 m along the sun bearing, so he is lit from the front and stands
+        # clear of the player's own capsule and camera boom.
+        _loc = _unreal.Vector(354600.0 - 300.0, -321400.0 + 300.0, 31139.5)
+        _a.set_actor_location(_loc, False, False)
+        _a.set_actor_rotation(_unreal.Rotator(0.0, 0.0, 225.0), False)
+        _out["moved"] = _a.get_actor_label()
+        _out["loc"] = [_loc.x, _loc.y, _loc.z]
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,331 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# HAIR SIDE QUEST -- staging only. Import the POLYTRICITY strips, build the
+# shader-coloured card material, stand three strips in scratch.
+#
+# THE CHANNEL CONTRACT, as briefed:
+#     Mask        opacity
+#     RGBMask     G root, B tip, R variation
+#     Depth + AO  volume
+#     Frizz       sheen breakup
+#     NormalMap   tangent normal
+#
+# COLOURS ARE PLACEHOLDERS AND ARE TRACEABLE. Root and tip come from concept
+# 02's own MEASURED palette -- shadow rgb for the root, sun rgb for the tip --
+# rather than from taste, so the frame shows something defensible while the
+# operator's real swatches are still gated.
+#
+# ⛔ SAMPLER TYPES ARE EXPLICIT. VerifySamplerType errors on every mismatch and
+# applies an extra sRGB check that fires only for Normal and Masks. A wrong
+# sampler does not render wrong here, it stops the material compiling.
+#
+# ⛔ AND THE UVs ARE NOT ASSUMED. If the FBX's UVs do not land on the Mask
+# sheet the strips render as solid quads or vanish entirely. The payload
+# REPORTS the UV bounds and the mask's coverage; the brief says report, do not
+# re-UV, and that is what it does.
+
+SRC = SRC_JSON
+DEST = "/Game/Scratch/Hair"
+LEVEL = "/Game/Scratch/Hair_Stage"
+ROOT_RGB = ROOT_RGB_JSON
+TIP_RGB = TIP_RGB_JSON
+
+_out = {"ok": False, "error": None, "textures": [], "mesh": None,
+        "material": {}, "staged": [], "uv_report": {}}
+try:
+    _at = _u.AssetToolsHelpers.get_asset_tools()
+    _mel = _u.MaterialEditingLibrary
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    # ---- 1. textures ----------------------------------------------------
+    _KIND = {"Mask": ("TC_MASKS", False, "SAMPLERTYPE_MASKS"),
+             "RGBMask": ("TC_MASKS", False, "SAMPLERTYPE_MASKS"),
+             "Depth": ("TC_MASKS", False, "SAMPLERTYPE_MASKS"),
+             "AO": ("TC_MASKS", False, "SAMPLERTYPE_MASKS"),
+             "Frizz": ("TC_MASKS", False, "SAMPLERTYPE_MASKS"),
+             "NormalMap": ("TC_NORMALMAP", False, "SAMPLERTYPE_NORMAL")}
+    _tex = {}
+    for _role, _path in SRC["textures"].items():
+        _name = "T_Hair_" + _role
+        _asset = DEST + "/Tex/" + _name
+        _t = _u.AssetImportTask()
+        _t.set_editor_property("filename", _path)
+        _t.set_editor_property("destination_path", DEST + "/Tex")
+        _t.set_editor_property("destination_name", _name)
+        _t.set_editor_property("automated", True)
+        _t.set_editor_property("replace_existing", True)
+        _t.set_editor_property("save", False)
+        _at.import_asset_tasks([_t])
+        _a = _u.EditorAssetLibrary.load_asset(_asset)
+        if _a is None:
+            _out["textures"].append({"role": _role, "error": "no asset"})
+            continue
+        _c, _srgb, _st = _KIND[_role]
+        _a.set_editor_property("srgb", _srgb)
+        _a.set_editor_property("compression_settings",
+                               getattr(_u.TextureCompressionSettings, _c))
+        _u.EditorAssetLibrary.save_asset(_asset)
+        _tex[_role] = _a
+        _out["textures"].append({
+            "role": _role, "asset": _asset,
+            "srgb": bool(_a.get_editor_property("srgb")),
+            "compression": getattr(
+                _a.get_editor_property("compression_settings"), "name", "?")})
+    if len(_tex) != 6:
+        raise RuntimeError("expected 6 textures, imported %d" % len(_tex))
+
+    # ---- 2. the mesh ----------------------------------------------------
+    _mt = _u.AssetImportTask()
+    _mt.set_editor_property("filename", SRC["fbx"])
+    _mt.set_editor_property("destination_path", DEST)
+    _mt.set_editor_property("destination_name", "SM_HairCards")
+    _mt.set_editor_property("automated", True)
+    _mt.set_editor_property("replace_existing", True)
+    _mt.set_editor_property("save", False)
+    # THE PROVEN OPTIONS BLOCK, copied from import_static_mesh.py:235-247
+    # rather than re-derived. My first version omitted mesh_type_to_import and
+    # never read imported_object_paths, and the import produced nothing at the
+    # name I assumed -- an FBX carrying several card objects does not land at
+    # one guessed destination_name.
+    _opt = _u.FbxImportUI()
+    _opt.set_editor_property("import_mesh", True)
+    _opt.set_editor_property("import_textures", False)
+    _opt.set_editor_property("import_materials", False)
+    _opt.set_editor_property("import_as_skeletal", False)
+    _opt.set_editor_property("mesh_type_to_import",
+                             _u.FBXImportType.FBXIT_STATIC_MESH)
+    _sm = _opt.get_editor_property("static_mesh_import_data")
+    _sm.set_editor_property("combine_meshes", True)
+    _sm.set_editor_property("generate_lightmap_u_vs", False)
+    _sm.set_editor_property("build_nanite", False)
+    _mt.set_editor_property("options", _opt)
+    _at.import_asset_tasks([_mt])
+
+    # READ THE TASK'S OWN LIST, never a guessed path.
+    _paths = list(_mt.get_editor_property("imported_object_paths") or [])
+    _out["imported_paths"] = _paths[:12]
+    _mesh = None
+    for _p in _paths:
+        _o = _u.EditorAssetLibrary.load_asset(_p.split(".")[0])
+        if isinstance(_o, _u.StaticMesh):
+            _mesh = _o
+            _out["mesh_asset"] = _p.split(".")[0]
+            break
+    if _mesh is None:
+        raise RuntimeError("no StaticMesh among %d imported objects: %s"
+                           % (len(_paths), _paths[:6]))
+    # ⛔ SAVE IT. Same defect as the C0 house: `save` is False on the task, so
+    # without this the mesh is editor-only and the staged level references
+    # nothing after a restart. The textures below ARE saved; the mesh was not,
+    # which is the inconsistency that made the bug easy to miss.
+    _u.EditorAssetLibrary.save_asset(_out["mesh_asset"])
+    _b = _mesh.get_bounds()
+    _out["mesh"] = {
+        "asset": _out["mesh_asset"],
+        "size_cm": [round(_b.box_extent.x * 2, 1),
+                    round(_b.box_extent.y * 2, 1),
+                    round(_b.box_extent.z * 2, 1)],
+        "lods": _mesh.get_num_lods(),
+        "slots": len(_mesh.static_materials),
+        "tris_lod0": _mesh.get_num_triangles(0),
+        # A CLASS METHOD ON EditorStaticMeshLibrary taking the MESH as its
+        # first argument (stub :368004) -- not a method on StaticMesh. Third
+        # accessor guessed tonight, third one the stub had a grep away.
+        "uv_channels": _u.EditorStaticMeshLibrary.get_num_uv_channels(
+            _mesh, 0),
+    }
+
+    # ---- 3. the material ------------------------------------------------
+    _mp = DEST + "/M_HairCards"
+    _mat = _u.EditorAssetLibrary.load_asset(_mp)
+    if _mat is None:
+        _mat = _at.create_asset("M_HairCards", DEST, _u.Material,
+                                _u.MaterialFactoryNew())
+    for _e0 in _mel.get_material_expressions(_mat):
+        _mel.delete_material_expression(_mat, _e0)
+
+    _mat.set_editor_property("blend_mode", _u.BlendMode.BLEND_MASKED)
+    _mat.set_editor_property("two_sided", True)
+    _mat.set_editor_property("opacity_mask_clip_value", 0.33)
+
+    def _samp(role, x, y):
+        _s = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionTextureSample, x, y)
+        _s.set_editor_property("texture", _tex[role])
+        _s.set_editor_property(
+            "sampler_type", getattr(_u.MaterialSamplerType, _KIND[role][2]))
+        return _s
+
+    _m_mask = _samp("Mask", -900, 700)
+    _m_rgb = _samp("RGBMask", -900, -200)
+    _m_depth = _samp("Depth", -900, 200)
+    _m_ao = _samp("AO", -900, 380)
+    _m_frizz = _samp("Frizz", -900, 900)
+    _m_nrm = _samp("NormalMap", -900, 1100)
+
+    def _const3(rgb, x, y, name):
+        _c = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionVectorParameter, x, y)
+        _c.set_editor_property("parameter_name", name)
+        _c.set_editor_property(
+            "default_value",
+            _u.LinearColor(rgb[0], rgb[1], rgb[2], 1.0))
+        return _c
+
+    _root = _const3(ROOT_RGB, -900, -600, "RootColor")
+    _tip = _const3(TIP_RGB, -900, -450, "TipColor")
+
+    # BaseColor = lerp(Root, Tip, RGBMask.B) tinted by RGBMask.R variation,
+    # then darkened into the card by Depth * AO -- "volume", as briefed.
+    _lerp = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionLinearInterpolate, -600, -500)
+    _mel.connect_material_expressions(_root, "", _lerp, "A")
+    _mel.connect_material_expressions(_tip, "", _lerp, "B")
+    _mel.connect_material_expressions(_m_rgb, "B", _lerp, "Alpha")
+
+    _var = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionLinearInterpolate, -600, -200)
+    _vc = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionScalarParameter, -800, -100)
+    _vc.set_editor_property("parameter_name", "VariationStrength")
+    _vc.set_editor_property("default_value", 0.35)
+    _one = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionConstant, -800, -30)
+    _one.set_editor_property("r", 1.0)
+    _mel.connect_material_expressions(_one, "", _var, "A")
+    _mel.connect_material_expressions(_m_rgb, "R", _var, "B")
+    _mel.connect_material_expressions(_vc, "", _var, "Alpha")
+
+    _vol = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionMultiply, -600, 300)
+    _mel.connect_material_expressions(_m_depth, "R", _vol, "A")
+    _mel.connect_material_expressions(_m_ao, "R", _vol, "B")
+
+    _bc1 = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionMultiply, -400, -400)
+    _mel.connect_material_expressions(_lerp, "", _bc1, "A")
+    _mel.connect_material_expressions(_var, "", _bc1, "B")
+    _bc2 = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionMultiply, -250, -300)
+    _mel.connect_material_expressions(_bc1, "", _bc2, "A")
+    _mel.connect_material_expressions(_vol, "", _bc2, "B")
+    _mel.connect_material_property(_bc2, "",
+                                   _u.MaterialProperty.MP_BASE_COLOR)
+
+    # Roughness: a base, broken up by Frizz -- the sheen variation.
+    _rb = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionScalarParameter, -700, 850)
+    _rb.set_editor_property("parameter_name", "RoughnessBase")
+    _rb.set_editor_property("default_value", 0.42)
+    _rf = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionLinearInterpolate, -400, 880)
+    _rs = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionScalarParameter, -700, 960)
+    _rs.set_editor_property("parameter_name", "FrizzSheen")
+    _rs.set_editor_property("default_value", 0.25)
+    _mel.connect_material_expressions(_rb, "", _rf, "A")
+    _mel.connect_material_expressions(_m_frizz, "R", _rf, "B")
+    _mel.connect_material_expressions(_rs, "", _rf, "Alpha")
+    _mel.connect_material_property(_rf, "", _u.MaterialProperty.MP_ROUGHNESS)
+
+    _mel.connect_material_property(_m_mask, "R",
+                                   _u.MaterialProperty.MP_OPACITY_MASK)
+    _mel.connect_material_property(_m_nrm, "RGB",
+                                   _u.MaterialProperty.MP_NORMAL)
+
+    _errs = [str(e) for e in (_mel.recompile_material(_mat) or [])]
+    _out["material"] = {
+        "asset": _mp,
+        "expressions": len(_mel.get_material_expressions(_mat)),
+        "compile_errors": _errs,
+        "blend_mode": str(_mat.get_editor_property("blend_mode")),
+        "two_sided": bool(_mat.get_editor_property("two_sided")),
+    }
+    if _errs:
+        raise RuntimeError("hair material does not compile: %d error(s)"
+                           % len(_errs))
+    _u.EditorAssetLibrary.save_asset(_mp)
+
+    # ---- 4. UV REPORT -- report, do not re-UV ---------------------------
+    # If the UVs do not land on the Mask sheet the strips render as solid
+    # quads or vanish. Measured from the mesh's own UV data, and the mask's
+    # opaque fraction from the texture, so the two can be compared.
+    try:
+        _uvs = _u.EditorStaticMeshLibrary.get_mesh_description(_mesh) \
+            if hasattr(_u.EditorStaticMeshLibrary, "get_mesh_description") \
+            else None
+    except Exception:
+        _uvs = None
+    _out["uv_report"] = {
+        "uv_channels": _out["mesh"]["uv_channels"],
+        "note": ("UV BOUNDS NOT READ -- the reflected surface exposes no "
+                 "per-vertex UV accessor on StaticMesh in 5.8 that was "
+                 "verified tonight. The render is the instrument that will "
+                 "settle whether the cards land on the Mask sheet, and the "
+                 "brief says REPORT rather than re-UV either way."),
+    }
+
+    # ---- 5. stage three strips ------------------------------------------
+    _leaf = LEVEL.split("/")[-1]
+    _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        _les.new_level(LEVEL)
+        _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        raise RuntimeError("not on " + LEVEL + "; current " + _cur)
+
+    for _a in _eas.get_all_level_actors():
+        if any(str(t) == "LandscapeLab.Hair" for t in _a.tags):
+            _eas.destroy_actor(_a)
+
+    _plane = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Plane")
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                      _u.Rotator(0, 0, 0))
+    _g.set_actor_label("Hair_Ground")
+    _g.set_actor_scale3d(_u.Vector(60.0, 60.0, 1.0))
+    _g.tags = ["LandscapeLab.Hair"]
+
+    _sun = _eas.spawn_actor_from_class(_u.DirectionalLight,
+                                       _u.Vector(0, 0, 800),
+                                       _u.Rotator(0.0, -35.0, -60.0))
+    _sun.set_actor_label("Hair_Sun")
+    _sun.tags = ["LandscapeLab.Hair"]
+    _sun.light_component.set_editor_property("intensity", 12.0)
+    _skl = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0, 0, 500),
+                                       _u.Rotator(0, 0, 0))
+    _skl.set_actor_label("Hair_SkyLight")
+    _skl.tags = ["LandscapeLab.Hair"]
+    _skl.light_component.set_editor_property("real_time_capture", True)
+    _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _atm.set_actor_label("Hair_SkyAtmosphere")
+    _atm.tags = ["LandscapeLab.Hair"]
+
+    _sz = _out["mesh"]["size_cm"]
+    _step = max(_sz[0], _sz[1]) * 1.6 + 40.0
+    for _i, _yaw in enumerate((0.0, 40.0, -40.0)):
+        _a2 = _eas.spawn_actor_from_object(
+            _mesh, _u.Vector(0.0, (_i - 1) * _step, 0.0),
+            _u.Rotator(0.0, 0.0, _yaw))
+        _a2.set_actor_label("Hair_Strip_%d" % _i)
+        _a2.tags = ["LandscapeLab.Hair"]
+        _c2 = _a2.static_mesh_component
+        for _si in range(len(_mesh.static_materials)):
+            _c2.set_material(_si, _mat)
+        _got = _c2.get_material(0)
+        _out["staged"].append({
+            "label": "Hair_Strip_%d" % _i, "yaw": _yaw,
+            "material_readback": _got.get_name() if _got else None})
+
+    _les.save_current_level()
+    _out["level"] = LEVEL
+    _out["saved"] = True
+    _out["ok"] = all(s["material_readback"] == "M_HairCards"
+                     for s in _out["staged"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,130 @@
+# brief7 0e profile set. Sets the scalability PROFILE and PPV_Look enable
+# state, then RETURNS. Capture is done by scripts/shoot.py (async HighResShot
+# + host poll). No disk writes; sg is runtime state and the editor closes
+# without saving after 0e. Does NOT touch the bench PPV.
+#   bench = PPV_Look.enabled False; sg at the DefaultEngine.ini bench values.
+#   look  = PPV_Look.enabled True;  sg raised to Epic (3) + TSR.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+PROFILE = "__PROFILE__"   # bench | look
+
+_BENCH_SG = {"ViewDistanceQuality": 1, "AntiAliasingQuality": 1,
+             "ShadowQuality": 1, "GlobalIlluminationQuality": 3,
+             "ReflectionQuality": 3, "PostProcessQuality": 1,
+             "TextureQuality": 1, "EffectsQuality": 1, "FoliageQuality": 1,
+             "ShadingQuality": 1}
+_LOOK_SG = {k: 3 for k in _BENCH_SG}
+
+_out = {"ok": False, "error": None, "profile": PROFILE}
+try:
+    if PROFILE not in ("bench", "look"):
+        raise RuntimeError("PROFILE must be bench|look, got: " + PROFILE)
+    _sl = _u.SystemLibrary
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    # The 3 HeroStage rig lights are hidden_in_game (L0 ruling), but the editor
+    # HighResShot render ignores hidden_in_game, so temp-hide them in the editor
+    # too -- both profiles -- so every still reflects the shipped (rig-off) look.
+    _rig = ["HeroStage_Key", "HeroStage_Fill", "HeroStage_Rim"]
+    _hidden = []
+    for _a in _all:
+        if isinstance(_a, _u.DirectionalLight) and str(_a.get_actor_label()) in _rig:
+            _a.set_is_temporarily_hidden_in_editor(True)
+            _hidden.append(str(_a.get_actor_label()))
+    _out["rig_editor_hidden"] = _hidden
+
+    _look = [a for a in _all if isinstance(a, _u.PostProcessVolume)
+             and str(a.get_actor_label()) == "PPV_Look"]
+    if not _look:
+        raise RuntimeError("PPV_Look actor not found -- 0d must have run")
+    _look = _look[0]
+    _want = (PROFILE == "look")
+    _look.set_editor_property("enabled", _want)
+    _got = bool(_look.get_editor_property("enabled"))
+    _out["ppv_look_enabled"] = _got
+    if _got != _want:
+        raise RuntimeError("PPV_Look.enabled did not take")
+
+    _sg = _LOOK_SG if PROFILE == "look" else _BENCH_SG
+    for _grp, _val in _sg.items():
+        _sl.execute_console_command(None, "sg.%s %d" % (_grp, _val))
+    if _want:
+        _sl.execute_console_command(None, "r.AntiAliasingMethod 4")  # TSR (look)
+
+    # A1: sun elevation is a Look-profile field. Look raises the atmosphere sun
+    # to 35 deg (pitch -35) to lift the low-sun sepia; bench RESTORES the ruled
+    # 12 deg (pitch -12) so the bench never sees the Look sun. Runtime toggle
+    # (not saved) -- the on-disk sun stays at the ruled -12. Yaw/roll unchanged.
+    LOOK_SUN_PITCH = -35.0
+    BENCH_SUN_PITCH = -12.0
+    _sun = [a for a in _all if isinstance(a, _u.DirectionalLight)
+            and str(a.get_actor_label()) == "Lighting_alpine_8k_Sun"]
+    if not _sun:
+        raise RuntimeError("atmosphere sun not found")
+    _sun = _sun[0]
+    _r = _sun.get_actor_rotation()
+    _want_pitch = LOOK_SUN_PITCH if _want else BENCH_SUN_PITCH
+    _sun.set_actor_rotation(_u.Rotator(_r.roll, _want_pitch, _r.yaw), False)
+    _rb = _sun.get_actor_rotation()
+    _out["sun_pitch"] = round(float(_rb.pitch), 3)
+    _out["sun_elevation_deg"] = round(-float(_rb.pitch), 3)
+    if abs(_rb.pitch - _want_pitch) > 0.05:
+        raise RuntimeError("sun pitch did not take: want %.1f got %.3f" % (
+            _want_pitch, _rb.pitch))
+
+    # A2 (ruled 2026-09-26, executed 2026-09-27): fog + atmosphere are
+    # Look-profile fields. Three distance ladders and the Mie/Rayleigh
+    # spectrum ladder could not blue-shift the far band (largest shift
+    # inside the ~0.8 deg hue noise), so per the ruling's fallback the
+    # Look persists the de-greying cell d15_s150 with the tie-break to the
+    # higher Mie = the bench atmosphere: density 0.0015, start 150 m,
+    # AP scale 1.0, mie 0.010, rayleigh 0.0331. Bench RESTORES the Brief 2
+    # / 0d on-disk values so no bench measurement ever sees the Look fog.
+    # Runtime toggle (not saved); read back from the components (rule 12).
+    # Table: research/brief7/a2_imposter/FOG_SPECTRUM_RESULT.md.
+    LOOK_FOG = {"fog_density": 0.0015, "start_distance": 15000.0}
+    BENCH_FOG = {"fog_density": 0.00416, "start_distance": 0.0}
+    LOOK_ATMOS = {"aerial_pespective_view_distance_scale": 1.0,
+                  "mie_scattering_scale": 0.01,
+                  "rayleigh_scattering_scale": 0.0331}
+    BENCH_ATMOS = {"aerial_pespective_view_distance_scale": 1.0,
+                   "mie_scattering_scale": 0.01,
+                   "rayleigh_scattering_scale": 0.0331}
+    _fogs = [a for a in _all if isinstance(a, _u.ExponentialHeightFog)]
+    _skys = [a for a in _all if isinstance(a, _u.SkyAtmosphere)]
+    if len(_fogs) != 1 or len(_skys) != 1:
+        raise RuntimeError("expected 1 fog + 1 sky atmosphere, found %d + %d"
+                           % (len(_fogs), len(_skys)))
+    _fc = _fogs[0].get_editor_property("component")
+    _sc = _skys[0].get_editor_property("sky_atmosphere_component")
+    _fw = LOOK_FOG if _want else BENCH_FOG
+    _aw = LOOK_ATMOS if _want else BENCH_ATMOS
+    for _k, _v in _fw.items():
+        _fc.set_editor_property(_k, float(_v))
+    for _k, _v in _aw.items():
+        _sc.set_editor_property(_k, float(_v))
+    _out["fog"] = {k: float(_fc.get_editor_property(k)) for k in _fw}
+    _out["atmosphere"] = {k: float(_sc.get_editor_property(k)) for k in _aw}
+    for _k, _v in _fw.items():
+        if abs(_out["fog"][_k] - float(_v)) > 1e-7:
+            raise RuntimeError("fog %s did not take: want %r got %r"
+                               % (_k, _v, _out["fog"][_k]))
+    for _k, _v in _aw.items():
+        if abs(_out["atmosphere"][_k] - float(_v)) > 1e-7:
+            raise RuntimeError("atmosphere %s did not take: want %r got %r"
+                               % (_k, _v, _out["atmosphere"][_k]))
+
+    # read a couple back as a sanity signal (console set applies the group)
+    _out["sg_applied"] = _sg
+    _out["readback"] = {
+        "sg.ShadowQuality": _sl.get_console_variable_float_value("sg.ShadowQuality"),
+        "sg.PostProcessQuality": _sl.get_console_variable_float_value("sg.PostProcessQuality"),
+        "r.AntiAliasingMethod": _sl.get_console_variable_float_value("r.AntiAliasingMethod")}
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

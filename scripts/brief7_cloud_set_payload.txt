@@ -1,0 +1,34 @@
+# brief7 L0 cloud tune. Sets the three SimpleVolumetricCloud params on
+# MI_AlpineClouds and reads them back. Does NOT save (host re-shoots vista from
+# the live editor to judge; a save+cold-verify happens only once a set is
+# chosen). SET_SAVE=1 saves + reports the dirty census.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+MI = "/Game/Bench/MI_AlpineClouds"
+COVERAGE = __COVERAGE__
+DENSITY = __DENSITY__
+SCALE = __SCALE__
+SET_SAVE = __SET_SAVE__
+
+_out = {"error": None, "applied": {}, "saved": None, "dirty_content": None}
+try:
+    _mi = _u.load_asset(MI)
+    if _mi is None:
+        raise RuntimeError("could not load " + MI)
+    _mel = _u.MaterialEditingLibrary
+    _mel.set_material_instance_scalar_parameter_value(_mi, "Cloud_GlobalCoverage", COVERAGE)
+    _mel.set_material_instance_scalar_parameter_value(_mi, "Cloud_GlobalDensity", DENSITY)
+    _mel.set_material_instance_scalar_parameter_value(_mi, "Layout_CloudGlobalScale", SCALE)
+    for _n in ("Cloud_GlobalCoverage", "Cloud_GlobalDensity", "Layout_CloudGlobalScale"):
+        _out["applied"][_n] = float(
+            _mel.get_material_instance_scalar_parameter_value(_mi, _n))
+    if SET_SAVE:
+        _out["saved"] = bool(_u.EditorAssetLibrary.save_asset(MI, False))
+        _dc = [str(p) for p in _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()]
+        _out["dirty_content"] = _dc
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

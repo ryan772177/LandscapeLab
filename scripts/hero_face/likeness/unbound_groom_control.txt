@@ -1,0 +1,125 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# THE CONTROL THAT SPLITS THE HYPOTHESIS SPACE IN HALF.
+#
+# The groom ASSET carries the authored strand length -- measured, UE
+# max_curve_length 20.44 cm against Blender's 20.26 -- and the component
+# applies no length scale. Yet the render is a short cap where Blender draws a
+# curtain to the jaw. Either the BINDING is deforming the strands, or the
+# groom's own render path is.
+#
+# A GroomActor renders a groom in its OWN space with no skeletal mesh and no
+# binding: "If the binding asset is not provided the projection is done at
+# runtime" (GroomComponent.binding_asset, 5.8 stub). So this spawns the same
+# asset unbound, at the hero's transform, with the hero's own Hair hidden --
+# one variable, same camera, same framing as the frame already on disk.
+#
+# UNBOUND DRAWS THE AUTHORED SHAPE  -> the binding is the defect
+# UNBOUND DRAWS THE SAME SHORT CAP  -> the asset's render path is the defect
+#
+# It spawns a TEMPORARY actor and nothing here saves. MODE=off removes it and
+# restores the Hair component, so the level returns to the state it was found
+# in whether or not the control was informative.
+
+MODE = "__MODE__"
+# BIND lets the SAME standalone actor be photographed with and without the
+# binding. That is the variable that separates "the binding deforms the groom"
+# from "the MetaHuman component's skinning deforms it": both hypotheses predict
+# the bound-on-hero render, and only one predicts a collapsed standalone.
+BIND = "__BIND__"
+GROOM = "__GROOM__"
+if GROOM.startswith("__"):
+    GROOM = "/Game/Characters/AlpineHero/Grooms/Hair_v22_bound_b"
+PROBE = "UnboundGroomProbe"
+
+_out = {"ok": False, "error": None, "mode": MODE, "refusals": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _hero = None
+    _probe = None
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == "HeroInWorld":
+            _hero = _a
+        elif _l == PROBE:
+            _probe = _a
+    if _hero is None:
+        raise RuntimeError("no HeroInWorld actor")
+
+    _hair = None
+    for _c in _hero.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == "Hair":
+            _hair = _c
+            break
+    if _hair is None:
+        raise RuntimeError("hero has no Hair groom component")
+
+    if MODE == "off":
+        if _probe is not None:
+            _eas.destroy_actor(_probe)
+            _out["destroyed"] = True
+        _hair.set_editor_property("visible", True)
+        _out["hair_visible"] = bool(_hair.get_editor_property("visible"))
+        _out["ok"] = True
+    else:
+        _g = _u.EditorAssetLibrary.load_asset(GROOM)
+        if _g is None:
+            raise RuntimeError("could not load " + GROOM)
+
+        # Hide the BOUND hair so the frame carries one groom, not two.
+        _hair.set_editor_property("visible", False)
+        if bool(_hair.get_editor_property("visible")):
+            _out["refusals"].append("hero Hair did not hide on read-back")
+
+        if _probe is None:
+            _loc = _hero.get_actor_location()
+            _probe = _eas.spawn_actor_from_class(
+                _u.GroomActor, _loc, _hero.get_actor_rotation())
+            _probe.set_actor_label(PROBE)
+            _out["spawned"] = True
+        _pc = _probe.get_component_by_class(_u.GroomComponent)
+        if _pc is None:
+            raise RuntimeError("spawned GroomActor exposes no GroomComponent")
+        _pc.set_editor_property("groom_asset", _g)
+        if BIND and BIND.lower() != "none":
+            _bnd = _u.EditorAssetLibrary.load_asset(BIND)
+            if _bnd is None:
+                raise RuntimeError("could not load binding " + BIND)
+            for _i in range(4):
+                _pc.set_editor_property("binding_asset", _bnd)
+                _out["binding_attempts"] = _i + 1
+                if _pc.get_editor_property("binding_asset") is not None:
+                    break
+        else:
+            _pc.set_editor_property("binding_asset", None)
+
+        # READ BACK BOTH. A groom that silently failed to assign and a groom
+        # that rendered short look identical in the resulting picture, and
+        # this project has already paid for that once today.
+        _rb = _pc.get_editor_property("groom_asset")
+        _rbb = _pc.get_editor_property("binding_asset")
+        _out["probe_groom"] = None if _rb is None else _rb.get_name()
+        _out["probe_binding"] = None if _rbb is None else _rbb.get_name()
+        if _rb is None:
+            _out["refusals"].append("probe groom read back None -- the control "
+                                    "cannot discriminate and its frame is void")
+        _want_bound = bool(BIND and BIND.lower() != "none")
+        if _want_bound and _rbb is None:
+            _out["refusals"].append("asked for a binding and it read back None "
+                                    "-- this frame is void, not evidence")
+        if (not _want_bound) and _rbb is not None:
+            _out["refusals"].append("probe binding is NOT None; this is no "
+                                    "longer an unbound control")
+        _pl = _probe.get_actor_location()
+        _out["probe_loc"] = [_pl.x, _pl.y, _pl.z]
+        _out["hero_loc"] = [_hero.get_actor_location().x,
+                            _hero.get_actor_location().y,
+                            _hero.get_actor_location().z]
+        _out["hair_visible"] = bool(_hair.get_editor_property("visible"))
+        _out["ok"] = not _out["refusals"]
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

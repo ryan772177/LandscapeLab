@@ -1,0 +1,258 @@
+{
+ "schema_version": "1.2-concept",
+ "concept_id": "alpine_village_02",
+ "site_id": "alpine_village",
+ "_site_id_is_SHARED": "SAME site as alpine_village_01. This is the interior view of the place that concept shows from outside. Build the site once; solve both cameras.",
+ "source_image": "refs/alpine_village_02.jpg",
+ "source_sha256": "abf43d56289c7c14a9cfdcd0970645780342fb379437108ed4ccea237038b744",
+ "_read_by": "Claude, 2026-08-29, multimodal read plus scripts/analyse_concept.py. Reading of record: _verify/20260829_concepts/READING.md.",
+ "_what_this_concept_is": "INSIDE THE VILLAGE. Street level on a dirt track, buildings framing left and right, looking along the track at the church with the peak beyond. This is the DETAIL concept -- it is where the material and clutter requirements are legible.",
+ "terrain": {
+  "features": [
+   {
+    "kind": "peak",
+    "bearing_deg": -3.0,
+    "prominence": "dominant",
+    "shape": "asymmetric horn, steep left face, long right shoulder -- THE SAME PEAK AS CONCEPT 01",
+    "_cross_check": "the peak sits near the centre line in both concepts. Once both cameras are solved, the village-to-peak vector must be consistent. That consistency is the cheapest available test that the site layout is right.",
+    "provenance": "read",
+    "confidence": 0.95
+   },
+   {
+    "kind": "track",
+    "bearing_deg": 0.0,
+    "prominence": "dominant",
+    "_what": "dirt track running away from camera through the village, curving right past the church. Patches of cobble near the buildings.",
+    "provenance": "read",
+    "confidence": 0.9
+   },
+   {
+    "kind": "stream",
+    "bearing_deg": -12.0,
+    "prominence": "moderate",
+    "_what": "a shallow rivulet crossing the foreground left of centre, rounded river stones along and in it",
+    "provenance": "read",
+    "confidence": 0.85
+   },
+   {
+    "kind": "slope",
+    "bearing_deg": 0.0,
+    "prominence": "minor",
+    "_what": "the ground rises gently away from camera toward the church",
+    "provenance": "inferred",
+    "confidence": 0.6
+   }
+  ],
+  "ground_cover": {
+   "dirt_track": 0.35,
+   "meadow_grass": 0.3,
+   "cobble": 0.15,
+   "river_stone": 0.15,
+   "water": 0.05
+  }
+ },
+ "placements": {
+  "items": [
+   {
+    "class": "chalet_large",
+    "count": 2,
+    "footprint_class": "large",
+    "height_class": 2,
+    "orientation": "gable_to_street",
+    "arrangement": "street_lined",
+    "form": "rough stone ground floor, heavy squared-log or plank upper storey, wide shingled roof with deep eaves, stone chimney, upper balcony with turned railing on the right-hand one",
+    "_these_are_the_FRAMING_buildings": "one left, one right, at the frame edges. They define the street corridor and they are the closest, most legible architecture in either concept -- so they set the material bar.",
+    "provenance": "read",
+    "confidence": 0.9
+   },
+   {
+    "class": "chalet",
+    "count_range": [
+     4,
+     8
+    ],
+    "footprint_class": "medium",
+    "height_class": 2,
+    "orientation": "mixed",
+    "arrangement": "street_lined",
+    "provenance": "read",
+    "confidence": 0.75,
+    "silhouette_plausible_cm": [
+     620.0,
+     820.0
+    ],
+    "_silhouette_plausible_cm": "DERIVED FROM GEOMETRY, not chosen. Walls are 400 cm (2 storeys x the ruled 2.00 m kit wall course). An alpine roof over the 8 m short span runs 30-45 degrees, giving 231-400 cm of roof and a 631-800 cm silhouette; the band is widened slightly to 620-820. THE POSITIVE CONTROL IS THE DEFECT THIS WEEK: 536.5 cm implies a 136.5 cm roof, an 18.8 degree pitch, far too shallow for a shingled roof with the deep overhang both concepts describe -- and 536.5 was exactly what the buried kit roof produced. The measured correct value, 738.0, is a 40 degree pitch and sits comfortably inside."
+   },
+   {
+    "class": "church",
+    "count": 1,
+    "footprint_class": "medium",
+    "orientation": "entrance_to_street",
+    "arrangement": "clustered",
+    "form": "cream plastered walls; ornate painted or carved panel in an arched surround over the entrance; pointed arched windows; covered porch on posts with its own shingled roof; belfry stage with arched openings; WEATHERED COPPER ONION DOME, dark red-brown, with a finial above",
+    "_the_most_detailed_object_in_either_image": "and the one thing no current library asset can approximate. Phase D candidate.",
+    "provenance": "read",
+    "confidence": 0.95,
+    "_height_class_superseded": "was 4. RULED 2026-08-30: the reader saw a nave AND a tower and flattened them into one number, which is why this recipe contradicted its own prose (1.5x) with its height_class (2x). A church is not the average of its nave and its spire. Replaced by parts[]; this value is inert and kept only so the history reads.",
+    "parts": [
+     {
+      "part": "nave",
+      "height_ratio": 1.5,
+      "ratio_against": "house_silhouette",
+      "footprint_frac": 0.75,
+      "provenance": "ruled",
+      "confidence": 0.9,
+      "_source": "the concept's own prose: 'roughly half again the height of the houses'"
+     },
+     {
+      "part": "tower_spire",
+      "height_ratio": 2.5,
+      "ratio_against": "house_silhouette",
+      "footprint_frac": 0.25,
+      "provenance": "ruled",
+      "confidence": 0.85,
+      "_source": "what made height_class read 2+. CORROBORATED by measurement: the Phase B loop built the church at 2.24-2.61x the chalet silhouette, and the operator ruled that reading stands as the SPIRE."
+     }
+    ]
+   },
+   {
+    "class": "stone_arch",
+    "count": 1,
+    "footprint_class": "small",
+    "height_class": 1,
+    "arrangement": "street_lined",
+    "_what": "an arched passage between buildings right of the church",
+    "provenance": "read",
+    "confidence": 0.6
+   }
+  ]
+ },
+ "focal_anchor": {
+  "entity": "church",
+  "_why": "the composition funnels to it -- track, buildings and the peak all sit on the centre line through the tower. It is the subject of this concept, not merely present in it.",
+  "provenance": "read",
+  "confidence": 0.95
+ },
+ "clutter": {
+  "classes": [
+   {
+    "kind": "wood_stack",
+    "density": "high",
+    "attaches_to": "building_wall",
+    "_what": "neat stacked split logs -- deep in the left undercroft, beside the church, and on the right. At least four distinct piles.",
+    "_why_this_matters": "it is the single most repeated object in the concept and it is what makes the place read as INHABITED rather than merely built. Cheap, high value.",
+    "provenance": "read",
+    "confidence": 0.95
+   },
+   {
+    "kind": "river_stone",
+    "density": "high",
+    "attaches_to": "water_edge",
+    "provenance": "read",
+    "confidence": 0.9
+   },
+   {
+    "kind": "wildflower",
+    "density": "scattered",
+    "attaches_to": "open_ground",
+    "_what": "small white and red flowers through the foreground grass",
+    "provenance": "read",
+    "confidence": 0.85
+   },
+   {
+    "kind": "cart",
+    "density": "one",
+    "attaches_to": "building_wall",
+    "_what": "small wooden cart with painted red detail, left frame edge",
+    "provenance": "read",
+    "confidence": 0.8
+   },
+   {
+    "kind": "crate",
+    "density": "few",
+    "attaches_to": "building_wall",
+    "provenance": "read",
+    "confidence": 0.8
+   },
+   {
+    "kind": "bench",
+    "density": "one",
+    "attaches_to": "building_wall",
+    "provenance": "read",
+    "confidence": 0.7
+   },
+   {
+    "kind": "lantern",
+    "density": "several",
+    "attaches_to": "building_wall",
+    "_what": "wall-mounted, and LIT",
+    "provenance": "read",
+    "confidence": 0.9
+   }
+  ]
+ },
+ "atmosphere": {
+  "sun": {
+   "elevation_deg": 10.0,
+   "_elevation": "INFERRED. Softer and more diffuse than concept 01 -- consistent with the same low sun seen through heavier morning haze rather than a different time.",
+   "azimuth_unsolved": true,
+   "_azimuth": "REFUSED as a number, same reasoning as concept 01. Image-space shadow bearing measured 175.2 deg at coherence 0.181 -- close to isotropic, so it is not evidence.",
+   "colour_rgb": [
+    0.663,
+    0.597,
+    0.48
+   ],
+   "_colour": "MEASURED, top 15% of luma on the ground band. R-B +0.183 -- WARMER than concept 01, consistent with more atmosphere between sun and subject.",
+   "intensity_hint": "soft_diffuse_low_angle"
+  },
+  "shadow": {
+   "colour_rgb": [
+    0.087,
+    0.101,
+    0.083
+   ],
+   "_colour": "MEASURED. R-B +0.004, essentially NEUTRAL -- not the cool blue of concept 01. The haze is filling shadows here.",
+   "contrast_ratio": 6.2
+  },
+  "haze": {
+   "_status": "MEASURED CLEANLY HERE. This composition has near ground at the bottom and hazed peak at the top, so image height is a good depth proxy.",
+   "far_saturation": 0.145,
+   "near_saturation": 0.252,
+   "ratio": 0.575,
+   "_ratio": "the far field retains ~58% of near-field saturation. This is a TUNING TARGET for the aerial-perspective block -- the project's fog has been 'applied and rendering, never tuned' since 2026-08-06, and this is the first number to tune it against.",
+   "far_luma": 0.669,
+   "near_luma": 0.295,
+   "measured_here": true
+  },
+  "time_of_day": {
+   "label": "early_morning",
+   "evidence": "LIT LANTERNS on the buildings, heavy low mist, soft diffuse light. The lanterns are the strongest single witness -- they are on because it is still dim.",
+   "provenance": "read",
+   "confidence": 0.85
+  },
+  "artificial": [
+   {
+    "kind": "lantern",
+    "count_range": [
+     3,
+     5
+    ],
+    "colour_hint": "warm_orange",
+    "_note": "a time-of-day witness as much as a light source",
+    "provenance": "read",
+    "confidence": 0.9
+   }
+  ]
+ },
+ "camera": {
+  "position_hint": "standing on the dirt track inside the village, buildings close on both sides, church ahead on the centre line",
+  "height_m": 1.7,
+  "pitch_hint": "level",
+  "horizon_frac": 0.55,
+  "fov_hint": "moderate_wide",
+  "_fov": "both flanking buildings are in frame at close range while the peak still reads at distance -- wider than concept 01",
+  "framing_device": "pine branches intruding at top left",
+  "solve": null
+ },
+ "_schema_1_2": "1.2 adds plausible_cm bands on ratio-scored heights. A ratio check cannot detect an error in the quantity it is a ratio OF -- both terms move together and the quotient stays right, which is how ruling 1 was scored against a chalet whose roof was buried 201.49 cm in its walls. A band is an ABSOLUTE check and is the only kind that can catch that."
+}

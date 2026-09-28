@@ -1,0 +1,46 @@
+# brief7 park: set the viewport camera + FOV at a station and RETURN (no shot),
+# so the host can settle (let the editor tick and resolve foliage LODs +
+# texture streaming at that viewpoint) BEFORE shoot.py captures. Rotator is
+# roll,pitch,yaw. Refuses if the camera is below ground at its own XY.
+import json as _json, traceback as _tb
+import unreal as _u
+LOC = __LOC__
+ROT = __ROT__            # roll, pitch, yaw
+FOV = __FOV__
+_out = {"ok": False, "error": None}
+try:
+    _loc = _u.Vector(float(LOC[0]), float(LOC[1]), float(LOC[2]))
+    _rot = _u.Rotator(float(ROT[0]), float(ROT[1]), float(ROT[2]))
+    _u.EditorLevelLibrary.set_level_viewport_camera_info(_loc, _rot)
+    _l, _r = _u.EditorLevelLibrary.get_level_viewport_camera_info()
+    _dl = max(abs(_l.x-LOC[0]), abs(_l.y-LOC[1]), abs(_l.z-LOC[2]))
+    _dr = max(abs(_r.roll-ROT[0]), abs(_r.pitch-ROT[1]),
+              abs(((_r.yaw-ROT[2]+180.0) % 360.0)-180.0))
+    if _dl > 5.0 or _dr > 0.5:
+        raise RuntimeError("viewport did not take the transform")
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    if FOV and float(FOV) > 0.0:
+        _les.set_level_viewport_fov(float(FOV), "")
+        _g = _les.get_level_viewport_fov("")
+        if _g is None or abs(float(_g)-float(FOV)) > 0.5:
+            raise RuntimeError("FOV read-back failed")
+    # underground guard
+    _ign = [a for a in _u.get_editor_subsystem(_u.EditorActorSubsystem).get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _hit = _u.SystemLibrary.line_trace_single(
+        _u.EditorLevelLibrary.get_editor_world(),
+        _u.Vector(_loc.x, _loc.y, _loc.z+200000.0),
+        _u.Vector(_loc.x, _loc.y, _loc.z-200000.0),
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+        _u.DrawDebugTrace.NONE, True)
+    if _hit:
+        _gz = float(_hit.to_tuple()[4].z)
+        _out["camera_above_ground_cm"] = round(_loc.z-_gz, 1)
+        if _loc.z < _gz:
+            raise RuntimeError("REFUSE: camera %.1f m below ground" % ((_gz-_loc.z)/100.0))
+    # boost streaming so the settle actually pulls textures/LODs in
+    _u.SystemLibrary.execute_console_command(None, "r.Streaming.Boost 1")
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:200]
+print("__LL__" + _json.dumps(_out, default=str))

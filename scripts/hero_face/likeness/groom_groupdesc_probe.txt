@@ -1,0 +1,64 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. HairGroupDesc carries per-INSTANCE overrides that can change what
+# renders without touching the asset -- hair_length_scale in particular. A
+# groom whose asset holds full-length strands and whose render is a short cap
+# is exactly what a length scale below 1.0 looks like, so this reads the
+# override flag AND the value: a value without its override flag is inert, and
+# reporting one without the other is the config-file trap (non-negotiable 17).
+
+_FIELDS = ("hair_length_scale", "hair_length_scale_override",
+           "hair_width", "hair_width_override",
+           "hair_root_scale", "hair_root_scale_override",
+           "hair_tip_scale", "hair_tip_scale_override",
+           "lod_bias", "use_stable_rasterization",
+           "scatter_scene_lighting", "scatter_scene_lighting_override")
+
+_out = {"ok": False, "error": None, "components": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _hero = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == "HeroInWorld":
+            _hero = _a
+            break
+    if _hero is None:
+        raise RuntimeError("no HeroInWorld actor")
+
+    for _c in _hero.get_components_by_class(_u.GroomComponent):
+        _name = str(_c.get_name())
+        _ga = _c.get_editor_property("groom_asset")
+        _row = {"groom": None if _ga is None else _ga.get_name(), "groups": []}
+        try:
+            _descs = _c.get_editor_property("groom_groups_desc")
+            for _i, _dsc in enumerate(_descs):
+                _g = {"index": _i}
+                for _f in _FIELDS:
+                    try:
+                        _v = _dsc.get_editor_property(_f)
+                        _g[_f] = bool(_v) if isinstance(_v, bool) else (
+                            round(float(_v), 5) if isinstance(_v, (int, float))
+                            else str(_v))
+                    except Exception as _e:
+                        _g[_f] = "UNREADABLE: " + str(_e)[:60]
+                _row["groups"].append(_g)
+        except Exception as _e:
+            _row["desc_error"] = str(_e)
+        try:
+            _sim = _c.get_editor_property("simulation_settings")
+            _row["sim"] = str(_sim)[:300]
+        except Exception as _e:
+            _row["sim"] = "UNREADABLE: " + str(_e)[:60]
+        try:
+            _row["physics_asset"] = str(_c.get_editor_property("physics_asset"))
+            _row["mesh_deformer"] = str(_c.get_editor_property("mesh_deformer"))
+        except Exception:
+            pass
+        _out["components"][_name] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

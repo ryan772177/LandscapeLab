@@ -1,0 +1,171 @@
+{
+  "trees": [
+    {
+      "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+      "ok": true,
+      "error": null,
+      "origin_cm": [
+        -24.8201904296875,
+        -14.456710815429688,
+        1464.9332275390625
+      ],
+      "extent_cm": [
+        518.4675903320312,
+        517.9763793945312,
+        1465.6336669921875
+      ],
+      "nanite_enabled": true,
+      "lod_count": 1,
+      "material_slots": 3,
+      "lod_triangles": [
+        2335
+      ],
+      "lod_screen_sizes": [
+        2.0
+      ],
+      "asset_class": "StaticMesh",
+      "scatterable_as_foliage": true,
+      "height_m": 29.313,
+      "width_m": 10.369,
+      "pivot_offset_xy_m": 0.2872,
+      "base_offset_z_m": -0.007,
+      "free_gb_before": 12.4
+    },
+    {
+      "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_B",
+      "ok": true,
+      "error": null,
+      "origin_cm": [
+        17.2911376953125,
+        -10.65216064453125,
+        1181.6170654296875
+      ],
+      "extent_cm": [
+        546.6434936523438,
+        522.1127319335938,
+        1182.1517333984375
+      ],
+      "nanite_enabled": true,
+      "lod_count": 1,
+      "material_slots": 3,
+      "lod_triangles": [
+        2655
+      ],
+      "lod_screen_sizes": [
+        2.0
+      ],
+      "asset_class": "StaticMesh",
+      "scatterable_as_foliage": true,
+      "height_m": 23.643,
+      "width_m": 10.933,
+      "pivot_offset_xy_m": 0.2031,
+      "base_offset_z_m": -0.0053,
+      "free_gb_before": 12.4
+    },
+    {
+      "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_C",
+      "ok": true,
+      "error": null,
+      "origin_cm": [
+        -17.117156982421875,
+        -14.18646240234375,
+        904.2235717773438
+      ],
+      "extent_cm": [
+        355.8645324707031,
+        345.39825439453125,
+        904.6492309570312
+      ],
+      "nanite_enabled": true,
+      "lod_count": 1,
+      "material_slots": 3,
+      "lod_triangles": [
+        2510
+      ],
+      "lod_screen_sizes": [
+        2.0
+      ],
+      "asset_class": "StaticMesh",
+      "scatterable_as_foliage": true,
+      "height_m": 18.093,
+      "width_m": 7.117,
+      "pivot_offset_xy_m": 0.2223,
+      "base_offset_z_m": -0.0043,
+      "free_gb_before": 12.4
+    },
+    {
+      "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_D",
+      "ok": true,
+      "error": null,
+      "origin_cm": [
+        12.947990417480469,
+        -8.808601379394531,
+        400.3310546875
+      ],
+      "extent_cm": [
+        185.20046997070312,
+        187.73635864257812,
+        400.8966064453125
+      ],
+      "nanite_enabled": true,
+      "lod_count": 1,
+      "material_slots": 3,
+      "lod_triangles": [
+        2255
+      ],
+      "lod_screen_sizes": [
+        2.0
+      ],
+      "asset_class": "StaticMesh",
+      "scatterable_as_foliage": true,
+      "height_m": 8.018,
+      "width_m": 3.755,
+      "pivot_offset_xy_m": 0.1566,
+      "base_offset_z_m": -0.0057,
+      "free_gb_before": 12.4
+    }
+  ],
+  "atlases": [
+    {
+      "png": "_verify\\tex\\T_Norway_Spruce_Foliage_01_CA.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "opaque_texels": 10661299,
+      "albedo_rgb_where_opaque": [
+        85,
+        79,
+        43
+      ],
+      "albedo_denominator": "texels with alpha >= 0.5",
+      "opaque_pct_clip01": 63.55,
+      "opaque_pct_clip05": 63.55,
+      "green_exceeds_red": false,
+      "clip_spread_pct": 0.0,
+      "alpha_distinct_levels": 78,
+      "alpha_frac_fully_opaque": 0.6255,
+      "alpha_frac_fully_clear": 0.3645,
+      "alpha_is_effectively_binary": true,
+      "blend_mode": null,
+      "coverage_applicable": true,
+      "coverage_not_applicable_because": null,
+      "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Foliage_01_CA",
+      "material": null
+    }
+  ],
+  "incumbent": {
+    "name": "fir_tree_01",
+    "atlas_opaque_pct": 24.02,
+    "atlas_opaque_pct_clip01": 25.06,
+    "atlas_opaque_pct_clip05": 23.56,
+    "albedo_rgb": [
+      85,
+      81,
+      49
+    ],
+    "height_m": 14.52,
+    "canopy_radius_m": 3.068,
+    "lod0_triangles": 505494
+  }
+}

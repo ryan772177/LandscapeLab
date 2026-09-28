@@ -1,0 +1,84 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- read the donor house's slot -> texture wiring. READ ONLY.
+#
+# The crashed session got as far as get_material_used_textures returning data,
+# but only the FIRST element per slot was displayed and it read
+# BaseFlattenLinearColor on all ten -- an engine-internal texture. This dumps
+# the FULL list per slot, and takes two INDEPENDENT routes so the answer does
+# not rest on one accessor:
+#
+#   A. get_material_used_textures(material_interface)   -- the non-deprecated
+#      accessor the stub points at.
+#   B. the material's own texture EXPRESSIONS, walked directly.
+#
+# It also lists every Texture2D the import created, which is the third,
+# accessor-free view: whatever landed in the folder is what the FBX carried.
+
+DEST = "/Game/Scratch/C0House"
+MESH = DEST + "/SM_C0_DonorHouse"
+
+_out = {"ok": False, "error": None, "slots": [], "imported_textures": []}
+try:
+    _mesh = _u.EditorAssetLibrary.load_asset(MESH)
+    if _mesh is None:
+        raise RuntimeError("mesh not loaded: " + MESH)
+
+    # ---- route C: what textures exist in the import folder --------------
+    for _p in _u.EditorAssetLibrary.list_assets(DEST, recursive=True,
+                                                include_folder=False):
+        _a = _u.EditorAssetLibrary.load_asset(_p.split(".")[0])
+        if isinstance(_a, _u.Texture2D):
+            _out["imported_textures"].append(_a.get_name())
+    _out["imported_textures"].sort()
+
+    for _i, _s in enumerate(_mesh.static_materials):
+        _row = {"index": _i, "slot_name": str(_s.material_slot_name)}
+        _mi = _s.material_interface
+        if _mi is None:
+            _row["material"] = None
+            _out["slots"].append(_row)
+            continue
+        _row["material"] = _mi.get_name()
+
+        # route A
+        try:
+            _t = _u.MaterialEditingLibrary.get_material_used_textures(_mi)
+            _row["used_textures"] = sorted({x.get_name() for x in _t if x})
+        except Exception as _e:
+            _row["used_textures_error"] = str(_e)[:120]
+
+        # route B -- walk the expressions on the base material
+        try:
+            _base = _mi.get_base_material() if hasattr(_mi, "get_base_material") else _mi
+            _exprs = _u.MaterialEditingLibrary.get_material_expressions(_base)
+            _sam = []
+            for _e2 in _exprs:
+                if isinstance(_e2, _u.MaterialExpressionTextureBase):
+                    _tex = _e2.get_editor_property("texture")
+                    if _tex:
+                        _sam.append(_tex.get_name())
+            _row["expression_textures"] = sorted(set(_sam))
+        except Exception as _e:
+            _row["expression_error"] = str(_e)[:120]
+
+        # THE ANSWER: the one real texture, with the engine's own defaults
+        # removed. get_material_used_textures returns BaseFlattenLinearColor,
+        # DefaultNormal and DefaultTexture on EVERY slot -- they are the
+        # engine's placeholders, not the FBX's wiring, and reading the first
+        # element of the list (as the crashed session did) sees only those.
+        _defaults = {"BaseFlattenLinearColor", "DefaultNormal",
+                     "DefaultTexture", "DefaultDiffuse", "WhiteSquareTexture"}
+        _real = [t for t in _row.get("used_textures", [])
+                 if t not in _defaults]
+        _row["source_texture"] = _real[0] if len(_real) == 1 else None
+        _row["source_texture_ambiguous"] = _real if len(_real) != 1 else None
+        _out["slots"].append(_row)
+
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

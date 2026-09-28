@@ -1,0 +1,136 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# =====================================================================
+# !!!! SUPERSEDED 2026-08-27 -- THE PREMISE WAS FALSE
+# =====================================================================
+# This asks "WHAT is the barrier that stops the player's navmesh island
+# 300 m east?" There is no barrier. The island stopped because a single
+# path query from the plaza ran out of SEARCH BUDGET; a relay reaches
+# 1050 m on the same ground.
+#
+# The three mechanisms it discriminates -- absent polygon, discarded thin
+# strip, real slope step -- are all still real mechanisms, and the
+# projects-plus-local-gradient method that separates them is sound and worth
+# keeping. It was applied to a phenomenon that was none of the three.
+#
+# STILL VALID HERE: the elevation/gradient profile and the projection column.
+# DEAD: the `reachable` column and every conclusion drawn from it.
+# =====================================================================
+
+# WHAT is the barrier that stops the player's navmesh island 300 m east?
+#
+# A 50 m probe localised it to a band between 300 and 350 m. That is a location,
+# not a cause, and this project has a rule about the difference. Three candidate
+# mechanisms, each with a different fix:
+#
+#   1. A SLOPE STEP the 44.765 deg agent will not climb  -> terrain, real
+#   2. A GAP in the navmesh (no polygon at all)          -> coverage, fixable
+#   3. A THIN connecting strip discarded by MinRegionArea -> config, fixable
+#
+# They are distinguishable: (2) fails to PROJECT, (1) and (3) project. (1) shows
+# a local gradient above the agent bar; (3) does not.
+#
+# So the probe samples, at fine spacing: ground z, whether navmesh projects, and
+# whether a path exists -- plus the LOCAL GRADIENT computed from the ground
+# trace, which is what separates a real slope from a discarded strip.
+
+CX, CY = -210800.0, 278800.0
+BEARING_DEG = __BEARING_DEG__
+D_FROM_M = __D_FROM_M__
+D_TO_M = __D_TO_M__
+STEP_M = __STEP_M__
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+    _th = _math.radians(BEARING_DEG)
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y, z):
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, z), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    _gz = _ground(CX, CY)
+    _start = _proj(CX, CY, _gz)
+    if _start is None:
+        raise RuntimeError("the anchor does not project")
+
+    _rows = []
+    _prev_z = None
+    _prev_d = None
+    for _i in range(int((D_TO_M - D_FROM_M) / STEP_M) + 1):
+        _d = D_FROM_M + _i * STEP_M
+        _x = CX + _d * 100.0 * _math.cos(_th)
+        _y = CY + _d * 100.0 * _math.sin(_th)
+        _g = _ground(_x, _y)
+        if _g is None:
+            _rows.append({"d_m": _d, "ground": None})
+            continue
+        _grad = None
+        if _prev_z is not None:
+            _run = (_d - _prev_d) * 100.0
+            _grad = round(_math.degrees(_math.atan(abs(_g - _prev_z) / _run)), 2)
+        _prev_z, _prev_d = _g, _d
+
+        _p = _proj(_x, _y, _g)
+        _reach = None
+        if _p is not None:
+            try:
+                _res, _ln = _u.NavigationSystemV1.get_path_length(
+                    _w, _start, _p, None, None)
+                _reach = bool(_res == _SUCCESS)
+            except Exception:
+                _reach = None
+        _rows.append({"d_m": _d, "elev_m": round(_g / 100.0, 2),
+                      "grad_deg": _grad, "projects": _p is not None,
+                      "reachable": _reach,
+                      "nav_dz_cm": (round(_p.z - _g, 1) if _p else None)})
+    _out["bearing_deg"] = BEARING_DEG
+    _out["rows"] = _rows
+
+    # where does it flip, and what is the gradient there?
+    _flip = None
+    for _k in range(1, len(_rows)):
+        _a, _b = _rows[_k - 1], _rows[_k]
+        if _a.get("reachable") is True and _b.get("reachable") is not True:
+            _flip = {"last_reachable_m": _a["d_m"],
+                     "first_unreachable_m": _b["d_m"],
+                     "grad_at_flip_deg": _b.get("grad_deg"),
+                     "projects_after": _b.get("projects"),
+                     "elev_before_m": _a.get("elev_m"),
+                     "elev_after_m": _b.get("elev_m")}
+            break
+    _out["flip"] = _flip
+    _grads = [r["grad_deg"] for r in _rows if r.get("grad_deg") is not None]
+    if _grads:
+        _out["gradient_max_deg"] = max(_grads)
+        _out["gradient_over_agent_bar"] = [
+            {"d_m": r["d_m"], "grad_deg": r["grad_deg"]}
+            for r in _rows
+            if r.get("grad_deg") is not None and r["grad_deg"] > 44.765]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

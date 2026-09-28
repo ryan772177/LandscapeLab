@@ -1,0 +1,20 @@
+import json as _json, traceback as _tb
+import unreal as _u
+WB = __WB__
+_out = {"error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _look = [a for a in _eas.get_all_level_actors() if isinstance(a, _u.PostProcessVolume)
+             and str(a.get_actor_label()) == "PPV_Look"]
+    if not _look: raise RuntimeError("PPV_Look not found")
+    _a = _look[0]; _s = _a.get_editor_property("settings")
+    _out["before"] = float(_s.get_editor_property("white_temp"))
+    _s.set_editor_property("white_temp", float(WB))
+    _a.modify(True); _a.set_editor_property("settings", _s)
+    _out["after"] = float(_a.get_editor_property("settings").get_editor_property("white_temp"))
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _out["saved"] = bool(_les.save_current_level())
+    _out["dirty_map"] = len(_u.EditorLoadingAndSavingUtils.get_dirty_map_packages())
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:200]
+print("__LL__" + _json.dumps(_out, default=str))

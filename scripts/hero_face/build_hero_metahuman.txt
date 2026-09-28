@@ -1,0 +1,63 @@
+# build_hero_metahuman — assemble the sculpted character into game meshes.
+#
+# The sculpt lives in MHC_AlpineHero's face state. The GAME reads
+# /Game/Hero/Generated/SKM_HeroFace and SKM_HeroBody, named in
+# recipes/character.json, so until those are rebuilt the hero in PIE still
+# wears the old face. This is the step that carries the sculpt across.
+#
+# NOTE FOR THE RECORD: CURRENT STATE says "MetaHuman's Assemble is NOT
+# REFLECTED -- no unpack, no build anywhere in the 5.8 stub". That is FALSE
+# against this install: MetaHumanCharacterEditorSubsystem.build_meta_human
+# is reflected, with MetaHumanCharacterEditorBuildParameters. The earlier
+# claim was almost certainly read off a stub generated BEFORE the MetaHuman
+# plugins were enabled on 2026-08-15, which is a derived-record trap: the
+# stub is regenerated per editor start and is only as current as its last
+# regeneration.
+#
+# can_build_meta_human is asked FIRST and with logging on, so a refusal
+# arrives as a reason rather than as a failed build.
+import json as _json
+import unreal as _unreal
+
+_BUILD_PATH = r"__BUILDPATH__"
+_out = {"error": None, "unreadable": [], "can_build": None,
+        "build_path": _BUILD_PATH, "called": False,
+        "assets_after": None, "face": None, "body": None}
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _out["can_build"] = bool(_ss.can_build_meta_human(_ch, True))
+    if not _out["can_build"]:
+        _out["error"] = ("can_build_meta_human said no; reason is in the "
+                         "editor log (log_error was requested). Not building.")
+    else:
+        # NO save_asset HERE, DELIBERATELY. Adding one wedged the editor:
+        # the log froze at "InternalPromptForCheckoutAndSave started..." ->
+        # "FlushAsyncLoading(1896): 1 QueuedPackages" with the game thread
+        # idle at 0.05 CPU per wall-second and an untitled modal window up.
+        # The character is already saved by the autorig step; saving it again
+        # here bought nothing and cost the editor.
+        _p = _unreal.MetaHumanCharacterEditorBuildParameters()
+        _p.set_editor_property("pipeline_type",
+                               _unreal.MetaHumanDefaultPipelineType.CINEMATIC)
+        _p.set_editor_property("absolute_build_path", _BUILD_PATH)
+        _ss.build_meta_human(_ch, _p)
+        _out["called"] = True
+
+        _reg = _unreal.AssetRegistryHelpers.get_asset_registry()
+        _found = []
+        for _a in _reg.get_assets_by_path("/Game/Hero/Generated", True):
+            _found.append(str(_a.package_name))
+        _out["assets_after"] = sorted(set(_found))
+        for _nm, _key in (("SKM_HeroFace", "face"), ("SKM_HeroBody", "body")):
+            _o = _unreal.EditorAssetLibrary.load_asset(
+                "/Game/Hero/Generated/" + _nm)
+            _out[_key] = None if _o is None else _o.get_path_name()
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,78 @@
+{
+ "schema_version": "water-1.0",
+ "water_id": "alpine_8k_water",
+ "biome": "alpine_8k",
+ "level_path": "/Game/Alpine8K",
+ "_status": "FINAL 2026-09-19 (CARVE_PLAN T2). Promoted from research/brief4/water_recipe_DRAFT.json. Referenced from recipes/alpine_8k.json top-level `water` block; schema in recipes/schema.md (WATER RECIPE section). The reserved-and-rejected key `water` was lifted this session: import_heightmap.py moves it to OPTIONAL_TOP and _validate_water enforces the invariants below.",
+ "_engine_implementation": "STATIC WATER MESHES. Engine primitive /Engine/BasicShapes/Plane.Plane scaled to each lake's connected component, material /Game/Materials/M_SideWater, placed as a StaticMeshActor at the water-level Z. Pattern: scripts/spawn_water_plane_payload.txt. NOT the UE Water plugin (Experimental v0.1, spline-authored, carves the landscape). Decision + citations: research/brief4/T0_WATER_SURFACE_2026-09-19.md.",
+ "_source": "levels/ids/extents from research/brief4/RULING.md §7 + research/brief4/input/hydro_amendment.json; route geometry (pool ladder, per-lip notch_m) is REFERENCED from hydro_amendment.json, never duplicated here.",
+ "hydro_amendment": "research/brief4/input/hydro_amendment.json",
+ "derivation": "research/brief4/scripts/water_derive.py (reuses hydro_derive.py; footprints + A/B inflow falls). Positive control 2026-09-19: connected-component footprint areas reproduce hydro EXACTLY (A 125.5, B 13.6, D 49.6 ha, <=0.15 ha). Evidence: _verify/brief4/water_derive_2026-09-19/.",
+ "material": "/Game/Materials/M_SideWater",
+ "_material_established_live": "2026-09-19: Material, MD_SURFACE / BLEND_TRANSLUCENT / MSM_DEFAULT_LIT, two_sided False (renders from above; underwater view is a known blockout limit).",
+ "mesh": "/Engine/BasicShapes/Plane.Plane",
+ "_mesh_extent_cm": 50.0,
+ "_placement": "plane pivot at centre; water surface Z world_cm = level_m * 100 (hydro _z_note in hydro.json, verified against all four station cameras +1.7..+2.2 m; do NOT add landscape_location z, that spelling is superseded/WRONG). The VISIBLE shoreline is the terrain contour at level Z (terrain above Z occludes the plane) — with static meshes the shoreline shape IS the fill-to-level contour, not an authored spline (§0 premise).",
+ "_placement_MUST_clip_to_connected_component": "MEASURED 2026-09-19 (shoreline preview + water_derive): a plane sized to the hydro BBOX over-floods, because the bbox contains sub-level terrain outside the lake. D@590.9 reads 98.7 ha over its bbox vs the true connected basin 49.6 ha (2x — the bbox includes the cascade descent below 590.9). A@180 reads 134.8 vs 125.5; B@140 matches (13.6, tight bbox). SO placement must size/shape each water surface to the CONNECTED COMPONENT at the level (flood-fill from centroid = hydro level_slice(lake_id)), not the bbox. A rectangular plane over the connected component's TIGHT extent still shows corner strays where terrain<Z; measure the stray fraction per lake and, if material, use a component-shaped mesh rather than a plane. Positive control: connected-component areas reproduce hydro EXACTLY. Masks saved: _verify/brief4/water_derive_2026-09-19/footprint_{A,B,D}_id*.npy.",
+ "lakes": [
+  {
+   "id": 4893, "name": "A_east_basin", "level_m": 180.0,
+   "area_ha": 125.5, "shoreline_km": 5.9,
+   "centroid_col_row": [1737.0, 813.7], "bbox_col_row": [1571, 642, 1907, 1011],
+   "closed": true, "spill_m": 196.9, "freeboard_m": 16.9,
+   "inflow_fall": {
+    "col_row": [1708, 1050], "drop_m": 16.6, "elevation_m": 263.1,
+    "contributing_km2": 2.221, "dist_to_shore_m": 193.9, "world_cm": [276800.0, 13600.0],
+    "drains_into_lake": true, "n_draining_candidates": 9,
+    "_derived": "water_derive.py: from the 78 hydro waterfall candidates, 9 lie within 500 m of A's footprint AND above 180 m AND drain into A by steepest descent; pick = the max-drop one. The elevation test filtered submerged candidates (e.g. (1642,711) drop 18.9 sits at 157 m < 180, dropped)."
+   }
+  },
+  {
+   "id": 11877, "name": "B_town_tarn", "level_m": 140.0,
+   "area_ha": 13.6, "shoreline_km": 1.5,
+   "centroid_col_row": [515.4, 1480.8], "bbox_col_row": [462, 1422, 574, 1542],
+   "endorheic": true, "spill_m": 197.6,
+   "never_exceed_level_m": 180.0,
+   "_never_exceed_reason": "the town stands INSIDE basin 11877's full-fill footprint; plaza ~11 m below the 197.6 m spill; any future raise past ~180 m floods 303 committed buildings (RULING §1 LAKE B hard constraint). Machine-readable, not prose.",
+   "inflow_fall": null,
+   "_inflow_fall_measured": "NONE separate. water_derive.py: of 12 candidates within 900 m of B above 140 m, ZERO drain into B by steepest descent — they are on the south-river reach flowing to the border outlet, not into the endorheic tarn. B's inflow IS the north-cascade terminus (the cascade drops into tarn B by construction; that lip is already counted in waterfalls.by_construction). The DRAFT's (696,1493) candidate was a south-river point and is superseded by this measurement."
+  },
+  {
+   "id": 8377, "name": "D_headwater", "level_m": 590.9,
+   "area_ha": 49.6, "shoreline_km": 4.2, "max_depth_m": 134.0,
+   "centroid_col_row": [660, 1079], "bbox_col_row": [543, 908, 812, 1206],
+   "lip_col_row": [632, 1201], "spill_m": 591.9,
+   "_role": "top of the hero cascade; far/high end of the difficulty arc"
+  }
+ ],
+ "lake_C_deferred": {
+  "id": 6587, "level_m": 268.5,
+  "_why": "DEFER to the region-edge ruling (RULING §7 #3); NOT carved or placed in Brief 4. Derivation stands; only the timing is refused."
+ },
+ "north_cascade": {
+  "_what": "D (~592 m) -> tarn B (~140 m): 394 m over ~2 km through the pool ladder; every lip a fall BY CONSTRUCTION; the terminal drop enters tarn B (B's inflow). HERO aerial-readability landmark (RULING §7 #6), superseding the §3 three-step stair.",
+  "terminates_in": 11877,
+  "pool_ids": [12017, 11868, 11796, 11696, 11556, 11471, 11171, 11074, 10980, 8377],
+  "route_and_notches": "research/brief4/input/hydro_amendment.json (north_cascade + south_river_ladder; each lip carries lip_col_row + lip_world_cm + notch_m). The T3 carve reads the notch_m per lip from there — not duplicated here."
+ },
+ "waterfalls": {
+  "_policy": "RULING §3 + §7: (1) BY CONSTRUCTION — every north-cascade lip. (2) BY COUPLING — inflow falls for A and B ONLY: candidates within ~500 m of the adopted shoreline WITH elevation ABOVE the adopted surface AND that drain into the lake by steepest descent. The elevation + drains-into tests are MANDATORY (water_derive.py). A@180 -> one inflow fall (1708,1050). B@140 (endorheic) -> none separate (measured); its inflow is the cascade terminus.",
+  "cap_min": 10, "cap_max": 15,
+  "by_construction": {
+   "count": 10,
+   "pool_ids": [12017, 11868, 11796, 11696, 11556, 11471, 11171, 11074, 10980, 8377],
+   "source": "hydro_amendment.json pools_over_2m (fill_lake_id in pool_ids); each lip a fall. Includes the terminal drop into tarn B."
+  },
+  "by_coupling_inflow": {
+   "A_4893": {"col_row": [1708, 1050], "drop_m": 16.6, "world_cm": [276800.0, 13600.0]},
+   "B_11877": null
+  },
+  "total_placed_falls": 11,
+  "_cap_headroom": "11 of 10-15 used (10 cascade lips + 1 A inflow). The §3 three-step stair at (1276,1272)/(1288,1281)/(1295,1288) reverts to ORDINARY candidates available within the 4 remaining slots (RULING §7 #6) — not mandated; a placement-taste call, not required for the cap minimum.",
+  "hero_landmark": "north_cascade (the D-to-tarn stair)",
+  "_render_note": "the static-mesh approach has no native waterfall. Blockout places falls as DATA plus minimal vertical M_SideWater plane placeholders at each lip; proper cascade FX (Niagara / WaterAdvanced) is deferred to a fidelity pass (BACKLOG). The hero cascade's aerial READABILITY at blockout comes from the stepped pool planes + placeholder fall planes, not FX."
+ },
+ "no_town_lip_notch": "tarn B is ENDORHEIC (RULING §7 #5): NO cut at the lip (913,1899); the Option II 17 m notch is STRUCK. The south river is only the reach BELOW the lip (south-reach pools 14451, 14393, 14369), fed by its own catchment. The lakes are fill-to-level of existing terrain — no carve creates their depth; ONLY the north-cascade pool-lip notches are cut (T3).",
+ "encodable_span_m": [0, 2560],
+ "_encodable_span_ref": "alpine_8k_height_4x.json:30-33; B's basin floor is already ~0.12 m, so lip notches near it have essentially no downward headroom — clamp, do not underflow (CARVE_PLAN T3)."
+}

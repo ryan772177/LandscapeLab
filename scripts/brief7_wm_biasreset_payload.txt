@@ -1,0 +1,13 @@
+import json as _json, traceback as _tb
+import unreal as _u
+_out={"error":None}
+try:
+    _t=_u.load_asset("/Game/Textures/T_Alpine_8k_Weights")
+    _t.set_editor_property("lod_bias", 0)
+    _u.EditorAssetLibrary.save_asset("/Game/Textures/T_Alpine_8k_Weights", False)
+    _out["lod_bias"]=int(_t.get_editor_property("lod_bias"))
+    _out["mip_gen"]=str(_t.get_editor_property("mip_gen_settings"))
+    _out["ok"]=True
+except Exception as _e:
+    _out["error"]=str(_e)+" | "+_tb.format_exc()[:150]
+print("__LL__"+_json.dumps(_out,default=str))

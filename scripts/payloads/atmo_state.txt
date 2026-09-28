@@ -1,0 +1,25 @@
+import json as _json
+import unreal as _u
+_out = {"ok": False}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        _x = _a.get_component_by_class(_u.SkyAtmosphereComponent)
+        if _x:
+            _c = _x
+            _out["label"] = _a.get_actor_label()
+            break
+    if _c is None:
+        raise RuntimeError("no SkyAtmosphereComponent")
+    for _p in ("mie_scattering_scale", "mie_anisotropy",
+               "rayleigh_scattering_scale", "multi_scattering_factor",
+               "aerial_perspective_view_distance_scale"):
+        try:
+            _out[_p] = float(_c.get_editor_property(_p))
+        except Exception as _e:
+            _out[_p] = "unreadable: " + str(_e)[:60]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

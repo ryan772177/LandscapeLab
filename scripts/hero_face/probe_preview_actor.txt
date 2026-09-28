@@ -1,0 +1,101 @@
+# probe_preview_actor — find the live face mesh and CALIBRATE landmark units.
+#
+# The 79 sculpt landmarks live in an unlabelled space whose scale is not
+# stated anywhere in the reflected surface. Three axis-ratio estimates agreed
+# on ~268 cm per unit, but that agreement rests on assuming the landmark cloud
+# spans exactly a head -- an assumption, not a measurement, and one that
+# already produced a 13.7 cm "nose to chin".
+#
+# So this compares the landmark cloud against the ACTUAL FACE MESH the
+# character is driving, in centimetres, in the same breath. Two clouds, one
+# subject, one shared scale to solve for.
+#
+# It spawns the MetaHuman editor actor TRANSIENT and destroys it again, so
+# nothing is added to the level. Read only with respect to the character.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "unreadable": [], "added_for_edit": None,
+        "actor": None, "components": [], "landmark_bbox": None,
+        "destroyed": None}
+_actor = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    _added = _ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)
+    _out["added_for_edit"] = bool(_added)
+    if not _added:
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _lm = _ss.get_face_landmarks(_ch)
+    _p = [[float(_v.x), float(_v.y), float(_v.z)] for _v in _lm]
+    _mn = [min(_q[_i] for _q in _p) for _i in range(3)]
+    _mx = [max(_q[_i] for _q in _p) for _i in range(3)]
+    _out["landmark_bbox"] = {
+        "min": [round(_c, 5) for _c in _mn],
+        "max": [round(_c, 5) for _c in _mx],
+        "extent": [round(_mx[_i] - _mn[_i], 5) for _i in range(3)]}
+
+    # If the engine will NAME its keypoints, take the names. Inferring which
+    # index is the nose from extremes is the "anatomy assumed" error this
+    # probe exists to avoid; an authoritative map beats any inference.
+    try:
+        _kp = _ss.get_preset_body_key_points(_ch)
+        _out["preset_keypoints"] = {str(_k): int(_kp[_k]) for _k in _kp.keys()}
+        _out["preset_keypoint_count"] = len(_out["preset_keypoints"])
+    except Exception as _e:
+        _out["unreadable"].append("get_preset_body_key_points: " + str(_e))
+
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    if _actor is None:
+        raise RuntimeError("spawn_meta_human_actor returned None")
+    _out["actor"] = _actor.get_name()
+
+    for _c in _actor.get_components_by_class(_unreal.SkeletalMeshComponent):
+        _rec = {"component": _c.get_name(), "mesh": None, "verts": None,
+                "bounds_origin_cm": None, "bounds_extent_cm": None,
+                "world_scale": None}
+        try:
+            _sk = _c.get_skeletal_mesh_asset()
+            if _sk is not None:
+                _rec["mesh"] = _sk.get_path_name()
+                try:
+                    _md = (_unreal.MetaHumanCharacterEditorSubsystem
+                           .get_mesh_data_for_conforming(_sk))
+                    if _md is not None:
+                        _rec["verts"] = len(_md[0])
+                except Exception as _e:
+                    _out["unreadable"].append(_rec["component"] + " verts: " + str(_e))
+        except Exception as _e:
+            _out["unreadable"].append(_rec["component"] + " mesh: " + str(_e))
+        try:
+            _b = _c.get_local_bounds()
+            _rec["bounds_origin_cm"] = [round(float(_b[0].x), 3),
+                                        round(float(_b[0].y), 3),
+                                        round(float(_b[0].z), 3)]
+            _rec["bounds_extent_cm"] = [round(float(_b[1].x), 3),
+                                        round(float(_b[1].y), 3),
+                                        round(float(_b[1].z), 3)]
+        except Exception as _e:
+            _out["unreadable"].append(_rec["component"] + " bounds: " + str(_e))
+        try:
+            _s = _c.get_world_scale()
+            _rec["world_scale"] = [round(float(_s.x), 4), round(float(_s.y), 4),
+                                   round(float(_s.z), 4)]
+        except Exception as _e:
+            _out["unreadable"].append(_rec["component"] + " scale: " + str(_e))
+        _out["components"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    # A transient actor left behind is still an actor in somebody's level.
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+            _out["destroyed"] = True
+    except Exception as _e:
+        _out["destroyed"] = False
+        _out["unreadable"].append("destroy: " + str(_e))
+print("__LL__" + _json.dumps(_out, default=str))

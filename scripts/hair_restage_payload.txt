@@ -1,0 +1,110 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# RULING 8 -- re-stage the strips with the ruled colour variants.
+#
+# THREE STRIPS, TWO VARIANTS: hero, hero, NPC. The brief asked for three
+# strips and named two colour sets; putting both in ONE frame is worth more
+# than three identical strips, because the whole point of a variant set is how
+# the two read against each other. Stated rather than assumed.
+#
+# ⛔ THE CAMERA WILL LOOK ALONG -Y, NOT +X. The card is 40.4 x 0.7 x 31.1 cm --
+# a flat sheet in X-Z with SEVEN MILLIMETRES of depth in Y. The first hair
+# frame looked down +X, straight into that edge, and the strands rendered as
+# thin slivers. The strips are therefore laid out along X and the shot spec
+# below is recorded IN THE OUTPUT so the render cannot repeat the mistake.
+
+LEVEL = "/Game/Scratch/Hair_Stage"
+MESH = "/Game/Scratch/Hair/SM_HairCards"
+ASSIGN = [("Hero_A", "/Game/Scratch/Hair/MI_Hair_Hero"),
+          ("Hero_B", "/Game/Scratch/Hair/MI_Hair_Hero"),
+          ("NPC", "/Game/Scratch/Hair/MI_Hair_NPC")]
+
+_out = {"ok": False, "error": None, "staged": [], "shot": {}}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _leaf = LEVEL.split("/")[-1]
+    _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        raise RuntimeError("not on " + LEVEL + "; current is " + _cur)
+
+    _mesh = _u.EditorAssetLibrary.load_asset(MESH)
+    if _mesh is None:
+        raise RuntimeError("hair mesh missing from disk: " + MESH)
+    _b = _mesh.get_bounds()
+    _sz = [float(_b.box_extent.x * 2), float(_b.box_extent.y * 2),
+           float(_b.box_extent.z * 2)]
+    _out["mesh_size_cm"] = [round(v, 1) for v in _sz]
+
+    for _a in _eas.get_all_level_actors():
+        if any(str(t) == "LandscapeLab.Hair" for t in _a.tags):
+            _eas.destroy_actor(_a)
+
+    _plane = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Plane")
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                      _u.Rotator(0, 0, 0))
+    _g.set_actor_label("Hair_Ground")
+    _g.set_actor_scale3d(_u.Vector(40.0, 40.0, 1.0))
+    _g.tags = ["LandscapeLab.Hair"]
+
+    # Sun ACROSS the cards rather than behind them, so the sheen reads.
+    _sun = _eas.spawn_actor_from_class(_u.DirectionalLight,
+                                       _u.Vector(0, 0, 600),
+                                       _u.Rotator(0.0, -28.0, 35.0))
+    _sun.set_actor_label("Hair_Sun")
+    _sun.tags = ["LandscapeLab.Hair"]
+    _sun.light_component.set_editor_property("intensity", 8.0)
+    _skl = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0, 0, 400),
+                                       _u.Rotator(0, 0, 0))
+    _skl.set_actor_label("Hair_SkyLight")
+    _skl.tags = ["LandscapeLab.Hair"]
+    _skl.light_component.set_editor_property("real_time_capture", True)
+    _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _atm.set_actor_label("Hair_SkyAtmosphere")
+    _atm.tags = ["LandscapeLab.Hair"]
+
+    # Laid out along X so a camera on -Y sees the card FACE.
+    _step = _sz[0] * 1.5 + 20.0
+    for _i, (_label, _mip) in enumerate(ASSIGN):
+        _mi = _u.EditorAssetLibrary.load_asset(_mip)
+        if _mi is None:
+            raise RuntimeError("missing variant " + _mip)
+        _a2 = _eas.spawn_actor_from_object(
+            _mesh, _u.Vector((_i - 1) * _step, 0.0, 0.0),
+            _u.Rotator(0.0, 0.0, 0.0))
+        _a2.set_actor_label("Hair_" + _label)
+        _a2.tags = ["LandscapeLab.Hair"]
+        _c = _a2.static_mesh_component
+        for _si in range(len(_mesh.static_materials)):
+            _c.set_material(_si, _mi)
+        _got = _c.get_material(0)
+        _row = {"label": _label, "variant": _mip.rsplit("/", 1)[-1],
+                "x_cm": round((_i - 1) * _step, 1),
+                "material_readback": _got.get_name() if _got else None}
+        _row["ok"] = _row["material_readback"] == _mip.rsplit("/", 1)[-1]
+        _out["staged"].append(_row)
+
+    # The shot spec, DERIVED from the geometry rather than guessed, and
+    # emitted so the capture uses it instead of a remembered number.
+    _span = _step * 2 + _sz[0]
+    _dist = _span * 1.15
+    _out["shot"] = {
+        "loc_cm": [0.0, -round(_dist, 1), round(_sz[2] * 0.55, 1)],
+        "rot_roll_pitch_yaw": [0.0, -4.0, 90.0],
+        "_why_yaw_90": ("look along +Y at the card FACE. The card has 7 mm of "
+                        "depth in Y; the first hair frame looked down +X into "
+                        "that edge and the strands read as slivers."),
+        "span_cm": round(_span, 1),
+    }
+
+    _les.save_current_level()
+    _out["saved"] = True
+    _out["ok"] = all(s["ok"] for s in _out["staged"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

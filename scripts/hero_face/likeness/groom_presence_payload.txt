@@ -1,0 +1,155 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+LABEL     = "__LABEL__"
+CAPL      = "__CAPL__"
+OUT_DIR   = r"__OUT_DIR__"
+STAMP     = "__STAMP__"
+WARM      = __WARM__
+REWARM    = __REWARM__
+AA_METHOD = __AA_METHOD__
+
+_out = {"ok": False, "error": None, "refusals": [], "shots": [],
+        "grooms": {}, "control": None}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _ues.get_editor_world()
+
+    _hero = _cap = None
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == LABEL:
+            _hero = _a
+        elif _l == CAPL:
+            _cap = _a
+    if _hero is None:
+        raise RuntimeError("subject actor missing: " + LABEL)
+    if _cap is None:
+        raise RuntimeError("capture actor missing: " + CAPL)
+
+    _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+    _rt = _cc.get_editor_property("texture_target")
+    if _rt is None:
+        raise RuntimeError("capture actor has no render target")
+
+    # Where the MAIN VIEW is, recorded on every run. The groom evaluation
+    # question is open and this is the variable it turns on, so no capture
+    # goes on the record without saying where the main view was pointing.
+    _info = _ues.get_level_viewport_camera_info()
+    if _info is not None:
+        _vl, _vr = _info
+        _out["viewport"] = {"loc": [_vl.x, _vl.y, _vl.z],
+                            "rot": [_vr.roll, _vr.pitch, _vr.yaw]}
+    _out["frame_count"] = int(_u.SystemLibrary.get_frame_count())
+
+    _grooms = {}
+    for _c in _hero.get_components_by_class(_u.GroomComponent):
+        _g = _c.get_editor_property("groom_asset")
+        if _g is None:
+            continue                      # an unassigned slot is not a groom
+        _grooms[str(_c.get_name())] = _c
+        _b = _c.get_editor_property("binding_asset")
+        _out["grooms"][str(_c.get_name())] = {
+            "groom": str(_g.get_name()),
+            "binding": None if _b is None else str(_b.get_name()),
+            "visible": bool(_c.get_editor_property("visible"))}
+
+    # THE POSITIVE CONTROL. A groom that produces an identical frame when
+    # hidden is indistinguishable from a HIDE THAT NEVER TOOK, and those two
+    # readings mean opposite things. So something that certainly draws is
+    # hidden by the same call, through the same path, in the same payload. If
+    # the control does not move the frame, no null result here is evidence of
+    # anything and the run says so instead of reporting zeros.
+    _ctl = None
+    for _c in _hero.get_components_by_class(_u.SkeletalMeshComponent):
+        if "face" in str(_c.get_name()).lower():
+            _ctl = _c
+            break
+    if _ctl is None:
+        for _c in _hero.get_components_by_class(_u.SkeletalMeshComponent):
+            _ctl = _c
+            break
+    _out["control"] = None if _ctl is None else str(_ctl.get_name())
+
+    # THE INSTRUMENT IS NOT THE DELIVERABLE. A temporally-accumulated frame
+    # does not reproduce itself: measured on this very scene, two captures of
+    # an UNCHANGED subject differ over 11.3% of the frame, which swamps a
+    # groom occupying a fraction of a percent. Turning the temporal AA off
+    # makes a capture a function of the scene rather than of the frames before
+    # it. It costs aliasing, which does not matter to a presence question and
+    # is why the deliverable render does NOT use this setting.
+    _prev_aa = None
+    if AA_METHOD >= 0:
+        _cv = _u.SystemLibrary.get_console_variable_int_value("r.AntiAliasingMethod")
+        _prev_aa = int(_cv)
+        _u.SystemLibrary.execute_console_command(
+            _w, "r.AntiAliasingMethod " + str(AA_METHOD))
+        _rb = int(_u.SystemLibrary.get_console_variable_int_value(
+            "r.AntiAliasingMethod"))
+        _out["aa"] = {"was": _prev_aa, "set": AA_METHOD, "read_back": _rb}
+        if _rb != AA_METHOD:
+            _out["refusals"].append(
+                "r.AntiAliasingMethod read back %d, set %d" % (_rb, AA_METHOD))
+
+    def _shoot(_tag, _warm):
+        for _i in range(_warm):
+            _cc.capture_scene()
+        _cc.capture_scene()
+        _fn = STAMP + "_" + _tag + ".png"
+        _u.RenderingLibrary.export_render_target(_w, _rt, OUT_DIR, _fn)
+        _out["shots"].append({"tag": _tag, "png": _fn})
+        return _fn
+
+    for _n, _c in _grooms.items():
+        _c.set_visibility(True, False)
+    if _ctl is not None:
+        _ctl.set_visibility(True, False)
+
+    # FOUR shots of the unchanged state, not two, and the reason is that the
+    # noise has to be LOCATED as well as sized. Measured on this scene: the
+    # frame does not reproduce over 10.5% of its pixels, and the difference
+    # map shows the instability is the FOREST -- the hero's own silhouette is
+    # stable. A whole-frame count is therefore a misleading denominator for a
+    # question about his face. Two of these shots build the map of which
+    # pixels are untrustworthy, and the other two measure the residual noise
+    # ON that map, so the floor is not zero by construction.
+    _shoot("all_a", WARM)
+    _shoot("all_b", REWARM)
+    _shoot("all_d", REWARM)
+
+    for _n, _c in sorted(_grooms.items()):
+        _c.set_visibility(False, False)
+        _rb = bool(_c.get_editor_property("visible"))
+        if _rb:
+            _out["refusals"].append("hide did not read back for " + _n)
+        _shoot("minus_" + _n, REWARM)
+        _c.set_visibility(True, False)
+
+    if _ctl is not None:
+        _ctl.set_visibility(False, False)
+        _shoot("control_minus_face", REWARM)
+        _ctl.set_visibility(True, False)
+
+    _shoot("all_c", REWARM)
+
+    for _n, _c in _grooms.items():
+        _c.set_visibility(True, False)
+        if not bool(_c.get_editor_property("visible")):
+            _out["refusals"].append("restore failed for " + _n)
+    if _ctl is not None:
+        _ctl.set_visibility(True, False)
+
+    # Put the renderer back the way it was found. An instrument that leaves
+    # the editor in its own configuration silently changes every measurement
+    # taken after it.
+    if _prev_aa is not None:
+        _u.SystemLibrary.execute_console_command(
+            _w, "r.AntiAliasingMethod " + str(_prev_aa))
+
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:800]
+
+print("__LL__" + _json.dumps(_out, default=str))

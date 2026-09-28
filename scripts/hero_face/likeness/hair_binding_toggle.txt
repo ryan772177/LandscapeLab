@@ -1,0 +1,94 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Set the hero's Hair binding to a named asset, or to None, and READ IT BACK.
+#
+# WHY THE READ-BACK IS NOT OPTIONAL: this project has recorded, repeatedly,
+# that the first binding assignment is intermittently refused and reads back
+# None. A payload that sets and does not check cannot tell "I unbound it" from
+# "it refused my binding", and those produce the same bald render.
+#
+# BINDING = "none"  -> clear it   (tests whether runtime projection works)
+# BINDING = <path>  -> assign it, retrying a bounded number of times
+
+BINDING = "__BINDING__"
+# Optional. R-GROOMBIND3's headline is that the deformation is written into the
+# returned GROOM COPY as well as the binding, so a caller that sets one and not
+# the other gets a groom that binds cleanly and sits wrong.
+GROOM = "__GROOM__"
+ATTEMPTS = 4
+
+_out = {"ok": False, "error": None, "refusals": [], "binding_attempts": 0}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _hero = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == "HeroInWorld":
+            _hero = _a
+            break
+    if _hero is None:
+        raise RuntimeError("no HeroInWorld actor")
+    _hair = None
+    for _c in _hero.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == "Hair":
+            _hair = _c
+            break
+    if _hair is None:
+        raise RuntimeError("hero has no Hair groom component")
+
+    _before = _hair.get_editor_property("binding_asset")
+    _out["binding_before"] = None if _before is None else _before.get_name()
+
+    # GROOM FIRST. Assigning the groom clears the component's binding in this
+    # engine -- the same coupling that made a material write null the binding
+    # on 2026-08-21 -- so a binding set before the groom is a binding thrown
+    # away, and the render would be of an unbound groom, which draws nothing.
+    if GROOM and not GROOM.startswith("__"):
+        _gm = _u.EditorAssetLibrary.load_asset(GROOM)
+        if _gm is None:
+            raise RuntimeError("could not load groom " + GROOM)
+        for _i in range(ATTEMPTS):
+            _hair.set_editor_property("groom_asset", _gm)
+            _out["groom_attempts"] = _i + 1
+            _rg = _hair.get_editor_property("groom_asset")
+            if _rg is not None and _rg.get_path_name() == _gm.get_path_name():
+                break
+        _rg = _hair.get_editor_property("groom_asset")
+        if _rg is None or _rg.get_path_name() != _gm.get_path_name():
+            _out["refusals"].append("groom did not assign after %d attempts"
+                                    % ATTEMPTS)
+
+    if BINDING.lower() == "none":
+        _hair.set_editor_property("binding_asset", None)
+        _rb = _hair.get_editor_property("binding_asset")
+        _out["binding_after"] = None if _rb is None else _rb.get_name()
+        if _rb is not None:
+            _out["refusals"].append("asked for None and it read back " +
+                                    _rb.get_name())
+    else:
+        _b = _u.EditorAssetLibrary.load_asset(BINDING)
+        if _b is None:
+            raise RuntimeError("could not load " + BINDING)
+        _rb = None
+        for _i in range(ATTEMPTS):
+            _hair.set_editor_property("binding_asset", _b)
+            _out["binding_attempts"] = _i + 1
+            _rb = _hair.get_editor_property("binding_asset")
+            if _rb is not None:
+                break
+        _out["binding_after"] = None if _rb is None else _rb.get_name()
+        if _rb is None:
+            _out["refusals"].append(
+                "binding read back None after %d attempts -- an unbound groom "
+                "on this component draws nothing, so any frame taken now is "
+                "void rather than evidence" % ATTEMPTS)
+
+    _ga = _hair.get_editor_property("groom_asset")
+    _out["groom"] = None if _ga is None else _ga.get_name()
+    _out["visible"] = bool(_hair.get_editor_property("visible"))
+    _out["ok"] = not _out["refusals"]
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

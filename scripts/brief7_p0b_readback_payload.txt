@@ -1,0 +1,132 @@
+# brief7 Phase 0b read-back. READ-ONLY: enumerates actors and reads
+# properties only. Spawns nothing, sets nothing, saves nothing, opens
+# nothing. Reports every PostProcessVolume (metering/comp/min-max
+# EV100/unbound/priority/grading overrides), SkyLight, ExponentialHeightFog
+# (+ volumetric + Mie via SkyAtmosphere), and the cloud material's
+# overridden scalar params (coverage). Directional lights + cloud altitudes
+# were read by find_second_sun / read_cloud_state.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"error": None, "level": None, "ppv": [], "skylight": [],
+        "fog": [], "atmosphere": [], "cloud_material_scalars": None}
+
+
+def _rd(obj, names):
+    d = {}
+    for n in names:
+        try:
+            v = obj.get_editor_property(n)
+            d[n] = str(v)
+        except Exception as e:
+            d[n] = "<unreadable: %s>" % (str(e)[:60])
+    return d
+
+
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = str(_w.get_path_name()) if _w else None
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    _ppv_settings = [
+        "override_auto_exposure_method", "auto_exposure_method",
+        "override_auto_exposure_bias", "auto_exposure_bias",
+        "override_auto_exposure_min_brightness", "auto_exposure_min_brightness",
+        "override_auto_exposure_max_brightness", "auto_exposure_max_brightness",
+        "override_auto_exposure_apply_physical_camera_exposure",
+        "override_local_exposure_highlight_contrast_scale",
+        "local_exposure_highlight_contrast_scale",
+        "override_local_exposure_shadow_contrast_scale",
+        "local_exposure_shadow_contrast_scale",
+        "override_white_temp", "white_temp",
+        "override_white_tint", "white_tint",
+        "override_color_contrast", "color_contrast",
+        "override_color_saturation", "color_saturation",
+        "override_bloom_method", "bloom_method",
+        "override_bloom_intensity", "bloom_intensity",
+        "override_bloom_convolution_scatter_dispersion",
+        "override_film_grain_intensity", "film_grain_intensity",
+        "override_vignette_intensity", "vignette_intensity",
+    ]
+
+    for _a in _all:
+        if isinstance(_a, _u.PostProcessVolume):
+            _row = {"label": str(_a.get_actor_label()),
+                    "path": str(_a.get_path_name()),
+                    "package": str(_a.get_outermost().get_name())}
+            _row.update(_rd(_a, ["priority", "unbound", "blend_weight",
+                                 "blend_radius", "enabled"]))
+            try:
+                _s = _a.get_editor_property("settings")
+                _row["settings"] = _rd(_s, _ppv_settings)
+            except Exception as _e:
+                _row["settings"] = "<no settings: %s>" % str(_e)[:80]
+            _out["ppv"].append(_row)
+
+        elif isinstance(_a, _u.SkyLight):
+            _row = {"label": str(_a.get_actor_label())}
+            try:
+                _c = _a.get_component_by_class(_u.SkyLightComponent)
+                _row["component"] = _rd(_c, ["intensity", "light_color",
+                                             "source_type", "cubemap",
+                                             "sky_distance_threshold",
+                                             "lower_hemisphere_is_black",
+                                             "real_time_capture",
+                                             "affects_world", "visible"])
+            except Exception as _e:
+                _row["component"] = "<err %s>" % str(_e)[:80]
+            _out["skylight"].append(_row)
+
+        elif isinstance(_a, _u.ExponentialHeightFog):
+            _row = {"label": str(_a.get_actor_label())}
+            try:
+                _c = _a.get_component_by_class(
+                    _u.ExponentialHeightFogComponent)
+                _row["component"] = _rd(_c, [
+                    "fog_density", "fog_height_falloff", "start_distance",
+                    "fog_max_opacity", "fog_inscattering_color",
+                    "directional_inscattering_color",
+                    "directional_inscattering_exponent",
+                    "directional_inscattering_start_distance",
+                    "volumetric_fog", "volumetric_fog_scattering_distribution",
+                    "volumetric_fog_extinction_scale", "volumetric_fog_distance",
+                    "volumetric_fog_start_distance", "volumetric_fog_albedo",
+                    "volumetric_fog_emissive", "visible"])
+            except Exception as _e:
+                _row["component"] = "<err %s>" % str(_e)[:80]
+            _out["fog"].append(_row)
+
+        elif isinstance(_a, _u.SkyAtmosphere):
+            _row = {"label": str(_a.get_actor_label())}
+            try:
+                _c = _a.get_component_by_class(_u.SkyAtmosphereComponent)
+                _row["component"] = _rd(_c, [
+                    "mie_scattering_scale", "mie_scattering_color",
+                    "mie_absorption_scale", "mie_absorption", "mie_anisotropy",
+                    "mie_exponential_distribution",
+                    "rayleigh_scattering_scale", "rayleigh_scattering",
+                    "rayleigh_exponential_distribution",
+                    "multi_scattering_factor",
+                    "aerial_perspective_view_distance_scale",
+                    "height_fog_contribution"])
+            except Exception as _e:
+                _row["component"] = "<err %s>" % str(_e)[:80]
+            _out["atmosphere"].append(_row)
+
+    # cloud coverage: overridden scalar params on MI_AlpineClouds
+    try:
+        _mi = _u.load_asset("/Game/Bench/MI_AlpineClouds")
+        _sp = _mi.get_editor_property("scalar_parameter_values")
+        _out["cloud_material_scalars"] = {
+            str(v.get_editor_property("parameter_info").get_editor_property("name")):
+            float(v.get_editor_property("parameter_value")) for v in _sp}
+    except Exception as _e:
+        _out["cloud_material_scalars"] = "<err %s>" % str(_e)[:120]
+
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL_INV__" + _json.dumps(_out, default=str))

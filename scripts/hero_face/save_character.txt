@@ -1,0 +1,35 @@
+# save_character — persist MHC_AlpineHero, and nothing else.
+#
+# Deliberately minimal, and deliberately does NOT spawn the MetaHuman actor.
+# Spawning brings up the preview collection's streamed level instances
+# (/Temp/MetaHumanCharacter/LightingEnvironments/...) and a save afterwards
+# deadlocked the editor TWICE -- log frozen at
+# "InternalPromptForCheckoutAndSave started..." -> "FlushAsyncLoading", game
+# thread at 0.04 CPU per wall-second, an untitled modal up, the committed
+# sculpt lost because it had not reached disk.
+#
+# Reports the file's size and timestamp AFTER saving, read back off the
+# filesystem, because that is the instrument that has actually settled every
+# "did it take?" question in this work.
+import json as _json
+import os as _os
+import unreal as _unreal
+
+_PATH = "/Game/Hero/MHC_AlpineHero"
+_FILE = r"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Content/Hero/MHC_AlpineHero.uasset"
+_out = {"error": None, "saved": None, "can_build": None,
+        "size_before": None, "size_after": None, "mtime_after": None}
+try:
+    _out["size_before"] = _os.path.getsize(_FILE)
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset(_PATH)
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if _ss.is_object_added_for_editing(_ch):
+        _out["can_build"] = bool(_ss.can_build_meta_human(_ch, True))
+    _out["saved"] = bool(_unreal.EditorAssetLibrary.save_asset(_PATH, False))
+    _out["size_after"] = _os.path.getsize(_FILE)
+    _out["mtime_after"] = _os.path.getmtime(_FILE)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,31 @@
+import json as _json
+import unreal as _u
+# Sun read-back (Brief 2b, 2026-09-10). Selects by OUR label, not first-of-
+# class: the level carries three inert HeroStage DirectionalLights, and
+# first-of-class would read whichever the iterator meets first.
+_out = {"ok": False}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        if _a.get_actor_label() != "Lighting_alpine_8k_Sun":
+            continue
+        _x = _a.get_component_by_class(_u.DirectionalLightComponent)
+        if _x:
+            _c = _x
+            _out["label"] = _a.get_actor_label()
+            _r = _a.get_actor_rotation()
+            _out["pitch_deg"] = round(float(_r.pitch), 3)
+            _out["yaw_deg"] = round(float(_r.yaw), 3)
+            break
+    if _c is None:
+        raise RuntimeError("no DirectionalLightComponent under our label")
+    _out["intensity_lux"] = float(_c.get_editor_property("intensity"))
+    _out["use_temperature"] = bool(_c.get_editor_property("use_temperature"))
+    _out["temperature_k"] = float(_c.get_editor_property("temperature"))
+    _out["atmosphere_sun_light"] = bool(
+        _c.get_editor_property("atmosphere_sun_light"))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

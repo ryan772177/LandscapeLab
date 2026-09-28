@@ -1,0 +1,162 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Verify a placed city FROM THE WORLD, not from the placer's report.
+#
+# The placer's own return said ok:true and its output was then truncated by a
+# 763-entry actor list -- so "it worked" arrived with no numbers attached. This
+# counts what is actually in the level and re-measures grounding with a fresh
+# trace, which is a different instrument from the one that did the placing.
+#
+# GROUNDING IS RE-CHECKED AGAINST THE LANDSCAPE ONLY. Foliage is ignored (the
+# trees are query-collidable and a trace lands on canopy), and so are the city's
+# own actors -- otherwise a building traces onto its neighbour's roof, which is
+# exactly the ordering defect the placer was rewritten to remove.
+
+TAG = "LandscapeLab.City"
+PLAN = r"__PLAN__"
+
+_out = {"ok": False, "error": None}
+try:
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _world = _u.EditorLevelLibrary.get_editor_world()
+
+    _city, _ignore = [], []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _tags = [str(_t) for _t in _a.tags]
+        except Exception:
+            _tags = []
+        if TAG in _tags:
+            _city.append(_a)
+            _ignore.append(_a)
+        try:
+            if isinstance(_a, _u.InstancedFoliageActor):
+                _ignore.append(_a)
+        except Exception:
+            pass
+
+    _kinds = {}
+    for _a in _city:
+        _t = [str(x) for x in _a.tags]
+        _k = _t[1] if len(_t) > 1 else "?"
+        _kinds[_k] = _kinds.get(_k, 0) + 1
+    _out["counted_in_world"] = len(_city)
+    _out["by_kind"] = _kinds
+
+    # WHAT TO EXPECT IS DERIVED FROM THE PLAN'S OWN GEOMETRY, never re-typed.
+    #
+    # The first version summed three hardcoded terms -- buildings + streets +
+    # landmark. Roofs and a spire were added to the planner afterwards, the
+    # world grew to 1446 actors, and this refused a CORRECT town with "world
+    # count does not match the plan". That is non-negotiable 24: the plan
+    # declares its contents and the verifier kept a second copy, so a kind
+    # could be added in one place and forgotten in the other -- and was.
+    #
+    # A section counts as a PLACEMENT if it carries loc_cm: a list of them is
+    # that many actors, a single one is one. Nothing is named here, so the next
+    # kind is covered the day it is planned. `counts` is deliberately NOT the
+    # source -- it also holds diagnostics (streets_rejected_grade,
+    # streets_pruned_disconnected) that were never placed.
+    def _placements(_v):
+        if isinstance(_v, dict):
+            return 1 if "loc_cm" in _v else None
+        if isinstance(_v, list) and _v and isinstance(_v[0], dict) \
+                and "loc_cm" in _v[0]:
+            return len(_v)
+        return None
+
+    _planned = {}
+    for _k in _p:
+        if _k.startswith("_"):
+            continue
+        _n = _placements(_p[_k])
+        if _n is not None:
+            _planned[_k] = _n
+    _out["planned"] = _planned
+    _out["planned_derived_from"] = ("plan sections carrying loc_cm, not "
+                                    "plan['counts'] and not a list in this "
+                                    "payload")
+
+    # per-kind, so a mismatch says WHICH kind rather than only that a total
+    # moved. Plan keys are plural ('buildings'); tags are the same words.
+    _mismatch = {}
+    for _k in sorted(set(list(_planned.keys()) + list(_kinds.keys()))):
+        _pv, _wv = _planned.get(_k), _kinds.get(_k)
+        if _pv != _wv:
+            _mismatch[_k] = {"planned": _pv, "in_world": _wv}
+    _out["mismatch_by_kind"] = _mismatch
+
+    # bounds of the placed town, from the actors themselves
+    _xs, _ys, _zs = [], [], []
+    for _a in _city:
+        _l = _a.get_actor_location()
+        _xs.append(_l.x); _ys.append(_l.y); _zs.append(_l.z)
+    if _xs:
+        _out["extent_cm"] = {
+            "x": [round(min(_xs), 1), round(max(_xs), 1)],
+            "y": [round(min(_ys), 1), round(max(_ys), 1)],
+            "z": [round(min(_zs), 1), round(max(_zs), 1)]}
+        _cx, _cy = _p["site_centre_cm"]
+        _r = max(((x - _cx) ** 2 + (y - _cy) ** 2) ** 0.5
+                 for x, y in zip(_xs, _ys))
+        _out["max_radius_m"] = round(_r / 100.0, 1)
+
+    # re-ground a sample with a FRESH trace
+    #
+    # ONLY GROUND-SITTING KINDS. A roof sits on its building and a spire on
+    # the landmark BY DESIGN, so tracing their base to the terrain measures the
+    # height of what is underneath -- the first run reported max 883.1 cm and
+    # that number was a building, not a floating actor. Sampling them together
+    # produces an alarming statistic about a correct town.
+    _ON_GROUND = ("buildings", "streets", "landmark")
+    _ground_pool = [_a for _a in _city
+                    if (([str(x) for x in _a.tags] + ["?", "?"])[1]
+                        in _ON_GROUND)]
+    _out["grounding_kinds"] = list(_ON_GROUND)
+    _out["grounding_pool"] = len(_ground_pool)
+    _samp = _ground_pool[::max(1, len(_ground_pool) // 60)][:60]
+    _d, _miss = [], 0
+    for _a in _samp:
+        _l = _a.get_actor_location()
+        _s = _u.Vector(_l.x, _l.y, _l.z + 20000.0)
+        _e = _u.Vector(_l.x, _l.y, _l.z - 20000.0)
+        _h = _u.SystemLibrary.line_trace_single(
+            _world, _s, _e, _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True,
+            _ignore, _u.DrawDebugTrace.NONE, True)
+        if not _h:
+            _miss += 1
+            continue
+        _gz = float(_h.to_tuple()[4].z)
+        _sc = _a.get_actor_scale3d()
+        _bottom = _l.z - _sc.z * 50.0     # centred pivot, 100 cm cube
+        _d.append(_bottom - _gz)
+    _out["resample"] = len(_samp)
+    _out["trace_misses"] = _miss
+    if _d:
+        _d.sort()
+        _out["base_above_ground_cm"] = {
+            "n": len(_d), "p50": round(_d[len(_d) // 2], 2),
+            "min": round(_d[0], 2), "max": round(_d[-1], 2)}
+    # FAIL CLOSED: an empty planned set means the plan declared no placements
+    # this payload could recognise, which is COULD NOT LOOK, never a pass.
+    if not _planned:
+        _out["ok"] = False
+        _out["error"] = ("the plan declares no section carrying loc_cm -- "
+                         "this payload could not determine what to expect, "
+                         "which is not the same as a match")
+    elif _mismatch:
+        _out["ok"] = False
+        _out["error"] = ("world does not match the plan per kind: "
+                         + ", ".join("%s planned %s, in world %s"
+                                     % (k, v["planned"], v["in_world"])
+                                     for k, v in sorted(_mismatch.items())))
+    else:
+        _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

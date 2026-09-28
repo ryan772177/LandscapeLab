@@ -1,0 +1,66 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# A NEUTRAL KEY LIGHT FOR JUDGMENT FRAMES. Spawns, or removes. No asset writes.
+#
+# WHY. Alpine8K's sun sits at 12 degrees and R13 exposes for horizontal terrain,
+# so a vertical surface takes ~4.7x the ground's illuminance and everything is
+# raking side light. That EXAGGERATES FLATNESS -- a lifted groom and a slicked
+# one photograph nearly alike when the only light skims across them -- and it is
+# the same class of error as judging a groom against a metric with no reference
+# in the loop: the instrument has a bias and the bias points one way.
+#
+# So every judgment cycle gets one frame under a broad frontal fill beside the
+# alpine frame. Same camera, same crop discipline. The alpine frame stays the
+# shipping condition; the neutral frame is the one that can be read for VOLUME.
+#
+# Removed by label after the shot, and the removal is reported.
+
+ACTION   = "__ACTION__"      # spawn | remove
+HEAD     = __HEAD__
+INTENS   = __INTENS__
+
+_out = {"ok": False, "error": None, "action": ACTION}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _removed = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _l = _a.get_actor_label()
+        except Exception:
+            continue
+        if _l.startswith("NEUTRAL_KEY_"):
+            _removed.append(_l)
+            _eas.destroy_actor(_a)
+    _out["removed"] = _removed
+
+    if ACTION == "spawn":
+        # Two broad sources at +-35 deg and a low fill: one hard key would just
+        # be a different raking angle, which is the thing being corrected for.
+        _specs = [("KEY_L", -55.0, -35.0, 30.0, INTENS),
+                  ("KEY_R", -55.0, 35.0, 30.0, INTENS * 0.8),
+                  ("FILL", -40.0, 0.0, -18.0, INTENS * 0.45)]
+        _made = []
+        for _nm, _dx, _dy, _dz, _i in _specs:
+            _loc = _u.Vector(HEAD[0] + _dx, HEAD[1] + _dy, HEAD[2] + _dz)
+            _act = _eas.spawn_actor_from_class(_u.PointLight, _loc,
+                                               _u.Rotator(0.0, 0.0, 0.0))
+            _act.set_actor_label("NEUTRAL_KEY_" + _nm)
+            _c = _act.get_editor_property("point_light_component")
+            _c.set_editor_property("intensity", float(_i))
+            _c.set_editor_property("attenuation_radius", 600.0)
+            _c.set_editor_property("source_radius", 60.0)
+            _c.set_editor_property("cast_shadows", True)
+            _c.set_editor_property("light_color", _u.Color(255, 252, 246, 255))
+            _made.append({"label": _act.get_actor_label(),
+                          "loc": [_loc.x, _loc.y, _loc.z],
+                          "intensity_readback":
+                              _c.get_editor_property("intensity")})
+        _out["spawned"] = _made
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

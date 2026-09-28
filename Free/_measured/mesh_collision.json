@@ -1,0 +1,165 @@
+{
+ "measured_by": "measure_mesh_collision",
+ "recipe": "recipes/alpine_8k.json",
+ "note": "Supersedes any 'collision_prims' from the asset-registry TAG scan, which is already DO-NOT-CONSUME for material_slots on 23 of 38 meshes. These are read from the LOADED asset.",
+ "species": [
+  {
+   "name": "Meadow",
+   "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+   "system": "grass"
+  },
+  {
+   "name": "Conifer",
+   "mesh": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+   "system": "instanced"
+  },
+  {
+   "name": "ConiferPine",
+   "mesh": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+   "system": "instanced"
+  },
+  {
+   "name": "SpruceSub",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "system": "instanced"
+  },
+  {
+   "name": "SpruceSapling",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+   "system": "instanced"
+  },
+  {
+   "name": "Blueberry",
+   "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+   "system": "grass"
+  }
+ ],
+ "meshes": [
+  {
+   "path": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 1,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 1,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x0000023328D090F0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": false,
+   "lods": 1,
+   "triangles_lod0": 6422
+  },
+  {
+   "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 0,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x0000023755F5A0F0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": true,
+   "lods": 1,
+   "triangles_lod0": 2335
+  },
+  {
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 2,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 2,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x0000023755F58CF0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": false,
+   "lods": 4,
+   "triangles_lod0": 27824
+  },
+  {
+   "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 1,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x000002332AE458F0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": false,
+   "lods": 5,
+   "triangles_lod0": 20695
+  },
+  {
+   "path": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 1,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x00000233352370F0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": false,
+   "lods": 4,
+   "triangles_lod0": 2604
+  },
+  {
+   "path": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+   "loaded": true,
+   "why": null,
+   "body_setup": "present",
+   "elems": {
+    "box_elems": 0,
+    "convex_elems": 1,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0,
+    "level_set_elems": 0
+   },
+   "total_simple": 1,
+   "collision_trace_flag": "<CollisionTraceFlag.CTF_USE_DEFAULT: 0>",
+   "walkable_slope_override": "<Struct 'WalkableSlopeOverride' (0x00000233232D98F0) {walkable_slope_behavior: WalkableSlope_Default, walkable_slope_angle: 0.000000}>",
+   "collision_profile": "BlockAll",
+   "nanite": false,
+   "lods": 4,
+   "triangles_lod0": 344
+  }
+ ]
+}

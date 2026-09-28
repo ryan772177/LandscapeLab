@@ -1,0 +1,188 @@
+{
+ "schema_version": "1.2-concept",
+ "concept_id": "alpine_village_01",
+ "site_id": "alpine_village",
+ "_site_id_is_SHARED": "alpine_village_02 carries the SAME site_id. These are ONE place seen from two viewpoints -- same horn peak, same onion-dome church, same building vocabulary, same firewood. Build the site ONCE and solve both cameras against it. Two concepts on one site are a CROSS-CHECK: a wrong village-to-mountain relationship fails in one view while passing in the other, and no single view can detect it.",
+ "source_image": "refs/alpine_village_01.jpg",
+ "source_sha256": "bf7cae764adcdb50d753ef42367612cf7c8571bfb604a6e5c8a7f5f2f9c2600e",
+ "_read_by": "Claude, 2026-08-29, multimodal read of the image plus scripts/analyse_concept.py for the light split and haze. Reading of record: _verify/20260829_concepts/READING.md.",
+ "_what_this_concept_is": "THE APPROACH. Standing at a forest edge on open meadow, looking across a shallow basin at the village on the far rise, with the peak beyond.",
+ "terrain": {
+  "features": [
+   {
+    "kind": "peak",
+    "bearing_deg": -6.0,
+    "_bearing_is_IMAGE_RELATIVE": "degrees from camera forward, positive right. NOT a world bearing until the Phase B camera solve exists.",
+    "prominence": "dominant",
+    "snow_line_frac": 0.66,
+    "_snow_line": "snow covers roughly the top third of the peak",
+    "shape": "asymmetric horn: steep left face, long right shoulder ridge",
+    "provenance": "read",
+    "confidence": 0.95
+   },
+   {
+    "kind": "basin",
+    "bearing_deg": 0.0,
+    "prominence": "moderate",
+    "_what": "shallow open ground between the camera's meadow and the village rise. This gap is what gives the shot its depth; without it the village would read as adjacent scrub.",
+    "provenance": "read",
+    "confidence": 0.85
+   },
+   {
+    "kind": "slope",
+    "bearing_deg": 22.0,
+    "prominence": "moderate",
+    "_what": "the village hillside, rising to the right. Buildings TERRACE up it rather than sitting on a flat pad.",
+    "provenance": "read",
+    "confidence": 0.9
+   },
+   {
+    "kind": "stream",
+    "bearing_deg": 30.0,
+    "prominence": "minor",
+    "_what": "water running down out of the village toward camera-right, pale rocks along its edge",
+    "provenance": "read",
+    "confidence": 0.7
+   }
+  ],
+  "ground_cover": {
+   "meadow_grass": 0.55,
+   "conifer_forest": 0.3,
+   "rock_scree": 0.1,
+   "water": 0.05
+  }
+ },
+ "placements": {
+  "items": [
+   {
+    "class": "chalet",
+    "count_range": [
+     12,
+     20
+    ],
+    "_why_a_range": "the midground is hazed and partly occluded by trees. Claiming an exact count from it would be false precision; a range with a confidence is just as buildable and is honest.",
+    "footprint_class": "medium",
+    "height_class": 2,
+    "_height_class": "whole 2.00 m wall courses. Two courses reads correctly against the church tower's height in frame.",
+    "orientation": "eaves_parallel_to_slope_contour",
+    "arrangement": "terraced_slope",
+    "form": "masonry ground floor, timber upper storey, shallow-pitch wide-eaved shingled roof, deep overhang",
+    "provenance": "read",
+    "confidence": 0.85,
+    "silhouette_plausible_cm": [
+     620.0,
+     820.0
+    ],
+    "_silhouette_plausible_cm": "DERIVED FROM GEOMETRY, not chosen. Walls are 400 cm (2 storeys x the ruled 2.00 m kit wall course). An alpine roof over the 8 m short span runs 30-45 degrees, giving 231-400 cm of roof and a 631-800 cm silhouette; the band is widened slightly to 620-820. THE POSITIVE CONTROL IS THE DEFECT THIS WEEK: 536.5 cm implies a 136.5 cm roof, an 18.8 degree pitch, far too shallow for a shingled roof with the deep overhang both concepts describe -- and 536.5 was exactly what the buried kit roof produced. The measured correct value, 738.0, is a 40 degree pitch and sits comfortably inside."
+   },
+   {
+    "class": "church",
+    "count": 1,
+    "footprint_class": "medium",
+    "orientation": "tower_vertical",
+    "arrangement": "clustered",
+    "form": "pale tower, dark bulbous onion dome, finial. The only vertical accent in the village.",
+    "provenance": "read",
+    "confidence": 0.9,
+    "_height_class_superseded": "was 4. RULED 2026-08-30: the reader saw a nave AND a tower and flattened them into one number, which is why this recipe contradicted its own prose (1.5x) with its height_class (2x). A church is not the average of its nave and its spire. Replaced by parts[]; this value is inert and kept only so the history reads.",
+    "parts": [
+     {
+      "part": "nave",
+      "height_ratio": 1.5,
+      "ratio_against": "house_silhouette",
+      "footprint_frac": 0.75,
+      "provenance": "ruled",
+      "confidence": 0.9,
+      "_source": "the concept's own prose: 'roughly half again the height of the houses'"
+     },
+     {
+      "part": "tower_spire",
+      "height_ratio": 2.5,
+      "ratio_against": "house_silhouette",
+      "footprint_frac": 0.25,
+      "provenance": "ruled",
+      "confidence": 0.85,
+      "_source": "what made height_class read 2+. CORROBORATED by measurement: the Phase B loop built the church at 2.24-2.61x the chalet silhouette, and the operator ruled that reading stands as the SPIRE."
+     }
+    ]
+   }
+  ]
+ },
+ "focal_anchor": {
+  "entity": "church",
+  "_why": "the only vertical accent, roughly half again the height of the houses, and the thing the eye lands on in the village cluster. Both concepts of this site point at it.",
+  "provenance": "read",
+  "confidence": 0.9
+ },
+ "clutter": {
+  "classes": [
+   {
+    "kind": "wood_stack",
+    "density": "several_per_village",
+    "attaches_to": "building_wall",
+    "provenance": "read",
+    "confidence": 0.8
+   },
+   {
+    "kind": "river_stone",
+    "density": "scattered",
+    "attaches_to": "water_edge",
+    "provenance": "read",
+    "confidence": 0.7
+   },
+   {
+    "kind": "track",
+    "density": "one_through_route",
+    "attaches_to": "open_ground",
+    "provenance": "read",
+    "confidence": 0.6
+   }
+  ]
+ },
+ "atmosphere": {
+  "sun": {
+   "elevation_deg": 12.0,
+   "_elevation": "INFERRED from very long shadows, visible god rays through the treeline, and a 5.5x sunlit/shadow luminance ratio. Not measured to a degree; 12 is the low-sun value this project's alpine lighting already uses (R13).",
+   "azimuth_unsolved": true,
+   "_azimuth": "REFUSED as a number. The image says the sun is LOW and BEHIND-LEFT (backlit trees, rays from upper left) but a WORLD azimuth cannot be derived from one image without the camera solve. scripts/analyse_concept.py measured an image-space shadow bearing of 3.9 deg at coherence 0.156 -- close to isotropic, because the meadow's own tussock texture is as linear as the shadows. A number at that coherence would be evidence-free.",
+   "colour_rgb": [
+    0.791,
+    0.745,
+    0.657
+   ],
+   "_colour": "MEASURED: mean RGB of the top 15% of luma on the meadow band. R-B +0.133 = warm.",
+   "intensity_hint": "strong_low_angle"
+  },
+  "shadow": {
+   "colour_rgb": [
+    0.102,
+    0.143,
+    0.169
+   ],
+   "_colour": "MEASURED: bottom 15% of luma on the same band. R-B -0.067 = distinctly COOL BLUE. The warm/cool split is the most characterful thing about this lighting.",
+   "contrast_ratio": 5.5
+  },
+  "haze": {
+   "_status": "concept 02 carries the clean haze measurement. This image's composition puts brightly sunlit meadow in the near field, which defeats the image-height depth proxy: min-luma RISES toward the bottom because it is sunlit, not because it is near.",
+   "measured_here": false
+  },
+  "time_of_day": {
+   "label": "early_morning_or_late_afternoon",
+   "evidence": "low sun, long shadows, god rays, warm/cool split",
+   "provenance": "inferred",
+   "confidence": 0.8
+  },
+  "artificial": []
+ },
+ "camera": {
+  "position_hint": "forest edge, on open meadow sloping away, across a basin from the village",
+  "height_m": 1.8,
+  "pitch_hint": "level",
+  "horizon_frac": 0.45,
+  "fov_hint": "moderate",
+  "_fov": "real depth separation between foreground grass, midground village and background peak -- neither a compressed telephoto nor a wide-angle stretch",
+  "solve": null,
+  "_solve": "null until Phase B. The reader records what the image shows; the SOLVER finds the camera that reproduces it. Collapsing those two is how a scene gets built to fit a guessed camera."
+ },
+ "_schema_1_2": "1.2 adds plausible_cm bands on ratio-scored heights. A ratio check cannot detect an error in the quantity it is a ratio OF -- both terms move together and the quotient stays right, which is how ruling 1 was scored against a chalet whose roof was buried 201.49 cm in its walls. A band is an ABSOLUTE check and is the only kind that can catch that."
+}

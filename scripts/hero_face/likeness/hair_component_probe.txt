@@ -1,0 +1,59 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What does the hero's Hair component actually hold right now?
+#
+# WHY: a groom that rendered at crown-band luma 40.2 twenty minutes ago now
+# renders 50.2 -- bald -- and the KNOWN-GOOD CONTROL reproduces it, so the
+# session broke rather than the new groom. The documented candidates are the
+# binding going null, override_materials nulling the binding, or a component
+# visibility flag. All three are readable, so none of them needs guessing.
+#
+# The vendor grooms on the same actor are the positive control: if Beard and
+# Eyebrows still hold their bindings and Hair does not, the fault is scoped to
+# the slot we have been writing.
+
+_out = {"ok": False, "error": None, "components": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actor = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == "HeroInWorld":
+            _actor = _a
+            break
+    if _actor is None:
+        raise RuntimeError("no HeroInWorld actor in the level")
+
+    for _c in _actor.get_components_by_class(_u.GroomComponent):
+        _row = {}
+        for _f in ("groom_asset", "binding_asset"):
+            try:
+                _o = _c.get_editor_property(_f)
+                _row[_f] = None if _o is None else _o.get_path_name()
+            except Exception as _e:
+                _row[_f] = "UNREADABLE: " + str(_e)[:60]
+        try:
+            _mats = _c.get_editor_property("override_materials")
+            _row["override_materials"] = [
+                (None if _m is None else _m.get_path_name()) for _m in _mats]
+        except Exception as _e:
+            _row["override_materials"] = "UNREADABLE: " + str(_e)[:60]
+        for _f in ("visible", "hidden_in_game", "hair_length_scale",
+                   "hair_width_scale"):
+            try:
+                _row[_f] = str(_c.get_editor_property(_f))
+            except Exception:
+                pass
+        try:
+            _o, _e2, _r = _u.SystemLibrary.get_component_bounds(_c)
+            _row["bounds_z"] = [round(_o.z - _e2.z, 2), round(_o.z + _e2.z, 2)]
+            _row["bounds_radius"] = round(float(_r), 2)
+        except Exception as _e:
+            _row["bounds_error"] = str(_e)[:80]
+        _out["components"][str(_c.get_name())] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

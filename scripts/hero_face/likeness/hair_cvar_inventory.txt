@@ -1,0 +1,62 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# HARVEST THE REAL 5.8.1 HAIR CVAR INVENTORY FROM THE ENGINE, THEN PROBE IT.
+#
+# WHY THIS FIRST. The previous culling/streaming probe read 0 back from
+# `r.HairStrands.Cluster.Culling` and `r.HairStrands.Streaming` and I recorded
+# them as "set to 0". An UNKNOWN cvar also reads 0 through
+# get_console_variable_float_value, so those two rows were consistent with the
+# names not existing at all -- and `r.HairStrands.Visibility` and
+# `...Interpolation`, which I asked to read 1, came back 0 as well. Four rows,
+# one instrument, no way to tell absent from off. Non-negotiable 6: a
+# diagnostic must distinguish "I looked and it is absent" from "I could not
+# look".
+#
+# So: dump the inventory the engine itself holds, and only then probe names
+# that provably exist.
+#
+# METHOD. `DumpConsoleCommands <prefix>` writes to the log. The log is read by
+# BYTE OFFSET taken before the command, so what comes back is this command's
+# output and not a previous run's -- the same reason capture tools here take a
+# tag.
+
+_out = {"ok": False, "error": None}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _log = _os.path.join(
+        _u.Paths.convert_relative_path_to_full(_u.Paths.project_saved_dir()),
+        "Logs", "LandscapeLab.log")
+    _out["log"] = _log
+    _out["log_exists"] = _os.path.isfile(_log)
+    _before = _os.path.getsize(_log) if _out["log_exists"] else 0
+    _out["offset_before"] = _before
+
+    _u.SystemLibrary.execute_console_command(_w, "DumpConsoleCommands r.HairStrands")
+
+    _after = _os.path.getsize(_log) if _os.path.isfile(_log) else 0
+    _out["offset_after"] = _after
+    _out["bytes_written"] = _after - _before
+
+    _names = []
+    if _after > _before:
+        with open(_log, "r", encoding="utf-8", errors="replace") as _f:
+            _f.seek(_before)
+            _chunk = _f.read()
+        _out["raw_sample"] = _chunk[:600]
+        for _line in _chunk.splitlines():
+            _i = _line.find("r.HairStrands")
+            if _i < 0:
+                continue
+            _tok = _line[_i:].split()[0].strip().rstrip(":,")
+            if _tok and _tok not in _names:
+                _names.append(_tok)
+    _out["cvar_names"] = sorted(_names)
+    _out["n_names"] = len(_names)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

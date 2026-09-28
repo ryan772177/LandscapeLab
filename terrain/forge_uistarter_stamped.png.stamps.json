@@ -1,0 +1,144 @@
+{
+  "base": "terrain/forge_uistarter_base.png",
+  "base_sha256": "7eb2fc0e147a462e4b674d4545df48912325c53c048e4ff26c2a7858f3232d69",
+  "biome_id": "forge_uistarter",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 26659.0,
+    "pre_clamp_min_units": 0.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/forge_uistarter_stamped.png",
+  "output_sha256": "7f6cd8ed6c0ae6e6d3462cca6bf167c13b4f218da48f00474db0a978169b6690",
+  "pixels_changed": 225896,
+  "placements": [
+    {
+      "amplitude_m": 870.0,
+      "anchor_m": 0.0,
+      "bbox_cols": [
+        265,
+        821
+      ],
+      "bbox_rows": [
+        0,
+        393
+      ],
+      "blend": "MAX",
+      "centre_pixel_row_col": [
+        113.9,
+        542.3
+      ],
+      "centre_world_m": [
+        151.2,
+        -1562.4
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": 773.728575389209,
+      "delta_max_units": 25353.151094065906,
+      "delta_mean_abs_m": 170.1986579618216,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "massif",
+      "mask_pixels": 157034,
+      "moved_pixels": 156221,
+      "opacity": 1.0,
+      "rotation_deg": 90.0,
+      "size_m": 2217.6,
+      "size_px": 554.4,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 1009,
+      "stamp_sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6"
+    },
+    {
+      "amplitude_m": 25.0,
+      "anchor_m": 74.0,
+      "bbox_cols": [
+        340,
+        670
+      ],
+      "bbox_rows": [
+        365,
+        695
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        529.7,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        100.8
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 17.37490280528772,
+      "delta_min_m": -75.73561419008128,
+      "delta_min_units": -2481.6667379734886,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "lake_basin",
+      "mask_pixels": 70349,
+      "moved_pixels": 69675,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1310.4,
+      "size_px": 327.6,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 500,
+      "stamp_sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5"
+    }
+  ],
+  "recipe": "forge_runs/uistarter/forge_uistarter.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "lake_basin": {
+      "filename": "forge_river_basin.png",
+      "relpath": "terrain/forge_stamps/forge_river_basin.png",
+      "resolution_px": [
+        1000,
+        1000
+      ],
+      "sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+      "tag": "basin"
+    },
+    "massif": {
+      "filename": "forge_cc0_mountain.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_mountain.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+      "tag": "mountain"
+    }
+  },
+  "stamps_block_sha256": "180ea58f03a889eeac66d40e3f59a79a8b152f6751a5ec97f99533908c835e43",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-04T05:15:25Z",
+  "z_scale_m": 2000.0
+}

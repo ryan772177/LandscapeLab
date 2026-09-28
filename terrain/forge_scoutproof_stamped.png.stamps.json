@@ -1,0 +1,197 @@
+{
+  "base": "terrain/forge_scoutproof_base.png",
+  "base_sha256": "4a4f05b437a4c7c4d8c648313be6bfb1e9f88991830184cd33c189103a96b0fd",
+  "biome_id": "forge_scoutproof",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 26659.0,
+    "pre_clamp_min_units": 0.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/forge_scoutproof_stamped.png",
+  "output_sha256": "3194831b56a75694b639d1cd2f3cc8fd62ea3c41177caf1e39e30380d8235fa8",
+  "pixels_changed": 226774,
+  "placements": [
+    {
+      "amplitude_m": 870.0,
+      "anchor_m": 0.0,
+      "bbox_cols": [
+        265,
+        821
+      ],
+      "bbox_rows": [
+        0,
+        393
+      ],
+      "blend": "MAX",
+      "centre_pixel_row_col": [
+        113.9,
+        542.3
+      ],
+      "centre_world_m": [
+        151.2,
+        -1562.4
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": 743.2471526942556,
+      "delta_max_units": 24354.351075909024,
+      "delta_mean_abs_m": 173.6077044144942,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "massif",
+      "mask_pixels": 157034,
+      "moved_pixels": 156315,
+      "opacity": 1.0,
+      "rotation_deg": 90.0,
+      "size_m": 2217.6,
+      "size_px": 554.4,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 1009,
+      "stamp_sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6"
+    },
+    {
+      "amplitude_m": 25.0,
+      "anchor_m": 35.6,
+      "bbox_cols": [
+        340,
+        670
+      ],
+      "bbox_rows": [
+        365,
+        695
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        529.7,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        100.8
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 61.88372485581473,
+      "delta_min_m": -272.5355736764999,
+      "delta_min_units": -8930.30941044471,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "lake_basin",
+      "mask_pixels": 70349,
+      "moved_pixels": 69860,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1310.4,
+      "size_px": 327.6,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 500,
+      "stamp_sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5"
+    },
+    {
+      "amplitude_m": 160.0,
+      "anchor_m": 0.0,
+      "bbox_cols": [
+        429,
+        532
+      ],
+      "bbox_rows": [
+        289,
+        392
+      ],
+      "blend": "MAX",
+      "centre_pixel_row_col": [
+        340.075,
+        479.925
+      ],
+      "centre_world_m": [
+        -98.3,
+        -657.7
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": 19.845660821267984,
+      "delta_max_units": 650.2926909608987,
+      "delta_mean_abs_m": 2.0627888482675516,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "village",
+      "mask_pixels": 6704,
+      "moved_pixels": 1907,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 403.2,
+      "size_px": 100.8,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 126,
+      "stamp_sha256": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42"
+    }
+  ],
+  "recipe": "forge_runs/scoutproof/forge_scoutproof.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "lake_basin": {
+      "filename": "forge_river_basin.png",
+      "relpath": "terrain/forge_stamps/forge_river_basin.png",
+      "resolution_px": [
+        1000,
+        1000
+      ],
+      "sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+      "tag": "basin"
+    },
+    "massif": {
+      "filename": "forge_cc0_mountain.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_mountain.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+      "tag": "mountain"
+    },
+    "village": {
+      "filename": "forge_mesa.png",
+      "relpath": "terrain/forge_stamps/forge_mesa.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+      "tag": "mesa"
+    }
+  },
+  "stamps_block_sha256": "c9b423f9199fa503516b468f80836f3881e3788459a153a35005dbfa6fbac0ab",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-04T05:41:26Z",
+  "z_scale_m": 2000.0
+}

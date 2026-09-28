@@ -1,0 +1,398 @@
+{
+  "_comment": [
+    "CURATION ONLY. This file holds the JUDGEMENTS: which asset, what role,",
+    "which campaign pass, and why. It holds NO measurements.",
+    "",
+    "scripts/make_alpine_palette.py joins this against",
+    "Free/_measured/fab_registry_*.json and writes the resolved palette into",
+    "recipes/alpine.json. Every triangle count, dimension and density in the",
+    "resolved palette comes from the registry at generation time and NEVER",
+    "from this file, so a number here cannot be fabricated (CLAUDE.md",
+    "non-negotiable 15). A curated path absent from the registry is a REFUSAL,",
+    "not a warning.",
+    "",
+    "`verified` is deliberately absent from every entry. The campaign brief",
+    "rules that verified flags stay NO until render-proved, and no asset here",
+    "has been spawned or rendered. The generator writes verified=false with a",
+    "reason on every entry; there is no way to assert true from this file.",
+    "",
+    "`admit` values:",
+    "  YES         passes the tier gate and the biome read; usable in its pass",
+    "  CONDITIONAL passes the tier gate; the BIOME read is unresolved and needs",
+    "              a render against the alpine surfaces before first use",
+    "  HAZARD      usable, but carries a recorded cost/failure risk — read the",
+    "              note before touching it"
+  ],
+  "schema_version": 1,
+  "biome_id": "alpine",
+  "generated_for_campaign": "complete-the-alpine-region",
+  "tier_gate": {
+    "metric": "triangles / bbox_area_m2, blobs only",
+    "reference_group": "KiteDemo:/Rocks/",
+    "reference_median_tri_per_m2": 299.5,
+    "reference_min_tri_per_m2": 105.8,
+    "rule": "A blob-shaped rock asset is admitted only if its measured density falls inside the reference group's observed range. Planar and spanning assets are NOT gated by this metric — see the limits in scripts/palette_evidence.py."
+  },
+  "entries": [
+    {
+      "id": "cliff_face_01",
+      "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01",
+      "role": "cliff_face",
+      "pass": 3,
+      "admit": "YES",
+      "note": "The only true cliff-face mesh in the inventory. 22 m span suits the stamped east ridge."
+    },
+    {
+      "id": "mountain_rock",
+      "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock",
+      "role": "cliff_outcrop",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Outcrop for steep slopes. Open-backed; pair with SM_MountainRock_Closed where the back is visible."
+    },
+    {
+      "id": "mountain_rock_closed",
+      "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed",
+      "role": "cliff_outcrop",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Closed variant. Use where the silhouette is seen from more than one side."
+    },
+    {
+      "id": "hero_boulder_large",
+      "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/SM_LargePlainsBoulder002",
+      "role": "hero_boulder",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Largest free-standing boulder at 6.7 m. Meadow hero placement, low count."
+    },
+    {
+      "id": "boulder_medium_01",
+      "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001",
+      "role": "boulder",
+      "pass": 3,
+      "admit": "YES",
+      "note": "General mid-size scatter."
+    },
+    {
+      "id": "boulder_medium_02",
+      "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_LowPoly",
+      "role": "boulder",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Named LowPoly, but MEASURES inside the reference tier. The metric admitted it and the name did not; that is the metric doing its job. Do not exclude on the filename."
+    },
+    {
+      "id": "boulder_small",
+      "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+      "role": "boulder_small",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Sub-metre. Doubles as Pass 5 ground detail."
+    },
+    {
+      "id": "river_rock",
+      "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+      "role": "drainage_stone",
+      "pass": 5,
+      "admit": "YES",
+      "note": "0.5 m water-worn stone. Belongs in drainage channels only, where alpine_flow.png is high."
+    },
+    {
+      "id": "scree_slab_001",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001",
+      "role": "talus_field",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Planar slab, 5.6 x 3.3 x 0.5 m. NOT tier-gated (planar). 33.8k tris is the single most expensive asset in the palette — see the budget warning in the generated block."
+    },
+    {
+      "id": "scree_slab_001a",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_A",
+      "role": "talus_field",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Cheaper Scree001 variant. Prefer this and _B over the full slab wherever the camera is not close."
+    },
+    {
+      "id": "scree_slab_001b",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B",
+      "role": "talus_field",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Cheaper Scree001 variant."
+    },
+    {
+      "id": "scree_slab_002a",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a",
+      "role": "talus_field",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Second scree family; different stone size to Scree001. Mixing the two is what stops a talus field reading as one tiled slab."
+    },
+    {
+      "id": "scree_slab_002b",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002b",
+      "role": "talus_field",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Cheapest scree at 11.9k tris. The workhorse for the bulk of any talus field."
+    },
+    {
+      "id": "scree_bend",
+      "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend",
+      "role": "talus_channel",
+      "pass": 3,
+      "admit": "YES",
+      "note": "Bent slab for talus running into a channel rather than straight downslope."
+    },
+    {
+      "id": "ground_reveal_rock_001",
+      "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+      "role": "embedded_outcrop",
+      "pass": 3,
+      "admit": "HAZARD",
+      "note": "DO NOT LOAD CASUALLY. Its texture T_GroundRevealRock001a_D_CC_R is 8192x8192 and the editor log put its first-build encode at a Required Memory Estimate of 4608.99 MB, against ~1.8 GB free on this host. This one asset hung the editor for 20+ minutes and killed the first intake audit. Load it alone, with nothing else running, or not at all until the GPU desktop."
+    },
+    {
+      "id": "ground_reveal_rock_002",
+      "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002",
+      "role": "embedded_outcrop",
+      "pass": 3,
+      "admit": "HAZARD",
+      "note": "Same family as ground_reveal_rock_001; assume the same 8K texture cost until measured otherwise."
+    },
+    {
+      "id": "volcanic_rock_01",
+      "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_001",
+      "role": "boulder",
+      "pass": 3,
+      "admit": "CONDITIONAL",
+      "note": "Passes tier. BIOME UNRESOLVED: basaltic rock beside the granite-family Rock051 landscape surface may read as two different geologies in one frame. Needs a render next to a Rock051 slope before admission. Three siblings 002/003/004 are held out until this one is judged."
+    },
+    {
+      "id": "scots_pine_tall",
+      "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+      "role": "conifer_secondary",
+      "pass": 4,
+      "admit": "YES",
+      "note": "22.1 m Scots pine, 27.8k tris. The best answer on file to the open backlog item 'conifers read thin/sparse' — a second conifer silhouette, not a denser fir. Scots pine is a real montane species and sits correctly below the treeline."
+    },
+    {
+      "id": "scots_pine_broad",
+      "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01",
+      "role": "conifer_secondary",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "MEASUREMENT LOOKS WRONG: 18.9 x 13.3 x 12.7 m, i.e. WIDER than it is tall, at 60.1k tris — the heaviest tree in the pack. Either it is a broad open-grown specimen or the bounding box includes something unexpected. Inspect before use; do not scatter on the strength of the name."
+    },
+    {
+      "id": "hill_tree_tall",
+      "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_02",
+      "role": "broadleaf",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "22.5 m broadleaf. Correct for a temperate FOOTHILL band and wrong above the treeline. Admission depends on whether the region carries a broadleaf band at all — that is a Pass 4 elevation-zone decision, not an asset decision."
+    },
+    {
+      "id": "hill_tree",
+      "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_02",
+      "role": "broadleaf",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "11.8 m broadleaf. Same ruling as hill_tree_tall; the two stand or fall together."
+    },
+    {
+      "id": "tree_stump",
+      "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01",
+      "role": "ground_detail",
+      "pass": 5,
+      "admit": "YES",
+      "note": "Reads as a felled or storm-broken trunk. Sparse placement in clearings."
+    },
+    {
+      "id": "vegetation_debris",
+      "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/SM_Vegetation_Debris_002",
+      "role": "ground_detail",
+      "pass": 5,
+      "admit": "YES",
+      "note": "Fallen branch litter. Pass 5's near-path scatter."
+    },
+    {
+      "id": "fern_01",
+      "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_01",
+      "role": "understory",
+      "pass": 4,
+      "admit": "YES",
+      "note": "Forest-floor understory under the conifer canopy. Shade species — keep it out of open meadow."
+    },
+    {
+      "id": "fern_02",
+      "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_02",
+      "role": "understory",
+      "pass": 4,
+      "admit": "YES",
+      "note": "Understory variety."
+    },
+    {
+      "id": "fern_03",
+      "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03",
+      "role": "understory",
+      "pass": 4,
+      "admit": "YES",
+      "note": "Understory variety."
+    },
+    {
+      "id": "heather_clumps",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2",
+      "role": "montane_shrub",
+      "pass": 4,
+      "admit": "YES",
+      "note": "376 tris for a 0.6 m clump — the cheapest real coverage in the palette. Heather is the signature open-montane shrub between treeline and scree, which is exactly the band the region currently has nothing in."
+    },
+    {
+      "id": "heather_clumps_wp",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2_WorldPopulate",
+      "role": "montane_shrub",
+      "pass": 4,
+      "admit": "YES",
+      "note": "Smaller world-populate variant of the same clump, 0.3 m. Use as the distance filler behind the full clump."
+    },
+    {
+      "id": "field_grass",
+      "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "role": "grass",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "765 tris, 0.2 m. The region already runs a grass SYSTEM at 12 tufts/m2 through the landscape material (R11), not scattered grass meshes. Admitting this must not mean running two grass systems — decide in Pass 4 whether it REPLACES a grass variety or is dropped."
+    },
+    {
+      "id": "yarrow",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow",
+      "role": "meadow_flower",
+      "pass": 5,
+      "admit": "YES",
+      "note": "0.5 m. Real montane meadow species. Sparse — flowers read as filler the moment they are even."
+    },
+    {
+      "id": "yarrow_03",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow3",
+      "role": "meadow_flower",
+      "pass": 5,
+      "admit": "YES",
+      "note": "Yarrow variant."
+    },
+    {
+      "id": "field_scabious",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/SM_FieldScabious_01",
+      "role": "meadow_flower",
+      "pass": 5,
+      "admit": "YES",
+      "note": "Montane meadow species."
+    },
+    {
+      "id": "buttercup_patch",
+      "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/SM_Buttercup_Patch_01",
+      "role": "meadow_flower",
+      "pass": 5,
+      "admit": "YES",
+      "note": "274 tris for a 3.2 m patch — a card, not a plant. Cheap meadow colour at distance; check it edge-on before trusting it near the camera."
+    },
+    {
+      "id": "bog_myrtle_bush_01",
+      "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01",
+      "role": "wetland_shrub",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "Bog myrtle is a WETLAND species. Correct only where the terrain actually holds water — drainage lines and valley floors, driven by alpine_flow.png / alpine_deposition.png. Scattered on dry slope it is a botanical error that a viewer will not name but will feel."
+    },
+    {
+      "id": "bog_myrtle_bush_02",
+      "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02",
+      "role": "wetland_shrub",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "Same wetland ruling as bog_myrtle_bush_01."
+    },
+    {
+      "id": "bog_myrtle",
+      "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01",
+      "role": "wetland_shrub",
+      "pass": 4,
+      "admit": "CONDITIONAL",
+      "note": "Same wetland ruling as bog_myrtle_bush_01."
+    },
+    {
+      "id": "dead_leaves",
+      "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves",
+      "role": "ground_detail",
+      "pass": 5,
+      "admit": "CONDITIONAL",
+      "note": "BROADLEAF litter. Only coherent underneath broadleaf trees, so it is gated on the same Pass 4 decision as hill_tree. Under a pure conifer canopy the correct litter is needles, which the inventory does not have."
+    },
+    {
+      "id": "dead_leaves_flat",
+      "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat",
+      "role": "ground_detail",
+      "pass": 5,
+      "admit": "CONDITIONAL",
+      "note": "Same broadleaf gating as dead_leaves."
+    }
+  ],
+  "surface_rulings": [
+    {
+      "id": "scree_surface",
+      "decision": "Rock026",
+      "decided": "2026-08-03",
+      "role": "Rock layer sub-surface (scree / talus), Pass 2",
+      "criteria": "coherence with Rock051 at the talus boundary; tiling at ground AND 2 km; displacement quality, since scree is where displacement reads most",
+      "evidence": "_verify/20260803_scree_candidates.png",
+      "rejected": {
+        "id": "Rock063",
+        "disqualifier": "CONTENT, not statistics: it is MOSS-COVERED VEGETATED BEDROCK, bright green, not fractured stone. Scree is by definition unvegetated — talus is actively moving, which is exactly why vegetation cannot establish on it. A mossy scree field is a geological error.",
+        "why_the_numbers_said_otherwise": "Every numeric coherence metric FAVOURED Rock063: RGB distance from Rock051 0.197 vs Rock026's 0.338, and luminance ratio 0.91x vs 1.45x. Those metrics cannot distinguish 'similar brown rock' from 'green moss at similar luminance' — the low blue channel (0.192) that reads as warm-rust in numbers is chlorophyll. The disqualifier was found by LOOKING at the contact sheet, and by nothing else.",
+        "secondary": "Also 4096x2048, a 2:1 aspect that the builder's single scalar UV divisor would stretch 2:1."
+      },
+      "winner_weaknesses_recorded_not_hidden": [
+        "Displacement detail is WEAK: laplacian std 0.00200 against Rock051's 0.00623 (3.1x less), and its range is compressed to 0.242..0.909 rather than full. This is the criterion that matters most for scree.",
+        "Low-frequency energy is 0.1364, 2.07x Rock051's 0.0659 — the most visible-tiling candidate of the three at the 2 km verification scale. The macro-variation layer (Pass 2c) is what must break it up, and this is the surface that will test it.",
+        "Luminance is 1.45x Rock051. Judged ACCEPTABLE rather than ignored: fresh rockfall exposes unweathered interior with no lichen, so scree genuinely IS lighter than the weathered cliff above it. This one is physically right, not merely tolerated."
+      ],
+      "mitigation_already_in_the_design": "R2's PASS 2 UPGRADE requires the HeightLerp transition contrast to be PER LAYER PAIR, derived from each surface's measured displacement range. Rock026's weak, compressed height map is exactly the case that requirement exists for; one global contrast constant would render this pair nearly unblended.",
+      "honest_verdict": "Rock026 is the better of two, not a good scree surface. It is the only candidate of the right MATERIAL CLASS. A dedicated scree/talus scan would beat it and is a BACKLOG intake item."
+    }
+  ],
+  "excluded": [
+    {
+      "group": "Rock063 — rejected as the scree surface",
+      "reason": "Moss-covered vegetated bedrock, not fractured stone. See surface_rulings.scree_surface. Every numeric metric favoured it; the contact sheet disqualified it in one look.",
+      "disposition": "Not imported. Genuinely useful LATER for wet shaded bedrock near drainage, where moss is correct — that is a different role, and it would need its 2:1 aspect handled."
+    },
+    {
+      "group": "DragonCave — all rock and stone meshes",
+      "reason": "MEASURED below the region's quality tier and NOT MARGINALLY. Median 14.5 tri/m2 for SM_LargeRock* (n=7) and 21.9 for SM_CaveRock* (n=4), against 299.5 for the KiteDemo rock reference group (n=12). The ranges do not overlap at all: the KiteDemo minimum is 105.8 and the DragonCave maximum is 23.9, so no DragonCave rock is as dense as the sparsest KiteDemo rock. This is an exclusion by measurement, not by taste.",
+      "instrument": "scripts/palette_evidence.py --compare",
+      "disposition": "Keep for cave/dungeon interiors, where the lighting is close and the silhouette carries the read. Catalogue only; not alpine inventory."
+    },
+    {
+      "group": "DragonCave — Stoneworks, Bridge, Treasure, Skeleton, Dragon props",
+      "reason": "Built architecture and hero fantasy props. Nothing in the alpine region's brief calls for them, and POI placement is blocked on the world-structure ruling in any case.",
+      "disposition": "POI inventory for a future region."
+    },
+    {
+      "group": "Atlantis_Ruins — entire pack",
+      "reason": "WRONG BIOME. Submerged classical ruins, coral and seaweed. The brief pre-ruled it likely wrong-biome and nothing in the measurement contradicts that: SM_Coral_*, SM_Seaweed_* are marine, and the rock family is dressed to match them.",
+      "disposition": "Catalogue as POI inventory for a coastal or underwater region. Excluded here with no per-asset review, per the brief's 'exclude unless a specific piece passes coherence'."
+    },
+    {
+      "group": "KiteDemo — /LevelContent/**",
+      "reason": "Showcase scaffolding, not world content: SM_1Meter_01 is a measuring reference, SM_AssetPlatform_02 and SM_CycRoom_01 are a turntable and a cyclorama, SM_Arrows is a gizmo, Skybox is a demo backdrop that would fight the Pass 6 Sky Atmosphere.",
+      "disposition": "Never alpine inventory. SM_1Meter_01 is genuinely useful as a scale reference when eyeballing an import; that is a tool, not a placement."
+    },
+    {
+      "group": "KiteDemo — LargeVolcanicRock_002 / _003 / _004",
+      "reason": "Held out pending the volcanic_rock_01 biome render. Admitting four near-identical siblings before judging one of them would multiply a possible mistake by four.",
+      "disposition": "Promote all three the moment volcanic_rock_01 passes; drop all three if it fails."
+    }
+  ]
+}

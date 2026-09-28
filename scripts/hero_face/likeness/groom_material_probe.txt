@@ -1,0 +1,85 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. THE MATERIAL SLOTS on both groom assets.
+#
+# UE draws hair strands ONLY through a material whose shading model is Hair and
+# which is compiled with bUsedWithHairStrands. A groom whose slot is empty or
+# holds a default material is present, bound, correctly bounded -- and
+# invisible, with no error anywhere.
+#
+# THE EVIDENCE ALREADY POINTS HERE. On the UNBOUND probe actor there is no
+# component-level override_materials at all, and the procedural groom still
+# DREW (crown luma 34.60). So whatever makes it visible is carried by the ASSET,
+# not by the component. That is the slot.
+#
+# It also explains a thing that looked like success earlier: the colour payload
+# wrote MI_AlpineHero_CustomHair into the COMPONENT's override_materials and
+# read it back happily. A component override on a groom whose own slot is
+# unusable can still leave nothing to shade.
+
+PAIRS = [
+    ("DiffLocks (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_v1"),
+    ("DiffLocks surf",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_surf"),
+    ("procedural (draws)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4"),
+    ("vendor Hair_M_SideSweptFringe",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Hair_M_SideSweptFringe"),
+]
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    for _label, _p in PAIRS:
+        _row = {}
+        _g = _u.EditorAssetLibrary.load_asset(_p)
+        if _g is None:
+            _out["grooms"][_label] = {"error": "could not load"}
+            continue
+        _found = None
+        for _n in ("hair_groups_materials", "hair_materials", "materials"):
+            try:
+                _arr = _g.get_editor_property(_n)
+                _found = _n
+                _slots = []
+                for _s in _arr:
+                    _e = {}
+                    for _f in ("slot_name", "material"):
+                        try:
+                            _v = _s.get_editor_property(_f)
+                            _e[_f] = (None if _v is None else
+                                      (_v.get_path_name()
+                                       if hasattr(_v, "get_path_name")
+                                       else str(_v)))
+                        except Exception as _ex:
+                            _e[_f] = "RAISED: " + str(_ex)[:60]
+                    _slots.append(_e)
+                _row["property"] = _n
+                _row["slots"] = _slots
+                break
+            except Exception:
+                continue
+        if _found is None:
+            _row["property"] = None
+            _row["available"] = [x for x in dir(_g)
+                                 if "material" in x.lower()][:20]
+        # what each GROUP says its material slot is
+        try:
+            _gi = _g.get_editor_property("hair_groups_rendering")
+            _mats = []
+            for _s in _gi:
+                try:
+                    _mats.append(str(_s.get_editor_property("material_slot_name")))
+                except Exception as _ex:
+                    _mats.append("RAISED: " + str(_ex)[:50])
+            _row["rendering_slot_names"] = _mats
+        except Exception as _ex:
+            _row["rendering_slot_names"] = "RAISED: " + str(_ex)[:60]
+        _out["grooms"][_label] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

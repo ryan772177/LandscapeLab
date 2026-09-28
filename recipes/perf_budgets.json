@@ -1,0 +1,154 @@
+{
+ "schema_version": "1.0-perf",
+ "_what": "PERFORMANCE LAW. 8K fidelity dies silently, one asset at a time, without a verifier. Same pattern as the city verifier: the recipe DECLARES, the flythrough MEASURES, the suite ENFORCES.",
+ "_order_is_deliberate": "MEASURED FIRST, THEN DECLARED. Every budget below started as null and was filled from a baseline capture of the current world. A budget invented before a measurement is a bar chosen to pass the number it first saw -- non-negotiable 2 -- and this project already has one of those on record (max_orphan_building_fraction, set at 0.05 against a measured 3.6%).",
+ "level_path": "/Game/Alpine8K",
+ "target": {
+  "resolution": [
+   2560,
+   1440
+  ],
+  "_resolution": "the operator's display is 2560x1600 at 150% scaling. 1440p is the honest target for this machine.",
+  "fallback_resolution": [
+   1920,
+   1080
+  ],
+  "_fallback": "stated so a budget breach has a defined retreat rather than an argument",
+  "frame_budget_ms": 16.6,
+  "_frame_budget": "RULED 2026-09-10: 16.6 ms, enforced on FrameTime p90 in the STANDALONE class (where FrameTime is a real cost signal, not the editor clamp)."
+ },
+ "_MEASUREMENT_CLASS_AND_IT_BINDS_EVERY_NUMBER_HERE": "STANDALONE -game PROCESS, RULED 2026-09-10. The prior class (editor viewport) is REJECTED for budgets: UEditorEngine::GetMaxTickRate clamps the editor to the rate it is already running at (EditorEngine.cpp:2523-2566), FrameTime pins near 16.67 ms, and E3 measured the editor's GameThreadTime tracking that clamp (13.9-14.15 ms at all four zones) while the standalone game thread reads ~3.9 ms -- the editor game-thread figure measured the HARNESS, not the content. check_perf REFUSES an artefact that does not declare the standalone class. The editor viewport remains a fine instrument for RELATIVE work (same-session A/B); it may not source a budget.",
+ "spline": {
+  "_what": "A FIXED route, so numbers are comparable across sessions. Stations are DERIVED, not chosen by eye -- regenerating them gives the same route.",
+  "_derivation": "plaza from city/alpine_basin_town_plan.json site_centre_cm; main_street is the street row best aligned with the peak bearing at ~2.5x plaza radius; treeline at 1.25x the town extent radius; vista at 2.6x extent on the opposite side, looking back over the town to the peak. Peak found as the argmax of terrain/alpine_8k.png at world (100800, 208100), 3195 m from the plaza on bearing -12.8 deg.  AMENDED 2026-09-05: treeline and vista are NO LONGER bearing-derived. A bearing tells you where a thing is, not whether anything is in the way, and occlusion had never been traced on this route -- both stations framed something other than what they were named for. They are now derived by MEASURED framing (scripts/bench_station_derive.py): depth-band percentages, canopy inside the species' pixel band, and ridge columns, judged against a declared requirement. plaza and main_street are UNCHANGED and remain bearing-derived; main_street's own defect (a camera that cannot see out, carrying the lowest GPU budget of the four) is still OPEN and unexplained.",
+  "_LIMIT_STATED_PLAINLY": "These are FIXED STATIONS sampled along the route, not a moving camera. They measure STEADY-STATE cost per zone. They do NOT measure streaming transients, World Partition pop-in, or shader-compile hitches on first traversal -- a moving-camera variant would, and is the natural extension. Reporting these as 'the flythrough cost' without that sentence would overstate what was measured.",
+  "eye_height_cm": 175.0,
+  "_eye_height": "ground is TRACED per station in-editor, never taken from the heightmap. This project shipped a render/collide divergence of p90 30.98 m once; the heightmap is not the collidable world.",
+  "stations": [
+   {
+    "zone": "plaza",
+    "xy_cm": [
+     -210800.0,
+     278800.0
+    ],
+    "yaw_deg": -12.8,
+    "pitch_deg": -2.0,
+    "_what": "town centre, buildings all round, the densest actor concentration in the world"
+   },
+   {
+    "zone": "main_street",
+    "xy_cm": [
+     -204847.3,
+     278048.0
+    ],
+    "yaw_deg": -12.9,
+    "pitch_deg": -2.0,
+    "_what": "a street row ~60 m out, aligned with the peak bearing -- the corridor view a player walks"
+   },
+   {
+    "zone": "treeline",
+    "xy_cm": [
+     -190000.0,
+     100000.0
+    ],
+    "yaw_deg": 105.0,
+    "pitch_deg": -2.0,
+    "_what": "at the treeline (ground 632.8 m, the top of the conifer placement band) looking across continuous forest -- the shape band, canopy from 300 m to 3 km",
+    "_basis_invalidated_CLEARED": "Flag lifted 2026-09-10: E3's standalone measurement was taken AT THIS re-derived camera (BugItGo -190000 100000, yaw 105) and the 2026-09-10 budgets are ratified against it. The 2026-09-05 -> 2026-09-10 interval, during which check_perf returned NO VERDICT here, worked exactly as designed.",
+    "_superseded": {
+     "xy_cm": [
+      -153506.0,
+      265800.0
+     ],
+     "yaw_deg": -12.8,
+     "pitch_deg": -2.0,
+     "_what": "588 m from the plaza, just outside the town extent, in full-density forest"
+    },
+    "_why_superseded": "the first render ever taken there showed a near-vertical rock face filling ~85% of frame (_verify/20260905_stations/STATIONS_READ.md); measured independently at 90.56% of frame terrain within 100 m, 0.0% sky, 0.00% canopy in the 6-40 px shape band",
+    "_derivation_evidence": "_verify/bench/2026-09-05/bench_stations_derived.json; tool scripts/bench_station_derive.py; recipe R-BENCHSTATION"
+   },
+   {
+    "zone": "vista",
+    "xy_cm": [
+     -216400.0,
+     63600.0
+    ],
+    "yaw_deg": 60.0,
+    "pitch_deg": -4.0,
+    "_what": "elevated at 763.8 m, above the conifer band -- the long-range case: the 1-3 km band and a ridge silhouette against sky",
+    "_basis_invalidated_CLEARED": "Flag lifted 2026-09-10: E3's standalone measurement was taken AT THIS re-derived camera (BugItGo -216400 63600, yaw 60) and the 2026-09-10 budgets are ratified against it.",
+    "_superseded": {
+     "xy_cm": [
+      -329971.0,
+      305839.0
+     ],
+     "yaw_deg": -12.8,
+     "pitch_deg": -4.0,
+     "_what": "1222 m out on the far side, looking back over the town to the peak -- the long-range readability case"
+    },
+    "_why_superseded": "showed neither the town nor the peak it is named for; measured independently at 84.2% of frame within 100 m, 0.05% beyond 1 km, ridge in 0 of 240 columns",
+    "_derivation_evidence": "_verify/bench/2026-09-05/bench_stations_derived.json; tool scripts/bench_station_derive.py; recipe R-BENCHSTATION"
+   }
+  ],
+  "fov_horizontal_deg": 90.0,
+  "_fov_horizontal_deg": "RULED 2026-09-05. SET on the viewport and READ BACK at every station; perf_flythrough REFUSES a station whose read-back disagrees by more than 0.05 deg, and refuses to run at all if this key is absent. WHY IT HAD TO BE DECLARED: until now nothing in this path set or recorded an FOV, so every figure on the board -- including the RATIFIED budgets -- was captured at whatever the viewport happened to be. FOV is the parameter that most directly decides how much geometry is in frame, so a GPUTime p90 without one is not a reproducible measurement. 90 is UE's default editor horizontal FOV and is therefore the most likely value the 2026-08-29 baseline was taken at -- but that is an inference, not a record, and the pre-2026-09-05 baseline remains of unknown FOV.",
+  "frame_resolution": [
+   2560,
+   1440
+  ],
+  "_frame_resolution": "For STATION RENDERS via scripts/shoot.py (HighResShot), which CAN be given an explicit resolution. This is the ratified target resolution from `target.resolution`. It is NOT the resolution of the perf capture -- see viewport_size_policy.",
+  "viewport_size_policy": "DECLARED AND READ BACK (standalone class, 2026-09-10)",
+  "_viewport_size_policy": "The STANDALONE class declares -ResX/-ResY and reads the resolution back from CsvProfiler metadata (perf_standalone: requested 3840x2160, res_matches_request true per zone), so the budget's resolution IS declared and verified. HISTORY, retired with the editor class 2026-09-10 (audit finding: this block still asserted the editor class inside the file that rejects it): under the EDITOR class the resolution could only be observed, never imposed -- the viewport was the editor window, and declaring a resolution the toolchain cannot impose is the `Tiling`-scalar defect (a parameter that exists and is never written). That lesson stands; the class it applied to does not source budgets any more."
+ },
+ "budgets": {
+  "_status": "RE-RATIFIED BY RYAN 2026-09-10, from E3's STANDALONE 4K measurement (_verify/perf/standalone_2026-09-07/perf_standalone.json; 2,670-3,737 frames per station at the CURRENT re-derived cameras). The 2026-08-30 editor-derived budgets are REJECTED -- see RECIPES R-PERFBUDGET REJECTED and _MEASUREMENT_CLASS above. These are law; check_perf enforces them and refuses editor-sourced artefacts.",
+  "_method": "GPU budget = standalone 4K p90 x 1.2, ROUNDED UP to 0.5 ms per zone (8.334->10.5, 5.945->7.5, 5.578->7.0, 6.988->8.5). Game thread: flat 6.0 ms all zones (standalone p90 runs 3.85-4.05; the per-zone editor figures measured the harness). Frame: 16.6 ms on FrameTime p90. Plus the 10% tolerance in `gates`.",
+  "_HISTORY_2026_08_30": "The prior ratification (GPU 12.0/8.0/10.0/12.5, Game 12.0/13.0/13.5/13.0, editor class, 1.35x/1.25x allowances) and its finding 'the game thread is the binding thread at all four zones' are RETIRED WITH THE CLASS: the editor game thread tracked the 60 Hz clamp (13.9-14.15 everywhere), so the binding-thread finding was an instrument artefact. In the standalone class the GPU binds at every zone. The old numbers stay quoted here because R13-class calibration history must remain findable.",
+  "per_zone_ms": {
+   "_metric": "GPUTime p90, milliseconds, STANDALONE 4K class",
+   "plaza": 10.5,
+   "main_street": 7.5,
+   "treeline": 7.0,
+   "vista": 8.5
+  },
+  "per_zone_game_ms": {
+   "_metric": "GameThreadTime p90, milliseconds, STANDALONE class -- flat by ruling; the game thread is NOT content-driven at these stations (spread 5.2%)",
+   "plaza": 6.0,
+   "main_street": 6.0,
+   "treeline": 6.0,
+   "vista": 6.0
+  },
+  "nanite_triangles": null,
+  "texture_memory_mb": null,
+  "draw_calls": null,
+  "_WHY_THOSE_THREE_ARE_STILL_NULL": "NOT MEASURED, and a number invented for them would be exactly the untested bar this recipe's _order_is_deliberate note warns against. The CSV profiler run captures FrameTime, GameThreadTime, RenderThreadTime, GPUTime and RHIThreadTime and nothing else. Getting the other three needs additional CSV categories (`CsvCategory <name> enable` -- and note the ARGUMENT IS THE WORD 'enable', because `CsvCategory VSM 1` is a SILENT NO-OP that this project already paid for) or a `stat rhi` capture path that does not exist yet. Declared null and unmeasured rather than guessed."
+ },
+ "asset_rules": {
+  "_what": "The hard asset-side rule the forge must obey. scripts/asset_forge.py REFUSES or decimates to comply -- a budget nothing enforces is a wish.",
+  "_status": "PROPOSED, awaiting GATE E.",
+  "max_tris": {
+   "kit_module": 20000,
+   "_kit_module": "the 15 measured kit modules run 10.1k-19.7k Nanite tris, so 20k is the measured ceiling of what is already accepted, not an invented one",
+   "prop_small": 15000,
+   "hero_prop": 60000,
+   "_hero_prop": "the church is a one-off focal anchor and may carry more than a wall module"
+  },
+  "max_texture_mb": {
+   "kit_module": 64,
+   "_kit_module": "the kit's own per-module texture set runs ~47 MB of .uasset; 64 leaves headroom without licensing a doubling",
+   "prop_small": 24,
+   "hero_prop": 128
+  }
+ },
+ "gates": {
+  "_what": "how check_perf.py decides red",
+  "ratified": true,
+  "_ratified": "RE-RATIFIED BY RYAN 2026-09-10 from the E3 standalone 4K p90 (see budgets._status). The 2026-08-30 editor-class ratification is retired with its class; the standing plaza-Game RED (14.00 vs 12.00, editor artefact 20260905_fov90) is CLOSED AS AN INSTRUMENT ARTEFACT -- the number tracked the editor's 60 Hz clamp, not the content. check_perf refuses editor-sourced artefacts from this date.",
+  "require_measurement_class_standalone": true,
+  "_require_measurement_class": "RULED 2026-09-10: an artefact must declare _measurement_class containing 'STANDALONE' or check_perf refuses it. An editor-class number tracking the tick clamp reported a RED for four days that no content change could have caused or cured.",
+  "tolerance_frac": 0.1,
+  "_tolerance": "a zone is RED when it exceeds its budget by more than this fraction. Run-to-run spread on this machine is real; a zero-tolerance gate would cry wolf and get ignored, which is worse than no gate.",
+  "require_residency": true,
+  "_require_residency": "measure_frame_cost REFUSES (exit 6) when residency is undeclared on a partitioned world. A cost number taken with regions unloaded is a measurement of an emptier world."
+ }
+}

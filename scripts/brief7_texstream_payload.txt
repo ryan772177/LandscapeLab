@@ -1,0 +1,11 @@
+import json as _json, traceback as _tb
+import unreal as _u
+_out={"error":None,"issued":[]}
+try:
+    _sl=_u.SystemLibrary
+    for _c in ["BuildTextureStreaming","r.Streaming.Boost 1"]:
+        _sl.execute_console_command(None,_c); _out["issued"].append(_c)
+    _out["ok"]=True
+except Exception as _e:
+    _out["error"]=str(_e)+" | "+_tb.format_exc()[:200]
+print("__LL__"+_json.dumps(_out,default=str))

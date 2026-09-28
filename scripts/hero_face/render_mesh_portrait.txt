@@ -1,0 +1,128 @@
+# render_mesh_portrait — photograph a built hero mesh, front on.
+#
+# Renders /Game/Hero/Generated/<mesh> rather than the MetaHuman preview
+# actor. The preview actor is TINY in world units -- head extent 0.088, so it
+# sits inside the near clip plane and the capture photographs sky, measured
+# as mean RGB 255/255/255. A built skeletal mesh is at real scale and does
+# not have that problem.
+#
+# The subject is turned to face the sun and the camera placed on the sun
+# side, so the face is lit by the level's own directional light rather than
+# by a lamp whose intensity would be a guess.
+#
+# Per-run filename, always exported, whether or not anything downstream
+# succeeds: a probe that overwrites its own best frame destroys the evidence
+# exactly when it starts working.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+_MESH = r"__MESH__"
+_TAG = "__TAG__"
+_Z = __Z__
+_FOV = __FOV__
+_FRAME = __FRAME__
+_VERIFY = r"C:/Users/Admin/UE5LandscapePipeline/_verify"
+_W = 1024
+_H = 1024
+_PNG = "20260816_hero_portrait_" + _TAG + ".png"
+
+_out = {"error": None, "unreadable": [], "mesh": _MESH, "tag": _TAG,
+        "bounds_origin": None, "bounds_extent": None, "cam": None,
+        "png": None, "mean_rgb": None, "nonwhite_frac": None,
+        "curve_count": None}
+_a = None
+_cap = None
+try:
+    _m = _unreal.EditorAssetLibrary.load_asset(_MESH)
+    if _m is None:
+        raise RuntimeError("mesh did not load: " + _MESH)
+
+    _world = _unreal.EditorLevelLibrary.get_editor_world()
+    _sun = None
+    for _s in _unreal.GameplayStatics.get_all_actors_of_class(
+            _world, _unreal.DirectionalLight):
+        _sun = _s
+        break
+    if _sun is None:
+        raise RuntimeError("no DirectionalLight to light the portrait")
+    _f = _sun.get_actor_forward_vector()
+    _tx, _ty = -float(_f.x), -float(_f.y)
+    _n = _math.hypot(_tx, _ty) or 1.0
+    _tx, _ty = _tx / _n, _ty / _n
+    _yaw = _math.degrees(_math.atan2(_ty, _tx))
+
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _loc = _unreal.Vector(0.0, 0.0, _Z)
+    _a = _els.spawn_actor_from_class(_unreal.SkeletalMeshActor, _loc,
+                                     _unreal.Rotator(0.0, 0.0, _yaw))
+    _sc = _a.get_component_by_class(_unreal.SkeletalMeshComponent)
+    _sc.set_skeletal_mesh_asset(_m)
+
+    _b = _a.get_actor_bounds(False)
+    _o, _e = _b[0], _b[1]
+    _out["bounds_origin"] = [round(float(_o.x), 2), round(float(_o.y), 2),
+                             round(float(_o.z), 2)]
+    _out["bounds_extent"] = [round(float(_e.x), 2), round(float(_e.y), 2),
+                             round(float(_e.z), 2)]
+
+    _h = 2.0 * float(_e.z)
+    _dist = (_h * 0.5) / _math.tan(_math.radians(_FOV * 0.5)) * _FRAME
+    _tgt = _unreal.Vector(float(_o.x), float(_o.y), float(_o.z) + _h * 0.10)
+    _cam = _unreal.Vector(_tgt.x + _tx * _dist, _tgt.y + _ty * _dist, _tgt.z)
+    _out["cam"] = [round(float(_cam.x), 1), round(float(_cam.y), 1),
+                   round(float(_cam.z), 1), round(_dist, 1)]
+
+    _rt = _unreal.RenderingLibrary.create_render_target2d(
+        _world, _W, _H, _unreal.TextureRenderTargetFormat.RTF_RGBA8,
+        _unreal.LinearColor(0.2, 0.2, 0.2, 1.0))
+    _cap = _els.spawn_actor_from_class(_unreal.SceneCapture2D, _cam,
+                                       _unreal.Rotator(0.0, 0.0, _yaw + 180.0))
+    _cc = _cap.get_component_by_class(_unreal.SceneCaptureComponent2D)
+    _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("fov_angle", _FOV)
+    _cc.set_editor_property("capture_source",
+                            _unreal.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("capture_every_frame", False)
+    _cc.set_editor_property("capture_on_movement", False)
+    _cc.capture_scene()
+
+    try:
+        _unreal.RenderingLibrary.export_render_target(_world, _rt, _VERIFY, _PNG)
+        _out["png"] = _VERIFY + "/" + _PNG
+    except Exception as _e2:
+        _out["unreadable"].append("export: " + str(_e2))
+
+    _px = _unreal.RenderingLibrary.read_render_target(_world, _rt, False)
+    if _px is not None:
+        _sr = _sg = _sb = _cnt = 0
+        _nw = 0
+        for _y in range(0, _H, 6):
+            for _x in range(0, _W, 6):
+                _c = _px[_y * _W + _x]
+                _sr += int(_c.r); _sg += int(_c.g); _sb += int(_c.b)
+                _cnt += 1
+                if int(_c.r) < 250 or int(_c.g) < 250 or int(_c.b) < 250:
+                    _nw += 1
+        _out["mean_rgb"] = [round(_sr / _cnt, 1), round(_sg / _cnt, 1),
+                            round(_sb / _cnt, 1)]
+        # A frame that is entirely white contains no subject. Reporting this
+        # explicitly stops "the render succeeded" being said about sky.
+        _out["nonwhite_frac"] = round(_nw / _cnt, 4)
+        try:
+            _ss = _unreal.get_editor_subsystem(
+                _unreal.MetaHumanCharacterEditorSubsystem)
+            _cv = _ss.track_face_landmarks_from_image(_px, _W, _H)
+            _out["curve_count"] = 0 if _cv is None else len(_cv)
+        except Exception as _e2:
+            _out["unreadable"].append("track: " + str(_e2))
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    for _x in (_cap, _a):
+        try:
+            if _x is not None:
+                _unreal.EditorLevelLibrary.destroy_actor(_x)
+        except Exception as _e2:
+            _out["unreadable"].append("destroy: " + str(_e2))
+print("__LL__" + _json.dumps(_out, default=str))

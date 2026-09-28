@@ -1,0 +1,356 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Place a city blockout from a plan file, as ONE StaticMeshActor PER VOLUME.
+#
+# ⛔ THIS HEADER USED TO SAY "as INSTANCES on one actor", DESCRIBING A DESIGN
+# THE BODY OF THIS FILE HAD ALREADY ABANDONED and explains at length in the
+# COMMIT branch. It read as the design while the code did the opposite.
+# Corrected 2026-08-25, non-negotiable 25: a claim worth making in a comment is
+# a claim worth keeping true, and prose inside code rots like a config comment.
+#
+# WHY IT IS ONE ACTOR PER VOLUME, WHICH IS A FALLBACK AND NOT THE DESIGN.
+# The intent was instanced components -- one package for the whole town, the way
+# this project places 219,659 trees. NOT REACHABLE FROM PYTHON IN 5.8: the stub
+# has ZERO occurrences of `add_component_by_class` or `K2_AddComponent`, and
+# `Actor` exposes only component GETTERS, so a component cannot be added to a
+# spawned actor at all. The cost is one external World Partition package per
+# volume, which is why the count is reported rather than left to be discovered
+# in `git status`. The route to the instanced version is a UFUNCTION in
+# LandscapeLabEditor, the same unblock used for R-CREATE and R-GROOMBIND3.
+#
+# EVERY VOLUME IS RE-GROUNDED BY LINE TRACE, and that is the point of doing it
+# in the editor at all. The plan's pad heights come from the HEIGHTMAP, and this
+# project has measured the collidable surface disagreeing with the heightmap by
+# p90 30.98 m -- a defect that sat in the level for three days while every gate
+# that read the heightmap stayed green. The trace is a DIFFERENT REPRESENTATION,
+# so plan-vs-trace drift is real corroboration rather than one source checked
+# twice.
+#
+# A TRACE THAT MISSES IS NOT A ZERO. Misses are counted and reported, and the
+# instance keeps its planned height rather than silently collapsing to the
+# actor origin.
+#
+# IDEMPOTENT BY DESTROYING THE PRIOR ACTOR FIRST, identified by a TAG rather
+# than by label -- labels collide, and this project has two landscapes whose
+# proxies carried identical ones (standing rule 8).
+
+PLAN = r"__PLAN__"
+COMMIT = __COMMIT__
+TAG = "LandscapeLab.City"
+
+_out = {"ok": False, "error": None, "commit": bool(COMMIT)}
+try:
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+    _out["city"] = _p["city_id"]
+    _out["planned"] = _p["counts"]
+
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _els = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _world = _u.EditorLevelLibrary.get_editor_world()
+
+    # ---- remove any prior placement, by TAG -----------------------------
+    _prior = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            if TAG in [str(_t) for _t in _a.tags]:
+                _prior.append(_a.get_actor_label())
+        except Exception:
+            continue
+    _out["prior_actors"] = _prior
+    if COMMIT:
+        for _a in list(_eas.get_all_level_actors()):
+            try:
+                if TAG in [str(_t) for _t in _a.tags]:
+                    _eas.destroy_actor(_a)
+            except Exception:
+                pass
+
+    # ---- the meshes, loaded and asserted --------------------------------
+    _mesh = {}
+    for _k, _path in (("building", "/Engine/BasicShapes/Cube.Cube"),
+                      ("tower", "/Engine/BasicShapes/Cylinder.Cylinder"),
+                      ("street", "/Engine/BasicShapes/Cube.Cube"),
+                      ("roof", "/Engine/BasicShapes/Cube.Cube"),
+                      ("spire", "/Engine/BasicShapes/Cone.Cone")):
+        _m = _u.EditorAssetLibrary.load_asset(_path)
+        if _m is None:
+            raise RuntimeError("mesh did not load: " + _path)
+        _mesh[_k] = _m
+    # THE PIVOT IS ASSERTED, NOT ASSUMED. A pivot read wrongly is how this
+    # project buried 50% of a rock species by construction. The engine Cube is
+    # 100 cm with a CENTRED pivot; if that is not what the bounds say, refuse.
+    _b = _mesh["building"].get_bounds().box_extent
+    _out["cube_extent_cm"] = [round(_b.x, 3), round(_b.y, 3), round(_b.z, 3)]
+    if abs(_b.x - 50.0) > 1.0 or abs(_b.z - 50.0) > 1.0:
+        raise RuntimeError("engine Cube extent is %s, not the expected 50 cm "
+                           "half-extent -- every scale below would be wrong"
+                           % (_out["cube_extent_cm"],))
+
+    # THE CONE'S PIVOT IS MEASURED, NOT ASSUMED. The spire has to sit ON the
+    # tower, so where the cone's origin is relative to its base decides whether
+    # it perches correctly or is driven halfway down the tower. The Cube's pivot
+    # is centred; that is NOT evidence about the Cone's, and guessing a pivot is
+    # how this project buried 50% of a rock species.
+    _cb = _mesh["spire"].get_bounds()
+    _cone_ext_z = float(_cb.box_extent.z)
+    _cone_org_z = float(_cb.origin.z)
+    _out["cone_extent_cm"] = [round(_cb.box_extent.x, 3),
+                              round(_cb.box_extent.y, 3), round(_cone_ext_z, 3)]
+    _out["cone_origin_z_cm"] = round(_cone_org_z, 3)
+    # base offset, in units of the unscaled mesh: how far BELOW the pivot the
+    # cone's lowest point sits.
+    _cone_base_below_pivot = _cone_ext_z - _cone_org_z
+
+    # THE TRACE MUST IGNORE FOLIAGE, and the first run proved why. Tracing
+    # against everything gave plan-vs-trace p50 8.55 cm -- and max 2139 cm.
+    # A 21 m disagreement is not a heightmap defect: Alpine8K carries 219,659
+    # trees, and unit 6 made them QUERY-COLLIDABLE. The trace was landing on
+    # canopy, so a building sited under a spruce would have been placed 21 m in
+    # the air on top of it.
+    #
+    # This is the same instrument `verify_tree_collision.py` needed and for the
+    # opposite reason: it traces foliage deliberately, this must not.
+    #
+    # ⛔ AND IT MUST ALSO IGNORE A PRIOR CITY THAT IS STILL STANDING.
+    # The COMMIT path destroys the previous placement by TAG before it traces,
+    # so it never saw this. THE DRY RUN DOES NOT DESTROY ANYTHING -- that is the
+    # point of a dry run -- so it was tracing onto the ROOFS of the town already
+    # in the level. Measured 2026-08-25 against the standing 763-volume
+    # blockout: plan-vs-trace p50 968.56 cm, min 628.01, max 1318.32.
+    #
+    # THAT NUMBER IS WHY THIS IS WORTH A GUARD RATHER THAN A NOTE. ~9.7 m is
+    # this town's own building height, and a 10 m plan-vs-collision disagreement
+    # is EXACTLY the shape of a defect this project has really had (the
+    # landscape rendering v2 and colliding v1, p90 30.98 m). A wrong reading
+    # that resembles a known real failure is the most believable kind.
+    _ignore = []
+    _prior_ignored = 0
+    for _a in _eas.get_all_level_actors():
+        try:
+            if isinstance(_a, _u.InstancedFoliageActor):
+                _ignore.append(_a)
+            elif TAG in [str(_t) for _t in _a.tags]:
+                _ignore.append(_a)
+                _prior_ignored += 1
+        except Exception:
+            continue
+    _out["foliage_actors_ignored"] = len(_ignore) - _prior_ignored
+    _out["prior_city_actors_ignored"] = _prior_ignored
+
+    def _ground(x, y, z_hint):
+        """Trace down onto the LANDSCAPE. Returns (z, hit)."""
+        _s = _u.Vector(x, y, z_hint + 20000.0)
+        _e = _u.Vector(x, y, z_hint - 20000.0)
+        _h = _u.SystemLibrary.line_trace_single(
+            _world, _s, _e, _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ignore,
+            _u.DrawDebugTrace.NONE, True)
+        if _h:
+            return float(_h.to_tuple()[4].z), True
+        return float(z_hint), False
+
+    if not COMMIT:
+        # DRY RUN: trace a sample and report drift without touching the world.
+        _s = _p["buildings"][::max(1, len(_p["buildings"]) // 40)][:40]
+        _d, _miss = [], 0
+        for _bd in _s:
+            _z, _hit = _ground(_bd["loc_cm"][0], _bd["loc_cm"][1],
+                               _bd["pad_z_cm"])
+            if _hit:
+                _d.append(_z - _bd["pad_z_cm"])
+            else:
+                _miss += 1
+        _out["dry_run_sample"] = len(_s)
+        _out["trace_misses"] = _miss
+        if _d:
+            _d.sort()
+            _out["plan_vs_trace_cm"] = {
+                "n": len(_d),
+                "p50": round(_d[len(_d) // 2], 2),
+                "min": round(_d[0], 2), "max": round(_d[-1], 2),
+                "absmax": round(max(abs(_d[0]), abs(_d[-1])), 2)}
+        _out["ok"] = True
+    else:
+        # ONE ACTOR PER VOLUME, AND THAT IS A FALLBACK, NOT THE DESIGN.
+        #
+        # The intent was one actor carrying instanced components -- 763
+        # instances, one World Partition package, the way this project places
+        # 219,659 trees. IT IS NOT REACHABLE FROM PYTHON IN 5.8: the stub has
+        # ZERO occurrences of `add_component_by_class` or `K2_AddComponent`,
+        # and `Actor` exposes only component GETTERS. So a component cannot be
+        # added to a spawned actor at all, and this is a property of the
+        # reflected surface rather than of the accessor I first guessed
+        # (`register_component`, which also does not exist).
+        #
+        # StaticMeshActor already OWNS its mesh component, so it needs no
+        # component added. The cost is one external package per volume, which
+        # is why the count is reported: a blockout that quietly writes 763
+        # packages into a partitioned world should say so.
+        #
+        # The route to the instanced version is a UFUNCTION in
+        # LandscapeLabEditor, the same unblock used for R-CREATE and
+        # R-GROOMBIND3. Not taken here.
+        # EVERY GROUND HEIGHT IS TRACED BEFORE ANYTHING IS SPAWNED.
+        #
+        # The first commit run traced as it went, and the drift came back with
+        # max 1360 cm even though foliage was already ignored. Cause: buildings
+        # spawn before streets, so a street crossing a building traced onto its
+        # ROOF. The world was changing underneath the instrument that was
+        # measuring it -- a check that consumes the value it is verifying
+        # (non-negotiable 5), in the form of an ordering dependency.
+        #
+        # Pre-tracing removes the dependency entirely rather than patching it
+        # with an ignore list that would have to be kept in step with what has
+        # been spawned so far.
+        _drift = []
+        _counts = {"miss": 0}
+        _made = {"buildings": 0, "streets": 0, "landmark": 0,
+                 "roofs": 0, "spire": 0}
+        _zcache = {}
+
+        def _pretrace(items, zkey):
+            for _it in items:
+                _k = (round(_it["loc_cm"][0], 1), round(_it["loc_cm"][1], 1))
+                if _k in _zcache:
+                    continue
+                _zz, _hh = _ground(_k[0], _k[1], _it[zkey] if zkey != "loc2"
+                                   else _it["loc_cm"][2])
+                _zcache[_k] = (_zz, _hh)
+
+        _pretrace(_p["buildings"], "pad_z_cm")
+        _pretrace(_p["streets"], "loc2")
+        if _p.get("landmark"):
+            _pretrace([_p["landmark"]], "pad_z_cm")
+        # Roofs and the spire share their x,y with the building and the tower
+        # they sit on, so these are cache HITS rather than new traces. Stated
+        # explicitly anyway: if roof positions are ever offset from their
+        # building, this is what stops them silently falling back to plan
+        # heights while the walls under them use traced ones.
+        _pretrace(_p.get("roofs") or [], "pad_z_cm")
+        if _p.get("spire"):
+            _pretrace([_p["spire"]], "pad_z_cm")
+        _out["pretraced_points"] = len(_zcache)
+
+        def _emit(kind, mesh, x, y, pad_z, sx, sy, sz, yaw, centre_z, label,
+                  roll=0.0, pitch=0.0):
+            _z, _hit = _zcache.get((round(x, 1), round(y, 1)),
+                                   (pad_z, False))
+            if not _hit:
+                _counts["miss"] += 1
+                _z = pad_z
+            else:
+                _drift.append(_z - pad_z)
+            # unreal.Rotator is (ROLL, PITCH, YAW) -- roll FIRST. This project
+            # has put a camera at -25 degrees of roll while believing it set
+            # pitch, three separate times. The roof gable NEEDS a real roll of
+            # 45 about its own ridge axis, so this is the first caller here that
+            # uses the argument for its actual purpose rather than passing zero.
+            _a2 = _eas.spawn_actor_from_class(
+                _u.StaticMeshActor, _u.Vector(x, y, _z + centre_z),
+                _u.Rotator(roll, pitch, yaw))
+            _sc = _a2.static_mesh_component
+            _sc.set_editor_property("static_mesh", mesh)
+            _a2.set_actor_scale3d(
+                _u.Vector(sx / 100.0, sy / 100.0, sz / 100.0))
+            _a2.set_actor_label(label)
+            _a2.tags = [TAG, kind]
+            _made[kind] += 1
+
+        for _i, _bd in enumerate(_p["buildings"]):
+            _sx, _sy, _sz = _bd["size_cm"]
+            _emit("buildings", _mesh["building"], _bd["loc_cm"][0],
+                  _bd["loc_cm"][1], _bd["pad_z_cm"], _sx, _sy, _sz,
+                  _bd["yaw_deg"], _sz * 0.5, "City_Bldg_%03d" % _i)
+
+        for _i, _st in enumerate(_p["streets"]):
+            _emit("streets", _mesh["street"], _st["loc_cm"][0],
+                  _st["loc_cm"][1], _st["loc_cm"][2], _st["len_cm"],
+                  _st["width_cm"], 20.0, _st["yaw_deg"], 10.0,
+                  "City_St_%03d" % _i,
+                  # SEAT THE SLAB ON THE GROUND PLANE. A flat box with only a
+                  # yaw touches at its centre and lifts at its ends: measured
+                  # p50 67.9 cm at the corners over all 838 streets, against
+                  # 0.3 cm at the centre the old verifier traced. Absent keys
+                  # default to 0.0, so an older plan still places flat rather
+                  # than failing -- but it will then MEASURE badly, which is
+                  # the right way round.
+                  # ROLL IS NEGATED. The plan stores the GROUND PLANE's slope
+                  # across the slab -- a physical fact, in the plane fit's own
+                  # right-handed sense. UE is left-handed with Z up, so its
+                  # positive Roll tips the opposite way. The conversion belongs
+                  # HERE, at the engine boundary, not in the plan: the plan
+                  # describes the world, the placer speaks to the renderer.
+                  #
+                  # MEASURED, NOT REASONED. All four sign combinations were
+                  # applied to the placed actors and the corner gaps re-traced
+                  # over all 838 streets:
+                  #     p+ r-   p50  10.9   p90  55.9   over 50cm 107   <- this
+                  #     p+ r+   p50  60.0   p90 138.6   over 50cm 484
+                  #     p- r-   p50  85.6   p90 211.0   over 50cm 597
+                  #     p- r+   p50 130.6   p90 258.3   over 50cm 757
+                  # flat, for reference: p50 67.9, over 50cm 558.
+                  -_st.get("roll_deg", 0.0), _st.get("pitch_deg", 0.0))
+
+        # ---- roofs: one rolled Cube per building ------------------------
+        # The plan carries the finished geometry -- ridge length, the
+        # sqrt(2)-reduced side, the eaves height. NOTHING IS RE-DERIVED HERE.
+        # `centre_z` is the wall height, which puts the diamond's waist exactly
+        # at the top of the wall so its lower half is buried and its upper half
+        # is the roof.
+        for _i, _rf in enumerate(_p.get("roofs") or []):
+            _rsx, _rsy, _rsz = _rf["size_cm"]
+            _emit("roofs", _mesh["roof"], _rf["loc_cm"][0], _rf["loc_cm"][1],
+                  _rf["pad_z_cm"], _rsx, _rsy, _rsz, _rf["yaw_deg"],
+                  _rf["eaves_z_cm"] - _rf["pad_z_cm"],
+                  "City_Roof_%03d" % _i, _rf.get("roll_deg", 45.0))
+
+        _lm = _p.get("landmark")
+        if _lm:
+            _sx, _sy, _sz = _lm["size_cm"]
+            _emit("landmark", _mesh["tower"], _lm["loc_cm"][0],
+                  _lm["loc_cm"][1], _lm["pad_z_cm"], _sx, _sy, _sz,
+                  _lm["yaw_deg"], _sz * 0.5, "City_Landmark")
+
+        # ---- the spire, sitting ON the tower ----------------------------
+        # centre_z = tower height + however far the cone's base sits below its
+        # own pivot ONCE SCALED. The scale factor is (spire height / 100), so
+        # the measured offset scales with it.
+        _sp = _p.get("spire")
+        if _sp:
+            _ssx, _ssy, _ssz = _sp["size_cm"]
+            _lift = (_sp["base_z_cm"] - _sp["pad_z_cm"]) \
+                + _cone_base_below_pivot * (_ssz / 100.0)
+            _emit("spire", _mesh["spire"], _sp["loc_cm"][0], _sp["loc_cm"][1],
+                  _sp["pad_z_cm"], _ssx, _ssy, _ssz, _sp["yaw_deg"],
+                  _lift, "City_Spire")
+            _out["spire_lift_cm"] = round(_lift, 1)
+
+        # COUNTED FROM THE WORLD, by re-enumerating the tag, not from _made.
+        _tagged = 0
+        for _a3 in _eas.get_all_level_actors():
+            try:
+                if TAG in [str(_t) for _t in _a3.tags]:
+                    _tagged += 1
+            except Exception:
+                pass
+        _out["placed"] = dict(_made)
+        _out["counted_in_world_by_tag"] = _tagged
+        _out["trace_misses"] = _counts["miss"]
+        if _drift:
+            _drift.sort()
+            _out["plan_vs_trace_cm"] = {
+                "n": len(_drift),
+                "p50": round(_drift[len(_drift) // 2], 2),
+                "p90": round(_drift[int(len(_drift) * 0.9)], 2),
+                "min": round(_drift[0], 2), "max": round(_drift[-1], 2)}
+        # COUNTED IN THE WORLD, not taken from the plan.
+        _out["ok"] = (_out["placed"]["buildings"] == _p["counts"]["buildings"]
+                      and _out["placed"]["streets"] == _p["counts"]["streets"])
+        if not _out["ok"]:
+            _out["error"] = "placed counts do not match the plan"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,6 @@
+import json as _json
+import unreal as _u
+_sl=_u.SystemLibrary
+_sl.execute_console_command(None,"r.Nanite.Tessellation 0")
+_v=_sl.get_console_variable_float_value("r.Nanite.Tessellation")
+print("__LL__"+_json.dumps({"r.Nanite.Tessellation":_v}))

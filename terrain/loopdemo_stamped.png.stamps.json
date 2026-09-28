@@ -1,0 +1,409 @@
+{
+  "base": "terrain/coast_bench_base.png",
+  "base_sha256": "ae0b64a30e3519e26efab5d9674148de15cc5da7fdaf9ab292a002aa74fc38a7",
+  "biome_id": "loopdemo",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 31907.0,
+    "pre_clamp_min_units": 0.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/loopdemo_stamped.png",
+  "output_sha256": "44023e4684b53bac83463dce7ce4a259af7b92b56191aad813d7444bfe994fb0",
+  "pixels_changed": 525801,
+  "placements": [
+    {
+      "amplitude_m": 360.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        104,
+        656
+      ],
+      "bbox_rows": [
+        204,
+        756
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        479.5,
+        379.5
+      ],
+      "centre_world_m": [
+        -500.0,
+        -100.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.002325,
+      "delta_max_m": 353.8447881094072,
+      "delta_max_units": 11594.609094375,
+      "delta_mean_abs_m": 59.0824751745693,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "coastal_cliffs",
+      "mask_pixels": 170339,
+      "moved_pixels": 166336,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2200.0,
+      "size_px": 550.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 1024,
+      "stamp_sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c"
+    },
+    {
+      "amplitude_m": 850.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        310,
+        950
+      ],
+      "bbox_rows": [
+        0,
+        462
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        142.0,
+        629.5
+      ],
+      "centre_world_m": [
+        500.0,
+        -1450.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.009163,
+      "delta_max_m": 803.1012374938364,
+      "delta_max_units": 26315.619799579283,
+      "delta_mean_abs_m": 131.20521224493527,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "north_peaks",
+      "mask_pixels": 145597,
+      "moved_pixels": 144185,
+      "opacity": 1.0,
+      "rotation_deg": 10.0,
+      "size_m": 2200.0,
+      "size_px": 550.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 1024,
+      "stamp_sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183"
+    },
+    {
+      "amplitude_m": 620.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        639,
+        1009
+      ],
+      "bbox_rows": [
+        0,
+        459
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        217.0,
+        879.5
+      ],
+      "centre_world_m": [
+        1500.0,
+        -1150.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.028617,
+      "delta_max_m": 473.07468952464205,
+      "delta_max_units": 15501.47488899871,
+      "delta_mean_abs_m": 79.46317872709088,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "northeast_peaks",
+      "mask_pixels": 74017,
+      "moved_pixels": 73723,
+      "opacity": 1.0,
+      "rotation_deg": 340.0,
+      "size_m": 1500.0,
+      "size_px": 375.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252"
+    },
+    {
+      "amplitude_m": 380.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        642,
+        1009
+      ],
+      "bbox_rows": [
+        367,
+        818
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        592.0,
+        867.0
+      ],
+      "centre_world_m": [
+        1450.0,
+        350.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.110236,
+      "delta_max_m": 255.70909493885242,
+      "delta_max_units": 8378.947768408847,
+      "delta_mean_abs_m": 59.384327822842614,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "east_highland",
+      "mask_pixels": 103608,
+      "moved_pixels": 103051,
+      "opacity": 1.0,
+      "rotation_deg": 90.0,
+      "size_m": 1800.0,
+      "size_px": 450.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "828f6ef35cb6aac16dc10f4b71f6d739056c1d838b9009d13c128e685157b41a"
+    },
+    {
+      "amplitude_m": 300.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        417,
+        743
+      ],
+      "bbox_rows": [
+        754,
+        1009
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        917.0,
+        579.5
+      ],
+      "centre_world_m": [
+        300.0,
+        1650.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.181892,
+      "delta_max_m": 190.6353644717717,
+      "delta_max_units": 6246.644305328779,
+      "delta_mean_abs_m": 46.734678778186165,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "south_vantage",
+      "mask_pixels": 54476,
+      "moved_pixels": 53891,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1300.0,
+      "size_px": 325.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2"
+    },
+    {
+      "amplitude_m": 400.0,
+      "anchor_m": 8.0,
+      "bbox_cols": [
+        0,
+        506
+      ],
+      "bbox_rows": [
+        104,
+        906
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        504.5,
+        104.5
+      ],
+      "centre_world_m": [
+        -1600.0,
+        0.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 2.354918235180202,
+      "delta_min_m": -84.19320057445861,
+      "delta_min_units": -2758.800699823573,
+      "edge_clipped": true,
+      "falloff": 0.55,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "ocean_shelf",
+      "mask_pixels": 248613,
+      "moved_pixels": 38446,
+      "opacity": 0.95,
+      "rotation_deg": 0.0,
+      "size_m": 3200.0,
+      "size_px": 800.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 1024,
+      "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4"
+    },
+    {
+      "amplitude_m": 27.2,
+      "anchor_m": 25.0,
+      "bbox_cols": [
+        279,
+        606
+      ],
+      "bbox_rows": [
+        404,
+        731
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        567.0,
+        442.0
+      ],
+      "centre_world_m": [
+        -250.0,
+        250.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 52.858113636398876,
+      "delta_min_m": -282.6316691549255,
+      "delta_min_units": -9261.13321903402,
+      "edge_clipped": false,
+      "falloff": 0.65,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "harbor_cove",
+      "mask_pixels": 68171,
+      "moved_pixels": 67617,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1300.0,
+      "size_px": 325.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d"
+    }
+  ],
+  "recipe": "_verify/20260831_brief_loop/loopdemo.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "coastal_cliffs": {
+      "filename": "HM_Seaside_Cliffs_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+      "tag": "cliffs"
+    },
+    "east_highland": {
+      "filename": "HM_Highlands_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Highlands_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "828f6ef35cb6aac16dc10f4b71f6d739056c1d838b9009d13c128e685157b41a",
+      "tag": "highland"
+    },
+    "harbor_cove": {
+      "filename": "HM_Meadows_04_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_04_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+      "tag": "meadows"
+    },
+    "north_peaks": {
+      "filename": "HM_Rough_Cliffs_18_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rough_Cliffs_18_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+      "tag": "cliffs"
+    },
+    "northeast_peaks": {
+      "filename": "HM_Pride_Rocks_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+      "tag": "outcrop"
+    },
+    "ocean_shelf": {
+      "filename": "HM_Meadows_28_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_28_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+      "tag": "meadows"
+    },
+    "south_vantage": {
+      "filename": "HM_Pride_Rocks_11_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_11_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+      "tag": "outcrop"
+    }
+  },
+  "stamps_block_sha256": "ec19d4e455f285cb0c3f23ed9284a34adf85d5128ee702fec24792468812fd40",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-01T05:58:24Z",
+  "z_scale_m": 2000.0
+}

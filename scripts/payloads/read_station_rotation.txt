@@ -1,0 +1,37 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. Confirms the Bench_near_ground station actor still carries its
+# authored transform after a dolly rebuild with a YAW override.
+#
+# WHY. The override exists so a re-heading needs NO level edit: the sequence
+# possesses the camera and keys Rotation.X/Y/Z itself, so its keys drive the
+# actor during playback while the actor on disk is untouched. That is a CLAIM,
+# and rule 12 says a value that is not read back from the engine is prose.
+# Bench_Dolly, the station shots and the perf stations all read this actor's
+# transform, so if the claim were wrong it would corrupt all three silently.
+
+_out = {"ok": False, "error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _cam = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() == "Bench_near_ground":
+                _cam = _a
+                break
+        except Exception:
+            pass
+    if _cam is None:
+        raise RuntimeError("no actor labelled Bench_near_ground")
+    _l = _cam.get_actor_location()
+    _r = _cam.get_actor_rotation()
+    _out["location_cm"] = [round(_l.x, 3), round(_l.y, 3), round(_l.z, 3)]
+    _out["rotation_pitch_yaw_roll"] = [round(_r.pitch, 4), round(_r.yaw, 4),
+                                       round(_r.roll, 4)]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,101 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# SWAP A FACIAL GROOM ON A PLACED ACTOR, DIRECTLY. No assemble.
+#
+# The wardrobe route costs ~12 minutes (select + assemble). A vendor groom ships
+# its binding PRE-BUILT, so for a groom that has ever been on this character the
+# swap is a component assignment and a read-back -- seconds. R-GROOMBIND3's
+# two-tier cost model, used on the cheap tier.
+#
+# ACTION=list enumerates what is available before anything is chosen, because
+# "names come from the asset, never convention" has cost this project four
+# separate mis-namings.
+#
+# The Hair slot is DELIBERATELY REFUSED here: it carries the custom DiffLocks
+# groom and its own binding, and a payload that can overwrite it by a typo is a
+# payload that will.
+
+ACTION  = "__ACTION__"        # list | apply
+SUBJECT = "__SUBJECT__"
+SLOT    = "__SLOT__"          # Beard | Mustache | Eyebrows
+GROOM   = "__GROOM__"
+BINDING = "__BINDING__"
+ROOT    = "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms"
+
+_out = {"ok": False, "error": None, "action": ACTION, "slot": SLOT}
+try:
+    if SLOT == "Hair":
+        raise RuntimeError("REFUSE: the Hair slot carries the custom groom; "
+                           "use fresh_bind_payload for it.")
+
+    if ACTION == "list":
+        _all = _u.EditorAssetLibrary.list_assets(ROOT, recursive=True,
+                                                 include_folder=False)
+        _g, _b = [], []
+        for _p in _all:
+            _n = _p.split("/")[-1].split(".")[0]
+            if _n.endswith("_Binding"):
+                _b.append(_n)
+            else:
+                _g.append(_n)
+        _key = SLOT.lower()
+        _out["grooms"] = sorted(x for x in _g if _key in x.lower())
+        _out["bindings"] = sorted(x for x in _b if _key in x.lower())
+        _out["ok"] = True
+    else:
+        _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+        _act = None
+        for _a in _eas.get_all_level_actors():
+            try:
+                if _a.get_actor_label() == SUBJECT:
+                    _act = _a
+            except Exception:
+                pass
+        if _act is None:
+            raise RuntimeError("subject actor missing: " + SUBJECT)
+
+        _comp = None
+        for _c in _act.get_components_by_class(_u.GroomComponent):
+            if _c.get_name().lower().startswith(SLOT.lower()):
+                _comp = _c
+        if _comp is None:
+            raise RuntimeError("no GroomComponent named like " + SLOT)
+        _out["component"] = _comp.get_name()
+
+        _g = _u.EditorAssetLibrary.load_asset(GROOM)
+        _b = _u.EditorAssetLibrary.load_asset(BINDING)
+        if _g is None or _b is None:
+            raise RuntimeError("could not load groom or binding")
+
+        _out["before"] = {
+            "groom": str(_comp.get_editor_property("groom_asset")),
+            "binding": str(_comp.get_editor_property("binding_asset"))}
+
+        # ORDER IS LOAD-BEARING and this project has paid for it: writing the
+        # groom NULLS the binding, and an unbound groom draws nothing while
+        # every read-back still reports success. Groom first, binding second,
+        # retried, then BOTH read back.
+        _comp.set_editor_property("groom_asset", _g)
+        _tries = 0
+        for _i in range(4):
+            _tries += 1
+            _comp.set_editor_property("binding_asset", _b)
+            if _comp.get_editor_property("binding_asset") is not None:
+                break
+        _rg = _comp.get_editor_property("groom_asset")
+        _rb = _comp.get_editor_property("binding_asset")
+        _out["binding_attempts"] = _tries
+        _out["after"] = {
+            "groom": _rg.get_name() if _rg else None,
+            "binding": _rb.get_name() if _rb else None}
+        _out["ok"] = bool(_rg and _rb
+                          and _rg.get_path_name().startswith(GROOM)
+                          and _rb.get_path_name().startswith(BINDING))
+        if not _out["ok"]:
+            _out["error"] = "assignment did not read back"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

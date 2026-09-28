@@ -1,0 +1,94 @@
+# THE STANDING RENDER PREAMBLE -- ONE DECLARATION, EVERY SHOT PAYLOAD.
+#
+# Substituted into any payload containing __RENDER_PREAMBLE__ by ue_exec.py.
+# Do not copy these lines into a payload; write the marker.
+#
+# WHY THIS FILE EXISTS. Three separate frames were spoiled by three different
+# editor-only overlays, each discovered the same way -- by a human looking at a
+# delivered picture -- and each fixed in one payload only:
+#
+#   2026-08-27  72 NavMeshBoundsVolume actors drew orange wireframes across the
+#               sky of the city oblique. Read as world geometry by anyone who
+#               did not place them.
+#   2026-08-30  R-CITYSHOT had said `ShowFlag.Volumes 0` in PROSE for three
+#               days while the payload never issued it (non-negotiable 24).
+#   2026-08-30  A DirectionalLight's billboard sprite and blue arrow rendered
+#               over the CENTRE variant of a 3-way hair comparison and hid it.
+#
+# ⛔ EVERY ONE OF THEM PASSED EVERY TONAL CHECK. Mean, std, blown and black are
+# all perfectly happy with a well-exposed overlay. No histogram can tell world
+# geometry from an editor gizmo, so the only defence is to turn them all off
+# BEFORE the shot, from one place, rather than rediscover the family one member
+# at a time. This is the third member; it is intended to be the last.
+#
+# Every name below was verified to exist in
+# Engine/Source/Runtime/Engine/Public/ShowFlagsValues.inl at the line noted --
+# NOT recalled. A ShowFlag name that does not exist is a SILENT no-op: the
+# console accepts it, prints nothing useful, and the overlay stays on.
+#
+# ⛔⛔ WHAT MUST NEVER GO IN THIS LIST: flags that hide WORLD CONTENT.
+# `Landscape` (:289) is a real ShowFlag and turning it off would blank the
+# terrain in every world frame this project takes -- an empty landscape that
+# renders cleanly and reports nothing wrong. Same class for StaticMeshes,
+# InstancedFoliage, Atmosphere. This list is EDITOR OVERLAYS ONLY. If a name
+# is added here, the test is: "would a shipped game ever draw this?" If yes,
+# it does not belong.
+_LL_PREAMBLE_FLAGS = [
+    ("Volumes", 295),            # nav/trigger/postprocess volume wireframes
+    ("Navigation", 179),         # navmesh overlay
+    ("Grid", 255),               # the editor floor grid
+    ("BillboardSprites", 213),   # light/audio/camera editor icons
+    ("LightRadius", 291),        # light attenuation circles
+    ("Selection", 265),          # selection highlight
+    ("SelectionOutline", 156),   # selection outline pass
+    ("ModeWidgets", 271),        # translate/rotate/scale gizmos
+    ("Bounds", 273),             # bounds boxes
+    ("Constraints", 227),        # physics constraint viz
+    ("LightInfluences", 277),
+    ("LightComplexity", 217),
+    ("CameraFrustums", 231),
+    ("AudioRadius", 233),
+    ("MeshEdges", 259),          # wireframe-over-shaded
+    ("Cover", 261),
+    ("Splines", 263),
+    ("StreamingBounds", 225),
+    ("Brushes", 239),            # editor BSP brush wireframes
+    ("VisualizeLightCulling", 335),
+]
+_out["preamble_flags"] = []
+for _fname, _fline in _LL_PREAMBLE_FLAGS:
+    _u.SystemLibrary.execute_console_command(None, "ShowFlag.%s 0" % _fname)
+    _out["preamble_flags"].append(_fname)
+
+# SELECTION IS CLEARED TOO, and it is NOT a ShowFlag question.
+# The gizmo follows whatever is selected; `ShowFlag.ModeWidgets 0` hides the
+# widget but the selection highlight is a separate path, which is why both are
+# here. A failure to clear is REPORTED, never swallowed -- if the gizmo cannot
+# be removed it will be in the frame, and a later reader must not mistake it
+# for geometry.
+try:
+    _u.get_editor_subsystem(_u.EditorActorSubsystem).set_selected_level_actors([])
+    _out["selection_cleared"] = True
+except Exception as _e_sel:
+    _out["selection_cleared"] = False
+    _out["selection_error"] = str(_e_sel)[:160]
+
+# THE EDITOR MUST RENDER WHEN IT IS NOT THE FOREGROUND WINDOW, or the shot
+# never services. LESSONS 14.7 (2026-08-06) and 2026-09-25: a windowed editor
+# that loses foreground stops ticking its viewport, HighResShot sits unserviced
+# for minutes, and nothing in the payload can tell. The lever is Slate's
+# background throttle, `Slate.bAllowThrottling`
+# (SlateCore/Private/Application/ThrottleManager.cpp:8); at 0 the editor keeps
+# rendering while backgrounded and every shot has serviced in ~4 s since.
+# `unreal.EditorPerformanceSettings` is NOT exposed to Python (AttributeError,
+# 2026-09-25), so the cvar is the only reachable switch. Set on every shot
+# rather than once at launch so a fresh editor is covered by construction.
+# Read back per rule 12. Bench-profile A/A measured 2026-09-26 at the
+# forest-overlook camera, 3840x2160 (8,294,400 px each): pre/pre control pair
+# MAD 5.58 (foliage-LOD settle noise), pre/post pair MAD 1.56, p99 12 -- the
+# post-change frame sits INSIDE the control noise, so the cvar changes nothing
+# in the frame; it only decides whether the frame gets drawn.
+# (research/brief7/a2_imposter/ap/benchAA_{0,1,2}.png)
+_u.SystemLibrary.execute_console_command(None, "Slate.bAllowThrottling 0")
+_out["slate_allow_throttling"] = _u.SystemLibrary.get_console_variable_int_value(
+    "Slate.bAllowThrottling")

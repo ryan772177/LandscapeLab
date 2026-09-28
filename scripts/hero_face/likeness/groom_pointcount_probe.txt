@@ -1,0 +1,71 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What did UE actually BUILD, per group -- curves, points, and the
+# derived points-per-curve.
+#
+# The k12 arm's whole value is that it is a SINGLE-VARIABLE test of
+# points-per-curve. If the export grabbed the k28 object -- the picker trap this
+# project has already been bitten by once -- then the k12 asset holds 2,826,404
+# points, the two arms are the same groom, and "k12 also bald" is not a
+# measurement of anything. Blender says the blend is clean; this asks the other
+# end of the pipe, which is the representation that matters.
+
+PAIRS = [
+    ("DiffLocks k28 (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_surf"),
+    ("DiffLocks k12 (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_k12"),
+    ("procedural (draws)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4"),
+    ("vendor (draws)",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Hair_M_SideSweptFringe"),
+]
+
+# Names are guessed nowhere: every one of these is tried and the ones that raise
+# are RECORDED as raised, so "the accessor is not there" cannot read as "zero".
+FIELDS = ("num_curves", "num_guides", "num_curve_vertices",
+          "num_guide_vertices", "max_curve_length", "max_import_width",
+          "import_width", "hair_width", "group_name", "group_id",
+          "group_index", "num_lo_ds")
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    for _label, _p in PAIRS:
+        _g = _u.EditorAssetLibrary.load_asset(_p)
+        if _g is None:
+            _out["grooms"][_label] = {"error": "could not load"}
+            continue
+        _row = {"groups": []}
+        try:
+            _info = _g.get_editor_property("hair_groups_info")
+        except Exception as _e:
+            _out["grooms"][_label] = {"error": "no hair_groups_info: "
+                                      + str(_e)[:80]}
+            continue
+        for _s in _info:
+            _e = {}
+            for _f in FIELDS:
+                try:
+                    _e[_f] = _s.get_editor_property(_f)
+                except Exception:
+                    _e[_f] = "RAISED"
+            _row["groups"].append(_e)
+        # derived, because points-per-curve is the whole question
+        try:
+            _c = sum(int(_x["num_curves"]) for _x in _row["groups"]
+                     if _x.get("num_curves") != "RAISED")
+            _v = sum(int(_x["num_curve_vertices"]) for _x in _row["groups"]
+                     if _x.get("num_curve_vertices") != "RAISED")
+            _row["total_curves"] = _c
+            _row["total_vertices"] = _v
+            _row["points_per_curve"] = round(_v / _c, 4) if _c else None
+        except Exception as _e:
+            _row["derived_error"] = str(_e)[:80]
+        _out["grooms"][_label] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

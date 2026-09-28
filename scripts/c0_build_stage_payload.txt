@@ -1,0 +1,169 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- a LIT SCRATCH STAGE, and the two houses on flat even ground.
+#
+# WHY A STAGE AND NOT THE WORLD. The first side-by-side was placed on the
+# plaza and the SITE defeated the comparison: the two houses landed 2.03 m
+# apart in height, one fell in tree shade, and a conifer occupied a third of
+# the right crop. The materials were the only variable in the scene graph and
+# nowhere near the only variable in the photograph. A flat plane under an even
+# sun removes all three at once, and it keeps overnight work out of
+# /Game/Alpine8K entirely.
+#
+# ⛔ AN EMPTY LEVEL HAS NO LIGHT AND NO SKY. This project has already shipped
+# four PURE BLACK 4K frames from exactly that -- new_level() makes an empty
+# partitioned world and every capture tool reported success over it, four
+# times, from four cameras, with byte-identical file sizes. So the stage is
+# built with sun, sky, skylight and exposure BEFORE anything is judged on it,
+# and the values come from recipes/alpine_8k.json rather than from taste.
+#
+# EXPOSURE IS THE WORLD'S OWN SOLVED VALUE, carried deliberately. It was solved
+# for Alpine8K's albedo and this stage is a different scene, so it is recorded
+# as CARRIED, not as solved here -- a stage render is for comparing two
+# materials against each other, not for judging absolute brightness.
+
+STAGE = "/Game/Scratch/C0_Stage"
+MESH = "/Game/Scratch/C0House/SM_C0_DonorHouse"
+MI_DIR = "/Game/Scratch/C0House/MI_C0_"
+PLANE = "/Engine/BasicShapes/Plane"
+PIVOT_BASE_ERROR_CM = -39.81
+SEP_CM = 2600.0
+
+SUN_LUX = 130000.0
+SUN_K = 7800.0
+SUN_PITCH = -12.0
+SUN_YAW = -75.0
+EXPOSURE_EV = -1.923
+
+SLOT_ROLE = SLOT_ROLE_JSON
+
+_out = {"ok": False, "error": None, "actors": [], "bind_failures": 0}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    # new_level CREATES but does NOT switch to a level that already exists,
+    # and it fails silently -- so guard, then clear our own actors. Without
+    # the clear a re-run stacks a second pair on top of the first.
+    _leaf = STAGE.split("/")[-1]
+    _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        _les.new_level(STAGE)
+        _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        raise RuntimeError("not on " + STAGE + "; current is " + _cur)
+    _prior = [a for a in _eas.get_all_level_actors()
+              if any(str(t) == "LandscapeLab.C0" for t in a.tags)]
+    for _pa in _prior:
+        _eas.destroy_actor(_pa)
+    _out["cleared_prior"] = len(_prior)
+    _out["level"] = STAGE
+
+    _mesh = _u.EditorAssetLibrary.load_asset(MESH)
+    _plane = _u.EditorAssetLibrary.load_asset(PLANE)
+    if _mesh is None or _plane is None:
+        raise RuntimeError("mesh or plane missing")
+
+    # ---- ground: one big flat plane, both houses at the SAME height -----
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0.0, 0.0, 0.0),
+                                      _u.Rotator(0.0, 0.0, 0.0))
+    _g.set_actor_label("Stage_Ground")
+    _g.set_actor_scale3d(_u.Vector(200.0, 200.0, 1.0))   # 100 m x 100 m
+    _out["ground_scale_m"] = 100.0
+
+    # ---- sun, sky, skylight, exposure -----------------------------------
+    _sun = _eas.spawn_actor_from_class(
+        _u.DirectionalLight, _u.Vector(0.0, 0.0, 5000.0),
+        _u.Rotator(0.0, SUN_PITCH, SUN_YAW))
+    _sun.set_actor_label("Stage_Sun")
+    # .light_component on EVERY light actor. There is no
+    # directional_light_component / sky_light_component -- and
+    # apply_lighting.py:246 already SAYS SO in a comment. Guessing the
+    # accessor instead of grepping scripts/ first is step (a) skipped and
+    # non-negotiable 23 exactly.
+    _sc = _sun.light_component
+    _sc.set_editor_property("intensity", SUN_LUX)
+    _sc.set_editor_property("temperature", SUN_K)
+    _sc.set_editor_property("use_temperature", True)
+    _sc.set_editor_property("atmosphere_sun_light", True)
+
+    _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _atm.set_actor_label("Stage_SkyAtmosphere")
+    _sky = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0.0, 0.0, 3000.0),
+                                       _u.Rotator(0, 0, 0))
+    _sky.set_actor_label("Stage_SkyLight")
+    _skyc = _sky.light_component
+    if _skyc:
+        _skyc.set_editor_property("real_time_capture", True)
+        _skyc.set_editor_property("intensity", 1.8)
+
+    _pp = _eas.spawn_actor_from_class(_u.PostProcessVolume,
+                                      _u.Vector(0, 0, 0), _u.Rotator(0, 0, 0))
+    _pp.set_actor_label("Stage_PostProcess")
+    _pp.set_editor_property("unbound", True)
+    _s = _pp.get_editor_property("settings")
+    _s.set_editor_property("override_auto_exposure_method", True)
+    _s.set_editor_property("auto_exposure_method",
+                           _u.AutoExposureMethod.AEM_MANUAL)
+    _s.set_editor_property("override_auto_exposure_bias", True)
+    _s.set_editor_property("auto_exposure_bias", EXPOSURE_EV)
+    _pp.set_editor_property("settings", _s)
+    # READ BACK -- a PostProcessVolume whose override flag did not take is an
+    # inert setting that reads exactly like an applied one (NN17).
+    _s2 = _pp.get_editor_property("settings")
+    _out["exposure_readback"] = {
+        "method": str(_s2.get_editor_property("auto_exposure_method")),
+        "bias": float(_s2.get_editor_property("auto_exposure_bias")),
+        "bias_overridden": bool(
+            _s2.get_editor_property("override_auto_exposure_bias"))}
+
+    # ---- the pair, same z, materials the only variable -------------------
+    _mis = {}
+    for _slot, _role in SLOT_ROLE.items():
+        if _role not in _mis:
+            _m = _u.EditorAssetLibrary.load_asset(MI_DIR + _role)
+            if _m is None:
+                raise RuntimeError("missing instance for role " + _role)
+            _mis[_role] = _m
+
+    for _label, _dy, _swap in (("ORIGINAL", -SEP_CM * 0.5, False),
+                               ("SWAPPED", SEP_CM * 0.5, True)):
+        _z = -PIVOT_BASE_ERROR_CM        # base exactly on the plane at z=0
+        _a = _eas.spawn_actor_from_object(
+            _mesh, _u.Vector(0.0, _dy, _z), _u.Rotator(0.0, 0.0, 0.0))
+        _a.set_actor_label("C0_House_" + _label)
+        _a.tags = ["LandscapeLab.C0", "LandscapeLab.C0." + _label]
+        _c = _a.static_mesh_component
+        _bound = 0
+        if _swap:
+            for _i, _sm in enumerate(_mesh.static_materials):
+                _role = SLOT_ROLE.get(str(_sm.material_slot_name))
+                if _role is None:
+                    continue
+                _c.set_material(_i, _mis[_role])
+                _got = _c.get_material(_i)
+                if _got and _got.get_name() == ("MI_C0_" + _role):
+                    _bound += 1
+                else:
+                    _out["bind_failures"] += 1
+        _o, _e = _a.get_actor_bounds(False)
+        _out["actors"].append({
+            "label": _label, "y_cm": _dy, "z_cm": round(_z, 2),
+            "base_z_cm": round(float(_o.z - _e.z), 2),
+            "slots_bound": _bound})
+
+    _les.save_current_level()
+    _out["saved"] = True
+    _bz = [a["base_z_cm"] for a in _out["actors"]]
+    _out["both_bases_equal"] = (max(_bz) - min(_bz)) < 1.0
+    _out["base_on_plane"] = max(abs(b) for b in _bz) < 1.0
+    _out["ok"] = bool(_out["saved"] and not _out["bind_failures"]
+                      and _out["both_bases_equal"] and _out["base_on_plane"]
+                      and len(_out["actors"]) == 2)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

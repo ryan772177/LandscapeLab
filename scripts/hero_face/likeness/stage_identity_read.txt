@@ -1,0 +1,90 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. Explain the midair float, the apparent size, and the blue object.
+#
+# The owner's eye is the verdict instrument now, so the staging has to be
+# legible to it: three grooms hanging in space at unclear scale beside an
+# unidentified blue solid is a picture that invites a wrong reading. This
+# measures rather than adjusts.
+
+CAM_LOC = __CAM_LOC__
+GROUND_Z = __GROUND_Z__
+
+_out = {"ok": False, "error": None, "stage": [], "nearby": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.EditorLevelLibrary.get_editor_world()
+
+    for _a in _eas.get_all_level_actors():
+        try:
+            _lbl = _a.get_actor_label()
+        except Exception:
+            continue
+        if not _lbl.startswith("STAGE_GROOM_"):
+            continue
+        _loc = _a.get_actor_location()
+        _sc = _a.get_actor_scale3d()
+        _row = {"label": _lbl,
+                "actor_location": [_loc.x, _loc.y, _loc.z],
+                "actor_scale3d": [_sc.x, _sc.y, _sc.z],
+                "height_above_ground_cm": _loc.z - GROUND_Z}
+        _c = _a.get_editor_property("groom_component")
+        _g = _c.get_editor_property("groom_asset")
+        _row["groom_asset"] = _g.get_path_name() if _g else None
+        try:
+            _o, _e = _a.get_actor_bounds(False)
+            _row["world_bounds_origin"] = [_o.x, _o.y, _o.z]
+            _row["world_bounds_extent_cm"] = [_e.x, _e.y, _e.z]
+            _row["world_size_cm"] = [_e.x * 2, _e.y * 2, _e.z * 2]
+            _row["bounds_bottom_above_ground_cm"] = (_o.z - _e.z) - GROUND_Z
+        except Exception as _ex:
+            _row["bounds_error"] = str(_ex)[:90]
+        _out["stage"].append(_row)
+
+    # WHAT IS THE BLUE OBJECT. Enumerate every actor whose bounds sit near the
+    # stage, rather than tracing a single ray -- a trace answers about one line
+    # and the question is about what is IN FRAME.
+    _cx, _cy, _cz = CAM_LOC[0], CAM_LOC[1], CAM_LOC[2]
+    for _a in _eas.get_all_level_actors():
+        try:
+            _lbl = _a.get_actor_label()
+        except Exception:
+            continue
+        if _lbl.startswith("STAGE_GROOM_") or _lbl == "GATEARM_Capture":
+            continue
+        try:
+            _o, _e = _a.get_actor_bounds(False)
+        except Exception:
+            continue
+        _d = ((_o.x - _cx) ** 2 + (_o.y - _cy) ** 2 + (_o.z - _cz) ** 2) ** 0.5
+        if _d > 600.0:
+            continue
+        _row = {"label": _lbl, "class": _a.get_class().get_name(),
+                "dist_from_camera_cm": round(_d, 1),
+                "bounds_origin": [round(_o.x, 1), round(_o.y, 1),
+                                  round(_o.z, 1)],
+                "size_cm": [round(_e.x * 2, 1), round(_e.y * 2, 1),
+                            round(_e.z * 2, 1)]}
+        # name the asset where the actor has one, so "blue thing" becomes a path
+        for _pn in ("static_mesh_component", "skeletal_mesh_component"):
+            try:
+                _comp = _a.get_editor_property(_pn)
+                for _ap in ("static_mesh", "skeletal_mesh"):
+                    try:
+                        _as = _comp.get_editor_property(_ap)
+                        if _as:
+                            _row["asset"] = _as.get_path_name()
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+        _out["nearby"].append(_row)
+    _out["nearby"].sort(key=lambda _r: _r["dist_from_camera_cm"])
+    _out["nearby"] = _out["nearby"][:12]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

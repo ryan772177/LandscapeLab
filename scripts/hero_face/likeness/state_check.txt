@@ -1,0 +1,95 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What is actually in the editor right now.
+#
+# Written after an accidental viewport move + Ctrl+Z alongside a manual import.
+# Ctrl+Z in UE undoes the last TRANSACTION, and an asset import IS one, so the
+# question "did the undo eat the import" is real and is answerable rather than
+# guessable. Also reports dirty packages, because the only thing that makes any
+# of this unrecoverable is a save.
+
+_out = {"ok": False, "error": None}
+try:
+    _eal = _u.EditorAssetLibrary
+
+    # 1. Every groom asset in the character folder, so a manual import under
+    #    any name is visible rather than only the names this script expects.
+    _grooms = []
+    for _d in ("/Game/Characters/AlpineHero/Grooms",
+               "/Game/Hero/Grooms"):
+        try:
+            for _p in _eal.list_assets(_d, recursive=True, include_folder=False):
+                _a = _eal.find_asset_data(_p)
+                _cls = str(_a.asset_class_path.asset_name) if _a else "?"
+                if "Groom" in _cls:
+                    _grooms.append({"path": _p, "class": _cls})
+        except Exception as _e:
+            _grooms.append({"path": _d, "error": str(_e)[:80]})
+    _out["grooms"] = _grooms
+    _out["iter028_like"] = [g["path"] for g in _grooms
+                            if "028" in g.get("path", "")]
+
+    # 2. Curve counts on anything that looks like iteration 028, so "the import
+    #    is there" is a measurement and not a filename.
+    _counts = {}
+    for _p in _out["iter028_like"]:
+        try:
+            _g = _eal.load_asset(_p.split(".")[0])
+            _gi = _g.get_editor_property("hair_groups_info")[0]
+            _counts[_p] = {
+                "num_curves": int(_gi.get_editor_property("num_curves")),
+                "max_curve_length": round(
+                    float(_gi.get_editor_property("max_curve_length")), 3)}
+        except Exception as _e:
+            _counts[_p] = {"error": str(_e)[:120]}
+    _out["iter028_geometry"] = _counts
+
+    # 3. The hero actor: is he where he was committed, and what is he wearing?
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() != "HeroInWorld":
+            continue
+        _l = _a.get_actor_location()
+        _r = _a.get_actor_rotation()
+        _out["hero"] = {
+            "loc": [round(_l.x, 3), round(_l.y, 3), round(_l.z, 3)],
+            "rot": [round(_r.roll, 3), round(_r.pitch, 3), round(_r.yaw, 3)]}
+        _comp = {}
+        for _c in _a.get_components_by_class(_u.GroomComponent):
+            _ga = _c.get_editor_property("groom_asset")
+            _ba = _c.get_editor_property("binding_asset")
+            _comp[str(_c.get_name())] = {
+                "groom": None if _ga is None else _ga.get_name(),
+                "binding": None if _ba is None else _ba.get_name()}
+        _out["hero_grooms"] = _comp
+        break
+    if "hero" not in _out:
+        _out["hero"] = "NO HeroInWorld ACTOR IN THE LEVEL"
+
+    # 4. THE ONLY THING THAT MAKES ANY OF THIS PERMANENT.
+    _dirty = []
+    try:
+        for _p in _u.EditorLoadingAndSavingUtils.get_dirty_content_packages():
+            _dirty.append(str(_p.get_name()))
+    except Exception as _e:
+        _dirty = ["UNREADABLE: " + str(_e)[:100]]
+    _out["dirty_packages"] = _dirty
+    _out["dirty_count"] = len(_dirty)
+
+    # 5. Is the capture rig still there, and where is it pointing?
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() != "HeroShot_Capture":
+            continue
+        _l = _a.get_actor_location()
+        _r = _a.get_actor_rotation()
+        _out["capture"] = {"loc": [round(_l.x, 2), round(_l.y, 2), round(_l.z, 2)],
+                           "rot": [round(_r.roll, 2), round(_r.pitch, 2),
+                                   round(_r.yaw, 2)]}
+        break
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

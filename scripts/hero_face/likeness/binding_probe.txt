@@ -1,0 +1,87 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What the hero's Hair binding actually declares, beside a WORKING
+# vendor binding for the same character as the positive control.
+#
+# The unbound control (unbound_groom_control.txt) established that the groom
+# ASSET carries the authored shape and the BOUND render does not, so the
+# deformation is the binding's. A binding transforms each strand by the delta
+# between its root triangle on the SOURCE mesh and on the TARGET mesh: get the
+# source wrong and every strand is rotated by a wrong frame.
+#
+# The vendor rows are the control. They are known to render correctly on this
+# character, so whatever they declare is the shape of a binding that works.
+
+PAIRS = [
+    ("REJECTED BND_028_seated",
+     "/Game/Characters/AlpineHero/Grooms/BND_028_seated"),
+    ("WORKS    BND_Hair_v22b",
+     "/Game/Characters/AlpineHero/Grooms/BND_Hair_v22b"),
+    ("WORKED   BND_Male11",
+     "/Game/Characters/AlpineHero/Grooms/BND_Male11"),
+    ("VENDOR Beard_S_Full",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Beard_S_Full_Binding"),
+    ("VENDOR Eyebrows_M_Dense",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Eyebrows_M_Dense_Binding"),
+]
+
+_FIELDS = ("groom_binding_type", "num_interpolation_points", "matching_section",
+           "source_mesh_requested_lod", "source_mesh_used_lod",
+           "target_mesh_requested_min_lod", "target_mesh_used_min_lod",
+           "target_binding_attribute")
+
+_out = {"ok": False, "error": None, "bindings": {}}
+try:
+    for _label, _p in PAIRS:
+        _row = {"path": _p}
+        _b = _u.EditorAssetLibrary.load_asset(_p)
+        if _b is None:
+            _row["error"] = "could not load"
+            _out["bindings"][_label] = _row
+            continue
+        for _f in _FIELDS:
+            try:
+                _row[_f] = str(_b.get_editor_property(_f))
+            except Exception as _e:
+                _row[_f] = "UNREADABLE: " + str(_e)[:60]
+        # THE DISCRIMINATING READ. Every declared field matches between the
+        # rejected binding and two that work, so the difference has to be in
+        # the BUILT data. An empty group_infos means Build() produced nothing
+        # and the component is right to refuse it.
+        try:
+            _gi = _b.get_editor_property("group_infos")
+            _row["group_infos_count"] = len(_gi)
+            _row["group_infos"] = [str(_x)[:160] for _x in _gi][:4]
+        except Exception as _e:
+            _row["group_infos_error"] = str(_e)[:120]
+        for _f in ("groom", "source_skeletal_mesh", "target_skeletal_mesh"):
+            try:
+                _o = _b.get_editor_property(_f)
+                _row[_f] = None if _o is None else _o.get_path_name()
+            except Exception as _e:
+                _row[_f] = "UNREADABLE: " + str(_e)[:60]
+        _out["bindings"][_label] = _row
+
+    # The mesh the hero's Face component is actually wearing, read from the
+    # live actor -- the binding's target must be THIS or the frames disagree.
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() != "HeroInWorld":
+            continue
+        _meshes = {}
+        for _c in _a.get_components_by_class(_u.SkeletalMeshComponent):
+            try:
+                _sm = _c.get_editor_property("skeletal_mesh_asset")
+            except Exception:
+                _sm = None
+            _meshes[str(_c.get_name())] = (
+                None if _sm is None else _sm.get_path_name())
+        _out["live_meshes"] = _meshes
+        break
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,399 @@
+{
+  "_comment": [
+    "AlpineLab_v1 — the Gaea evaluation terrain. SEPARATE from alpine.json;",
+    "this world shares no assets with /Game/Alpine except the photogrammetry",
+    "surfaces, and nothing here may be read by an alpine.json consumer.",
+    "",
+    "THE SURFACING IS MASK-DRIVEN, NOT LAYER-DRIVEN. /Game/Alpine paints",
+    "landscape LAYERS and blends by weight. This terrain has no layers and",
+    "no painted weights: it has five 4033-square textures that Gaea computed",
+    "from the same simulation that made the heightmap, sampled by ABSOLUTE",
+    "WORLD POSITION so a texel lands on the ground it describes.",
+    "",
+    "Every threshold below was chosen from a measured percentile, not by",
+    "eye. The numbers are in `measured`, and scripts/make_alpinelab_material",
+    "recomputes the predicted coverage from the PNGs at build time and",
+    "prints it, so a recipe that has drifted from its data is visible."
+  ],
+  "source": {
+    "_comment": "WHERE THIS RECIPE'S DATA LIVES. Read by scripts/alpinelab_source.py, which both make_alpinelab_material.py and scatter_alpinelab.py now call instead of carrying their own copy of this path. Two tools pointed at two different Gaea builds would each succeed and silently disagree -- the material describing one terrain and the rocks standing on another.",
+    "build_dir": "C:\\Dev\\LandscapeLab\\TerrainData\\AlpineLab_v1\\002",
+    "package_subdir": "UE5_Ready",
+    "heightmap": "AlpineLabHeight.png",
+    "masks": {
+      "flow": "Erosion2_Flow.png",
+      "wear": "Erosion2_Wear.png",
+      "deposits": "Erosion2_Deposits.png",
+      "snow_hard": "Snow_Snow.png",
+      "snow_depth": "SnowMask_Out.png"
+    }
+  },
+  "landscape": {
+    "level_path": "/Game/Game/GaeaLab/AlpineLab_v1",
+    "_level_key_note": "Named `level_path` because that is the key scripts/open_level.py reads (open_level.py:597). One spelling, not two that must be kept in agreement.",
+    "actor_label": "Landscape",
+    "vertices": 4033,
+    "quads_per_section": 63,
+    "sections_per_component": 1,
+    "components_per_axis": 64,
+    "scale_xy": 100.0,
+    "scale_z": 180.81,
+    "z_scale_provenance": "measured — R-GAEA §6; Gaea Terrain/Height 2500 m x occupancy 0.37029 = 925.73 m span, / 512 * 100",
+    "origin_cm": -201600.0,
+    "extent_cm": 403200.0,
+    "_extent_note": "The mask UV is (worldXY - origin) / extent. origin and extent are MEASURED from the live actor (bounds +/- 201600 UU), not derived from the dialog."
+  },
+  "material": {
+    "path": "/Game/AlpineLab_v1/M_AlpineLab",
+    "parent_of_landscape": true,
+    "masks": {
+      "_uv": "absolute world XY, remapped to 0..1 over the landscape extent. Column -> X, row -> Y, proven by a collision trace at the summit agreeing with the heightmap to 1 cm.",
+      "_units": "Sampled values are the 16-bit PNG value / 65535. `gain` restores a mask whose simulation range never approached full scale — Deposits peaks at 512 of 65535 and would otherwise be invisible.",
+      "flow": {
+        "texture": "/Game/AlpineLab_v1/T_AlpineLab_Flow",
+        "gain": 12.0,
+        "ramp_in": 0.1,
+        "ramp_out": 0.6
+      },
+      "wear": {
+        "texture": "/Game/AlpineLab_v1/T_AlpineLab_Wear",
+        "gain": 10.9,
+        "ramp_in": 0.15,
+        "ramp_out": 0.75
+      },
+      "deposits": {
+        "texture": "/Game/AlpineLab_v1/T_AlpineLab_Deposits",
+        "gain": 128.0,
+        "ramp_in": 0.02,
+        "ramp_out": 0.18,
+        "_tuned": "0.06-0.40 gave 9.91% coverage at mean weight 0.032, which is a 2.9% share of the map after the blend order — the same unreadable-at-any-range problem /Game/Alpine's 0.41% meadow has. Widened against the CPU reference, before rendering, to 18.10% coverage / mean 0.076."
+      },
+      "snow_depth": {
+        "texture": "/Game/AlpineLab_v1/T_AlpineLab_SnowDepth",
+        "gain": 1.0,
+        "ramp_in": 0.02,
+        "ramp_out": 0.25
+      },
+      "snow_hard": {
+        "texture": "/Game/AlpineLab_v1/T_AlpineLab_SnowHard",
+        "gain": 1.0,
+        "ramp_in": 0.35,
+        "ramp_out": 0.65
+      }
+    },
+    "surfaces": {
+      "_order": "rock is the base; sediment and snow are lerped over it in that order, so snow wins where both apply.",
+      "rock": {
+        "color": "/Game/Surfaces/T_Rock051_C",
+        "normal": "/Game/Surfaces/T_Rock051_N",
+        "roughness": "/Game/Surfaces/T_Rock051_R",
+        "tile_m": 12.0,
+        "tint": [
+          0.62,
+          0.6,
+          0.57
+        ]
+      },
+      "sediment": {
+        "color": "/Game/Surfaces/T_Ground037_C",
+        "normal": "/Game/Surfaces/T_Ground037_N",
+        "roughness": "/Game/Surfaces/T_Ground037_R",
+        "tile_m": 8.0,
+        "tint": [
+          0.66,
+          0.6,
+          0.5
+        ],
+        "driven_by": "deposits"
+      },
+      "snow": {
+        "color": "/Game/Surfaces/T_Snow006_C",
+        "normal": "/Game/Surfaces/T_Snow006_N",
+        "roughness": "/Game/Surfaces/T_Snow006_R",
+        "tile_m": 10.0,
+        "tint": [
+          0.92,
+          0.94,
+          0.98
+        ],
+        "driven_by": "max(snow_depth, snow_hard)"
+      }
+    },
+    "grass": {
+      "_comment": [
+        "The LANDSCAPE GRASS SYSTEM, not instanced foliage. GrassOutput",
+        "spawns from the material and costs nothing against the 60,000",
+        "instance ceiling, which is the only way to get ground cover at",
+        "this density on this machine. /Game/Alpine's Meadow runs the",
+        "same mechanism at 120,000 per hectare.",
+        "",
+        "density is INSTANCES PER 10 SQUARE METRES (LandscapeGrassType.h)",
+        "-- not per hectare, not per square metre. Getting that wrong by",
+        "a factor of 1,000 is the obvious way to hang this GPU."
+      ],
+      "name": "AlpineLabGround",
+      "grass_type_path": "/Game/AlpineLab_v1/GT_AlpineLab_Ground",
+      "cull_cm": 6000.0,
+      "weight": "(1 - snow) * (1 - wear) -- not under snow, not on stripped ridges. The same weights the surfaces use, so the grass cannot disagree with the ground it stands on.",
+      "varieties": [
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
+          "density": 14.0
+        },
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
+          "density": 18.0
+        },
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
+          "density": 22.0
+        }
+      ]
+    },
+    "modulators": {
+      "_comment": "Scalar effects. They change how an already-selected surface reads; they do not select one, so no extra texture set is needed.",
+      "wear_lighten": {
+        "driven_by": "wear",
+        "albedo_gain_at_1": 1.22,
+        "_why": "Wear's top 5% sits at height 0.340 against a map mean of 0.3125 — it marks the exposed ridges, which read lighter."
+      },
+      "flow_wet": {
+        "driven_by": "flow",
+        "albedo_gain_at_1": 0.62,
+        "roughness_at_1": 0.3,
+        "_why": "Drainage. Its top 5% sits at height 0.290, below the map mean, so it darkens and smooths the low channels."
+      }
+    }
+  },
+  "scatter": {
+    "_comment": [
+      "Rock meshes placed from the SAME masks the material samples, so a",
+      "rock lands on the ground its mask describes. Read by",
+      "scripts/scatter_alpinelab.py; planning is entirely offline.",
+      "",
+      "THE BUDGET IS THE CONSTRAINT. 'The highest-res meshes we can hold'",
+      "is a question about instances x triangles inside a cull disc, not",
+      "about picking the biggest mesh. scree_slab_001 is 33,855 triangles",
+      "at LOD0 and 829 at LOD3; what it costs is decided by how many are",
+      "close, which is density and cull_m. The planner prints the",
+      "worst-case load per species and REFUSES over the ceilings below.",
+      "",
+      "Reference point: /Game/Alpine's conifers are 39.6M triangles worst",
+      "case at 157,554 instances, on this same iGPU."
+    ],
+    "budget": {
+      "max_instances": 60000,
+      "max_worst_tris": 30000000,
+      "_why": [
+        "60,000 against /Game/Alpine's 250,000 ceiling, because this",
+        "machine has 1.7 GB of RAM free with the editor already up, and",
+        "an evaluation terrain is not worth the risk of the other 190k.",
+        "30M triangles is just under the conifer load that is known to",
+        "render here at 75-94 ms."
+      ]
+    },
+    "species": {
+      "_note": "mask_window keys are mask names, plus the derived `slope_deg`. Every window is inclusive. max_snow drops candidates under snow, because a rock under a snow surface reads as an error.",
+      "TalusSlab": {
+        "mesh_id": "scree_slab_001",
+        "_why": "The highest-poly mesh in the palette, 33,855 tris. Placed only on deposits — the valley floors where Gaea says material accumulated — so the expensive mesh is where the geology puts it.",
+        "mask_window": {
+          "deposits": [
+            0.0004,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            34.0
+          ]
+        },
+        "max_snow": 0.25,
+        "per_hectare": 40.0,
+        "scale_range": [
+          0.7,
+          1.6
+        ],
+        "embed_m": 0.35,
+        "cull_m": 120.0,
+        "_cull_why": "SHORTER than the cheaper meshes, not longer. At 33,855 triangles the cull disc is what sets the cost, so the expensive mesh gets the smallest one and buys its density back.",
+        "max_instances": 4000
+      },
+      "TalusSlabB": {
+        "mesh_id": "scree_slab_002a",
+        "_why": "A second slab shape at 15,425 tris breaks the repeat without doubling the cost.",
+        "mask_window": {
+          "deposits": [
+            0.0002,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            38.0
+          ]
+        },
+        "max_snow": 0.25,
+        "per_hectare": 60.0,
+        "scale_range": [
+          0.6,
+          1.4
+        ],
+        "embed_m": 0.3,
+        "cull_m": 140.0,
+        "max_instances": 8000
+      },
+      "RidgeOutcrop": {
+        "mesh_id": "mountain_rock_closed",
+        "_why": "Wear marks the exposed ridges (its top 5% sits at height 0.340). Outcrops belong where rock is being stripped, not where it is piling up.",
+        "mask_window": {
+          "wear": [
+            0.03,
+            1.0
+          ],
+          "slope_deg": [
+            22.0,
+            70.0
+          ]
+        },
+        "max_snow": 0.4,
+        "per_hectare": 12.0,
+        "scale_range": [
+          0.8,
+          2.2
+        ],
+        "embed_m": 0.55,
+        "cull_m": 220.0,
+        "_window_why": "wear >= 0.045 is past p99 and left 5.2 hectares eligible — 31 outcrops on a 1,627 ha terrain. 0.030 is p90 of the mask and is what makes the ridges read.",
+        "max_instances": 9000
+      },
+      "ChannelRock": {
+        "mesh_id": "river_rock",
+        "_why": "Flow is drainage, and its top 5% sits below the map mean. Small rounded rock in the wet channels — 2,038 tris, the cheapest in the palette, which is what lets it be dense.",
+        "mask_window": {
+          "flow": [
+            0.02,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            30.0
+          ]
+        },
+        "max_snow": 0.2,
+        "per_hectare": 250.0,
+        "scale_range": [
+          0.5,
+          1.3
+        ],
+        "embed_m": 0.1,
+        "cull_m": 70.0,
+        "max_instances": 3000
+      },
+      "Conifer": {
+        "mesh_id": "_direct:/Game/Meshes/fir_tree_01_c_LOD0",
+        "_why": [
+          "Trees are the largest readability gain available on this",
+          "terrain, and /Game/Alpine already proves the asset renders",
+          "here: 157,554 conifers at 24.2 per hectare with a 730 m cull",
+          "measure 75-94 ms on this same iGPU. This population is",
+          "smaller and culled shorter, so it sits inside an envelope",
+          "that has been MEASURED rather than modelled.",
+          "",
+          "The altitude window is the treeline. Height is normalized",
+          "0..1 over the 925.7 m span, so 0.10-0.62 is roughly -370 m to",
+          "+112 m in world Z: valley floor up to well below the summit,",
+          "which is where a forest belongs and where the snow masks are",
+          "quiet."
+        ],
+        "mask_window": {
+          "slope_deg": [
+            0.0,
+            26.0
+          ],
+          "height01": [
+            0.1,
+            0.62
+          ]
+        },
+        "max_snow": 0.15,
+        "per_hectare": 34.0,
+        "scale_range": [
+          0.75,
+          1.35
+        ],
+        "embed_m": 0.15,
+        "cull_m": 420.0,
+        "max_instances": 9000,
+        "budget_tris_per_instance": 3892,
+        "_budget_basis": "LOD3. The fir's LOD0 is 505,494 triangles and its chain is 505,494 / 126,374 / 22,293 / 3,892; charging every instance in a 420 m disc at LOD0 would predict 2 billion triangles, which is arithmetic about a state the renderer never enters. The far-field LOD is the honest single number, and it is FLAGGED as an approximation rather than dressed up as a measurement. The real evidence is the alpine precedent above."
+      },
+      "FieldBoulder": {
+        "mesh_id": "boulder_medium_01",
+        "_why": "The broad pass. The three mask-driven species above cover 143, 213 and 17 hectares of a 1,627 ha terrain, which leaves most of the ground bare. At 4,136 triangles and a 100 m cull this covers the rest for almost nothing.",
+        "mask_window": {
+          "slope_deg": [
+            3.0,
+            45.0
+          ]
+        },
+        "max_snow": 0.3,
+        "per_hectare": 22.0,
+        "scale_range": [
+          0.6,
+          1.8
+        ],
+        "embed_m": 0.22,
+        "cull_m": 100.0,
+        "max_instances": 6000,
+        "_cap_why": "24,000 put the plan at 71,556 against the 60,000 ceiling and the budget gate REFUSED. Boulders were the thing to cut rather than trees: a conifer covers far more of the frame per instance, and the ground it hides is ground the boulders were padding."
+      }
+    }
+  },
+  "measured": {
+    "_source": "scripts/make_alpinelab_material.py --stats, over the UE5_Ready PNGs. Shader units = PNG value / 65535.",
+    "_date": "2026-08-09",
+    "percentiles": {
+      "flow": {
+        "p50": 0.0,
+        "p90": 0.00163,
+        "p99": 0.0822,
+        "max": 1.0
+      },
+      "wear": {
+        "p50": 0.01346,
+        "p90": 0.03,
+        "p99": 0.05892,
+        "max": 0.09184
+      },
+      "deposits": {
+        "p50": 0.0,
+        "p90": 0.00046,
+        "p99": 0.00305,
+        "max": 0.00781
+      },
+      "snow_hard": {
+        "p50": 0.0,
+        "p90": 1.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "snow_depth": {
+        "p50": 0.0,
+        "p90": 0.02077,
+        "p99": 0.38671,
+        "max": 1.0
+      }
+    },
+    "height_agreement": {
+      "_what": "Mean normalized HEIGHT under each mask's top 5%, against a map mean of 0.3125. This is the check that a mask means what its name says.",
+      "deposits": 0.1875,
+      "flow": 0.2903,
+      "wear": 0.3401,
+      "snow_depth": 0.3991
+    },
+    "snow_hard_is_binary": {
+      "_what": "Snow_Snow carries ~12.2% coverage at EVERY threshold from 0.02 to 0.40 — it is a hard 0/1 mask, not a gradient.",
+      "coverage_at_0.02": 0.125,
+      "coverage_at_0.40": 0.12
+    }
+  }
+}

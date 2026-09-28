@@ -1,0 +1,261 @@
+import json as _json
+import os as _os
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# PHASE2_PLAN unit 9 gate (a): is every encounter REACHABLE from the player?
+#
+# WHY THIS CANNOT LIVE IN THE PLANNER. The planner reads the HEIGHTMAP.
+# The navmesh is built from COLLISION. Checking reachability against the
+# heightmap would be one source checked twice -- which is precisely how this
+# project rendered alpine_heightmap_v2 while COLLIDING v1 for three days with
+# every gate green. This gate reads the built navmesh, so it CORROBORATES the
+# planner rather than agreeing with it.
+#
+# !! TEST == SUCCESS EXPLICITLY. ENavigationQueryResult is
+#     INVALID=0, ERROR=1, FAIL=2, SUCCESS=3
+# so plain truthiness INVERTS the gate: INVALID (the worst outcome) is falsy,
+# while ERROR and FAIL are both truthy. PHASE2_PLAN flags this by name.
+#
+# TWO CONTROLS, because "every encounter is reachable" is exactly the claim a
+# broken query returns for free:
+#   POSITIVE  the plaza itself must be reachable from the PlayerStart
+#   NEGATIVE  a point far outside every navmesh volume must NOT be
+
+PLAN = r"__PLAN__"
+EXTENT_CM = 500.0
+
+_out = {"ok": False, "error": None, "encounters": []}
+try:
+    _ok_l, _mn, _mx, _err_l = _u.LandscapeLabTools.load_all_world_partition_regions()
+    _out["regions_loaded"] = bool(_ok_l)
+
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+
+    _ps = [a for a in _eas.get_all_level_actors()
+           if a.get_class().get_name() == "PlayerStart"]
+    if not _ps:
+        raise RuntimeError("no PlayerStart in the level")
+    _start = _ps[0].get_actor_location()
+    _out["player_start"] = [round(_start.x, 1), round(_start.y, 1),
+                            round(_start.z, 1)]
+
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+    _out["success_enum_value"] = str(_SUCCESS)
+
+    def _project(x, y, z):
+        _e = _u.Vector(EXTENT_CM, EXTENT_CM, EXTENT_CM)
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, z), None, None, _e)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    # !! PATH ENDPOINTS MUST BE ON THE NAVMESH, and this cost a false refusal.
+    # Pathing to a point at the START's z rather than the ground's z returns
+    # (ERROR, 0.0) even 42 m away over good navmesh; the SAME point at its
+    # projected z returns (SUCCESS, 5702.7). So both ends are projected first,
+    # and a point that will not project is reported as a projection failure
+    # rather than as unreachable -- those are different findings.
+    _start_proj = _project(_start.x, _start.y, _start.z)
+    _out["start_projected"] = ([round(_start_proj.x, 1),
+                                round(_start_proj.y, 1),
+                                round(_start_proj.z, 1)]
+                               if _start_proj else None)
+    if _start_proj is None:
+        raise RuntimeError("the PlayerStart itself does not project onto the "
+                           "navmesh -- every downstream result would be "
+                           "meaningless")
+
+    # ---- THE RELAY LATTICE ------------------------------------------------
+    # !! A SINGLE QUERY FROM THE SPAWN IS NOT A REACHABILITY TEST. The
+    # pathfinder has a finite SEARCH BUDGET and returns FAIL when it exhausts
+    # it, which is not "no path exists". Measured 2026-08-26: plaza->520 m
+    # FAILS while plaza->350 m and 350 m->520 m both SUCCEED. Believing the
+    # direct query is how this project came to report a sealed basin, 653 of
+    # 838 reachable streets (really 789) and 253 of 303 buildings (really 303).
+    #
+    # So a target is reachable if a path exists from the spawn OR from the
+    # nearest lattice point already MEASURED reachable. Reachability over a
+    # navmesh is transitive when every leg is a real path.
+    _LATTICE = r"__LATTICE__"
+    _lat = []
+    try:
+        with open(_LATTICE, "r", encoding="utf-8") as _lf:
+            _ld = _json.load(_lf)
+        # rows are [x_cm, y_cm, ground_m] -- keep the height, so the relay
+        # anchor projects from the surface it was MEASURED on rather than from
+        # a re-traced one. This payload has no ground-trace helper and adding
+        # one would introduce a second, possibly different, datum.
+        _lat = [[float(r[0]), float(r[1]),
+                 (float(r[2]) * 100.0 if len(r) > 2 and r[2] is not None
+                  else None)]
+                for r in _ld.get("rows", [])]
+    except Exception as _le:
+        _out["lattice_error"] = str(_le)
+    _out["lattice_rows"] = len(_lat)
+    if not _lat:
+        raise RuntimeError("no reachable lattice at %r. Without it this can "
+                           "only ask the direct query, which under-reports. "
+                           "Produce it with the reachable-lattice payload."
+                           % _LATTICE)
+
+    def _relay_from(x, y):
+        """Projected point of the nearest lattice row, or None."""
+        _best = None
+        _bd = None
+        for _row in _lat:
+            _d = (_row[0] - x) ** 2 + (_row[1] - y) ** 2
+            if _bd is None or _d < _bd:
+                _bd = _d
+                _best = _row
+        if _best is None or _best[2] is None:
+            return None, None
+        return _project(_best[0], _best[1], _best[2]), _bd ** 0.5
+
+    def _reach(x, y, z):
+        """(same_island, path_length_cm). Compares == SUCCESS explicitly.
+
+        ENavigationQueryResult is INVALID=0, ERROR=1, FAIL=2, SUCCESS=3, so
+        truthiness inverts this gate and the comparison is spelled out.
+
+        Tries the DIRECT query first, then RELAYS off the nearest measured
+        reachable lattice point. Only a failure of BOTH is unreachable.
+
+        Returns (ok, length_cm, via) where `via` is "spawn" or "relay".
+        !! THE LENGTH IS NOT COMPARABLE BETWEEN THE TWO. A direct result is the
+        walk from the PlayerStart; a relay result is only the last leg, from an
+        anchor at most one lattice step away, so it is SHORT by construction
+        and says nothing about how far the player actually walks. Reporting
+        both under one unlabelled field would be the misattributed-number
+        defect this payload exists to avoid.
+        """
+        _dst = _project(x, y, z)
+        if _dst is None:
+            return None, 0.0, "no projection"
+        try:
+            _res, _len = _u.NavigationSystemV1.get_path_length(
+                _w, _start_proj, _dst, None, None)
+            if _res == _SUCCESS:
+                return True, float(_len), "spawn"
+        except Exception as _e2:
+            return None, str(_e2), "exception"
+        _anchor, _ad = _relay_from(x, y)
+        if _anchor is None:
+            return False, 0.0, "no relay anchor"
+        try:
+            _res2, _len2 = _u.NavigationSystemV1.get_path_length(
+                _w, _anchor, _dst, None, None)
+        except Exception:
+            return False, 0.0, "relay exception"
+        return (_res2 == _SUCCESS), float(_len2), "relay"
+
+    # ---- POSITIVE CONTROL: the plaza -------------------------------------
+    _pc_ok, _pc_len, _pc_via = _reach(_start.x + 3000.0,
+                                      _start.y + 3000.0, _start_proj.z)
+    _out["control_positive"] = {"what": "a point 42 m from the spawn",
+                                "same_island": _pc_ok, "path_cm": _pc_len,
+                                "via": _pc_via}
+
+    # ---- NEGATIVE CONTROL: far outside every volume ----------------------
+    _nc_ok, _nc_len, _nc_via = _reach(0.0, 0.0, 20000.0)
+    _out["control_negative"] = {"what": "world origin, outside every volume",
+                                "same_island": _nc_ok, "path_cm": _nc_len,
+                                "via": _nc_via}
+
+    # ---- every encounter --------------------------------------------------
+    _unreach = 0
+    _noproj = 0
+    _lens = []
+    for _i, _e in enumerate(_p["encounters"]):
+        _x, _y, _z = _e["loc_cm"]
+        _pr = _project(_x, _y, _z)
+        _projects = _pr is not None
+        _same, _plen, _via = _reach(_x, _y, _z)
+        if not _projects:
+            _noproj += 1
+        if _same is not True:
+            _unreach += 1
+        elif _via == "spawn":
+            # only DIRECT lengths go in the summary. A relay length is the
+            # last leg from an anchor one lattice step away and is short by
+            # construction; mixing them makes the range meaningless.
+            _lens.append(_plen)
+        _out["encounters"].append({
+            "i": _i, "archetype": _e["archetype"],
+            "loc_cm": [_x, _y], "elevation_m": _e.get("elevation_m"),
+            "projects": _projects,
+            "lateral_cm": (round(_math.hypot(_pr.x - _x, _pr.y - _y), 1)
+                           if _projects else None),
+            "same_island_as_player": _same,
+            "via": _via,
+            "path_cm": (round(_plen, 1) if isinstance(_plen, float)
+                        else _plen)})
+
+    # !! DO NOT RETURN 440 ROWS THROUGH THE REPLY CHANNEL. The full per-row
+    # detail goes to a FILE; the reply carries a summary plus the rows that
+    # FAILED, which are the ones a reader needs. A 440-row reply buries the
+    # verdict in scrollback -- and this project has a rule against truncating
+    # output it cannot repeat, which is satisfied because the file holds
+    # everything and the run is repeatable.
+    _all_rows = _out["encounters"]
+    _out["encounters"] = [r for r in _all_rows
+                          if r.get("same_island_as_player") is not True][:25]
+    _out["failed_rows_shown"] = len(_out["encounters"])
+    _ROWS_OUT = r"__ROWS_OUT__"
+    if _ROWS_OUT and not _ROWS_OUT.startswith("__"):
+        try:
+            _os.makedirs(_os.path.dirname(_ROWS_OUT), exist_ok=True)
+            with open(_ROWS_OUT, "w", encoding="utf-8") as _rf:
+                _json.dump({"_what": "every encounter row with its reachability "
+                                     "verdict and which leg answered",
+                            "rows": _all_rows}, _rf)
+            _out["rows_file_bytes"] = _os.path.getsize(_ROWS_OUT)
+        except Exception as _re:
+            _out["rows_file_error"] = str(_re)[:120]
+
+    _out["total"] = len(_p["encounters"])
+    _out["failed_projection"] = _noproj
+    _out["unreachable"] = _unreach
+    _out["reached_via"] = {}
+    for _r in _out["encounters"]:
+        _k = _r.get("via")
+        _out["reached_via"][_k] = _out["reached_via"].get(_k, 0) + 1
+    if _lens:
+        _lens.sort()
+        _out["path_len_m_DIRECT_ONLY"] = {
+            "n": len(_lens),
+            "min": round(_lens[0] / 100.0, 1),
+            "max": round(_lens[-1] / 100.0, 1),
+            "_what": "walk length from the PlayerStart, for rows reached by a "
+                     "DIRECT query. Relay rows are excluded: their length is "
+                     "the last leg only."}
+
+    _controls_ok = (_out["control_positive"]["same_island"] is True
+                    and _out["control_negative"]["same_island"] is not True)
+    _out["controls_ok"] = _controls_ok
+    if not _controls_ok:
+        _out["ok"] = False
+        _out["verdict"] = ("COULD NOT LOOK -- the controls did not "
+                           "discriminate (positive=%s, negative=%s), so a "
+                           "result on the encounters means nothing"
+                           % (_out["control_positive"]["same_island"],
+                              _out["control_negative"]["same_island"]))
+    else:
+        _out["ok"] = (_unreach == 0 and _noproj == 0)
+        _out["verdict"] = (
+            "ALL %d ENCOUNTERS REACHABLE" % _out["total"] if _out["ok"]
+            else "REFUSE -- %d unreachable, %d failed projection"
+            % (_unreach, _noproj))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

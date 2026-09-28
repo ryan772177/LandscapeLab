@@ -1,0 +1,17 @@
+{
+ "status": "PLACEHOLDER -- NOT THE ARTEFACT OF RECORD",
+ "role": "copper_patina",
+ "file": "refs/derived_placeholder/copper_patina_PLACEHOLDER.png",
+ "base": "refs/textures_v1/plaster_wall_tiled.jpg",
+ "base_sha256": "ae6a00ef4b9536f9246cf2376a05f068773b1641d189b7f8a4a38aff8f6680e8",
+ "sha256": "c7b6b2fa85b5dad2c333307dff02bb1d9f6eb6655f955cf7c55c8e83453dc20b",
+ "size": [
+  1024,
+  1024
+ ],
+ "method": "luminance of the base, high-passed with a 33 px box to keep fine structure and drop large-scale shading, then mapped through a 4-stop weathered-copper ramp",
+ "derived": "the STRUCTURE only",
+ "invented": "the COLOUR. The hues are read off the concept's words -- 'WEATHERED COPPER ONION DOME, dark red-brown' -- and nothing else. No measurement stands behind them.",
+ "retires_when": "the operator's generated copper/patina tile lands. This file is then deleted from the role table, not kept as a fallback.",
+ "adopted": "2026-08-31"
+}

@@ -1,0 +1,103 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What is actually on the hero's Hair component right now.
+#
+# Every field here has been silently lost at least once in this project, which
+# is why they are read together rather than assumed to travel with the groom:
+#
+#   binding_asset       writing `override_materials` NULLS it, and an unbound
+#                       groom draws nothing while every other read-back still
+#                       reports success (R-HAIRCOLOUR).
+#   hair_length_scale   inert unless its ENABLE flag is set -- the value reads
+#                       back correctly either way, so the value is not the
+#                       evidence; the flag is.
+#   override_materials  a directly-assigned groom otherwise renders on the
+#                       VENDOR material and never sees the character colour.
+#
+# Nothing is written, so this cannot itself be the thing that broke.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _x in _a.get_components_by_class(_u.GroomComponent):
+            if _x.get_name().lower().startswith(SLOT.lower()):
+                _c = _x
+    if _c is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+
+    _g = _c.get_editor_property("groom_asset")
+    _b = _c.get_editor_property("binding_asset")
+    _out["groom"] = _g.get_name() if _g else None
+    _out["binding"] = _b.get_name() if _b else None
+    _out["visible"] = bool(_c.get_editor_property("visible"))
+
+    try:
+        _out["length_scale"] = round(float(_c.get_hair_length_scale()), 4)
+    except Exception as _e:
+        _out["length_scale"] = "UNREADABLE: " + str(_e)[:60]
+    try:
+        _out["length_scale_enabled"] = bool(
+            _c.get_is_hair_length_scale_enabled())
+    except Exception as _e:
+        _out["length_scale_enabled"] = "UNREADABLE: " + str(_e)[:60]
+
+    _mats = _c.get_editor_property("override_materials")
+    _out["override_materials"] = [(_m.get_name() if _m else None) for _m in _mats]
+    _params = {}
+    for _m in _mats:
+        if _m is None:
+            continue
+        for _n in ("hairMelanin", "hairRedness", "hairWhiteness",
+                   "hairRoughness", "hairDyeColor"):
+            try:
+                _params[_m.get_name() + "." + _n] = round(float(
+                    _u.MaterialEditingLibrary
+                    .get_material_instance_scalar_parameter_value(_m, _n)), 4)
+            except Exception:
+                pass
+        try:
+            _p = _m.get_editor_property("parent")
+            _params[_m.get_name() + ".parent"] = _p.get_name() if _p else None
+        except Exception:
+            pass
+    _out["material_params"] = _params
+
+    _s = _c.get_editor_property("relative_scale3d")
+    _out["component_scale"] = [round(_s.x, 4), round(_s.y, 4), round(_s.z, 4)]
+    _out["mirrored_x"] = bool(_s.x < 0)
+
+    if _g is not None:
+        _rows = []
+        for _r in _g.get_editor_property("hair_groups_rendering"):
+            _gs = _r.get_editor_property("geometry_settings")
+            _rows.append({
+                "hair_width": round(float(
+                    _gs.get_editor_property("hair_width")), 6),
+                "hair_root_scale": round(float(
+                    _gs.get_editor_property("hair_root_scale")), 4),
+                "hair_tip_scale": round(float(
+                    _gs.get_editor_property("hair_tip_scale")), 4)})
+        _out["geometry_settings"] = _rows
+        try:
+            _info = _g.get_editor_property("hair_groups_info")
+            _out["num_curves"] = int(
+                _info[0].get_editor_property("num_curves")) if _info else None
+        except Exception:
+            _out["num_curves"] = None
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

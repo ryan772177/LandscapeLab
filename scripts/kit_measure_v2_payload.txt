@@ -1,0 +1,74 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Measure the wider-seed kit meshes LIVE. Same fields as the 2026-08-29 rows so
+# the two intakes are one table, not two.
+#
+# fallback_tris_by_lod is the chain that renders with Nanite OFF; nanite_tris is
+# what renders with it on. They are DIFFERENT MESHES on a Nanite asset -- the
+# 2026-08-16 unit-3 finding -- so both are recorded rather than one being called
+# "the triangle count".
+#
+# pivot_base_error_cm: bounds min z minus the actor origin. A module whose pivot
+# is not at its base cannot be stacked by arithmetic, and the C0 house needed a
+# -39.81 cm correction for exactly this.
+
+PKGS = PKGS_JSON
+
+_out = {"ok": False, "error": None, "rows": [], "unloadable": []}
+try:
+    for _p in PKGS:
+        _a = _u.EditorAssetLibrary.load_asset(_p)
+        if _a is None or not isinstance(_a, _u.StaticMesh):
+            _out["unloadable"].append(_p)
+            continue
+        _b = _a.get_bounds()
+        _e, _o = _b.box_extent, _b.origin
+        _row = {
+            "package": _p,
+            "name": _a.get_name(),
+            "size_cm": [round(_e.x * 2, 1), round(_e.y * 2, 1),
+                        round(_e.z * 2, 1)],
+            "pivot_base_error_cm": round(float(_o.z - _e.z), 2),
+            "lods": _a.get_num_lods(),
+            "material_slots": len(_a.static_materials),
+        }
+        try:
+            _ns = _a.get_editor_property("nanite_settings")
+            _row["nanite"] = bool(_ns.get_editor_property("enabled"))
+        except Exception:
+            _row["nanite"] = None
+        # ON THE MESH ITSELF, not on EditorStaticMeshLibrary. The first
+        # version called EditorStaticMeshLibrary.get_number_triangles, which
+        # does not exist -- the stub puts get_num_triangles(lod_index) and
+        # get_num_nanite_triangles() on StaticMesh (stub :414175, :414220).
+        # NN23: an API remembered is an API guessed, and the stub is one grep
+        # away. Recorded in the payload so it is not re-guessed.
+        try:
+            _row["fallback_tris_by_lod"] = [
+                _a.get_num_triangles(_i) for _i in range(_a.get_num_lods())]
+        except Exception as _e2:
+            _row["fallback_tris_by_lod"] = None
+            _row["tris_error"] = str(_e2)[:100]
+        try:
+            _row["nanite_tris"] = _a.get_num_nanite_triangles()
+            _row["nanite_verts"] = _a.get_num_nanite_vertices()
+        except Exception as _e3:
+            _row["nanite_tris"] = None
+            _row["nanite_error"] = str(_e3)[:100]
+        try:
+            _row["materials"] = [
+                (_s.material_interface.get_name()
+                 if _s.material_interface else None)
+                for _s in _a.static_materials]
+        except Exception:
+            _row["materials"] = None
+        _out["rows"].append(_row)
+
+    _out["measured"] = len(_out["rows"])
+    _out["ok"] = not _out["unloadable"]
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,77 @@
+# spawn_water_plane — ONE water plane actor at a declared level, idempotent
+# by LABEL: if an actor with this label exists it is UPDATED, not doubled.
+#
+# Tokens via ue_exec --set (all literal __NAME__ substitutions):
+#   __LABEL__   e.g. WaterPlane_coast    (identity key, per world)
+#   __CX__ __CY__ __CZ__   centre in cm  (CZ is the WATER LEVEL, declared
+#                          in the brief, not sampled — water is flat)
+#   __SX__ __SY__          scale; /Engine/BasicShapes/Plane is 100 cm, so
+#                          scale 4000 = 4 km extent
+#
+# is_spatially_loaded = False: the plane must never fall out of a shot the
+# way the terrain cells do (2026-09-01 residency lesson); one translucent
+# quad is free to keep resident.
+#
+# DRY-RUN SEMANTICS: __GO__ != 1 reports what WOULD be spawned and touches
+# nothing (standing rule 8: dry-run anything that mutates a level).
+import json as _json
+import unreal as _u
+
+_out = {"ok": False, "mode": None, "found_existing": None, "actor": None,
+        "error": None}
+try:
+    _go = "__GO__" == "1"
+    _label = "__LABEL__"
+    _cx, _cy, _cz = float("__CX__"), float("__CY__"), float("__CZ__")
+    _sx, _sy = float("__SX__"), float("__SY__")
+    _out["mode"] = "GO" if _go else "DRY-RUN"
+
+    # Audit F3 / standing rule 11: report WHICH WORLD the label search ran
+    # in, so the GO=0 dry-run answers the wrong-level question in-band
+    # BEFORE GO=1 mutates anything.
+    _out["world"] = _u.get_editor_subsystem(
+        _u.UnrealEditorSubsystem).get_editor_world().get_path_name()
+
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _existing = None
+    for _a in (_eas.get_all_level_actors() or []):
+        if _a.get_actor_label() == _label:
+            _existing = _a
+            break
+    _out["found_existing"] = _existing is not None
+
+    if not _go:
+        _out["ok"] = True
+    else:
+        _mesh = _u.load_asset("/Engine/BasicShapes/Plane")
+        _mat = _u.load_asset("/Game/Materials/M_SideWater")
+        if _mesh is None or _mat is None:
+            raise RuntimeError("plane mesh or M_SideWater missing")
+        _actor = _existing or _eas.spawn_actor_from_class(
+            _u.StaticMeshActor, _u.Vector(_cx, _cy, _cz))
+        _actor.set_actor_label(_label)
+        _actor.set_actor_location(_u.Vector(_cx, _cy, _cz), False, False)
+        _actor.set_actor_scale3d(_u.Vector(_sx, _sy, 1.0))
+        _smc = _actor.static_mesh_component
+        # set_static_mesh returns False BOTH on failure and on a static-
+        # mobility component that already carries this mesh (the update
+        # path). Only call it when the mesh actually differs; a no-op
+        # refusal is not a failure (measured 2026-09-01: first spawn ok,
+        # every label-keyed update refused until this guard).
+        if _smc.static_mesh != _mesh:
+            if not bool(_smc.set_static_mesh(_mesh)):
+                raise RuntimeError("set_static_mesh returned False on a "
+                                   "REAL mesh change (audit F4)")
+        _smc.set_material(0, _mat)
+        _smc.set_editor_property("mobility", _u.ComponentMobility.STATIC)
+        _actor.set_editor_property("is_spatially_loaded", False)
+        _out["actor"] = {
+            "label": _actor.get_actor_label(),
+            "loc": [float(v) for v in _actor.get_actor_location().to_tuple()],
+            "scale": [float(v) for v in
+                      _actor.get_actor_scale3d().to_tuple()]}
+        _out["ok"] = True
+except Exception as _e:
+    import traceback as _tb
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+print("__LL__" + _json.dumps(_out, default=str))

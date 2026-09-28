@@ -1,0 +1,74 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# IMPORT A MESH AND READ ITS SLOTS BACK. Generic; no asset assumptions.
+#
+# WHY THE READ-BACK IS THE POINT. Option A's whole claim is "three real
+# material slots". Blender reporting three is Blender's opinion; what matters
+# is what UE holds after the FBX round trip -- the same round trip that
+# rotates the mesh -90 about X and that made a 0.3949 span look like a height.
+#
+# ⛔ `replace_existing=True` DID NOT RE-IMPORT (measured 2026-08-30: three
+# different files, byte-identical bounds returned). So the destination is
+# DELETED first, guarded to /Game/Scratch/.
+
+SRC = r"__SRC__"
+DEST = r"__DEST__"
+NAME = r"__NAME__"
+
+_out = {"ok": False, "error": None}
+try:
+    _eal = _u.EditorAssetLibrary
+    if not DEST.startswith("/Game/Scratch/"):
+        raise RuntimeError("REFUSE to delete outside /Game/Scratch/: " + DEST)
+    _pkg = DEST + "/" + NAME
+    if _eal.does_asset_exist(_pkg):
+        _eal.delete_asset(_pkg)
+        _out["deleted_stale"] = _pkg
+
+    _t = _u.AssetImportTask()
+    _t.set_editor_property("filename", SRC)
+    _t.set_editor_property("destination_path", DEST)
+    _t.set_editor_property("destination_name", NAME)
+    _t.set_editor_property("automated", True)
+    _t.set_editor_property("replace_existing", True)
+    _t.set_editor_property("save", True)
+    _o = _u.FbxImportUI()
+    _o.set_editor_property("import_mesh", True)
+    _o.set_editor_property("import_textures", False)
+    # ⭐ import_materials TRUE here, unlike the forge's stage 10. The whole
+    # point of the split is that the FBX now CARRIES three material slots, and
+    # importing with materials off would drop them and prove nothing.
+    _o.set_editor_property("import_materials", True)
+    _o.set_editor_property("import_as_skeletal", False)
+    _o.set_editor_property("mesh_type_to_import",
+                           _u.FBXImportType.FBXIT_STATIC_MESH)
+    _sm = _o.get_editor_property("static_mesh_import_data")
+    _sm.set_editor_property("combine_meshes", True)
+    _sm.set_editor_property("generate_lightmap_u_vs", False)
+    _sm.set_editor_property("build_nanite", False)
+    _t.set_editor_property("options", _o)
+    _u.AssetToolsHelpers.get_asset_tools().import_asset_tasks([_t])
+
+    _m = _eal.load_asset(_pkg)
+    if _m is None:
+        raise RuntimeError("import produced no asset at " + _pkg)
+    _out["package"] = _pkg
+    _out["material_slots"] = [str(s.material_slot_name)
+                              for s in _m.static_materials]
+    _out["slot_count"] = len(_m.static_materials)
+    _smes = _u.get_editor_subsystem(_u.StaticMeshEditorSubsystem)
+    _out["sections_lod0"] = int(_smes.get_lod_build_settings and
+                                _m.get_num_sections(0))
+    _out["tris_lod0"] = int(_m.get_num_triangles(0))
+    _out["uv_channels"] = int(_smes.get_num_uv_channels(_m, 0))
+    _bb = _m.get_bounding_box()
+    _out["size_cm"] = [round(float(_bb.max.x - _bb.min.x), 2),
+                       round(float(_bb.max.y - _bb.min.y), 2),
+                       round(float(_bb.max.z - _bb.min.z), 2)]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

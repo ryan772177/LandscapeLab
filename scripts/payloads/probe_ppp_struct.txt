@@ -1,0 +1,41 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# The reflected surface is the contract (docs/ue58-api-protocol.md). I guessed
+# 'b_enabled' from the C++ `bool bEnabled` and it does not exist; UE's Python
+# bindings strip the leading b_ from boolean UPROPERTYs. Rather than guess a
+# second time, ask the struct what it has.
+
+_out = {"ok": False, "error": None}
+try:
+    _s = _u.MoviePipelinePostProcessPass()
+    _names = []
+    for _n in dir(_s):
+        if _n.startswith("_"):
+            continue
+        try:
+            _v = _s.get_editor_property(_n)
+            _names.append([_n, type(_v).__name__, str(_v)[:40]])
+        except Exception:
+            pass
+    _out["MoviePipelinePostProcessPass"] = _names
+
+    _p = _u.MoviePipelineDeferredPassBase()
+    _dp = []
+    for _n in dir(_p):
+        if _n.startswith("_") or "multisample" not in _n.lower():
+            continue
+        try:
+            _dp.append([_n, str(_p.get_editor_property(_n))])
+        except Exception as _e:
+            _dp.append([_n, "unreadable"])
+    _out["deferred_multisample_props"] = _dp
+    _out["deferred_additional_pp"] = [
+        _n for _n in dir(_p) if "additional" in _n.lower()]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+    _out["trace"] = _tb.format_exc()[-500:]
+
+print("__LL__" + _json.dumps(_out, default=str))

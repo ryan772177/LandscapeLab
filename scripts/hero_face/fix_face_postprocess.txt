@@ -1,0 +1,65 @@
+# fix_face_postprocess — give the duplicated face its deformation graph back.
+#
+# MEASURED, by diffing the duplicate against the assembled mesh across every
+# property worth carrying: the ONLY substantive difference on the face is
+#
+#     post_process_anim_blueprint   duplicate None / assembled ABP_Face_PostProcess
+#
+# Everything else that "differed" was the same asset reached by plugin path
+# versus project copy (skeleton, physics_asset, lod_settings), or struct
+# addresses in a naive string compare (min_lod, bounds extensions).
+#
+# A MetaHuman face is DEFORMED by that post-process graph. Without it the
+# mesh has nothing driving its bones, which is consistent with every bone
+# sitting at the component origin.
+#
+# Prefers the plugin path, because the duplicate's other references
+# (skeleton, physics asset, LOD settings) all point at /MetaHumanCharacter/
+# and mixing in the project copy would be a second, unrelated change.
+#
+# Reads back off a RELOADED asset, not off the object it just set.
+import json as _json
+import unreal as _unreal
+
+_MESH = "/Game/Hero/Generated/SKM_HeroFace"
+_CANDIDATES = ["/MetaHumanCharacter/Face/ABP_Face_PostProcess",
+               "/Game/MetaHumans/Common/Face/ABP_Face_PostProcess"]
+
+_out = {"error": None, "unreadable": [], "mesh": _MESH,
+        "before": None, "chosen": None, "set": None, "after_reload": None,
+        "saved": None}
+try:
+    _m = _unreal.EditorAssetLibrary.load_asset(_MESH)
+    if _m is None:
+        raise RuntimeError("mesh did not load: " + _MESH)
+    _before = _m.get_editor_property("post_process_anim_blueprint")
+    _out["before"] = None if _before is None else str(_before)[:120]
+
+    _cls = None
+    for _p in _CANDIDATES:
+        try:
+            _c = _unreal.EditorAssetLibrary.load_blueprint_class(_p)
+        except Exception as _e:
+            _out["unreadable"].append(_p + ": " + str(_e)[:80])
+            _c = None
+        if _c is not None:
+            _cls = _c
+            _out["chosen"] = _p
+            break
+    if _cls is None:
+        raise RuntimeError("no ABP_Face_PostProcess class could be loaded "
+                           "from any candidate path")
+
+    _m.set_editor_property("post_process_anim_blueprint", _cls)
+    _out["set"] = True
+    _out["saved"] = bool(_unreal.EditorAssetLibrary.save_asset(_MESH, False))
+
+    # Read back off a FRESH load. Reading the object we just wrote proves
+    # only that the value landed in memory (non-negotiable 8).
+    _unreal.EditorAssetLibrary.load_asset(_MESH)
+    _rb = _unreal.EditorAssetLibrary.load_asset(_MESH)
+    _v = _rb.get_editor_property("post_process_anim_blueprint")
+    _out["after_reload"] = None if _v is None else str(_v)[:120]
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

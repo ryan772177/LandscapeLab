@@ -1,0 +1,218 @@
+[
+  {
+    "file": "scripts/measure_lod_materials.py",
+    "line": 203,
+    "severity": "high",
+    "claim": "The new SUBSTITUTION exemption suppresses BOTH of this tool's refusals whenever a LOD gains any material at all, at any position in the chain \u2014 far wider than the imposter case it was written for.",
+    "failure_scenario": "A tree whose LOD0 binds {trunk, branch, leaf} has an LOD2 that renders sections {trunk, branch_lowpoly}: the simplifier dropped the canopy entirely and one material was swapped. `lost = {branch, leaf}`, `gained = {branch_lowpoly}` \u2014 both non-empty, so `:203` takes the SUBSTITUTION branch, `rc` stays 0, and `:224`'s section-count refusal is also skipped by `and not gained`. The tool prints \"That is a REPLACEMENT REPRESENTATION (a billboard or imposter), not simplifier loss\" and \":234` closes with \"expected, and NOT a defect\" \u2014 over a LOD that genuinely lost its canopy. Before tonight this exited 4 twice over.",
+    "evidence": "scripts/measure_lod_materials.py:182-227. `lost = base - used` (:182), `gained = used - base` (:183), `if lost and gained:` (:203) with no `rc = 4`, `elif lost:` (:213) is the only surviving loss refusal, and `if len(row[\"sections\"]) < base_n and not gained:` (:224). The exemption's own comment says \"Expected at the last LOD\" (:210-211) but nothing tests `row[\"lod\"]`, and nothing tests that the replacement is COMPLETE. Compare the pre-change code in `git diff b5b6307c HEAD -- scripts/measure_lod_materials.py`, where `if lost:` and `if len(...) < base_n:` were unconditional.",
+    "suggested_fix": "Scope the exemption to the case it was written for: require the replacement to be total and terminal \u2014 `lost == base` (nothing LOD0 rendered survives) AND this is the last row in `data[\"lods\"]`. Anything else is still a loss and still exits 4. Keep the `subs` message only for rows that pass that narrower test."
+  },
+  {
+    "file": "scripts/make_landscape_material.py",
+    "line": 2756,
+    "severity": "high",
+    "claim": "`override_materials` is read back off the saved asset and then never compared to what the recipe declared, never printed, and never gated \u2014 while two comments assert it is verified. The exact failure paid for tonight would still exit 0.",
+    "failure_scenario": "A grass variety declares `override_materials`, the payload loads the MI successfully (so the `_badmat` fail-closed branch at :2720 does not fire) and calls `set_editor_property`, but the engine does not keep it on the saved GrassVariety \u2014 which is precisely what happened tonight to all eight blueberry varieties. `_ov` is read back at :2756 into `variety_rows[*][\"override_materials\"]`, `\"ok\": bool(_got)` at :2772 is True, `density_matches` is True, the host loop at :3259-3281 prints only mesh and density and checks only `density_matches`, and `make_landscape_material.py` returns 0. The world then renders wind-on blueberries under assets named `_nowind`, and the frame-A/B noise floor the whole method rests on is silently raised, with every instrument reporting success.",
+    "evidence": "scripts/make_landscape_material.py:2752-2763 reads `_ov` back and stores it; scripts/make_landscape_material.py:3259-3286 is the entire host-side verification of the grass result and `grep -n override` over lines 3258-3290 returns nothing \u2014 only `density_matches` (:3278) can set `bad_grass`. The claim that it is checked appears twice: \"Overrides re-read from the SAVED asset ... (lesson 9.1, the same reason the densities are re-summed above)\" at :2752-2755, and \"checked for shape here and READ BACK off the saved asset by the builder\" at scripts/import_heightmap.py:820-821. The density IS re-summed AND compared; the overrides are re-read and dropped. Detection currently lives only in the opt-in `scripts/read_grass_type.py --expect-all-overridden` (:137-151), which shares no code with the builder and which nothing obliges anyone to run.",
+    "suggested_fix": "Add the comparison beside `density_matches`: carry the declared list into the payload's `_out` row and set `overrides_match` per variety (declared list == read-back list, in order), then treat a mismatch exactly as `density_matches` is treated at :3278-3281 \u2014 print it and append to `bad_grass`. Also validate `len(override_materials)` against the mesh's measured `material_slots` at import_heightmap.py:823-838, since the list is positional and a short list leaves the remaining slots on the vendor material."
+  },
+  {
+    "file": "scripts/landscape_spec.py",
+    "line": 374,
+    "severity": "medium",
+    "claim": "The new `height_m` input to `uncorrected_pivot_errors` is guarded only by `is not None`, and the sink test is a bare `>` comparison, so a NaN in either `base_offset_z_m` or `height_m` passes the grass pivot gate silently.",
+    "failure_scenario": "An engine-derived row carries `\"height_m\": NaN` or `\"base_offset_z_m\": NaN` (json.load accepts the non-standard NaN literal, and `engine_derived.json` is a hand-maintained record). `height <= 0.0` is False for NaN, `frac` becomes NaN, and `frac > MAX_UNCORRECTED_SINK_FRAC` is False for NaN \u2014 so the mesh passes the gate that exists to stop the grass system burying it. Verified offline against recipes/alpine_8k.json by monkeypatching the registry in memory: `NaN base_offset -> []` and `NaN height -> []`, where the same row with `base_offset_z_m = -0.135` correctly returns the refusal. A non-numeric `height_m` is worse still: `\"height_m\": true` yields `float(True) = 1.0` and the fraction is computed against a fabricated height; `\"height_m\": \"tall\"` raises ValueError out of `recipe_normalization_errors`, which `import_heightmap.py:972` does not catch, converting REFUSE into a traceback.",
+    "evidence": "scripts/landscape_spec.py:371-385. `elif row.get(\"height_m\") is not None: height = float(row[\"height_m\"])` (:374-375) \u2014 no `math.isfinite`, no isinstance, unlike the `extent_m` branch at :372-373 which at least type-checks the container. `if frac > MAX_UNCORRECTED_SINK_FRAC` (:385) is the NaN-passing form; the project's own `import_heightmap._is_num` (:108-116) exists for exactly this and documents it: \"NaN defeats every pure-comparison check below (nan > x is always False)\". The identical pattern is handled correctly in the grass payload at make_landscape_material.py:2623-2628, which uses `not (x <= lim)` and cites \"section 2.8\".",
+    "suggested_fix": "Require both values to be finite numbers before computing: reject with the existing 'I could not look' message unless `isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v)` holds for `base_offset_z_m` and for the resolved height, and invert the comparison to `not (frac <= MAX_UNCORRECTED_SINK_FRAC)` so NaN refuses rather than passes."
+  },
+  {
+    "file": "scripts/check_scene_animation.py",
+    "line": 156,
+    "severity": "medium",
+    "claim": "The animation instrument checks only that frames are the same SIZE, never that they are non-trivial or that the editor actually re-rendered, so a broken capture reads as the passing verdict STATIC.",
+    "failure_scenario": "The editor is throttled, mid-load, or writing an unlit/black frame \u2014 a state this project has hit before (CURRENT STATE 2026-08-12: four 4K frames, all pure black, identical SHA256, `highres_shot` printed WROTE and exited 0 four times). `_shot` returns a new filename each time, so the loop at :134-146 succeeds; the frames are identical, `mae = 0.0`, `mean_pct = 0.0`, `peak = 0.0`; `over_floor` and `concentrated` are both False at :206-207, and the tool prints \"VERDICT: STATIC\" and returns 0. \"I could not look\" has been reported as \"the scene does not animate\" \u2014 and that verdict is what licenses every subsequent single-variable A/B against the 0.00298 floor.",
+    "evidence": "scripts/check_scene_animation.py:152-158 is the only frame-quality check and it tests `len({im.shape for im in ims}) != 1` and nothing else. Compare the project's existing instrument for this exact job, described in CLAUDE.md: \"verify_frames.py refuses a verdict unless every frame is present, correctly sized and tonally non-trivial\" \u2014 it is not imported or invoked here. The tool's own docstring at :36-39 hedges the STATIC verdict's precision but does not cover the case where the instrument produced no signal at all, which CLAUDE.md's own rule names: \"A null result is only evidence when the instrument could have produced a non-null one.\"",
+    "suggested_fix": "Before comparing, refuse (exit 5) unless every frame is tonally non-trivial \u2014 reuse `verify_frames.py`'s check rather than re-implementing it \u2014 and refuse if any two frames are byte-identical, since a static scene rendered twice through TAA is not bit-identical and identity is evidence of a dead capture, not of a still forest."
+  },
+  {
+    "file": "scripts/read_grass_type.py",
+    "line": 147,
+    "severity": "low",
+    "claim": "The override refusal message is printed on `rc == 4` regardless of which check set it, so a variety-count mismatch is reported as a missing wind-off override that is in fact present.",
+    "failure_scenario": "Run with `--expect-all-overridden --expect-varieties 8` against an asset that carries 7 varieties, every one of them correctly overridden. `:137-138` never fires; `:143-146` fires and sets `rc = 4`; `:147` then prints \"REFUSE: at least one variety carries NO override material. That variety renders with the VENDOR material \u2014 for the blueberry understory that means wind ON\". The operator is sent to re-run the override tooling for a defect that does not exist, and the real defect (a variety that was dropped) is buried under a false diagnosis. This is the only instrument in the project that can see the override state, so its diagnosis is load-bearing.",
+    "evidence": "scripts/read_grass_type.py:137-151. `rc` is set to 4 at both :138 (missing override) and :146 (count mismatch), and the discriminating condition at :147 is `if args.expect_all_overridden and rc == 4`, which cannot tell the two apart. The `elif` at :152 then also suppresses the correct \"every variety carries an override\" line.",
+    "suggested_fix": "Track the two outcomes in separate flags (e.g. `missing_override` and `count_mismatch`) and key each message off its own flag, so each refusal states the check that actually failed."
+  },
+  {
+    "file": "scripts/landscape_spec.py",
+    "line": 225,
+    "severity": "low",
+    "claim": "Provenance is classified by which FILE a row was read from, not by the row's own declared `provenance`, so the exemption closed tonight is reopened by misfiling a row into the wrong registry.",
+    "failure_scenario": "A vendor `.uasset` mesh whose pivot sits at its bounding-box centre is added by hand as a row in `Free/_measured/normalized.json` instead of `engine_derived.json` (both are hand-maintained JSON; nothing enforces which meshes may appear in which). The first loop at :175-181 stores it untagged, `_provenance_kind` is absent, the branch at :442-444 does not fire, and `recipe_normalization_errors` returns `[]` for a grass mesh that will be buried to the waist \u2014 the exact hole tonight's change was written to close, reachable again through the container rather than through the content.",
+    "evidence": "scripts/landscape_spec.py:225-227 tags rows purely on the basis of the loop they were read in (`ENGINE_DERIVED_REPORT` at :190-227), while every engine-derived row already carries an explicit self-describing `provenance` string that is never consulted \u2014 see `Free/_measured/engine_derived.json`, where each row states \"never went through scripts/blender/normalize_asset.py\". The blender-side loop at :175-181 performs no check that a row it accepts actually came from `normalize_asset.py`.",
+    "suggested_fix": "Derive the tag from the row, not the file: treat any row lacking evidence of Blender normalisation (e.g. no `normalize_asset` marker, or carrying a `provenance` string) as engine-derived and run `uncorrected_pivot_errors` on it, so the strict path is the default and the exemption has to be earned."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\make_landscape_material.py",
+    "line": 2752,
+    "severity": "high",
+    "claim": "The comment says the override materials are \"re-read from the SAVED asset, not counted off the list we set\", but the code reads the property straight back off the same in-memory object it set eleven lines earlier.",
+    "evidence": ":2731 `_gt.set_editor_property(\"grass_varieties\", _built)`; :2736 `save_asset(...)`; :2743 `_got = _gt.get_editor_property(\"grass_varieties\") or []`; :2752-2755 comment \"Overrides re-read from the SAVED asset, not counted off the list we set \u2014 setting a list and counting the list you set proves nothing (lesson 9.1...)\"; :2756 `_ov = _gv.get_editor_property(\"override_materials\") or []`. `_gt` is never reloaded and `_gv` are the `GrassVariety` structs from `_built`. Nothing on this path touches the bytes on disk.",
+    "failure_scenario": "`set_editor_property(\"override_materials\", _mats)` writes the field on an in-memory GrassVariety but the value fails to serialise (or `save_asset` fails). `variety_rows` still reports every override present, the builder prints success, and the operator reads the comment as meaning the saved bytes were checked. That is precisely the D3 failure this comment was written about \u2014 the builder reported success while the saved asset carried `overrides: NONE` \u2014 and the new read-back cannot detect it, because it reads the field the setter wrote on the object the setter wrote it to (non-negotiable 8).",
+    "suggested_fix": "Either delete the \"from the SAVED asset\" claim and say plainly that this is an in-memory read-back of the struct list, or make it true: after `save_asset`, drop the package and reload the asset by path in a fresh payload (which is what `read_grass_type.py` is for), and cite that tool as the instrument instead of claiming it here."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\check_scene_animation.py",
+    "line": 70,
+    "severity": "high",
+    "claim": "The 0.00298 floor is labelled \"derived on BARE TERRAIN, before it had any animated foliage\" in a comment, in `--floor` help and in a line printed on every run. The frames it was derived from are full of trees and grass.",
+    "evidence": ":70-73 comment \"The floor this project derived on BARE TERRAIN, before it had any animated foliage\"; :101-103 `--floor` help \"The default was derived on BARE TERRAIN.\"; :124-127 prints \"(project default \u2014 derived on BARE TERRAIN)\". Provenance: LESSONS.md:12072-12073 \"a same-settings noise floor (`044840Z` vs `054655Z`, same commit, same cloud state, two runs \u2014 mean mae **0.00298**)\", and those files are `captures/alpine/alpine__forest_floor__20260808T044840Z__75802995-dirty_triplanar_no_clouds.png` etc. \u2014 19 stations on `/Game/Alpine` with 157,554 conifers and the grass system live. I opened the `forest_floor` frame: it is a conifer stand over grass. LESSONS.md:16086, written in the same session, states the correct provenance without the bare-terrain claim: \"0.00298 was measured on `/Game/Alpine` \u2014 2017\u00b2, before Lumen, before the capable-GPU profile, before volumetric fog.\"",
+    "failure_scenario": "A reader takes the printed provenance at face value and treats 0.00298 as a clean-scene baseline that only needs re-deriving for animation. It is not: the same session measured the true Alpine8K floor at ~0.0117 (LESSONS.md:16082), 3.94x higher, on a scene the label says the floor already covers. Three artefacts written tonight (`_verify/20260815_alpine8k_forest_floor_animation.json`, `_verify/20260815_floor_forest_floor_animation.json`, `_verify/20260815_floor_sweep_2000_animation.json`) all carry `\"floor\": 0.00298` and all printed that false provenance line.",
+    "suggested_fix": "Change the label to what the frames show \u2014 measured on /Game/Alpine, 2017\u00b2, vegetated, pre-Lumen, pre-capable-GPU-profile, pre-volumetric-fog \u2014 which is the calibration class that actually matters, and is what makes quoting it against Alpine8K wrong."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\check_scene_animation.py",
+    "line": 221,
+    "severity": "medium",
+    "claim": "The STATIC verdict prints \"without the spatial signature of motion\", but the only spatial test is a CONJUNCTION, so a strong spatially-coherent motion covering under 1% of pixels satisfies the claim.",
+    "evidence": ":206-207 `over_floor = mean_mae > args.floor`; `concentrated = peak > 0.15 and mean_pct > 1.0`; :209 `if over_floor or concentrated:` MOVING, else :221 \"VERDICT: STATIC \u2014 below the floor and without the spatial signature of motion.\" STATIC therefore requires only `not(peak>0.15 and mean_pct>1.0)` \u2014 `mean_pct <= 1.0` alone suffices however large `peak` is. The tool's own thesis (:16-22) is that \"whole-frame mae is a layer-scoped statistic whenever the subject does not fill the frame\", and its motivating case moved only 2.4-4.4% of the frame.",
+    "failure_scenario": "A camera where the animating subject occupies ~0.9% of the frame (a distant canopy, the `lod_far`/`lod_near` class of station) moving at full amplitude: peak 0.7, mean_pct 0.9%, mae ~0.004. Run with a correctly re-derived Alpine8K floor of 0.0117 \u2014 which this tool actively urges via `--floor` \u2014 `over_floor` is False and `concentrated` is False. The tool prints STATIC, denies the spatial signature, and exits 0, while the diff image it writes is a solid filled silhouette. That is the exact hidden-by-the-denominator failure the tool exists to prevent.",
+    "suggested_fix": "Either add an independent high-peak test (e.g. `peak > 0.15 and there exists a contiguous region above threshold`, or trip on `peak` alone regardless of area), or downgrade the printed wording to what is tested: \"below the floor, and not concentrated by the peak-AND-area test \u2014 a coherent motion over less than {mean_pct} of the frame would not have been caught.\""
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\read_grass_type.py",
+    "line": 147,
+    "severity": "medium",
+    "claim": "The REFUSE message asserts \"at least one variety carries NO override material\" whenever `rc == 4`, but `rc` is also set to 4 by the unrelated `--expect-varieties` count check.",
+    "evidence": ":137-138 `if args.expect_all_overridden and not ovr: rc = 4`; :143-146 `if args.expect_varieties and len(got[\"varieties\"]) != args.expect_varieties: ... rc = 4`; :147-151 `if args.expect_all_overridden and rc == 4: print(\"REFUSE: at least one variety carries NO override material. That variety renders with the VENDOR material \u2014 for the blueberry understory that means wind ON...\")`. The two causes share one flag and the message names only the second.",
+    "failure_scenario": "`read_grass_type.py --asset /Game/Foliage/GT_alpine_8k_Blueberry --expect-varieties 8 --expect-all-overridden` against an asset that has 7 varieties, every one correctly overridden. The tool prints a REFUSE stating an override is missing and that the understory renders with wind ON. The operator goes looking for a missing override that does not exist, while the real defect \u2014 a dropped variety \u2014 is stated only in the line above.",
+    "suggested_fix": "Track the two conditions in separate booleans and print each message only from its own cause."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\read_grass_type.py",
+    "line": 152,
+    "severity": "medium",
+    "claim": "`--expect-all-overridden` prints \"Every variety carries an override material\" and exits 0 over a grass type with ZERO varieties \u2014 a vacuous pass from a flag documented as a refusal.",
+    "evidence": ":84-86 help: \"REFUSE unless every variety carries at least one override material.\" :129-138 the only place `rc = 4` can be set for overrides is inside `for v in got[\"varieties\"]:`, so an empty list never enters it. :143 the count guard is skipped because `--expect-varieties` defaults to 0 and `if args.expect_varieties` is falsy. :152-155 then prints \"Every variety carries an override material, read from the SAVED asset by an instrument that shares no code with the builder.\" Exit code 0, documented at :18 as \"read, and every declared expectation met\".",
+    "failure_scenario": "The builder fails in a way that leaves `grass_varieties` empty (the load-failure path at make_landscape_material.py:2721-2726 sets `ok: False` and skips the type; a partially-written or wrong asset path gives the same shape). `read_grass_type --asset ... --expect-all-overridden` reports the strongest possible pass sentence and exits 0 over a grass type that will render nothing at all. This is the fail-open shape non-negotiable 1 forbids: \"unknown\" read as \"yes\".",
+    "suggested_fix": "Refuse on an empty variety list under `--expect-all-overridden` (or unconditionally): zero varieties is 'I could not check', not 'every variety passed'."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\measure_lod_materials.py",
+    "line": 32,
+    "severity": "medium",
+    "claim": "The documented exit code 4 \u2014 \"a LOD lost a material that LOD0 had, or lost sections\" \u2014 no longer describes the code after tonight's SUBSTITUTION change; both of those conditions can now exit 0.",
+    "evidence": "Docstring :29-32 \"Exit codes: 0 measured / 2 editor gate refused, or the mesh is missing / 4 a LOD lost a material that LOD0 had, or lost sections\". Code :203-212: `if lost and gained:` prints SUBSTITUTION and does NOT set `rc`, so a LOD that lost a material LOD0 had exits 0. Code :224 `if len(row[\"sections\"]) < base_n and not gained:` \u2014 a LOD with fewer sections than LOD0 exits 0 whenever it gained a material. Both changes landed in 765b2053; the docstring was not updated.",
+    "failure_scenario": "A caller or a wrapper script gates on this tool's exit code with the docstring as its contract \u2014 \"non-zero means a LOD dropped a material or a section\". It runs against the PN spruces, gets 0, and records that no LOD dropped anything, when LOD4 drops all three LOD0 materials and renders one section instead of three. The tool's own report says so on stdout; the exit code the docstring promises does not.",
+    "suggested_fix": "Update the exit-code block to the current semantics: 4 = a LOD lost a material or a section WITHOUT binding a replacement; a substitution (loss plus a material LOD0 never had) is reported and exits 0."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\make_nowind_material_instances.py",
+    "line": 178,
+    "severity": "medium",
+    "claim": "The comment claims the switch read-back comes from a RELOADED asset \"not from the object we just wrote to\". `EditorAssetLibrary.load_asset` returns the already-loaded in-memory object, so `_chk` is the same UObject as `_mi`.",
+    "evidence": ":163-176 creates `_mi`, sets the six switches, `update_material_instance`, `save_asset(_new_path)`. :178-181 comment \"READ BACK from the saved asset, reloaded, not from the object we just wrote to\", then `_eal.load_asset(_new_path)` twice and `_chk = ...`. Engine path: `UEditorAssetLibrary::LoadAsset` (EditorAssetLibrary.cpp:268) -> `UEditorAssetSubsystem::LoadAsset` (EditorAssetSubsystem.cpp:431-447) -> `LoadAssetFromPath` :114-122 -> `LoadAssetFromData` :95-112 -> `FAssetData::GetAsset` -> `FastGetAsset(bLoad=true)` (AssetData.h:523-545), which does `FindObjectFast<UPackage>` FIRST and only calls `LoadPackage` when no fully-loaded package is in memory. The package was just created and saved, so it is in memory and no disk read occurs. Calling `load_asset` twice does not change this.",
+    "failure_scenario": "A static switch is set on the in-memory MI but does not survive serialisation (or `save_asset` silently fails). The read-back returns the in-memory value, every switch reads back False, the tool exits 0 and writes `pn_nowind_overrides.json`, and the docstring's FAILING CLOSED promise (:34-40, \"Every switch is READ BACK from the created asset after being set, and a disagreement refuses\") is satisfied by an instrument that shares its state with the setter \u2014 the read-back-reads-the-field-the-setter-wrote trap (non-negotiable 8).",
+    "suggested_fix": "Delete the \"reloaded\" claim (the render test the tool already recommends at :442-444 is the real instrument), or force an actual disk read \u2014 e.g. `EditorAssetSubsystem.reload_asset` / unload the package before `load_asset` \u2014 and verify that path exists in 5.8 before asserting it."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\landscape_spec.py",
+    "line": 387,
+    "severity": "medium",
+    "claim": "The pivot-refusal message states the mesh \"is placed by the GRASS system, which applies NO pivot correction\", but the new call site now runs this check on every engine-derived mesh, including instanced tree species that the grass system never touches.",
+    "evidence": "New call site :442-444 `if isinstance(vrow, dict) and vrow.get(\"_provenance_kind\") == \"engine_derived\": errs.extend(uncorrected_pivot_errors(path, vrow))`, inside a loop over `paths` from `_recipe_mesh_paths_split` (:243-273), which puts every species WITHOUT a `role` key into `veg` \u2014 instanced trees and grass varieties alike. `Free/_measured/engine_derived.json` contains the instanced spruces (`SM_PVE_Norway_Spruce_01_A..D`, `spruce_half_01`, `spruce_small_05`) alongside the grass blueberries. The message text at :387-393 and the function docstring at :358-361 (\"This is the second question, asked only of the second placer\") both assert the grass path unconditionally.",
+    "failure_scenario": "A future instanced tree is registered in the engine-derived registry with a base offset over 25% of its height. The recipe is refused with a message telling the author the mesh \"is placed by the GRASS system\" and that \"the rock path corrects this and the grass path cannot\" \u2014 naming the wrong mechanism for an instanced species that place_foliage does gate at get_bounds() time (place_foliage.py:737-782). The author looks for a grass declaration that does not exist.",
+    "suggested_fix": "Pass the placing system into `uncorrected_pivot_errors` (or split the message), so the text names the actual placer; and update the docstring, which now says the question is asked only of the grass path."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\check_scene_animation.py",
+    "line": 48,
+    "severity": "low",
+    "claim": "Documented exit code 3, \"fewer usable frames than asked for\", is unreachable; that case returns 5.",
+    "evidence": ":45-51 exit-code block lists \"3  fewer usable frames than asked for\". :110-112 refuses `--frames < 2` with exit 2. :134-146 the capture loop returns 5 on any frame that fails (\"REFUSE: could not look. A missing frame is not a static scene.\") and otherwise appends exactly `args.frames` paths. :148-150 `if len(paths) < 2: return 3` therefore cannot be reached.",
+    "failure_scenario": "A caller keys on exit 3 to distinguish 'partial capture' from 'could not look at all' and never sees it; a partial capture arrives as 5. Minor, but the exit-code block is the tool's contract and one third of it describes a branch that cannot execute.",
+    "suggested_fix": "Either delete the code-3 line, or make the capture loop tolerate a failed frame and fall through to the len<2 check so 3 means what it says."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\probe_material.py",
+    "line": 51,
+    "severity": "low",
+    "claim": "Exit 0 is documented as \"every probed asset read, and (if --recompile) compiled with 0 errors\", but a MaterialInstance under `--recompile` is never compiled and nothing says so.",
+    "evidence": ":50-55 exit codes. Payload :132 `if _recompile and isinstance(_a, _unreal.Material):` \u2014 a MaterialInstanceConstant fails the isinstance test, so `compile_errors` and `compiled` are never set. Report :268-280: `if \"compile_errors\" in got` (absent) `elif got.get(\"compiled\") is False` (absent, the key was never written) \u2014 so no COMPILE line is printed at all and `rc` stays 0. `--asset` help at :189-191 explicitly invites \"a Material or MaterialInstance\".",
+    "failure_scenario": "`probe_material.py --asset /Game/PN_interactiveSpruceForest/.../MI_spruce_half_01_leaf --recompile` exits 0 with no compile line. The exit code asserts \"compiled with 0 errors\" for an asset that was never compiled \u2014 the same could-not-look-reported-as-a-pass shape the docstring warns about at :47-48.",
+    "suggested_fix": "Print an explicit \"COMPILE  SKIPPED \u2014 not a Material, an instance has no graph\" line for that case, and qualify the exit-0 wording to \"...and every Material compiled with 0 errors; instances are not compiled\"."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\import_heightmap.py",
+    "line": 605,
+    "severity": "low",
+    "claim": "The comment \"NO system restriction\" now annotates a branch that is reached only when the system is NOT 'instanced'.",
+    "evidence": "Tonight's change replaced `if \"cull_distance_m\" in sp:` with `if system == \"instanced\": ...` (:588-599) followed by `elif \"cull_distance_m\" in sp:` (:600). The comment inside that elif still opens \"# NO system restriction, and the one that used to be here was FALSE...\" (:605-618). The [0, 100000] bound it describes is now unreachable for instanced species, which are handled by the (0, 5000] branch above.",
+    "failure_scenario": "A later session reading the elif takes \"NO system restriction\" as a live description, believes the loose [0, 100000] bound applies to instanced species too, and either re-adds a redundant guard or relaxes the strict branch on the strength of a comment that describes the code as it was before tonight.",
+    "suggested_fix": "Rewrite the opening sentence: this branch is the NON-INSTANCED fallback; keep the historical note about the false 'instanced species are not view-culled' claim, which is still worth having, but stop asserting the current branch has no system restriction."
+  },
+  {
+    "file": "C:\\Users\\Admin\\UE5LandscapePipeline\\scripts\\read_grass_type.py",
+    "line": 15,
+    "severity": "low",
+    "claim": "\"This asks the SAVED asset\" (and the matching success line \"read from the SAVED asset\") overstates what the payload does when the editor already has the asset loaded \u2014 which it always does immediately after a builder run.",
+    "evidence": ":15 \"This asks the SAVED asset. It shares no code with the builder.\" :49 `_gt = _unreal.EditorAssetLibrary.load_asset(_p)`; :153-155 prints \"read from the SAVED asset by an instrument that shares no code with the builder.\" `LoadAsset` resolves through `FAssetData::GetAsset` -> `FastGetAsset` (AssetData.h:523-545), which returns the in-memory package when one is fully loaded and only calls `LoadPackage` otherwise. Run in the same editor session that just built the grass type, this reads the builder's in-memory object, not the bytes on disk.",
+    "failure_scenario": "The grass type is correct in memory and did not serialise. This tool reports every override present \"from the SAVED asset\", the claim is recorded as disk-proven, and the defect survives to the next cold boot. The second half of the sentence \u2014 shares no code with the builder \u2014 is true and is what actually caught tonight's false claim; the SAVED half is the part that is not established.",
+    "suggested_fix": "Say what is true: a separate instrument, separate payload, reading the asset as the editor currently holds it. To make the SAVED claim real, run it against a cold editor (or reload the package first) and say which was done."
+  },
+  {
+    "file": "scripts/make_nowind_material_instances.py",
+    "line": 189,
+    "severity": "medium",
+    "claim": "The wind-off read-back gate cannot fail closed: `get_material_instance_static_switch_parameter_value` returns `False` both when the switch is genuinely off AND when the parameter cannot be resolved at all, and `set_material_instance_parent` is never verified.",
+    "failure_scenario": "`_mel.set_material_instance_parent(_mi, _src)` (line 171) returns void and silently no-ops when `_src` is not a UMaterial or UMaterialInstanceConstant (MaterialInstance.cpp:3947-3955 logs a Warning and leaves Parent unchanged/null). The created MI then has no parent. The six `set_...static_switch...` calls still append override entries, `update_material_instance` prunes them, and the read-back at line 184-186 returns False for every switch because `GetParameterValue` finds nothing. `_bad` at line 189 is empty, `_slot[\"ok\"]=True`, and the tool prints \"all 6 switches read back FALSE\" and exits 0 having written an MI that is not a child of the vendor master and renders nothing correct. The pre-check at line 143-144 reads `get_static_switch_parameter_names(_src)` \u2014 the PARENT, not the created child \u2014 so it cannot catch this either.",
+    "evidence": "Engine/Source/Editor/MaterialEditor/Private/MaterialEditingLibrary.cpp:1585-1594 \u2014 `bool bResult = false; if (Instance) { Instance->GetStaticSwitchParameterValue(..., bResult, OutGuid); } return bResult;` \u2014 bResult is returned untouched when the parameter is not found, so \"absent\" and \"false\" are the same return value. MaterialEditingLibrary.cpp:1457-1464 \u2014 `SetMaterialInstanceParent` is `void` and only calls `Instance->SetParentEditorOnly(NewParent)`; MaterialInstance.cpp:3933-3955 `SetParentInternal` refuses with a log warning for a cycle or a non-Material/non-MIC parent. The docstring at make_nowind_material_instances.py:34-40 asserts \"FAILING CLOSED ... Every switch is READ BACK from the created asset after being set, and a disagreement refuses.\"",
+    "suggested_fix": "Read back `_mi.get_editor_property(\"parent\")` and refuse unless its `get_path_name()` equals `_src.get_path_name()`. Then assert the OVERRIDE, not the value: `unreal.MaterialEditingLibrary.is_material_instance_parameter_overridden(_mi, name)` exists in 5.8 (PythonStub:431812) and returns True only when this instance actually carries the override, which discriminates \"we turned it off\" from \"the getter found nothing\"."
+  },
+  {
+    "file": "scripts/make_nowind_material_instances.py",
+    "line": 180,
+    "severity": "medium",
+    "claim": "`EditorAssetLibrary.load_asset` after `save_asset` does NOT reload from disk \u2014 it returns the same in-memory UObject that was just written to \u2014 so the comment \"READ BACK from the saved asset, reloaded, not from the object we just wrote to\" is untrue and the check has no independence.",
+    "failure_scenario": "Lines 176-181 call `_eal.save_asset(_new_path)`, then `_eal.load_asset(_new_path)` twice and treat `_chk` as a fresh disk read. `_chk is _mi`. If `save_asset` failed (checkout refused, read-only file, package save error \u2014 it returns a bool that is discarded on line 176), the switches still read back False off the live object and the tool reports success on an asset that never reached disk. Any later session that opens the project cold gets the vendor wind-on material back, and the only artefact saying otherwise is this tool's exit 0.",
+    "evidence": "Engine/Source/Editor/UnrealEd/Private/Subsystems/EditorAssetSubsystem.cpp:95-102 \u2014 `LoadAssetFromData` returns `AssetData.GetAsset()`, which resolves an already-loaded object rather than re-reading the package; EditorAssetLibrary.cpp:268-272 forwards straight to `UEditorAssetSubsystem::LoadAsset`. There is no reload/purge call anywhere in the payload.",
+    "suggested_fix": "Check the bool returned by `save_asset` and refuse on False, and stop claiming disk independence in the comment. A genuine disk read needs the package unloaded first (or a cold editor); if that is not wanted, state that the read-back is same-object and rests only on getter/setter being different code paths."
+  },
+  {
+    "file": "scripts/make_landscape_material.py",
+    "line": 2752,
+    "severity": "low",
+    "claim": "\"Overrides re-read from the SAVED asset\" is untrue \u2014 `_gt` is the same in-memory ULandscapeGrassType the payload just wrote, so this read-back is not a second instrument.",
+    "failure_scenario": "Line 2736 saves, line 2743 calls `_gt.get_editor_property(\"grass_varieties\")` on the same object it set at line 2731. If `save_asset` returned False (its bool is discarded at line 2736-2737), every variety still reads back with its override_materials populated and the builder reports `ok: True` over a grass type that is dirty-in-memory only. The comment cites lesson 9.1 as the reason the check is trustworthy, which is exactly the corroboration this shape does not provide.",
+    "evidence": "scripts/make_landscape_material.py:2736 `_unreal.EditorAssetLibrary.save_asset(_gp, only_if_is_dirty=False)` \u2014 return value discarded; :2743 `_got = _gt.get_editor_property(\"grass_varieties\")` reads the same UObject. Engine/Source/Editor/UnrealEd/Private/Subsystems/EditorAssetSubsystem.cpp:95-102 shows load/get never re-reads the package. (The GrassVariety API itself is correct: `override_materials` is `Array[MaterialInterface]` at PythonStub:121628, LandscapeGrassType.h:40-41 is `BlueprintReadOnly, EditAnywhere` \u2014 not CPF_EditConst, so `set_editor_property` writes it \u2014 and LandscapeGrass.cpp:3182 copies it onto the spawned component unconditionally.)",
+    "suggested_fix": "Assert the bool from `save_asset` and describe the check as \"re-read from the object after the set\", not \"from the SAVED asset\"."
+  },
+  {
+    "file": "scripts/read_grass_type.py",
+    "line": 153,
+    "severity": "medium",
+    "claim": "\"read from the SAVED asset by an instrument that shares no code with the builder\" is half untrue: the process and code are independent, but the OBJECT is not \u2014 `load_asset` hands back the builder's in-memory ULandscapeGrassType when this runs against the same editor session.",
+    "failure_scenario": "Run make_landscape_material and then read_grass_type against the same live editor (the workflow this tool was written for \u2014 its own docstring at :5-15 says the builder's report is not the artefact). `load_asset` returns the object the builder mutated, so the tool prints \"Every variety carries an override material, read from the SAVED asset\" even if the package on disk still holds the pre-build varieties. The one failure this tool exists to catch \u2014 the builder reporting success over state that never persisted, B-BUILD-UNKNOWN \u2014 is the failure it cannot see.",
+    "evidence": "scripts/read_grass_type.py:49 `_gt = _unreal.EditorAssetLibrary.load_asset(_p)`; Engine/Source/Editor/UnrealEd/Private/Subsystems/EditorAssetSubsystem.cpp:95-102 \u2014 `LoadAssetFromData` returns `AssetData.GetAsset()`, which resolves the already-loaded object. Claim repeated at read_grass_type.py:15 (\"This asks the SAVED asset\").",
+    "suggested_fix": "Either state the limit plainly (\"reads the live object; run after an editor restart for a true disk read\"), or make it a disk instrument \u2014 the project already has the pattern in verify_saved_nanite.py, which scans package bytes rather than asking the editor."
+  },
+  {
+    "file": "scripts/make_nowind_material_instances.py",
+    "line": 260,
+    "severity": "low",
+    "claim": "`_comp.set_editor_property(\"override_materials\", _mats)` writes MeshComponent::OverrideMaterials directly, which the engine header explicitly forbids; the reflected setter for this job is `PrimitiveComponent.set_material(element_index, material)`.",
+    "failure_scenario": "The array is swapped on a registered, rendering component while the render thread may still hold references to the outgoing materials. The engine's own comment names the consequence: a GC/render-thread race. The property is writable (no CPF_EditConst) and the Python default notify mode does fire PostEditChange, so the visual update happens and nothing errors \u2014 which is why this will look correct right up until it does not.",
+    "evidence": "Engine/Source/Runtime/Engine/Classes/Components/MeshComponent.h:29-31 \u2014 \"Per-Component material overrides. These must NOT be set directly or a race condition can occur between GC and the rendering thread.\" `set_material(element_index, material)` is exposed on PrimitiveComponent (PythonStub:511133) and is the sanctioned path. PyWrapperObject.cpp:852-878 confirms `set_editor_property` uses EPropertyAccessChangeNotifyMode::Default, so the write does take effect.",
+    "suggested_fix": "Replace the array write with `for i, m in enumerate(_mats): _comp.set_material(i, m)`, then read back via `_comp.get_material(i)` (or the override_materials array) as now."
+  },
+  {
+    "file": "scripts/import_heightmap.py",
+    "line": 819,
+    "severity": "low",
+    "claim": "The `override_materials` validator accepts any non-empty path list with no check against the mesh's slot count; UE silently falls back to the vendor material for every slot the array does not cover, so a short list is legal and invisible everywhere in this chain.",
+    "failure_scenario": "Latent today \u2014 all eight blueberry meshes measure `material_slots = 1` (Free/_measured/pn_blueberry.json), so the one-entry lists are complete. The moment a variety mesh with two or more slots is added with a single override, slot 0 renders the wind-off MI and slot 1+ keep the vendor wind-on material. The validator passes (non-empty list of paths), make_landscape_material passes (it only refuses a path that fails to load), and `read_grass_type --expect-all-overridden` passes because it tests `not ovr`, i.e. \"at least one\". Nothing in the pipeline can report the resulting partial wind.",
+    "evidence": "scripts/import_heightmap.py:819-833 checks only list-ness, non-emptiness and a leading '/'. scripts/read_grass_type.py:137 `if args.expect_all_overridden and not ovr` \u2014 at-least-one, not per-slot. Engine/Source/Runtime/Engine/Private/Components/StaticMeshComponent.cpp:2916-2921 \u2014 `if (OverrideMaterials.IsValidIndex(MaterialIndex) && OverrideMaterials[MaterialIndex]) return OverrideMaterials[MaterialIndex]; else if (GetStaticMesh()) ...` \u2014 an out-of-range index falls through to the mesh's own material with no warning.",
+    "suggested_fix": "In the builder payload (which already has the loaded mesh), refuse when `len(_mats) != len(_gm.static_materials)`, and have read_grass_type report the count against the mesh's slot count rather than a boolean."
+  }
+]

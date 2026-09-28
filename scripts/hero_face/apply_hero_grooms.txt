@@ -1,0 +1,92 @@
+# apply_hero_grooms — give the hero the hair and beard of the ruled look.
+#
+# Ryan ruled that hero_face_haired_frontal.jpg is the final product look:
+# long layered dark hair, full stubble beard and moustache, thick flat brows.
+# MetaHuman ships all of it as wardrobe items; this selects them.
+#
+# ROUTE, established by probe rather than assumed:
+#   collection.get_slot_names()                    -> the virtual slots
+#   collection.try_add_item_from_wardrobe_item(slot, item) -> item key
+#   subsystem.on_edit_preview_collection(character)  <- REQUIRED. The engine's
+#       own docs: "Any code that modifies the preview collection for a
+#       Character must call this function afterwards, in order to propagate
+#       the edits back to the Character asset."
+#
+# DOES NOT SPAWN THE METAHUMAN ACTOR. Spawning brings up the preview
+# collection's streamed level instances and the following save deadlocked the
+# editor twice this session, losing committed work both times.
+#
+# With GO false it reports slots and item resolution and mutates nothing.
+import json as _json
+import unreal as _unreal
+
+_GO = __GO__
+_out = {"error": None, "unreadable": [], "go": _GO, "slots": None,
+        "items": {}, "added": {}, "propagated": None, "saved": None,
+        "size_before": None, "size_after": None}
+
+# slot name -> wardrobe item, chosen against the reference portrait
+_WANT = [
+    ("Hair", "/MetaHumanCharacter/Optional/Grooms/Bindings/Hair/WI_Hair_M_Layered"),
+    ("Beard", "/MetaHumanCharacter/Optional/Grooms/Bindings/Beards/WI_Beard_M_Stubble"),
+    ("Mustache", "/MetaHumanCharacter/Optional/Grooms/Bindings/Mustaches/WI_Mustache_M_Stubble"),
+    ("Eyebrows", "/MetaHumanCharacter/Optional/Grooms/Bindings/Eyebrows/WI_Eyebrows_M_Dense"),
+]
+
+try:
+    import os as _os
+    _FILE = r"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Content/Hero/MHC_AlpineHero.uasset"
+    _out["size_before"] = _os.path.getsize(_FILE)
+
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _col = _ss.get_preview_collection(_ch)
+    if _col is None:
+        raise RuntimeError("get_preview_collection returned None")
+    _slots = [str(_s) for _s in _col.get_slot_names()]
+    _out["slots"] = sorted(_slots)
+
+    # Resolve every wanted item and report BEFORE touching anything, so a
+    # missing asset is a refusal rather than a half-applied groom set.
+    _resolved = []
+    for _slot, _path in _WANT:
+        _rec = {"path": _path, "loaded": None, "class": None,
+                "slot_present": _slot in _slots}
+        _o = _unreal.EditorAssetLibrary.load_asset(_path)
+        _rec["loaded"] = _o is not None
+        if _o is not None:
+            _rec["class"] = _o.get_class().get_name()
+        _out["items"][_slot] = _rec
+        if _o is not None and _rec["slot_present"]:
+            _resolved.append((_slot, _o))
+
+    if not _GO:
+        _out["note"] = ("probe only -- nothing mutated. Re-run with GO=True "
+                        "once the slots and item classes above look right.")
+    else:
+        for _slot, _o in _resolved:
+            try:
+                _key = _col.try_add_item_from_wardrobe_item(_slot, _o)
+                _out["added"][_slot] = (None if _key is None
+                                        else str(_key)[:120])
+            except Exception as _e:
+                _out["unreadable"].append("add " + _slot + ": " + str(_e))
+                _out["added"][_slot] = "FAILED"
+        try:
+            _ss.on_edit_preview_collection(_ch)
+            _out["propagated"] = True
+        except Exception as _e:
+            _out["unreadable"].append("on_edit_preview_collection: " + str(_e))
+            _out["propagated"] = False
+        _out["saved"] = bool(
+            _unreal.EditorAssetLibrary.save_asset("/Game/Hero/MHC_AlpineHero",
+                                                  False))
+        _out["size_after"] = _os.path.getsize(_FILE)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

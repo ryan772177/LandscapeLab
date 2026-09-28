@@ -1,0 +1,377 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# Phase B loop v0 -- build a concept's VILLAGE from its recipe and MEASURE it.
+# NO RENDER: everything reported here is a transform, which is what makes it
+# checkable tonight while a render costs the editor for a quarter of an hour.
+#
+# SERVABLE ASSETS + COUNTED GREYBOXES, and the count is the point. A chalet is
+# a greybox box for its walls plus a REAL KIT ROOF. Every greybox is tallied so
+# nobody reads the scene as further along than it is.
+#
+# ⛔ THERE IS NO TERRAIN AND THE CONCEPT'S PEAK/BASIN/SLOPE ARE NOT BUILT.
+# Recorded as DEFERRED rather than faked with a hill, because a fake hill
+# photographs as an answer to a question nobody has solved.
+#
+# ⛔ BOTH ITERATIONS SHARE ONE LEVEL, AT DIFFERENT WORLD OFFSETS, and that is
+# a fix rather than a convenience. `new_level` CREATES but does not SWITCH to
+# an existing level: asked to "new" a path that exists it silently leaves the
+# editor where it was, and the spawns then land in whatever level is current.
+# Measured 2026-08-30 -- three successive builds counted 16, then 32, then 48
+# chalets. The recipe's count_range [12, 20] is the ONLY reason that was
+# caught; 48 chalets render perfectly well and look like a village.
+# The obvious repair is the level-opening call and R14 FORBIDS it in a payload
+# (it fatals the editor at EditorServer.cpp:1951). One level with offsets needs
+# no switching at all, and it suits the render batch better anyway: one level,
+# two cameras, one editor state.
+
+CFG = CFG_JSON
+
+_out = {"ok": False, "error": None, "greybox_count": 0, "kit_roof_count": 0,
+        "deferred": [], "measured": {}}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _leaf = CFG["level"].split("/")[-1]
+    _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    if _leaf not in _cur:
+        _les.new_level(CFG["level"])
+        _out["level_route"] = "created"
+        _cur = _u.EditorLevelLibrary.get_editor_world().get_path_name()
+    else:
+        _out["level_route"] = "already current"
+    _out["current_level"] = _cur
+    if _leaf not in _cur:
+        raise RuntimeError(
+            "not on " + CFG["level"] + "; current is " + _cur
+            + " -- refusing to spawn into the wrong level")
+
+    # Clear only THIS iteration's actors, so the other iteration survives.
+    _ITAG = "LandscapeLab.Concept." + CFG["iteration"]
+    _pre = [a for a in _eas.get_all_level_actors()
+            if any(str(t) == _ITAG for t in a.tags)]
+    for _a in _pre:
+        _eas.destroy_actor(_a)
+    _out["cleared_prior_actors"] = len(_pre)
+
+    _OY = CFG["offset_y_m"] * 100.0
+    _cube = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Cube")
+    _cyl = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Cylinder")
+    _cone = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Cone")
+    _plane = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Plane")
+
+    # ---- stage: ground, sun, sky, exposure. ONCE for the level. ---------
+    # ⛔ THE GROUND MUST REACH THE ITERATION THAT IS BEING STAGED.
+    #
+    # Stage_Ground is /Engine/BasicShapes/Plane -- 100 cm at scale 1 -- and was
+    # created ONCE at the origin at scale 4000, i.e. +-2000 m. Iteration 1
+    # stages at offset_y_m 3000, so BOTH its camera and its village stood off
+    # the edge of the world: the 2026-08-30 iter1 frame is 54.31% pure black
+    # below the horizon and the village floats over a void. Every editor-side
+    # instrument passed; the payload's own ground trace said "COULD NOT LOOK --
+    # no ground hit under the camera XY", and it was the only one telling the
+    # truth.
+    #
+    # The `if not in _labels` guard made it worse: the plane could never grow
+    # for a later, further-out iteration. So the required span is DERIVED from
+    # what this iteration actually needs, and an existing plane is GROWN to it.
+    # Never shrunk -- a second iteration must not pull the ground out from
+    # under the first.
+    _need_cm = (abs(_OY)
+                + CFG["village_distance_m"] * 100.0
+                + CFG["cluster_radius_m"] * 100.0)
+    _need_scale = (2.0 * _need_cm * 1.25) / 100.0     # 25% margin, plane=100cm
+    _need_scale = max(4000.0, round(_need_scale, 1))
+
+    _labels = set(str(a.get_actor_label())
+                  for a in _eas.get_all_level_actors())
+    if "Stage_Ground" not in _labels:
+        _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                          _u.Rotator(0, 0, 0))
+        _g.set_actor_label("Stage_Ground")
+        _g.set_actor_scale3d(_u.Vector(_need_scale, _need_scale, 1.0))
+        _out["ground_scale"] = _need_scale
+
+        _sun = _eas.spawn_actor_from_class(
+            _u.DirectionalLight, _u.Vector(0, 0, 5000),
+            _u.Rotator(0.0, -CFG["sun_elevation_deg"], CFG["sun_yaw_deg"]))
+        _sun.set_actor_label("Stage_Sun")
+        _sc = _sun.light_component
+        _sc.set_editor_property("intensity", 130000.0)
+        _sc.set_editor_property("use_temperature", True)
+        _sc.set_editor_property("temperature", 7800.0)
+        _sc.set_editor_property("atmosphere_sun_light", True)
+
+        _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere,
+                                           _u.Vector(0, 0, 0),
+                                           _u.Rotator(0, 0, 0))
+        _atm.set_actor_label("Stage_SkyAtmosphere")
+        _sky = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0, 0, 3000),
+                                           _u.Rotator(0, 0, 0))
+        _sky.set_actor_label("Stage_SkyLight")
+        _sky.light_component.set_editor_property("real_time_capture", True)
+
+        _pp = _eas.spawn_actor_from_class(_u.PostProcessVolume,
+                                          _u.Vector(0, 0, 0),
+                                          _u.Rotator(0, 0, 0))
+        _pp.set_actor_label("Stage_PostProcess")
+        _pp.set_editor_property("unbound", True)
+        _s = _pp.get_editor_property("settings")
+        _s.set_editor_property("override_auto_exposure_method", True)
+        _s.set_editor_property("auto_exposure_method",
+                               _u.AutoExposureMethod.AEM_MANUAL)
+        _s.set_editor_property("override_auto_exposure_bias", True)
+        _s.set_editor_property("auto_exposure_bias", CFG["exposure_ev"])
+        _pp.set_editor_property("settings", _s)
+        _out["stage_built"] = True
+    else:
+        _out["stage_built"] = False
+        # GROW an existing plane if this iteration reaches past it.
+        for _a in _eas.get_all_level_actors():
+            if str(_a.get_actor_label()) == "Stage_Ground":
+                _cur = float(_a.get_actor_scale3d().x)
+                if _cur < _need_scale:
+                    _a.set_actor_scale3d(
+                        _u.Vector(_need_scale, _need_scale, 1.0))
+                    _out["ground_grown_from"] = _cur
+                _out["ground_scale"] = max(_cur, _need_scale)
+                break
+
+    # ---- the village ----------------------------------------------------
+    # Bearing is degrees from camera forward (+X), positive right, exactly as
+    # the concept recorded it. The camera sits at (0, offset_y, height).
+    def _at(bearing_deg, dist_cm):
+        _r = _math.radians(bearing_deg)
+        return (dist_cm * _math.cos(_r), _OY + dist_cm * _math.sin(_r))
+
+    _roof = None
+    _roof_drop = None   # measured on first use; see the roof placement below
+    if CFG.get("roof_package"):
+        _roof = _u.EditorAssetLibrary.load_asset(CFG["roof_package"])
+
+    _vx, _vy = _at(CFG["village_bearing_deg"],
+                   CFG["village_distance_m"] * 100.0)
+    _n = CFG["chalet_count"]
+    _fw = CFG["chalet_footprint_m"][0] * 100.0
+    _fd = CFG["chalet_footprint_m"][1] * 100.0
+    _wh = CFG["chalet_storeys"] * CFG["storey_m"] * 100.0
+    _spread = CFG["cluster_radius_m"] * 100.0
+
+    _tags = ["LandscapeLab.Concept", _ITAG]
+    for _i in range(_n):
+        # Golden-angle spiral: deterministic, reproducible from the recipe,
+        # and carrying no RNG seed for a later session to forget.
+        _t = 2.39996 * _i
+        _rr = _spread * _math.sqrt((_i + 0.5) / _n)
+        _x = _vx + _rr * _math.cos(_t)
+        _y = _vy + _rr * _math.sin(_t)
+        _b = _eas.spawn_actor_from_object(
+            _cube, _u.Vector(_x, _y, _wh * 0.5),
+            _u.Rotator(0.0, 0.0, (_i * 37) % 360))
+        _b.set_actor_label("Concept_%s_Chalet_%02d" % (CFG["iteration"], _i))
+        _b.tags = _tags + ["LandscapeLab.Concept.greybox"]
+        _b.set_actor_scale3d(_u.Vector(_fw / 100.0, _fd / 100.0, _wh / 100.0))
+        _out["greybox_count"] += 1
+        if _roof is not None:
+            # ⛔ THE ROOF PIVOT IS NOT AT ITS BASE. Placing it at _wh put the
+            # PIVOT on the wall top, and SM_House02_Roof's base is 201.49 cm
+            # BELOW its pivot -- so every concept chalet has been built with
+            # its roof sunk 201.49 cm into its walls, and the silhouette this
+            # loop measures came out 536.5 instead of 738.0.
+            #
+            # Ruling 1's 2.5x was scored against that number. Measured in the
+            # editor 2026-08-30, see LESSONS. The offset is MEASURED once and
+            # reused, never remembered -- this file's own lesson, from four
+            # pivot errors in one day: a pivot is a MEASUREMENT OF EACH ASSET.
+            if _roof_drop is None:
+                _rp0 = _eas.spawn_actor_from_object(
+                    _roof, _u.Vector(0.0, 0.0, 0.0), _u.Rotator(0, 0, 0))
+                _rp0o, _rp0e = _rp0.get_actor_bounds(False)
+                _roof_drop = -float(_rp0o.z - _rp0e.z)
+                _out["roof_pivot_drop_cm"] = round(_roof_drop, 2)
+                _eas.destroy_actor(_rp0)
+            _r2 = _eas.spawn_actor_from_object(
+                _roof, _u.Vector(_x, _y, _wh + _roof_drop),
+                _u.Rotator(0.0, 0.0, (_i * 37) % 360))
+            _r2.set_actor_label("Concept_%s_Roof_%02d"
+                                % (CFG["iteration"], _i))
+            _r2.tags = _tags + ["LandscapeLab.Concept.kit"]
+            _out["kit_roof_count"] += 1
+
+    # The chalet SILHOUETTE is measured HERE, before the church, because the
+    # church's parts are ratios OF it. Measured from the spawned actors rather
+    # than computed from the config, so a placement bug shows up in the church
+    # too instead of being papered over by arithmetic that agrees with itself.
+    _sil = []
+    for _a in _eas.get_all_level_actors():
+        _lbl = str(_a.get_actor_label())
+        if not _lbl.startswith("Concept_%s_Chalet_" % CFG["iteration"]):
+            continue
+        _o, _e = _a.get_actor_bounds(False)
+        _top = float(_o.z + _e.z)
+        _idx = _lbl.rsplit("_", 1)[-1]
+        for _b2 in _eas.get_all_level_actors():
+            if str(_b2.get_actor_label()) == ("Concept_%s_Roof_%s"
+                                              % (CFG["iteration"], _idx)):
+                _ro, _re = _b2.get_actor_bounds(False)
+                _top = max(_top, float(_ro.z + _re.z))
+                break
+        _sil.append(_top)
+
+    # ---- the church, as TWO PARTS -------------------------------------
+    # Schema 1.1-concept. The single height_class is GONE: the reader had seen
+    # a nave and a tower and flattened them into one number, which is why the
+    # recipe contradicted its own prose. Heights are ratios of the chalet
+    # SILHOUETTE -- walls plus roof, what a viewer actually compares -- because
+    # the ambiguity about what the ratio measured against was half the defect.
+    _sil_cm = (sum(_sil) / len(_sil)) if _sil else _wh
+    _out["measured"]["house_silhouette_used_cm"] = round(_sil_cm, 1)
+    _nave_h = _sil_cm * CFG["nave_ratio"]
+    _spire_h = _sil_cm * CFG["spire_ratio"]
+
+    _n1 = _eas.spawn_actor_from_object(
+        _cube, _u.Vector(_vx, _vy, _nave_h * 0.5), _u.Rotator(0, 0, 0))
+    _n1.set_actor_label("Concept_%s_Church_Nave" % CFG["iteration"])
+    _n1.tags = _tags + ["LandscapeLab.Concept.greybox"]
+    _n1.set_actor_scale3d(_u.Vector(_fw / 100.0 * 1.2, _fd / 100.0 * 0.9,
+                                    _nave_h / 100.0))
+
+    # The tower rises THROUGH the nave, so its shaft runs from the ground to
+    # the spire base rather than sitting on top of it.
+    _tw = _fw * 0.35
+    _shaft = _spire_h * 0.72
+    _t1 = _eas.spawn_actor_from_object(
+        _cyl, _u.Vector(_vx + _fw * 0.55, _vy, _shaft * 0.5),
+        _u.Rotator(0, 0, 0))
+    _t1.set_actor_label("Concept_%s_Church_Tower" % CFG["iteration"])
+    _t1.tags = _tags + ["LandscapeLab.Concept.greybox"]
+    _t1.set_actor_scale3d(_u.Vector(_tw / 100.0, _tw / 100.0, _shaft / 100.0))
+
+    # ⛔ THE ENGINE Cone IS CENTRE-PIVOTED, not base-pivoted. Placing it AT
+    # the shaft top put its middle there, so the spire finished 186 cm low --
+    # measured 2.15x the silhouette against the ruled 2.50x, and the ratio
+    # check caught it. Offset by half its own height.
+    #
+    # That is the FOURTH pivot-assumption error today: the C0 house (-39.81),
+    # the whole v2 kit seed (centre-pivoted where v1 was base-pivoted), the
+    # roofs (-201.5), and now this. The lesson is not "check pivots" -- it is
+    # that a pivot is a MEASUREMENT of each asset, never a property of the
+    # class of thing it depicts.
+    _spire_len = _spire_h - _shaft
+    _t2 = _eas.spawn_actor_from_object(
+        _cone, _u.Vector(_vx + _fw * 0.55, _vy, _shaft + _spire_len * 0.5),
+        _u.Rotator(0, 0, 0))
+    _t2.set_actor_label("Concept_%s_Church_Spire" % CFG["iteration"])
+    _t2.tags = _tags + ["LandscapeLab.Concept.greybox"]
+    _t2.set_actor_scale3d(_u.Vector(_tw / 100.0 * 1.15, _tw / 100.0 * 1.15,
+                                    _spire_len / 100.0))
+    _out["greybox_count"] += 3
+
+    # ---- the camera, at the solve ---------------------------------------
+    _cam = _eas.spawn_actor_from_class(
+        _u.CameraActor,
+        _u.Vector(0.0, _OY, CFG["camera_height_m"] * 100.0),
+        _u.Rotator(0.0, CFG["camera_pitch_deg"], 0.0))
+    _cam.set_actor_label("Concept_%s_Camera" % CFG["iteration"])
+    _cam.tags = _tags
+    _cc = _cam.camera_component
+    _cc.set_editor_property("field_of_view", CFG["fov_horizontal_deg"])
+    _out["measured"]["camera_fov_readback"] = float(
+        _cc.get_editor_property("field_of_view"))
+    _rr2 = _cam.get_actor_rotation()
+    _out["measured"]["camera_rot_readback"] = [round(_rr2.roll, 3),
+                                               round(_rr2.pitch, 3),
+                                               round(_rr2.yaw, 3)]
+    _out["measured"]["camera_loc"] = [0.0, _OY,
+                                      CFG["camera_height_m"] * 100.0]
+
+    # ---- MEASURE, do not photograph -------------------------------------
+    _ours = [a for a in _eas.get_all_level_actors()
+             if any(str(t) == _ITAG for t in a.tags)]
+    _cl = [a for a in _ours if "_Chalet_" in str(a.get_actor_label())]
+    _rf = {}
+    for _a in _ours:
+        _lbl = str(_a.get_actor_label())
+        if "_Roof_" in _lbl:
+            _rf[_lbl.rsplit("_", 1)[-1]] = _a
+
+    _hs, _bear, _edge = [], [], []
+    _cpos = _cam.get_actor_location()
+    for _a in _cl:
+        _o, _e = _a.get_actor_bounds(False)
+        _hs.append(float(_e.z * 2))
+        # ⛔ THE SILHOUETTE IS THE HONEST DENOMINATOR. Comparing the church's
+        # full tower+dome against a chalet's WALL height ignores the roof
+        # sitting on it and inflates the ratio by ~1.3x -- non-negotiable 22,
+        # a number that is arithmetically true and answers a question nobody
+        # asked.
+        _top = float(_o.z + _e.z)
+        _r3 = _rf.get(str(_a.get_actor_label()).rsplit("_", 1)[-1])
+        if _r3 is not None:
+            _ro, _re = _r3.get_actor_bounds(False)
+            _top = max(_top, float(_ro.z + _re.z))
+        _sil.append(_top)
+        _bear.append(_math.degrees(_math.atan2(_o.y - _cpos.y,
+                                               _o.x - _cpos.x)))
+        # ⛔ A CENTRE BEARING CANNOT SEE A CLIPPED BUILDING.
+        # iter1 reported chalets_outside_frame 0 and deltas:[] while the
+        # rendered village ran off the right edge of the frame: the outermost
+        # chalet's CENTRE sat at 0.9975 of the half-width, so by centre it was
+        # inside, and half its body was not. Measured 2026-08-30 on
+        # HighresScreenshot00105 -- village columns 796..1262 of 1263.
+        #
+        # So the silhouette EDGES are what get compared to the half-FOV. The
+        # four horizontal corners of the world-space AABB bound the building
+        # conservatively, which is the right direction for a clipping test.
+        _ext = []
+        for _sx in (-1.0, 1.0):
+            for _sy in (-1.0, 1.0):
+                _ext.append(_math.degrees(_math.atan2(
+                    (_o.y + _sy * float(_e.y)) - _cpos.y,
+                    (_o.x + _sx * float(_e.x)) - _cpos.x)))
+        _edge.append(max(abs(_b) for _b in _ext))
+    _o, _e = _t2.get_actor_bounds(False)
+    _church_top = float(_o.z + _e.z)
+    _no, _ne = _n1.get_actor_bounds(False)
+    _nave_top = float(_no.z + _ne.z)
+    _hb = CFG["fov_horizontal_deg"] / 2.0
+    _out["measured"].update({
+        "chalets_placed": len(_cl),
+        "chalet_wall_height_cm": round(sum(_hs) / len(_hs), 1) if _hs else None,
+        "chalet_silhouette_cm": round(sum(_sil) / len(_sil), 1) if _sil else None,
+        "church_spire_top_cm": round(_church_top, 1),
+        "church_nave_top_cm": round(_nave_top, 1),
+        "nave_over_silhouette": (round(_nave_top / (sum(_sil) / len(_sil)), 3)
+                                 if _sil else None),
+        "spire_over_silhouette": (round(_church_top / (sum(_sil) / len(_sil)), 3)
+                                  if _sil else None),
+
+        "chalet_bearing_min_deg": round(min(_bear), 2) if _bear else None,
+        "chalet_bearing_max_deg": round(max(_bear), 2) if _bear else None,
+        "half_fov_deg": _hb,
+        # THE BINDING NUMBER: any chalet whose silhouette EDGE crosses the
+        # half-FOV is clipped, however comfortably its centre sits inside.
+        "chalets_outside_frame": sum(1 for b in _edge if b > _hb),
+        "chalet_edge_bearing_max_deg": (round(max(_edge), 2) if _edge
+                                        else None),
+        # The OLD centre-only count, kept and RENAMED rather than deleted, so
+        # a reader comparing against loop_v0.json from earlier on 2026-08-30
+        # can see which number changed and why it was wrong.
+        "chalets_centre_outside_frame": sum(1 for b in _bear
+                                            if abs(b) > _hb),
+    })
+    _out["deferred"] = [
+        "terrain: peak, basin, slope, stream -- no landform on this stage",
+        "clutter: wood_stack, river_stone, track -- not placed in v0",
+        "chalet WALLS are greyboxes; only the roofs are kit assets",
+    ]
+    _les.save_current_level()
+    _out["saved"] = True
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

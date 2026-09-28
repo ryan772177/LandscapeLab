@@ -1,0 +1,338 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Forge stage 10 (PROPOSED): STAND THE FORGED ASSET BESIDE THE KIT AND MEASURE.
+#
+# ⛔ A GENERATED MESH CARRIES NO UNITS. TRELLIS normalises its output -- the
+# church's bbox is 0.763 x 0.395 x 0.915 -- so imported raw it is a doll's
+# house that renders perfectly and is silently the wrong size. NONE of the nine
+# ruled forge stages catches this: the triangle budget, the watertight check,
+# the pivot and the UV pass are all scale-invariant.
+#
+# THE SCALE IS DERIVED FROM THE RULING, NOT CHOSEN. Ruling 1 sets the church
+# spire at 2.5x the chalet SILHOUETTE (walls + kit roof), which the concept
+# loop measures at 536.5 cm, so the spire top is 1341.3 cm. The uniform scale
+# is whatever makes the imported mesh reach it, and it is READ BACK from the
+# placed actor rather than assumed to have applied.
+#
+# The companion is the concept's OWN chalet -- a greybox wall box under a real
+# kit roof -- so this frame tests ruling 1 against the FORGED mesh instead of
+# against the cone-and-cylinder stand-in the loop has been using.
+#
+# ⛔ NO `load_level` HERE. A hand-rolled load payload fatals the editor at
+# EditorServer.cpp:1951 ("World Memory Leaks") because the executing Python
+# frame is itself a reference to the outgoing world. `new_level` creates and
+# opens in one call and does not take that path; anything else goes through
+# scripts/open_level.py. This payload was written with a load_level branch and
+# the repo's own hook refused it.
+
+SRC = r"__SRC__"
+# ⛔ PER-ASSET. `new_level` OVERWRITES, and this was a single hardcoded
+# /Game/Scratch/ForgeScale until 2026-08-30 -- so staging the wood stack would
+# have destroyed the church's staged scene, the one the committed
+# church_beside_kit.png was framed in. The church's original ForgeScale.umap is
+# left where it is; new runs write ForgeScale_<Asset>.
+LEVEL = r"__LEVEL__"
+# ⛔ DEST AND NAME ARE PASSED IN. They were hardcoded to the church until
+# 2026-08-30, while forge.py emitted this command for ANY asset -- so the
+# stage-10 line printed after the wood-stack forge would have DELETED
+# /Game/Scratch/ForgeChurch/SM_Church_Forge (the delete below is unconditional)
+# and re-imported the wood stack under the church's own name and path. The
+# forged church .fbx is the artefact of record and is not reproducible.
+#
+# An unsubstituted __DEST__ fails CLOSED on the /Game/Scratch/ guard below,
+# which is why that guard is the one that must not be relaxed.
+DEST = r"__DEST__"
+NAME = r"__NAME__"
+ROOF_PKG = "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof"
+# The target comes from recipes/forge.json via forge.py -- NEVER typed
+# here. It is either a declared height_cm or ratio x reference_cm.
+TARGET_CM = __TARGET_CM__
+# ⭐ GENERALISED 2026-08-30. Until then this payload MEASURED like a church
+# whatever it imported: it emitted church_top_cm / church_over_chalet, labelled
+# the actor Forge_Church, and asserted ruling 1's 2.5x unconditionally. For any
+# other asset those keys were misnamed and that ratio was meaningless.
+#
+# The output keys are now asset-neutral and the RATIO IS OPTIONAL -- it is
+# reported only when the recipe declares `ratio_against`, which only the church
+# does. The wood stack declares a flat `height_cm` and gets no ratio, because
+# there is no ruling that relates a woodpile to a chalet.
+LABEL = r"__LABEL__"
+# Why the target is what it is, passed in rather than narrated here, so the
+# report cannot describe a derivation the recipe did not make.
+SCALE_WHY = r"__SCALE_WHY__"
+# 0.0 = this asset declares no ratio. Anything > 0 is asserted against the
+# companion silhouette below.
+RATIO_TARGET = __RATIO_TARGET__
+RATIO_AGAINST = r"__RATIO_AGAINST__"
+# 1 = permitted to overwrite an existing LEVEL. Default 0 and it REFUSES.
+OVERWRITE = __OVERWRITE__
+# The finished mesh's bbox in BLENDER, passed in so the import can be checked
+# against what was exported rather than trusted.
+EXP_X = __EXP_X__
+EXP_Y = __EXP_Y__
+EXP_Z = __EXP_Z__
+CHALET_W_CM = 1000.0
+CHALET_D_CM = 800.0
+CHALET_WALL_CM = 400.0
+GAP_CM = 1600.0
+
+_out = {"ok": False, "error": None}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+
+    # ---- import FIRST, while the current level is still the one we were
+    # launched into. Importing writes assets, not level state.
+    # ⛔ `replace_existing=True` DID NOT RE-IMPORT.
+    # Measured 2026-08-30: the FBX was re-exported three times with different
+    # orientations -- file mtime and sha256 both changed -- and UE returned
+    # BYTE-IDENTICAL bounds [76.3, 91.47, 39.49] every time. The task reports
+    # success and hands back the OLD asset, which is the same failure shape as
+    # an editor-side check that cannot tell `loaded` from `saved`.
+    #
+    # So the destination is deleted first. Guarded to /Game/Scratch/ because
+    # this is a delete and standing rule 8 says identify by signature, not by
+    # trust -- a typo in DEST must not be able to remove anything real.
+    _pkg_pre = DEST + "/" + NAME
+    if not DEST.startswith("/Game/Scratch/"):
+        raise RuntimeError("REFUSE to delete outside /Game/Scratch/: " + DEST)
+    if _eal.does_asset_exist(_pkg_pre):
+        _eal.delete_asset(_pkg_pre)
+        _out["deleted_stale_asset"] = _pkg_pre
+
+    _tools = _u.AssetToolsHelpers.get_asset_tools()
+    _t = _u.AssetImportTask()
+    _t.set_editor_property("filename", SRC)
+    _t.set_editor_property("destination_path", DEST)
+    _t.set_editor_property("destination_name", NAME)
+    _t.set_editor_property("automated", True)
+    _t.set_editor_property("replace_existing", True)
+    _t.set_editor_property("save", True)
+    _o = _u.FbxImportUI()
+    _o.set_editor_property("import_mesh", True)
+    _o.set_editor_property("import_textures", False)
+    _o.set_editor_property("import_materials", False)
+    _o.set_editor_property("import_as_skeletal", False)
+    _o.set_editor_property("mesh_type_to_import",
+                           _u.FBXImportType.FBXIT_STATIC_MESH)
+    _sm = _o.get_editor_property("static_mesh_import_data")
+    _sm.set_editor_property("combine_meshes", True)
+    _sm.set_editor_property("generate_lightmap_u_vs", False)
+    _sm.set_editor_property("build_nanite", False)
+    _t.set_editor_property("options", _o)
+    _tools.import_asset_tasks([_t])
+    _out["imported_paths"] = list(
+        _t.get_editor_property("imported_object_paths") or [])
+    _pkg = DEST + "/" + NAME
+    _mesh = _eal.load_asset(_pkg)
+    if _mesh is None:
+        raise RuntimeError("import produced no asset at " + _pkg)
+    _out["mesh_package"] = _pkg
+    _out["mesh_tris"] = int(_mesh.get_num_triangles(0))
+    # ⛔ `get_num_uv_channels` IS NOT ON THE MESH. It reads like an instance
+    # method and is not one -- it lives on StaticMeshEditorSubsystem and takes
+    # (static_mesh, lod_index). Resolved from the reflected surface after
+    # `_mesh.get_num_uv_channels(0)` raised AttributeError, per
+    # docs/ue58-api-protocol.md: the reflected surface is the contract.
+    _smes = _u.get_editor_subsystem(_u.StaticMeshEditorSubsystem)
+    _out["mesh_uv_channels"] = int(_smes.get_num_uv_channels(_mesh, 0))
+
+    # ---- a level of its own, created fresh ------------------------------
+    # ⛔ `new_level` OVERWRITES SILENTLY. RULED 2026-08-30: refuse an existing
+    # level path unless OVERWRITE was passed explicitly. Levels are keyed
+    # /Game/Scratch/Forge_<asset>, so a collision means either a re-run of the
+    # SAME asset (fine, pass --overwrite) or two assets sharing a name (not
+    # fine, and silently destroying the first one's staged scene is how the
+    # church's ForgeScale.umap was nearly lost).
+    if _eal.does_asset_exist(LEVEL) and not OVERWRITE:
+        raise RuntimeError(
+            "REFUSE: %s already exists and --overwrite was not passed. "
+            "new_level OVERWRITES, and that level is somebody's staged "
+            "evidence -- the frame it was shot in cannot be recovered from "
+            "the .fbx. Pass --overwrite to re-stage this asset deliberately."
+            % LEVEL)
+    _les.new_level(LEVEL)
+    _out["level"] = LEVEL
+    _out["level_overwritten"] = bool(OVERWRITE)
+
+    _plane = _eal.load_asset("/Engine/BasicShapes/Plane")
+    _cube = _eal.load_asset("/Engine/BasicShapes/Cube")
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                      _u.Rotator(0, 0, 0))
+    _g.set_actor_label("Forge_Ground")
+    _g.set_actor_scale3d(_u.Vector(400.0, 400.0, 1.0))
+
+    _sun = _eas.spawn_actor_from_class(_u.DirectionalLight,
+                                       _u.Vector(0, 0, 3000),
+                                       _u.Rotator(0.0, -32.0, -60.0))
+    _sun.set_actor_label("Forge_Sun")
+    _sc = _sun.light_component
+    _sc.set_editor_property("intensity", 12.0)
+    _sc.set_editor_property("atmosphere_sun_light", True)
+    _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _atm.set_actor_label("Forge_SkyAtmosphere")
+    _sky = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0, 0, 2000),
+                                       _u.Rotator(0, 0, 0))
+    _sky.set_actor_label("Forge_SkyLight")
+    _sky.light_component.set_editor_property("real_time_capture", True)
+
+    # ---- the asset, scaled from its DECLARED target ----------------------
+    _ch = _eas.spawn_actor_from_object(_mesh, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _ch.set_actor_label(LABEL)
+    _o1, _e1 = _ch.get_actor_bounds(False)
+    _raw_h = float(_e1.z * 2.0)
+    _out["raw_height_cm"] = round(_raw_h, 3)
+    if _raw_h <= 0.0:
+        raise RuntimeError("imported mesh has zero height; cannot scale")
+    # ⛔ ORIENTATION GATE -- REFUSE A MESH THAT CAME IN ON ITS SIDE.
+    #
+    # 2026-08-30: the FBX exporter's default axes (-Z forward, Y up) baked a
+    # Y-up conversion, UE imported the church lying down, and the scale step
+    # then stretched its DEPTH to the ruled 1341.3 cm and reported
+    # church_over_chalet = 2.5. A PERFECT SCORE FOR RULING 1, ON THE WRONG
+    # AXIS. Nothing downstream could have caught it: the triangle count, the
+    # watertight check, the pivot and the UVs are all orientation-blind, and
+    # the frame would have shown a building that is merely oddly proportioned.
+    #
+    # So the import is compared to the export. The check is on RATIOS, because
+    # the absolute unit scale is the importer's business and the shape is not.
+    _rx = float(_e1.x * 2.0)
+    _ry = float(_e1.y * 2.0)
+    _rz = float(_e1.z * 2.0)
+    _out["ue_raw_extent_cm"] = [round(_rx, 2), round(_ry, 2), round(_rz, 2)]
+    _out["blender_bbox_size"] = [EXP_X, EXP_Y, EXP_Z]
+    _emax = max(EXP_X, EXP_Y, EXP_Z)
+    _umax = max(_rx, _ry, _rz)
+    if _emax <= 0 or _umax <= 0:
+        raise RuntimeError("degenerate bounds; cannot check orientation")
+    _exp_n = sorted([EXP_X / _emax, EXP_Y / _emax, EXP_Z / _emax])
+    _got_n = sorted([_rx / _umax, _ry / _umax, _rz / _umax])
+    _out["shape_ratios_expected"] = [round(v, 4) for v in _exp_n]
+    _out["shape_ratios_measured"] = [round(v, 4) for v in _got_n]
+    # sorted ratios prove the SHAPE survived; per-axis proves the ORIENTATION
+    _axis_ok = (abs(_rz / _umax - EXP_Z / _emax) < 0.02
+                and abs(_rx / _umax - EXP_X / _emax) < 0.02)
+    _out["orientation_ok"] = bool(_axis_ok)
+    if not _axis_ok:
+        raise RuntimeError(
+            "ORIENTATION MISMATCH: UE raw extent %s does not match the "
+            "exported Blender bbox %s on a per-axis basis. The mesh has been "
+            "rotated by the FBX round trip -- scaling it now would hit the "
+            "ruled height on the WRONG AXIS and report a perfect ratio. "
+            "Fix the exporter axes, do not compensate here."
+            % (_out["ue_raw_extent_cm"], _out["blender_bbox_size"]))
+
+    _scale = TARGET_CM / _raw_h
+    _ch.set_actor_scale3d(_u.Vector(_scale, _scale, _scale))
+    _out["scale_applied"] = round(_scale, 5)
+    _out["_scale_derivation"] = (
+        "target %.1f cm from %s; scale = target / MEASURED raw height, then "
+        "READ BACK from the placed actor rather than assumed to have applied"
+        % (TARGET_CM, SCALE_WHY))
+
+    _o1, _e1 = _ch.get_actor_bounds(False)
+    _base_z = float(_o1.z - _e1.z)
+    _ch.set_actor_location(_u.Vector(0.0, 0.0, -_base_z), False, False)
+    _o1, _e1 = _ch.get_actor_bounds(False)
+    _out["top_cm"] = round(float(_o1.z + _e1.z), 1)
+    _out["base_cm"] = round(float(_o1.z - _e1.z), 1)
+    _out["footprint_cm"] = [round(float(_e1.x * 2), 1),
+                            round(float(_e1.y * 2), 1)]
+    # The declared target is a CLAIM about the placed actor, so check it here
+    # rather than trusting that set_actor_scale3d did what it was told.
+    _out["target_cm"] = TARGET_CM
+    _out["height_error_cm"] = round(_out["top_cm"] - TARGET_CM, 2)
+    _out["height_within_1pct"] = bool(
+        abs(_out["top_cm"] - TARGET_CM) <= max(0.5, 0.01 * TARGET_CM))
+
+    # ---- the companion: the concept's own chalet ------------------------
+    _b = _eas.spawn_actor_from_object(
+        _cube, _u.Vector(GAP_CM, 0.0, CHALET_WALL_CM * 0.5),
+        _u.Rotator(0, 0, 0))
+    _b.set_actor_label("Forge_Chalet_Walls")
+    _b.set_actor_scale3d(_u.Vector(CHALET_W_CM / 100.0, CHALET_D_CM / 100.0,
+                                   CHALET_WALL_CM / 100.0))
+    _roof = _eal.load_asset(ROOF_PKG)
+    if _roof is None:
+        raise RuntimeError("kit roof not found: " + ROOF_PKG)
+    # ⛔ THE ROOF PIVOT IS NOT AT ITS BASE, AND PLACING IT AT THE WALL TOP
+    # BURIED IT. Measured 2026-08-30: SM_House02_Roof's base sits 201.49 cm
+    # BELOW its pivot, so `Vector(x, y, CHALET_WALL_CM)` put the roof's base at
+    # 198.51 against a 400 wall top -- sunk 201.49 cm into the walls -- and the
+    # "chalet silhouette" came out 536.5 instead of 738.0.
+    #
+    # That wrong number is what ruling 1's 2.5x was scored against, on BOTH the
+    # concept loop and this payload. See LESSONS 2026-08-30.
+    #
+    # The offset is MEASURED here, never remembered: spawn at zero, read where
+    # the base actually landed, then place so the base meets the wall top. The
+    # concept payload's own lesson, from four pivot errors in one day -- a
+    # pivot is a MEASUREMENT OF EACH ASSET, never a property of the class of
+    # thing it depicts.
+    _rp = _eas.spawn_actor_from_object(_roof, _u.Vector(GAP_CM, 0.0, 0.0),
+                                       _u.Rotator(0, 0, 0))
+    _rpo, _rpe = _rp.get_actor_bounds(False)
+    _roof_drop = -float(_rpo.z - _rpe.z)
+    _out["roof_pivot_drop_cm"] = round(_roof_drop, 2)
+    _eas.destroy_actor(_rp)
+    _r = _eas.spawn_actor_from_object(
+        _roof, _u.Vector(GAP_CM, 0.0, CHALET_WALL_CM + _roof_drop),
+        _u.Rotator(0, 0, 0))
+    _r.set_actor_label("Forge_Chalet_Roof")
+    _ro, _re = _r.get_actor_bounds(False)
+    _bo, _be = _b.get_actor_bounds(False)
+    _sil = max(float(_ro.z + _re.z), float(_bo.z + _be.z))
+    _out["chalet_silhouette_cm"] = round(_sil, 1)
+    # ASSERT the assembly, do not trust the fix above. The roof's base must
+    # meet the wall top; if it does not, the silhouette is measuring a buried
+    # roof again and everything scored against it is wrong.
+    _roof_base = float(_ro.z - _re.z)
+    _wall_top = float(_bo.z + _be.z)
+    _out["chalet_roof_base_cm"] = round(_roof_base, 2)
+    _out["chalet_wall_top_cm"] = round(_wall_top, 2)
+    _out["chalet_assembly_ok"] = bool(abs(_roof_base - _wall_top) < 1.0)
+    if not _out["chalet_assembly_ok"]:
+        raise RuntimeError(
+            "CHALET ASSEMBLY WRONG: roof base at %.2f against a wall top of "
+            "%.2f (%.2f cm apart). The companion is the SCALE REFERENCE -- a "
+            "misassembled one produces a silhouette that every ratio is then "
+            "scored against, which is exactly how ruling 1 came to be measured "
+            "against 536.5 instead of 738.0."
+            % (_roof_base, _wall_top, _roof_base - _wall_top))
+
+    # ⛔ THE RATIO IS REPORTED ONLY IF THE RECIPE DECLARED ONE.
+    #
+    # The companion is always built -- it is the SCALE REFERENCE, and a
+    # generated asset standing next to a known kit dimension is the whole
+    # point of this frame. But a RATIO against it is a ruling, and only the
+    # church has one (ruling 1, spire = 2.5x the chalet silhouette). Emitting
+    # `church_over_chalet` for a woodpile invented a comparison nobody made.
+    if RATIO_TARGET > 0.0:
+        _out["ratio_against"] = RATIO_AGAINST
+        _out["ratio_target"] = RATIO_TARGET
+        _out["ratio_measured"] = (round(_out["top_cm"] / _sil, 3)
+                                  if _sil > 0 else None)
+        _out["ratio_within_2pct"] = bool(
+            _out["ratio_measured"] is not None
+            and abs(_out["ratio_measured"] - RATIO_TARGET)
+            <= 0.02 * RATIO_TARGET)
+    else:
+        _out["ratio_against"] = None
+        _out["_no_ratio"] = (
+            "this asset declares a flat height_cm, not ratio_against, so "
+            "there is NO ruled ratio to score. The companion is present as a "
+            "scale reference only; chalet_silhouette_cm is measured, not "
+            "compared.")
+
+    _les.save_current_level()
+    _out["saved"] = True
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

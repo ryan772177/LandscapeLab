@@ -1,0 +1,152 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# Place AEncounterMarker actors from the VERIFIED encounter set.
+#
+# READS THE VERIFIED FILE, NOT THE PLAN. encounters/<region>_all.json is what
+# the planner emits and stays byte-reproducible; <region>_verified.json is that
+# plan minus every row the BUILT NAVMESH refused. Placing from the plan would
+# put markers on ground a path query has already said cannot be reached.
+#
+# IDEMPOTENT BY TAG. Every marker carries LandscapeLab.Encounter, and a commit
+# run destroys the prior tagged set before placing. Without that a second run
+# doubles the encounters and every count downstream is wrong; with it, running
+# twice is indistinguishable from running once.
+#
+# DRY RUN IS THE DEFAULT and destroys nothing. COMMIT must be passed explicitly.
+#
+# ** EACH MARKER CARRIES ITS PLAN ROW. ** archetype, party size, aggro and leash
+# radii, elevation, and the (plan id, row index) pair. The radii are carried
+# rather than read from a class default because the plan's SEPARATION between
+# encounters was computed from aggro+leash -- a marker whose radii disagree with
+# the plan silently invalidates the spacing the plan was gated on. And the row
+# index is what lets a placed marker be diffed against the artefact that
+# produced it, which is the only way a derived record verifies (nn 15).
+#
+# THE DIRECTOR KEYS ON (PlanId, PlanRowIndex), not on the actor pointer, so
+# these two fields are load-bearing at runtime and not merely provenance.
+
+PLAN = r"__PLAN__"
+COMMIT = __COMMIT__
+TAG = "LandscapeLab.Encounter"
+
+_out = {"ok": False, "error": None, "committed": bool(COMMIT)}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+
+    # REFUSE A PLAN THAT IS NOT THE VERIFIED ONE. The verified artefact is the
+    # only one whose rows a path query has confirmed; the raw plan is not.
+    if "_adopted_by" not in _p or "_verified_against" not in _p:
+        raise RuntimeError(
+            "this file is not an ADOPTED verified set -- it carries no "
+            "_adopted_by/_verified_against. Placing from the raw plan would "
+            "put markers on ground the navmesh has already refused. Run "
+            "adopt_verified_encounters first.")
+
+    _rows = _p.get("encounters") or []
+    if not _rows:
+        raise RuntimeError("the verified set carries no encounters")
+    _plan_id = str(_p.get("region") or "")
+    if not _plan_id:
+        raise RuntimeError("the verified set declares no region id, so a "
+                           "marker could not name the plan it came from")
+
+    _cls = getattr(_u, "EncounterMarker", None)
+    if _cls is None:
+        raise RuntimeError(
+            "unreal.EncounterMarker is not reflected. The plugin did not load "
+            "-- a module that compiles is not a module that loaded.")
+
+    # ---- prior tagged markers -------------------------------------------
+    _prior = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            if TAG in [str(_t) for _t in _a.tags]:
+                _prior.append(_a)
+        except Exception:
+            pass
+    _out["prior_tagged"] = len(_prior)
+    _out["to_place"] = len(_rows)
+
+    if not COMMIT:
+        _out["would_destroy"] = len(_prior)
+        _out["would_place"] = len(_rows)
+        _out["sample"] = [
+            {"archetype": _r.get("archetype"), "loc_cm": _r.get("loc_cm"),
+             "party_size": _r.get("party_size")}
+            for _r in _rows[:5]]
+        _out["note"] = ("DRY RUN -- nothing was destroyed and nothing was "
+                        "placed. Pass COMMIT=True to write.")
+        _out["ok"] = True
+    else:
+        for _a in _prior:
+            _eas.destroy_actor(_a)
+        _still = 0
+        for _a in _eas.get_all_level_actors():
+            try:
+                if TAG in [str(_t) for _t in _a.tags]:
+                    _still += 1
+            except Exception:
+                pass
+        if _still:
+            raise RuntimeError(
+                "%d tagged markers survived the clear; refusing to place on "
+                "top of them, which would double every count downstream"
+                % _still)
+        _out["destroyed"] = len(_prior)
+
+        _made = 0
+        for _i, _r in enumerate(_rows):
+            _l = _r["loc_cm"]
+            _a = _eas.spawn_actor_from_class(
+                _cls, _u.Vector(float(_l[0]), float(_l[1]), float(_l[2])))
+            if _a is None:
+                raise RuntimeError("spawn returned None at row %d" % _i)
+            _a.set_actor_label("Encounter_%s_%04d" % (
+                str(_r.get("archetype") or "x"), _i))
+            _a.tags = [TAG, str(_r.get("archetype") or "x")]
+            _a.set_editor_property("archetype",
+                                   _u.Name(str(_r.get("archetype") or "")))
+            _a.set_editor_property("party_size",
+                                   int(_r.get("party_size") or 1))
+            _a.set_editor_property("aggro_radius_cm",
+                                   float(_r.get("aggro_radius_cm") or 0.0))
+            _a.set_editor_property("leash_radius_cm",
+                                   float(_r.get("leash_radius_cm") or 0.0))
+            _a.set_editor_property("planned_elevation_m",
+                                   float(_r.get("elevation_m") or 0.0))
+            _a.set_editor_property("plan_row_index", int(_i))
+            _a.set_editor_property("plan_id", _plan_id)
+            _made += 1
+        _out["placed"] = _made
+
+        # READ BACK FROM THE WORLD, not from the loop counter. A count kept by
+        # the code that did the spawning proves only that the loop ran.
+        _now = 0
+        _by = {}
+        for _a in _eas.get_all_level_actors():
+            try:
+                _tg = [str(_t) for _t in _a.tags]
+            except Exception:
+                continue
+            if TAG in _tg:
+                _now += 1
+                _k = _tg[1] if len(_tg) > 1 else "?"
+                _by[_k] = _by.get(_k, 0) + 1
+        _out["counted_in_world"] = _now
+        _out["by_archetype"] = _by
+        _out["ok"] = (_now == len(_rows))
+        if not _out["ok"]:
+            _out["error"] = ("world holds %d tagged markers, the verified set "
+                             "has %d" % (_now, len(_rows)))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

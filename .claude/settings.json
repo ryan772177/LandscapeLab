@@ -1,0 +1,152 @@
+{
+  "$comment": [
+    "SHIPPING hook configuration. This file is COMMITTED.",
+    "settings.local.json is gitignored and must not hold governance.",
+    "Every hook here is proven in THREE directions by",
+    "python .claude/hooks/prove_hooks.py  -> 167/167 (2026-08-06).",
+    "guard.py fails closed: any internal failure exits 2, because exit",
+    "codes other than 0 and 2 are NON-BLOCKING."
+  ],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" commit-file",
+            "statusMessage": "standing rule 3: commit -F",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" no-force-delete",
+            "statusMessage": "standing rule 2: no forced deletes",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" msys-game-path",
+            "statusMessage": "MSYS /Game/ mangling",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" load-level",
+            "statusMessage": "R14: open_level.py",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" heredoc-escapes",
+            "statusMessage": "heredoc escape mangling",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" engine-files",
+            "statusMessage": "standing rule 4: engine files",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" outside-repo",
+            "statusMessage": "standing rule 1: repo boundary",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" lessons-append-only",
+            "statusMessage": "LESSONS append-only",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" fab-protection",
+            "statusMessage": "R-ASSET: vendor folders",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" load-level",
+            "statusMessage": "R14: open_level.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/session_context.py\"",
+            "statusMessage": "loading CURRENT STATE",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/stop_dirty_tree.py\"",
+            "statusMessage": "session protocol: uncommitted work",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/subagent_output.py\"",
+            "statusMessage": "NN18: nullable required fields",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/advisory.py\" consecutive-failures",
+            "statusMessage": "standing rule 6: repeat failure",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/advisory.py\" clear-streak",
+            "timeout": 15
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/advisory.py\" dependency-record",
+            "statusMessage": "standing rule 5: dependencies",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

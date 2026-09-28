@@ -1,0 +1,221 @@
+import json as _json
+import os as _os
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+CHARACTER   = "__CHARACTER__"
+SUBJECT     = "__SUBJECT__"
+SLOT        = "__SLOT__"
+SRC_GROOM   = "__SRC_GROOM__"
+DST_GROOM   = "__DST_GROOM__"
+ABC_PATH    = r"__ABC_PATH__"
+BIND_PATH   = "__BIND_PATH__"
+INTERP_PT   = __INTERP_PT__
+MELANIN     = __MELANIN__
+REDNESS     = __REDNESS__
+WHITENESS   = __WHITENESS__
+MI_DIR      = "__MI_DIR__"
+HAIR_MASTER = "__HAIR_MASTER__"
+
+_out = {"ok": False, "error": None, "t": {}, "character": CHARACTER,
+        "slot": SLOT, "steps": []}
+try:
+    _t0 = _time.time()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+
+    # ---- 1. THE GROOM MUST BE OURS -------------------------------------
+    # Measured 2026-08-19: a groom living in a vendor plugin's content binds
+    # cleanly, reports every property correctly and DRAWS NOTHING. The same
+    # asset duplicated into project content renders at 87x the repeat floor.
+    # So this step is not tidiness, it is the precondition.
+    if ABC_PATH:
+        # ALEMBIC ROUTE -- implemented, and honestly UNEXERCISED: no .abc has
+        # been authored for this project yet. It is written so the Blender
+        # round trip has somewhere to land, and it announces itself in the
+        # output so nobody mistakes an untested path for a proven one.
+        _task = _u.AssetImportTask()
+        _task.set_editor_property("filename", ABC_PATH)
+        _task.set_editor_property("destination_path",
+                                  DST_GROOM.rsplit("/", 1)[0])
+        _task.set_editor_property("destination_name",
+                                  DST_GROOM.rsplit("/", 1)[1])
+        _task.set_editor_property("replace_existing", True)
+        _task.set_editor_property("automated", True)
+        _task.set_editor_property("save", True)
+        _task.set_editor_property("factory", _u.AlembicImportFactory())
+        _u.AssetToolsHelpers.get_asset_tools().import_asset_tasks([_task])
+        _out["steps"].append("imported alembic (UNEXERCISED PATH)")
+    elif not _eal.does_asset_exist(DST_GROOM):
+        if not _eal.duplicate_asset(SRC_GROOM, DST_GROOM):
+            raise RuntimeError("duplicate_asset failed: %s -> %s"
+                               % (SRC_GROOM, DST_GROOM))
+        _eal.save_asset(DST_GROOM, False)
+        _out["steps"].append("duplicated into project content")
+    else:
+        _out["steps"].append("groom already in project content")
+
+    _g = _eal.load_asset(DST_GROOM)
+    if _g is None:
+        raise RuntimeError("groom missing after ingest: " + DST_GROOM)
+    try:
+        _info = _g.get_editor_property("hair_groups_info")
+        if _info and len(_info) > 0:
+            _out["num_curves"] = int(_info[0].get_editor_property("num_curves"))
+            _out["num_guides"] = int(_info[0].get_editor_property("num_guides"))
+    except Exception:
+        pass
+    _t1 = _time.time()
+    _out["t"]["acquire"] = round(_t1 - _t0, 2)
+
+    # ---- 2. THE TARGET FACE MESH, READ FROM THE ACTOR -------------------
+    _subj = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == SUBJECT:
+            _subj = _a
+            break
+    if _subj is None:
+        raise RuntimeError("subject actor not placed: " + SUBJECT)
+    _face = None
+    for _c in _subj.get_components_by_class(_u.SkeletalMeshComponent):
+        if "face" in str(_c.get_name()).lower():
+            _face = _c
+            break
+    if _face is None:
+        raise RuntimeError("no Face component on " + SUBJECT)
+    _mesh = _face.get_editor_property("skeletal_mesh")
+    if _mesh is None:
+        raise RuntimeError("Face component has no skeletal mesh")
+    _out["target_mesh"] = str(_mesh.get_name())
+
+    # ---- 3. A BINDING BUILT FOR THIS CHARACTER, ALWAYS ------------------
+    # The invariant. Vendor bindings target SKM_Groom_Head_Legacy01 and render
+    # EXPLODED on our heads; there is no shortcut here for any character.
+    if _eal.does_asset_exist(BIND_PATH):
+        _b = _eal.load_asset(BIND_PATH)
+        _out["steps"].append("binding reused")
+    else:
+        _b = _u.GroomLibrary.create_new_groom_binding_asset_with_path(
+            BIND_PATH, _g, _mesh, INTERP_PT, None, 0)
+        _out["steps"].append("binding created")
+    if _b is None:
+        raise RuntimeError("binding creation returned None")
+    _eal.save_asset(BIND_PATH, False)
+    _t2 = _time.time()
+    _out["t"]["bind"] = round(_t2 - _t1, 2)
+
+    # ---- 4. ASSIGN ------------------------------------------------------
+    _comp = None
+    for _c in _subj.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == SLOT:
+            _comp = _c
+            break
+    if _comp is None:
+        raise RuntimeError("no groom component in slot " + SLOT)
+    _comp.set_groom_asset(_g)
+    _comp.set_binding_asset(_b)
+
+    # ---- 5. COLOUR ON A MATERIAL WE OWN --------------------------------
+    # A directly-assigned groom renders with the VENDOR material, so the
+    # character-instance colour surface used by the wardrobe path does not
+    # reach it. The durable surface here is a project-content material
+    # instance on the component. Parent is walked so re-running cannot make
+    # an instance its own parent -- a trap this project has already paid for
+    # once in the face-texture bake.
+    # CLEAR ANY OVERRIDE FIRST. Otherwise the "base" material read below is
+    # whatever a PREVIOUS run left on the component -- measured: the first
+    # integration run parented the new instance to the OLD hair's material
+    # instance, because the component still carried it. Read the groom's own
+    # material, not the last thing we put there.
+    # THE PARENT IS DECLARED, NOT DISCOVERED FROM COMPONENT STATE.
+    # Discovering it was tried and is wrong twice over: read the component
+    # WITHOUT clearing the override and you inherit whatever the previous
+    # groom left (measured -- the first run parented to MI_WI_Hair_M_BobMessy_
+    # Hair); clear the override first and get_material returns None, because a
+    # groom's material lives on the ASSET, not on the component. Declaring one
+    # master also gives the catalogue a single colour across every hair, which
+    # is what makes 38 frames comparable at all.
+    _comp.set_editor_property("override_materials", [])
+    _parent = _eal.load_asset(HAIR_MASTER)
+    if _parent is None:
+        raise RuntimeError("declared groom material master not found: "
+                           + HAIR_MASTER)
+    _out["material_before"] = str(_parent.get_name())
+    if _parent is not None:
+        _mi_name = "MI_%s_%s" % (CHARACTER, SLOT)
+        _mi_path = MI_DIR + "/" + _mi_name
+        if _eal.does_asset_exist(_mi_path):
+            _mi = _eal.load_asset(_mi_path)
+        else:
+            _mi = _u.AssetToolsHelpers.get_asset_tools().create_asset(
+                _mi_name, MI_DIR, _u.MaterialInstanceConstant,
+                _u.MaterialInstanceConstantFactoryNew())
+            _mi.set_editor_property("parent", _parent)
+        # NAMES COME FROM THE ASSET. Setting a parameter the material does
+        # not declare succeeds silently at the API and does nothing at all.
+        _mel = _u.MaterialEditingLibrary
+        _declared = [str(_n) for _n in _mel.get_scalar_parameter_names(_parent)]
+        _out["parent_scalars"] = _declared
+        _want = [("hairMelanin", MELANIN), ("hairRedness", REDNESS),
+                 ("hairWhiteness", WHITENESS)]
+        _want = [(_n, _v) for _n, _v in _want if _n in _declared]
+        _out["colour_params_skipped"] = [
+            _n for _n, _ in (("hairMelanin", 0), ("hairRedness", 0),
+                             ("hairWhiteness", 0)) if _n not in _declared]
+
+        _wrote = []
+        for _n, _v in _want:
+            try:
+                if _mel.set_material_instance_scalar_parameter_value(
+                        _mi, _n, float(_v)):
+                    _wrote.append(_n)
+            except Exception:
+                pass
+
+        # THE SETTER RETURNS FALSE ON NAMES THE INSTANCE ITSELF LISTS -- this
+        # project measured exactly that for texture parameters in the face
+        # bake, where six writes reported success and bound nothing. Writing
+        # the array directly is the route that worked there and it works here.
+        if len(_wrote) < len(_want):
+            _arr = []
+            for _n, _v in _want:
+                _sv = _u.ScalarParameterValue()
+                _pi = _u.MaterialParameterInfo()
+                _pi.set_editor_property("name", _n)
+                _sv.set_editor_property("parameter_info", _pi)
+                _sv.set_editor_property("parameter_value", float(_v))
+                _arr.append(_sv)
+            _mi.set_editor_property("scalar_parameter_values", _arr)
+            _wrote = [_n for _n, _ in _want]
+            _out["colour_route"] = "direct array write"
+        else:
+            _out["colour_route"] = "setter"
+
+        # READ BACK OFF THE INSTANCE, not off the call that just ran.
+        _rb = {}
+        for _sv in _mi.get_editor_property("scalar_parameter_values"):
+            _rb[str(_sv.get_editor_property("parameter_info")
+                    .get_editor_property("name"))] = float(
+                        _sv.get_editor_property("parameter_value"))
+        _out["colour_readback"] = _rb
+        _eal.save_asset(_mi_path, False)
+        _comp.set_material(0, _mi)
+        _out["material_instance"] = _mi_path
+        _out["colour_params_written"] = _wrote
+        _out["material_parent"] = str(_parent.get_name())
+
+    _rg = _comp.get_editor_property("groom_asset")
+    _rb = _comp.get_editor_property("binding_asset")
+    _out["readback"] = {
+        "groom": None if _rg is None else str(_rg.get_name()),
+        "binding": None if _rb is None else str(_rb.get_name()),
+        "material": None if _comp.get_material(0) is None
+                    else str(_comp.get_material(0).get_name())}
+    _out["t"]["assign"] = round(_time.time() - _t2, 2)
+    _out["t"]["total"] = round(_time.time() - _t0, 2)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:700]
+
+print("__LL__" + _json.dumps(_out, default=str))

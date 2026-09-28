@@ -1,0 +1,108 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Flip a side-swept fringe to the other side, and thin the strands.
+#
+# THE FLIP HAS NO PARAMETER. GroomComponent exposes SetHairWidth,
+# SetHairRootScale and SetHairLengthScale -- nothing directional. The vendor
+# groom is a shipped .uasset with no .blend behind it, so its strands cannot be
+# re-swept the way the DiffLocks groom was.
+#
+# What IS available is a MIRROR: a side-swept fringe reflected through the
+# sagittal plane sweeps the other way. Negative scale on the component's X does
+# that in one property.
+#
+# AND IT MAY NOT SURVIVE THE BINDING. The groom is bound to the face mesh and
+# the binding carries per-strand root correspondence; a mirrored component with
+# an unmirrored binding is exactly the kind of mismatch that has put this
+# project's hair on a jaw before. So the render decides, not the property
+# read-back -- and the binding is re-checked afterwards either way.
+#
+# SetHairWidth is a METHOD, like the length scale, and like it the width may
+# need its override armed. Both are read back through the asset afterwards.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+MIRROR = __MIRROR__          # 1 to mirror X, 0 to restore
+WIDTH = __WIDTH__            # <0 to leave alone
+LENGTH = __LENGTH__          # <0 to leave alone
+
+_out = {"ok": False, "error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _x in _a.get_components_by_class(_u.GroomComponent):
+            if _x.get_name().lower().startswith(SLOT.lower()):
+                _c = _x
+    if _c is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+    _out["component"] = _c.get_name()
+
+    _s0 = _c.get_editor_property("relative_scale3d")
+    _out["scale_before"] = [_s0.x, _s0.y, _s0.z]
+    _sx = -abs(_s0.x) if MIRROR else abs(_s0.x)
+    _c.set_editor_property("relative_scale3d",
+                           _u.Vector(_sx, abs(_s0.y), abs(_s0.z)))
+    _s1 = _c.get_editor_property("relative_scale3d")
+    _out["scale_after"] = [_s1.x, _s1.y, _s1.z]
+    _out["mirrored"] = bool(_s1.x < 0)
+
+    if WIDTH > 0:
+        # SetHairWidth IS DECLARED AND IS NOT CALLABLE. GroomComponent.h lists
+        # `UE_API void SetHairWidth(float)` with NO UFUNCTION above it, unlike
+        # the three length-scale methods, so it never reaches Python:
+        # AttributeError, measured. The reflected surface is the contract, not
+        # the header -- and the two sit four lines apart in the same file.
+        #
+        # The durable route is the ASSET's own width, which carries an
+        # editcondition (GroomAssetRendering.h:24, meta editcondition =
+        # "HairWidth_Override"), so the override must be armed or the value is
+        # inert exactly like the length scale was.
+        _g0 = _c.get_editor_property("groom_asset")
+        _gp = _g0.get_path_name().split(".")[0]
+        _arr = _g0.get_editor_property("hair_groups_rendering")
+        _new = []
+        for _s in _arr:
+            _gs = _s.get_editor_property("geometry_settings")
+            for _flag in ("hair_width_override", "b_hair_width_override"):
+                try:
+                    _gs.set_editor_property(_flag, True)
+                    _out["width_override_flag"] = _flag
+                except Exception:
+                    pass
+            _gs.set_editor_property("hair_width", float(WIDTH))
+            _s.set_editor_property("geometry_settings", _gs)
+            _new.append(_s)
+        _g0.set_editor_property("hair_groups_rendering", _new)
+        _u.EditorAssetLibrary.save_asset(_gp, only_if_is_dirty=False)
+        _g1 = _u.EditorAssetLibrary.load_asset(_gp)
+        _rb = [_s.get_editor_property("geometry_settings")
+               .get_editor_property("hair_width")
+               for _s in _g1.get_editor_property("hair_groups_rendering")]
+        _out["width_requested"] = WIDTH
+        _out["width_readback"] = [round(float(_x), 6) for _x in _rb]
+        _out["width_took"] = all(abs(float(_x) - WIDTH) < 1e-6 for _x in _rb)
+    if LENGTH > 0:
+        _c.set_hair_length_scale_enable(True)
+        _c.set_hair_length_scale(float(LENGTH))
+        _out["length_scale"] = LENGTH
+        _out["length_enabled"] = bool(_c.get_is_hair_length_scale_enabled())
+
+    _b = _c.get_editor_property("binding_asset")
+    _g = _c.get_editor_property("groom_asset")
+    _out["binding_after"] = _b.get_name() if _b else None
+    _out["groom_after"] = _g.get_name() if _g else None
+    _out["ok"] = bool(_out["binding_after"])
+    if not _out["ok"]:
+        _out["error"] = "the binding is gone"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

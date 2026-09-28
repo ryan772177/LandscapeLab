@@ -1,0 +1,23 @@
+import json as _json
+import unreal as _u
+_out = {"ok": False}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        _x = _a.get_component_by_class(_u.SkyLightComponent)
+        if _x:
+            _c = _x
+            _out["label"] = _a.get_actor_label()
+            break
+    if _c is None:
+        raise RuntimeError("no SkyLightComponent")
+    _lh = _c.get_editor_property("lower_hemisphere_color")
+    _out["intensity"] = float(_c.get_editor_property("intensity"))
+    _out["real_time_capture"] = bool(_c.get_editor_property("real_time_capture"))
+    _out["lower_hemisphere_is_black"] = bool(_c.get_editor_property("lower_hemisphere_is_black"))
+    _out["lower_hemisphere_color"] = [round(float(_lh.r),4), round(float(_lh.g),4), round(float(_lh.b),4)]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

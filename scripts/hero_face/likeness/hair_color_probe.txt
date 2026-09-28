@@ -1,0 +1,100 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# What material is the Hair slot actually rendering, and what colour parameters
+# does it expose? READ-ONLY.
+#
+# This is asked rather than assumed because it has been wrong before: on
+# 2026-08-21 the Hair component's `override_materials` was EMPTY and the groom
+# rendered on /HairStrands/Materials/HairDefaultMaterial -- the ENGINE DEFAULT --
+# while Beard, Mustache and Eyebrows each carried assembled MI_WI_* overrides at
+# melanin 0.92 / redness 0.28. The hair looked mis-coloured and the material
+# looked guilty; there was no material.
+#
+# Also enumerated: the scalar and vector parameter NAMES on whatever material is
+# found. `hairWhiteness` does not exist on this master -- the family is
+# WhiteAmount / WhiteMelinin* -- and writing a parameter that does not exist
+# returns success and changes nothing.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+
+_out = {"ok": False, "error": None, "slot": SLOT}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _act = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() == SUBJECT:
+                _act = _a
+        except Exception:
+            pass
+    if _act is None:
+        raise RuntimeError("subject actor missing: " + SUBJECT)
+
+    _comp = None
+    for _c in _act.get_components_by_class(_u.GroomComponent):
+        if _c.get_name().lower().startswith(SLOT.lower()):
+            _comp = _c
+    if _comp is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+    _out["component"] = _comp.get_name()
+
+    _ov = _comp.get_editor_property("override_materials")
+    _out["override_materials"] = [(_m.get_path_name() if _m else None)
+                                  for _m in _ov]
+
+    _mats = []
+    for _i in range(_comp.get_num_materials()):
+        _m = _comp.get_material(_i)
+        _mats.append(_m.get_path_name() if _m else None)
+    _out["effective_materials"] = _mats
+
+    _out["parameters"] = {}
+    for _p in _mats:
+        if not _p:
+            continue
+        _mi = _u.EditorAssetLibrary.load_asset(_p.split(".")[0])
+        if _mi is None:
+            continue
+        _e = {"path": _p, "class": _mi.get_class().get_name()}
+        try:
+            _e["parent"] = str(_mi.get_editor_property("parent"))
+        except Exception:
+            _e["parent"] = "RAISED"
+        for _kind, _fn in (("scalars", "get_scalar_parameter_names"),
+                           ("vectors", "get_vector_parameter_names")):
+            try:
+                _names = getattr(_u.MaterialEditingLibrary, _fn)(_mi)
+                _hits = [str(_n) for _n in _names
+                         if any(_k in str(_n).lower() for _k in
+                                ("hair", "melan", "red", "white", "tint",
+                                 "color", "colour", "root", "tip", "lightness",
+                                 "shade", "dye"))]
+                _e[_kind] = sorted(_hits)
+                _e[_kind + "_total"] = len(list(_names))
+            except Exception as _ex:
+                _e[_kind] = "RAISED: " + type(_ex).__name__
+        # and their CURRENT values, where readable
+        _vals = {}
+        for _n in _e.get("scalars", []):
+            try:
+                _vals[_n] = _u.MaterialEditingLibrary \
+                    .get_material_instance_scalar_parameter_value(_mi, _n)
+            except Exception:
+                pass
+        for _n in _e.get("vectors", []):
+            try:
+                _v = _u.MaterialEditingLibrary \
+                    .get_material_instance_vector_parameter_value(_mi, _n)
+                _vals[_n] = [round(_v.r, 4), round(_v.g, 4), round(_v.b, 4)]
+            except Exception:
+                pass
+        _e["values"] = _vals
+        _out["parameters"][_p] = _e
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

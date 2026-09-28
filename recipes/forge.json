@@ -1,0 +1,146 @@
+{
+  "_schema": "1.0-forge",
+  "_what": "Asset specs for the generation forge. RATIFIED 2026-08-30: TRELLIS is the engine, judged on ABSOLUTE floors, and every stage below is mandatory.",
+  "_stages": [
+    "1 check_generation_input.py -- measured input floors",
+    "2 ai_input_guard.py --strict -- BEFORE weights load, R-AIGATE",
+    "3 generate -- TRELLIS multi-image, formats=[mesh]",
+    "4 retopo/decimate -- MANDATORY, headless Blender, before/after reported",
+    "5 pivot to base-centre",
+    "6 UV state recorded (and established if absent)",
+    "7 measured intake",
+    "8 ASSETS.md row",
+    "9 FORGE_LOG cost line",
+    "10 REAL-WORLD SCALE -- orientation gate, then apply the declared scale and read back top/base/footprint (RATIFIED 2026-08-30)"
+  ],
+  "_intake_floors": {
+    "thin_over_long_min": 0.3,
+    "_thin_over_long_min": "the flat-sheet baseline measured 0.0114 and the castle positive control 0.8491; 0.30 sits far above the failure and below any real volume. A church is legitimately elongated -- 0.4317 measured -- so this is a sheet-vs-volume bar, NOT a shape-quality score.",
+    "require_watertight": true,
+    "_require_watertight": "every edge used by exactly 2 faces. Necessary, and NOT sufficient -- the 2026-08-30 church was watertight at genus 59.",
+    "_genus_expectation_by_subject": "GENUS IS NOT A DEFECT SCORE, and a high one is EXPECTED for POROUS subjects. Measured: church genus 61 at 60,000 tris; wood_stack genus 392 at 15,000. A stacked cord of firewood is genuinely full of tunnels -- the gaps between round logs are real handles, and the close frame (woodstack_closeup.png) shows them. Anything woven, stacked, latticed, railed or foliated will read high and SHOULD. The forge cannot distinguish a real tunnel from reconstruction noise, so it REPORTS genus and never refuses on it; `tri_within_budget` is a TRIANGLE claim and says so in its name. Do not read a high genus on a porous subject as a defect, and do not 'fix' it by decimating harder -- edge collapse preserves topology and genus 392 survived a 186.8:1 reduction unchanged."
+  },
+  "assets": {
+    "church": {
+      "name": "SM_Church_Forge",
+      "asset_class": "hero_prop",
+      "_asset_class": "perf_budgets.json asset_rules.max_tris.hero_prop = 60000; that field's own comment names the church as the case it was written for.",
+      "refs_dir": "refs/church_refs",
+      "views": [
+        "church_az000.png.jpg",
+        "church_az035.png.jpg",
+        "church_az090.png.jpg",
+        "church_az270.png.jpg"
+      ],
+      "seed": 20260830,
+      "sampler": {
+        "sparse_structure": {
+          "steps": 12,
+          "cfg_strength": 7.5
+        },
+        "slat": {
+          "steps": 12,
+          "cfg_strength": 3
+        }
+      },
+      "provenance": {
+        "source": "generated from operator concept references",
+        "engine": "TRELLIS (MIT)",
+        "model_repo": "JeffreyXiang/TRELLIS-image-large",
+        "notes": "operator-supplied four-view set against GENERATION_VIEW_SPEC.md; roof material drifts metal/shingle between views with geometry consistent, ruled acceptable because the material pipeline re-dresses it and formats=[mesh] cannot carry the drift into the output."
+      },
+      "scale": {
+        "ratio_against": "chalet_silhouette_cm",
+        "ratio": 2.5,
+        "reference_cm": 738.0,
+        "_reference_source": "ruling 1, chalet SILHOUETTE = greybox walls plus the kit roof. CORRECTED 2026-08-30 from 536.5 to 738.0, MEASURED IN ENGINE. 536.5 was a sound measurement of a MISASSEMBLED chalet: SM_House02_Roof pivot sits 201.49 cm above its base, both concept_build and forge_scale placed the roof AT the wall top, so the roof was buried 201.49 cm in the walls. 400 - 201.49 + 338.02 = 536.5. Correct: base on the wall top, 400 + 338.02 = 738.0. CONSEQUENCE: the church was built to 2.5 x 536.5 = 1341.3, which is only 1.817x the real silhouette. Ruling 1 requires 2.5 x 738.0 = 1845.0.",
+        "axis": "z",
+        "reference_plausible_cm": [
+          620.0,
+          820.0
+        ],
+        "_reference_plausible_cm": "The band on the REFERENCE, not on the result. reference_cm must sit inside it, and the resulting target is then checked against ratio x band. Deriving the target band instead of declaring it means there is no second number to drift. DERIVED FROM GEOMETRY, not chosen. Walls are 400 cm (2 storeys x the ruled 2.00 m kit wall course). An alpine roof over the 8 m short span runs 30-45 degrees, giving 231-400 cm of roof and a 631-800 cm silhouette; the band is widened slightly to 620-820. THE POSITIVE CONTROL IS THE DEFECT THIS WEEK: 536.5 cm implies a 136.5 cm roof, an 18.8 degree pitch, far too shallow for a shingled roof with the deep overhang both concepts describe -- and 536.5 was exactly what the buried kit roof produced. The measured correct value, 738.0, is a 40 degree pitch and sits comfortably inside."
+      }
+    },
+    "wood_stack": {
+      "name": "SM_WoodStack_Forge",
+      "asset_class": "prop_small",
+      "_asset_class": "perf_budgets.json asset_rules.max_tris.prop_small = 15000",
+      "refs_dir": "refs/wood_stack_refs",
+      "views": [
+        "wood_stack_az000.png",
+        "wood_stack_az035.png",
+        "wood_stack_az090.png",
+        "wood_stack_az180.png"
+      ],
+      "seed": 20260830,
+      "sampler": {
+        "sparse_structure": {
+          "steps": 12,
+          "cfg_strength": 7.5
+        },
+        "slat": {
+          "steps": 12,
+          "cfg_strength": 3
+        }
+      },
+      "provenance": {
+        "source": "generated from operator concept references",
+        "engine": "TRELLIS (MIT)",
+        "model_repo": "JeffreyXiang/TRELLIS-image-large",
+        "notes": "ruled as the SECOND forge run, 2026-08-30."
+      },
+      "scale": {
+        "height_cm": 120.0,
+        "_height_cm": "a stacked cord of firewood against a wall: roughly waist-to-chest on the 180 cm character capsule. DECLARED so the forge will run it once its references exist; it is not measured from anything yet and should be checked against the first frame.",
+        "axis": "z",
+        "plausible_cm": [
+          60.0,
+          200.0
+        ],
+        "_plausible_cm": "PROPOSED, not derived -- a stacked cord runs roughly knee-to-chest on the 176.0 cm capsule. Unlike the chalet band there is no geometry on disk to derive it from, and it says so. Declared so the check EXISTS for a flat-height asset; tighten it when a stack is measured."
+      },
+      "_views": "operator set delivered 2026-08-30. az035 is the master 3/4 view, DERIVED as the max-extent view rather than declared. az090 and az180 have longest sides of 751 and 785 px, under the 800 px per-image floor, and they PASS: floors apply per SET (ruled 2026-08-30), and rotations are not held to longest-side or fill-low. They are held to subject px, frame, clipping, aspect, and a GROUND-LINE match within +-3% of the master -- measured +1.1% and +0.1%. Stage 1 passes the whole set; the earlier refusal is superseded."
+    },
+    "crystal_spire": {
+      "name": "SM_CrystalSpire_Forge",
+      "asset_class": "hero_prop",
+      "_asset_class": "faceted monolith; hero_prop 60000-tri ceiling, expected to use a fraction",
+      "refs_dir": "refs/crystal_spire_refs",
+      "views": [
+        "crystal_az000.jpg",
+        "crystal_az045.jpg",
+        "crystal_az090.jpg"
+      ],
+      "_views": "THREE VIEWS at 1024 square, gemini_v2 regeneration 2026-09-02 (the 715 px single view was refused at stage 1 and is superseded)",
+      "seed": 20260901,
+      "sampler": {
+        "sparse_structure": {
+          "steps": 12,
+          "cfg_strength": 7.5
+        },
+        "slat": {
+          "steps": 12,
+          "cfg_strength": 3
+        }
+      },
+      "provenance": {
+        "source": "generated from operator concept reference",
+        "engine": "TRELLIS (MIT)",
+        "model_repo": "JeffreyXiang/TRELLIS-image-large",
+        "notes": "operator-made Gemini landmark, single front view, intaken 2026-08-31 (Free/_measured/gemini_v1_manifest.json); cleared for generation input by ai_input_guard --strict at stage 2."
+      },
+      "scale": {
+        "height_cm": 20000.0,
+        "axis": "z",
+        "_height_cm": "a 200 m monolith crowning the NE spires of the crystal valley: reads at the concept scale from the south vantage 2.5 km away without the physical absurdity of the painting 1.5 km version. DECLARED, to be judged against the first framed render.",
+        "plausible_cm": [
+          12000.0,
+          30000.0
+        ],
+        "_plausible_cm": "PROPOSED, not derived: a landmark monolith must dwarf the 1845 cm church spire by an order of magnitude yet stay below the 40000 cm NE peak cluster it crowns, or it reads as terrain rather than artefact. 120-300 m; judge against the first framed render."
+      }
+    }
+  },
+  "_scale_law": "A GENERATED MESH CARRIES NO UNITS. TRELLIS normalises its output, so the church imported 39.5 cm tall and rendered perfectly. Every stage 1-9 check -- triangle budget, watertightness, pivot, UVs -- is SCALE-INVARIANT and none of them could ever notice. So every asset declares `scale`, and a missing declaration is a REFUSAL exactly like missing views. Either `height_cm`, or `ratio_against` + `ratio` + `reference_cm` when the size is defined relative to something the world already measures."
+}

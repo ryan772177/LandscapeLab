@@ -1,0 +1,112 @@
+# calibrate_sculpt_units — what IS a unit of translate_face_landmarks?
+#
+# THE MEASUREMENT THIS EXISTS TO MAKE
+#   Asking for a landmark move of 3.48e-03 produced an observed move of
+#   6.08e-06 and ZERO facial rig movement. Either the sculpt does not work,
+#   or the delta argument is not in the same space get_face_landmarks
+#   reports positions in. Those two have completely different fixes, so
+#   guessing between them is not allowed.
+#
+#   This applies a LADDER of known deltas to a single landmark and reports,
+#   for each, how far that landmark actually moved and how far the facial rig
+#   moved. The response curve answers it outright:
+#     * move proportional to delta, tiny  -> a unit conversion, and the
+#       gradient IS the conversion factor
+#     * no move at any magnitude          -> the API does not reach the model
+#     * moves then saturates              -> the face model is constraining it
+#
+# It restores the landmark afterwards and COMMITS NOTHING.
+import json as _json
+import unreal as _unreal
+
+_IDX = __IDX__
+_AXIS = __AXIS__
+_OUT = {"error": None, "landmark": _IDX, "axis": _AXIS, "steps": [],
+        "restored_residual": None}
+
+
+def _facial(actor, limit=64):
+    face = None
+    for c in actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        if c.get_name() == "Face":
+            face = c
+    if face is None:
+        return None
+    names = []
+    for i in range(int(face.get_num_bones())):
+        bn = str(face.get_bone_name(i))
+        if "FACIAL" in bn.upper():
+            names.append(bn)
+    step = max(1, len(names) // limit)
+    out = {}
+    for bn in names[::step][:limit]:
+        v = face.get_socket_location(bn)
+        out[bn] = [float(v.x), float(v.y), float(v.z)]
+    return out or None
+
+
+def _maxmove(a, b):
+    if not a or not b:
+        return None
+    m = 0.0
+    for k in a:
+        if k in b:
+            m = max(m, sum((a[k][i] - b[k][i]) ** 2 for i in range(3)) ** 0.5)
+    return m
+
+
+_actor = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+
+    _origin = [[float(v.x), float(v.y), float(v.z)]
+               for v in _ss.get_face_landmarks(_ch)]
+    _net = 0.0
+    for _d in [0.001, 0.01, 0.1, 1.0, 10.0]:
+        _b_lm = [[float(v.x), float(v.y), float(v.z)]
+                 for v in _ss.get_face_landmarks(_ch)]
+        _b_bone = _facial(_actor)
+        _vec = [0.0, 0.0, 0.0]
+        _vec[_AXIS] = _d
+        _ss.translate_face_landmarks(
+            _ch, [_IDX], [_unreal.Vector(_vec[0], _vec[1], _vec[2])])
+        _net += _d
+        _a_lm = [[float(v.x), float(v.y), float(v.z)]
+                 for v in _ss.get_face_landmarks(_ch)]
+        _a_bone = _facial(_actor)
+        _self = sum((_a_lm[_IDX][k] - _b_lm[_IDX][k]) ** 2
+                    for k in range(3)) ** 0.5
+        _any = max(sum((_a_lm[i][k] - _b_lm[i][k]) ** 2
+                       for k in range(3)) ** 0.5 for i in range(len(_a_lm)))
+        _bm = _maxmove(_b_bone, _a_bone)
+        _OUT["steps"].append({
+            "requested": _d,
+            "this_landmark_moved": round(_self, 9),
+            "any_landmark_max_moved": round(_any, 9),
+            "rig_max_moved": None if _bm is None else round(_bm, 9),
+            "ratio_requested_over_moved":
+                (round(_d / _self, 2) if _self > 1e-12 else None)})
+
+    # put it back
+    _vec = [0.0, 0.0, 0.0]
+    _vec[_AXIS] = -_net
+    _ss.translate_face_landmarks(
+        _ch, [_IDX], [_unreal.Vector(_vec[0], _vec[1], _vec[2])])
+    _fin = [[float(v.x), float(v.y), float(v.z)]
+            for v in _ss.get_face_landmarks(_ch)]
+    _OUT["restored_residual"] = round(
+        max(sum((_fin[i][k] - _origin[i][k]) ** 2 for k in range(3)) ** 0.5
+            for i in range(len(_fin))), 9)
+except Exception as _e:
+    _OUT["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+print("__LL__" + _json.dumps(_OUT, default=str))

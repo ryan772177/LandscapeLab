@@ -1,0 +1,356 @@
+{
+  "base": "terrain/forge_world_base.png",
+  "base_sha256": "253aaaac42995a074f7b7a8503c41f00a8f9a7a6f1dca48e1ba73b230de47afe",
+  "biome_id": "forge_world",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 22617.0,
+    "pre_clamp_min_units": 0.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/forge_world_stamped.png",
+  "output_sha256": "fb432062609e36d2c2974590888e4e5e709b442e078ee6b7a13b2b619a3eba46",
+  "pixels_changed": 555929,
+  "placements": [
+    {
+      "amplitude_m": 700.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        229,
+        781
+      ],
+      "bbox_rows": [
+        0,
+        406
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        129.5,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        -1500.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.165839,
+      "delta_max_m": 552.4639744274757,
+      "delta_max_units": 18102.86328205231,
+      "delta_mean_abs_m": 130.55419720844563,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "north_massif",
+      "mask_pixels": 147036,
+      "moved_pixels": 146260,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2200.0,
+      "size_px": 550.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 1009,
+      "stamp_sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6"
+    },
+    {
+      "amplitude_m": 550.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        0,
+        451
+      ],
+      "bbox_rows": [
+        122,
+        738
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        429.5,
+        142.0
+      ],
+      "centre_world_m": [
+        -1450.0,
+        -300.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.195861,
+      "delta_max_m": 442.06998104901805,
+      "delta_max_units": 14485.528104023699,
+      "delta_mean_abs_m": 53.59984287828152,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "west_ridge",
+      "mask_pixels": 103121,
+      "moved_pixels": 102721,
+      "opacity": 1.0,
+      "rotation_deg": 300.0,
+      "size_m": 1800.0,
+      "size_px": 450.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 504,
+      "stamp_sha256": "39aa62479350d4541b6eb28d52c8a1c1a7d1d8b7559c8e43fd93cdf7cbcddb4d"
+    },
+    {
+      "amplitude_m": 520.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        607,
+        1009
+      ],
+      "bbox_rows": [
+        132,
+        678
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        404.5,
+        879.5
+      ],
+      "centre_world_m": [
+        1500.0,
+        -400.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.0,
+      "delta_max_m": 412.65465394598016,
+      "delta_max_units": 13521.661373174906,
+      "delta_mean_abs_m": 53.94081572580852,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "east_ridge",
+      "mask_pixels": 95079,
+      "moved_pixels": 94640,
+      "opacity": 1.0,
+      "rotation_deg": 250.0,
+      "size_m": 1700.0,
+      "size_px": 425.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 504,
+      "stamp_sha256": "87e005b1640a5b5f182d90d38ed164401148f393fb1192a164a5a6c373c5efc4"
+    },
+    {
+      "amplitude_m": 180.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        254,
+        756
+      ],
+      "bbox_rows": [
+        629,
+        1009
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        879.5,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        1500.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.000488,
+      "delta_max_m": 179.81359318379492,
+      "delta_max_units": 5892.04191465,
+      "delta_mean_abs_m": 55.2462450908887,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "south_roll",
+      "mask_pixels": 131592,
+      "moved_pixels": 130681,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2000.0,
+      "size_px": 500.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 504,
+      "stamp_sha256": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94"
+    },
+    {
+      "amplitude_m": 25.0,
+      "anchor_m": 17.0,
+      "bbox_cols": [
+        317,
+        693
+      ],
+      "bbox_rows": [
+        254,
+        631
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        442.0,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        -250.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 67.876288479131,
+      "delta_min_m": -334.27452861982295,
+      "delta_min_units": -10953.34061655005,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "lake_basin",
+      "mask_pixels": 92178,
+      "moved_pixels": 91621,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1500.0,
+      "size_px": 375.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 500,
+      "stamp_sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5"
+    },
+    {
+      "amplitude_m": 250.0,
+      "anchor_m": 0.0,
+      "bbox_cols": [
+        604,
+        756
+      ],
+      "bbox_rows": [
+        467,
+        618
+      ],
+      "blend": "MAX",
+      "centre_pixel_row_col": [
+        542.0,
+        679.5
+      ],
+      "centre_world_m": [
+        700.0,
+        150.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": 81.50007391063465,
+      "delta_max_units": 2670.5536718667213,
+      "delta_mean_abs_m": 11.078627007775907,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "village_terrace",
+      "mask_pixels": 14964,
+      "moved_pixels": 6979,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 600.0,
+      "size_px": 150.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 252,
+      "stamp_sha256": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42"
+    }
+  ],
+  "recipe": "forge_runs/duskhighland/forge_world.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "east_ridge": {
+      "filename": "forge_cc0_rise.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_rise.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "87e005b1640a5b5f182d90d38ed164401148f393fb1192a164a5a6c373c5efc4",
+      "tag": "rise"
+    },
+    "lake_basin": {
+      "filename": "forge_river_basin.png",
+      "relpath": "terrain/forge_stamps/forge_river_basin.png",
+      "resolution_px": [
+        1000,
+        1000
+      ],
+      "sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+      "tag": "basin"
+    },
+    "north_massif": {
+      "filename": "forge_cc0_mountain.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_mountain.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+      "tag": "mountain"
+    },
+    "south_roll": {
+      "filename": "forge_cc0_hills.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_hills.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94",
+      "tag": "hills"
+    },
+    "village_terrace": {
+      "filename": "forge_mesa.png",
+      "relpath": "terrain/forge_stamps/forge_mesa.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+      "tag": "mesa"
+    },
+    "west_ridge": {
+      "filename": "forge_cc0_ridges.png",
+      "relpath": "terrain/forge_stamps/forge_cc0_ridges.png",
+      "resolution_px": [
+        1009,
+        1009
+      ],
+      "sha256": "39aa62479350d4541b6eb28d52c8a1c1a7d1d8b7559c8e43fd93cdf7cbcddb4d",
+      "tag": "ridges"
+    }
+  },
+  "stamps_block_sha256": "e1f64fbe2c7603feccff2c2a43eff2f3d1a23380ad7250bc08d6d106aa05103f",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-03T06:58:13Z",
+  "z_scale_m": 2000.0
+}

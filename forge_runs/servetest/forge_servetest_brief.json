@@ -1,0 +1,114 @@
+{
+ "terrain_entities": [
+  {
+   "id": "lake",
+   "read": "still lake filling centre frame"
+  },
+  {
+   "id": "massif",
+   "read": "mountain wall rising behind the far shore"
+  },
+  {
+   "id": "village_terrace",
+   "read": "flat terrace for a settlement near the massif foot"
+  }
+ ],
+ "lighting_geometry": {
+  "sun_elevation_deg": 24.0,
+  "sun_azimuth_deg": 245.0,
+  "fog_height_datum_m": 140.0,
+  "fog_half_height_m": 90.0,
+  "sky_intensity": 1.0,
+  "exposure_compensation_ev_override": -5.04,
+  "_ev_provenance": "forge polish iter 3: measured -0.324 EV, slope 0.501 -> EV -5.69 -> -5.04",
+  "_ev_slope": 0.554
+ },
+ "acceptance": [
+  {
+   "id": "lake_basin_flat",
+   "kind": "flat_site",
+   "placement": "lake_basin",
+   "at_m": [
+    0.0,
+    100.8
+   ],
+   "box_m": 458.64,
+   "elev_m": [
+    50.0,
+    70.0
+   ],
+   "slope_mean_deg_max": 3.0
+  },
+  {
+   "id": "massif_peak",
+   "kind": "peak",
+   "placement": "massif",
+   "at_m": [
+    151.2,
+    -1562.4
+   ],
+   "box_m": 800.0,
+   "max_elev_m": [
+    550,
+    1200
+   ]
+  },
+  {
+   "id": "village_flat",
+   "kind": "flat_site",
+   "placement": "village",
+   "at_m": [
+    -98.3,
+    -657.7
+   ],
+   "box_m": 141.11999999999998,
+   "elev_m": [
+    150.0,
+    190.0
+   ],
+   "slope_mean_deg_max": 3.0
+  }
+ ],
+ "render_camera": {
+  "at_m": [
+   -705.6,
+   1562.4
+  ],
+  "height_above_ground_m": 416.5,
+  "pitch_deg": 0.7,
+  "yaw_deg": -71.9,
+  "fov": 73.2,
+  "_height_provenance": "auto-raised 170.0 -> 416.5 by the sightline gate's own prescription (2 application(s); base terrain blocked the original)"
+ },
+ "water": {
+  "kind": "lake",
+  "label": "WaterPlane_import",
+  "centre_cm": [
+   0.0,
+   0.0
+  ],
+  "level_cm": 6200.0,
+  "scale_xy": [
+   4100.0,
+   4100.0
+  ],
+  "color_linear": [
+   0.0482,
+   0.159,
+   0.1946
+  ],
+  "roughness": 0.05,
+  "opacity": 0.75
+ },
+ "lighting_measured": {
+  "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+  "sunlit_rb_split": 0.232,
+  "minluma_rise": 0.109,
+  "sunlit_rgb": [
+   0.742,
+   0.597,
+   0.509
+  ]
+ },
+ "source_image": "forge_runs/_uploads/servetest.jpg"
+}

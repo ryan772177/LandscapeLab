@@ -1,0 +1,79 @@
+{
+  "_comment": "DO NOT RUN THIS FILE. SUPERSEDED 2026-08-15 and kept only as the record. Every mesh named below is an ARMATURE BAKE -- trunk and branches with NO NEEDLES -- produced by scripts/bake_skeletal_to_static.py before it was understood that the Megaplants SkeletalMesh sources are armatures and the foliage is assembled by the Procedural Vegetation editor (LESSONS.md 2026-08-15, _verify/20260815_pve_export_vs_armature_bake.png). The world now uses SM_PVE_Norway_Spruce_01_A..D, which are Nanite and have no discrete LOD chain to build. Running make_mesh_lods.py against this file would spend a long build producing chains for assets nothing references AND WOULD REPORT SUCCESS -- the failure mode this project calls a loaded gun. It is left in place rather than deleted because the eight bakes still exist on disk and a silently-missing input is worse than a loudly-refused one.",
+  "_superseded_by": "The PVE Static Mesh export procedure in LESSONS.md 2026-08-15; the live conifer is /Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A.",
+  "_original_comment": "LOD-BUILD INPUT ONLY, for scripts/make_mesh_lods.py. These are lod_targets, NOT foliage species: they declare 'build a chain on this mesh' and nothing about placement, so no consumer can read them as a scatter declaration. Entries are the Megaplants conifers baked in-engine by scripts/bake_skeletal_to_static.py (RECIPES.md R-BAKE), which have no Blender normalisation row by construction. The chain is RECIPES.md R5's locked percent_triangles = screen_size^2, not a new derivation; when a mesh is adopted into a biome recipe its chain is declared there and its entry here is REMOVED, so the values live in one place.",
+  "lod_targets": [
+    {
+      "name": "Norway_Spruce_01_A",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Norway_Spruce_01_A",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Norway_Spruce_01_B",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Norway_Spruce_01_B",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Norway_Spruce_01_C",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Norway_Spruce_01_C",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Norway_Spruce_01_D",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Norway_Spruce_01_D",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Baltic_Pine_01_A",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Baltic_Pine_01_A",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Baltic_Pine_01_B",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Baltic_Pine_01_B",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Baltic_Pine_01_C",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Baltic_Pine_01_C",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    },
+    {
+      "name": "Baltic_Pine_01_D",
+      "mesh": "/Game/Meshes/Trees/SM_Tree_Baltic_Pine_01_D",
+      "lods": [
+        { "percent_triangles": 0.25, "screen_size": 0.5 },
+        { "percent_triangles": 0.0441, "screen_size": 0.21 },
+        { "percent_triangles": 0.0077, "screen_size": 0.088 }
+      ]
+    }
+  ]
+}

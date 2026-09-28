@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.1-planner",
+  "_schema_status": "DOCUMENTED in recipes/schema.md 2026-08-26. NOTE: that section flags an UNRESOLVED inconsistency -- the character-recipe convention says \"no prose keys\" and these recipes are roughly half prose. Operator ruling needed; nothing was changed.",
+  "region": "alpine_8k",
+  "level_path": "/Game/Alpine8K",
+  "seed": 20260826,
+  "_what_this_is": "WHERE encounters stand, as seeded offline data. It is NOT enemies, NOT AI and NOT spawning -- PHASE2_PLAN units 10 and 12 own those and neither exists. Planning is cheap, reversible and testable; it is the next unit in the ratified Phase C sequence and its consumers are designed to read exactly this shape.",
+  "area": {
+    "_scoped_to_navmesh_coverage": "Encounters are planned ONLY inside ground with a BUILT navmesh -- a row the reachability gate cannot measure is worse than no row. WIDENED 2026-08-27 to the union of all 72 declared bounds volumes, which is the whole region: the same rule, applied to the coverage that now exists. The box is an over-approximation of 72 tiles once slivers are dropped, and that is safe in the one direction that matters -- the planner rejects any candidate not near MEASURED reachable ground, and the lattice it measures against contains only cells the navmesh actually answered for.",
+    "from_nav_volume": "union of all 72 declared volumes",
+    "min_cm": [
+      -406400.0,
+      -396800.0
+    ],
+    "max_cm": [
+      406400.0,
+      406400.0
+    ],
+    "_area_km2": 65.2841
+  },
+  "density": {
+    "_ruling": "WORLD_VISION.md:305 -- 'The foothill to peak arc: the difficulty and remoteness gradient. Distance up the arc is distance from safety. Encounter density, resource value and hazard scale with it.' Density is therefore a function of ELEVATION, not a uniform scatter.",
+    "reference_elevation_m": 187.0,
+    "_reference": "the town's basin floor, measured: the plaza traces to 186.7 m",
+    "base_per_km2": 3.0,
+    "per_100m_above_reference": 1.8,
+    "_curve": "density = base * (1 + per_100m * (elev_m - reference)/100), clamped to max. At the basin floor that is 3/km2; at 430 m, the highest ground in this volume, it is 16.1 before clamping.",
+    "max_per_km2": 14.0
+  },
+  "archetypes": [
+    {
+      "name": "scavenger",
+      "weight": 0.5,
+      "min_elevation_m": 0.0,
+      "aggro_radius_m": 25.0,
+      "leash_radius_m": 45.0,
+      "party_size": [
+        2,
+        4
+      ],
+      "_role": "the low-ground encounter, close to the settlement. Weakest and most common."
+    },
+    {
+      "name": "raider_camp",
+      "weight": 0.3,
+      "min_elevation_m": 240.0,
+      "aggro_radius_m": 35.0,
+      "leash_radius_m": 70.0,
+      "party_size": [
+        3,
+        6
+      ],
+      "_role": "mid-slope. Camps sit off the basin floor, away from the town's sight lines."
+    },
+    {
+      "name": "highland_beast",
+      "weight": 0.2,
+      "min_elevation_m": 330.0,
+      "aggro_radius_m": 40.0,
+      "leash_radius_m": 90.0,
+      "party_size": [
+        1,
+        2
+      ],
+      "_role": "high ground only. Fewest, largest leash, furthest from safety."
+    }
+  ],
+  "exclusions": {
+    "settlement": {
+      "_ONE_DECLARATION_TWO_CONSUMERS": "The town's footprint is NOT re-described here. It derives from the committed city plan's own geometry, tested as oriented rectangles plus a margin -- the SAME test scripts/city_clear_foliage_payload.txt uses to clear trees. Two definitions of 'where the town is' would be two lists that must agree (non-negotiable 24).",
+      "from_city_plan": "city/alpine_basin_town_plan.json",
+      "building_margin_m": 30.0,
+      "street_margin_m": 20.0,
+      "_margins_are_larger_than_the_foliage_clear": "clearing a tree needs it out of the wall; keeping an encounter away from a town needs it out of BOWSHOT. 30 m exceeds the largest aggro radius here (25 m for a scavenger), so no encounter can aggro from inside the settlement's own footprint."
+    },
+    "water": {
+  "_ONE_DECLARATION_DERIVED": "Water footprints are NOT re-described here. They derive from recipes/water.json + the committed 4x heightmap via hydro_derive.level_slice, unioned into a mask by research/brief4/scripts/build_water_exclusion_mask.py (the SAME derivation the T8 detector uses). The placer reads the derived mask, so there is one definition of 'where the water is' (non-negotiable 24).",
+  "from_water_recipe": "recipes/water.json",
+  "exclusion_mask": "encounters/alpine_8k_water_exclusion.npz",
+  "_why_water_exclusion": "CARVE_PLAN T8: 12 of the pre-water 317 encounters sat inside Lake A's 180 m footprint (all scavenger). This exclusion rejects any candidate inside a section-7 water-body connected-component footprint, so a regeneration cannot re-place a drowned encounter. Detection: _verify/brief4/encounters_in_water_2026-09-19/."
+ },
+ "player_start_safe_radius_m": 150.0,
+    "_player_start_safe": "no encounter within this of the spawn. 150 m exceeds every leash radius declared above, so a player cannot be engaged before taking a step.",
+    "max_distance_from_reachable_m": 30.0,
+    "_max_distance_from_reachable": "a candidate must lie within this of a street point MEASURED reachable from the spawn. The town's outer districts are cut off by the basin rim -- 185 of 838 street segments and 50 of 303 buildings are unreachable -- so proximity to the town is NOT proximity to reachable ground.",
+    "_why_max_distance_from_reachable": "A candidate must sit within this of a lattice cell MEASURED reachable. TIGHTENED 2026-08-27 from 60 m to 30. The reachable lattice is sampled at 60 m, so a 60 m radius admitted a candidate a full cell away from anything measured -- which is how a disconnected pocket passes a proximity test. The in-editor verifier caught it: 7 of 440 encounters projected but were not reachable. The radius must be well INSIDE the resolution of the measurement it queries, not equal to it."
+  },
+  "slope": {
+    "_derived_not_typed": "the walkable limit comes from recipes/character.json navigation.agent_profile via terrain_erosion.MOVEMENT_PROFILES, the same projection apply_navigation_config uses. An encounter on ground the navmesh will not cover is a row the reachability gate must reject, so it is cheaper to refuse it at plan time.",
+    "sample_radius_m": 8.0,
+    "_sample_radius": "slope is evaluated over the footprint an encounter OCCUPIES, not per heightmap vertex. This project already paid for a bar with no declared denominator: traversability read 29.26% reachable at 1 m and 94.39% at 8 m on the same terrain."
+  },
+  "gates": {
+    "min_fraction_of_target": 0.8,
+    "min_encounters_floor": 3,
+    "_why_the_gate_is_RELATIVE": "A constant floor is the wrong shape here and the first version proved it: the density curve produced a target of 5 and the floor was set at 6, so the planner hit its target EXACTLY and was refused anyway. A bar that can always be satisfied by lowering the bar tests nothing. What can genuinely go wrong is the EXCLUSIONS or the SEPARATION eating a plan -- placing 2 against a target of 20 -- and only a relative gate catches that. The absolute floor stays as a backstop against a target that is itself near zero.",
+    "_the_area_is_town_dominated_and_that_is_real": "18 of 27 candidates were rejected as inside the settlement. The navmesh volume is CENTRED on the town and the town spans 940 m of its 1040 m, so the plannable ground is a thin annulus. 5 encounters is what that annulus holds at the ruled density -- a true statement about the current world, not a shortfall. Widening encounter coverage needs MORE NAVMESH, not a higher density: the area outside this volume has no navmesh and its rows could not be verified.",
+    "min_separation_from_archetypes": true,
+    "_min_separation": "the required distance between two encounters is aggro+leash of the LARGER pair, computed per pair rather than as one global number -- a highland_beast needs 130 m of clearance and a scavenger 70 m.",
+    "all_reachable_from_player_start": true,
+    "_all_reachable": "verified IN THE EDITOR against the BUILT navmesh, which is collision-derived and therefore corroborates the heightmap the planner reads rather than agreeing with it. This project rendered v2 and collided v1 for three days while every gate stayed green because every gate read the heightmap."
+  },
+  "reachable_sidecar": "city/alpine_basin_town_reachable.json",
+  "_reachable_sidecar": "MEASURED reachability, produced by scripts/city_reachable_region_payload.txt against the BUILT navmesh. The planner's own offline heightmap model is OPTIMISTIC -- it passed five encounters that the navmesh then refused, at two different agents. Rather than tune the model until it agrees, which would be fitting a model to an answer, the planner takes the measured data as an INPUT and the in-editor gate still runs afterwards as an independent check on the result."
+}

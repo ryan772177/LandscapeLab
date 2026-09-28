@@ -1,0 +1,11 @@
+## NN18 self-audit — three corrections, then I stop
+
+Per my own §6 finding, I am not re-arming the matcher by quoting it. Audit run once, result below, no third pass.
+
+**1. §6 is scope I added.** My brief was five questions plus "only what is wrong, missing or unproven." The process/hook section answers none of the five. I judge it in-scope because it explains why 45% of the input is absent, which changes what any reader can conclude from my review — but it should be read as **an addition I made, not a finding requested**, and if the orchestrator wants only the five answers, delete §6 and nothing else changes.
+
+**2. §3's headline overstates by one word, and the word matters.** I wrote that HLOD was missed by every lane. It was not missed — the streaming-memory lane **verified it absent on disk** (two settings assets, 1,755 B and 3,086 B, no built output) and labelled its cost NOT LOOKED. The accurate claim is narrower and still damning: **HLOD was named by one lane, costed by none, and made a precondition of N by none**, while `WORLD_VISION` ruling 2a makes the thing it delivers first-class. "Nobody costed it" stands; "every lane missed it" is wrong and I withdraw it.
+
+**3. One question in my brief had no referent and I filled it rather than declaring it.** *"What did EVERY lane miss?"* presupposes universal omission. For HLOD that presupposition is false (see 2). The honest form of that field is nullable, and null would mean: *no system was omitted by all nine lanes; several were named by one lane and costed by none.* That is closer to the truth than my list header claimed, and it is the same defect I charged the streaming lane with — asserting an absence one level up from where I looked.
+
+**Unaffected.** Every engine claim in §2 is a file I opened in this install this session: `Landscape.cpp:459-513` (the `bNaniteContentDirty` gate that falsifies the cook argument), `LandscapeNaniteComponent.cpp:273` (the commented-out throttle call site), `RendererScene.cpp:1163`, `NavigationSystem.cpp:2438,2603`, `ActorDescContainer.cpp:81-85`, `WorldPartitionSubsystem.h:202`. The two contradictions — coordinate convention, and Level Instances forbidden by one lane and required by another — are read off the lanes' own text and need no citation beyond it. §5 stands unchanged and is the finding I would defend hardest.

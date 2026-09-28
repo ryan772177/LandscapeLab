@@ -1,0 +1,64 @@
+# probe_actor_accessors — ask the spawned MetaHuman what it will actually answer.
+#
+# get_local_bounds does not exist on DebugSkelMeshComponent, which is the
+# component class the MetaHuman editor actor really uses. Three guesses at a
+# replacement is how this project burned an afternoon on
+# EditorPerformanceSettings; the fix ratified then was to ENUMERATE instead.
+#
+# So this tries a list of candidate accessors and reports, for each, whether
+# it exists and what it returned. Nothing is assumed and nothing is committed.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "actor": None, "actor_bounds": None, "components": []}
+_actor = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    _out["actor"] = _actor.get_name()
+
+    try:
+        _b = _actor.get_actor_bounds(False)
+        _out["actor_bounds"] = {"origin": [round(float(_b[0].x), 2),
+                                           round(float(_b[0].y), 2),
+                                           round(float(_b[0].z), 2)],
+                                "extent": [round(float(_b[1].x), 2),
+                                           round(float(_b[1].y), 2),
+                                           round(float(_b[1].z), 2)]}
+    except Exception as _e:
+        _out["actor_bounds"] = "FAILED: " + str(_e)
+
+    for _c in _actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        _rec = {"name": _c.get_name(), "class": _c.get_class().get_name(),
+                "tried": {}}
+
+        def _try(label, fn):
+            try:
+                _rec["tried"][label] = str(fn())[:180]
+            except Exception as _e2:
+                _rec["tried"][label] = "NO: " + type(_e2).__name__ + ": " + str(_e2)[:110]
+
+        _try("get_world_location", lambda: _c.get_world_location())
+        _try("bounds_prop", lambda: _c.get_editor_property("bounds"))
+        _try("get_num_bones", lambda: _c.get_num_bones())
+        _try("get_bone_name_0", lambda: _c.get_bone_name(0))
+        _try("get_socket_location_head",
+             lambda: _c.get_socket_location("head"))
+        _try("get_bone_location_head",
+             lambda: _c.get_bone_location("head", _unreal.BoneSpaces.WORLD_SPACE))
+        _try("get_all_socket_names", lambda: _c.get_all_socket_names()[:8])
+        _try("skinned_asset", lambda: _c.get_skinned_asset().get_path_name())
+        _try("get_bounds_scale", lambda: _c.get_editor_property("bounds_scale"))
+        _out["components"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+print("__LL__" + _json.dumps(_out, default=str))

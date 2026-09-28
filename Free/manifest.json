@@ -1,0 +1,4381 @@
+{
+  "generated_by": "scripts/make_asset_manifest",
+  "stage": "1 \u2014 inventory, read-only, no editor contact",
+  "root": "Free/",
+  "conventions": {
+    "normal": "DX for every ambientCG surface (Ryan ruling 1, 2026-08-02, reversing an earlier GL assertion). Consumed directly \u2014 no green-channel flip anywhere. The GL maps also ship, role 'normal-gl', UNUSED.",
+    "surface_tile_m": "tiling period in metres. SURFACES ONLY; ABSENT (not null) on meshes.",
+    "mesh_extent_m": "world-space bounding-box WIDTH in metres, i.e. the larger horizontal extent, not height. MESHES ONLY; ABSENT (not null) on surfaces.",
+    "size_source": "vendor = published by the asset site. assumed = a starting value for tuning, NOT a measurement. measured = read from the file by this pipeline. A consumer that would behave differently for an assumed value must branch on this field.",
+    "roles": [
+      "color",
+      "normal",
+      "normal-gl",
+      "roughness",
+      "displacement",
+      "ambient-occlusion",
+      "metalness",
+      "alpha",
+      "packed-arm",
+      "mesh",
+      "mesh-buffer",
+      "dcc-variant",
+      "preview",
+      "unclassified"
+    ]
+  },
+  "blocking": [
+    {
+      "asset": "FabEval",
+      "missing": "mesh_extent_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "Gravel021",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "PineNeedles001",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "Rock016",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "Snow007A",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "forest_floor_vktfeilaw",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "gemini_v1",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "gemini_v2",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "nordic_beach_rocky_ground_ukoncdamw_high",
+      "missing": "mesh_extent_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "nordic_forest_ground_root_moss_coarse_xiekec0",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "rock_shopk_high",
+      "missing": "mesh_extent_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "rock_shopk_raw",
+      "missing": "mesh_extent_m",
+      "note": "no value supplied and none measured"
+    },
+    {
+      "asset": "wild_grass_xbreagf",
+      "missing": "surface_tile_m",
+      "note": "no value supplied and none measured"
+    }
+  ],
+  "assets": [
+    {
+      "id": "FabEval",
+      "folder": "FabEval",
+      "source": "unknown",
+      "type": "mesh",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "FabEval/medieval/split/medieval_house_10.fbx",
+          "role": "mesh",
+          "bytes": 396092
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses_BaseColor.png",
+          "role": "preview",
+          "bytes": 27961446,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses_Displacement.png",
+          "role": "displacement",
+          "bytes": 58788,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses_Metallic.png",
+          "role": "preview",
+          "bytes": 699686,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses_Normal.png",
+          "role": "preview",
+          "bytes": 26258361,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses_Roughness.png",
+          "role": "roughness",
+          "bytes": 13922597,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses__Alpha.png",
+          "role": "alpha",
+          "bytes": 58788,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/cycles_textury/medieval_houses__Emission.png",
+          "role": "preview",
+          "bytes": 870236,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unity_textures/medieval_houses_AO.png",
+          "role": "preview",
+          "bytes": 2649240,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unity_textures/medieval_houses_BaseMap.png",
+          "role": "preview",
+          "bytes": 27961446,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unity_textures/medieval_houses_Emissive.png",
+          "role": "preview",
+          "bytes": 870236,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unity_textures/medieval_houses_MaskMap.png",
+          "role": "preview",
+          "bytes": 16351717,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unity_textures/medieval_houses_Normal.png",
+          "role": "preview",
+          "bytes": 26258361,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unreal_textures/medieval_houses_BaseColor.png",
+          "role": "preview",
+          "bytes": 27961446,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unreal_textures/medieval_housesl_Emissive.png",
+          "role": "preview",
+          "bytes": 870236,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unreal_textures/medieval_housesl_Normal.png",
+          "role": "preview",
+          "bytes": 26253578,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/medieval_houses_textures/Medieval_houses_textures/Unreal_textures/medieval_housesl_OcclusionRoughnessMetallic.png",
+          "role": "preview",
+          "bytes": 15226438,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/source/Willage_in_alps.glb",
+          "role": "mesh",
+          "bytes": 72817492
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbx",
+          "role": "mesh",
+          "bytes": 305180
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbx",
+          "role": "mesh",
+          "bytes": 74764
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbx",
+          "role": "mesh",
+          "bytes": 2551804
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/bark_willow_diff_1k",
+          "role": "unclassified",
+          "bytes": 779438
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/bark_willow_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 152710,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/bark_willow_nor_gl_1k",
+          "role": "unclassified",
+          "bytes": 1438304
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/bark_willow_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 360776,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/clay_roof_tiles_diff_2k",
+          "role": "unclassified",
+          "bytes": 3143097
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/clay_roof_tiles_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 625116,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/clay_roof_tiles_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 4068632
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/clay_roof_tiles_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 850693,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/cracked_concrete_wall_diff_1k",
+          "role": "unclassified",
+          "bytes": 1073985
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/cracked_concrete_wall_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 262357,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/old_wood_floor_diff_2k",
+          "role": "unclassified",
+          "bytes": 3116403
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/old_wood_floor_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 609127,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/old_wood_floor_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 2927156
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/old_wood_floor_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 517521,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/wood_peeling_paint_weathered_diff_1k",
+          "role": "unclassified",
+          "bytes": 890162
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/wood_peeling_paint_weathered_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 192291,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/wood_trunk_wall_diff_2k",
+          "role": "unclassified",
+          "bytes": 2082901
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_barn.fbm/wood_trunk_wall_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 354672,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/bark_willow_diff_1k",
+          "role": "unclassified",
+          "bytes": 779438
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/bark_willow_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 152710,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/bark_willow_nor_gl_1k",
+          "role": "unclassified",
+          "bytes": 1438304
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/bark_willow_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 360776,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/old_wood_floor_diff_2k",
+          "role": "unclassified",
+          "bytes": 3116403
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/old_wood_floor_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 609127,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/old_wood_floor_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 2927156
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/old_wood_floor_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 517521,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/painted_plaster_wall_diff_2k",
+          "role": "unclassified",
+          "bytes": 3132937
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/painted_plaster_wall_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 687991,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/painted_plaster_wall_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 4048392
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/painted_plaster_wall_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 708733,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/roof_tiles_14_diff_2k",
+          "role": "unclassified",
+          "bytes": 1389810
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/roof_tiles_14_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 435632,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/roof_tiles_14_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 1673189
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_chalet.fbm/roof_tiles_14_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 399503,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/brick_wall_11_diff_2k",
+          "role": "unclassified",
+          "bytes": 3308435
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/brick_wall_11_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 689646,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/brick_wall_11_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 3769421
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/brick_wall_11_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 654444,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/church_bricks_02_diff_png_2k",
+          "role": "unclassified",
+          "bytes": 2772609
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/church_bricks_02_diff_png_2k.jpg",
+          "role": "unclassified",
+          "bytes": 999790,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/church_bricks_02_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 3391297
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/church_bricks_02_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 839291,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/clay_roof_tiles_diff_2k",
+          "role": "unclassified",
+          "bytes": 3143097
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/clay_roof_tiles_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 625116,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/clay_roof_tiles_nor_gl_2k",
+          "role": "unclassified",
+          "bytes": 4068632
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/clay_roof_tiles_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 850693,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/cracked_concrete_wall_diff_1k",
+          "role": "unclassified",
+          "bytes": 1073985
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/cracked_concrete_wall_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 262357,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/cracked_concrete_wall_nor_gl_1k",
+          "role": "unclassified",
+          "bytes": 950747
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/cracked_concrete_wall_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 162657,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/rusty_metal_sheet_diff_1k",
+          "role": "unclassified",
+          "bytes": 793031
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/rusty_metal_sheet_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 129667,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/rusty_metal_sheet_nor_gl_1k",
+          "role": "unclassified",
+          "bytes": 409291
+        },
+        {
+          "path": "FabEval/village_in_alps/split/alps_church_tower.fbm/rusty_metal_sheet_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 19302,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/bark_willow_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 152710,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/bark_willow_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 360776,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/bark_willow_rough_1k.jpg",
+          "role": "unclassified",
+          "bytes": 41819,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/brick_wall_11_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 689646,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/brick_wall_11_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 654444,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/church_bricks_02_diff_png_2k.jpg",
+          "role": "unclassified",
+          "bytes": 999790,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/church_bricks_02_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 839291,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/clay_roof_tiles_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 625116,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/clay_roof_tiles_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 850693,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/cobblestone_03_arm_2k.jpg",
+          "role": "unclassified",
+          "bytes": 430333,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/cobblestone_03_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 1003703,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/cobblestone_03_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 1000470,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/cracked_concrete_wall_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 262357,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/cracked_concrete_wall_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 162657,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/old_wood_floor_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 609127,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/old_wood_floor_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 517521,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/painted_plaster_wall_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 687991,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/painted_plaster_wall_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 708733,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/plastered_wall_04_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 98865,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/plastered_wall_04_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 175797,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/rock_surface_arm_1k.jpg",
+          "role": "unclassified",
+          "bytes": 106409,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/rock_surface_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 170246,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/rock_surface_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 228296,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/roof_tiles_14_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 435632,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/roof_tiles_14_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 399503,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/rusty_metal_sheet_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 129667,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/rusty_metal_sheet_nor_gl_1k.jpg",
+          "role": "unclassified",
+          "bytes": 19302,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/wood_peeling_paint_weathered_diff_1k.jpg",
+          "role": "unclassified",
+          "bytes": 192291,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/wood_trunk_wall_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 354672,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/yellow_plaster_02_diff_2k.jpg",
+          "role": "unclassified",
+          "bytes": 519461,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/split/textures/yellow_plaster_02_nor_gl_2k.jpg",
+          "role": "unclassified",
+          "bytes": 902464,
+          "format": "jpg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/bark_willow_diff_1k_13.jpeg",
+          "role": "unclassified",
+          "bytes": 1129582,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/bark_willow_nor_gl_1k_12.jpeg",
+          "role": "unclassified",
+          "bytes": 2091827,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/bark_willow_rough_1k_16@channels=G.jpeg",
+          "role": "unclassified",
+          "bytes": 417759,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/brick_wall_11_diff_2k_1.jpeg",
+          "role": "unclassified",
+          "bytes": 4811875,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/brick_wall_11_nor_gl_2k_0.jpeg",
+          "role": "unclassified",
+          "bytes": 5889764,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/church_bricks_02_diff_png_2k_3.jpeg",
+          "role": "unclassified",
+          "bytes": 5461340,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/church_bricks_02_nor_gl_2k_2.jpeg",
+          "role": "unclassified",
+          "bytes": 6192502,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/clay_roof_tiles_diff_2k_24.jpeg",
+          "role": "unclassified",
+          "bytes": 4764454,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/clay_roof_tiles_nor_gl_2k_23.jpeg",
+          "role": "unclassified",
+          "bytes": 6098788,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/cobblestone_03_arm_2k_8@channels=G.jpeg",
+          "role": "unclassified",
+          "bytes": 2143623,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/cobblestone_03_diff_2k_7.jpeg",
+          "role": "unclassified",
+          "bytes": 5384147,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/cobblestone_03_nor_gl_2k_6.jpeg",
+          "role": "unclassified",
+          "bytes": 7336108,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/cracked_concrete_wall_diff_1k_28.jpeg",
+          "role": "unclassified",
+          "bytes": 1447391,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/cracked_concrete_wall_nor_gl_1k_27.jpeg",
+          "role": "unclassified",
+          "bytes": 1497734,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/old_wood_floor_diff_2k_5.jpeg",
+          "role": "unclassified",
+          "bytes": 4516561,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/old_wood_floor_nor_gl_2k_4.jpeg",
+          "role": "unclassified",
+          "bytes": 4805060,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/painted_plaster_wall_diff_2k_18.jpeg",
+          "role": "unclassified",
+          "bytes": 4224350,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/painted_plaster_wall_nor_gl_2k_17.jpeg",
+          "role": "unclassified",
+          "bytes": 6504903,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/plastered_wall_04_diff_2k_30.jpeg",
+          "role": "unclassified",
+          "bytes": 2156311,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/plastered_wall_04_nor_gl_2k_29.jpeg",
+          "role": "unclassified",
+          "bytes": 3349484,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/rock_surface_arm_1k_11@channels=G.jpeg",
+          "role": "unclassified",
+          "bytes": 584060,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/rock_surface_diff_1k_10.jpeg",
+          "role": "unclassified",
+          "bytes": 1250559,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/rock_surface_nor_gl_1k_9.jpeg",
+          "role": "unclassified",
+          "bytes": 1813083,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/roof_tiles_14_diff_2k_15.jpeg",
+          "role": "unclassified",
+          "bytes": 3160692,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/roof_tiles_14_nor_gl_2k_14.jpeg",
+          "role": "unclassified",
+          "bytes": 3746273,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/rusty_metal_sheet_diff_1k_26.jpeg",
+          "role": "unclassified",
+          "bytes": 1166832,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/rusty_metal_sheet_nor_gl_1k_25.jpeg",
+          "role": "unclassified",
+          "bytes": 813654,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/wood_peeling_paint_weathered_diff_1k_22.jpeg",
+          "role": "unclassified",
+          "bytes": 1272125,
+          "format": "jpeg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/wood_trunk_wall_diff_2k_19.jpeg",
+          "role": "unclassified",
+          "bytes": 3206952,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/yellow_plaster_02_diff_2k_21.jpeg",
+          "role": "unclassified",
+          "bytes": 4097970,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "FabEval/village_in_alps/textures/yellow_plaster_02_nor_gl_2k_20.jpeg",
+          "role": "unclassified",
+          "bytes": 6881526,
+          "format": "jpeg",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "Gravel021",
+      "folder": "Gravel021_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Gravel021_4K-PNG/Gravel021.png",
+          "role": "preview",
+          "bytes": 305278,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109428,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2272,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1020,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3007,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 9213138,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 23028048,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 25084949,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_IdMask.png",
+          "role": "preview",
+          "bytes": 9115804,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 94939405,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 94938077,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Gravel021_4K-PNG/Gravel021_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 7655652,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "Ground037",
+      "folder": "Ground037_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Ground037_4K-PNG/Ground037.png",
+          "role": "preview",
+          "bytes": 513329,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109220,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2272,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1020,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 2985,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 5685015,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 41904518,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 24944795,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 96499653,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 96499608,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Ground037_4K-PNG/Ground037_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 12670292,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 2.1,
+      "surface_tile_m_source": "vendor"
+    },
+    {
+      "id": "PineNeedles001",
+      "folder": "PineNeedles001_4K-PNG",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001.png",
+          "role": "preview",
+          "bytes": 75379,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109796,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2698,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 828,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3007,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 2571704,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 18389579,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 86102260,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 86102796,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_Opacity.png",
+          "role": "preview",
+          "bytes": 357544,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "PineNeedles001_4K-PNG/PineNeedles001_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 8929103,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "Rock016",
+      "folder": "Rock016_4K-PNG",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Rock016_4K-PNG/Rock016.png",
+          "role": "preview",
+          "bytes": 305328,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109636,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2242,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1010,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3008,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 7015749,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 28007354,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 23556514,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 96382366,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 96383713,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock016_4K-PNG/Rock016_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 3708097,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "Rock026",
+      "folder": "Rock026_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Rock026_4K-PNG/Rock026.png",
+          "role": "preview",
+          "bytes": 411042,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109428,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2242,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1010,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 2999,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 2317057,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 26897856,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 18721296,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 87749887,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 87749275,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock026_4K-PNG/Rock026_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 7415784,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 4.0,
+      "surface_tile_m_source": "assumed",
+      "surface_tile_m_note": "STARTING VALUE chosen for tuning, not a measurement. ambientCG publishes no Dimensions for this set. Any consumer that would behave differently for an assumed value must branch on the *_source field."
+    },
+    {
+      "id": "Rock051",
+      "folder": "Rock051_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Rock051_4K-PNG/Rock051.png",
+          "role": "preview",
+          "bytes": 462708,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1119812,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2577,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1208,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3096,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 8606592,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 35385793,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 22660530,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_Metalness.png",
+          "role": "metalness",
+          "bytes": 3113,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "1"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 91032106,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 91035936,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Rock051_4K-PNG/Rock051_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 8097837,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 4.0,
+      "surface_tile_m_source": "assumed",
+      "surface_tile_m_note": "STARTING VALUE chosen for tuning, not a measurement. ambientCG publishes no Dimensions for this set. Any consumer that would behave differently for an assumed value must branch on the *_source field."
+    },
+    {
+      "id": "Rock063",
+      "folder": "Rock063_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Rock063_4K-PNG/Rock063.png",
+          "role": "preview",
+          "bytes": 463099,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1111924,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2242,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1010,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3175,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 4016590,
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 18753718,
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 9265839,
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 46834483,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 46833997,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Rock063_4K-PNG/Rock063_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 5126962,
+          "format": "png",
+          "resolution": [
+            4096,
+            2048
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 4.0,
+      "surface_tile_m_source": "assumed",
+      "surface_tile_m_note": "STARTING VALUE chosen for tuning, not a measurement. ambientCG publishes no Dimensions for this set. Any consumer that would behave differently for an assumed value must branch on the *_source field."
+    },
+    {
+      "id": "Snow006",
+      "folder": "Snow006_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Snow006_4K-PNG/Snow006.png",
+          "role": "preview",
+          "bytes": 214025,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109844,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2242,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1010,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 3024,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 5516410,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 14287977,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 25481718,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 95031324,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 95030543,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow006_4K-PNG/Snow006_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 12198511,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 4.0,
+      "surface_tile_m_source": "assumed",
+      "surface_tile_m_note": "STARTING VALUE chosen for tuning, not a measurement. ambientCG publishes no Dimensions for this set. Any consumer that would behave differently for an assumed value must branch on the *_source field."
+    },
+    {
+      "id": "Snow007A",
+      "folder": "Snow007A_4K-PNG",
+      "source": "ambientCG",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); a GL alternate also ships and is UNUSED",
+      "files": [
+        {
+          "path": "Snow007A_4K-PNG/Snow007A.png",
+          "role": "preview",
+          "bytes": 213330,
+          "note": "unsuffixed thumbnail",
+          "format": "png",
+          "resolution": [
+            512,
+            512
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG.blend",
+          "role": "dcc-variant",
+          "bytes": 1109428,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG.mtlx",
+          "role": "dcc-variant",
+          "bytes": 2257,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG.tres",
+          "role": "dcc-variant",
+          "bytes": 1015,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG.usdc",
+          "role": "dcc-variant",
+          "bytes": 2983,
+          "note": "authoring/interchange copy, not imported"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 7090894,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_Color.png",
+          "role": "color",
+          "bytes": 27207395,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_Displacement.png",
+          "role": "displacement",
+          "bytes": 23591919,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_NormalDX.png",
+          "role": "normal",
+          "bytes": 90938332,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_NormalGL.png",
+          "role": "normal-gl",
+          "bytes": 90942596,
+          "note": "GL alternate of the DX map; UNUSED",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "Snow007A_4K-PNG/Snow007A_4K-PNG_Roughness.png",
+          "role": "roughness",
+          "bytes": 15200936,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "fir_tree_01",
+      "folder": "fir_tree_01_4k.fbx",
+      "source": "Poly Haven",
+      "type": "mesh",
+      "normal_convention": "GL",
+      "normal_convention_source": "derived: ships ONLY a GL normal map, whose green channel must be inverted for Unreal, which expects DX",
+      "files": [
+        {
+          "path": "fir_tree_01_4k.fbx/fir_tree_01_4k.fbx",
+          "role": "mesh",
+          "bytes": 249300492
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_bark_diff_4k.png",
+          "role": "color",
+          "bytes": 84656318,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_bark_disp_4k.png",
+          "role": "displacement",
+          "bytes": 20359423,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_bark_nor_gl_4k.png",
+          "role": "normal",
+          "bytes": 85406477,
+          "note": "GL convention",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_bark_rough_4k.png",
+          "role": "roughness",
+          "bytes": 26676574,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_twig_alpha_4k.png",
+          "role": "alpha",
+          "bytes": 2582047,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_twig_diff_4k.png",
+          "role": "color",
+          "bytes": 38134662,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_twig_nor_gl_4k.png",
+          "role": "normal",
+          "bytes": 15641830,
+          "note": "GL convention",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "fir_tree_01_4k.fbx/textures/fir_tree_01_twig_rough_4k.png",
+          "role": "roughness",
+          "bytes": 11721999,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        }
+      ],
+      "mesh_extent_m": 6.306,
+      "mesh_extent_m_source": "measured",
+      "mesh_extent_m_note": "measured from Free/_measured/normalized.json (post-pivot-bake), object fir_tree_01_c_LOD0: bounding box 6.306 x 5.966 x 14.521 m. Value is the larger HORIZONTAL extent; height is 14.521 m and is NOT this field. ONE object, not the set: these files lay their objects out side by side and a published extent may be describing the whole row."
+    },
+    {
+      "id": "forest_floor",
+      "folder": "forest_floor_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "forest_floor_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 815
+        },
+        {
+          "path": "forest_floor_4k/forest_floor_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 40157377,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_4k/forest_floor_4K_Color.png",
+          "role": "color",
+          "bytes": 97681938,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_4k/forest_floor_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 36483297,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_4k/forest_floor_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 92591639,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_4k/forest_floor_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 41347303,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "surface_tile_m": 2.14,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [2.14, 2.14] m (R-FETCH)"
+    },
+    {
+      "id": "forest_floor_vktfeilaw",
+      "folder": "forest_floor_vktfeilaw_4k",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 12252821,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 21676402,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 8226024,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 18058337,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Displacement.jpg",
+          "role": "displacement",
+          "bytes": 6088717,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 9294900,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 41669380,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 8811906,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/Forest_Floor_vktfeilaw_4K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 11293856,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "forest_floor_vktfeilaw_4k/vktfeilaw.json",
+          "role": "unclassified",
+          "bytes": 13668
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "gemini_v1",
+      "folder": "gemini_v1",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "gemini_v1/MANIFEST.json",
+          "role": "unclassified",
+          "bytes": 5065
+        },
+        {
+          "path": "gemini_v1/concept_canyon.jpg",
+          "role": "unclassified",
+          "bytes": 849514,
+          "format": "jpg",
+          "resolution": [
+            1376,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/concept_coast.jpg",
+          "role": "unclassified",
+          "bytes": 844916,
+          "format": "jpg",
+          "resolution": [
+            1376,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/concept_crystal_valley.jpg",
+          "role": "unclassified",
+          "bytes": 923958,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/concept_highland_lake.jpg",
+          "role": "unclassified",
+          "bytes": 806438,
+          "format": "jpg",
+          "resolution": [
+            1376,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/landmark_crystal_spire.jpg",
+          "role": "unclassified",
+          "bytes": 400208,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/landmark_ruin_arch.jpg",
+          "role": "unclassified",
+          "bytes": 518157,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/landmark_stone_bridge.jpg",
+          "role": "unclassified",
+          "bytes": 541305,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/stamp_river_basin.jpg",
+          "role": "unclassified",
+          "bytes": 460488,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/stamp_spire_peaks.jpg",
+          "role": "unclassified",
+          "bytes": 481408,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/stamp_terraced_cliffs.jpg",
+          "role": "unclassified",
+          "bytes": 424207,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_cliff_rock.jpg",
+          "role": "unclassified",
+          "bytes": 1102107,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_forest_floor.jpg",
+          "role": "unclassified",
+          "bytes": 1167700,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_forest_floor_tiled.jpg",
+          "role": "unclassified",
+          "bytes": 595580,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_river_gravel.jpg",
+          "role": "unclassified",
+          "bytes": 1085170,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_river_gravel_tiled.jpg",
+          "role": "unclassified",
+          "bytes": 558184,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_scree.jpg",
+          "role": "unclassified",
+          "bytes": 1216865,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_scree_tiled.jpg",
+          "role": "unclassified",
+          "bytes": 662613,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_stony_dirt.jpg",
+          "role": "unclassified",
+          "bytes": 1110122,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v1/tex_valley_grass.jpg",
+          "role": "unclassified",
+          "bytes": 1303257,
+          "format": "jpg",
+          "resolution": [
+            1408,
+            768
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "gemini_v2",
+      "folder": "gemini_v2",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "gemini_v2/MANIFEST.json",
+          "role": "unclassified",
+          "bytes": 2911
+        },
+        {
+          "path": "gemini_v2/arch_az000.jpg",
+          "role": "unclassified",
+          "bytes": 458376,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/arch_az045.jpg",
+          "role": "unclassified",
+          "bytes": 406285,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/arch_az090.jpg",
+          "role": "unclassified",
+          "bytes": 386661,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/bridge_az000.jpg",
+          "role": "unclassified",
+          "bytes": 487228,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/bridge_az045.jpg",
+          "role": "unclassified",
+          "bytes": 349123,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/bridge_az090.jpg",
+          "role": "unclassified",
+          "bytes": 369766,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/concept_highland_dusk.jpg",
+          "role": "unclassified",
+          "bytes": 834180,
+          "format": "jpg",
+          "resolution": [
+            1376,
+            768
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/crystal_az000.jpg",
+          "role": "unclassified",
+          "bytes": 441214,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/crystal_az045.jpg",
+          "role": "unclassified",
+          "bytes": 398482,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/crystal_az090.jpg",
+          "role": "unclassified",
+          "bytes": 377852,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/tex_dirt_path.jpg",
+          "role": "unclassified",
+          "bytes": 1005361,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gemini_v2/tex_river_gravel_dry.jpg",
+          "role": "unclassified",
+          "bytes": 1073651,
+          "format": "jpg",
+          "resolution": [
+            1024,
+            1024
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "grass_medium_01",
+      "folder": "grass_medium_01_4k.fbx",
+      "source": "Poly Haven",
+      "type": "mesh",
+      "normal_convention": "GL",
+      "normal_convention_source": "derived: ships ONLY a GL normal map, whose green channel must be inverted for Unreal, which expects DX",
+      "files": [
+        {
+          "path": "grass_medium_01_4k.fbx/grass_medium_01_4k.fbx",
+          "role": "mesh",
+          "bytes": 1056796
+        },
+        {
+          "path": "grass_medium_01_4k.fbx/textures/grass_medium_01_alpha_4k.png",
+          "role": "alpha",
+          "bytes": 3285653,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "grass_medium_01_4k.fbx/textures/grass_medium_01_diff_4k.jpg",
+          "role": "color",
+          "bytes": 3505106,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "grass_medium_01_4k.fbx/textures/grass_medium_01_nor_gl_4k.exr",
+          "role": "normal",
+          "bytes": 27076869,
+          "note": "GL convention header not readable by this Pillow build",
+          "format": "exr",
+          "resolution": null,
+          "pixel_mode": null
+        },
+        {
+          "path": "grass_medium_01_4k.fbx/textures/grass_medium_01_rough_4k.exr",
+          "role": "roughness",
+          "bytes": 6779215,
+          "format": "exr",
+          "resolution": null,
+          "pixel_mode": null,
+          "note": "header not readable by this Pillow build"
+        }
+      ],
+      "mesh_extent_m": 0.327,
+      "mesh_extent_m_source": "measured",
+      "mesh_extent_m_note": "measured from Free/_measured/normalized.json (post-pivot-bake), object grass_medium_01_large_a_LOD0: bounding box 0.317 x 0.327 x 0.147 m. Value is the larger HORIZONTAL extent; height is 0.147 m and is NOT this field. ONE object, not the set: these files lay their objects out side by side and a published extent may be describing the whole row."
+    },
+    {
+      "id": "grass_medium_02",
+      "folder": "grass_medium_02_4k.fbx",
+      "source": "Poly Haven",
+      "type": "mesh",
+      "normal_convention": "GL",
+      "normal_convention_source": "derived: ships ONLY a GL normal map, whose green channel must be inverted for Unreal, which expects DX",
+      "files": [
+        {
+          "path": "grass_medium_02_4k.fbx/grass_medium_02_4k.fbx",
+          "role": "mesh",
+          "bytes": 313740
+        },
+        {
+          "path": "grass_medium_02_4k.fbx/textures/grass_medium_02_alpha_4k.png",
+          "role": "alpha",
+          "bytes": 896528,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "grass_medium_02_4k.fbx/textures/grass_medium_02_diff_4k.jpg",
+          "role": "color",
+          "bytes": 1323661,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "grass_medium_02_4k.fbx/textures/grass_medium_02_nor_gl_4k.exr",
+          "role": "normal",
+          "bytes": 1726602,
+          "note": "GL convention header not readable by this Pillow build",
+          "format": "exr",
+          "resolution": null,
+          "pixel_mode": null
+        },
+        {
+          "path": "grass_medium_02_4k.fbx/textures/grass_medium_02_rough_4k.exr",
+          "role": "roughness",
+          "bytes": 3396220,
+          "format": "exr",
+          "resolution": null,
+          "pixel_mode": null,
+          "note": "header not readable by this Pillow build"
+        }
+      ],
+      "mesh_extent_m": 0.433,
+      "mesh_extent_m_source": "measured",
+      "mesh_extent_m_note": "measured from Free/_measured/normalized.json (post-pivot-bake), object grass_medium_02_e: bounding box 0.356 x 0.433 x 0.403 m. Value is the larger HORIZONTAL extent; height is 0.403 m and is NOT this field. ONE object, not the set: these files lay their objects out side by side and a published extent may be describing the whole row."
+    },
+    {
+      "id": "gravel_ground_01",
+      "folder": "gravel_ground_01_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "gravel_ground_01_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 814
+        },
+        {
+          "path": "gravel_ground_01_4k/gravel_ground_01_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 10802225,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "gravel_ground_01_4k/gravel_ground_01_4K_Color.png",
+          "role": "color",
+          "bytes": 37477384,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gravel_ground_01_4k/gravel_ground_01_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 30831076,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "gravel_ground_01_4k/gravel_ground_01_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 36539019,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gravel_ground_01_4k/gravel_ground_01_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 9203840,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 3.0,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [3.0, 3.0] m (R-FETCH)"
+    },
+    {
+      "id": "gray_rocks",
+      "folder": "gray_rocks_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "gray_rocks_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 813
+        },
+        {
+          "path": "gray_rocks_4k/gray_rocks_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 28421576,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "gray_rocks_4k/gray_rocks_4K_Color.png",
+          "role": "color",
+          "bytes": 92475086,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gray_rocks_4k/gray_rocks_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 23667874,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "gray_rocks_4k/gray_rocks_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 95485973,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "gray_rocks_4k/gray_rocks_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 39667099,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "surface_tile_m": 1.8,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [1.8, 1.8] m (R-FETCH)"
+    },
+    {
+      "id": "leafy_grass",
+      "folder": "leafy_grass_4k.gltf",
+      "source": "Poly Haven",
+      "type": "surface",
+      "normal_convention": "GL",
+      "normal_convention_source": "derived: ships ONLY a GL normal map, whose green channel must be inverted for Unreal, which expects DX",
+      "files": [
+        {
+          "path": "leafy_grass_4k.gltf/leafy_grass.bin",
+          "role": "mesh-buffer",
+          "bytes": 2370420,
+          "note": "glTF binary payload"
+        },
+        {
+          "path": "leafy_grass_4k.gltf/leafy_grass_4k.gltf",
+          "role": "mesh",
+          "bytes": 2773
+        },
+        {
+          "path": "leafy_grass_4k.gltf/textures/leafy_grass_arm_4k.jpg",
+          "role": "packed-arm",
+          "bytes": 15718493,
+          "note": "AO / Roughness / Metal in R / G / B",
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "leafy_grass_4k.gltf/textures/leafy_grass_diff_4k.jpg",
+          "role": "color",
+          "bytes": 18554565,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "leafy_grass_4k.gltf/textures/leafy_grass_nor_gl_4k.jpg",
+          "role": "normal",
+          "bytes": 23240822,
+          "note": "GL convention",
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        }
+      ],
+      "surface_tile_m": 2.0,
+      "surface_tile_m_source": "vendor"
+    },
+    {
+      "id": "nordic_beach_rocky_ground_ukoncdamw_high",
+      "folder": "nordic_beach_rocky_ground_ukoncdamw_high",
+      "source": "Quixel Megascans via Fab",
+      "type": "mesh",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High.fbx",
+          "role": "mesh",
+          "bytes": 600512
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 7659202,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 7593018,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 4417889,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 9088521,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Displacement.jpg",
+          "role": "displacement",
+          "bytes": 2167607,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Fuzz.jpg",
+          "role": "unclassified",
+          "bytes": 581209,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 4339466,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 24697751,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 4134384,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/Nordic_Beach_Rocky_Ground_ukoncdamw_High_4K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 4967738,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_beach_rocky_ground_ukoncdamw_high/ukoncdamw.json",
+          "role": "unclassified",
+          "bytes": 33363
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "nordic_forest_ground_root_moss_coarse_xiekec0",
+      "folder": "nordic_forest_ground_root_moss_coarse_xiekec0_4k",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 15045204,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 30297203,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 10099238,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 19597529,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Displacement.jpg",
+          "role": "displacement",
+          "bytes": 5219541,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 11265070,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 45600411,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 10743960,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/Nordic_Forest_Ground_Root_Moss_Coarse_xiekec0_4K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 12310737,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "nordic_forest_ground_root_moss_coarse_xiekec0_4k/xiekec0.json",
+          "role": "unclassified",
+          "bytes": 13212
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "river_small_rocks",
+      "folder": "river_small_rocks_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "river_small_rocks_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 875
+        },
+        {
+          "path": "river_small_rocks_4k/river_small_rocks_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 13633388,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "river_small_rocks_4k/river_small_rocks_4K_Color.png",
+          "role": "color",
+          "bytes": 30772541,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "river_small_rocks_4k/river_small_rocks_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 26701238,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "river_small_rocks_4k/river_small_rocks_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 35767263,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "river_small_rocks_4k/river_small_rocks_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 9709154,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 2.9,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [2.9, 2.9] m (R-FETCH)"
+    },
+    {
+      "id": "rock_shopk_high",
+      "folder": "rock_shopk_high",
+      "source": "Quixel Megascans via Fab",
+      "type": "mesh",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "rock_shopk_high/Rock_shopk_High.fbx",
+          "role": "mesh",
+          "bytes": 711296
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 5802189,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 9584185,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 3286223,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 6925626,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Displacement.jpg",
+          "role": "displacement",
+          "bytes": 2172348,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 4528397,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 19056689,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 4475133,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/Rock_shopk_High_4K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 3567699,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_high/shopk.json",
+          "role": "unclassified",
+          "bytes": 29892
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "rock_shopk_raw",
+      "folder": "rock_shopk_raw",
+      "source": "Quixel Megascans via Fab",
+      "type": "mesh",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw.fbx",
+          "role": "mesh",
+          "bytes": 59757936
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 33994233,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 60961698,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 14536030,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 37352038,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 28929845,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 61750002,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 28602180,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/Rock_shopk_Raw_8K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 24188999,
+          "format": "jpg",
+          "resolution": [
+            8192,
+            8192
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rock_shopk_raw/shopk.json",
+          "role": "unclassified",
+          "bytes": 29892
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    },
+    {
+      "id": "rocks_ground_04",
+      "folder": "rocks_ground_04_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "rocks_ground_04_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 813
+        },
+        {
+          "path": "rocks_ground_04_4k/rocks_ground_04_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 10253004,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "rocks_ground_04_4k/rocks_ground_04_4K_Color.png",
+          "role": "color",
+          "bytes": 27914529,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rocks_ground_04_4k/rocks_ground_04_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 22894663,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "rocks_ground_04_4k/rocks_ground_04_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 33196173,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "rocks_ground_04_4k/rocks_ground_04_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 10383628,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 2.0,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [2.0, 2.0] m (R-FETCH)"
+    },
+    {
+      "id": "rocky_trail",
+      "folder": "rocky_trail_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "rocky_trail_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 809
+        },
+        {
+          "path": "rocky_trail_4k/rocky_trail_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 15876996,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "rocky_trail_4k/rocky_trail_4K_Color.png",
+          "role": "color",
+          "bytes": 105402677,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "rocky_trail_4k/rocky_trail_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 24716897,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        },
+        {
+          "path": "rocky_trail_4k/rocky_trail_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 111335407,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "rocky_trail_4k/rocky_trail_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 29166541,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "I;16"
+        }
+      ],
+      "surface_tile_m": 2.0,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [2.0, 2.0] m (R-FETCH)"
+    },
+    {
+      "id": "snow_02",
+      "folder": "snow_02_4k",
+      "source": "polyhaven",
+      "type": "surface",
+      "normal_convention": "DX",
+      "normal_convention_source": "derived: ships a *_NormalDX map, consumed directly with no flip (ruling 1); no GL alternate ships",
+      "files": [
+        {
+          "path": "snow_02_4k/INTAKE.json",
+          "role": "unclassified",
+          "bytes": 805
+        },
+        {
+          "path": "snow_02_4k/snow_02_4K_AmbientOcclusion.png",
+          "role": "ambient-occlusion",
+          "bytes": 10049893,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        },
+        {
+          "path": "snow_02_4k/snow_02_4K_Color.png",
+          "role": "color",
+          "bytes": 19466528,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "snow_02_4k/snow_02_4K_Displacement.png",
+          "role": "displacement",
+          "bytes": 27710127,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGBA"
+        },
+        {
+          "path": "snow_02_4k/snow_02_4K_NormalDX.png",
+          "role": "normal",
+          "bytes": 34241953,
+          "note": "DX convention \u2014 consumed directly, no flip",
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "snow_02_4k/snow_02_4K_Roughness.png",
+          "role": "roughness",
+          "bytes": 6132467,
+          "format": "png",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "L"
+        }
+      ],
+      "surface_tile_m": 2.0,
+      "surface_tile_m_source": "vendor",
+      "surface_tile_m_note": "read from INTAKE.json \u2014 polyhaven published [2.0, 2.0] m (R-FETCH)"
+    },
+    {
+      "id": "wild_grass_xbreagf",
+      "folder": "wild_grass_xbreagf_4k",
+      "source": "unknown",
+      "type": "surface",
+      "normal_convention": null,
+      "normal_convention_source": "UNDETERMINED: no normal map ships, so there is no convention to record. Not defaulted \u2014 a guessed convention inverts lighting silently.",
+      "files": [
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_AO.jpg",
+          "role": "unclassified",
+          "bytes": 17874033,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_BaseColor.jpg",
+          "role": "unclassified",
+          "bytes": 25854973,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Bump.jpg",
+          "role": "unclassified",
+          "bytes": 13998147,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Cavity.jpg",
+          "role": "unclassified",
+          "bytes": 21026966,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Displacement.jpg",
+          "role": "displacement",
+          "bytes": 10402324,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Gloss.jpg",
+          "role": "unclassified",
+          "bytes": 13631506,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Normal.jpg",
+          "role": "unclassified",
+          "bytes": 48776471,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Roughness.jpg",
+          "role": "roughness",
+          "bytes": 13129158,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/Wild_Grass_xbreagf_4K_Specular.jpg",
+          "role": "unclassified",
+          "bytes": 13293181,
+          "format": "jpg",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "pixel_mode": "RGB"
+        },
+        {
+          "path": "wild_grass_xbreagf_4k/xbreagf.json",
+          "role": "unclassified",
+          "bytes": 13270
+        }
+      ],
+      "footprint_absent_reason": "no value supplied and none measured"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# WHAT OVERLAPS THIS POINT? Sphere overlap in the LIVE LEVEL.
+#
+# WHY NOT THE PLAN. city/alpine_basin_town_plan.json says the main_street
+# station stands in open street -- not inside a building, not under a roof --
+# and the render says the camera is inside a mesh at two different heights.
+# That plan is the repo's KNOWN-DIVERGENT artefact: it carries a
+# _divergence_note and does not reproduce. A plan is a DERIVED RECORD; the
+# level is ground truth, and this asks the level.
+
+X = __X__
+Y = __Y__
+Z = __Z__
+R = __R__
+
+_out = {"ok": False, "error": None, "overlaps": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _p = _u.Vector(X, Y, Z)
+    for _a in _eas.get_all_level_actors():
+        try:
+            _o, _e = _a.get_actor_bounds(False)
+        except Exception:
+            continue
+        if _e.x <= 0 and _e.y <= 0 and _e.z <= 0:
+            continue
+        # axis-aligned bounds test, inflated by R
+        if (abs(_p.x - _o.x) <= _e.x + R
+                and abs(_p.y - _o.y) <= _e.y + R
+                and abs(_p.z - _o.z) <= _e.z + R):
+            _out["overlaps"].append({
+                "label": str(_a.get_actor_label()),
+                "class": str(type(_a).__name__),
+                "origin": [round(float(_o.x), 1), round(float(_o.y), 1),
+                           round(float(_o.z), 1)],
+                "extent": [round(float(_e.x), 1), round(float(_e.y), 1),
+                           round(float(_e.z), 1)],
+            })
+    _out["count"] = len(_out["overlaps"])
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

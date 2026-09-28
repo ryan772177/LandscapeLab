@@ -1,0 +1,3241 @@
+{
+ "assets": [
+  {
+   "class": "Blueprint",
+   "name": "BP_CameraShake01",
+   "path": "/Game/DragonCave/Blueprints/BP_CameraShake01"
+  },
+  {
+   "class": "Blueprint",
+   "name": "BP_CameraShake02",
+   "path": "/Game/DragonCave/Blueprints/BP_CameraShake02"
+  },
+  {
+   "class": "Blueprint",
+   "name": "BP_CameraShake03",
+   "path": "/Game/DragonCave/Blueprints/BP_CameraShake03"
+  },
+  {
+   "class": "NiagaraSystem",
+   "name": "Leafs",
+   "path": "/Game/DragonCave/Effects/Leafs"
+  },
+  {
+   "class": "World",
+   "name": "Demo",
+   "path": "/Game/DragonCave/Maps/Demo"
+  },
+  {
+   "class": "World",
+   "name": "Overview",
+   "path": "/Game/DragonCave/Maps/Overview"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "MF_Atlas",
+   "path": "/Game/DragonCave/Materials/MF_Atlas"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_BridgePillars01",
+   "path": "/Game/DragonCave/Materials/MI_BridgePillars01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_BridgeSet01",
+   "path": "/Game/DragonCave/Materials/MI_BridgeSet01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CaveRocks01",
+   "path": "/Game/DragonCave/Materials/MI_CaveRocks01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CaveRocks02",
+   "path": "/Game/DragonCave/Materials/MI_CaveRocks02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CaveRocks03",
+   "path": "/Game/DragonCave/Materials/MI_CaveRocks03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CeramicTiles01",
+   "path": "/Game/DragonCave/Materials/MI_CeramicTiles01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CeramicTiles02",
+   "path": "/Game/DragonCave/Materials/MI_CeramicTiles02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CloudCard02",
+   "path": "/Game/DragonCave/Materials/MI_CloudCard02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CloudCard03",
+   "path": "/Game/DragonCave/Materials/MI_CloudCard03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CloudCard04",
+   "path": "/Game/DragonCave/Materials/MI_CloudCard04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_CoffinStone01",
+   "path": "/Game/DragonCave/Materials/MI_CoffinStone01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_ColorGreen",
+   "path": "/Game/DragonCave/Materials/MI_ColorGreen"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_ColorGrey",
+   "path": "/Game/DragonCave/Materials/MI_ColorGrey"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Concrete01",
+   "path": "/Game/DragonCave/Materials/MI_Concrete01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Concrete02",
+   "path": "/Game/DragonCave/Materials/MI_Concrete02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_DeadTree01",
+   "path": "/Game/DragonCave/Materials/MI_DeadTree01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Decal01Part01",
+   "path": "/Game/DragonCave/Materials/MI_Decal01Part01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Decal01Part02",
+   "path": "/Game/DragonCave/Materials/MI_Decal01Part02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Decal01Part03",
+   "path": "/Game/DragonCave/Materials/MI_Decal01Part03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Dirt01",
+   "path": "/Game/DragonCave/Materials/MI_Dirt01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Dragon01",
+   "path": "/Game/DragonCave/Materials/MI_Dragon01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Dragon02Emissive",
+   "path": "/Game/DragonCave/Materials/MI_Dragon02Emissive"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Dragon02Emissive1",
+   "path": "/Game/DragonCave/Materials/MI_Dragon02Emissive1"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Dragon02Emissive2",
+   "path": "/Game/DragonCave/Materials/MI_Dragon02Emissive2"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_FlatColor01",
+   "path": "/Game/DragonCave/Materials/MI_FlatColor01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Floor01",
+   "path": "/Game/DragonCave/Materials/MI_Floor01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GroundTiles01",
+   "path": "/Game/DragonCave/Materials/MI_GroundTiles01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GroundTiles02",
+   "path": "/Game/DragonCave/Materials/MI_GroundTiles02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_InfernoRock01",
+   "path": "/Game/DragonCave/Materials/MI_InfernoRock01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_LargeRocks01",
+   "path": "/Game/DragonCave/Materials/MI_LargeRocks01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_LargeRocks02",
+   "path": "/Game/DragonCave/Materials/MI_LargeRocks02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_LargeRocks03",
+   "path": "/Game/DragonCave/Materials/MI_LargeRocks03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Leaking01",
+   "path": "/Game/DragonCave/Materials/MI_Leaking01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Leaking02",
+   "path": "/Game/DragonCave/Materials/MI_Leaking02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Leaking03",
+   "path": "/Game/DragonCave/Materials/MI_Leaking03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_OldWoodenBeam01",
+   "path": "/Game/DragonCave/Materials/MI_OldWoodenBeam01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_OldWoodenBeam02",
+   "path": "/Game/DragonCave/Materials/MI_OldWoodenBeam02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_OldWoodenPlank",
+   "path": "/Game/DragonCave/Materials/MI_OldWoodenPlank"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_OldWoodenPlank01",
+   "path": "/Game/DragonCave/Materials/MI_OldWoodenPlank01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_OldWoodenPlank1",
+   "path": "/Game/DragonCave/Materials/MI_OldWoodenPlank1"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Puddle02",
+   "path": "/Game/DragonCave/Materials/MI_Puddle02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Puddle03",
+   "path": "/Game/DragonCave/Materials/MI_Puddle03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_RottenTree02",
+   "path": "/Game/DragonCave/Materials/MI_RottenTree02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_RoughStairs01",
+   "path": "/Game/DragonCave/Materials/MI_RoughStairs01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_RoughStairs02",
+   "path": "/Game/DragonCave/Materials/MI_RoughStairs02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_RoughStairs03",
+   "path": "/Game/DragonCave/Materials/MI_RoughStairs03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Sphere01",
+   "path": "/Game/DragonCave/Materials/MI_Sphere01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StoneDebris01",
+   "path": "/Game/DragonCave/Materials/MI_StoneDebris01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StoneFloor01",
+   "path": "/Game/DragonCave/Materials/MI_StoneFloor01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StoneFloor02",
+   "path": "/Game/DragonCave/Materials/MI_StoneFloor02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StonePainting01",
+   "path": "/Game/DragonCave/Materials/MI_StonePainting01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StonePainting02",
+   "path": "/Game/DragonCave/Materials/MI_StonePainting02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StonePainting03",
+   "path": "/Game/DragonCave/Materials/MI_StonePainting03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StonePainting04",
+   "path": "/Game/DragonCave/Materials/MI_StonePainting04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Stones02",
+   "path": "/Game/DragonCave/Materials/MI_Stones02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_StoneWall01",
+   "path": "/Game/DragonCave/Materials/MI_StoneWall01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Symbol01",
+   "path": "/Game/DragonCave/Materials/MI_Symbol01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Symbol02",
+   "path": "/Game/DragonCave/Materials/MI_Symbol02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Symbol03",
+   "path": "/Game/DragonCave/Materials/MI_Symbol03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Symbol04",
+   "path": "/Game/DragonCave/Materials/MI_Symbol04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Treasures",
+   "path": "/Game/DragonCave/Materials/MI_Treasures"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_VolumeFog01",
+   "path": "/Game/DragonCave/Materials/MI_VolumeFog01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Water02",
+   "path": "/Game/DragonCave/Materials/MI_Water02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Water03",
+   "path": "/Game/DragonCave/Materials/MI_Water03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Water04",
+   "path": "/Game/DragonCave/Materials/MI_Water04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_WheelBarrow01",
+   "path": "/Game/DragonCave/Materials/MI_WheelBarrow01"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "M_4wayChaos",
+   "path": "/Game/DragonCave/Materials/M_4wayChaos"
+  },
+  {
+   "class": "Material",
+   "name": "M_Caustics",
+   "path": "/Game/DragonCave/Materials/M_Caustics"
+  },
+  {
+   "class": "Material",
+   "name": "M_CloudCard01",
+   "path": "/Game/DragonCave/Materials/M_CloudCard01"
+  },
+  {
+   "class": "Material",
+   "name": "M_DecalMapMaster",
+   "path": "/Game/DragonCave/Materials/M_DecalMapMaster"
+  },
+  {
+   "class": "Material",
+   "name": "M_DecalMapMaster02",
+   "path": "/Game/DragonCave/Materials/M_DecalMapMaster02"
+  },
+  {
+   "class": "Material",
+   "name": "M_Emissive",
+   "path": "/Game/DragonCave/Materials/M_Emissive"
+  },
+  {
+   "class": "Material",
+   "name": "M_Glass",
+   "path": "/Game/DragonCave/Materials/M_Glass"
+  },
+  {
+   "class": "Material",
+   "name": "M_PBRMaster",
+   "path": "/Game/DragonCave/Materials/M_PBRMaster"
+  },
+  {
+   "class": "Material",
+   "name": "M_PBRMasterVT",
+   "path": "/Game/DragonCave/Materials/M_PBRMasterVT"
+  },
+  {
+   "class": "Material",
+   "name": "M_Puddle01",
+   "path": "/Game/DragonCave/Materials/M_Puddle01"
+  },
+  {
+   "class": "Material",
+   "name": "M_RottenTree01",
+   "path": "/Game/DragonCave/Materials/M_RottenTree01"
+  },
+  {
+   "class": "Material",
+   "name": "M_ShowroomFloor01",
+   "path": "/Game/DragonCave/Materials/M_ShowroomFloor01"
+  },
+  {
+   "class": "Material",
+   "name": "M_VolumeFogDetail",
+   "path": "/Game/DragonCave/Materials/M_VolumeFogDetail"
+  },
+  {
+   "class": "Material",
+   "name": "M_Water01",
+   "path": "/Game/DragonCave/Materials/M_Water01"
+  },
+  {
+   "ApproxSize": "497x317x1199",
+   "CollisionPrims": "2",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "5102",
+   "Vertices": "2940",
+   "class": "StaticMesh",
+   "name": "SM_BridgeArc01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeArc01"
+  },
+  {
+   "ApproxSize": "593x684x1201",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "8120",
+   "Vertices": "4666",
+   "class": "StaticMesh",
+   "name": "SM_BridgeArc02",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeArc02"
+  },
+  {
+   "ApproxSize": "175x1049x355",
+   "CollisionPrims": "2",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "7114",
+   "Vertices": "3749",
+   "class": "StaticMesh",
+   "name": "SM_BridgeArc03",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeArc03"
+  },
+  {
+   "ApproxSize": "401x49x283",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1170",
+   "Vertices": "676",
+   "class": "StaticMesh",
+   "name": "SM_BridgeDetail01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeDetail01"
+  },
+  {
+   "ApproxSize": "298x105x41",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1952",
+   "Vertices": "1071",
+   "class": "StaticMesh",
+   "name": "SM_BridgeDetail02",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeDetail02"
+  },
+  {
+   "ApproxSize": "40x694x79",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2556",
+   "Vertices": "1393",
+   "class": "StaticMesh",
+   "name": "SM_BridgeDetail03",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeDetail03"
+  },
+  {
+   "ApproxSize": "802x858x32",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4598",
+   "Vertices": "3248",
+   "class": "StaticMesh",
+   "name": "SM_BridgeFloor01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeFloor01"
+  },
+  {
+   "ApproxSize": "465x256x662",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "9446",
+   "Vertices": "5244",
+   "class": "StaticMesh",
+   "name": "SM_BridgePillar01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgePillar01"
+  },
+  {
+   "ApproxSize": "463x260x1141",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "6394",
+   "Vertices": "3334",
+   "class": "StaticMesh",
+   "name": "SM_BridgePillar02",
+   "path": "/Game/DragonCave/Meshes/SM_BridgePillar02"
+  },
+  {
+   "ApproxSize": "179x262x733",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "5575",
+   "Vertices": "3031",
+   "class": "StaticMesh",
+   "name": "SM_BridgeRailDetail01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeRailDetail01"
+  },
+  {
+   "ApproxSize": "188x213x158",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "288",
+   "Vertices": "189",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone01",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone01"
+  },
+  {
+   "ApproxSize": "189x220x162",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "370",
+   "Vertices": "242",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone02",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone02"
+  },
+  {
+   "ApproxSize": "185x213x158",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "256",
+   "Vertices": "167",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone03",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone03"
+  },
+  {
+   "ApproxSize": "192x218x161",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "350",
+   "Vertices": "239",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone04",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone04"
+  },
+  {
+   "ApproxSize": "187x219x162",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "430",
+   "Vertices": "261",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone05",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone05"
+  },
+  {
+   "ApproxSize": "190x222x163",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "450",
+   "Vertices": "299",
+   "class": "StaticMesh",
+   "name": "SM_BridgeStone06",
+   "path": "/Game/DragonCave/Meshes/SM_BridgeStone06"
+  },
+  {
+   "ApproxSize": "546x382x407",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "2352",
+   "Vertices": "1332",
+   "class": "StaticMesh",
+   "name": "SM_CaveRock01",
+   "path": "/Game/DragonCave/Meshes/SM_CaveRock01"
+  },
+  {
+   "ApproxSize": "355x341x374",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "1692",
+   "Vertices": "982",
+   "class": "StaticMesh",
+   "name": "SM_CaveRock02",
+   "path": "/Game/DragonCave/Meshes/SM_CaveRock02"
+  },
+  {
+   "ApproxSize": "353x416x356",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "2012",
+   "Vertices": "1116",
+   "class": "StaticMesh",
+   "name": "SM_CaveRock03",
+   "path": "/Game/DragonCave/Meshes/SM_CaveRock03"
+  },
+  {
+   "ApproxSize": "440x304x318",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "1606",
+   "Vertices": "869",
+   "class": "StaticMesh",
+   "name": "SM_CaveRock04",
+   "path": "/Game/DragonCave/Meshes/SM_CaveRock04"
+  },
+  {
+   "ApproxSize": "213x62x55",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "18454",
+   "Vertices": "10320",
+   "class": "StaticMesh",
+   "name": "SM_CoffinStone01",
+   "path": "/Game/DragonCave/Meshes/SM_CoffinStone01"
+  },
+  {
+   "ApproxSize": "50x50x300",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "44",
+   "Vertices": "50",
+   "class": "StaticMesh",
+   "name": "SM_Column01",
+   "path": "/Game/DragonCave/Meshes/SM_Column01"
+  },
+  {
+   "ApproxSize": "50x50x300",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "124",
+   "Vertices": "130",
+   "class": "StaticMesh",
+   "name": "SM_Column02",
+   "path": "/Game/DragonCave/Meshes/SM_Column02"
+  },
+  {
+   "ApproxSize": "426x299x883",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "3523",
+   "Vertices": "3230",
+   "class": "StaticMesh",
+   "name": "SM_DeadTree01",
+   "path": "/Game/DragonCave/Meshes/SM_DeadTree01"
+  },
+  {
+   "ApproxSize": "260x299x468",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "22219",
+   "Vertices": "13756",
+   "class": "StaticMesh",
+   "name": "SM_DeadTree02",
+   "path": "/Game/DragonCave/Meshes/SM_DeadTree02"
+  },
+  {
+   "ApproxSize": "354x221x328",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "8232",
+   "Vertices": "5020",
+   "class": "StaticMesh",
+   "name": "SM_DeadTree03",
+   "path": "/Game/DragonCave/Meshes/SM_DeadTree03"
+  },
+  {
+   "ApproxSize": "70x157x275",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "3020",
+   "Vertices": "1839",
+   "class": "StaticMesh",
+   "name": "SM_DeadTree04",
+   "path": "/Game/DragonCave/Meshes/SM_DeadTree04"
+  },
+  {
+   "ApproxSize": "241x90x81",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4708",
+   "Vertices": "2985",
+   "class": "StaticMesh",
+   "name": "SM_DeadTree05",
+   "path": "/Game/DragonCave/Meshes/SM_DeadTree05"
+  },
+  {
+   "ApproxSize": "25575x31178x21444",
+   "CollisionPrims": "19",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4522",
+   "Vertices": "3478",
+   "class": "StaticMesh",
+   "name": "SM_DragonPose01",
+   "path": "/Game/DragonCave/Meshes/SM_DragonPose01"
+  },
+  {
+   "ApproxSize": "19130x12469x26337",
+   "CollisionPrims": "20",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4592",
+   "Vertices": "3516",
+   "class": "StaticMesh",
+   "name": "SM_DragonPose02",
+   "path": "/Game/DragonCave/Meshes/SM_DragonPose02"
+  },
+  {
+   "ApproxSize": "19964x17470x18265",
+   "CollisionPrims": "27",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4822",
+   "Vertices": "3669",
+   "class": "StaticMesh",
+   "name": "SM_DragonPose03",
+   "path": "/Game/DragonCave/Meshes/SM_DragonPose03"
+  },
+  {
+   "ApproxSize": "25549x30965x21444",
+   "CollisionPrims": "26",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "139136",
+   "Vertices": "74431",
+   "class": "StaticMesh",
+   "name": "SM_DragonPose04",
+   "path": "/Game/DragonCave/Meshes/SM_DragonPose04"
+  },
+  {
+   "ApproxSize": "300x300x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "8",
+   "Vertices": "18",
+   "class": "StaticMesh",
+   "name": "SM_Floor02",
+   "path": "/Game/DragonCave/Meshes/SM_Floor02"
+  },
+  {
+   "ApproxSize": "300x150x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "8",
+   "Vertices": "18",
+   "class": "StaticMesh",
+   "name": "SM_Floor03",
+   "path": "/Game/DragonCave/Meshes/SM_Floor03"
+  },
+  {
+   "ApproxSize": "100x100x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "12",
+   "Vertices": "24",
+   "class": "StaticMesh",
+   "name": "SM_Floor04",
+   "path": "/Game/DragonCave/Meshes/SM_Floor04"
+  },
+  {
+   "ApproxSize": "300x300x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "252",
+   "Vertices": "258",
+   "class": "StaticMesh",
+   "name": "SM_Floor05",
+   "path": "/Game/DragonCave/Meshes/SM_Floor05"
+  },
+  {
+   "ApproxSize": "300x300x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "12",
+   "Vertices": "24",
+   "class": "StaticMesh",
+   "name": "SM_Floor3m01",
+   "path": "/Game/DragonCave/Meshes/SM_Floor3m01"
+  },
+  {
+   "ApproxSize": "17x17x3",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "68",
+   "Vertices": "74",
+   "class": "StaticMesh",
+   "name": "SM_GoldenCoin01",
+   "path": "/Game/DragonCave/Meshes/SM_GoldenCoin01"
+  },
+  {
+   "ApproxSize": "75x118x6",
+   "CollisionPrims": "0",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "476",
+   "Vertices": "518",
+   "class": "StaticMesh",
+   "name": "SM_GoldenCoin02",
+   "path": "/Game/DragonCave/Meshes/SM_GoldenCoin02"
+  },
+  {
+   "ApproxSize": "14x14x23",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "898",
+   "Vertices": "571",
+   "class": "StaticMesh",
+   "name": "SM_GoldenCup01",
+   "path": "/Game/DragonCave/Meshes/SM_GoldenCup01"
+  },
+  {
+   "ApproxSize": "219x218x367",
+   "CollisionPrims": "1",
+   "LODs": "4",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "9042",
+   "Vertices": "4978",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock01",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock01"
+  },
+  {
+   "ApproxSize": "134x141x252",
+   "CollisionPrims": "2",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "5492",
+   "Vertices": "2951",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock02",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock02"
+  },
+  {
+   "ApproxSize": "109x124x236",
+   "CollisionPrims": "2",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "3076",
+   "Vertices": "1633",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock03",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock03"
+  },
+  {
+   "ApproxSize": "133x129x258",
+   "CollisionPrims": "2",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4192",
+   "Vertices": "2251",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock04",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock04"
+  },
+  {
+   "ApproxSize": "99x88x29",
+   "CollisionPrims": "1",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "616",
+   "Vertices": "354",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock05",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock05"
+  },
+  {
+   "ApproxSize": "104x101x37",
+   "CollisionPrims": "2",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "996",
+   "Vertices": "554",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock06",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock06"
+  },
+  {
+   "ApproxSize": "91x53x27",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "528",
+   "Vertices": "303",
+   "class": "StaticMesh",
+   "name": "SM_InfernoRock07",
+   "path": "/Game/DragonCave/Meshes/SM_InfernoRock07"
+  },
+  {
+   "ApproxSize": "9x5x2",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "32",
+   "Vertices": "24",
+   "class": "StaticMesh",
+   "name": "SM_Jewel01",
+   "path": "/Game/DragonCave/Meshes/SM_Jewel01"
+  },
+  {
+   "ApproxSize": "6x5x2",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "32",
+   "Vertices": "24",
+   "class": "StaticMesh",
+   "name": "SM_Jewel02",
+   "path": "/Game/DragonCave/Meshes/SM_Jewel02"
+  },
+  {
+   "ApproxSize": "454x233x658",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1420",
+   "Vertices": "937",
+   "class": "StaticMesh",
+   "name": "SM_LargePillar01",
+   "path": "/Game/DragonCave/Meshes/SM_LargePillar01"
+  },
+  {
+   "ApproxSize": "417x217x1060",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1712",
+   "Vertices": "965",
+   "class": "StaticMesh",
+   "name": "SM_LargePillar02",
+   "path": "/Game/DragonCave/Meshes/SM_LargePillar02"
+  },
+  {
+   "ApproxSize": "320x346x781",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1346",
+   "Vertices": "809",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock01",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock01"
+  },
+  {
+   "ApproxSize": "204x288x320",
+   "CollisionPrims": "1",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "652",
+   "Vertices": "387",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock02",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock02"
+  },
+  {
+   "ApproxSize": "145x124x284",
+   "CollisionPrims": "1",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "312",
+   "Vertices": "206",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock03",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock03"
+  },
+  {
+   "ApproxSize": "280x300x475",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "1026",
+   "Vertices": "586",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock04",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock04"
+  },
+  {
+   "ApproxSize": "170x192x309",
+   "CollisionPrims": "1",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "354",
+   "Vertices": "203",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock05",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock05"
+  },
+  {
+   "ApproxSize": "161x188x303",
+   "CollisionPrims": "1",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "396",
+   "Vertices": "238",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock06",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock06"
+  },
+  {
+   "ApproxSize": "253x284x454",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "914",
+   "Vertices": "511",
+   "class": "StaticMesh",
+   "name": "SM_LargeRock07",
+   "path": "/Game/DragonCave/Meshes/SM_LargeRock07"
+  },
+  {
+   "ApproxSize": "32x27x7",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "1188",
+   "Vertices": "709",
+   "class": "StaticMesh",
+   "name": "SM_Leaf01",
+   "path": "/Game/DragonCave/Meshes/SM_Leaf01"
+  },
+  {
+   "ApproxSize": "18x12x3",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "300",
+   "Vertices": "197",
+   "class": "StaticMesh",
+   "name": "SM_Leaf02",
+   "path": "/Game/DragonCave/Meshes/SM_Leaf02"
+  },
+  {
+   "ApproxSize": "13x18x6",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "372",
+   "Vertices": "223",
+   "class": "StaticMesh",
+   "name": "SM_Leaf03",
+   "path": "/Game/DragonCave/Meshes/SM_Leaf03"
+  },
+  {
+   "ApproxSize": "289x452x9",
+   "CollisionPrims": "0",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "628",
+   "Vertices": "660",
+   "class": "StaticMesh",
+   "name": "SM_LeafPile01",
+   "path": "/Game/DragonCave/Meshes/SM_LeafPile01"
+  },
+  {
+   "ApproxSize": "551x650x22",
+   "CollisionPrims": "0",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "906",
+   "Vertices": "1112",
+   "class": "StaticMesh",
+   "name": "SM_LeafPile02",
+   "path": "/Game/DragonCave/Meshes/SM_LeafPile02"
+  },
+  {
+   "ApproxSize": "169x16x11",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "12464",
+   "Vertices": "6739",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenBeam01",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenBeam01"
+  },
+  {
+   "ApproxSize": "7x65x3",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "960",
+   "Vertices": "551",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenPlank01",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenPlank01"
+  },
+  {
+   "ApproxSize": "5x81x4",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1214",
+   "Vertices": "686",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenPlank02",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenPlank02"
+  },
+  {
+   "ApproxSize": "7x76x4",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1322",
+   "Vertices": "754",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenPlank03",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenPlank03"
+  },
+  {
+   "ApproxSize": "6x67x5",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1136",
+   "Vertices": "639",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenPlank04",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenPlank04"
+  },
+  {
+   "ApproxSize": "6x65x3",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1796",
+   "Vertices": "997",
+   "class": "StaticMesh",
+   "name": "SM_OldWoodenPlank05",
+   "path": "/Game/DragonCave/Meshes/SM_OldWoodenPlank05"
+  },
+  {
+   "ApproxSize": "500x500x0",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "32",
+   "Vertices": "25",
+   "class": "StaticMesh",
+   "name": "SM_Plane01",
+   "path": "/Game/DragonCave/Meshes/SM_Plane01"
+  },
+  {
+   "ApproxSize": "281x257x139",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "15198",
+   "Vertices": "8109",
+   "class": "StaticMesh",
+   "name": "SM_RoughStairs01",
+   "path": "/Game/DragonCave/Meshes/SM_RoughStairs01"
+  },
+  {
+   "ApproxSize": "167x296x125",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "18096",
+   "Vertices": "10076",
+   "class": "StaticMesh",
+   "name": "SM_RoughStairs02",
+   "path": "/Game/DragonCave/Meshes/SM_RoughStairs02"
+  },
+  {
+   "ApproxSize": "647x321x271",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "21741",
+   "Vertices": "12659",
+   "class": "StaticMesh",
+   "name": "SM_RoughStairs03",
+   "path": "/Game/DragonCave/Meshes/SM_RoughStairs03"
+  },
+  {
+   "ApproxSize": "479242x479242x113241",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "11900",
+   "Vertices": "6001",
+   "class": "StaticMesh",
+   "name": "SM_ShowroomCone",
+   "path": "/Game/DragonCave/Meshes/SM_ShowroomCone"
+  },
+  {
+   "ApproxSize": "30x77x228",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "23660",
+   "Vertices": "18705",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton01",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton01"
+  },
+  {
+   "ApproxSize": "28x32x43",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2366",
+   "Vertices": "2371",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton02",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton02"
+  },
+  {
+   "ApproxSize": "21x16x88",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "918",
+   "Vertices": "868",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton03",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton03"
+  },
+  {
+   "ApproxSize": "22x20x145",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1684",
+   "Vertices": "1546",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton04",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton04"
+  },
+  {
+   "ApproxSize": "30x57x110",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "12292",
+   "Vertices": "9946",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton05",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton05"
+  },
+  {
+   "ApproxSize": "18x15x129",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1492",
+   "Vertices": "1355",
+   "class": "StaticMesh",
+   "name": "SM_Skeleton06",
+   "path": "/Game/DragonCave/Meshes/SM_Skeleton06"
+  },
+  {
+   "ApproxSize": "26x21x32",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "946",
+   "Vertices": "696",
+   "class": "StaticMesh",
+   "name": "SM_Skull01",
+   "path": "/Game/DragonCave/Meshes/SM_Skull01"
+  },
+  {
+   "ApproxSize": "26x21x25",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "732",
+   "Vertices": "489",
+   "class": "StaticMesh",
+   "name": "SM_Skull02",
+   "path": "/Game/DragonCave/Meshes/SM_Skull02"
+  },
+  {
+   "ApproxSize": "122x100x25",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2847",
+   "Vertices": "2080",
+   "class": "StaticMesh",
+   "name": "SM_StoneDebris01_",
+   "path": "/Game/DragonCave/Meshes/SM_StoneDebris01_"
+  },
+  {
+   "ApproxSize": "106x161x8",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2145",
+   "Vertices": "1339",
+   "class": "StaticMesh",
+   "name": "SM_StoneFloor01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneFloor01"
+  },
+  {
+   "ApproxSize": "204x50x203",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "12501",
+   "Vertices": "9349",
+   "class": "StaticMesh",
+   "name": "SM_StoneWall01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneWall01"
+  },
+  {
+   "ApproxSize": "206x54x404",
+   "CollisionPrims": "2",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "24249",
+   "Vertices": "17777",
+   "class": "StaticMesh",
+   "name": "SM_StoneWall02",
+   "path": "/Game/DragonCave/Meshes/SM_StoneWall02"
+  },
+  {
+   "ApproxSize": "206x56x404",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "27139",
+   "Vertices": "20500",
+   "class": "StaticMesh",
+   "name": "SM_StoneWall03",
+   "path": "/Game/DragonCave/Meshes/SM_StoneWall03"
+  },
+  {
+   "ApproxSize": "70x66x181",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1728",
+   "Vertices": "1552",
+   "class": "StaticMesh",
+   "name": "SM_StoneWall04",
+   "path": "/Game/DragonCave/Meshes/SM_StoneWall04"
+  },
+  {
+   "ApproxSize": "400x401x51",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "520",
+   "Vertices": "353",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksFloor01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksFloor01"
+  },
+  {
+   "ApproxSize": "72x605x50",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "266",
+   "Vertices": "204",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksFloor02",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksFloor02"
+  },
+  {
+   "ApproxSize": "99x605x45",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "376",
+   "Vertices": "242",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksHandRail01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksHandRail01"
+  },
+  {
+   "ApproxSize": "186x186x802",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "5807",
+   "Vertices": "3842",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksLantern01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksLantern01"
+  },
+  {
+   "ApproxSize": "152x175x817",
+   "CollisionPrims": "2",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "3758",
+   "Vertices": "4306",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksPillar01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksPillar01"
+  },
+  {
+   "ApproxSize": "186x183x834",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2424",
+   "Vertices": "3172",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksPillar02",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksPillar02"
+  },
+  {
+   "ApproxSize": "187x183x591",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1947",
+   "Vertices": "2829",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksPillar03",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksPillar03"
+  },
+  {
+   "ApproxSize": "190x188x1166",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4528",
+   "Vertices": "2768",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksPillar04",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksPillar04"
+  },
+  {
+   "ApproxSize": "153x153x154",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1840",
+   "Vertices": "959",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksSphere01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksSphere01"
+  },
+  {
+   "ApproxSize": "289x404x196",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "2510",
+   "Vertices": "1523",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs01"
+  },
+  {
+   "ApproxSize": "81x403x54",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "640",
+   "Vertices": "378",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs02",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs02"
+  },
+  {
+   "ApproxSize": "80x404x49",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "848",
+   "Vertices": "490",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs03",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs03"
+  },
+  {
+   "ApproxSize": "80x404x49",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "584",
+   "Vertices": "350",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs04",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs04"
+  },
+  {
+   "ApproxSize": "80x203x49",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "252",
+   "Vertices": "175",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs05",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs05"
+  },
+  {
+   "ApproxSize": "81x202x50",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "182",
+   "Vertices": "128",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStairs06",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStairs06"
+  },
+  {
+   "ApproxSize": "202x204x53",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "266",
+   "Vertices": "206",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStone01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStone01"
+  },
+  {
+   "ApproxSize": "87x87x50",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "128",
+   "Vertices": "111",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStone02",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStone02"
+  },
+  {
+   "ApproxSize": "203x204x52",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "242",
+   "Vertices": "196",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksStone03",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksStone03"
+  },
+  {
+   "ApproxSize": "97x409x708",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "672",
+   "Vertices": "455",
+   "class": "StaticMesh",
+   "name": "SM_StoneworksWall01",
+   "path": "/Game/DragonCave/Meshes/SM_StoneworksWall01"
+  },
+  {
+   "ApproxSize": "55x69x11",
+   "CollisionPrims": "4",
+   "LODs": "2",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "748",
+   "Vertices": "814",
+   "class": "StaticMesh",
+   "name": "SM_TreasurePile01",
+   "path": "/Game/DragonCave/Meshes/SM_TreasurePile01"
+  },
+  {
+   "ApproxSize": "147x150x29",
+   "CollisionPrims": "4",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "8868",
+   "Vertices": "8654",
+   "class": "StaticMesh",
+   "name": "SM_TreasurePile02",
+   "path": "/Game/DragonCave/Meshes/SM_TreasurePile02"
+  },
+  {
+   "ApproxSize": "80x168x33",
+   "CollisionPrims": "4",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "25788",
+   "Vertices": "23558",
+   "class": "StaticMesh",
+   "name": "SM_TreasurePile03",
+   "path": "/Game/DragonCave/Meshes/SM_TreasurePile03"
+  },
+  {
+   "ApproxSize": "131x163x36",
+   "CollisionPrims": "4",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "16550",
+   "Vertices": "18474",
+   "class": "StaticMesh",
+   "name": "SM_TreasurePile04",
+   "path": "/Game/DragonCave/Meshes/SM_TreasurePile04"
+  },
+  {
+   "ApproxSize": "158x194x259",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "1816",
+   "Vertices": "1670",
+   "class": "StaticMesh",
+   "name": "SM_TreeBranch09",
+   "path": "/Game/DragonCave/Meshes/SM_TreeBranch09"
+  },
+  {
+   "ApproxSize": "163x125x182",
+   "CollisionPrims": "1",
+   "LODs": "3",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "False",
+   "Triangles": "12308",
+   "Vertices": "7380",
+   "class": "StaticMesh",
+   "name": "SM_TreeBranch10",
+   "path": "/Game/DragonCave/Meshes/SM_TreeBranch10"
+  },
+  {
+   "ApproxSize": "22x22x48",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "370",
+   "Vertices": "228",
+   "class": "StaticMesh",
+   "name": "SM_Vase01",
+   "path": "/Game/DragonCave/Meshes/SM_Vase01"
+  },
+  {
+   "ApproxSize": "60x141x42",
+   "CollisionPrims": "4",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "NaniteEnabled": "True",
+   "Triangles": "4306",
+   "Vertices": "3051",
+   "class": "StaticMesh",
+   "name": "SM_WheelBarrow01",
+   "path": "/Game/DragonCave/Meshes/SM_WheelBarrow01"
+  },
+  {
+   "class": "LevelSequence",
+   "name": "Demo",
+   "path": "/Game/DragonCave/Sequences/Demo"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_BridgeSet_BC",
+   "path": "/Game/DragonCave/Textures/T_BridgeSet_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "16384x8192",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_BridgeSet_N",
+   "path": "/Game/DragonCave/Textures/T_BridgeSet_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_BridgeSet_ORM",
+   "path": "/Game/DragonCave/Textures/T_BridgeSet_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Caustics_BC",
+   "path": "/Game/DragonCave/Textures/T_Caustics_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks01_BC",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks01_N",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks01_ORM",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks02_BC",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks02_N",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks02_ORM",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks02_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks03_BC",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks03_N",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CaveRocks03_ORM",
+   "path": "/Game/DragonCave/Textures/T_CaveRocks03_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles01_BC",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles01_N",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles01_ORM",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles02_BC",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles02_N",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CeramicTiles02_ORM",
+   "path": "/Game/DragonCave/Textures/T_CeramicTiles02_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CloudNoise01",
+   "path": "/Game/DragonCave/Textures/T_CloudNoise01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CoffinStone01_BC",
+   "path": "/Game/DragonCave/Textures/T_CoffinStone01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CoffinStone01_MSK",
+   "path": "/Game/DragonCave/Textures/T_CoffinStone01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CoffinStone01_N",
+   "path": "/Game/DragonCave/Textures/T_CoffinStone01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CoffinStone01_ORM",
+   "path": "/Game/DragonCave/Textures/T_CoffinStone01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete01_BC",
+   "path": "/Game/DragonCave/Textures/T_Concrete01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete01_N",
+   "path": "/Game/DragonCave/Textures/T_Concrete01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete01_ORM",
+   "path": "/Game/DragonCave/Textures/T_Concrete01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete02_BC",
+   "path": "/Game/DragonCave/Textures/T_Concrete02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete02_N",
+   "path": "/Game/DragonCave/Textures/T_Concrete02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Concrete02_ORM",
+   "path": "/Game/DragonCave/Textures/T_Concrete02_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall01_BC",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall01_N",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall01_ORM",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall02_BC",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall03_BC",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall03_N",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ConcreteWall03_ORM",
+   "path": "/Game/DragonCave/Textures/T_ConcreteWall03_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DeadTree_BC",
+   "path": "/Game/DragonCave/Textures/T_DeadTree_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DeadTree_MSK",
+   "path": "/Game/DragonCave/Textures/T_DeadTree_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DeadTree_N",
+   "path": "/Game/DragonCave/Textures/T_DeadTree_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DeadTree_ORM",
+   "path": "/Game/DragonCave/Textures/T_DeadTree_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Decals01_MSK",
+   "path": "/Game/DragonCave/Textures/T_Decals01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Decals01_N",
+   "path": "/Game/DragonCave/Textures/T_Decals01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "426x240",
+   "Format": "B8G8R8A8",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Dirt_MSK",
+   "path": "/Game/DragonCave/Textures/T_Dirt_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "20480x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dragon_BC",
+   "path": "/Game/DragonCave/Textures/T_Dragon_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "20480x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dragon_E",
+   "path": "/Game/DragonCave/Textures/T_Dragon_E"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "20480x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dragon_MSK",
+   "path": "/Game/DragonCave/Textures/T_Dragon_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "20480x8192",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dragon_N",
+   "path": "/Game/DragonCave/Textures/T_Dragon_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "20480x8192",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dragon_ORM",
+   "path": "/Game/DragonCave/Textures/T_Dragon_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DustMask01_MSK",
+   "path": "/Game/DragonCave/Textures/T_DustMask01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Floor01_BC",
+   "path": "/Game/DragonCave/Textures/T_Floor01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Floor01_N",
+   "path": "/Game/DragonCave/Textures/T_Floor01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Floor01_ORM",
+   "path": "/Game/DragonCave/Textures/T_Floor01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles01_BC",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles01_N",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles01_ORM",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles02_BC",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles02_N",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GroundTiles02_ORM",
+   "path": "/Game/DragonCave/Textures/T_GroundTiles02_ORM"
+  },
+  {
+   "CompressionSettings": "TC_HDR",
+   "Dimensions": "4096x2048",
+   "Format": "FloatRGBA",
+   "class": "TextureCube",
+   "name": "T_HDRIBackdrop01",
+   "path": "/Game/DragonCave/Textures/T_HDRIBackdrop01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_InfernoRocks01_BC",
+   "path": "/Game/DragonCave/Textures/T_InfernoRocks01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "16384x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_InfernoRocks01_N",
+   "path": "/Game/DragonCave/Textures/T_InfernoRocks01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_InfernoRocks01_ORM",
+   "path": "/Game/DragonCave/Textures/T_InfernoRocks01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargePillars_BC",
+   "path": "/Game/DragonCave/Textures/T_LargePillars_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargePillars_N",
+   "path": "/Game/DragonCave/Textures/T_LargePillars_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargePillars_ORM",
+   "path": "/Game/DragonCave/Textures/T_LargePillars_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock01_BC",
+   "path": "/Game/DragonCave/Textures/T_LargeRock01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock01_N",
+   "path": "/Game/DragonCave/Textures/T_LargeRock01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock01_ORM",
+   "path": "/Game/DragonCave/Textures/T_LargeRock01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock02_BC",
+   "path": "/Game/DragonCave/Textures/T_LargeRock02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock02_N",
+   "path": "/Game/DragonCave/Textures/T_LargeRock02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock02_ORM",
+   "path": "/Game/DragonCave/Textures/T_LargeRock02_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock03_BC",
+   "path": "/Game/DragonCave/Textures/T_LargeRock03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock03_N",
+   "path": "/Game/DragonCave/Textures/T_LargeRock03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LargeRock03_ORM",
+   "path": "/Game/DragonCave/Textures/T_LargeRock03_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_LeakingDecals01_MSK",
+   "path": "/Game/DragonCave/Textures/T_LeakingDecals01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_LeakingMask01_MSK",
+   "path": "/Game/DragonCave/Textures/T_LeakingMask01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenBeam_BC",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenBeam_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenBeam_MSK",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenBeam_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenBeam_N",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenBeam_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenBeam_ORM",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenBeam_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenPlank_BC",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenPlank_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenPlank_MSK",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenPlank_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenPlank_N",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenPlank_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_OldWoodenPlank_ORM",
+   "path": "/Game/DragonCave/Textures/T_OldWoodenPlank_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Puddle01_BC",
+   "path": "/Game/DragonCave/Textures/T_Puddle01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Puddle01_MSK",
+   "path": "/Game/DragonCave/Textures/T_Puddle01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Puddle04_MSK",
+   "path": "/Game/DragonCave/Textures/T_Puddle04_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RottenTree_BC",
+   "path": "/Game/DragonCave/Textures/T_RottenTree_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RottenTree_E",
+   "path": "/Game/DragonCave/Textures/T_RottenTree_E"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "16384x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RottenTree_N",
+   "path": "/Game/DragonCave/Textures/T_RottenTree_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "16384x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RottenTree_ORM",
+   "path": "/Game/DragonCave/Textures/T_RottenTree_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs01_BC",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs01_MSK",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs01_N",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs01_ORM",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs02_BC",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs02_MSK",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs02_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs02_N",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs02_ORM",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs02_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs03_BC",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs03_MSK",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs03_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs03_N",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_RoughStairs03_ORM",
+   "path": "/Game/DragonCave/Textures/T_RoughStairs03_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ShowroomFloor_BC",
+   "path": "/Game/DragonCave/Textures/T_ShowroomFloor_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneDebris01_BC",
+   "path": "/Game/DragonCave/Textures/T_StoneDebris01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneDebris01_MSK",
+   "path": "/Game/DragonCave/Textures/T_StoneDebris01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneDebris01_N",
+   "path": "/Game/DragonCave/Textures/T_StoneDebris01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneDebris01_ORM",
+   "path": "/Game/DragonCave/Textures/T_StoneDebris01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneFloor01_BC",
+   "path": "/Game/DragonCave/Textures/T_StoneFloor01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneFloor01_MSK",
+   "path": "/Game/DragonCave/Textures/T_StoneFloor01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneFloor01_N",
+   "path": "/Game/DragonCave/Textures/T_StoneFloor01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneFloor01_ORM",
+   "path": "/Game/DragonCave/Textures/T_StoneFloor01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StonePaintings01_BC",
+   "path": "/Game/DragonCave/Textures/T_StonePaintings01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StonePaintings02_MSK",
+   "path": "/Game/DragonCave/Textures/T_StonePaintings02_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "12288x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneWall_BC",
+   "path": "/Game/DragonCave/Textures/T_StoneWall_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "12288x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneWall_N",
+   "path": "/Game/DragonCave/Textures/T_StoneWall_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "12288x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_StoneWall_ORM",
+   "path": "/Game/DragonCave/Textures/T_StoneWall_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "28672x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Stoneworks_BC",
+   "path": "/Game/DragonCave/Textures/T_Stoneworks_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "28672x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Stoneworks_N",
+   "path": "/Game/DragonCave/Textures/T_Stoneworks_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "28672x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Stoneworks_ORM",
+   "path": "/Game/DragonCave/Textures/T_Stoneworks_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Treasures01_BC",
+   "path": "/Game/DragonCave/Textures/T_Treasures01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Treasures01_N",
+   "path": "/Game/DragonCave/Textures/T_Treasures01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Treasures01_ORM",
+   "path": "/Game/DragonCave/Textures/T_Treasures01_ORM"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WaterMask_BC",
+   "path": "/Game/DragonCave/Textures/T_WaterMask_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1024x1024",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WaterMask_N",
+   "path": "/Game/DragonCave/Textures/T_WaterMask_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WheelBarrow01_BC",
+   "path": "/Game/DragonCave/Textures/T_WheelBarrow01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WheelBarrow01_MSK",
+   "path": "/Game/DragonCave/Textures/T_WheelBarrow01_MSK"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WheelBarrow01_N",
+   "path": "/Game/DragonCave/Textures/T_WheelBarrow01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_WheelBarrow01_ORM",
+   "path": "/Game/DragonCave/Textures/T_WheelBarrow01_ORM"
+  }
+ ],
+ "count": 333,
+ "registry_ready": true,
+ "root": "/Game/DragonCave",
+ "tag_error": null
+}

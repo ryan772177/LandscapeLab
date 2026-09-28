@@ -1,0 +1,82 @@
+# brief7 L0 write (Ryan rulings): hide the 3 HeroStage rig lights in-game;
+# PPV_Look WB 6200 -> 5800; DISABLE the cloud actor for P1-P3 (SimpleVolumetric-
+# Cloud cannot make scattered cumulus with >=60% clear sky -- BACKLOG). Records
+# BEFORE values; saves; post-save dirty census (rule 13). Does NOT touch the
+# bench PPV / bench profile / benchmark.json (R-LOOK-1).
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+RIG = ["HeroStage_Key", "HeroStage_Fill", "HeroStage_Rim"]
+SUN = "Lighting_alpine_8k_Sun"
+CLOUD = "Lighting_alpine_8k_Clouds"
+NEW_WB = 5800.0
+
+_out = {"error": None, "before": {}, "applied": {}, "saved": {}, "notes": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    def _find(label, cls):
+        m = [a for a in _all if isinstance(a, cls)
+             and str(a.get_actor_label()) == label]
+        if not m:
+            raise RuntimeError("actor not found: " + label)
+        return m[0]
+
+    # 1. hide the 3 HeroStage rig lights IN GAME (persisted). They stay
+    #    available in the editor for hero-portrait work; the shipped world is
+    #    lit by the atmosphere sun + skylight only.
+    for _lbl in RIG:
+        _a = _find(_lbl, _u.DirectionalLight)
+        _out["before"][_lbl + ".hidden_in_game"] = bool(_a.get_editor_property("hidden"))
+        _a.set_actor_hidden_in_game(True)
+        _out["applied"][_lbl + ".hidden_in_game"] = bool(_a.get_editor_property("hidden"))
+
+    # confirm the atmosphere sun is NOT hidden (guard: never hide the sun)
+    _sun = _find(SUN, _u.DirectionalLight)
+    _out["applied"]["sun.hidden_in_game"] = bool(_sun.get_editor_property("hidden"))
+    if _out["applied"]["sun.hidden_in_game"]:
+        raise RuntimeError("REFUSE: the atmosphere sun is hidden -- aborting")
+
+    # 2. PPV_Look white balance 6200 -> 5800 (Ryan: WB change; the rig-off +
+    #    open sky already cools the scene, 5800 is a modest cool from 6200).
+    _look = _find("PPV_Look", _u.PostProcessVolume)
+    _s = _look.get_editor_property("settings")
+    _out["before"]["ppv_look.white_temp"] = float(_s.get_editor_property("white_temp"))
+    _s.set_editor_property("white_temp", NEW_WB)
+    _look.modify(True)
+    _look.set_editor_property("settings", _s)
+    _out["applied"]["ppv_look.white_temp"] = float(
+        _look.get_editor_property("settings").get_editor_property("white_temp"))
+
+    # 3. DISABLE the cloud actor for P1-P3 (open sky beats a lid; BACKLOG proper
+    #    scattered cumulus). hidden_in_game True + component invisible (editor
+    #    AND game) so the stills show the open SkyAtmosphere.
+    _cl = _find(CLOUD, _u.VolumetricCloud)
+    _out["before"][CLOUD + ".hidden_in_game"] = bool(_cl.get_editor_property("hidden"))
+    _cc = _cl.get_component_by_class(_u.VolumetricCloudComponent)
+    _out["before"][CLOUD + ".component_visible"] = bool(_cc.get_editor_property("visible"))
+    _cl.set_actor_hidden_in_game(True)
+    _cc.set_visibility(False, True)
+    _cl.modify(True)
+    _cc.modify(True)
+    _out["applied"][CLOUD + ".hidden_in_game"] = bool(_cl.get_editor_property("hidden"))
+    _out["applied"][CLOUD + ".component_visible"] = bool(_cc.get_editor_property("visible"))
+
+    # --- persist + dirty census (rule 13) ---
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _out["saved"]["level_call"] = bool(_les.save_current_level())
+    _dm = [str(p) for p in _u.EditorLoadingAndSavingUtils.get_dirty_map_packages()]
+    _dc = [str(p) for p in _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()]
+    _out["saved"]["dirty_map_count"] = len(_dm)
+    _out["saved"]["dirty_content_count"] = len(_dc)
+    _out["saved"]["dirty_map"] = _dm
+    _out["saved"]["dirty_content"] = _dc
+    if _dm or _dc:
+        _out["notes"].append("POST-SAVE DIRTY map=%d content=%d -- cold read-back "
+                             "is definitive" % (len(_dm), len(_dc)))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL_L0W__" + _json.dumps(_out, default=str))

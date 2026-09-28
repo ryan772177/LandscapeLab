@@ -1,0 +1,30 @@
+# Foliage world census: instances per FT_* foliage type actually in the
+# open world, read from the InstancedFoliageActor components. READ-ONLY.
+# Written 2026-09-27 for the rocks world run: place_foliage's payload
+# rebuilds every handed species from its plan file (remove_all_instances
+# then add_instances), so the world after a run EQUALS the plans -- this
+# says what the world holds BEFORE, so the diff is known, not assumed.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"ok": False, "error": None, "types": {}, "total": 0}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = _w.get_path_name() if _w else None
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ifas = [a for a in _eas.get_all_level_actors()
+             if isinstance(a, _u.InstancedFoliageActor)]
+    _out["ifa_count"] = len(_ifas)
+    for _a in _ifas:
+        for _c in _a.get_components_by_class(_u.FoliageInstancedStaticMeshComponent):
+            _n = int(_c.get_instance_count())
+            _sm = _c.get_editor_property("static_mesh")
+            _key = _sm.get_path_name() if _sm else "<no mesh>"
+            _out["types"][_key] = _out["types"].get(_key, 0) + _n
+            _out["total"] += _n
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:300])
+_out["ok"] = _out["error"] is None
+print("__LL__" + _json.dumps(_out, default=str))

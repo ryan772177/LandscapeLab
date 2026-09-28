@@ -1,0 +1,105 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Set the MetaHuman hair colour parameters on the material instances the Hair
+# slot actually renders, and read every write back off a reloaded asset.
+#
+# WRITES THE MATERIAL ASSET, NOT THE COMPONENT'S override_materials. That
+# distinction is load-bearing: writing `override_materials` NULLS the
+# component's binding_asset, and an unbound groom draws nothing while every
+# read-back still reports success (measured 2026-08-21). Touching the MI leaves
+# the component untouched -- and the binding is re-checked afterwards anyway,
+# because "should not" is not "did not".
+#
+# Parameter names come from the asset (hair_color_probe.txt enumerated them),
+# not from convention. `hairWhiteness` does not exist on this master and a write
+# to a non-existent parameter returns success and changes nothing.
+
+# PARAMETERS COME THROUGH A FILE, not through --set literals.
+# PowerShell strips the double quotes out of an inline JSON argument, so
+# `TARGETS = ["/Game/..."]` arrived as `TARGETS = [/Game/...]` and the payload
+# died on a SyntaxError. That is standing rule 3's mechanism -- a shell layer
+# eating characters -- in a different costume, and the fix is the same one:
+# a path has no failure mode.
+PARAMS_JSON = r"__PARAMS_JSON__"
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+
+with open(PARAMS_JSON, "r", encoding="utf-8") as _fh:
+    _P = _json.load(_fh)
+TARGETS = _P["targets"]
+SCALARS = _P["scalars"]
+VECTORS = _P["vectors"]
+
+_out = {"ok": False, "error": None, "written": {}, "unknown": []}
+try:
+    _mel = _u.MaterialEditingLibrary
+    for _p in TARGETS:
+        _mi = _u.EditorAssetLibrary.load_asset(_p)
+        if _mi is None:
+            _out["unknown"].append(_p + " (could not load)")
+            continue
+        _names = set(str(_n) for _n in _mel.get_scalar_parameter_names(_mi))
+        _vnames = set(str(_n) for _n in _mel.get_vector_parameter_names(_mi))
+        for _k, _v in SCALARS.items():
+            if _k not in _names:
+                _out["unknown"].append("%s scalar %s" % (_p.split('/')[-1], _k))
+                continue
+            _mel.set_material_instance_scalar_parameter_value(
+                _mi, _k, float(_v))
+        for _k, _v in VECTORS.items():
+            if _k not in _vnames:
+                _out["unknown"].append("%s vector %s" % (_p.split('/')[-1], _k))
+                continue
+            _mel.set_material_instance_vector_parameter_value(
+                _mi, _k, _u.LinearColor(float(_v[0]), float(_v[1]),
+                                        float(_v[2]), 1.0))
+        _u.EditorAssetLibrary.save_asset(_p, only_if_is_dirty=False)
+
+        # read back off a RELOADED asset
+        _mi2 = _u.EditorAssetLibrary.load_asset(_p)
+        _rb = {}
+        for _k in SCALARS:
+            if _k in _names:
+                _rb[_k] = round(float(
+                    _mel.get_material_instance_scalar_parameter_value(_mi2, _k)), 5)
+        for _k in VECTORS:
+            if _k in _vnames:
+                _c = _mel.get_material_instance_vector_parameter_value(_mi2, _k)
+                _rb[_k] = [round(_c.r, 4), round(_c.g, 4), round(_c.b, 4)]
+        _out["written"][_p.split("/")[-1]] = _rb
+
+    # every write verified against what was asked for
+    _bad = []
+    for _mi_name, _rb in _out["written"].items():
+        for _k, _v in SCALARS.items():
+            if _k in _rb and abs(_rb[_k] - float(_v)) > 1e-4:
+                _bad.append("%s %s = %s, asked %s" % (_mi_name, _k, _rb[_k], _v))
+        for _k, _v in VECTORS.items():
+            if _k in _rb and max(abs(_rb[_k][_i] - float(_v[_i]))
+                                 for _i in range(3)) > 1e-3:
+                _bad.append("%s %s = %s, asked %s" % (_mi_name, _k, _rb[_k], _v))
+    _out["mismatches"] = _bad
+
+    # THE BINDING MUST STILL BE THERE.
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _c in _a.get_components_by_class(_u.GroomComponent):
+            if _c.get_name().lower().startswith(SLOT.lower()):
+                _b = _c.get_editor_property("binding_asset")
+                _out["binding_after"] = _b.get_name() if _b else None
+    _out["ok"] = (not _bad) and bool(_out.get("binding_after"))
+    if _bad:
+        _out["error"] = "a parameter did not read back at its target"
+    elif not _out.get("binding_after"):
+        _out["error"] = "the binding is gone after the material write"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

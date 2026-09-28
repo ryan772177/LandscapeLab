@@ -1,0 +1,53 @@
+{
+ "_what": "Textures obtained DIRECTLY from polyhaven.com, CC0.",
+ "_why": "RULED 2026-08-30. The donor .fbm copies are inside a directory the AI-input guard refuses; the restriction belongs to the MESH and renders of it, not to the third-party CC0 textures bundled beside it. Sourcing direct removes the ambiguity without touching the guard's scope.",
+ "_hash_comparison": "a MATCH proves the provenance-by-filename claim -- that the .fbm copy really is the Poly Haven asset its name says. A MISMATCH means the bundled copy was re-encoded or edited, so the filename is a claim and not evidence.",
+ "_adopted": "2026-08-30",
+ "files": [
+  {
+   "asset_id": "rock_wall_08",
+   "resolution": "2k",
+   "file": "refs/polyhaven/rock_wall_08_diff_2k.jpg",
+   "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_wall_08/rock_wall_08_diff_2k.jpg",
+   "asset_page": "https://polyhaven.com/a/rock_wall_08",
+   "licence": "CC0",
+   "licence_page": "https://polyhaven.com/license",
+   "authors": "Amal Kumar",
+   "bytes": 3086496,
+   "sha256_downloaded": "d01a1cbadd402ca039a76d5905b0334ed5fb3e471b0547fe7ba2bb185c7c5f9f",
+   "sha256_fbm_copy": "d01a1cbadd402ca039a76d5905b0334ed5fb3e471b0547fe7ba2bb185c7c5f9f",
+   "hash_matches_fbm": true,
+   "api_size_declared": 3086496
+  },
+  {
+   "asset_id": "wood_planks_grey",
+   "resolution": "2k",
+   "file": "refs/polyhaven/wood_planks_grey_diff_2k.jpg",
+   "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks_grey/wood_planks_grey_diff_2k.jpg",
+   "asset_page": "https://polyhaven.com/a/wood_planks_grey",
+   "licence": "CC0",
+   "licence_page": "https://polyhaven.com/license",
+   "authors": "Rob Tuytel",
+   "bytes": 998333,
+   "sha256_downloaded": "31bdd475c6f1520fccc34a6823bfab8ba61ce5fd6dd97a3d1d868c21295e1000",
+   "sha256_fbm_copy": "31bdd475c6f1520fccc34a6823bfab8ba61ce5fd6dd97a3d1d868c21295e1000",
+   "hash_matches_fbm": true,
+   "api_size_declared": 998333
+  },
+  {
+   "asset_id": "concrete_floor_worn_001",
+   "resolution": "4k",
+   "file": "refs/polyhaven/concrete_floor_worn_001_diff_4k.jpg",
+   "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/concrete_floor_worn_001/concrete_floor_worn_001_diff_4k.jpg",
+   "asset_page": "https://polyhaven.com/a/concrete_floor_worn_001",
+   "licence": "CC0",
+   "licence_page": "https://polyhaven.com/license",
+   "authors": "Dimitrios Savva, Rico Cilliers",
+   "bytes": 1916459,
+   "sha256_downloaded": "73a4f3fe96a2c31d34dd7e7af5f1db440362eed770c38384ee2948e10419e4fb",
+   "sha256_fbm_copy": "73a4f3fe96a2c31d34dd7e7af5f1db440362eed770c38384ee2948e10419e4fb",
+   "hash_matches_fbm": true,
+   "api_size_declared": 1916459
+  }
+ ]
+}

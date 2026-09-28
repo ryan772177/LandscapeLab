@@ -1,0 +1,50 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Set enable_global_interpolation on a groom asset and SAVE it.
+#
+# WHY THIS IS ITS OWN STEP: the flag changes what the BINDING must compute --
+# RBF interpolation weights instead of a local skin rigid transform -- so it
+# has to be true on the groom BEFORE the binding is built. Setting it after
+# would leave a binding carrying the wrong kind of data and a groom claiming
+# the other kind, and the render would be judged on that.
+#
+# It writes to the RAW IMPORT (Hair_v22), not to the live bound copy, so the
+# assets the hero is currently wearing are untouched and the comparison has
+# something to go back to.
+
+GROOM = "__GROOM__"
+VALUE = "__VALUE__"
+
+_out = {"ok": False, "error": None, "groom": GROOM}
+try:
+    _eal = _u.EditorAssetLibrary
+    _g = _eal.load_asset(GROOM)
+    if _g is None or not isinstance(_g, _u.GroomAsset):
+        raise RuntimeError("no GroomAsset at " + GROOM)
+    _want = VALUE.lower() in ("1", "true", "yes")
+    _out["before"] = bool(_g.get_editor_property("enable_global_interpolation"))
+    _g.set_editor_property("enable_global_interpolation", _want)
+    _after = bool(_g.get_editor_property("enable_global_interpolation"))
+    _out["after"] = _after
+    if _after != _want:
+        raise RuntimeError("flag did not take: asked %s, read %s"
+                           % (_want, _after))
+    _saved = _eal.save_asset(GROOM, only_if_is_dirty=False)
+    _out["saved"] = bool(_saved)
+
+    # Re-load from disk and read it again. A set that lands in memory and not
+    # on disk is this project's most-repeated failure, and the binding build
+    # below reads the asset, not my variable.
+    _eal.load_asset(GROOM)
+    _out["after_reload"] = bool(
+        _eal.load_asset(GROOM).get_editor_property(
+            "enable_global_interpolation"))
+    _out["ok"] = _out["after_reload"] == _want
+    if not _out["ok"]:
+        _out["error"] = "flag did not survive the save"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

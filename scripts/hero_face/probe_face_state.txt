@@ -1,0 +1,55 @@
+# probe_face_state — read the hero's face sculpt state. READ ONLY.
+#
+# Establishes, by measurement rather than by memory:
+#   how many sculpt landmarks the face model exposes and where they are,
+#   how many face-model coefficients drive it,
+#   and whether the character registers for editing at all.
+#
+# Writes the FULL landmark array to disk and returns only a summary, because
+# a large reply is the transport limit that has silently truncated this
+# project's tools before. The artefact is the record; the reply is a receipt.
+import json as _json
+import unreal as _unreal
+
+_OUT_PATH = r"__OUTPATH__"
+_out = {"error": None, "loaded": None, "added_for_edit": None,
+        "landmark_count": None, "coeff_count": None,
+        "bbox_min": None, "bbox_max": None, "extent_cm": None,
+        "wrote": None, "first_5": None}
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    _out["loaded"] = _ch is not None
+    if _ch is None:
+        _out["error"] = "MHC_AlpineHero did not load"
+    else:
+        # Registering is a precondition of nearly every read below. If it
+        # fails, every subsequent number would be a confident zero from an
+        # instrument that was never connected -- so it stops here instead.
+        _added = _ss.is_object_added_for_editing(_ch)
+        if not _added:
+            _added = _ss.try_add_object_to_edit(_ch)
+        _out["added_for_edit"] = bool(_added)
+        if not _added:
+            _out["error"] = "try_add_object_to_edit returned False"
+        else:
+            _lm = _ss.get_face_landmarks(_ch)
+            _co = _ss.get_face_model_coefficients(_ch)
+            _out["landmark_count"] = len(_lm)
+            _out["coeff_count"] = len(_co)
+            _pts = [[float(_v.x), float(_v.y), float(_v.z)] for _v in _lm]
+            if _pts:
+                _mn = [min(_p[_i] for _p in _pts) for _i in range(3)]
+                _mx = [max(_p[_i] for _p in _pts) for _i in range(3)]
+                _out["bbox_min"] = [round(_c, 3) for _c in _mn]
+                _out["bbox_max"] = [round(_c, 3) for _c in _mx]
+                _out["extent_cm"] = [round(_mx[_i] - _mn[_i], 3) for _i in range(3)]
+                _out["first_5"] = [[round(_c, 3) for _c in _p] for _p in _pts[:5]]
+            with open(_OUT_PATH, "w") as _fh:
+                _json.dump({"landmarks": _pts,
+                            "coefficients": [float(_c) for _c in _co]},
+                           _fh)
+            _out["wrote"] = _OUT_PATH
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out))

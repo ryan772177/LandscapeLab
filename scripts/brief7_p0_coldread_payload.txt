@@ -1,0 +1,87 @@
+# brief7 cold read-back (fresh editor process, post-relaunch). READ-ONLY.
+# Proves 0c (pre-exposure ini) and 0d (PPV_Look + sun + fog + cloud) persisted
+# across an editor restart -- the persist-protocol cross-process check.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"error": None, "level": None, "preexposure": None,
+        "ppv_look": None, "sun": None, "fog": None, "cloud_coverage": None}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = str(_w.get_path_name()) if _w else None
+
+    _sl = _u.SystemLibrary
+    _s = _sl.get_console_variable_string_value(
+        "r.EyeAdaptation.CachedLightingPreExposure")
+    _out["preexposure"] = None if not _s else float(
+        _sl.get_console_variable_float_value(
+            "r.EyeAdaptation.CachedLightingPreExposure"))
+
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    _look = [a for a in _all if isinstance(a, _u.PostProcessVolume)
+             and str(a.get_actor_label()) == "PPV_Look"]
+    if _look:
+        _a = _look[0]
+        _st = _a.get_editor_property("settings")
+        _out["ppv_look"] = {
+            "found": True,
+            "unbound": str(_a.get_editor_property("unbound")),
+            "priority": str(_a.get_editor_property("priority")),
+            "enabled": str(_a.get_editor_property("enabled")),
+            "auto_exposure_method": str(_st.get_editor_property("auto_exposure_method")),
+            "auto_exposure_bias": str(_st.get_editor_property("auto_exposure_bias")),
+            "white_temp": str(_st.get_editor_property("white_temp")),
+            "white_tint": str(_st.get_editor_property("white_tint")),
+            "color_contrast": str(_st.get_editor_property("color_contrast")),
+            "local_exposure_highlight_contrast_scale": str(
+                _st.get_editor_property("local_exposure_highlight_contrast_scale")),
+            "bloom_intensity": str(_st.get_editor_property("bloom_intensity")),
+            "film_grain_intensity": str(_st.get_editor_property("film_grain_intensity")),
+            "vignette_intensity": str(_st.get_editor_property("vignette_intensity"))}
+    else:
+        _out["ppv_look"] = {"found": False}
+
+    _sun = [a for a in _all if isinstance(a, _u.DirectionalLight)
+            and str(a.get_actor_label()) == "Lighting_alpine_8k_Sun"]
+    if _sun:
+        _lc = _sun[0].get_component_by_class(_u.LightComponent)
+        _out["sun"] = {
+            "enable_light_shaft_bloom": str(_lc.get_editor_property("enable_light_shaft_bloom")),
+            "enable_light_shaft_occlusion": str(_lc.get_editor_property("enable_light_shaft_occlusion"))}
+
+    _fog = [a for a in _all if isinstance(a, _u.ExponentialHeightFog)
+            and str(a.get_actor_label()) == "Lighting_alpine_8k_Fog"]
+    if _fog:
+        _fc = _fog[0].get_component_by_class(_u.ExponentialHeightFogComponent)
+        _out["fog"] = {
+            "enable_volumetric_fog": str(_fc.get_editor_property("enable_volumetric_fog")),
+            "volumetric_fog_scattering_distribution": str(
+                _fc.get_editor_property("volumetric_fog_scattering_distribution"))}
+
+    _mi = _u.load_asset("/Game/Bench/MI_AlpineClouds")
+    if _mi is not None:
+        _out["cloud_coverage"] = float(
+            _u.MaterialEditingLibrary.get_material_instance_scalar_parameter_value(
+                _mi, "Cloud_GlobalCoverage"))
+
+    # L0 additions: rig hidden_in_game, cloud actor disabled
+    _out["rig_hidden_in_game"] = {}
+    for _a in _all:
+        if isinstance(_a, _u.DirectionalLight) and str(_a.get_actor_label()) in (
+                "HeroStage_Key", "HeroStage_Fill", "HeroStage_Rim"):
+            _out["rig_hidden_in_game"][str(_a.get_actor_label())] = bool(
+                _a.get_editor_property("hidden"))
+    _cl = [a for a in _all if isinstance(a, _u.VolumetricCloud)]
+    if _cl:
+        _cc = _cl[0].get_component_by_class(_u.VolumetricCloudComponent)
+        _out["cloud_actor"] = {
+            "hidden_in_game": bool(_cl[0].get_editor_property("hidden")),
+            "component_visible": bool(_cc.get_editor_property("visible"))}
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL_COLD__" + _json.dumps(_out, default=str))

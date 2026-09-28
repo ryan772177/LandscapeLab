@@ -1,0 +1,150 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Colour a CUSTOM (Blender-authored) groom.
+#
+# WHY THIS IS NOT groom_color.py. That tool writes the character INSTANCE
+# parameters, which is the durable surface for a WARDROBE groom. A custom
+# groom is assigned straight to the GroomComponent and never passes through
+# the wardrobe, so no instance parameter reaches it.
+#
+# MEASURED 2026-08-21, which is what made this obvious: the Hair component had
+# `override_materials` EMPTY and was rendering on
+# `/HairStrands/Materials/HairDefaultMaterial` -- the ENGINE DEFAULT -- while
+# Beard, Mustache and Eyebrows each carried their assembled `MI_WI_*`
+# overrides at melanin 0.92 / redness 0.28. The hair was not "vendor blonde";
+# it was uncoloured, because nothing had ever given it a material.
+#
+# AND THE BIND PAYLOAD CLEARS THE OVERRIDES. `fresh_bind_payload.txt` does
+# `set_editor_property("override_materials", [])` on purpose, so colour must
+# be applied AFTER binding and re-applied after any re-bind.
+#
+# NAMES COME FROM THE ASSET: the parent and the two scalar names are read off
+# a working groom's own material instance rather than assumed.
+
+MI_PATH   = "__MI_PATH__"
+PARENT    = "__PARENT__"
+MELANIN   = __MELANIN__
+REDNESS   = __REDNESS__
+SUBJECT   = "__SUBJECT__"
+SLOT      = "__SLOT__"
+BINDING   = "__BINDING__"     # re-asserted AFTER the material -- see below
+
+_out = {"ok": False, "error": None, "mi": MI_PATH, "slot": SLOT}
+try:
+    _eal = _u.EditorAssetLibrary
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _parent = _eal.load_asset(PARENT)
+    if _parent is None:
+        raise RuntimeError("no parent material at " + PARENT)
+
+    _mi = _eal.load_asset(MI_PATH)
+    if _mi is None:
+        _tools = _u.AssetToolsHelpers.get_asset_tools()
+        _pkg = MI_PATH.rsplit("/", 1)[0]
+        _name = MI_PATH.rsplit("/", 1)[1]
+        _mi = _tools.create_asset(_name, _pkg, _u.MaterialInstanceConstant,
+                                  _u.MaterialInstanceConstantFactoryNew())
+        if _mi is None:
+            raise RuntimeError("create_asset returned None for " + MI_PATH)
+        _out["created"] = True
+    else:
+        _out["created"] = False
+    _mi.set_editor_property("parent", _parent)
+
+    # THE SETTER RETURNS FALSE ON NAMES THE INSTANCE ITSELF LISTS -- recorded
+    # 2026-08-16 on the skin bake -- so the write is checked by READ-BACK, not
+    # by the return value.
+    _mel = _u.MaterialEditingLibrary
+    for _n, _v in (("hairMelanin", MELANIN), ("hairRedness", REDNESS)):
+        _mel.set_material_instance_scalar_parameter_value(_mi, _n, _v)
+    _eal.save_loaded_asset(_mi)
+
+    _rb = {}
+    for _sp in _mi.get_editor_property("scalar_parameter_values"):
+        _i = _sp.get_editor_property("parameter_info")
+        _rb[str(_i.get_editor_property("name"))] = round(
+            float(_sp.get_editor_property("parameter_value")), 4)
+    _out["readback"] = _rb
+    if abs(_rb.get("hairMelanin", -1) - MELANIN) > 1e-3:
+        raise RuntimeError("hairMelanin did not read back: %s" % _rb)
+    if abs(_rb.get("hairRedness", -1) - REDNESS) > 1e-3:
+        raise RuntimeError("hairRedness did not read back: %s" % _rb)
+
+    _subj = None
+    for _a in _eas.get_all_level_actors():
+        if _a.get_actor_label() == SUBJECT:
+            _subj = _a
+            break
+    if _subj is None:
+        raise RuntimeError("subject not placed: " + SUBJECT)
+
+    _comp = None
+    for _c in _subj.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == SLOT:
+            _comp = _c
+            break
+    if _comp is None:
+        raise RuntimeError("no %s groom component" % SLOT)
+
+    # THE MATERIAL IS SET FIRST AND THE BINDING RE-ASSERTED AFTER, AND THAT
+    # ORDER IS THE WHOLE POINT.
+    # Measured 2026-08-21: writing `override_materials` leaves the component's
+    # `binding_asset` NULL. The render then goes bald, the colour payload
+    # reports ok because its own read-backs are all correct, and the obvious
+    # suspect is the material -- which is innocent. Clearing the override did
+    # NOT bring the hair back; reading `binding_asset` did, in one line.
+    #
+    # An unbound groom draws nothing, so any write that disturbs the component
+    # must re-assert the binding and CHECK it.
+    _bind = None
+    if BINDING:
+        _bind = _eal.load_asset(BINDING)
+        if _bind is None:
+            raise RuntimeError("no binding at " + BINDING)
+
+    _n_mat = _comp.get_num_materials()
+    _out["num_materials"] = _n_mat
+    _comp.set_editor_property("override_materials", [_mi] * max(1, _n_mat))
+    # AND THE ASSIGNMENT IS REFUSED ON THE FIRST CALL, INTERMITTENTLY.
+    # Observed repeatedly on 2026-08-21 across several assets: set the binding,
+    # read it back, get None; call again and it sticks. Sometimes the first
+    # call works. The mechanism is NOT established and no theory here is worth
+    # the words, so this retries a bounded number of times and REPORTS THE
+    # COUNT -- which turns the intermittency into data instead of folklore.
+    _rb2 = None
+    _tries = 0
+    if _bind is not None:
+        for _tries in range(1, 9):
+            _comp.set_binding_asset(_bind)
+            _rb2 = _comp.get_editor_property("binding_asset")
+            if _rb2 is not None:
+                break
+    _out["binding_attempts"] = _tries
+    _out["binding_after"] = None if _rb2 is None else str(_rb2.get_name())
+    if _bind is not None and _rb2 is None:
+        raise RuntimeError("binding is NULL after %d attempts -- an unbound "
+                           "groom draws nothing" % _tries)
+    _ov = _comp.get_editor_property("override_materials")
+    _out["override_readback"] = [None if _x is None else str(_x.get_name())
+                                 for _x in _ov]
+    # `get_material(0)` returns None immediately after the override is set --
+    # measured, on an assignment whose own read-back is correct. It is a
+    # convenience accessor and it is NOT the check; `override_materials` is.
+    # Recorded rather than worked around, because a null from an accessor
+    # looked exactly like a failed write and killed the payload once.
+    try:
+        _m0 = _comp.get_material(0)
+        _out["mat0_after"] = "None (accessor, not the check)" if _m0 is None \
+            else str(_m0.get_path_name())
+    except Exception as _e2:
+        _out["mat0_after"] = "unreadable: %s" % _e2
+    if not _ov or _ov[0] is None:
+        raise RuntimeError("override_materials did not assign")
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__COLOR__" + _json.dumps(_out, default=str))

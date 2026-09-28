@@ -1,0 +1,181 @@
+{
+ "assets": [
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonIdle",
+   "path": "/Game/Mannequin/Animations/ThirdPersonIdle"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonJump_End",
+   "path": "/Game/Mannequin/Animations/ThirdPersonJump_End"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonJump_Loop",
+   "path": "/Game/Mannequin/Animations/ThirdPersonJump_Loop"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonJump_Start",
+   "path": "/Game/Mannequin/Animations/ThirdPersonJump_Start"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonRun",
+   "path": "/Game/Mannequin/Animations/ThirdPersonRun"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPersonWalk",
+   "path": "/Game/Mannequin/Animations/ThirdPersonWalk"
+  },
+  {
+   "class": "AnimBlueprint",
+   "name": "ThirdPerson_AnimBP",
+   "path": "/Game/Mannequin/Animations/ThirdPerson_AnimBP"
+  },
+  {
+   "class": "BlendSpace1D",
+   "name": "ThirdPerson_IdleRun_2D",
+   "path": "/Game/Mannequin/Animations/ThirdPerson_IdleRun_2D"
+  },
+  {
+   "class": "AnimSequence",
+   "name": "ThirdPerson_Jump",
+   "path": "/Game/Mannequin/Animations/ThirdPerson_Jump"
+  },
+  {
+   "class": "Material",
+   "name": "M_UE4Man_Body",
+   "path": "/Game/Mannequin/Character/Materials/M_UE4Man_Body"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_UE4Man_ChestLogo",
+   "path": "/Game/Mannequin/Character/Materials/M_UE4Man_ChestLogo"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "ML_GlossyBlack_Latex_UE4",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "ML_Plastic_Shiny_Beige",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "ML_Plastic_Shiny_Beige_LOGO",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "ML_SoftMetal_UE4",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/ML_SoftMetal_UE4"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ML_Aluminum01",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Aluminum01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "512x512",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ML_Aluminum01_N",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Aluminum01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ML_Rubber_Blue_01_D",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "512x512",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ML_Rubber_Blue_01_N",
+   "path": "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N"
+  },
+  {
+   "LODs": "4",
+   "Triangles": "41052",
+   "Vertices": "23297",
+   "class": "SkeletalMesh",
+   "name": "SK_Mannequin",
+   "path": "/Game/Mannequin/Character/Mesh/SK_Mannequin"
+  },
+  {
+   "class": "PhysicsAsset",
+   "name": "SK_Mannequin_PhysicsAsset",
+   "path": "/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset"
+  },
+  {
+   "class": "Skeleton",
+   "name": "UE4_Mannequin_Skeleton",
+   "path": "/Game/Mannequin/Character/Mesh/UE4_Mannequin_Skeleton"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "512x512",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "UE4Man_Logo_N",
+   "path": "/Game/Mannequin/Character/Textures/UE4Man_Logo_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "UE4_LOGO_CARD",
+   "path": "/Game/Mannequin/Character/Textures/UE4_LOGO_CARD"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "UE4_Mannequin_MAT_MASKA",
+   "path": "/Game/Mannequin/Character/Textures/UE4_Mannequin_MAT_MASKA"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "UE4_Mannequin__normals",
+   "path": "/Game/Mannequin/Character/Textures/UE4_Mannequin__normals"
+  }
+ ],
+ "count": 26,
+ "registry_ready": true,
+ "root": "/Game/Mannequin",
+ "tag_error": null
+}

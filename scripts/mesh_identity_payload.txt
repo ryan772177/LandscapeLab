@@ -1,0 +1,77 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# IDENTIFY A STATIC MESH -- name, tris, LODs, Nanite state, bounds, materials.
+# Read-only: loads the asset, spawns nothing, changes nothing.
+#
+# WHY. SM_House02_Roof renders as a ragged gable-shaped SHELL with holes in it,
+# while its BOUNDS (899.3 x 916.6 x 338.0) are exactly a roof's. Two very
+# different explanations with the same picture:
+#   (a) Nanite is enabled and we are seeing the low FALLBACK mesh, in which
+#       case the asset is fine and the render setting is the problem;
+#   (b) the asset really is a ruin/damaged piece, in which case its 338 cm
+#       height is not a chalet roof height and the 738.0 cm silhouette that
+#       ruling 1 is now scored against is measuring the wrong thing AGAIN.
+# The bounds are identical either way, so the picture cannot separate them.
+
+PKG = r"__PKG__"
+
+_out = {"ok": False, "error": None}
+try:
+    _eal = _u.EditorAssetLibrary
+    _m = _eal.load_asset(PKG)
+    if _m is None:
+        raise RuntimeError("asset not found: " + PKG)
+    _out["package"] = PKG
+    _out["name"] = str(_m.get_name())
+    _out["class"] = str(type(_m).__name__)
+
+    _smes = _u.get_editor_subsystem(_u.StaticMeshEditorSubsystem)
+    _out["lod_count"] = int(_smes.get_lod_count(_m))
+    _tris = []
+    for _i in range(_out["lod_count"]):
+        try:
+            _tris.append(int(_m.get_num_triangles(_i)))
+        except Exception:
+            break
+    _out["tris_by_lod"] = _tris
+    try:
+        _out["uv_channels_lod0"] = int(_smes.get_num_uv_channels(_m, 0))
+    except Exception as _e1:
+        _out["uv_error"] = str(_e1)
+
+    # Nanite: the whole question. get_nanite_settings is on the subsystem.
+    try:
+        _ns = _smes.get_nanite_settings(_m)
+        _out["nanite_enabled"] = bool(_ns.enabled)
+        try:
+            _out["nanite_fallback_percent"] = float(
+                _ns.get_editor_property("fallback_percent_triangles"))
+        except Exception:
+            pass
+    except Exception as _e2:
+        _out["nanite_error"] = str(_e2)
+
+    _bb = _m.get_bounding_box()
+    _out["bounds_min"] = [round(float(_bb.min.x), 2), round(float(_bb.min.y), 2),
+                          round(float(_bb.min.z), 2)]
+    _out["bounds_max"] = [round(float(_bb.max.x), 2), round(float(_bb.max.y), 2),
+                          round(float(_bb.max.z), 2)]
+    _out["size_cm"] = [round(float(_bb.max.x - _bb.min.x), 2),
+                       round(float(_bb.max.y - _bb.min.y), 2),
+                       round(float(_bb.max.z - _bb.min.z), 2)]
+
+    _mats = []
+    for _s in _m.static_materials:
+        try:
+            _mi = _s.material_interface
+            _mats.append(str(_mi.get_name()) if _mi else None)
+        except Exception:
+            _mats.append(None)
+    _out["materials"] = _mats
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

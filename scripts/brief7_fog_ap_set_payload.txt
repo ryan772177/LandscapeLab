@@ -1,0 +1,129 @@
+# brief7 P2 step 0 (aerial perspective) -- set ONE ladder cell on the live
+# fog + SkyAtmosphere actors and READ EVERY VALUE BACK from the component.
+# Runtime only: nothing is saved; the editor closes without saving after the
+# ladder, so on-disk fog/atmosphere stay at the Brief-2/0d baseline.
+#
+# Substitutions (ue_exec --set):
+#   DENSITY   fog_density              (baseline 0.00416; ladder holds 0.0015)
+#   START     start_distance, cm       (baseline 0; ladder holds 15000 = 150 m)
+#   ALBEDO    volumetric_fog_albedo    "r,g,b" 0-255 (white = 255,255,255;
+#                                      sky-tinted = 140,179,255 = 0.55,0.70,1.0)
+#   AP        aerial_pespective_view_distance_scale (UE's own spelling; live
+#             baseline 1.0). SkyAtmosphereComponent.h:154 -- "Makes the aerial
+#             perspective look thicker by scaling distances from view to
+#             surfaces" -> >1 brings the aerial perspective CLOSER.
+#
+# Every property name below exists in the 5.8 stub
+# (LandscapeLab/Intermediate/PythonStub/unreal.py: fog_density 536109,
+# start_distance 536218, volumetric_fog_albedo 536252,
+# enable_volumetric_fog 536236, aerial_pespective_view_distance_scale 552436).
+# Read-back is from the component AFTER the set (rule 12), never the value
+# just written. Also reports the cvars that decide whether albedo /
+# inscattering can act at all (r.VolumetricFog, r.SupportExpFogMatchesVolumetricFog).
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Any field may be the literal "keep" -> not set, only read back (baseline read).
+def _f(v):
+    return None if str(v).strip().lower() == "keep" else float(v)
+_DENSITY = _f("__DENSITY__")
+_START = _f("__START__")
+_ALBEDO = None if "__ALBEDO__".strip().lower() == "keep" else [
+    int(v) for v in "__ALBEDO__".split(",")]
+_AP = _f("__AP__")
+# 2026-09-26 (ruled): the scattering SPECTRUM levers. Stub
+# SkyAtmosphereComponent.mie_scattering_scale :552370,
+# rayleigh_scattering_scale :552352. "keep" leaves them untouched.
+_MIE = _f("__MIE__")
+_RAYLEIGH = _f("__RAYLEIGH__")
+
+_out = {"ok": False, "error": None,
+        "want": {"fog_density": _DENSITY, "start_distance": _START,
+                 "albedo": _ALBEDO, "ap_scale": _AP,
+                 "mie_scattering_scale": _MIE,
+                 "rayleigh_scattering_scale": _RAYLEIGH}}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = _w.get_path_name() if _w else None
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    _fogs = [a for a in _all if isinstance(a, _u.ExponentialHeightFog)]
+    _skys = [a for a in _all if isinstance(a, _u.SkyAtmosphere)]
+    if len(_fogs) != 1:
+        raise RuntimeError("expected 1 ExponentialHeightFog, found %d" % len(_fogs))
+    if len(_skys) != 1:
+        raise RuntimeError("expected 1 SkyAtmosphere, found %d" % len(_skys))
+    _fog = _fogs[0].get_editor_property("component")
+    _sky = _skys[0].get_editor_property("sky_atmosphere_component")
+    _out["fog_actor"] = str(_fogs[0].get_actor_label())
+    _out["sky_actor"] = str(_skys[0].get_actor_label())
+
+    # ---- SET (runtime only) ----
+    if _DENSITY is not None:
+        _fog.set_editor_property("fog_density", _DENSITY)
+    if _START is not None:
+        _fog.set_editor_property("start_distance", _START)
+    if _ALBEDO is not None:
+        _fog.set_editor_property("volumetric_fog_albedo",
+                                 _u.Color(r=_ALBEDO[0], g=_ALBEDO[1], b=_ALBEDO[2], a=255))
+    if _AP is not None:
+        _sky.set_editor_property("aerial_pespective_view_distance_scale", _AP)
+    if _MIE is not None:
+        _sky.set_editor_property("mie_scattering_scale", _MIE)
+    if _RAYLEIGH is not None:
+        _sky.set_editor_property("rayleigh_scattering_scale", _RAYLEIGH)
+
+    # ---- READ BACK from the components (rule 12) ----
+    _alb = _fog.get_editor_property("volumetric_fog_albedo")
+    _rb = {
+        "fog_density": float(_fog.get_editor_property("fog_density")),
+        "fog_height_falloff": float(_fog.get_editor_property("fog_height_falloff")),
+        "start_distance": float(_fog.get_editor_property("start_distance")),
+        "enable_volumetric_fog": bool(_fog.get_editor_property("enable_volumetric_fog")),
+        "volumetric_fog_albedo": [int(_alb.r), int(_alb.g), int(_alb.b), int(_alb.a)],
+        "volumetric_fog_extinction_scale": float(
+            _fog.get_editor_property("volumetric_fog_extinction_scale")),
+        "volumetric_fog_scattering_distribution": float(
+            _fog.get_editor_property("volumetric_fog_scattering_distribution")),
+        "fog_inscattering_luminance": str(_fog.get_editor_property("fog_inscattering_luminance")),
+        "sky_atmosphere_ambient_contribution_color_scale": str(
+            _fog.get_editor_property("sky_atmosphere_ambient_contribution_color_scale")),
+        "ap_scale": float(_sky.get_editor_property("aerial_pespective_view_distance_scale")),
+        "height_fog_contribution": float(_sky.get_editor_property("height_fog_contribution")),
+        "mie_scattering_scale": float(_sky.get_editor_property("mie_scattering_scale")),
+        "mie_absorption_scale": float(_sky.get_editor_property("mie_absorption_scale")),
+        "mie_anisotropy": float(_sky.get_editor_property("mie_anisotropy")),
+        "rayleigh_scattering_scale": float(_sky.get_editor_property("rayleigh_scattering_scale")),
+    }
+    _out["readback"] = _rb
+    _sl = _u.SystemLibrary
+    _out["cvars"] = {
+        "r.VolumetricFog": _sl.get_console_variable_int_value("r.VolumetricFog"),
+        "r.SupportExpFogMatchesVolumetricFog": _sl.get_console_variable_int_value(
+            "r.SupportExpFogMatchesVolumetricFog"),
+        "Slate.bAllowThrottling": _sl.get_console_variable_int_value("Slate.bAllowThrottling"),
+        "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": _sl.get_console_variable_float_value(
+            "r.SkyAtmosphere.AerialPerspectiveLUT.Depth"),
+    }
+    _bad = []
+    if _DENSITY is not None and abs(_rb["fog_density"] - _DENSITY) > 1e-7:
+        _bad.append("fog_density")
+    if _START is not None and abs(_rb["start_distance"] - _START) > 0.5:
+        _bad.append("start_distance")
+    if _ALBEDO is not None and _rb["volumetric_fog_albedo"][:3] != _ALBEDO[:3]:
+        _bad.append("albedo")
+    if _AP is not None and abs(_rb["ap_scale"] - _AP) > 1e-5:
+        _bad.append("ap_scale")
+    if _MIE is not None and abs(_rb["mie_scattering_scale"] - _MIE) > 1e-7:
+        _bad.append("mie_scattering_scale")
+    if _RAYLEIGH is not None and abs(_rb["rayleigh_scattering_scale"] - _RAYLEIGH) > 1e-7:
+        _bad.append("rayleigh_scattering_scale")
+    if _bad:
+        raise RuntimeError("read-back mismatch on: %s" % ",".join(_bad))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:400])
+print("__LL__" + _json.dumps(_out, default=str))

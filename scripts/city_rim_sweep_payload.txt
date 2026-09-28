@@ -1,0 +1,149 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# =====================================================================
+# !!!! SUPERSEDED 2026-08-27 -- THIS TOOL'S CONCLUSION WAS WRONG
+# =====================================================================
+# It asked ONE get_path_length from the plaza per sample and concluded the
+# basin was sealed: furthest reachable 252-504 m, median 360, "no natural
+# pass on 24 bearings". Every one of those numbers was the pathfinder's
+# SEARCH BUDGET, not the world.
+#
+# A path query returns FAIL when it exhausts its budget, which is NOT "no
+# path exists". Measured: plaza->520 m FAILS while plaza->350 m and
+# 350 m->520 m both SUCCEED, so the walk exists and one query cannot find it.
+#
+# REPLACED BY scripts/city_relay_sweep_payload.txt, which relays each sample
+# off the last point known reachable on that ray. Same 12 bearings: median
+# 600 m, furthest 1050 m -- and almost every ray now stops exactly on a
+# NavBounds volume EDGE, so the limit is where navmesh was built, not terrain.
+#
+# STILL VALID HERE: nothing about reachability. The gradient arithmetic and
+# the agent-bar read off the live navmesh actor are fine and were reused.
+# =====================================================================
+
+# Is there a PASS out of the basin? 24 bearings, one payload.
+#
+# !! FURTHEST REACHABLE, NOT FIRST FLIP. The six-bearing probe reported the first
+# unreachable sample along each ray, and that number is sampling-dependent:
+# bearing 0 read 244 m at 2 m spacing and 322 m at 0.5 m, because the coarse
+# probe stopped at an isolated dropout. Genuine dropouts exist (324.5 m reads
+# reachable among unreachable neighbours), so the first flip is not the boundary
+# of the island. This scans the WHOLE ray and takes the furthest point that is
+# actually reachable, which no single dropout can move.
+#
+# A PASS would show as one bearing whose furthest-reachable runs far beyond its
+# neighbours, with no sample above the agent bar before it.
+#
+# Writes a file: 24 rays x hundreds of samples will not fit in the reply.
+
+CX, CY = -210800.0, 278800.0
+STEP_M = __STEP_M__
+D_MAX_M = __D_MAX_M__
+N_BEARINGS = __N_BEARINGS__
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    # the agent bar, read off the LIVE navmesh rather than assumed
+    _nav = [a for a in _eas.get_all_level_actors()
+            if a.get_class().get_name() == "RecastNavMesh"]
+    _bar = float(_nav[0].get_editor_property("agent_max_slope")) if _nav else None
+    _out["agent_max_slope"] = _bar
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y, z):
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, z), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    _gz = _ground(CX, CY)
+    _start = _proj(CX, CY, _gz)
+    if _start is None:
+        raise RuntimeError("the anchor does not project")
+
+    _rays = []
+    for _b in range(N_BEARINGS):
+        _bd = 360.0 * _b / N_BEARINGS
+        _th = _math.radians(_bd)
+        _furthest = 0.0
+        _prev_z = None
+        _over = 0
+        _first_over = None
+        _n = int(D_MAX_M / STEP_M)
+        for _i in range(1, _n + 1):
+            _d = _i * STEP_M
+            _x = CX + _d * 100.0 * _math.cos(_th)
+            _y = CY + _d * 100.0 * _math.sin(_th)
+            _g = _ground(_x, _y)
+            if _g is None:
+                _prev_z = None
+                continue
+            if _prev_z is not None:
+                _grad = _math.degrees(
+                    _math.atan(abs(_g - _prev_z) / (STEP_M * 100.0)))
+                if _bar is not None and _grad > _bar:
+                    _over += 1
+                    if _first_over is None:
+                        _first_over = _d
+            _prev_z = _g
+            _p = _proj(_x, _y, _g)
+            if _p is None:
+                continue
+            try:
+                _res, _ln = _u.NavigationSystemV1.get_path_length(
+                    _w, _start, _p, None, None)
+            except Exception:
+                continue
+            if _res == _SUCCESS:
+                _furthest = _d
+        _rays.append({"bearing_deg": round(_bd, 1),
+                      "furthest_reachable_m": _furthest,
+                      "samples_over_bar": _over,
+                      "first_over_bar_m": _first_over})
+    _out["rays"] = _rays
+    _out["step_m"] = STEP_M
+    _out["d_max_m"] = D_MAX_M
+
+    _f = [r["furthest_reachable_m"] for r in _rays]
+    _out["furthest_overall_m"] = max(_f)
+    _out["median_furthest_m"] = sorted(_f)[len(_f) // 2]
+    _best = sorted(_rays, key=lambda r: -r["furthest_reachable_m"])[:4]
+    _out["best_bearings"] = _best
+
+    if not _os.path.isabs(OUT):
+        raise RuntimeError("OUT must be absolute")
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump({"_what": "furthest reachable distance per bearing from the "
+                             "town plaza, against the BUILT navmesh",
+                    "agent_max_slope": _bar, "step_m": STEP_M,
+                    "d_max_m": D_MAX_M, "rays": _rays}, _fh, indent=1)
+    _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

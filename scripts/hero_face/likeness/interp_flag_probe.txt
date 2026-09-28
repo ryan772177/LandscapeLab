@@ -1,0 +1,61 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. enable_global_interpolation across every groom on this character.
+#
+# Its own docstring: "Enable radial basis function interpolation to be used
+# INSTEAD OF THE LOCAL SKIN RIGID TRANSFORM". The local skin rigid transform is
+# exactly the mechanism under suspicion -- a bound groom's strands are carried
+# rigidly by their root's frame, and a wrong frame per root would leave a thin
+# shell of outward-rotated strands hugging the skull with the rest inside the
+# head, which is what the hero's component renders.
+#
+# This is a CORRELATION probe and it is worth saying so before it is run: the
+# same flag was chased on 2026-08-18 as the cause of a bald groom, and the
+# correlation turned out to be with groom WEIGHT, not with the flag. So the
+# question here is narrow -- do the grooms that render correctly on this
+# component agree with each other and differ from ours?
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    _ear = _u.EditorAssetLibrary
+    _paths = []
+    for _d in ("/Game/Hero/Unpacked/MHC_AlpineHero/Grooms",
+               "/Game/Characters/AlpineHero/Grooms"):
+        try:
+            _paths += list(_ear.list_assets(_d, recursive=False,
+                                            include_folder=False))
+        except Exception:
+            pass
+    for _p in _paths:
+        if "Binding" in _p or "BND_" in _p or "MI_" in _p:
+            continue
+        _g = _ear.load_asset(_p)
+        if _g is None or not isinstance(_g, _u.GroomAsset):
+            continue
+        _row = {}
+        for _f in ("enable_global_interpolation", "hair_interpolation_type",
+                   "lod_mode", "auto_lod_bias", "enable_simulation_cache"):
+            try:
+                _v = _g.get_editor_property(_f)
+                _row[_f] = _v if isinstance(_v, (bool, int, float)) else str(_v)
+            except Exception as _e:
+                _row[_f] = "UNREADABLE: " + str(_e)[:50]
+        try:
+            _gi = _g.get_editor_property("hair_groups_info")[0]
+            _row["num_curves"] = int(_gi.get_editor_property("num_curves"))
+            _row["num_guides"] = int(_gi.get_editor_property("num_guides"))
+        except Exception:
+            pass
+        try:
+            _ip = _g.get_editor_property("hair_groups_interpolation")[0]
+            _row["interp"] = str(_ip)[:400]
+        except Exception as _e:
+            _row["interp"] = "UNREADABLE: " + str(_e)[:60]
+        _out["grooms"][_p.split("/")[-1].split(".")[0]] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

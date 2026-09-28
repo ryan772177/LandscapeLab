@@ -1,0 +1,75 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. THE STRAND WIDTH, on both grooms, in UE.
+#
+# Symptom: binds / right place / right size / zero pixels. WIDTH is the one
+# attribute that produces exactly that and was never in the elimination table.
+# A strand carrying a metres-scale width in a centimetre world rasterises
+# sub-pixel -- present, bound, correctly bounded, invisible.
+#
+# Blender side is already measured and is NOT the answer alone: DiffLocks is a
+# uniform 0.018 and the working groom runs 0.012 to 0.035, so 0.018 sits INSIDE
+# the working range. The question is what UE made of each.
+#
+# A FIRST VERSION OF THIS PROBE RETURNED EMPTY. It enumerated the rendering
+# struct with dir(), and UE's Python binding hands these back as opaque handles
+# -- dir() lists nothing and str() prints "{}". So the fields are read through
+# get_editor_property by name, with every failure RECORDED rather than skipped:
+# "the accessor raised" and "the value is zero" must not look alike.
+
+PAIRS = [
+    ("DiffLocks  (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_v1"),
+    ("DiffLocks bound",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_v1_bound"),
+    ("procedural (draws)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4"),
+    ("procedural bound",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4ctl_bound"),
+]
+
+GEOM = ("hair_width", "hair_root_scale", "hair_tip_scale", "hair_shadow_density",
+        "hair_raytracing_radius_scale", "hair_width_scale")
+
+
+def _get(_obj, _name):
+    try:
+        return str(_obj.get_editor_property(_name))
+    except Exception as _e:
+        return "RAISED: " + str(_e)[:60]
+
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    for _label, _p in PAIRS:
+        _row = {}
+        _g = _u.EditorAssetLibrary.load_asset(_p)
+        if _g is None:
+            _out["grooms"][_label] = {"error": "could not load"}
+            continue
+        try:
+            _arr = _g.get_editor_property("hair_groups_rendering")
+            _row["n_groups"] = len(_arr)
+            _groups = []
+            for _s in _arr:
+                _e = {}
+                try:
+                    _geo = _s.get_editor_property("geometry_settings")
+                    for _f in GEOM:
+                        _e[_f] = _get(_geo, _f)
+                except Exception as _ex:
+                    _e["geometry_settings"] = "RAISED: " + str(_ex)[:70]
+                    for _f in GEOM:
+                        _e[_f] = _get(_s, _f)
+                _groups.append(_e)
+            _row["groups"] = _groups
+        except Exception as _ex:
+            _row["error"] = str(_ex)[:120]
+        _out["grooms"][_label] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

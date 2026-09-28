@@ -1,0 +1,89 @@
+# Remove ONE of the two duplicate HeroInWorld actors.
+#
+#   --set GO=False   dry run, destroys nothing
+#   --set GO=True    delete
+#
+# STANDING RULE 8: identify by PROPERTY SIGNATURE, not by label, and dry-run
+# anything destructive. The label is the one thing these two share with
+# everything else that might be called a hero, so it selects the CANDIDATE SET
+# and decides nothing.
+#
+# THE SIGNATURE THAT PROVES THEY ARE DUPLICATES, and it is checked before any
+# deletion: same class, same location to 0.01 cm, same yaw, same number of
+# skeletal mesh components, and the SAME MESH OBJECTS on those components. Two
+# actors that agree on all of those are copies of one thing. If any of it
+# disagrees they are two different actors that happen to share a name, and this
+# payload REFUSES -- which is the case where deleting is worst.
+#
+# WHICH ONE SURVIVES IS DETERMINISTIC: the package name that sorts FIRST is
+# kept. Not because that package is better -- they are indistinguishable -- but
+# because "delete the second one the iterator returned" is not reproducible, and
+# a destructive operation whose target depends on iteration order cannot be
+# re-run or reviewed.
+import json as _json
+import unreal as _unreal
+
+GO = __GO__
+LABEL = "HeroInWorld"
+
+_out = {"error": None, "go": GO, "found": [], "refused": None,
+        "keep": None, "deleted": None, "remaining": None}
+try:
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _cands = [_a for _a in _eas.get_all_level_actors()
+              if str(_a.get_actor_label()) == LABEL]
+
+    _sig = []
+    for _a in _cands:
+        _l = _a.get_actor_location()
+        _r = _a.get_actor_rotation()
+        _meshes = []
+        try:
+            for _c in _a.get_components_by_class(
+                    _unreal.SkeletalMeshComponent):
+                _m = _c.get_editor_property("skeletal_mesh_asset")
+                _meshes.append(str(_m.get_path_name()) if _m else "None")
+        except Exception as _ce:
+            _meshes = ["UNREADABLE: " + type(_ce).__name__]
+        _sig.append({
+            "package": str(_a.get_outermost().get_name()),
+            "class": type(_a).__name__,
+            "loc": [round(float(_l.x), 2), round(float(_l.y), 2),
+                    round(float(_l.z), 2)],
+            "yaw": round(float(_r.yaw), 3),
+            "meshes": sorted(_meshes),
+            "_actor": _a,
+        })
+
+    _out["found"] = [{k: v for k, v in s.items() if k != "_actor"}
+                     for s in _sig]
+
+    if len(_sig) != 2:
+        _out["refused"] = (
+            "found %d actors labelled %s, expected exactly 2. Nothing deleted."
+            % (len(_sig), LABEL))
+    else:
+        _a, _b = _sig
+        _same = (_a["class"] == _b["class"] and _a["loc"] == _b["loc"]
+                 and _a["yaw"] == _b["yaw"] and _a["meshes"] == _b["meshes"])
+        if not _same:
+            _out["refused"] = (
+                "the two actors DIFFER in class, location, yaw or meshes, so "
+                "they are not duplicates -- they are two different actors "
+                "sharing a name. Nothing deleted.")
+        elif "UNREADABLE" in "".join(_a["meshes"] + _b["meshes"]):
+            _out["refused"] = (
+                "a mesh could not be read, so whether these are duplicates is "
+                "UNKNOWN. An unknown is never a yes. Nothing deleted.")
+        else:
+            _keep, _drop = sorted([_a, _b], key=lambda s: s["package"])
+            _out["keep"] = _keep["package"]
+            _out["deleted"] = _drop["package"]
+            if GO:
+                _eas.destroy_actor(_drop["_actor"])
+                _left = [x for x in _eas.get_all_level_actors()
+                         if str(x.get_actor_label()) == LABEL]
+                _out["remaining"] = len(_left)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

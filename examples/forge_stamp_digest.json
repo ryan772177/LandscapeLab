@@ -1,0 +1,81 @@
+{
+ "stamps": [
+  {
+   "name": "basin",
+   "description": "meander channel with rim; MIN-carve valley / lake basin. Survey: usable \u2014 channel+banks+rim survive erosion",
+   "profile": "valley",
+   "default_size_m": 1500,
+   "default_amplitude_m": -25
+  },
+  {
+   "name": "terraces",
+   "description": "terraced pit; MIN-carve use (flat sites, quarry-like walls). Survey: usable-soft \u2014 erosion pockmarks, not channels",
+   "profile": "plateau",
+   "default_size_m": 1000,
+   "default_amplitude_m": 150
+  },
+  {
+   "name": "mountain",
+   "description": "dense rugged peak field; ADD massif",
+   "profile": "massif",
+   "default_size_m": 2200,
+   "default_amplitude_m": 650
+  },
+  {
+   "name": "hills",
+   "description": "rolling hill field; ADD low-relief roll",
+   "profile": "foothills",
+   "default_size_m": 1800,
+   "default_amplitude_m": 180
+  },
+  {
+   "name": "ridges",
+   "description": "broad valleys between bold ridges; ADD midland",
+   "profile": "ridge",
+   "default_size_m": 1800,
+   "default_amplitude_m": 500
+  },
+  {
+   "name": "rise",
+   "description": "one broad smooth massif; ADD single large rise",
+   "profile": "hill",
+   "default_size_m": 1700,
+   "default_amplitude_m": 450
+  },
+  {
+   "name": "dunes",
+   "description": "repetitive rounded dune bumps; ADD foothill texture (NOTE: repetitive \u2014 keep opacity/amplitude low)",
+   "profile": "foothills",
+   "default_size_m": 1500,
+   "default_amplitude_m": 120
+  },
+  {
+   "name": "craters",
+   "description": "ringed circular pits; MIN-carve terracing (NOTE: odd crater character \u2014 preview before trusting)",
+   "profile": "basin",
+   "default_size_m": 1000,
+   "default_amplitude_m": -30
+  },
+  {
+   "name": "island_peak",
+   "description": "radial island cone, crater-topped; ADD single peak",
+   "profile": "peak",
+   "default_size_m": 900,
+   "default_amplitude_m": 500
+  },
+  {
+   "name": "flat_pad",
+   "description": "synthetic radial pad: flat centre to 38% radius, quintic rise to rim; MIN-carve for small flat sites (village pads)",
+   "profile": "basin",
+   "default_size_m": 1200,
+   "default_amplitude_m": -12
+  },
+  {
+   "name": "mesa",
+   "description": "synthetic mesa: flat top to 45% radius, quintic fall to rim; ADD for flat sites on sloped ground (a MIN carve cannot rule ground below its anchor)",
+   "profile": "plateau",
+   "default_size_m": 500,
+   "default_amplitude_m": 250
+  }
+ ]
+}

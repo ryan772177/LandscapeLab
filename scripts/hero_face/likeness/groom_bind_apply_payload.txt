@@ -1,0 +1,138 @@
+import json as _json
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+SUBJECT   = "__SUBJECT__"
+CAPL      = "__CAPL__"
+SLOT      = "__SLOT__"
+GROOM     = "__GROOM__"
+BIND_DIR  = "__BIND_DIR__"
+BIND_NAME = "__BIND_NAME__"
+INTERP_PT = __INTERP_PT__
+SOURCE_MESH = "__SOURCE_MESH__"
+OUT_DIR   = r"__OUT_DIR__"
+OUT_NAME  = "__OUT_NAME__"
+WARM      = __WARM__
+MELANIN   = __MELANIN__
+REDNESS   = __REDNESS__
+CAPTURE   = __CAPTURE__
+
+_out = {"ok": False, "error": None, "t": {}, "groom": GROOM, "slot": SLOT}
+try:
+    _t0 = _time.time()
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _ues.get_editor_world()
+
+    _subj = _cap = None
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == SUBJECT:
+            _subj = _a
+        elif _l == CAPL:
+            _cap = _a
+    if _subj is None:
+        raise RuntimeError("subject actor missing: " + SUBJECT)
+
+    # THE TARGET MESH IS READ FROM THE ACTOR, NEVER NAMED BY CONVENTION.
+    # A binding built against the wrong face mesh still builds, still assigns,
+    # and renders as strands exploding off the head -- measured 2026-08-19 on
+    # the vendor bindings, which target the MetaHuman ARCHETYPE head. So the
+    # mesh comes from the thing that will actually be rendered.
+    _face = None
+    for _c in _subj.get_components_by_class(_u.SkeletalMeshComponent):
+        if "face" in str(_c.get_name()).lower():
+            _face = _c
+            break
+    if _face is None:
+        raise RuntimeError("no Face skeletal mesh component on " + SUBJECT)
+    _mesh = _face.get_editor_property("skeletal_mesh")
+    if _mesh is None:
+        raise RuntimeError("Face component has no skeletal mesh")
+    _out["target_mesh"] = str(_mesh.get_path_name())
+
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load groom " + GROOM)
+    try:
+        _info = _g.get_editor_property("hair_groups_info")
+        if _info and len(_info) > 0:
+            _out["num_curves"] = int(_info[0].get_editor_property("num_curves"))
+            _out["num_guides"] = int(_info[0].get_editor_property("num_guides"))
+    except Exception:
+        pass
+    _t_load = _time.time()
+    _out["t"]["load_groom"] = round(_t_load - _t0, 2)
+
+    # BIND. This is the step that makes a groom belong to THIS character, and
+    # it is the one invariant of the whole ingest path: no groom reaches any
+    # character except through a binding freshly built against that
+    # character's own face mesh.
+    _bind_path = BIND_DIR + "/" + BIND_NAME
+    # THE TRANSFER MESH IS NOT OPTIONAL FOR A VENDOR GROOM. These grooms are
+    # AUTHORED against SKM_Groom_Head_Legacy01/02, so their roots live in that
+    # head's space. Binding them straight onto another face with
+    # source_skeletal_mesh_for_transfer = None asks the engine to treat roots
+    # authored elsewhere as if they were already ours: the binding builds, the
+    # asset assigns, the read-back is perfect and NOTHING DRAWS. Measured
+    # 2026-08-19 -- three hairs, bald after 60 s of frames. Passing the
+    # authoring head makes it an RBF TRANSFER, which is what the argument is
+    # for and what the vendor bindings themselves record (source == target ==
+    # Legacy01).
+    _src = None
+    if SOURCE_MESH:
+        _src = _u.EditorAssetLibrary.load_asset(SOURCE_MESH)
+        if _src is None:
+            raise RuntimeError("transfer source mesh not found: " + SOURCE_MESH)
+    _out["source_mesh"] = None if _src is None else str(_src.get_name())
+
+    if _u.EditorAssetLibrary.does_asset_exist(_bind_path):
+        _b = _u.EditorAssetLibrary.load_asset(_bind_path)
+        _out["binding"] = "reused"
+    else:
+        _b = _u.GroomLibrary.create_new_groom_binding_asset_with_path(
+            _bind_path, _g, _mesh, INTERP_PT, _src, 0)
+        _out["binding"] = "created"
+    if _b is None:
+        raise RuntimeError("binding creation returned None")
+    _u.EditorAssetLibrary.save_asset(_bind_path, False)
+    _t_bind = _time.time()
+    _out["t"]["bind"] = round(_t_bind - _t_load, 2)
+    _out["binding_path"] = _bind_path
+
+    _comp = None
+    for _c in _subj.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == SLOT:
+            _comp = _c
+            break
+    if _comp is None:
+        raise RuntimeError("no groom component in slot " + SLOT)
+    _comp.set_groom_asset(_g)
+    _comp.set_binding_asset(_b)
+
+    _rg = _comp.get_editor_property("groom_asset")
+    _rb = _comp.get_editor_property("binding_asset")
+    _out["readback"] = {
+        "groom": None if _rg is None else str(_rg.get_name()),
+        "binding": None if _rb is None else str(_rb.get_name())}
+    _t_apply = _time.time()
+    _out["t"]["apply"] = round(_t_apply - _t_bind, 2)
+
+    if CAPTURE and _cap is not None:
+        _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+        _rt = _cc.get_editor_property("texture_target")
+        for _i in range(WARM):
+            _cc.capture_scene()
+        _cc.capture_scene()
+        _u.RenderingLibrary.export_render_target(_w, _rt, OUT_DIR,
+                                                 OUT_NAME + ".png")
+        _out["png"] = OUT_NAME + ".png"
+        _out["t"]["capture"] = round(_time.time() - _t_apply, 2)
+
+    _out["t"]["total"] = round(_time.time() - _t0, 2)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

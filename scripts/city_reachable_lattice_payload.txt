@@ -1,0 +1,240 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# THE REACHABLE REGION AS A LATTICE OVER THE WHOLE NAVMESH, not just the town.
+#
+# WHY. The town sidecar samples street midpoints and building doorsteps -- all
+# of them INSIDE the settlement. Any consumer asking "is this point near ground
+# the player can reach" therefore gets True only inside the town, so a rule of
+# the form "outside the settlement AND near reachable ground" is unsatisfiable
+# by construction. That is what made the encounter planner report zero
+# available area, and it is a property of the SAMPLE, not of the world.
+#
+# METHOD -- BFS OVER A GRID, which is transitive closure done cheaply.
+# Seed at the lattice cell nearest the PlayerStart. A cell joins the reachable
+# set when a path exists from an ALREADY-REACHABLE 4-NEIGHBOUR. Every query is
+# therefore between adjacent cells, one lattice step apart.
+#
+# ** THAT IS THE WHOLE POINT. ** A single long query from the plaza runs out of
+# SEARCH BUDGET and returns FAIL, which is not "no path exists" -- it is how
+# this project came to believe the basin was sealed. Short hops between
+# neighbours never approach that budget, and reachability over a navmesh is
+# transitive when every leg is a real path.
+#
+# Each cell costs about ONE path query (from whichever neighbour discovered
+# it), not one per neighbour, so the cost is linear in cells.
+#
+# CONTROLS, both asserted:
+#   POSITIVE  the seed cell must project, or nothing below means anything.
+#   NEGATIVE  a cell 50 km away must never be reached.
+#
+# WRITES A FILE.
+
+MIN_X = __MIN_X__
+MIN_Y = __MIN_Y__
+MAX_X = __MAX_X__
+MAX_Y = __MAX_Y__
+STEP_CM = __STEP_CM__
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actors = _eas.get_all_level_actors()
+
+    # A "ground" trace must exclude what STANDS on the ground, or it measures
+    # the roof. Measured 2026-08-27: 17 town streets traced 12.9 m high onto
+    # buildings and read as unreachable.
+    _CITY_TAG = "LandscapeLab.City"
+    _ign = []
+    for _a in _actors:
+        if isinstance(_a, _u.InstancedFoliageActor):
+            _ign.append(_a)
+            continue
+        # HLOD proxies carry collision since the 2026-09-14 4096 rebuild and
+        # sit at/above the landscape, so a ground trace hits the PROXY (wrong
+        # height) instead of the landscape and the nav projection below it
+        # misses -- reachable read 2802 of 18496 with them in, 9810 with them
+        # ignored (Brief-4 T6, 2026-09-19b). The 2026-08-27 baseline (10146)
+        # predates that collision, which is why it did not need this. Ignore
+        # them so the trace reaches the real landscape, kept resident by
+        # load_all_world_partition_regions above.
+        if "WorldPartitionHLOD" in _a.get_class().get_name():
+            _ign.append(_a)
+            continue
+        try:
+            if _CITY_TAG in [str(_t) for _t in _a.tags]:
+                _ign.append(_a)
+        except Exception:
+            pass
+
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _nav = [a for a in _actors if a.get_class().get_name() == "RecastNavMesh"]
+    if not _nav:
+        raise RuntimeError("no RecastNavMesh -- COULD NOT LOOK")
+    _agent = {
+        "agent_max_slope": float(_nav[0].get_editor_property(
+            "agent_max_slope")),
+        "agent_radius": float(_nav[0].get_editor_property("agent_radius")),
+        "agent_height": float(_nav[0].get_editor_property("agent_height")),
+        "tile_size_uu": float(_nav[0].get_editor_property("tile_size_uu")),
+    }
+    _chunks = len([a for a in _actors
+                   if "NavigationDataChunkActor" in a.get_class().get_name()])
+
+    _ps = [a for a in _actors if a.get_class().get_name() == "PlayerStart"]
+    if len(_ps) != 1:
+        raise RuntimeError("expected exactly 1 PlayerStart, found %d"
+                           % len(_ps))
+    _psl = _ps[0].get_actor_location()
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None, None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None, _g
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None, _g
+        return _r, _g
+
+    def _pathable(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return bool(_res == _SUCCESS)
+        except Exception:
+            return False
+
+    _nx = int((MAX_X - MIN_X) / STEP_CM) + 1
+    _ny = int((MAX_Y - MIN_Y) / STEP_CM) + 1
+    _n = _nx * _ny
+    if _n > 20000:
+        raise RuntimeError("lattice of %d cells is too large for one payload; "
+                           "raise STEP_CM" % _n)
+
+    # project every cell once
+    _pt = [None] * _n
+    _gz = [None] * _n
+    _nproj = 0
+    for _j in range(_ny):
+        for _i in range(_nx):
+            _x = MIN_X + _i * STEP_CM
+            _y = MIN_Y + _j * STEP_CM
+            _p, _g = _proj(_x, _y)
+            _k = _j * _nx + _i
+            _pt[_k] = _p
+            _gz[_k] = _g
+            if _p is not None:
+                _nproj += 1
+    _out["cells"] = _n
+    _out["cells_projecting"] = _nproj
+
+    # seed at the cell nearest the PlayerStart that projects
+    _si = int(round((_psl.x - MIN_X) / STEP_CM))
+    _sj = int(round((_psl.y - MIN_Y) / STEP_CM))
+    _si = min(max(_si, 0), _nx - 1)
+    _sj = min(max(_sj, 0), _ny - 1)
+    _seed = _sj * _nx + _si
+    if _pt[_seed] is None:
+        raise RuntimeError("the seed cell does not project -- COULD NOT LOOK")
+
+    # BFS: a cell joins when a path exists from an already-reachable neighbour
+    _reach = [False] * _n
+    _reach[_seed] = True
+    _queue = [_seed]
+    _qi = 0
+    _queries = 0
+    while _qi < len(_queue):
+        _k = _queue[_qi]
+        _qi += 1
+        _i = _k % _nx
+        _j = _k // _nx
+        for _di, _dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            _ni = _i + _di
+            _nj = _j + _dj
+            if not (0 <= _ni < _nx and 0 <= _nj < _ny):
+                continue
+            _nk = _nj * _nx + _ni
+            if _reach[_nk] or _pt[_nk] is None:
+                continue
+            _queries += 1
+            if _pathable(_pt[_k], _pt[_nk]):
+                _reach[_nk] = True
+                _queue.append(_nk)
+    _out["path_queries"] = _queries
+    _out["cells_reachable"] = sum(1 for v in _reach if v)
+
+    # CONTROLS
+    _far, _ = _proj(_psl.x + 5000000.0, _psl.y)
+    _out["control_50km_projects"] = _far is not None
+    _out["control_seed_reachable"] = bool(_reach[_seed])
+
+    _rows = []
+    for _k in range(_n):
+        if not _reach[_k]:
+            continue
+        _i = _k % _nx
+        _j = _k // _nx
+        _rows.append([round(MIN_X + _i * STEP_CM, 1),
+                      round(MIN_Y + _j * STEP_CM, 1),
+                      round(_gz[_k] / 100.0, 2) if _gz[_k] is not None
+                      else None])
+    _out["rows_written"] = len(_rows)
+
+    _doc = {
+        "_what": ("Lattice of points REACHABLE from the PlayerStart across the "
+                  "built navmesh, measured by BFS over adjacent cells. Unlike "
+                  "the town sidecar this covers ground OUTSIDE the settlement, "
+                  "which is what a placement tool needs to ask about."),
+        "_method": ("Grid BFS: a cell joins when a path exists from an "
+                    "already-reachable 4-neighbour, so every query is one "
+                    "lattice step. A single long query from the plaza hits the "
+                    "pathfinder's SEARCH BUDGET and returns FAIL, which is not "
+                    "'no path exists' -- that error is what made this project "
+                    "believe the basin was sealed."),
+        "_produced_by": "scripts/city_reachable_lattice_payload.txt",
+        "_recipe": "recipes/encounters.json",
+        "_bound_to": {
+            "navmesh_agent": _agent,
+            "nav_chunk_actors_resident": _chunks,
+            "player_start_cm": [_psl.x, _psl.y, _psl.z],
+            "query_extent_cm": 500.0,
+            "lattice_step_cm": STEP_CM,
+            "box_min_cm": [MIN_X, MIN_Y],
+            "box_max_cm": [MAX_X, MAX_Y],
+            "method": "grid BFS over adjacent cells",
+        },
+        "counts": {"cells": _n, "projecting": _nproj,
+                   "reachable": _out["cells_reachable"]},
+        "_columns": ["x_cm", "y_cm", "ground_m"],
+        "rows": _rows,
+    }
+    if not _os.path.isabs(OUT):
+        raise RuntimeError("OUT must be absolute")
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump(_doc, _fh)
+    _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

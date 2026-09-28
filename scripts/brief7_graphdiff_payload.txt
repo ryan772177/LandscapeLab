@@ -1,0 +1,92 @@
+# brief7 graph read-back for the 1 m-block diff. READ-ONLY. Loads M_Alpine8K
+# and reports, for the block-quantisation hunt (block size == 1 weightmap texel):
+#  - every TextureSample: texture asset, sampler_type, sampler_source,
+#    mip_value_mode, and the CLASS of the expression feeding its Coordinates
+#    (UV) input (to catch Floor/Round/texel-snap or a custom UV);
+#  - the weightmap texture asset(s): filter, mip_gen_settings, never_stream,
+#    lod_group, srgb, compression_settings;
+#  - LandscapeLayerCoords presence + mapping scale;
+#  - any normal-from-height-ish node.
+# Pass TAG via --set so the two reads (pre-p1 vs p1) are labelled.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+TAG = "__TAG__"
+_out = {"error": None, "tag": TAG, "material": "/Game/Materials/M_Alpine8K",
+        "texture_samples": [], "weightmap_textures": {}, "layer_coords": [],
+        "normalish_nodes": [], "class_histogram": {}}
+
+
+def _uv_source(_x):
+    # class of the expression wired into the TextureSample Coordinates input
+    try:
+        _c = _x.get_editor_property("coordinates")
+        _e = _c.get_editor_property("expression")
+        return _e.get_class().get_name() if _e else "(constant/none)"
+    except Exception as _err:
+        return "<err %s>" % str(_err)[:40]
+
+
+def _tex_settings(_t):
+    d = {}
+    for _n in ("filter", "mip_gen_settings", "never_stream", "lod_group",
+               "srgb", "compression_settings"):
+        try:
+            d[_n] = str(_t.get_editor_property(_n))
+        except Exception:
+            d[_n] = None
+    try:
+        d["size"] = "%dx%d" % (_t.blueprint_get_size_x(), _t.blueprint_get_size_y())
+    except Exception:
+        d["size"] = None
+    return d
+
+
+try:
+    _m = _u.load_asset("/Game/Materials/M_Alpine8K")
+    _exprs = list(_u.MaterialEditingLibrary.get_material_expressions(_m))
+    _hist = {}
+    for _x in _exprs:
+        _cn = _x.get_class().get_name()
+        _hist[_cn] = _hist.get(_cn, 0) + 1
+
+        if "TextureSample" in _cn:
+            _row = {"uv_source_class": _uv_source(_x)}
+            try:
+                _t = _x.get_editor_property("texture")
+                _row["texture"] = str(_t.get_path_name()) if _t else None
+                _row["texture_name"] = _t.get_name() if _t else None
+            except Exception:
+                _row["texture"] = None
+            for _p in ("sampler_type", "sampler_source", "mip_value_mode",
+                       "const_coordinate"):
+                try:
+                    _row[_p] = str(_x.get_editor_property(_p))
+                except Exception:
+                    _row[_p] = None
+            _out["texture_samples"].append(_row)
+            # if this reads a weightmap texture, capture the asset settings
+            _tn = (_row.get("texture_name") or "").lower()
+            if _t is not None and ("weight" in _tn or "w8" in _tn or "mask" in _tn):
+                _out["weightmap_textures"][_row["texture_name"]] = _tex_settings(_t)
+
+        if "LandscapeLayerCoords" in _cn:
+            _r = {}
+            for _p in ("mapping_scale", "mapping_type", "custom_u_v_type"):
+                try:
+                    _r[_p] = str(_x.get_editor_property(_p))
+                except Exception:
+                    _r[_p] = None
+            _out["layer_coords"].append(_r)
+
+        if any(_k in _cn for _k in ("Normal", "DeriveNormal", "Floor", "Round",
+                                    "Frac", "Truncate")):
+            _out["normalish_nodes"].append(_cn)
+
+    _out["class_histogram"] = _hist
+    _out["texture_sample_count"] = len(_out["texture_samples"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL_DIFF__" + _json.dumps(_out, default=str))

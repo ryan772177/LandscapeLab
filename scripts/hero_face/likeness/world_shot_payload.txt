@@ -1,0 +1,60 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+OUT_DIR = r"__OUT_DIR__"
+NAME    = "__NAME__"
+WARM    = __WARM__
+
+CAPL = "HeroShot_Capture"
+
+_out = {"ok": False, "error": None, "refusals": [], "png": None}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _ues.get_editor_world()
+
+    # WHERE THE MAIN VIEW IS AT CAPTURE TIME is the variable under test, so it
+    # is READ at the moment of capture rather than assumed from the setup call.
+    _info = _ues.get_level_viewport_camera_info()
+    if _info is None:
+        _out["refusals"].append("viewport camera info unreadable at capture")
+    else:
+        _vl, _vr = _info
+        _out["viewport_at_capture"] = {"loc": [_vl.x, _vl.y, _vl.z],
+                                       "rot": [_vr.roll, _vr.pitch, _vr.yaw]}
+
+    # FRAMES, NOT SECONDS. Proves the editor actually DREW while the caller
+    # waited; a wait during which the frame counter did not move would make
+    # every "the main view rendered it" claim unsupported.
+    _out["frame_count"] = int(_u.SystemLibrary.get_frame_count())
+
+    _cap = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == CAPL:
+            _cap = _a
+            break
+    if _cap is None:
+        raise RuntimeError("capture actor missing; run the setup payload")
+    _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+    _rt = _cc.get_editor_property("texture_target")
+    if _rt is None:
+        raise RuntimeError("capture actor has no render target")
+
+    _cl = _cap.get_actor_location()
+    _cr = _cap.get_actor_rotation()
+    _out["capture_at_shot"] = {"loc": [_cl.x, _cl.y, _cl.z],
+                               "rot": [_cr.roll, _cr.pitch, _cr.yaw],
+                               "fov": float(_cc.get_editor_property("fov_angle"))}
+
+    for _i in range(WARM):
+        _cc.capture_scene()
+    _cc.capture_scene()
+    _fn = NAME + ".png"
+    _u.RenderingLibrary.export_render_target(_w, _rt, OUT_DIR, _fn)
+    _out["png"] = _fn
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:800]
+
+print("__LL__" + _json.dumps(_out, default=str))

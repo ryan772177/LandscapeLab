@@ -1,0 +1,74 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. The Groom Asset Editor's live values, by EXPLICIT field name.
+#
+# The first version enumerated `dir(struct)` and came back empty: UE Python
+# structs do not expose their properties through dir(), so the reflection walk
+# found nothing and would have reported "no sliders" on an asset full of them.
+# An absence produced by the wrong accessor is not an absence.
+
+GROOM = "__GROOM__"
+
+SPECS = [
+    ("hair_groups_rendering", "geometry_settings",
+     ("hair_width", "hair_root_scale", "hair_tip_scale",
+      "hair_shadow_density", "hair_raytracing_radius_scale",
+      "hair_length", "hair_clip_scale", "use_hair_raytracing_geometry")),
+    ("hair_groups_rendering", "shadow_settings",
+     ("hair_shadow_density", "hair_raytracing_radius_scale",
+      "use_hair_raytracing_geometry", "voxelize")),
+    ("hair_groups_rendering", "advanced_settings",
+     ("hair_shadow_density",)),
+    ("hair_groups_interpolation", "decimation_settings",
+     ("curve_decimation", "vertex_decimation")),
+    ("hair_groups_interpolation", "interpolation_settings",
+     ("guide_type", "hair_to_guide_density", "use_unique_guide",
+      "rigged_guide_num_curves", "rigged_guide_num_points",
+      "interpolation_quality", "interpolation_distance",
+      "invert_guide_random_seed", "use_uniform_guide_distribution")),
+    ("hair_groups_physics", "solver_settings",
+     ("enable_simulation", "gravity_scale", "sub_steps",
+      "iteration_count")),
+    ("hair_groups_physics", "strands_parameters",
+     ("stretch_stiffness", "bend_stiffness", "collision_radius",
+      "radius", "static_friction", "kinetic_friction")),
+    ("hair_groups_info", None,
+     ("num_curves", "num_guides", "num_curve_vertices",
+      "max_curve_length", "group_name")),
+]
+
+_out = {"ok": False, "error": None, "groom": GROOM, "sections": []}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+    for _arr, _sub, _fields in SPECS:
+        try:
+            _a = _g.get_editor_property(_arr)
+        except Exception:
+            continue
+        for _i, _s in enumerate(_a):
+            _target = _s
+            if _sub:
+                try:
+                    _target = _s.get_editor_property(_sub)
+                except Exception:
+                    continue
+            _vals = {}
+            for _f in _fields:
+                try:
+                    _vals[_f] = _s.get_editor_property(_f) if _sub is None \
+                        else _target.get_editor_property(_f)
+                except Exception:
+                    pass
+            if _vals:
+                _out["sections"].append(
+                    {"array": _arr, "group": _i, "struct": _sub or "(direct)",
+                     "values": {_k: str(_v)[:48] for _k, _v in _vals.items()}})
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

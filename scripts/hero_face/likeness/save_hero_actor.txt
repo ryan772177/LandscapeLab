@@ -1,0 +1,71 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Persist the hero actor's own external-actor package, so component state
+# survives the editor.
+#
+# WHY IT NEEDS MARKING DIRTY BY HAND. Setting a component property through
+# Python changes the object in memory and does NOT flag the owning package
+# dirty. `save_dirty_packages` then returns True having written nothing --
+# measured on 2026-08-16, where ninety minutes of read-backs all agreed while
+# NOTHING under __ExternalActors__ changed on disk, because every read-back was
+# reading editor memory. So the package is marked explicitly and saved by NAME.
+#
+# WHAT IS AT STAKE HERE: `hair_length_scale` is component state. The groom and
+# binding assignments are already in the saved actor, and the colour lives on a
+# material asset that was saved when it was written -- but the length scale is
+# neither, so without this it silently reverts on the next launch and the hero
+# comes back at full length.
+#
+# THE PACKAGE NAME IS PRINTED so the save can be checked against the filesystem
+# and against `git status`, rather than against this payload's own return value.
+
+SUBJECT = "__SUBJECT__"
+
+_out = {"ok": False, "error": None, "subject": SUBJECT}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _a = None
+    for _x in _eas.get_all_level_actors():
+        try:
+            if _x.get_actor_label() == SUBJECT:
+                _a = _x
+                break
+        except Exception:
+            continue
+    if _a is None:
+        raise RuntimeError("subject actor not placed: " + SUBJECT)
+
+    _pkg = _a.get_outermost()
+    _name = _pkg.get_name()
+    _out["package"] = _name
+
+    _rows = []
+    for _c in _a.get_components_by_class(_u.GroomComponent):
+        _g = _c.get_editor_property("groom_asset")
+        _b = _c.get_editor_property("binding_asset")
+        _rows.append({"component": _c.get_name(),
+                      "groom": _g.get_name() if _g else None,
+                      "binding": _b.get_name() if _b else None,
+                      "length_enabled": bool(
+                          _c.get_is_hair_length_scale_enabled())})
+    _out["components"] = _rows
+
+    # only_dirty=False, so the DIRTY FLAG IS NOT PART OF THE DECISION. A Python
+    # component edit does not set it, and `Package.is_dirty` is not reflected in
+    # 5.8 anyway (AttributeError, measured) -- so a save gated on dirtiness
+    # would be gated on something unreadable that is also wrong.
+    _saved = _u.EditorLoadingAndSavingUtils.save_packages([_pkg], False)
+    _out["save_reported"] = bool(_saved)
+    # THE RETURN VALUE IS NOT THE EVIDENCE. This project has had a save report
+    # True over a package that never moved on disk. The package NAME is printed
+    # so the caller can check the filesystem and `git status`, which is a
+    # different representation and the only one that settles it.
+    _out["ok"] = bool(_saved)
+    if not _out["ok"]:
+        _out["error"] = "save_packages reported False"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

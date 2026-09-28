@@ -1,0 +1,123 @@
+{
+ "measured_by": "probe_skeleton",
+ "controls": [
+  "pelvis",
+  "hand_l"
+ ],
+ "ue5_markers": [
+  "spine_04",
+  "spine_05",
+  "clavicle_out_l",
+  "index_metacarpal_l"
+ ],
+ "assets": [
+  {
+   "path": "/Game/Mannequin/Character/Mesh/SK_Mannequin",
+   "loaded": true,
+   "class": "SkeletalMesh",
+   "why": null,
+   "skeleton_path": "/Game/Mannequin/Character/Mesh/UE4_Mannequin_Skeleton.UE4_Mannequin_Skeleton",
+   "bone_count": 68,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": false,
+    "spine_05": false,
+    "clavicle_out_l": false,
+    "index_metacarpal_l": false
+   },
+   "physics_asset": "/Game/Mannequin/Character/Mesh/SK_Mannequin_PhysicsAsset.SK_Mannequin_PhysicsAsset",
+   "material_slots": 2,
+   "lods": 4,
+   "verts_per_lod": [
+    23309,
+    6733,
+    3829,
+    2132
+   ],
+   "sections_per_lod": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "bone_tree_len": 68
+  },
+  {
+   "path": "/Game/Mannequin/Character/Mesh/UE4_Mannequin_Skeleton",
+   "loaded": true,
+   "class": "Skeleton",
+   "why": null,
+   "skeleton_path": "/Game/Mannequin/Character/Mesh/UE4_Mannequin_Skeleton.UE4_Mannequin_Skeleton",
+   "bone_count": 68,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": false,
+    "spine_05": false,
+    "clavicle_out_l": false,
+    "index_metacarpal_l": false
+   },
+   "physics_asset": null,
+   "material_slots": null,
+   "lods": null,
+   "verts_per_lod": [],
+   "sections_per_lod": [],
+   "bone_tree_len": 68
+  },
+  {
+   "path": "/Game/GV_FreeShrubsPack/Demo/Mannequin/Meshes/SKM_Manny",
+   "loaded": true,
+   "class": "SkeletalMesh",
+   "why": null,
+   "skeleton_path": "/Game/GV_FreeShrubsPack/Demo/Mannequin/Meshes/SK_Mannequin.SK_Mannequin",
+   "bone_count": 161,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": true,
+    "spine_05": true,
+    "clavicle_out_l": true,
+    "index_metacarpal_l": true
+   },
+   "physics_asset": "NONE",
+   "material_slots": 2,
+   "lods": 4,
+   "verts_per_lod": [
+    48779,
+    48779,
+    14962,
+    7525
+   ],
+   "sections_per_lod": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "bone_tree_len": 161
+  },
+  {
+   "path": "/Game/GV_FreeShrubsPack/Demo/Mannequin/Meshes/SK_Mannequin",
+   "loaded": true,
+   "class": "Skeleton",
+   "why": null,
+   "skeleton_path": "/Game/GV_FreeShrubsPack/Demo/Mannequin/Meshes/SK_Mannequin.SK_Mannequin",
+   "bone_count": 161,
+   "bones_found": {
+    "pelvis": true,
+    "hand_l": true,
+    "spine_04": true,
+    "spine_05": true,
+    "clavicle_out_l": true,
+    "index_metacarpal_l": true
+   },
+   "physics_asset": null,
+   "material_slots": null,
+   "lods": null,
+   "verts_per_lod": [],
+   "sections_per_lod": [],
+   "bone_tree_len": 161
+  }
+ ]
+}

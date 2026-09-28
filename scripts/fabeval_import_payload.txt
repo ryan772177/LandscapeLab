@@ -1,0 +1,115 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# Import evaluation meshes into /Game/Scratch/FabEval/ and MEASURE them.
+#
+# LOOK TEST, NOT AN INTAKE. These do not go through import_static_mesh.py,
+# which is bound to Free/manifest.json mesh ids and the recipe's foliage
+# settings -- that is the R-ASSET intake path and it carries ASSETS.md and
+# manifest ownership with it. Nothing here is registered as a project asset.
+#
+# The import options are import_static_mesh.py's, not invented here.
+#
+# EVERY NUMBER IS READ BACK OFF THE IMPORTED ASSET, never carried over from the
+# exporter's report. The Blender side already said what it thinks it wrote; the
+# question this answers is what UE actually holds.
+
+DEST = "/Game/Scratch/FabEval"
+JOBS = __JOBS__
+
+_out = {"ok": False, "error": None, "meshes": []}
+try:
+    _tools = _u.AssetToolsHelpers.get_asset_tools()
+
+    for _src, _name in JOBS:
+        _row = {"name": _name, "source": _src}
+        if not _os.path.isfile(_src):
+            _row["error"] = "source file missing"
+            _out["meshes"].append(_row)
+            continue
+
+        _t = _u.AssetImportTask()
+        _t.set_editor_property("filename", _src)
+        _t.set_editor_property("destination_path", DEST)
+        _t.set_editor_property("destination_name", _name)
+        _t.set_editor_property("automated", True)
+        _t.set_editor_property("replace_existing", True)
+        _t.set_editor_property("save", False)
+
+        _o = _u.FbxImportUI()
+        _o.set_editor_property("import_mesh", True)
+        # TEXTURES AND MATERIALS ON, unlike the foliage path. The FBXs are
+        # self-contained (Blender exported path_mode COPY + embed) precisely so
+        # the asset can be judged as delivered rather than as grey geometry.
+        _o.set_editor_property("import_textures", True)
+        _o.set_editor_property("import_materials", True)
+        _o.set_editor_property("import_as_skeletal", False)
+        _o.set_editor_property("mesh_type_to_import",
+                               _u.FBXImportType.FBXIT_STATIC_MESH)
+        _sm = _o.get_editor_property("static_mesh_import_data")
+        _sm.set_editor_property("combine_meshes", True)
+        _sm.set_editor_property("generate_lightmap_u_vs", False)
+        _sm.set_editor_property("build_nanite", False)
+        _t.set_editor_property("options", _o)
+        _tools.import_asset_tasks([_t])
+
+        _paths = list(_t.get_editor_property("imported_object_paths") or [])
+        _row["imported_paths"] = _paths[:8]
+
+        _mesh = None
+        for _p in _paths:
+            _a = _u.EditorAssetLibrary.load_asset(_p.split(".")[0])
+            if isinstance(_a, _u.StaticMesh):
+                _mesh = _a
+                break
+        if _mesh is None:
+            # the task may report component paths; fall back to the expected one
+            _a = _u.EditorAssetLibrary.load_asset("%s/%s" % (DEST, _name))
+            if isinstance(_a, _u.StaticMesh):
+                _mesh = _a
+        if _mesh is None:
+            _row["error"] = "no StaticMesh landed"
+            _out["meshes"].append(_row)
+            continue
+
+        _b = _mesh.get_bounds()
+        _e = _b.box_extent
+        _row["asset"] = _mesh.get_path_name()
+        _row["footprint_x_cm"] = round(float(_e.x) * 2.0, 1)
+        _row["footprint_y_cm"] = round(float(_e.y) * 2.0, 1)
+        _row["height_cm"] = round(float(_e.z) * 2.0, 1)
+        _row["origin_cm"] = [round(float(_b.origin.x), 1),
+                             round(float(_b.origin.y), 1),
+                             round(float(_b.origin.z), 1)]
+        # base-centre pivot check: origin.z should equal half the height, and
+        # origin x/y should be ~0. This is the Blender bake VERIFIED IN UE, by a
+        # different instrument than the one that made it.
+        _row["pivot_base_error_cm"] = round(
+            max(abs(float(_b.origin.x)), abs(float(_b.origin.y)),
+                abs(float(_b.origin.z) - float(_e.z))), 2)
+        _row["tris_lod0"] = int(_mesh.get_num_triangles(0))
+        _row["lods"] = int(_mesh.get_num_lods())
+        _mats = []
+        for _sm2 in _mesh.static_materials:
+            _mi = _sm2.material_interface
+            _mats.append(_mi.get_path_name() if _mi else None)
+        _row["material_slots"] = len(_mats)
+        _row["materials"] = _mats[:12]
+        _row["materials_default"] = sum(
+            1 for m in _mats if m and "/Engine/" in m)
+        _out["meshes"].append(_row)
+
+    # what textures actually landed in the folder
+    _assets = _u.EditorAssetLibrary.list_assets(DEST, True, False)
+    _tex = [a for a in _assets
+            if isinstance(_u.EditorAssetLibrary.load_asset(a.split(".")[0]),
+                          _u.Texture2D)]
+    _out["textures_in_folder"] = len(_tex)
+    _out["assets_in_folder"] = len(_assets)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

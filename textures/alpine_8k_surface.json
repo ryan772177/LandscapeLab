@@ -1,0 +1,49 @@
+{
+ "_what": "CPU surface-type lookup baked from the layer weightmap the landscape material samples. R = dominant layer index in recipe order, G = dominance (winner minus runner-up), B = DECLARED INERT, written zero.",
+ "_height_blend_modelled": false,
+ "_height_blend_note": "no material.height_blend -- raw weightmap argmax.",
+ "_produced_by": "scripts/bake_surface_lookup.py",
+ "_recipe": "recipes/alpine_8k.json",
+ "_source_weightmap": "textures/alpine_8k_weights.png",
+ "_walkability_is_NOT_available_here": "IsWalkable reads HitComponent->GetWalkableSlopeOverride(), a PER-COMPONENT override, and one landscape component here is 254 m square. 'Scree is unwalkable' must be gameplay logic on top of this query, never a landscape setting.",
+ "layers": [
+  {
+   "index": 0,
+   "name": "Snow",
+   "surface": "Snow007A"
+  },
+  {
+   "index": 1,
+   "name": "Rock",
+   "surface": "gray_rocks"
+  },
+  {
+   "index": 2,
+   "name": "Scree",
+   "surface": "rocks_ground_04"
+  },
+  {
+   "index": 3,
+   "name": "ForestFloor",
+   "surface": "forest_floor"
+  },
+  {
+   "index": 4,
+   "name": "Grass",
+   "surface": "WildGrass"
+  }
+ ],
+ "size": [
+  8129,
+  8129
+ ],
+ "sha256": "880099560b513a44ba419f79da4ae87a3f4b3a54a8b3c2839042f92e8a19019d",
+ "dominant_share": {
+  "Snow": 0.094162,
+  "Rock": 0.475862,
+  "Scree": 0.068415,
+  "ForestFloor": 0.097645,
+  "Grass": 0.263915
+ },
+ "blend_boundary_fraction": 0.059781
+}

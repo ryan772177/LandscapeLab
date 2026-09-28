@@ -1,0 +1,79 @@
+# make_water_material — ONE minimal translucent water material, idempotent.
+#
+# WHY THIS EXISTS. The dressed worlds read as land because their seas and
+# lakes are bare carved terrain. v0 water is a flat plane with this
+# material: deep blue-green, near-mirror roughness, translucent. No
+# animation, no normal panning — a placeholder that looks too resolved
+# invites being kept (the copper-placeholder rule).
+#
+# IDEMPOTENT: load-if-present then TOTAL CLEAR of expressions, never
+# delete-then-create (R-DERIVEMAT REJECTED: the second run's create
+# returns None while instances hold the name).
+#
+# EVERY CONNECT IS CHECKED. MaterialEditingLibrary connect calls return
+# bool and IGNORE failures internally (material-builder skill,
+# MaterialEditingLibrary.cpp:928-943) — an unchecked wire is a silently
+# unlit channel.
+import json as _json
+import unreal as _u
+
+_PATH = "/Game/Materials/M_SideWater"
+_out = {"ok": False, "created": False, "wires": [], "error": None,
+        "compile_errors": None, "saved": None}
+try:
+    _mat = _u.load_asset(_PATH)
+    if _mat is None:
+        _tools = _u.AssetToolsHelpers.get_asset_tools()
+        _mat = _tools.create_asset("M_SideWater", "/Game/Materials",
+                                   _u.Material, _u.MaterialFactoryNew())
+        _out["created"] = _mat is not None
+    if _mat is None:
+        raise RuntimeError("could not load or create " + _PATH)
+
+    _mel = _u.MaterialEditingLibrary
+    _mel.delete_all_material_expressions(_mat)
+    _mat.set_editor_property("blend_mode", _u.BlendMode.BLEND_TRANSLUCENT)
+    # Audit F1: default translucency lighting IGNORES roughness/specular
+    # at the shading-model level -- the connect bools return True and the
+    # channels are dead. Surface per-pixel lighting is what makes the
+    # near-mirror intent real.
+    _mat.set_editor_property(
+        "translucency_lighting_mode",
+        _u.TranslucencyLightingMode.TLM_SURFACE_PER_PIXEL_LIGHTING)
+    _mat.set_editor_property("two_sided", False)
+
+    # Audit F2: every scene value arrives via --set from the recipe's
+    # water block; nothing visual is hardcoded here.
+    _c_color = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionConstant3Vector, -400, 0)
+    _c_color.set_editor_property(
+        "constant", _u.LinearColor(float("__WR__"), float("__WG__"),
+                                   float("__WB__"), 1.0))
+    _c_rough = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionConstant, -400, 200)
+    _c_rough.set_editor_property("r", float("__ROUGH__"))
+    _c_opac = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionConstant, -400, 300)
+    _c_opac.set_editor_property("r", float("__OPAC__"))
+    _c_spec = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionConstant, -400, 400)
+    _c_spec.set_editor_property("r", 1.0)
+
+    for _expr, _prop in ((_c_color, _u.MaterialProperty.MP_BASE_COLOR),
+                         (_c_rough, _u.MaterialProperty.MP_ROUGHNESS),
+                         (_c_opac, _u.MaterialProperty.MP_OPACITY),
+                         (_c_spec, _u.MaterialProperty.MP_SPECULAR)):
+        _okw = bool(_mel.connect_material_property(_expr, "", _prop))
+        _out["wires"].append([str(_prop), _okw])
+        if not _okw:
+            raise RuntimeError("wire refused: %s" % _prop)
+
+    _errs = _mel.recompile_material(_mat)
+    _out["compile_errors"] = [str(_e) for _e in (_errs or [])] \
+        if _errs is not None else []
+    _out["saved"] = bool(_u.EditorAssetLibrary.save_asset(_PATH))
+    _out["ok"] = _out["saved"] and not _out["compile_errors"]
+except Exception as _e:
+    import traceback as _tb
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+print("__LL__" + _json.dumps(_out, default=str))

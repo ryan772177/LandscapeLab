@@ -1,0 +1,70 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Shorten the hair on a groom that has no .blend behind it.
+#
+# The vendor Hair_M_SideSweptFringe is a shipped .uasset -- there is no strand
+# data of ours to scale, and NEITHER the component nor the asset exposes a
+# length PROPERTY: every length field probed on both raised, and the asset's
+# FHairGeometrySettings carries only HairWidth, HairRootScale and HairTipScale
+# (GroomAssetRendering.h:17-35).
+#
+# The lever is a METHOD, not a property, which is why a property probe found
+# nothing (GroomComponent.h:239-246, all three UFUNCTION(BlueprintCallable)):
+#
+#     SetHairLengthScale(float)
+#     SetHairLengthScaleEnable(bool)
+#     GetIsHairLengthScaleEnabled() -> bool
+#
+# ENABLE FIRST. A scale written while the override is disabled is a value that
+# reads back correctly and changes nothing -- the same shape as every other
+# silent no-op this project has paid for. The enable is asserted through the
+# engine's own getter afterwards, not assumed from the setter returning.
+#
+# PER-INSTANCE, AND SAY SO: this is a component override on a spawned actor. It
+# dies on the next respawn. That is fine for judging a look and wrong for
+# shipping one; making it durable means baking the length into the strands.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+SCALE = __SCALE__
+
+_out = {"ok": False, "error": None, "slot": SLOT, "scale_requested": SCALE}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _x in _a.get_components_by_class(_u.GroomComponent):
+            if _x.get_name().lower().startswith(SLOT.lower()):
+                _c = _x
+    if _c is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+    _out["component"] = _c.get_name()
+
+    _out["enabled_before"] = bool(_c.get_is_hair_length_scale_enabled())
+    _c.set_hair_length_scale_enable(True)
+    _out["enabled_after"] = bool(_c.get_is_hair_length_scale_enabled())
+    if not _out["enabled_after"]:
+        raise RuntimeError("the length-scale override refused to enable; a "
+                           "scale written now would change nothing")
+
+    _c.set_hair_length_scale(float(SCALE))
+
+    # the binding must survive -- a component write has nulled it before
+    _b = _c.get_editor_property("binding_asset")
+    _g = _c.get_editor_property("groom_asset")
+    _out["binding_after"] = _b.get_name() if _b else None
+    _out["groom_after"] = _g.get_name() if _g else None
+    _out["ok"] = bool(_out["enabled_after"] and _out["binding_after"])
+    if not _out["binding_after"]:
+        _out["error"] = "the binding is gone after the length write"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

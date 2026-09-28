@@ -1,0 +1,97 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Are the unit-10 classes REFLECTED and REACHABLE on a cold boot?
+#
+# A plugin that compiles is not a plugin that loaded. This project has shipped
+# a module that built cleanly and was not enabled, and has read a Python stub
+# generated before the plugins it was asked about were on. So the check is made
+# against the RUNNING editor, from a process that just started.
+#
+# It asks four separate things, because they fail separately:
+#   1. the class NAME resolves in the unreal module (UHT ran, the DLL loaded)
+#   2. the CDO is reachable (the class registered, not just the symbol)
+#   3. the PROPERTIES the design depends on exist and read back
+#   4. the SUBSYSTEM class exists and declares its config properties
+#
+# ** A REFLECTED NAME IS NOT A WORKING FEATURE. ** This proves the classes are
+# present and their contract is as written. It does NOT prove the director
+# behaves -- that needs markers in a PIE world, which is unit 10's acceptance
+# test and is a separate run.
+
+_out = {"ok": False, "error": None}
+try:
+    _r = {}
+
+    # 1 + 2: the marker
+    _mk = getattr(_u, "EncounterMarker", None)
+    _r["EncounterMarker_reflected"] = _mk is not None
+    if _mk is not None:
+        _cdo = _u.get_default_object(_mk)
+        _r["EncounterMarker_cdo"] = _cdo is not None
+        # 3: every field the plan-traceability design depends on
+        _props = {}
+        for _p in ("archetype", "party_size", "aggro_radius_cm",
+                   "leash_radius_cm", "planned_elevation_m",
+                   "plan_row_index", "plan_id"):
+            try:
+                _props[_p] = str(_cdo.get_editor_property(_p))
+            except Exception as _e:
+                _props[_p] = "UNREADABLE: %s" % str(_e)[:70]
+        _r["EncounterMarker_properties"] = _props
+        _r["EncounterMarker_missing"] = [
+            k for k, v in _props.items() if str(v).startswith("UNREADABLE")]
+        # the streaming flag the whole design rests on
+        try:
+            _r["is_spatially_loaded"] = bool(
+                _cdo.get_editor_property("is_spatially_loaded"))
+        except Exception as _e:
+            _r["is_spatially_loaded"] = "UNREADABLE: %s" % str(_e)[:70]
+
+    # 4: the director
+    _ds = getattr(_u, "EncounterDirectorSubsystem", None)
+    _r["EncounterDirectorSubsystem_reflected"] = _ds is not None
+    if _ds is not None:
+        _dcdo = _u.get_default_object(_ds)
+        _r["EncounterDirectorSubsystem_cdo"] = _dcdo is not None
+        _dp = {}
+        for _p in ("activate_radius_cm", "deactivate_radius_cm",
+                   "max_active_encounters", "evaluate_interval_seconds",
+                   "rescan_interval_seconds", "nav_project_extent_cm"):
+            try:
+                _dp[_p] = _dcdo.get_editor_property(_p)
+            except Exception as _e:
+                _dp[_p] = "UNREADABLE: %s" % str(_e)[:70]
+        _r["director_properties"] = _dp
+        _r["director_missing"] = [
+            k for k, v in _dp.items() if str(v).startswith("UNREADABLE")]
+
+        # THE HYSTERESIS INVARIANT, checked on the shipped defaults rather than
+        # trusted. Deactivate must EXCEED activate or a site flips every
+        # evaluation at the boundary.
+        try:
+            _a = float(_dp.get("activate_radius_cm"))
+            _d = float(_dp.get("deactivate_radius_cm"))
+            _r["hysteresis_ok"] = bool(_d > _a)
+            _r["hysteresis"] = "activate %.0f < deactivate %.0f" % (_a, _d)
+        except Exception:
+            _r["hysteresis_ok"] = None
+
+    # NEGATIVE CONTROL: a name that should NOT resolve. Without it, a getattr
+    # that returns something for everything would read as four passes.
+    _r["control_absent_class"] = getattr(
+        _u, "EncounterMarkerThatDoesNotExist", None) is not None
+
+    _out["result"] = _r
+    _out["ok"] = (
+        _r.get("EncounterMarker_reflected") is True
+        and _r.get("EncounterDirectorSubsystem_reflected") is True
+        and not _r.get("EncounterMarker_missing")
+        and not _r.get("director_missing")
+        and _r.get("hysteresis_ok") is True
+        and _r.get("control_absent_class") is False)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

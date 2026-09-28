@@ -1,0 +1,162 @@
+import json as _json
+import os as _os
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+# Import a groom .abc as a GroomAsset and MEASURE it. Nothing is bound here
+# and nothing is assigned; this step answers one question -- did a real groom
+# of the right size and curve count land in project content.
+#
+# THE FACTORY IS `GroomFactory`, NOT `AlembicImportFactory`. The pre-existing
+# ingest path used the Alembic factory, which produces static/skeletal meshes:
+# it would have imported successfully and produced the wrong asset type.
+#
+# SCALE IS VERIFIED, NEVER CORRECTED. A groom that lands at the wrong scale
+# still binds, still renders and is silently wrong; auto-fixing it would hide
+# an exporter or convention mismatch that the next groom inherits.
+
+ABC_PATH  = r"__ABC_PATH__"
+DST_GROOM = "__DST_GROOM__"
+EXPECT_CURVES = __EXPECT_CURVES__
+
+_out = {"ok": False, "error": None, "abc": ABC_PATH, "dst": DST_GROOM,
+        "steps": []}
+try:
+    _eal = _u.EditorAssetLibrary
+    if not _os.path.isfile(ABC_PATH):
+        raise RuntimeError("no .abc at " + ABC_PATH)
+    _out["abc_bytes"] = _os.path.getsize(ABC_PATH)
+
+    # ---- THE IMPORTER IS `HairStrandsFactory` --------------------------
+    # Two wrong routes were tried first and BOTH failed quietly from Python,
+    # with the reason only in the editor log:
+    #
+    #   GroomFactory        declares NO formats at all -- it is the
+    #                       create-new factory, not the importer. The task
+    #                       returned in 0.16 s and the log said "Failed to
+    #                       import ... Unknown extension 'abc'".
+    #   Interchange         has no translator for .abc in this install:
+    #                       "Cannot import file. The source data is not
+    #                       supported. Try enabling the [abc] extension".
+    #                       That message just interpolates the extension; it
+    #                       does not mean a setting exists to switch on.
+    #
+    # Asked directly, HairStrandsFactory declares
+    # "abc;Alembic hair strands file" and supports GroomAsset. Both wrong
+    # guesses came from picking a factory BY NAME; the formats list is the
+    # thing that actually decides, and it is one query away.
+    _factory = _u.HairStrandsFactory()
+    _out["factory"] = "HairStrandsFactory"
+    _out["factory_formats"] = [str(x) for x in
+                               _factory.get_editor_property("formats")]
+
+    # SNAPSHOT THE DIRECTORY FIRST. An earlier version resolved the imported
+    # groom by TYPE after a failed import and silently picked up an unrelated
+    # pre-existing groom, then reported ITS curve count as the import's --
+    # only the count mismatch caught it. Compare against what was here
+    # before, so a failed import can never resolve to somebody else's asset.
+    _dir = DST_GROOM.rsplit("/", 1)[0]
+    _before = set()
+    try:
+        _before = set(p.split(".")[0] for p in _eal.list_assets(_dir, recursive=False))
+    except Exception:
+        pass
+    _out["assets_before"] = sorted(_before)
+
+    _task = _u.AssetImportTask()
+    _task.set_editor_property("filename", ABC_PATH)
+    _task.set_editor_property("destination_path", _dir)
+    _task.set_editor_property("destination_name", DST_GROOM.rsplit("/", 1)[1])
+    _task.set_editor_property("replace_existing", True)
+    _task.set_editor_property("automated", True)
+    _task.set_editor_property("save", True)
+    _task.set_editor_property("factory", _factory)
+
+    _t0 = _time.time()
+    _u.AssetToolsHelpers.get_asset_tools().import_asset_tasks([_task])
+    _out["t_import_s"] = round(_time.time() - _t0, 2)
+    try:
+        _out["imported_paths"] = [str(p) for p in
+                                  _task.get_editor_property("imported_object_paths")]
+    except Exception:
+        pass
+    _out["steps"].append("import_asset_tasks returned")
+
+    _after = set()
+    try:
+        _after = set(p.split(".")[0] for p in _eal.list_assets(_dir, recursive=False))
+    except Exception:
+        pass
+    _out["assets_new"] = sorted(_after - _before)
+
+    # A returned task is not an imported asset. Load it and check its TYPE --
+    # the wrong factory would have produced a mesh here without complaining.
+    if not _eal.does_asset_exist(DST_GROOM):
+        if len(_out["assets_new"]) == 1:
+            DST_GROOM = _out["assets_new"][0]
+            _out["dst_resolved"] = DST_GROOM
+        else:
+            raise RuntimeError(
+                "nothing at %s and %d new assets appeared in %s -- refusing "
+                "to guess which one is the import"
+                % (DST_GROOM, len(_out["assets_new"]), _dir))
+    _g = _eal.load_asset(DST_GROOM)
+    if _g is None:
+        raise RuntimeError("nothing at %s after import" % DST_GROOM)
+    _out["class"] = str(type(_g).__name__)
+    if not isinstance(_g, _u.GroomAsset):
+        raise RuntimeError("imported asset is %s, not a GroomAsset -- wrong "
+                           "factory" % _out["class"])
+
+    # ---- curve count, against the BLENDER inventory --------------------
+    _groups = []
+    _total = 0
+    try:
+        _info = _g.get_editor_property("hair_groups_info")
+        for _i in _info:
+            _n = int(_i.get_editor_property("num_curves"))
+            _total += _n
+            _groups.append({"num_curves": _n,
+                            "num_guides": int(_i.get_editor_property("num_guides"))})
+    except Exception as _e:
+        _out["groups_error"] = str(_e)
+    _out["groups"] = _groups
+    _out["total_curves"] = _total
+    _out["expected_curves"] = EXPECT_CURVES
+    if EXPECT_CURVES:
+        _d = abs(_total - EXPECT_CURVES) / float(EXPECT_CURVES)
+        _out["curve_delta_frac"] = round(_d, 4)
+        _out["curve_count_matches"] = bool(_d <= 0.02)
+
+    # ---- SCALE: measured from the groom's own bounds -------------------
+    # The brief's bar is 15-25 cm on the head. Reported, compared, and NOT
+    # corrected: a wrong scale means the exporter's convention and UE's
+    # disagree, and silently scaling here would carry that into every future
+    # groom while looking fixed.
+    try:
+        _b = _g.get_editor_property("bounds")
+        _bx = _b.box
+        _mn, _mx = _bx.min, _bx.max
+        _size = [round(float(_mx.x - _mn.x), 3),
+                 round(float(_mx.y - _mn.y), 3),
+                 round(float(_mx.z - _mn.z), 3)]
+        _out["bounds_size_cm"] = _size
+        _big = max(_size)
+        _out["largest_extent_cm"] = round(_big, 3)
+        _out["scale_plausible"] = bool(10.0 <= _big <= 40.0)
+        _out["scale_note"] = (
+            "PASS: largest extent %.2f cm is head-sized" % _big
+            if _out["scale_plausible"] else
+            "REFUSE: largest extent %.2f cm is not a head-sized groom "
+            "(expected roughly 15-25 cm). NOT auto-corrected." % _big)
+    except Exception as _e:
+        _out["bounds_error"] = str(_e)
+        _out["scale_plausible"] = False
+
+    _out["ok"] = bool(_out.get("scale_plausible")
+                      and (_out.get("curve_count_matches") is not False))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

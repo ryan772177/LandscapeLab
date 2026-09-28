@@ -1,0 +1,96 @@
+import json as _json
+import unreal as _u
+
+# Export the PLACED street transforms, so connectivity can be checked against a
+# DIFFERENT SOURCE than the plan that produced them.
+#
+# WHY THIS EXISTS. `plan_city.py` prunes the street network to the component
+# containing the plaza, and `measure_city_connectivity.py` then reports ONE
+# NETWORK. Both read the same plan file and share one implementation of
+# "connected" -- deliberately, because two implementations would be two lists
+# that must agree (non-negotiable 24). But that means the gate re-reading the
+# plan proves only THAT THE PRUNER RAN. It is a read-back of the field the
+# setter wrote (non-negotiable 8).
+#
+# This reads the engine's own actor transforms instead. Same definition of
+# connected, different source: if a street were spawned at the wrong scale,
+# rotation or position, the plan would still say ONE NETWORK and this would not.
+#
+# READ-ONLY with respect to the WORLD. Spawns nothing, mutates no actor, saves
+# no package. It does write one JSON file, to __OUT__.
+#
+# ⛔ IT WRITES A FILE BECAUSE THE REPLY CHANNEL CANNOT CARRY THIS. 838 street
+# entries returned inline come back TRUNCATED mid-string -- measured 2026-08-25,
+# a JSONDecodeError at char 7994. That is the same limit that made the placer
+# return ok:true with its numbers cut off, and that `save_level` hit on a
+# 418 KB reply. The transport is not a data channel; a file is.
+#
+# THE PATH MUST BE ABSOLUTE. The editor's working directory is the ENGINE
+# BINARIES folder, so a relative path writes into the engine install -- this
+# project has done that ten times in one session. The caller passes an absolute
+# path inside the repo and the payload asserts it is absolute rather than
+# trusting it.
+
+TAG = "LandscapeLab.City"
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _segs = []
+    _kinds = {}
+    for _a in _eas.get_all_level_actors():
+        try:
+            if TAG not in [str(_t) for _t in _a.tags]:
+                continue
+        except Exception:
+            continue
+        _lbl = _a.get_actor_label()
+        _kind = "street" if _lbl.startswith("City_St_") else (
+            "landmark" if _lbl.startswith("City_Landmark") else "building")
+        _kinds[_kind] = _kinds.get(_kind, 0) + 1
+        if _kind != "street":
+            continue
+        _loc = _a.get_actor_location()
+        _rot = _a.get_actor_rotation()
+        _sc = _a.get_actor_scale3d()
+        # The street mesh is the engine Cube, 100 cm on a side, scaled so that
+        # X is the segment LENGTH. So length comes back out of the transform
+        # rather than being carried over from the plan.
+        _segs.append({
+            "label": _lbl,
+            "loc_cm": [round(_loc.x, 2), round(_loc.y, 2), round(_loc.z, 2)],
+            "yaw_deg": round(_rot.yaw, 3),
+            "len_cm": round(_sc.x * 100.0, 2),
+            "width_cm": round(_sc.y * 100.0, 2),
+        })
+    _out["by_kind"] = _kinds
+    _out["n_streets"] = len(_segs)
+
+    import os as _os
+    if not _os.path.isabs(OUT):
+        raise RuntimeError(
+            "OUT must be ABSOLUTE. A relative path resolves against the "
+            "editor's working directory, which is the engine binaries folder, "
+            "and the write would land outside both roots. Got: %r" % OUT)
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump({"_source": "PLACED ACTOR TRANSFORMS read from the editor, "
+                               "not the plan that produced them",
+                    "city_id": "alpine_basin_town_FROM_WORLD",
+                    "site_centre_cm": [-210800.0, 278800.0],
+                    "counts": {},
+                    "streets": _segs}, _fh, indent=1)
+
+    # THE WRITE IS CHECKED, not assumed. A save that returns without raising and
+    # writes nothing is a failure this project has recorded more than once.
+    _out["out_path"] = OUT
+    _out["out_exists"] = _os.path.isfile(OUT)
+    _out["out_bytes"] = _os.path.getsize(OUT) if _os.path.isfile(OUT) else 0
+    if not _out["out_exists"] or _out["out_bytes"] == 0:
+        raise RuntimeError("wrote nothing to %s" % OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s" % (type(_e).__name__, _e)
+
+print("__LL__" + _json.dumps(_out, default=str))

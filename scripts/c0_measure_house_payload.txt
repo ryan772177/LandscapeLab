@@ -1,0 +1,53 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- unit scale and pivot, checked against REAL GEOMETRY.
+#
+# Blender FBX exports misreport units routinely, so the house's size is held
+# against a known 2 m object rather than against an assumption: the kit's wall
+# modules, measured live on 2026-08-28 at 200.0 cm tall
+# (Free/_measured/kit_medievalvillage.json). If the house is ~2-3 modules tall
+# it imported at 1 uu = 1 cm; if it is 100x out, it did not.
+
+HOUSE = "/Game/Scratch/C0House/SM_C0_DonorHouse"
+REF = "/Game/Megascans/3D_Assets/MedievalModularWall2x2MD/SM_MedievalModularWall2x2MD"
+
+_out = {"ok": False, "error": None}
+try:
+    def _dims(p):
+        _a = _u.EditorAssetLibrary.load_asset(p)
+        if _a is None:
+            return None
+        _b = _a.get_bounds()
+        _e, _o = _b.box_extent, _b.origin
+        return {"path": p,
+                "size_cm": [round(_e.x * 2, 2), round(_e.y * 2, 2),
+                            round(_e.z * 2, 2)],
+                "origin_cm": [round(_o.x, 2), round(_o.y, 2), round(_o.z, 2)],
+                "pivot_base_error_cm": round(float(_o.z - _e.z), 2)}
+
+    _h = _dims(HOUSE)
+    _r = _dims(REF)
+    if _h is None:
+        raise RuntimeError("house not loaded")
+    _out["house"] = _h
+    _out["reference_module"] = _r
+
+    if _r:
+        _rh = _r["size_cm"][2]
+        _out["reference_height_cm"] = _rh
+        _out["house_height_in_modules"] = round(_h["size_cm"][2] / _rh, 3)
+        # 1 uu = 1 cm is the UE convention; a Blender export at metres would
+        # land 100x small. Judge on the RATIO to a known object, not on taste.
+        _out["scale_verdict"] = (
+            "PLAUSIBLE: house is %.2f reference modules tall"
+            % (_h["size_cm"][2] / _rh)
+            if 1.0 <= _h["size_cm"][2] / _rh <= 8.0 else
+            "SUSPECT: house is %.3f reference modules tall -- check unit scale"
+            % (_h["size_cm"][2] / _rh))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

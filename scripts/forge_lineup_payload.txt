@@ -1,0 +1,146 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# THE LINEUP -- every forged asset beside the CORRECTLY ASSEMBLED chalet, at
+# real-world scale, in one frame.
+#
+# WHY IT EXISTS. Each stage-10 run stages ONE asset beside the companion, so
+# nothing had ever shown the forged assets against each other. A lineup is the
+# only frame in which a scale error between two assets is visible: a church
+# alone at 1845 cm looks exactly like a church alone at 1341 cm.
+#
+# ⛔ THE CHALET IS THE REFERENCE AND IT MUST BE ASSEMBLED CORRECTLY.
+# SM_House02_Roof's base sits 201.49 cm BELOW its pivot. Placing the roof AT
+# the wall top buries it, which is how the "chalet silhouette" read 536.5
+# instead of 738.0 and how ruling 1's 2.5x came to be scored against the wrong
+# number. The drop is MEASURED here, never remembered, and the assembly is
+# ASSERTED before anything is scored against it.
+
+LEVEL = r"__LEVEL__"
+OVERWRITE = __OVERWRITE__
+ROOF_PKG = r"__ROOF_PKG__"
+WALL_W_CM = __WALL_W_CM__
+WALL_D_CM = __WALL_D_CM__
+WALL_CM = __WALL_CM__
+# ⛔ THE ASSET LIST COMES THROUGH A FILE, NOT A COMMAND LINE.
+# Passed inline it is JSON full of quotes and brackets, and it arrived at the
+# editor mangled -- "Expecting value: line 1 column 3" -- because it crossed a
+# PowerShell argument boundary on the way. This is standing rule 3's shape
+# (commit messages go through a file, unconditionally): a rule that depends on
+# remembering which characters a shell eats is the weakest kind of rule, and a
+# file path has no failure mode.
+ASSETS_FILE = r"__ASSETS_FILE__"
+GAP_CM = __GAP_CM__
+
+_out = {"ok": False, "error": None, "placed": []}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+
+    with open(ASSETS_FILE, "r", encoding="utf-8") as _fh:
+        _specs = _json.load(_fh)
+    _roof = _eal.load_asset(ROOF_PKG)
+    if _roof is None:
+        raise RuntimeError("kit roof not found: " + ROOF_PKG)
+
+    if _eal.does_asset_exist(LEVEL) and not OVERWRITE:
+        raise RuntimeError(
+            "REFUSE: %s already exists and OVERWRITE was not passed. "
+            "new_level OVERWRITES and that level may be somebody's staged "
+            "evidence." % LEVEL)
+    _les.new_level(LEVEL)
+    _out["level"] = LEVEL
+
+    _cube = _eal.load_asset("/Engine/BasicShapes/Cube")
+    _plane = _eal.load_asset("/Engine/BasicShapes/Plane")
+    _g = _eas.spawn_actor_from_object(_plane, _u.Vector(0, 0, 0),
+                                      _u.Rotator(0, 0, 0))
+    _g.set_actor_label("Lineup_Ground")
+    _g.set_actor_scale3d(_u.Vector(600.0, 600.0, 1.0))
+
+    _sun = _eas.spawn_actor_from_class(_u.DirectionalLight,
+                                       _u.Vector(0, 0, 4000),
+                                       _u.Rotator(0.0, -38.0, -55.0))
+    _sun.set_actor_label("Lineup_Sun")
+    _sc = _sun.light_component
+    _sc.set_editor_property("intensity", 12.0)
+    _sc.set_editor_property("atmosphere_sun_light", True)
+    _atm = _eas.spawn_actor_from_class(_u.SkyAtmosphere, _u.Vector(0, 0, 0),
+                                       _u.Rotator(0, 0, 0))
+    _atm.set_actor_label("Lineup_SkyAtmosphere")
+    _sky = _eas.spawn_actor_from_class(_u.SkyLight, _u.Vector(0, 0, 3000),
+                                       _u.Rotator(0, 0, 0))
+    _sky.set_actor_label("Lineup_SkyLight")
+    _sky.light_component.set_editor_property("real_time_capture", True)
+
+    # ---- the chalet reference, assembled correctly ------------------------
+    _rp = _eas.spawn_actor_from_object(_roof, _u.Vector(0.0, 0.0, 0.0),
+                                       _u.Rotator(0, 0, 0))
+    _rpo, _rpe = _rp.get_actor_bounds(False)
+    _roof_drop = -float(_rpo.z - _rpe.z)
+    _out["roof_pivot_drop_cm"] = round(_roof_drop, 2)
+    _eas.destroy_actor(_rp)
+
+    _cx = 0.0
+    _b = _eas.spawn_actor_from_object(
+        _cube, _u.Vector(_cx, 0.0, WALL_CM * 0.5), _u.Rotator(0, 0, 0))
+    _b.set_actor_label("Lineup_Chalet_Walls")
+    _b.set_actor_scale3d(_u.Vector(WALL_W_CM / 100.0, WALL_D_CM / 100.0,
+                                   WALL_CM / 100.0))
+    _r = _eas.spawn_actor_from_object(
+        _roof, _u.Vector(_cx, 0.0, WALL_CM + _roof_drop), _u.Rotator(0, 0, 0))
+    _r.set_actor_label("Lineup_Chalet_Roof")
+    _ro, _re = _r.get_actor_bounds(False)
+    _bo, _be = _b.get_actor_bounds(False)
+    _roof_base = float(_ro.z - _re.z)
+    _wall_top = float(_bo.z + _be.z)
+    _sil = max(float(_ro.z + _re.z), _wall_top)
+    _out["chalet_silhouette_cm"] = round(_sil, 1)
+    _out["chalet_roof_base_cm"] = round(_roof_base, 2)
+    _out["chalet_wall_top_cm"] = round(_wall_top, 2)
+    _out["chalet_assembly_ok"] = bool(abs(_roof_base - _wall_top) < 1.0)
+    if not _out["chalet_assembly_ok"]:
+        raise RuntimeError(
+            "CHALET ASSEMBLY WRONG: roof base %.2f vs wall top %.2f. The "
+            "lineup's whole purpose is comparing against this reference."
+            % (_roof_base, _wall_top))
+
+    # ---- the forged assets, left to right ---------------------------------
+    _x = _cx
+    for _spec in _specs:
+        _pkg, _label, _target = _spec[0], _spec[1], float(_spec[2])
+        _m = _eal.load_asset(_pkg)
+        if _m is None:
+            raise RuntimeError("asset not found: " + _pkg)
+        _x = _x + GAP_CM
+        _a = _eas.spawn_actor_from_object(_m, _u.Vector(_x, 0.0, 0.0),
+                                          _u.Rotator(0, 0, 0))
+        _a.set_actor_label(_label)
+        _ao, _ae = _a.get_actor_bounds(False)
+        _raw = float(_ae.z * 2.0)
+        if _raw <= 0:
+            raise RuntimeError("zero height for " + _pkg)
+        _s = _target / _raw
+        _a.set_actor_scale3d(_u.Vector(_s, _s, _s))
+        _ao, _ae = _a.get_actor_bounds(False)
+        _a.set_actor_location(
+            _u.Vector(_x, 0.0, -float(_ao.z - _ae.z)), False, False)
+        _ao, _ae = _a.get_actor_bounds(False)
+        _top = round(float(_ao.z + _ae.z), 1)
+        _out["placed"].append({
+            "package": _pkg, "label": _label, "target_cm": _target,
+            "top_cm": _top, "base_cm": round(float(_ao.z - _ae.z), 1),
+            "error_cm": round(_top - _target, 2),
+            "over_chalet": round(_top / _sil, 3) if _sil else None,
+            "x_cm": round(_x, 1),
+        })
+
+    _les.save_current_level()
+    _out["saved"] = True
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

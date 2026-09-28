@@ -1,0 +1,20 @@
+{
+  "_comment": "SCRATCH LOOK-TEST SCENE. A flat plane and one of each baked tree variant, built to answer one question that thumbnails cannot: does the canopy read dense under real lighting. It is NOT a biome recipe and declares no lighting of its own -- apply_lighting.py is run against recipes/alpine_8k.json so the R13 block stays declared in exactly one place (NN24). Delete the level freely; nothing references it.",
+  "scratch": {
+    "level": "/Game/Scratch/TreeQuad",
+    "ground": {
+      "mesh": "/Engine/BasicShapes/Plane",
+      "scale": 300.0,
+      "_note": "Plane is 100x100 cm, so scale 300 gives a 300 m square."
+    },
+    "spacing_cm": 1400.0,
+    "_spacing_note": "Widest tree measured 8.55 m (Baltic_Pine_01_A), so 14 m keeps crowns clear of each other and lets each silhouette be judged alone.",
+    "_trees_note": "All four Norway Spruce variants as exported from PVE as Static Meshes. The single-variable armature-bake comparison is committed at c1a55341, frame _verify/20260815_pve_export_vs_armature_bake.png.",
+    "trees": [
+      "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+      "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_B",
+      "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_C",
+      "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_D"
+    ]
+  }
+}

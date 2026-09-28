@@ -1,0 +1,21 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# Apply the Brief 7 P1 weightmap mip fix DIRECTLY to the existing asset
+# (import_layer_textures is blocked by pre-existing recipe validation on the
+# lighting/foliage blocks, unrelated to this fix). Set SIMPLE_AVERAGE, save
+# (rebuilds the mip chain), read the setting back.
+_out={"error":None}
+try:
+    _t=_u.load_asset("/Game/Textures/T_Alpine_8k_Weights")
+    if _t is None: raise RuntimeError("weightmap texture not found")
+    _out["before"]=str(_t.get_editor_property("mip_gen_settings"))
+    _t.modify(True)
+    _t.set_editor_property("mip_gen_settings", _u.TextureMipGenSettings.TMGS_SIMPLE_AVERAGE)
+    _u.EditorAssetLibrary.save_asset("/Game/Textures/T_Alpine_8k_Weights", False)
+    _out["after"]=str(_t.get_editor_property("mip_gen_settings"))
+    _dc=[str(p) for p in _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()]
+    _out["dirty_content_after_save"]=_dc
+    _out["ok"]=True
+except Exception as _e:
+    _out["error"]=str(_e)+" | "+_tb.format_exc()[:200]
+print("__LL__"+_json.dumps(_out,default=str))

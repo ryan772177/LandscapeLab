@@ -1,0 +1,73 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. The hero's Hair GroomComponent beside the standalone probe's,
+# field for field, on the SAME groom and the SAME binding.
+#
+# The controls have narrowed it this far: the groom asset carries the authored
+# shape, the binding preserves it on a standalone actor, and only the hero's
+# own component renders a short cap. So the defect is a property of THAT
+# COMPONENT, and the fields where the two disagree are the candidate list.
+#
+# Printing both columns rather than the hero's alone is the point: a value is
+# only suspicious next to the value that works.
+
+_SKIP_PREFIX = ("relative_", "absolute_", "component_", "on_", "asset_user")
+
+_out = {"ok": False, "error": None, "hero": {}, "probe": {}, "diff": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _hair = None
+    _probe = None
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == "HeroInWorld":
+            for _c in _a.get_components_by_class(_u.GroomComponent):
+                if str(_c.get_name()) == "Hair":
+                    _hair = _c
+        elif _l == "UnboundGroomProbe":
+            _probe = _a.get_component_by_class(_u.GroomComponent)
+    if _hair is None:
+        raise RuntimeError("no hero Hair component")
+    if _probe is None:
+        raise RuntimeError("no probe component -- run unbound_groom_control "
+                           "with MODE=on first, or this compares one column")
+
+    # Enumerate rather than guess the names. An API remembered is an API
+    # guessed, and the interesting field here is one nobody has named yet.
+    _names = []
+    for _n in dir(_u.GroomComponent):
+        if _n.startswith("_") or _n.startswith(_SKIP_PREFIX):
+            continue
+        _names.append(_n)
+
+    for _label, _c in (("hero", _hair), ("probe", _probe)):
+        _row = {}
+        for _n in _names:
+            try:
+                _v = _c.get_editor_property(_n)
+            except Exception:
+                continue
+            if _v is None:
+                _row[_n] = None
+            elif isinstance(_v, (bool, int, float, str)):
+                _row[_n] = _v
+            elif hasattr(_v, "get_path_name"):
+                _row[_n] = _v.get_path_name()
+            else:
+                _s = str(_v)
+                _row[_n] = _s[:200]
+        _out[_label] = _row
+
+    for _n in sorted(set(_out["hero"]) | set(_out["probe"])):
+        _h = _out["hero"].get(_n, "<absent>")
+        _p = _out["probe"].get(_n, "<absent>")
+        if _h != _p:
+            _out["diff"][_n] = {"hero": _h, "probe": _p}
+    _out["n_fields"] = len(_names)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,55 @@
+# save_dirty_content — persist the Assemble output before anything can lose it.
+#
+# Ryan's Assemble built a complete MetaHuman at /Game/MetaHumans/MHC_AlpineHero/
+# -- Blueprint, body mesh, physics asset, and BAKED face textures -- plus the
+# shared /Game/MetaHumans/Common/ library. 252 packages, ALL DIRTY, none on
+# disk. One crash and the whole assembly is gone.
+#
+# CONTENT ONLY, never the map: save_map_packages is False so /Game/Alpine8K
+# and its 1,095 world-partition packages are not touched by this.
+#
+# VERIFIES FROM THE FILESYSTEM, not from the return value. CURRENT STATE
+# records save_dirty_packages returning True having written nothing, so the
+# return value is reported but is NOT the evidence -- the evidence is that
+# the .uasset files exist on disk afterwards.
+import json as _json
+import os as _os
+import unreal as _unreal
+
+_ROOT = r"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Content"
+_out = {"error": None, "dirty_before": None, "returned": None,
+        "dirty_after": None, "on_disk": {}, "saved_ok": None}
+
+
+def _count(rel):
+    d = _os.path.join(_ROOT, rel)
+    if not _os.path.isdir(d):
+        return 0
+    n = 0
+    for _r, _dirs, _files in _os.walk(d):
+        n += len([_f for _f in _files if _f.endswith(".uasset")])
+    return n
+
+
+try:
+    _d0 = _unreal.EditorLoadingAndSavingUtils.get_dirty_content_packages()
+    _out["dirty_before"] = None if _d0 is None else len(_d0)
+    _out["on_disk"]["before"] = {
+        "MetaHumans": _count("MetaHumans"),
+        "MetaHumans/MHC_AlpineHero": _count(_os.path.join("MetaHumans",
+                                                          "MHC_AlpineHero"))}
+
+    _out["returned"] = bool(
+        _unreal.EditorLoadingAndSavingUtils.save_dirty_packages(False, True))
+
+    _d1 = _unreal.EditorLoadingAndSavingUtils.get_dirty_content_packages()
+    _out["dirty_after"] = None if _d1 is None else len(_d1)
+    _out["on_disk"]["after"] = {
+        "MetaHumans": _count("MetaHumans"),
+        "MetaHumans/MHC_AlpineHero": _count(_os.path.join("MetaHumans",
+                                                          "MHC_AlpineHero"))}
+    _out["saved_ok"] = (_out["on_disk"]["after"]["MetaHumans"]
+                        > _out["on_disk"]["before"]["MetaHumans"])
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

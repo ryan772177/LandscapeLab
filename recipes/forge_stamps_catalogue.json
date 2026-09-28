@@ -1,0 +1,329 @@
+{
+ "category": "STAMP",
+ "count": 11,
+ "identity": "sha256 of file bytes; names are metadata (RECIPES.md R1 catalogue spec)",
+ "licence": "mixed per-map: CC0, or operator-owned Gemini outputs. NO Fab content \u2014 enforced by hash against stampit_catalogue.json at build time.",
+ "source": "forge_tool/build_stamp_catalogue.py (curation notes in module docstring; hillshade contact sheet 2026-09-02)",
+ "spec": "same entry schema as stampit_catalogue.json; composite_stamps.py consumes it unchanged",
+ "maps": [
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "meander channel with rim; MIN-carve valley / lake basin. Survey: usable \u2014 channel+banks+rim survive erosion",
+   "conforms_to_r11": true,
+   "filename": "forge_river_basin.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+   "licence": "operator-owned (Gemini output, eroded in-project)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 63220.422161,
+    "min": 0.0,
+    "std": 973.3282741516812
+   },
+   "relpath": "terrain/forge_stamps/forge_river_basin.png",
+   "resolution_px": [
+    1000,
+    1000
+   ],
+   "square": true,
+   "tag": "basin",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "terraced pit; MIN-carve use (flat sites, quarry-like walls). Survey: usable-soft \u2014 erosion pockmarks, not channels",
+   "conforms_to_r11": true,
+   "filename": "forge_terraced_cliffs.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "98aac97696b8cadafd207d2865e40221507c4540333f97c593384db813cc560f",
+   "licence": "operator-owned (Gemini output, eroded in-project)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 64761.753325,
+    "min": 0.0,
+    "std": 140.04663939718216
+   },
+   "relpath": "terrain/forge_stamps/forge_terraced_cliffs.png",
+   "resolution_px": [
+    1000,
+    1000
+   ],
+   "square": true,
+   "tag": "terraces",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "98aac97696b8cadafd207d2865e40221507c4540333f97c593384db813cc560f"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "dense rugged peak field; ADD massif",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_mountain.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 38117.53083988406,
+    "min": 0.0,
+    "std": 10063.67594679009
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_mountain.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "2ae1f1d3e960d728be0e64aa7d43f6ce0e566e8324420819c85a15acf1701fd9"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "rolling hill field; ADD low-relief roll",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_hills.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 41703.65974023678,
+    "min": 0.0,
+    "std": 11937.409744083767
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_hills.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "71c5b3d9813a88f0d99b534588a79c3b669cb95a4055a043fa34aa79f36fa04b"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "broad valleys between bold ridges; ADD midland",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_ridges.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "39aa62479350d4541b6eb28d52c8a1c1a7d1d8b7559c8e43fd93cdf7cbcddb4d",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 35983.34066935735,
+    "min": 0.0,
+    "std": 10511.703250190194
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_ridges.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "ridges",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "983c541b3a5f1cc6fb0e8b1c5844df6faba4e0e2a03b60a85a240f6fc2fe23b2"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "one broad smooth massif; ADD single large rise",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_rise.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "87e005b1640a5b5f182d90d38ed164401148f393fb1192a164a5a6c373c5efc4",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 27359.201196172013,
+    "min": 0.0,
+    "std": 11912.117648981373
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_rise.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "rise",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "856f96b38399e83dfaa1daaf16f44819f160607db8368e8ae76d6ae7413cf168"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "repetitive rounded dune bumps; ADD foothill texture (NOTE: repetitive \u2014 keep opacity/amplitude low)",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_dunes.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "0cceab74270ec1e26e7aeacf93d0333f682bbe03960e8ced207eecdece1ddf21",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 23474.74905533057,
+    "min": 0.0,
+    "std": 8727.770605814278
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_dunes.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "8957550af1f0561280aff58787343f3955a57cbcd9fc7cb478cfeea6d3289ea2"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "ringed circular pits; MIN-carve terracing (NOTE: odd crater character \u2014 preview before trusting)",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_craters.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "2836f25c87536e2b94358a7ca71bdb8cacf5abd83bb01f5f2a7107a0cd19b319",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 32103.39566989267,
+    "min": 0.0,
+    "std": 11064.741885993879
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_craters.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "craters",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "9e65c1ed450de3ab18a374ec0addcbe6340b58f59aca2ffd4c347df75eba3b67"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "radial island cone, crater-topped; ADD single peak",
+   "conforms_to_r11": true,
+   "filename": "forge_cc0_island_peak.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "5b7b8b81b9c9704fdd639f896b0ec56db02f517c091e1a8e4d911b51fa311ee3",
+   "licence": "CC0 (normalized copy)",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 15817.247694436886,
+    "min": 0.0,
+    "std": 18269.877426867777
+   },
+   "relpath": "terrain/forge_stamps/forge_cc0_island_peak.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "island_peak",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "b0bbe90de351bb2aacf023068f4edb88a6272f8cbaa428c6ba727aee4bb1815c"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "synthetic radial pad: flat centre to 38% radius, quintic rise to rim; MIN-carve for small flat sites (village pads)",
+   "conforms_to_r11": true,
+   "filename": "forge_flat_pad.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "8aa06e88d60be04b46d47d85b66a95b43b5c5cd555dfb62e016e78f16acff3ee",
+   "licence": "generated in-tool",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 40372.94964938939,
+    "min": 0.0,
+    "std": 26535.629500305917
+   },
+   "relpath": "terrain/forge_stamps/forge_flat_pad.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "flat_pad",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "synth_flat_pad(size=1009, flat_frac=0.38)"
+  },
+  {
+   "bits": 16,
+   "category": "STAMP",
+   "character": "synthetic mesa: flat top to 45% radius, quintic fall to rim; ADD for flat sites on sloped ground (a MIN carve cannot rule ground below its anchor)",
+   "conforms_to_r11": true,
+   "filename": "forge_mesa.png",
+   "folder": "forge_stamps",
+   "has_alpha": false,
+   "hash": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+   "licence": "generated in-tool",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 65535.0,
+    "mean": 27555.84945303959,
+    "min": 0.0,
+    "std": 27495.255204266734
+   },
+   "relpath": "terrain/forge_stamps/forge_mesa.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "mesa",
+   "tag_source": "visual",
+   "ue_action": "n/a \u2014 STAMP is composited into a base heightmap before import",
+   "ue_legal": null,
+   "derived_from": "synth_mesa(size=1009, flat_frac=0.45)"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Toggle the hair-strands render path cvars that could hide a groom whose data
+# IS on the GPU, and READ EACH ONE BACK. A cvar that did not take is not a
+# control -- this project has had `CsvCategory VSM 1` return success and do
+# nothing, and `r.LandscapeLODBias` read back 0 after being set.
+#
+# Cluster culling is the specific suspect: if a strand's tangent comes out
+# NaN, the cluster the strand belongs to can cull, and a whole group vanishes
+# while CPU-side bounds stay perfect because Min/Max comparisons drop NaN.
+
+CVARS = [
+    ("r.HairStrands.Cluster.Culling", "0"),
+    ("r.HairStrands.Streaming", "0"),
+    ("r.HairStrands.Visibility", "1"),
+    ("r.HairStrands.Strands", "1"),
+    ("r.HairStrands.Binding", "1"),
+    ("r.HairStrands.Interpolation", "1"),
+]
+
+_out = {"ok": False, "error": None, "cvars": {}}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    for _n, _v in CVARS:
+        _row = {"requested": _v}
+        try:
+            _u.SystemLibrary.execute_console_command(_w, "%s %s" % (_n, _v))
+        except Exception as _e:
+            _row["set_error"] = str(_e)[:70]
+        # READ BACK. "the command returned" means nothing here.
+        try:
+            _cv = _u.SystemLibrary.get_console_variable_float_value(_n)
+            _row["read_back"] = _cv
+        except Exception as _e:
+            try:
+                _row["read_back"] = _u.SystemLibrary.get_console_variable_int_value(_n)
+            except Exception as _e2:
+                _row["read_back"] = "UNREADABLE: " + str(_e2)[:60]
+        _out["cvars"][_n] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,49 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# DIRTY-PACKAGE CENSUS -- what would be LOST if this editor were killed now.
+# Read-only: saves nothing, spawns nothing, changes nothing.
+#
+# WHY. RULED 2026-08-30, for the editor that ignores CloseMainWindow while
+# staying fully responsive. "Don't force-kill, you might truncate a .uasset"
+# is a fear; this is the measurement that replaces it. A kill is authorized
+# only when nothing is dirty AND nothing is being written -- and the second
+# half is checked host-side, on the Content tree's newest mtime, because an
+# in-flight write is not visible from inside the editor's package list.
+#
+# A package is DIRTY when it has unsaved in-memory changes. Killing then loses
+# those changes; it does not corrupt what is already on disk. The truncation
+# risk is specifically a kill DURING a write, which is what the mtime window
+# is for.
+
+_out = {"ok": False, "error": None, "dirty": [], "dirty_count": 0}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = _w.get_path_name() if _w else None
+
+    # EditorLoadingAndSavingUtils.get_dirty_content_packages / _map_packages are
+    # the reflected surface for this in 5.8. Both are asked for separately so a
+    # failure in one does not silently report the other as "nothing dirty" --
+    # "I couldn't look" is not "it's absent".
+    _els = _u.EditorLoadingAndSavingUtils
+    for _kind, _fn in (("content", "get_dirty_content_packages"),
+                       ("map", "get_dirty_map_packages")):
+        try:
+            _pkgs = getattr(_els, _fn)()
+            for _p in (_pkgs or []):
+                _out["dirty"].append({"kind": _kind,
+                                      "package": str(_p.get_name())})
+        except Exception as _e1:
+            _out["error_" + _kind] = str(_e1)
+
+    _out["dirty_count"] = len(_out["dirty"])
+    _out["clean"] = bool(_out["dirty_count"] == 0
+                         and "error_content" not in _out
+                         and "error_map" not in _out)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

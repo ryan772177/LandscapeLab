@@ -1,0 +1,2159 @@
+{
+ "assets": [
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Cliff01",
+   "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/MI_Cliff01"
+  },
+  {
+   "ApproxSize": "2207x722x1562",
+   "CollisionPrims": "4",
+   "Materials": "1",
+   "Triangles": "29154",
+   "Vertices": "14771",
+   "class": "StaticMesh",
+   "name": "SM_Cliff01",
+   "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Cliff01_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/T_Cliff01_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Cliff01_N",
+   "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/T_Cliff01_N"
+  },
+  {
+   "ApproxSize": "73x75x74",
+   "CollisionPrims": "0",
+   "Materials": "2",
+   "Triangles": "2867",
+   "Vertices": "2881",
+   "class": "StaticMesh",
+   "name": "BogMyrtleBush_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtleBush_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtleBush_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01_Atlas_Billboards_Tex"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_BogMyrtleBush_01_Billboard",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/MI_BogMyrtleBush_01_Billboard"
+  },
+  {
+   "ApproxSize": "122x105x96",
+   "CollisionPrims": "0",
+   "Materials": "4",
+   "Triangles": "6124",
+   "Vertices": "6158",
+   "class": "StaticMesh",
+   "name": "BogMyrtleBush_02",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtleBush_02_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtleBush_02_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02_Atlas_Billboards_Tex"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_BogMyrtleBush_02_Billboard",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/MI_BogMyrtleBush_02_Billboard"
+  },
+  {
+   "ApproxSize": "45x49x96",
+   "CollisionPrims": "0",
+   "Materials": "2",
+   "Triangles": "2537",
+   "Vertices": "2543",
+   "class": "StaticMesh",
+   "name": "BogMyrtle_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtle_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtle_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Atlas_Billboards_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtle_01_Atlas_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Atlas_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "BogMyrtle_01_Atlas_Tex",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Atlas_Tex"
+  },
+  {
+   "class": "Material",
+   "name": "BogMyrtle_01_Billboard_Mat",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Billboard_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "BogMyrtle_01_Fronds_Mat",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01_Fronds_Mat"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_BogMyrtleBtm_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/T_BogMyrtleBtm_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_BogMyrtleBtm_01_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/T_BogMyrtleBtm_01_N"
+  },
+  {
+   "class": "Material",
+   "name": "M_Fern_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/M_Fern_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Fern_01_Inst",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/M_Fern_01_Inst"
+  },
+  {
+   "ApproxSize": "165x200x91",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "1923",
+   "Vertices": "1933",
+   "class": "StaticMesh",
+   "name": "SM_Fern_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_01"
+  },
+  {
+   "ApproxSize": "216x203x79",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "1826",
+   "Vertices": "1836",
+   "class": "StaticMesh",
+   "name": "SM_Fern_02",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_02"
+  },
+  {
+   "ApproxSize": "134x207x121",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "1812",
+   "Vertices": "1822",
+   "class": "StaticMesh",
+   "name": "SM_Fern_03",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Fern_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/T_Fern_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Fern_01_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/T_Fern_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Ice_Noise_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/T_Ice_Noise_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_TilingNoise06_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Ferns/T_TilingNoise06_N"
+  },
+  {
+   "class": "Material",
+   "name": "M_Buttercup_Patch_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/M_Buttercup_Patch_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Buttercup_Patch_01_Inst_NoWPO",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/M_Buttercup_Patch_01_Inst_NoWPO"
+  },
+  {
+   "ApproxSize": "321x221x55",
+   "CollisionPrims": "0",
+   "Materials": "11",
+   "Triangles": "274",
+   "Vertices": "368",
+   "class": "StaticMesh",
+   "name": "SM_Buttercup_Patch_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/SM_Buttercup_Patch_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Buttercup_Patch_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/T_Buttercup_Patch_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Buttercup_Patch_01_M",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/T_Buttercup_Patch_01_M"
+  },
+  {
+   "class": "Material",
+   "name": "M_FieldScabious_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/M_FieldScabious_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_FieldScabious_01_Inst01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/M_FieldScabious_01_Inst01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_FieldScabious_01_Inst02",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/M_FieldScabious_01_Inst02"
+  },
+  {
+   "ApproxSize": "103x104x65",
+   "CollisionPrims": "0",
+   "Materials": "3",
+   "Triangles": "3362",
+   "Vertices": "2898",
+   "class": "StaticMesh",
+   "name": "SM_FieldScabious_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/SM_FieldScabious_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_FieldScabious01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/T_FieldScabious01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_FieldScabious01_M",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/T_FieldScabious01_M"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_FieldScabious01_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/T_FieldScabious01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Grayscale",
+   "Dimensions": "512x512",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_SwirlNoise",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/T_SwirlNoise"
+  },
+  {
+   "class": "Material",
+   "name": "M_HeatherNew_Master",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherNew_Master"
+  },
+  {
+   "class": "Material",
+   "name": "M_HeatherNew_MasterWorldColorVarience",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherNew_MasterWorldColorVarience"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_HeatherPatches_Inst2",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherPatches_Inst2"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_HeatherPatches_Inst2_BrownPinkVairience",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherPatches_Inst2_BrownPinkVairience"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_HeatherPatches_Inst2_BrownPinkVairience_NoWind",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/M_HeatherPatches_Inst2_BrownPinkVairience_NoWind"
+  },
+  {
+   "ApproxSize": "164x153x57",
+   "CollisionPrims": "0",
+   "Materials": "5",
+   "Triangles": "376",
+   "Vertices": "531",
+   "class": "StaticMesh",
+   "name": "SM_Heather_Mesh_Clumps2",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2"
+  },
+  {
+   "ApproxSize": "99x92x34",
+   "CollisionPrims": "0",
+   "Materials": "5",
+   "Triangles": "376",
+   "Vertices": "531",
+   "class": "StaticMesh",
+   "name": "SM_Heather_Mesh_Clumps2_WorldPopulate",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2_WorldPopulate"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Grass_Blobby_Height_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/T_Grass_Blobby_Height_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_HeatherBranch4_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/T_HeatherBranch4_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HeatherBranch4_Mask2",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/T_HeatherBranch4_Mask2"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_HeatherBranch4_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/T_HeatherBranch4_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Ice_Noise",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/T_Ice_Noise"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Yarrow_Inst",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/M_Yarrow_Inst"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Yarrow_PP_Wind_Inst",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/M_Yarrow_PP_Wind_Inst"
+  },
+  {
+   "ApproxSize": "35x42x54",
+   "CollisionPrims": "0",
+   "Materials": "2",
+   "Triangles": "2410",
+   "Vertices": "1968",
+   "class": "StaticMesh",
+   "name": "SM_Yarrow",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow"
+  },
+  {
+   "ApproxSize": "45x56x52",
+   "CollisionPrims": "0",
+   "Materials": "3",
+   "Triangles": "2846",
+   "Vertices": "2348",
+   "class": "StaticMesh",
+   "name": "SM_Yarrow3",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow3"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Yarrow_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/T_Yarrow_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Yarrow_M",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/T_Yarrow_M"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Yarrow_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/T_Yarrow_N"
+  },
+  {
+   "class": "Material",
+   "name": "M_FieldGrass_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_FieldGrass_Inst_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_FieldGrass_Inst_01_LOD1",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD1"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_FieldGrass_Inst_01_LOD2",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD2"
+  },
+  {
+   "ApproxSize": "106x120x20",
+   "CollisionPrims": "0",
+   "Materials": "5",
+   "Triangles": "765",
+   "Vertices": "621",
+   "class": "StaticMesh",
+   "name": "SM_FieldGrass_01",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_FieldGrass_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/T_FieldGrass_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_FieldGrass_02_M",
+   "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/T_FieldGrass_02_M"
+  },
+  {
+   "class": "Material",
+   "name": "M_DeadLeaves",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/M_DeadLeaves"
+  },
+  {
+   "ApproxSize": "82x89x15",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "4791",
+   "Vertices": "3192",
+   "class": "StaticMesh",
+   "name": "SM_DeadLeaves",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves"
+  },
+  {
+   "ApproxSize": "82x89x9",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "4791",
+   "Vertices": "3192",
+   "class": "StaticMesh",
+   "name": "SM_DeadLeaves_Flat",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_DeadLeavesAtlasTop_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/T_DeadLeavesAtlasTop_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_DeadLeavesAtlas_01_D",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/T_DeadLeavesAtlas_01_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_DeadLeavesAtlas_01_N",
+   "path": "/Game/KiteDemo/Environments/Foliage/Leaves/T_DeadLeavesAtlas_01_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Tile_AlpinePatch001",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/AlpinePatch001/M_Tile_AlpinePatch001"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Tile_AlpinePatch001_alt",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/AlpinePatch001/M_Tile_AlpinePatch001_alt"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_AlpinePatch001_D_alt_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/AlpinePatch001/T_AlpinePatch001_D_alt_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_AlpinePatch001_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/AlpinePatch001/T_AlpinePatch001_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_AlpinePatch001_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/AlpinePatch001/T_AlpinePatch001_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Forest_Path_001A",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/MI_Forest_Path_001A"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Forest_Path_001B",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/MI_Forest_Path_001B"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Forest_Path_001A_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/T_Forest_Path_001A_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Forest_Path_001A_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/T_Forest_Path_001A_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Forest_Path_001B_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/T_Forest_Path_001B_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Forest_Path_001B_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/ForestPath_001/T_Forest_Path_001B_N"
+  },
+  {
+   "class": "Material",
+   "name": "M_AssetPlatform_Grass",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/M_AssetPlatform_Grass"
+  },
+  {
+   "class": "Material",
+   "name": "M_Ground_Grass2",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/M_Ground_Grass2"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_Grass01_D_NoisyAlpha",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/T_GDC_Grass01_D_NoisyAlpha"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Ground_Grass_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/T_Ground_Grass_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ground_Moss_D",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/T_ground_Moss_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_MacroVariation",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/T_MacroVariation"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Masks",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Perlin_Noise_M",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/Grass/T_Perlin_Noise_M"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GravelTile_01",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/MI_GravelTile_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GravelTile_01A",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/MI_GravelTile_01A"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01A_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01A_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01A_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01A_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01A_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01A_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_gravelTile_01_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/GravelTile_01/T_gravelTile_01_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Tile_LavaFlow002",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LavaFlow002/M_Tile_LavaFlow002"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_LavaFlow002_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LavaFlow002/T_LavaFlow002_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Tiling_LavaFlow002_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LavaFlow002/T_Tiling_LavaFlow002_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Tiling_LavaFlow002_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LavaFlow002/T_Tiling_LavaFlow002_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Tile_LeafPath",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/MI_Tile_LeafPath"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Tile_LeafPathStones",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/MI_Tile_LeafPathStones"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafPathStones_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafPathStones_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafPathStones_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafPathStones_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafpathStones_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafpathStones_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafPath_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafPath_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafPath_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafPath_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_Tiling_LeafPath_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/LeafyPath/T_GDC_Tiling_LeafPath_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_PSM_PebblyRiverbank_Tile",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/PebblyRiverbank/MI_PSM_PebblyRiverbank_Tile"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Tile_PebblyRiverbank_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/PebblyRiverbank/T_Tile_PebblyRiverbank_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Tile_PebblyRiverbank_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/PebblyRiverbank/T_Tile_PebblyRiverbank_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Tile_PebblyRiverbank_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/PebblyRiverbank/T_Tile_PebblyRiverbank_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Tile_RiverPebbles",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RiverPebbles/M_Tile_RiverPebbles"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_RiverPebbles_001_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RiverPebbles/T_RiverPebbles_001_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Tile_RiverPebbles_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RiverPebbles/T_Tile_RiverPebbles_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Tile_RiverPebbles_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RiverPebbles/T_Tile_RiverPebbles_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_Tile_RockFace003",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockFace003/M_Tile_RockFace003"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_RockFace003_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockFace003/T_GDC_RockFace003_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GDC_RockFace003_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockFace003/T_GDC_RockFace003_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_RockFace003_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockFace003/T_GDC_RockFace003_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_PSM_RockyPath_Tile",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockyPath/MI_PSM_RockyPath_Tile"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_StonePath_Tile_D_R",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockyPath/T_GDC_StonePath_Tile_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GDC_StonePath_Tile_H",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockyPath/T_GDC_StonePath_Tile_H"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_StonePath_Tile_N",
+   "path": "/Game/KiteDemo/Environments/GroundTiles/RockyPath/T_GDC_StonePath_Tile_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Boulder05a",
+   "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/MI_Boulder05a"
+  },
+  {
+   "ApproxSize": "89x90x43",
+   "CollisionPrims": "4",
+   "Materials": "4",
+   "Triangles": "2572",
+   "Vertices": "1662",
+   "class": "StaticMesh",
+   "name": "SM_Boulder05a",
+   "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Boulder05_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/T_Boulder05_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Boulder05_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/T_Boulder05_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GroundRevealRock001a",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/MI_GroundRevealRock001a"
+  },
+  {
+   "ApproxSize": "334x244x65",
+   "CollisionPrims": "6",
+   "Materials": "2",
+   "Triangles": "13536",
+   "Vertices": "7115",
+   "class": "StaticMesh",
+   "name": "SM_GroundRevealRock001",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GroundRevealRock001a_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/T_GroundRevealRock001a_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GroundRevealRock001a_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/T_GroundRevealRock001a_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_GroundRevealRock002",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/MI_GroundRevealRock002"
+  },
+  {
+   "ApproxSize": "178x354x117",
+   "CollisionPrims": "4",
+   "Materials": "7",
+   "Triangles": "10589",
+   "Vertices": "5658",
+   "class": "StaticMesh",
+   "name": "SM_GroundRevealRock002",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GroundRevealRock002_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/T_GroundRevealRock002_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GroundRevealRock002_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/T_GroundRevealRock002_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_LargePlainsBoulder002",
+   "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/MI_LargePlainsBoulder002"
+  },
+  {
+   "ApproxSize": "672x506x273",
+   "CollisionPrims": "4",
+   "Materials": "3",
+   "Triangles": "13998",
+   "Vertices": "7393",
+   "class": "StaticMesh",
+   "name": "SM_LargePlainsBoulder002",
+   "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/SM_LargePlainsBoulder002"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_LargePlainsBoulder002_D_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/T_LargePlainsBoulder002_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_LargePlainsBoulder002_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/T_LargePlainsBoulder002_N"
+  },
+  {
+   "ApproxSize": "278x443x174",
+   "CollisionPrims": "4",
+   "Materials": "5",
+   "Triangles": "16257",
+   "Vertices": "8191",
+   "class": "StaticMesh",
+   "name": "LargeVolcanicRock_001",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_001"
+  },
+  {
+   "ApproxSize": "281x443x198",
+   "CollisionPrims": "4",
+   "Materials": "9",
+   "Triangles": "16257",
+   "Vertices": "8258",
+   "class": "StaticMesh",
+   "name": "LargeVolcanicRock_002",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_002"
+  },
+  {
+   "ApproxSize": "278x443x180",
+   "CollisionPrims": "4",
+   "Materials": "10",
+   "Triangles": "16257",
+   "Vertices": "8277",
+   "class": "StaticMesh",
+   "name": "LargeVolcanicRock_003",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_003"
+  },
+  {
+   "ApproxSize": "360x444x168",
+   "CollisionPrims": "4",
+   "Materials": "4",
+   "Triangles": "16257",
+   "Vertices": "8191",
+   "class": "StaticMesh",
+   "name": "LargeVolcanicRock_004",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_004"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Large_VolcanicRock_002",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/MI_Large_VolcanicRock_002"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_LargeVolcanicRock_001_D2_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/T_GDC_LargeVolcanicRock_001_D2_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_GDC_LargeVolcanicRock_001_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/T_GDC_LargeVolcanicRock_001_N"
+  },
+  {
+   "ApproxSize": "153x177x130",
+   "CollisionPrims": "4",
+   "Materials": "2",
+   "Triangles": "4136",
+   "Vertices": "2330",
+   "class": "StaticMesh",
+   "name": "Medium_Boulder_001",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "Medium_Boulder_001_D_4096CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001_D_4096CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "Medium_Boulder_001_N_4096",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001_N_4096"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_MediumBoulder_0012",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/MI_MediumBoulder_0012"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "Medium_Boulder_002_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_002_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "Medium_Boulder_002_N_4096",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_002_N_4096"
+  },
+  {
+   "ApproxSize": "131x208x141",
+   "CollisionPrims": "4",
+   "Materials": "2",
+   "Triangles": "2712",
+   "Vertices": "1490",
+   "class": "StaticMesh",
+   "name": "Medium_Boulder_LowPoly",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_LowPoly"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_MediumBoulder_002",
+   "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/MI_MediumBoulder_002"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_MountainRock",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/MI_MountainRock"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_MountainRock_Closed",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/MI_MountainRock_Closed"
+  },
+  {
+   "ApproxSize": "239x374x290",
+   "CollisionPrims": "4",
+   "Materials": "1",
+   "Triangles": "9088",
+   "Vertices": "4649",
+   "class": "StaticMesh",
+   "name": "SM_MountainRock",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock"
+  },
+  {
+   "ApproxSize": "411x370x384",
+   "CollisionPrims": "4",
+   "Materials": "4",
+   "Triangles": "15320",
+   "Vertices": "8193",
+   "class": "StaticMesh",
+   "name": "SM_MountainRock_Closed",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_MountainRock_Closed_D",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/T_MountainRock_Closed_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_MountainRock_Closed_D2",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/T_MountainRock_Closed_D2"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_MountainRock_Closed_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/T_MountainRock_Closed_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_MountainRock_D",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/T_MountainRock_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_MountainRock_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/T_MountainRock_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_River_Rock_01",
+   "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/MI_River_Rock_01"
+  },
+  {
+   "ApproxSize": "49x56x39",
+   "CollisionPrims": "2",
+   "Materials": "2",
+   "Triangles": "2038",
+   "Vertices": "1135",
+   "class": "StaticMesh",
+   "name": "SM_River_Rock_01",
+   "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_River_Rock_01_D_CC_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/T_River_Rock_01_D_CC_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_River_Rock_01_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/T_River_Rock_01_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Scree_001_CC",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/MI_Scree_001_CC"
+  },
+  {
+   "ApproxSize": "564x329x46",
+   "CollisionPrims": "4",
+   "Materials": "5",
+   "Triangles": "33855",
+   "Vertices": "17645",
+   "class": "StaticMesh",
+   "name": "Scree_001",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001"
+  },
+  {
+   "ApproxSize": "319x247x49",
+   "CollisionPrims": "2",
+   "Materials": "12",
+   "Triangles": "15566",
+   "Vertices": "8117",
+   "class": "StaticMesh",
+   "name": "Scree_001_A",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_A"
+  },
+  {
+   "ApproxSize": "340x307x52",
+   "CollisionPrims": "2",
+   "Materials": "4",
+   "Triangles": "20218",
+   "Vertices": "10602",
+   "class": "StaticMesh",
+   "name": "Scree_001_B",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Scree_001_D_CC",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/T_Scree_001_D_CC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Scree_001_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree001/T_Scree_001_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Scree002_NEW",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/MI_Scree002_NEW"
+  },
+  {
+   "ApproxSize": "423x439x54",
+   "CollisionPrims": "4",
+   "Materials": "1",
+   "Triangles": "15425",
+   "Vertices": "8038",
+   "class": "StaticMesh",
+   "name": "SM_Scree002a",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a"
+  },
+  {
+   "ApproxSize": "350x288x55",
+   "CollisionPrims": "2",
+   "Materials": "1",
+   "Triangles": "11947",
+   "Vertices": "6404",
+   "class": "StaticMesh",
+   "name": "SM_Scree002b",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002b"
+  },
+  {
+   "ApproxSize": "564x663x72",
+   "CollisionPrims": "4",
+   "Materials": "1",
+   "Triangles": "27354",
+   "Vertices": "14422",
+   "class": "StaticMesh",
+   "name": "SM_Scree002_Bend",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend"
+  },
+  {
+   "ApproxSize": "567x665x54",
+   "CollisionPrims": "4",
+   "Materials": "1",
+   "Triangles": "27354",
+   "Vertices": "14430",
+   "class": "StaticMesh",
+   "name": "SM_Scree002_NEW",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_NEW"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Scree002_D_R",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/T_Scree002_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Scree002_N",
+   "path": "/Game/KiteDemo/Environments/Rocks/Scree002/T_Scree002_N"
+  },
+  {
+   "class": "MaterialParameterCollection",
+   "name": "MPC_MacroVariation",
+   "path": "/Game/KiteDemo/Environments/Textures/MPC_MacroVariation"
+  },
+  {
+   "class": "MaterialParameterCollection",
+   "name": "MPC_Terrain",
+   "path": "/Game/KiteDemo/Environments/Textures/MPC_Terrain"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Masks",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_GDC_TilingRocks_01_DispMask",
+   "path": "/Game/KiteDemo/Environments/Textures/T_GDC_TilingRocks_01_DispMask"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Water_N",
+   "path": "/Game/KiteDemo/Environments/Textures/T_Water_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Water_Screen_Noise_Soft",
+   "path": "/Game/KiteDemo/Environments/Textures/T_Water_Screen_Noise_Soft"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Water_Screen_Noise_Soft2",
+   "path": "/Game/KiteDemo/Environments/Textures/T_Water_Screen_Noise_Soft2"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Atlas_Billboards_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_01_Atlas_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Atlas_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_01_Atlas_Specular_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Atlas_Specular_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_01_Atlas_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Atlas_Tex"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Billboard_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Billboard_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Branches_2_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Branches_2_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Branches_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Branches_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Fronds_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Fronds_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Leaves_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Leaves_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_01_Leaves_Mat2",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_01_Leaves_Mat2"
+  },
+  {
+   "ApproxSize": "765x854x1178",
+   "CollisionPrims": "1",
+   "Materials": "6",
+   "Triangles": "49495",
+   "Vertices": "58219",
+   "class": "StaticMesh",
+   "name": "HillTree_02",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_02"
+  },
+  {
+   "class": "Material",
+   "name": "M_CustomDepthBillboard",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/M_CustomDepthBillboard"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_CustomDepthBillboard_Inst",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/M_CustomDepthBillboard_Inst"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Craghead_Oak_LimbTile_02_D_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_Craghead_Oak_LimbTile_02_D_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1024x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Craghead_Oak_LimbTile_02_N_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_Craghead_Oak_LimbTile_02_N_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Craghead_Oak_TileMoss_01_D_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_Craghead_Oak_TileMoss_01_D_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Craghead_Oak_Tile_01_D_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_Craghead_Oak_Tile_01_D_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Craghead_Oak_Tile_01_N_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_Craghead_Oak_Tile_01_N_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_HillTreeBillboard_01",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_HillTreeBillboard_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HillTreeBillboard_01_Depth",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_HillTreeBillboard_01_Depth"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HillTreeBillboard_01_N",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_HillTreeBillboard_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HillTreeBillboard_01_SSS",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_HillTreeBillboard_01_SSS"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HillTreeBillboard_01_S_R",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/T_HillTreeBillboard_01_S_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_Tall_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "HillTree_Tall_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_01_Atlas_Billboards_Tex"
+  },
+  {
+   "class": "Material",
+   "name": "HillTree_Tall_01_Billboard_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_01_Billboard_Mat"
+  },
+  {
+   "ApproxSize": "1176x900x2248",
+   "CollisionPrims": "1",
+   "Materials": "5",
+   "Triangles": "58321",
+   "Vertices": "69152",
+   "class": "StaticMesh",
+   "name": "HillTree_Tall_02",
+   "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_02"
+  },
+  {
+   "ApproxSize": "852x913x2210",
+   "CollisionPrims": "2",
+   "Materials": "5",
+   "Triangles": "27824",
+   "Vertices": "33729",
+   "class": "StaticMesh",
+   "name": "ScotsPineTall_01",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPineTall_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPineTall_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Atlas_Billboards_Tex"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPineTall_01_Billboard_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Billboard_Mat"
+  },
+  {
+   "ApproxSize": "1890x1330x1270",
+   "CollisionPrims": "2",
+   "Materials": "5",
+   "Triangles": "60120",
+   "Vertices": "81140",
+   "class": "StaticMesh",
+   "name": "ScotsPine_01",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPine_01_Atlas_Billboards_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Atlas_Billboards_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPine_01_Atlas_Billboards_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Atlas_Billboards_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPine_01_Atlas_Normal_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Atlas_Normal_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "ScotsPine_01_Atlas_Specular_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Atlas_Specular_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "ScotsPine_01_Atlas_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Atlas_Tex"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPine_01_Billboard_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Billboard_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPine_01_Branches_2_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Branches_2_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPine_01_Branches_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Branches_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPine_01_Fronds_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Fronds_Mat"
+  },
+  {
+   "class": "Material",
+   "name": "ScotsPine_01_Leaves_Mat",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Leaves_Mat"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ScotsPine_Bark_01_N_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/T_ScotsPine_Bark_01_N_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x4096",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ScotsPine_Bark_01_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/T_ScotsPine_Bark_01_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ScotsPine_Bark_03_D_Tex",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/T_ScotsPine_Bark_03_D_Tex"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "512x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ScotsPine_Bark_03_N",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/T_ScotsPine_Bark_03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "D_Tree_Stump_01_D_R",
+   "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/D_Tree_Stump_01_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "D_Tree_Stump_01_N",
+   "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/D_Tree_Stump_01_N"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Tree_Stump_01",
+   "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/MI_Tree_Stump_01"
+  },
+  {
+   "ApproxSize": "79x67x233",
+   "CollisionPrims": "1",
+   "Materials": "4",
+   "Triangles": "5853",
+   "Vertices": "3119",
+   "class": "StaticMesh",
+   "name": "Tree_Stump_01",
+   "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Vegetation_Debris_002",
+   "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/MI_Vegetation_Debris_002"
+  },
+  {
+   "ApproxSize": "364x103x75",
+   "CollisionPrims": "3",
+   "Materials": "4",
+   "Triangles": "4538",
+   "Vertices": "2618",
+   "class": "StaticMesh",
+   "name": "SM_Vegetation_Debris_002",
+   "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/SM_Vegetation_Debris_002"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Vegetation_Debris_002_D_R",
+   "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/T_Vegetation_Debris_002_D_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "8192x8192",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Vegetation_Debris_002_N",
+   "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/T_Vegetation_Debris_002_N"
+  },
+  {
+   "class": "Material",
+   "name": "M_1Meter_01",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/M_1Meter_01"
+  },
+  {
+   "class": "Material",
+   "name": "M_CycRoom_01",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/M_CycRoom_01"
+  },
+  {
+   "class": "Material",
+   "name": "M_CycWall_01",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/M_CycWall_01"
+  },
+  {
+   "ApproxSize": "80x20x2",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "2198",
+   "Vertices": "2418",
+   "class": "StaticMesh",
+   "name": "SM_1Meter_01",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/SM_1Meter_01"
+  },
+  {
+   "ApproxSize": "5023x5022x528",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "10784",
+   "Vertices": "5457",
+   "class": "StaticMesh",
+   "name": "SM_AssetPlatform_02",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/SM_AssetPlatform_02"
+  },
+  {
+   "ApproxSize": "10000x10000x5000",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "4098",
+   "Vertices": "2208",
+   "class": "StaticMesh",
+   "name": "SM_CycRoom_01",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/SM_CycRoom_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_VectorDisplacementmap",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_MeterGrid_01_M",
+   "path": "/Game/KiteDemo/LevelContent/Architecture/T_MeterGrid_01_M"
+  },
+  {
+   "class": "Blueprint",
+   "name": "BP_LightStudio",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/BP_LightStudio"
+  },
+  {
+   "class": "CurveFloat",
+   "name": "FogBrightnessLUT",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/FogBrightnessLUT"
+  },
+  {
+   "class": "CurveLinearColor",
+   "name": "SunlightColorLUT",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/SunlightColorLUT"
+  },
+  {
+   "class": "Material",
+   "name": "M_LightStage_Arrows",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/M_LightStage_Arrows"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_LightStage_Skybox_Black",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/M_LightStage_Skybox_Black"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "M_LightStage_Skybox_HDRI",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/M_LightStage_Skybox_HDRI"
+  },
+  {
+   "class": "Material",
+   "name": "M_LightStage_Skybox_Master",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/M_LightStage_Skybox_Master"
+  },
+  {
+   "ApproxSize": "8192x8192x8192",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "3968",
+   "Vertices": "2208",
+   "class": "StaticMesh",
+   "name": "Skybox",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/Skybox"
+  },
+  {
+   "ApproxSize": "800x591x691",
+   "CollisionPrims": "0",
+   "Materials": "1",
+   "Triangles": "5178",
+   "Vertices": "3204",
+   "class": "StaticMesh",
+   "name": "SM_Arrows",
+   "path": "/Game/KiteDemo/LevelContent/Blueprints/Assets/SM_Arrows"
+  },
+  {
+   "CompressionSettings": "TC_HDR",
+   "Dimensions": "1024x512",
+   "class": "TextureCube",
+   "name": "HDRI_Epic_Courtyard_Daylight",
+   "path": "/Game/KiteDemo/LevelContent/HDRI/HDRI_Epic_Courtyard_Daylight"
+  },
+  {
+   "CompressionSettings": "TC_HDR",
+   "Dimensions": "10000x5000",
+   "class": "TextureCube",
+   "name": "KimsBackYard",
+   "path": "/Game/KiteDemo/LevelContent/HDRI/KimsBackYard"
+  },
+  {
+   "class": "World",
+   "name": "Overview",
+   "path": "/Game/KiteDemo/Maps/Overview"
+  },
+  {
+   "class": "World",
+   "name": "Showcase",
+   "path": "/Game/KiteDemo/Maps/Showcase"
+  },
+  {
+   "class": "Material",
+   "name": "M_Photoscan_Master",
+   "path": "/Game/KiteDemo/Material/M_Photoscan_Master"
+  },
+  {
+   "class": "Material",
+   "name": "M_Photoscan_Master_Displacement",
+   "path": "/Game/KiteDemo/Material/M_Photoscan_Master_Displacement"
+  },
+  {
+   "class": "MaterialFunction",
+   "name": "WorldCoords-XY",
+   "path": "/Game/KiteDemo/Material/WorldCoords-XY"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_CliffRockTile_03_D",
+   "path": "/Game/KiteDemo/Textures/T_CliffRockTile_03_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_CliffRock_03_N",
+   "path": "/Game/KiteDemo/Textures/T_CliffRock_03_N"
+  }
+ ],
+ "count": 272,
+ "registry_ready": true,
+ "root": "/Game/KiteDemo",
+ "tag_error": null
+}

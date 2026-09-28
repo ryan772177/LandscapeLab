@@ -1,0 +1,66 @@
+# autorig_hero — (re)create the hero's face rig so the character can build.
+#
+# build_meta_human refused with "Character is not rigged". A MetaHuman
+# carries a face rig generated from its face state, and can_build_meta_human
+# requires one.
+#
+# WHY THIS MAY BE NEEDED EVEN THOUGH RYAN ALREADY RAN "Create Full Rig":
+# either the rig was already gone before this session -- the editor rewrote
+# MHC_AlpineHero at 13:52 and it LOST 40 MB, which is the right order of
+# magnitude for a face rig, after three failed conform attempts -- or
+# committing a new face state invalidates the rig that was generated from
+# the old one. Both are plausible and this payload does not need to know
+# which; it reports rig state before and after so the answer is on record.
+#
+# blocking=True is requested so the call is synchronous and its result is
+# knowable. report_progress=True puts progress in the editor log, which is
+# the channel that still works if the reply is ever lost.
+import json as _json
+import unreal as _unreal
+
+_RIGTYPE = "__RIGTYPE__"
+_BLOCKING = __BLOCKING__
+# BLOCKING=True TOOK THE EDITOR DOWN. Measured 2026-08-16:
+#   Requesting Auto-Rigging ... Blocking: true
+#   Assertion failed: IsValid() [SharedPointer.h] [Line: 1133]
+# That is the SAME assertion, file and line as the recorded
+# conform_to_target_meshes crash, from a different entry point on the same
+# subsystem -- so it is a property of driving MetaHumanCharacterEditor
+# synchronously from remote Python, not of either call. Ryan's successful
+# run on 2026-08-16 18:35 logged "Blocking: false" and finished in 50.5 s.
+# Default to False and treat True as known-fatal.
+_out = {"error": None, "unreadable": [], "rig_type": _RIGTYPE,
+        "blocking": _BLOCKING, "can_build_before": None,
+        "can_build_after": None, "called": False}
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _out["can_build_before"] = bool(_ss.can_build_meta_human(_ch, False))
+
+    _p = _unreal.MetaHumanCharacterAutoRiggingRequestParams()
+    _p.set_editor_property(
+        "rig_type",
+        _unreal.MetaHumanRigType.JOINTS_AND_BLEND_SHAPES
+        if _RIGTYPE == "FULL" else _unreal.MetaHumanRigType.JOINTS_ONLY)
+    _p.set_editor_property("report_progress", True)
+    _p.set_editor_property("blocking", _BLOCKING)
+    _ss.request_auto_rigging(_ch, _p)
+    _out["called"] = True
+
+    # Non-blocking returns before the rig exists, so this reading is a
+    # SNAPSHOT, not a verdict. Completion is read from the editor log
+    # ("Auto-Rigging finished in N seconds") and confirmed by a separate
+    # run of finish_autorig.
+    _out["can_build_after"] = bool(_ss.can_build_meta_human(_ch, False))
+    _out["note"] = ("non-blocking: can_build_after is a snapshot taken "
+                    "immediately after the request and is expected to be "
+                    "false. Watch the log for 'Auto-Rigging finished'."
+                    if not _BLOCKING else "blocking request")
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

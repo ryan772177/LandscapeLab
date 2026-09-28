@@ -1,0 +1,91 @@
+# probe_bp_spawned — enumerate BP_MHC_AlpineHero by SPAWNING it.
+#
+# get_components_by_class on a Blueprint CDO returns nothing: construction
+# script components do not exist until an instance is built. So the only way
+# to see what Assemble wired is to spawn one and look.
+#
+# Two questions decide the adoption route:
+#   1. IS IT A PAWN? If the BP derives from Character/Pawn it can be the
+#      player pawn outright. If it derives from Actor it cannot, and the job
+#      becomes grafting its component setup onto LandscapeLabCharacter.
+#   2. WHAT DOES IT SET on each mesh -- anim class, leader pose, and the
+#      POST-PROCESS anim blueprint, which is the thing the rebuilt
+#      SKM_HeroFace was measured to have LOST (post_process_abp null, where
+#      every other hero mesh carries one).
+#
+# Spawns transient-ish into the editor world and destroys it again.
+import json as _json
+import unreal as _unreal
+
+_BP = r"__BP__"
+_out = {"error": None, "unreadable": [], "class": None,
+        "is_pawn": None, "is_character": None, "is_actor": None,
+        "components": [], "all_component_classes": []}
+_actor = None
+try:
+    _cls = _unreal.EditorAssetLibrary.load_blueprint_class(_BP)
+    if _cls is None:
+        raise RuntimeError("could not load blueprint class: " + _BP)
+    _out["class"] = str(_cls)
+
+    for _k, _base in (("is_character", _unreal.Character),
+                      ("is_pawn", _unreal.Pawn),
+                      ("is_actor", _unreal.Actor)):
+        try:
+            _out[_k] = bool(_unreal.MathLibrary.class_is_child_of(_cls, _base))
+        except Exception as _e:
+            _out[_k] = "UNREADABLE: " + str(_e)[:80]
+
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _actor = _els.spawn_actor_from_class(
+        _cls, _unreal.Vector(0.0, 0.0, 300000.0), _unreal.Rotator(0.0, 0.0, 0.0))
+    if _actor is None:
+        raise RuntimeError("spawn returned None")
+
+    try:
+        _out["all_component_classes"] = sorted(set(
+            [_c.get_class().get_name()
+             for _c in _actor.get_components_by_class(_unreal.ActorComponent)]))
+    except Exception as _e:
+        _out["unreadable"].append("component sweep: " + str(_e)[:100])
+
+    for _c in _actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        _rec = {"component": _c.get_name(),
+                "class": _c.get_class().get_name()}
+        _sk = None
+        try:
+            _sk = _c.get_editor_property("skeletal_mesh_asset")
+            _rec["mesh"] = None if _sk is None else _sk.get_path_name()
+        except Exception as _e:
+            _rec["mesh"] = "UNREADABLE: " + str(_e)[:70]
+        for _k, _p in (("anim_class", "anim_class"),
+                       ("anim_mode", "animation_mode"),
+                       ("leader_pose", "leader_pose_component")):
+            try:
+                _rec[_k] = str(_c.get_editor_property(_p))[:120]
+            except Exception:
+                _rec[_k] = "UNREADABLE"
+        if _sk is not None:
+            try:
+                _pp = _sk.get_editor_property("post_process_anim_blueprint")
+                _rec["mesh_post_process_abp"] = (None if _pp is None
+                                                 else str(_pp)[:130])
+            except Exception as _e:
+                _rec["mesh_post_process_abp"] = "UNREADABLE: " + str(_e)[:70]
+        # Is it POSED? head against root, the same discriminator used in PIE.
+        try:
+            _r = _c.get_socket_location("root")
+            _h = _c.get_socket_location("head")
+            _rec["head_rise_cm"] = round(float(_h.z) - float(_r.z), 2)
+        except Exception as _e:
+            _rec["head_rise_cm"] = "UNREADABLE: " + str(_e)[:70]
+        _out["components"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+print("__LL__" + _json.dumps(_out, default=str))

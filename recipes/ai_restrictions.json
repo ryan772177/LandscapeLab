@@ -1,0 +1,74 @@
+{
+  "_what_this_is": "The MACHINE-READABLE register of assets that may NOT be fed to a generation model. scripts/ai_input_guard.py reads THIS file; ASSETS.md carries the human-readable row and scripts/check_ai_restrictions.py asserts the two agree. One declaration, one checker -- not two lists (NN24).",
+
+  "_why_it_is_a_hard_gate": "A licence term is not a preference. 'Allows usage with AI: No' on the Fab listing is a restriction the operator is bound by, and the failure mode is silent: a generated mesh carries no provenance, so once a restricted asset has been through a model there is no way to detect it afterwards or to un-ship it. The guard therefore refuses BEFORE the model runs, and fails closed.",
+
+  "_scope_is_the_operator_s_words": "'this mesh, and renders of it, must never be used as input to TRELLIS or any generation model' -- ruled 2026-08-30. So the register covers the SOURCE FILES, the UE PACKAGES, the LEVELS that contain them, and the RENDER OUTPUTS that depict them.",
+
+  "schema": "1.0-airestrict",
+  "restrictions": [
+    {
+      "id": "dubiniec_medieval_house_c0",
+      "title": "Medieval House",
+      "author": "Darek Dubiniec",
+      "fab_listing_uid": "69623e2f-f444-4dfc-a76d-3c7f795152bc",
+      "licence": "Fab Standard License",
+      "licence_recorded": true,
+      "in_operator_fab_library": true,
+      "published": "2025-12",
+      "format": "FBX",
+      "shippable": true,
+      "no_ai_input": true,
+      "_no_ai_input_source": "Fab listing field 'Allows usage with AI: No', relayed by the operator 2026-08-30.",
+      "source_globs": [
+        "Free/_intake/medieval_house_c0/**"
+      ],
+      "packages": [
+        "/Game/Scratch/C0House/SM_C0_DonorHouse"
+      ],
+      "levels": [
+        "/Game/Scratch/C0_Stage"
+      ],
+      "render_globs": [
+        "_verify/20260830_c0/*.png",
+        "_verify/20260830_overnight/C0_side_by_side*.png",
+        "_verify/20260830_overnight/stage_*.png",
+        "_verify/20260830_overnight/crop_*.png"
+      ],
+      "_note_on_the_poly_haven_maps": "The seven Poly Haven diffuse maps ship INSIDE this package but are separately CC0 by their own licence. They are NOT listed here, because the operator's restriction names the MESH and renders of it. If that reading is wrong the register is where to widen it."
+    },
+    {
+      "id": "dubiniec_medieval_houses_10",
+      "title": "medieval_houses_10",
+      "author": "Darek Dubiniec",
+      "fab_listing_uid": null,
+      "licence": null,
+      "licence_recorded": false,
+      "in_operator_fab_library": null,
+      "shippable": false,
+      "no_ai_input": true,
+      "_no_ai_input_source": "PRECAUTIONARY, not recorded. The licence is unknown AND the same author's other work carries an explicit AI prohibition. An unknown licence from an author known to forbid AI input is restricted until established otherwise -- the cost of being wrong is asymmetric and irreversible.",
+      "source_globs": [
+        "Free/FabEval/medieval_houses_textures/**",
+        "**/medieval_houses_10*"
+      ],
+      "packages": [
+        "/Game/Scratch/FabEval/SM_medieval_house_10",
+        "/Game/Scratch/FabEval/M_medieval_house_10"
+      ],
+      "levels": [],
+      "render_globs": []
+    }
+  ],
+
+  "_local_fab_db_finding": {
+    "db": "C:/ProgramData/Epic/EpicGamesLauncher/VaultCache/FabLibrary/listings_v1.db",
+    "rows": 1,
+    "the_one_row": "Medieval Village Megascans Sample, uid 2e11a225-a6ea-4781-a3e1-fe975b461894, cached to VaultCache/MedievalGame_5.3, 22.6 GB",
+    "neither_dubiniec_asset_appears": true,
+    "_what_that_does_and_does_not_mean": "The launcher DB caches only what was downloaded THROUGH the launcher. The C0 donor arrived as a zip from the Fab website, so its absence here is expected and is NOT evidence about the operator's web library. medieval_houses_10's presence in that library therefore remains UNKNOWN and only the operator can settle it.",
+    "is_ai_forbidden_column_exists": true,
+    "medieval_village_kit_reads": 0,
+    "_but_do_not_rely_on_that_zero": "The row is largely unpopulated -- empty description, no tags, no formats, rating 0.0 over 0 reviews -- so a 0 in is_ai_forbidden cannot be distinguished from an unset default. It is recorded as an observation, NOT as a finding that the kit permits AI use (NN21: an inert field reads exactly like a set one)."
+  }
+}

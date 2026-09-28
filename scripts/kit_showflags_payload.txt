@@ -1,0 +1,37 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# R-CITYSHOT step 1. This world carries 72 NavMeshBoundsVolume actors and they
+# DRAW in the editor viewport -- the 2026-08-27 oblique has orange wireframes
+# across its entire sky. Editor artefact, not the world, and it ruins any frame
+# taken for review.
+#
+# Also hide the CITY greybox: the eval row stands beside the town and 303 engine
+# Cubes in frame would compete with the thing being judged. Hiding is
+# SetIsTemporarilyHiddenInEditor -- editor-only transient state that does NOT
+# dirty the owning package, so the committed city external actors stay
+# byte-unchanged. Deleting them would dirty packages and need a restore.
+
+CITY_TAG = "LandscapeLab.City"
+_out = {"ok": False, "error": None, "hidden": 0}
+try:
+    for _c in ("ShowFlag.Volumes 0", "ShowFlag.Navigation 0"):
+        _u.SystemLibrary.execute_console_command(None, _c)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _n = 0
+    for _a in _eas.get_all_level_actors():
+        try:
+            if CITY_TAG in [str(t) for t in _a.tags]:
+                _a.set_is_temporarily_hidden_in_editor(True)
+                _n += 1
+        except Exception:
+            pass
+    _out["hidden"] = _n
+    _out["dirty_after_hide"] = len(
+        _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

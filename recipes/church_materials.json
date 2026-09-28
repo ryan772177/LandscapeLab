@@ -1,0 +1,61 @@
+{
+ "_what_this_is": "The forged church's FOUR material roles, one per slot on SM_Church_Forge_Split. Ruled option A 2026-08-30: a landmark justifies real per-material parameters, and a Z-blend cannot give the dome or the roof their own roughness and normal behaviour.",
+ "_slot_order_is_load_bearing": "The roles map to the slots the splitter created, BY NAME: M_Church_Stone, M_Church_Plaster, M_Church_Copper, M_Church_Roof. scripts/blender/_archive/church_split.py (archived 2026-09-16, 1e) appends them in that order and the assignment is READ BACK after import -- the name is the binding, not the index.",
+ "_normal_convention": "DX, matching recipes/c0_materials.json. derive_material_maps.py self-checks each derived normal against the height field it was built from and refuses if it does not read DX.",
+ "schema": "1.0-church-materials",
+ "mesh": "/Game/Scratch/ForgeChurch/SM_Church_Forge_Split",
+ "roles": {
+  "church_stone": {
+   "slot": "M_Church_Stone",
+   "albedo": "refs/polyhaven/rock_wall_08_diff_2k.jpg",
+   "roughness_base": 0.88,
+   "_roughness_base": "Rough weathered stonework, essentially no specular sheen. Highest of the three.",
+   "normal_strength": 10.0,
+   "_normal_strength": "Strong: the base course is where relief reads at eye level, and rock_wall_08 is a deep-relief surface.",
+   "source": "Poly Haven CC0, fetched DIRECT from polyhaven.com -- NOT the .fbm copy. Byte-identical to it, which proves the provenance-by-filename claim.",
+   "licence": "CC0 -- https://polyhaven.com/license",
+   "placeholder": false,
+   "tile_m": 1.8,
+   "_tile_m": "MEASURED. Poly Haven publishes rock_wall_08 at 1800 x 1800 mm. This one was right first time because it was taken from the vendor rather than declared."
+  },
+  "church_plaster": {
+   "slot": "M_Church_Plaster",
+   "albedo": "refs/textures_v1/plaster_wall_tiled.jpg",
+   "roughness_base": 0.82,
+   "_roughness_base": "Lime plaster: matte, but slightly less so than raw stone.",
+   "normal_strength": 5.0,
+   "_normal_strength": "Low. Plaster is nearly flat and a strong normal would invent a texture the concept does not show -- it describes CREAM PLASTERED WALLS, not render with visible aggregate.",
+   "source": "operator-generated, textures_v1, SHA-256 in Free/_measured/c0_textures_v1.json",
+   "placeholder": false,
+   "tile_m": 3.0,
+   "_tile_m": "MEASURED, CORRECTED 2026-08-31 from a declared intent of 2.0 m. This albedo replaces Poly Haven's concrete_wall_003, published at 3000 x 3000 mm. Independently confirmed for the roof by counting the tile itself: ~36 shingle courses across 1024 px at a 0.18-0.22 m exposure is 6.5-7.9 m. The 1.5 m intent made tiling 5.3x too high, and the 'visible tile repetition' logged as an accepted trade-off was that error rather than a trade-off."
+  },
+  "church_copper": {
+   "slot": "M_Church_Copper",
+   "albedo": "refs/derived_placeholder/copper_patina_PLACEHOLDER.png",
+   "roughness_base": 0.55,
+   "_roughness_base": "LOWEST of the three, and this is the parameter that justified option A. Weathered copper still reads as metal: patina dulls it but it is not stone. A Z-blend across the whole church could not have given the dome a roughness distinct from the plaster below it, which is exactly the argument the operator made for the split.",
+   "normal_strength": 3.0,
+   "_normal_strength": "Lowest. A beaten metal sheet has shallow relief, and the placeholder's structure is borrowed from plaster -- pushing it hard would emboss plaster cracks onto a dome.",
+   "source": "PIPELINE-DERIVED PLACEHOLDER, scripts/make_copper_placeholder.py",
+   "placeholder": true,
+   "_placeholder": "⛔ NOT THE ARTEFACT OF RECORD. The operator is generating the real copper/patina tile. Structure is derived from plaster_wall_tiled; the COLOUR is invented, read off the concept's words ('WEATHERED COPPER ONION DOME, dark red-brown') and nothing else. Provenance in Free/_measured/copper_placeholder.json. RETIRES the moment the real tile lands -- delete this row's albedo, do not keep it as a fallback.",
+   "tile_m": 2.0,
+   "_tile_m": "DECLARED INTENT and the only one left. The albedo is a PLACEHOLDER whose structure is borrowed from plaster_wall (measured 3.0 m) but which is meant to depict beaten copper sheet, so neither number is right. Provisional until the operator's tile lands."
+  },
+  "church_roof": {
+   "slot": "M_Church_Roof",
+   "albedo": "refs/textures_v1/roof_tiles_graded.jpg",
+   "roughness_base": 0.79,
+   "_roughness_base": "Weathered shingle: slightly less matte than lime plaster (0.82) because shingles hold a faint sheen when damp, and well above the copper's 0.55. Four distinct roughness values across four slots is what option A bought.",
+   "normal_strength": 9.0,
+   "_normal_strength": "High, second only to the stone. Shingle relief is the whole read of a roof at distance -- the concept calls for a WIDE SHINGLED ROOF WITH DEEP EAVES, and a flat normal would lose the course lines that make it legible.",
+   "source": "operator-generated, textures_v1, GRADED variant. grade_albedo.py moved roof_tiles toward the measured midpoint with the other graded roles, so it sits in the same tonal family as the plaster beside it.",
+   "placeholder": false,
+   "tile_m": 8.0,
+   "_tile_m": "MEASURED, CORRECTED 2026-08-31 from a declared intent of 1.5 m. This albedo replaces Poly Haven's grey_roof_01, published at 8000 x 8000 mm. Independently confirmed for the roof by counting the tile itself: ~36 shingle courses across 1024 px at a 0.18-0.22 m exposure is 6.5-7.9 m. The 1.5 m intent made tiling 5.3x too high, and the 'visible tile repetition' logged as an accepted trade-off was that error rather than a trade-off."
+  }
+ },
+ "_roof_is_selected_by_normal": "THE ROOF IS NOT A HEIGHT BAND. Stone, plaster and dome stack vertically so height separates them; the nave roof and the tower shaft occupy the SAME heights, so no horizontal cut separates those. The roof is selected by FACE NORMAL (signed up-component >= 0.55) inside the plaster height range. 0.55 sits in the measured trough between the wall mode (0.00-0.05, 42.91% of area) and the roof mode (0.60-0.70, 25.45%). Signed rather than absolute so a deep eave's SOFFIT -- as steep as the roof but facing down -- stays plaster instead of coming out shingled.",
+ "_tiling_is_derived": "TILING IS COMPUTED, NEVER TYPED: tiling = metres_per_uv / tile_m, where metres_per_uv is MEASURED per slot by scripts/blender/church_uv_density.py and tile_m is declared above. The master carries a `Tiling` scalar that defaulted to 1.0 and that nothing ever set, so every role rendered at the machine unwrap's own scale -- one UV tile spanning ~50 METRES of building, which put shingle courses at half a metre and read as slate slabs. The unwrap itself is sound: density is near-uniform (50.3 / 50.5 / 53.3 / 54.3 m per uv across the four slots). Only the multiplier was missing."
+}

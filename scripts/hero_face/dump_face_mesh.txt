@@ -1,0 +1,75 @@
+# dump_face_mesh — export the sculpted face GEOMETRY for offline inspection.
+#
+# WHY NOT JUST RENDER IT
+#   Four engine renders of this character have now come back pure white
+#   (mean RGB 255/255/255, nonwhite fraction 0.0000). The cause is understood
+#   -- the preview mesh is ~0.09 units tall, its components sit at world
+#   origin and do not follow the actor, so it falls inside the near clip
+#   plane -- but the fix keeps costing editor restarts.
+#
+#   The mesh VERTICES are a different representation of the same fact and
+#   they are cheap: get_mesh_data_for_conforming returns positions and
+#   triangle indices from any static or skeletal mesh, described in the
+#   engine's own docs as "the same data the interactive conform tool uses
+#   internally". Rasterising them offline answers "what shape is this face"
+#   without asking the renderer anything.
+#
+# Writes vertices and triangles to disk and returns only a summary, because
+# a 24k-vertex reply is the transport limit that has truncated this
+# project's tools before.
+import json as _json
+import unreal as _unreal
+
+_OUT_PATH = r"__OUTPATH__"
+_SOURCE = "__SOURCE__"
+
+_out = {"error": None, "unreadable": [], "source": _SOURCE, "mesh": None,
+        "vertices": None, "triangles": None, "bbox_min": None,
+        "bbox_max": None, "extent": None, "wrote": None}
+_actor = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _mesh = None
+    if _SOURCE == "preview":
+        _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+        if not (_ss.is_object_added_for_editing(_ch)
+                or _ss.try_add_object_to_edit(_ch)):
+            raise RuntimeError("try_add_object_to_edit returned False")
+        _actor = _ss.spawn_meta_human_actor(_ch, True)
+        for _c in _actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+            if _c.get_name() == "Face":
+                _mesh = _c.get_skinned_asset()
+    else:
+        _mesh = _unreal.EditorAssetLibrary.load_asset(_SOURCE)
+    if _mesh is None:
+        raise RuntimeError("no face mesh found for source " + _SOURCE)
+    _out["mesh"] = _mesh.get_path_name()
+
+    _md = _unreal.MetaHumanCharacterEditorSubsystem.get_mesh_data_for_conforming(
+        _mesh)
+    if _md is None:
+        raise RuntimeError("get_mesh_data_for_conforming returned None")
+    _verts, _tris = _md[0], _md[1]
+    _out["vertices"] = len(_verts)
+    _out["triangles"] = len(_tris) // 3
+
+    _pts = [[float(_v.x), float(_v.y), float(_v.z)] for _v in _verts]
+    _mn = [min(_p[_i] for _p in _pts) for _i in range(3)]
+    _mx = [max(_p[_i] for _p in _pts) for _i in range(3)]
+    _out["bbox_min"] = [round(_c, 5) for _c in _mn]
+    _out["bbox_max"] = [round(_c, 5) for _c in _mx]
+    _out["extent"] = [round(_mx[_i] - _mn[_i], 5) for _i in range(3)]
+
+    with open(_OUT_PATH, "w") as _fh:
+        _json.dump({"mesh": _out["mesh"], "vertices": _pts,
+                    "triangles": [int(_t) for _t in _tris]}, _fh)
+    _out["wrote"] = _OUT_PATH
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+print("__LL__" + _json.dumps(_out, default=str))

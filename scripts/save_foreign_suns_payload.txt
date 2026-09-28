@@ -1,0 +1,73 @@
+# Persist the disabled foreign suns, and PROVE the packages were written.
+#
+#   ue_exec.py scripts/save_foreign_suns_payload.txt --set GO=True
+#
+# WHY THIS IS A SEPARATE STEP WITH ITS OWN PROOF
+# ----------------------------------------------
+# After setting `affects_world` False on three DirectionalLight components, the
+# editor reported ZERO dirty content packages. The components read back
+# correctly; the packages were not flagged. That is the third instance of this
+# class in this project:
+#
+#   - the foliage collision fixup corrected 1,093 actors and dirtied 0 packages
+#   - the navmesh SetConfig corrected the actor in memory and dirtied nothing
+#   - and now a component property set through a live actor
+#
+# In every one the editor was RIGHT and the disk was STALE, and the disagreement
+# was invisible to any check that read the editor. So this marks the packages
+# explicitly, saves with only_dirty=False, and reports the package paths so the
+# result can be checked against the FILESYSTEM rather than against this reply.
+#
+# `_a.modify()` is not enough because the change is on the COMPONENT, not the
+# actor. The component is what must be marked.
+import json as _json
+import unreal as _unreal
+
+GO = __GO__
+
+_out = {"error": None, "go": GO, "targets": [], "saved": None,
+        "packages": [], "before": [], "after": []}
+try:
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    # EditorAssetSubsystem carries set_dirty_flag(object, state) and
+    # save_loaded_assets(assets, only_if_is_dirty). Package has NO is_dirty and
+    # NO mark_package_dirty in 5.8 -- both were plausible and both raise.
+    _ass = _unreal.get_editor_subsystem(_unreal.EditorAssetSubsystem)
+    _lights = [_a for _a in _eas.get_all_level_actors()
+               if isinstance(_a, _unreal.DirectionalLight)]
+
+    _targets = []
+    for _a in _lights:
+        _c = _a.light_component
+        _aw = bool(_c.get_editor_property("affects_world"))
+        _lbl = str(_a.get_actor_label())
+        _out["before"].append({"label": _lbl, "affects_world": _aw,
+                               "package": str(_a.get_outermost().get_name())})
+        # Only the DISABLED ones are targets. A light still affecting the world
+        # is either the recipe's sun or something this payload was not asked
+        # about, and saving it would widen the operation silently.
+        if not _aw:
+            _out["targets"].append(_lbl)
+            _targets.append(_a)
+
+    _out["packages"] = [str(_a.get_outermost().get_name()) for _a in _targets]
+
+    if GO and _targets:
+        for _a in _targets:
+            _a.light_component.modify()
+            _a.modify()
+            _out.setdefault("marked", []).append(
+                bool(_ass.set_dirty_flag(_a, True)))
+        # only_if_is_dirty=False on purpose: the whole reason this payload
+        # exists is that the dirty flag did not follow the edit, so trusting it
+        # here would reproduce the defect inside its own fix.
+        _out["saved"] = bool(_ass.save_loaded_assets(_targets, False))
+        for _a in _lights:
+            _c = _a.light_component
+            _out["after"].append({
+                "label": str(_a.get_actor_label()),
+                "affects_world": bool(
+                    _c.get_editor_property("affects_world"))})
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL_SUNSAVE__" + _json.dumps(_out))

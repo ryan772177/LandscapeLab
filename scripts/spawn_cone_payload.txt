@@ -1,0 +1,102 @@
+# Is the player's forward view clear of trunks at the spawn?
+#
+#   --set HALF_ANGLE_DEG=..  --set RANGE_M=..  --set RAYS=..
+#
+# WHY A TRACE AND NOT A RENDER. A render answers "does it look clear", which is
+# a judgement, and it costs ~840 s plus a ~630 s editor wedge on this world. A
+# fan of traces answers "is there geometry in the forward cone" as a number, in
+# 25 s, and it can be re-run after any foliage change without a capture.
+#
+# ** IT TRACES AGAINST FOLIAGE, WHICH IS THE WHOLE POINT. ** The city grounding
+# traces deliberately EXCLUDE foliage and city actors, because they are asking
+# where the LANDSCAPE is. This asks the opposite question -- what is standing in
+# front of the player -- so foliage must be included and the landscape must not
+# count as a hit. Rays are cast at eye height and level, so on flat ground they
+# do not reach the terrain; a terrain hit is reported separately rather than
+# being silently counted as an obstruction.
+#
+# The PlayerStart's own yaw decides the cone. Reading a hardcoded heading here
+# would be a second declaration of which way the player faces.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+HALF_ANGLE_DEG = __HALF_ANGLE_DEG__
+RANGE_M = __RANGE_M__
+RAYS = __RAYS__
+EYE_CM = 175.0
+
+_out = {"error": None, "spawn": None, "yaw": None, "rays": RAYS,
+        "half_angle_deg": HALF_ANGLE_DEG, "range_m": RANGE_M,
+        "blocked": 0, "clear": 0, "landscape_only": 0, "hits": []}
+try:
+    _unreal.LandscapeLabTools.load_all_world_partition_regions()
+    _ues = _unreal.get_editor_subsystem(_unreal.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+
+    _ps = [_a for _a in _eas.get_all_level_actors()
+           if type(_a).__name__ == "PlayerStart"]
+    if len(_ps) != 1:
+        raise RuntimeError(
+            "expected exactly one PlayerStart, found %d. UE picks among "
+            "multiple starts unpredictably, so a cone measured at one of them "
+            "would not be the cone the player gets." % len(_ps))
+    _p = _ps[0]
+    _l = _p.get_actor_location()
+    _r = _p.get_actor_rotation()
+    _out["spawn"] = [round(float(_l.x), 1), round(float(_l.y), 1),
+                     round(float(_l.z), 1)]
+    _out["yaw"] = round(float(_r.yaw), 2)
+
+    # Ground under the spawn, so the rays are cast at EYE HEIGHT above the
+    # ground rather than above the PlayerStart's own capsule offset.
+    _g = _unreal.SystemLibrary.line_trace_single(
+        _w, _unreal.Vector(float(_l.x), float(_l.y), float(_l.z) + 5000.0),
+        _unreal.Vector(float(_l.x), float(_l.y), float(_l.z) - 5000.0),
+        _unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, [],
+        _unreal.DrawDebugTrace.NONE, True,
+        _unreal.LinearColor.RED, _unreal.LinearColor.GREEN, 0.0)
+    if not _g:
+        raise RuntimeError("no ground under the PlayerStart -- could not look")
+    _gz = float(_g.to_tuple()[4].z)
+    _out["ground_z"] = round(_gz, 1)
+    _eye = _gz + EYE_CM
+
+    for _i in range(int(RAYS)):
+        _f = 0.0 if RAYS == 1 else (_i / float(RAYS - 1)) * 2.0 - 1.0
+        _yaw = float(_r.yaw) + _f * float(HALF_ANGLE_DEG)
+        _a = _math.radians(_yaw)
+        _ex = float(_l.x) + _math.cos(_a) * float(RANGE_M) * 100.0
+        _ey = float(_l.y) + _math.sin(_a) * float(RANGE_M) * 100.0
+        _hit = _unreal.SystemLibrary.line_trace_single(
+            _w, _unreal.Vector(float(_l.x), float(_l.y), _eye),
+            _unreal.Vector(_ex, _ey, _eye),
+            _unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, [],
+            _unreal.DrawDebugTrace.NONE, True,
+            _unreal.LinearColor.RED, _unreal.LinearColor.GREEN, 0.0)
+        if not _hit:
+            _out["clear"] += 1
+            continue
+        _t = _hit.to_tuple()
+        _act = _t[9]
+        _nm = str(_act.get_name()) if _act else "?"
+        _d = _math.hypot(float(_t[4].x) - float(_l.x),
+                         float(_t[4].y) - float(_l.y)) / 100.0
+        # A landscape hit at eye height on level ground means rising terrain,
+        # not an obstruction. Counted separately so it cannot inflate the
+        # blocked count.
+        if "Landscape" in type(_act).__name__ if _act else False:
+            _out["landscape_only"] += 1
+        else:
+            _out["blocked"] += 1
+            if len(_out["hits"]) < 12:
+                _out["hits"].append(
+                    {"yaw": round(_yaw, 1), "dist_m": round(_d, 1),
+                     "actor": _nm, "class": type(_act).__name__ if _act else "?"})
+    _out["blocked_frac"] = round(_out["blocked"] / float(RAYS), 4)
+    _out["nearest_block_m"] = (min(h["dist_m"] for h in _out["hits"])
+                               if _out["hits"] else None)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

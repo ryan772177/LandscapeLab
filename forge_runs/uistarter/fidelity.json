@@ -1,0 +1,42 @@
+{
+ "concept": "Free/gemini_v2/concept_highland_dusk.jpg",
+ "render": "forge_runs/uistarter/renders/uistarter.png",
+ "concept_measured": {
+  "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+  "sunlit_rb_split": 0.232,
+  "minluma_rise": 0.109,
+  "sunlit_rgb": [
+   0.742,
+   0.597,
+   0.509
+  ]
+ },
+ "render_measured": {
+  "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+  "sunlit_rb_split": 0.323,
+  "minluma_rise": 0.041,
+  "sunlit_rgb": [
+   0.608,
+   0.468,
+   0.285
+  ]
+ },
+ "delta": {
+  "sunlit_rb_split": 0.091,
+  "minluma_rise": -0.068,
+  "sunlit_rgb": [
+   -0.134,
+   -0.129,
+   -0.224
+  ],
+  "mean_luma": 0.0066,
+  "exposure_ev": 0.028
+ },
+ "_instrument_caveat": "the 0.60-0.85 ground band and the min-luma depth proxy assume comparable framing; when the render's composition differs from the concept's, part of each delta is FRAMING, not lighting \u2014 read the deltas as a trend across relight iterations at a FIXED camera, not as an absolute score",
+ "_suggested_knob": "exposure: apply EV_new = EV_old - (0.028) via lighting_geometry (the proven relight rule); NOTE the parked anomaly \u2014 canyon/highland-class worlds showed zero EV response, so verify the knob responds before trusting one application",
+ "_calibration_reference": {
+  "coast_final_luma_delta": -0.017,
+  "crystal_final_luma_delta": 0.112,
+  "_source": "2026-09-02 EV luma-matching session (MORNING_REPORT addenda)"
+ }
+}

@@ -1,0 +1,166 @@
+# sculpt_with_gate — sculpt one pass at a time, checking the character's health after each.
+#
+# WHY THIS EXISTS
+#   The sculpt damages the character. Measured: the sculpted character's
+#   preview reads 0.5 cm head rise where a healthy one reads 160.6. That was
+#   discovered THREE STEPS DOWNSTREAM -- after a rig, an Assemble and a mesh
+#   rebuild -- by which time nothing pointed at the sculpt.
+#
+#   So the check moves to where the damage happens. After EVERY pass this
+#   re-evaluates the preview and reads root-to-head. The moment it falls, the
+#   run ABORTS: no further passes, no commit_face_state, no save. The face
+#   state is left dirty in memory and dies with the editor.
+#
+#   That turns "why is the hero broken" into "pass N is what broke it, and
+#   the residual at that point was X".
+#
+# FAIL CLOSED IN BOTH DIRECTIONS
+#   * unhealthy BEFORE starting  -> refuse, do not sculpt a broken character
+#   * unreadable head rise       -> refuse; "I could not look" is not "fine"
+#   * healthy all the way        -> commit and save, and say the numbers
+#
+# The preview actor is destroyed BEFORE any save. Spawning it and then saving
+# wedged the editor twice today (FlushAsyncLoading, game thread at 0.04 CPU
+# per wall-second), losing the committed sculpt both times.
+import json as _json
+import unreal as _unreal
+
+_SPEC = r"__SPEC__"
+_PASSES = __PASSES__
+_GATE_CM = __GATE_CM__
+# THE FACTOR DEPENDS ON THE CHARACTER'S RIG STATE, WHICH IS THE WHOLE STORY.
+#   RIGGED   landmarks are in CENTIMETRES -- head Z reads ~171, the cloud
+#            measures 18.4 x 22.4 x 27.6 cm, an actual head. Factor 2.43,
+#            linear over three decades, saturating at 10.
+#   UNRIGGED landmarks come back in a normalised space ~1/300 the size --
+#            head Z ~0.5, cloud extent 0.088. Factor 745 there.
+#
+# 745 / 2.43 = 307, which is that same ~300x, so the two calibrations agree.
+# The first sculpt was performed on an UNRIGGED character in the degenerate
+# space and then auto-rigged on top; that is the leading explanation for the
+# damage this whole exercise is chasing.
+_SCALE = __SCALE__
+_CAP = __CAP__
+
+_out = {"error": None, "unreadable": [], "spec": _SPEC, "gate_cm": _GATE_CM,
+        "baseline_head_rise": None, "baseline_matches_spec": None,
+        "passes": [], "aborted_at": None, "committed": False, "saved": None}
+_actor = None
+
+
+def _head_rise(ss, ch, actor):
+    """Re-evaluate the preview and read root-to-head, in cm."""
+    ss.assemble_for_preview(ch)
+    for c in actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        if c.get_name() != "Face":
+            continue
+        r = c.get_socket_location("root")
+        h = c.get_socket_location("head")
+        return round(float(h.z) - float(r.z), 2)
+    return None
+
+
+try:
+    with open(_SPEC, "r") as _fh:
+        _spec = _json.load(_fh)
+    _targets = _spec["targets"]
+    _base = _spec.get("baseline") or {}
+    _idx = [int(_k) for _k in _targets.keys()]
+
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _cur = [[float(v.x), float(v.y), float(v.z)]
+            for v in _ss.get_face_landmarks(_ch)]
+
+    # The spec's targets were derived from a specific baseline. If the live
+    # character is not that character, the targets mean something else.
+    if _base:
+        _worst = 0.0
+        for _k, _v in _base.items():
+            _i = int(_k)
+            _worst = max(_worst, sum((_cur[_i][_j] - _v[_j]) ** 2
+                                     for _j in range(3)) ** 0.5)
+        _out["baseline_matches_spec"] = bool(_worst < 1e-4)
+        _out["baseline_worst_delta"] = round(_worst, 8)
+        if not _out["baseline_matches_spec"]:
+            raise RuntimeError(
+                "live landmarks differ from the spec's baseline by %.6f -- "
+                "this spec was computed for a different character state and "
+                "its targets would mean something else" % _worst)
+
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    if _actor is None:
+        raise RuntimeError("spawn_meta_human_actor returned None")
+
+    _hr0 = _head_rise(_ss, _ch, _actor)
+    _out["baseline_head_rise"] = _hr0
+    if _hr0 is None:
+        raise RuntimeError("could not read baseline head rise -- refusing")
+    if _hr0 < _GATE_CM:
+        raise RuntimeError("character is ALREADY unhealthy (head rise %.2f cm "
+                           "< gate %.2f) -- refusing to sculpt it"
+                           % (_hr0, _GATE_CM))
+
+    def _residual():
+        return max(sum((_targets[str(i)][k] - _cur[i][k]) ** 2
+                       for k in range(3)) ** 0.5 for i in _idx)
+
+    for _p in range(_PASSES):
+        _vecs = []
+        for _i in _idx:
+            _d = [(_targets[str(_i)][_k] - _cur[_i][_k]) * _SCALE
+                  for _k in range(3)]
+            _m = sum(_c * _c for _c in _d) ** 0.5
+            if _m > _CAP:
+                _d = [_c * _CAP / _m for _c in _d]
+            _vecs.append(_unreal.Vector(_d[0], _d[1], _d[2]))
+        _ss.translate_face_landmarks(_ch, _idx, _vecs)
+        _cur = [[float(v.x), float(v.y), float(v.z)]
+                for v in _ss.get_face_landmarks(_ch)]
+        _hr = _head_rise(_ss, _ch, _actor)
+        _rec = {"pass": _p + 1, "residual": round(_residual(), 8),
+                "head_rise_cm": _hr,
+                "drop_from_baseline_cm": (None if _hr is None
+                                          else round(_hr0 - _hr, 2))}
+        _out["passes"].append(_rec)
+        if _hr is None:
+            _out["aborted_at"] = _p + 1
+            _out["error"] = ("head rise became UNREADABLE at pass %d -- "
+                             "refusing to continue or commit" % (_p + 1))
+            break
+        if _hr < _GATE_CM:
+            _out["aborted_at"] = _p + 1
+            _out["error"] = ("PASS %d BROKE THE CHARACTER: head rise %.2f cm "
+                             "fell below the %.2f cm gate (baseline %.2f). "
+                             "Nothing committed, nothing saved."
+                             % (_p + 1, _hr, _GATE_CM, _hr0))
+            break
+
+    # Destroy the preview actor BEFORE saving -- spawn-then-save deadlocks.
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+            _actor = None
+    except Exception as _e:
+        _out["unreadable"].append("destroy: " + str(_e)[:100])
+
+    if _out["aborted_at"] is None and not _out["error"]:
+        _ss.commit_face_state(_ch)
+        _out["committed"] = True
+        _out["saved"] = bool(
+            _unreal.EditorAssetLibrary.save_asset("/Game/Hero/MHC_AlpineHero",
+                                                  False))
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+print("__LL__" + _json.dumps(_out, default=str))

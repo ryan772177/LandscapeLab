@@ -1,0 +1,61 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ THE CAPTURE RIG THAT WORKS, so the new one can copy it instead of
+# re-deriving it. `HeroShot_Capture` is built by place_hero_in_world.py and
+# produces usable frames; `SOLOGATE_Capture` is mine and produces white.
+# Diffing them is cheaper and more honest than guessing at exposure.
+
+FIELDS = ("capture_source", "fov_angle", "capture_every_frame",
+          "capture_on_movement", "show_flag_settings", "primitive_render_mode",
+          "max_view_distance_override", "always_persist_rendering_state",
+          "texture_target", "projection_type", "ortho_width")
+PP = ("override_auto_exposure_method", "auto_exposure_method",
+      "override_auto_exposure_bias", "auto_exposure_bias",
+      "override_auto_exposure_min_brightness", "auto_exposure_min_brightness",
+      "override_auto_exposure_max_brightness", "auto_exposure_max_brightness",
+      "override_camera_iso", "camera_iso",
+      "override_camera_shutter_speed", "camera_shutter_speed",
+      "override_depth_of_field_fstop", "depth_of_field_fstop",
+      "override_bloom_intensity", "bloom_intensity")
+
+_out = {"ok": False, "error": None, "captures": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        try:
+            _l = _a.get_actor_label()
+        except Exception:
+            continue
+        if _l not in ("HeroShot_Capture", "SOLOGATE_Capture"):
+            continue
+        _cc = _a.get_component_by_class(_u.SceneCaptureComponent2D)
+        if _cc is None:
+            _out["captures"][_l] = {"error": "no SceneCaptureComponent2D"}
+            continue
+        _row = {}
+        for _f in FIELDS:
+            try:
+                _row[_f] = str(_cc.get_editor_property(_f))[:110]
+            except Exception:
+                _row[_f] = "RAISED"
+        try:
+            _pp = _cc.get_editor_property("post_process_settings")
+            for _f in PP:
+                try:
+                    _row["pp." + _f] = str(_pp.get_editor_property(_f))[:60]
+                except Exception:
+                    _row["pp." + _f] = "RAISED"
+        except Exception as _e:
+            _row["pp"] = "RAISED " + str(_e)[:60]
+        _loc = _a.get_actor_location()
+        _rot = _a.get_actor_rotation()
+        _row["_loc"] = [round(_loc.x, 1), round(_loc.y, 1), round(_loc.z, 1)]
+        _row["_rot"] = [_rot.roll, _rot.pitch, _rot.yaw]
+        _out["captures"][_l] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

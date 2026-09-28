@@ -1,0 +1,65 @@
+# probe_pie_bp_pose — is the ASSEMBLED MetaHuman posed, in PIE, where anim ticks?
+#
+# The decisive test for the Blueprint route. An editor-spawned MetaHuman
+# reports head_rise 0.51 cm whether healthy or broken, because nothing has
+# ticked -- so only a PIE reading discriminates. In PIE the working hero
+# meshes read head 148 cm above root and the broken ones 5.4 cm below.
+#
+# If the assembled Blueprint reads ~150 cm here, the route is sound and worth
+# building on. If it reads ~0, the assembled character is itself bad and the
+# suspect becomes the sculpt that produced it -- which would also explain why
+# meshes derived from the same character collapse.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "actors": []}
+try:
+    _world = _unreal.EditorLevelLibrary.get_game_world()
+    for _a in _unreal.GameplayStatics.get_all_actors_of_class(
+            _world, _unreal.Actor):
+        _n = _a.get_name()
+        if "MHC_AlpineHero" not in _n and "HeroBP" not in _n:
+            continue
+        _rec = {"actor": _n, "class": _a.get_class().get_name(),
+                "loc": None, "meshes": []}
+        try:
+            _l = _a.get_actor_location()
+            _rec["loc"] = [round(float(_l.x), 1), round(float(_l.y), 1),
+                           round(float(_l.z), 1)]
+        except Exception:
+            pass
+        for _c in _a.get_components_by_class(_unreal.SkinnedMeshComponent):
+            _m = {"component": _c.get_name()}
+            try:
+                _sk = _c.get_skeletal_mesh_asset()
+                _m["mesh"] = None if _sk is None else _sk.get_name()
+            except Exception:
+                _m["mesh"] = "UNREADABLE"
+            try:
+                _ai = _c.get_anim_instance()
+                _m["anim_instance"] = (None if _ai is None
+                                       else _ai.get_class().get_name())
+            except Exception:
+                _m["anim_instance"] = "UNREADABLE"
+            try:
+                _r = _c.get_socket_location("root")
+                _h = _c.get_socket_location("head")
+                _m["head_rise_cm"] = round(float(_h.z) - float(_r.z), 1)
+            except Exception as _e:
+                _m["head_rise_cm"] = "UNREADABLE: " + str(_e)[:60]
+            try:
+                _nb = int(_c.get_num_bones())
+                _pts = []
+                _st = max(1, _nb // 20)
+                for _i in range(0, _nb, _st):
+                    _v = _c.get_socket_location(_c.get_bone_name(_i))
+                    _pts.append(float(_v.z))
+                if _pts:
+                    _m["bone_z_spread_cm"] = round(max(_pts) - min(_pts), 1)
+            except Exception:
+                pass
+            _rec["meshes"].append(_m)
+        _out["actors"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

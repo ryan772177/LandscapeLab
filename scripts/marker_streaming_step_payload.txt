@@ -1,0 +1,100 @@
+# ONE STEP of unit 10's acceptance test: move the streaming source, then census.
+#
+#   --set X=... --set Y=... --set Z=...   where to put the streaming source
+#   --set MOVE=True|False                 False = census only, no teleport
+#
+# UNIT 10'S ACCEPTANCE, VERBATIM: "drive a streaming source across a chunk
+# boundary at mounted speed in PIE ... nav data must be resident before the
+# marker on it."
+#
+# WHY TELEPORT RATHER THAN WALK, AND WHY THAT IS STRICTER NOT WEAKER
+# ------------------------------------------------------------------
+# A walked traverse is impossible from this spawn -- the town blocks every
+# bearing (0 of 360 clear to 1200 m, measured 2026-08-27) -- and the criterion
+# is about STREAMING ORDER, not about locomotion. Teleporting the source in
+# ~200 m jumps gives World Partition LESS warning than mounted speed does, so a
+# pass here implies a pass at mounted speed and a failure here would need
+# checking at the slower rate before it is called a defect.
+#
+# THE ASSERTION IS PER-MARKER, NOT AGGREGATE. "94% of markers had nav" is the
+# misleading denominator: the question is whether ANY marker was resident
+# without its nav, and one is a failure. Every offender is listed.
+#
+# A MARKER'S NAV CHUNK IS FOUND BY BOUNDS CONTAINMENT, not by name. Chunk actor
+# names encode a grid cell and parsing them would be a second, guessed
+# implementation of a mapping the engine already expresses geometrically.
+import json as _json
+import unreal as _unreal
+
+X = __X__
+Y = __Y__
+Z = __Z__
+MOVE = __MOVE__
+
+_out = {"error": None, "moved": None, "pawn": None,
+        "markers_resident": 0, "nav_chunks_resident": 0,
+        "markers_without_nav": [], "checked": 0}
+try:
+    _ues = _unreal.get_editor_subsystem(_unreal.UnrealEditorSubsystem)
+    _w = _ues.get_game_world()
+    if _w is None:
+        _out["error"] = "no game world -- PIE is not running"
+    else:
+        _p = _unreal.GameplayStatics.get_player_pawn(_w, 0)
+        if _p is None:
+            _out["error"] = "no player pawn, so there is no streaming source"
+        else:
+            if MOVE:
+                _p.set_actor_location(_unreal.Vector(X, Y, Z), False, False)
+                _out["moved"] = True
+            _l = _p.get_actor_location()
+            _out["pawn"] = [round(float(_l.x), 0), round(float(_l.y), 0),
+                            round(float(_l.z), 0)]
+
+            _mk = _unreal.GameplayStatics.get_all_actors_of_class(
+                _w, _unreal.Actor)
+            _markers, _chunks = [], []
+            for _a in _mk:
+                _n = type(_a).__name__
+                if _n == "EncounterMarker":
+                    _markers.append(_a)
+                elif _n == "NavigationDataChunkActor":
+                    _chunks.append(_a)
+            _out["markers_resident"] = len(_markers)
+            _out["nav_chunks_resident"] = len(_chunks)
+
+            # Chunk bounds once, then containment per marker.
+            _boxes = []
+            for _c in _chunks:
+                _o, _e = _c.get_actor_bounds(False)
+                _boxes.append((float(_o.x), float(_o.y),
+                               float(_e.x), float(_e.y)))
+
+            for _m in _markers:
+                _ml = _m.get_actor_location()
+                _mx, _my = float(_ml.x), float(_ml.y)
+                _covered = False
+                for _ox, _oy, _ex, _ey in _boxes:
+                    if abs(_mx - _ox) <= _ex and abs(_my - _oy) <= _ey:
+                        _covered = True
+                        break
+                _out["checked"] += 1
+                if not _covered:
+                    _row = {"loc": [round(_mx, 0), round(_my, 0)]}
+                    try:
+                        _row["plan_row"] = int(
+                            _m.get_editor_property("plan_row_index"))
+                    except Exception:
+                        pass
+                    # Cap the list. An oversized reply has reported a
+                    # successful operation as a failure in this project.
+                    if len(_out["markers_without_nav"]) < 25:
+                        _out["markers_without_nav"].append(_row)
+            _out["without_nav_total"] = sum(
+                1 for _m in _markers
+                if not any(abs(float(_m.get_actor_location().x) - _b[0]) <= _b[2]
+                           and abs(float(_m.get_actor_location().y) - _b[1]) <= _b[3]
+                           for _b in _boxes))
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL_STREAM__" + _json.dumps(_out))

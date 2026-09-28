@@ -1,0 +1,83 @@
+import json as _json
+import os as _os
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+# ONE STEP OF THE EYEBALL SEQUENCE: optionally move the level viewport camera,
+# optionally run console commands, optionally take a HighResShot -- and report
+# the SCREENSHOT FOLDER STATE so the caller can identify the new file.
+#
+# READ-ONLY with respect to assets. Camera pose, console cvars and screenshots
+# only.
+#
+# CVAR READ-BACK IS DONE BY BARE-NAME ECHO INTO THE LOG, not by the Python
+# getter. Measured 2026-08-22: a deliberately impossible cvar name returns
+# float 0.0 / int 0 / bool false from get_console_variable_*, identical to a
+# real cvar sitting at 0, so that getter cannot distinguish absent from off.
+# A bare cvar name at the console prints the current value and its help text
+# for a real cvar, and an unknown-command line for a fake one -- two different
+# strings, which is what makes it an instrument.
+
+CAM_LOC = __CAM_LOC__          # [x,y,z] or null to leave the camera alone
+CAM_ROT = __CAM_ROT__          # [roll,pitch,yaw] or null
+CMDS = __CMDS__                # list of console command strings
+SHOT = __SHOT__                # 1 to fire HighResShot 2, else 0
+SETTLE = __SETTLE__            # seconds to wait before the shot
+
+_out = {"ok": False, "error": None}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _w = _u.EditorLevelLibrary.get_editor_world()
+
+    _shots = _os.path.join(
+        _u.Paths.convert_relative_path_to_full(_u.Paths.project_saved_dir()),
+        "Screenshots", "WindowsEditor")
+    _out["shot_dir"] = _shots
+
+    if CAM_LOC is not None:
+        _ues.set_level_viewport_camera_info(
+            _u.Vector(CAM_LOC[0], CAM_LOC[1], CAM_LOC[2]),
+            _u.Rotator(CAM_ROT[0], CAM_ROT[1], CAM_ROT[2]))
+    _l, _r = _ues.get_level_viewport_camera_info()
+    _out["camera"] = {"loc": [_l.x, _l.y, _l.z],
+                      "rot_roll_pitch_yaw": [_r.roll, _r.pitch, _r.yaw]}
+
+    _log = _os.path.join(
+        _u.Paths.convert_relative_path_to_full(_u.Paths.project_saved_dir()),
+        "Logs", "LandscapeLab.log")
+    _before_log = _os.path.getsize(_log) if _os.path.isfile(_log) else 0
+
+    for _c in CMDS:
+        _u.SystemLibrary.execute_console_command(_w, _c)
+    _out["commands"] = CMDS
+
+    _out["before_files"] = sorted(_os.listdir(_shots)) \
+        if _os.path.isdir(_shots) else []
+
+    if SETTLE > 0:
+        _t0 = _time.time()
+        while _time.time() - _t0 < SETTLE:
+            _time.sleep(0.05)
+
+    if SHOT:
+        _u.SystemLibrary.execute_console_command(_w, "HighResShot 2")
+    _out["shot_fired"] = bool(SHOT)
+
+    # harvest whatever the console printed for the bare cvar echoes
+    _tail = ""
+    try:
+        with open(_log, "r", encoding="utf-8", errors="replace") as _f:
+            _f.seek(_before_log)
+            _tail = _f.read()
+    except Exception:
+        _tail = "(log unreadable)"
+    _lines = [_ln for _ln in _tail.splitlines()
+              if ("HairStrands" in _ln or "Unknown" in _ln
+                  or "HighResShot" in _ln or "Screenshot" in _ln)]
+    _out["log_lines"] = _lines[-25:]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

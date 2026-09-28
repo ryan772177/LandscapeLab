@@ -1,0 +1,79 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. WHERE IS EACH GROOM, and how do the two compare?
+#
+# A DiffLocks groom binds cleanly and renders BALD, while a procedurally
+# authored one binds through the identical payload on the same fresh actor and
+# renders hair -- crown-band luma 50.21 against 34.94, single variable. So the
+# groom itself is the difference, and the first question about a groom that
+# draws nothing is where it thinks it is.
+#
+# Bounds are read off a throwaway GroomActor with NO binding, so this measures
+# the ASSET's own extent rather than anything the binding does to it. Both
+# grooms are measured by the same call in the same run: two readings from one
+# instrument, which is the only way the comparison means anything.
+
+PATHS = [
+    "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_v1",
+    "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_v1_bound",
+    "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4",
+    "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4ctl_bound",
+]
+
+_FIELDS = ("hair_width", "hair_shadow_density", "hair_raytracing_radius_scale",
+           "enable_global_interpolation", "hair_interpolation_type",
+           "guide_type", "riding_alpha")
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+    _probe = _eas.spawn_actor_from_class(_u.GroomActor, _u.Vector(0, 0, 0),
+                                         _u.Rotator(0, 0, 0))
+    _probe.set_actor_label("GroomBoundsProbe")
+    _pc = _probe.get_component_by_class(_u.GroomComponent)
+    for _p in PATHS:
+        _row = {}
+        try:
+            _g = _eal.load_asset(_p)
+            if _g is None:
+                _out["grooms"][_p] = {"error": "could not load"}
+                continue
+            _pc.set_editor_property("binding_asset", None)
+            _pc.set_editor_property("groom_asset", _g)
+            if _pc.get_editor_property("groom_asset") is None:
+                _out["grooms"][_p] = {"error": "groom did not assign"}
+                continue
+            _o, _e, _r = _u.SystemLibrary.get_component_bounds(_pc)
+            _row["bounds_z"] = [round(_o.z - _e.z, 2), round(_o.z + _e.z, 2)]
+            _row["bounds_extent"] = [round(_e.x, 2), round(_e.y, 2),
+                                     round(_e.z, 2)]
+            _row["bounds_radius"] = round(float(_r), 2)
+            # GROUP INFO is where a groom that built nothing shows it.
+            try:
+                _gi = _g.get_editor_property("hair_groups_info")
+                _row["groups"] = [str(_x)[:200] for _x in _gi]
+            except Exception:
+                for _n in ("group_infos", "hair_group_info"):
+                    try:
+                        _row["groups"] = [str(_x)[:200]
+                                          for _x in _g.get_editor_property(_n)]
+                        break
+                    except Exception:
+                        pass
+            for _f in _FIELDS:
+                try:
+                    _row[_f] = str(_g.get_editor_property(_f))
+                except Exception:
+                    pass
+        except Exception as _e:
+            _row["error"] = str(_e)[:160]
+        _out["grooms"][_p] = _row
+    _eas.destroy_actor(_probe)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

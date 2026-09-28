@@ -1,0 +1,635 @@
+{
+  "_comment": "AlpineLab_8129 — the 1 metre/vertex re-terrain of the AlpineLab evaluation build. Same terrain as recipes/alpinelab_v1.json, 4x the sampling. This is an EVALUATION recipe: it exists to answer whether 66,080,641 vertices are affordable, and /Game/Alpine must not be re-terrained on anything but a measurement taken here. Created 2026-08-12, the first landscape in this project ever created without a hand step in Landscape Mode.",
+  "biome_id": "alpinelab_8129",
+  "_biome_id_note": "Not a biome. apply_lighting.py uses this ONLY to label the actors it spawns (Lighting_<biome_id>_<role>), so it exists to make those labels identifiable rather than to claim this evaluation terrain is a biome of the shipping world.",
+  "source": {
+    "_comment": "WHERE THIS RECIPE'S DATA LIVES. Read by scripts/alpinelab_source.py, which both make_alpinelab_material.py and scatter_alpinelab.py call. Build 006 is the 8129 package; 002 is the 4033 one that alpinelab_v1.json points at. The SAME Gaea terrain at 4x the sampling -- occupancy 0.37029 -> 0.37035, span 925.73 -> 925.88 m. That 0.02% agreement is what makes this a RESOLUTION comparison rather than a different terrain.",
+    "build_dir": "C:\\Dev\\LandscapeLab\\TerrainData\\AlpineLab_v1\\006",
+    "package_subdir": "UE5_Ready",
+    "heightmap": "AlpineLabHeight.png",
+    "masks": {
+      "flow": "Erosion2_Flow.png",
+      "wear": "Erosion2_Wear.png",
+      "deposits": "Erosion2_Deposits.png",
+      "snow_hard": "Snow_Snow.png",
+      "snow_depth": "SnowMask_Out.png"
+    }
+  },
+  "landscape": {
+    "level_path": "/Game/GaeaLab/AlpineLab_8129",
+    "_level_key_note": "Named `level_path` because that is the key scripts/open_level.py reads (open_level.py:597). One spelling, not two that must be kept in agreement.",
+    "_not_schema_conforming": "THIS RECIPE DOES NOT CONFORM TO recipes/schema.md AND open_level.py WILL REFUSE IT. That is deliberate and matches its sibling alpinelab_v1.json: both are EVALUATION recipes for the Gaea test terrain, not biome recipes for the shipping world, and the schema requires heightmap/material/lighting/capture blocks that an evaluation landscape has no meaningful values for. Do not 'fix' this by inventing those blocks — inventing values to satisfy a validator is how a recipe stops describing anything. To open this level, launch the editor with the map as an argument: UnrealEditor.exe <uproject> /Game/GaeaLab/AlpineLab_8129. That has no in-process map transition at all, so open_level.py's reference scrub is not being bypassed — the hazard it guards does not exist on a startup load.",
+    "_level_path_note": "NOT under /Game/Game/ like alpinelab_v1. That doubled segment is an artefact of an earlier session and creating more of it entrenches a mistake; this level is at the path it should have had.",
+    "actor_label": "Landscape_8129",
+    "vertices": 8129,
+    "quads_per_section": 127,
+    "sections_per_component": 2,
+    "components_per_axis": 32,
+    "_layout_note": "32 x (2 x 127) + 1 = 8129, closes exactly. sections_per_component may only be 1 or 2 — the documented 'or 4' is wrong and is on CLAUDE.md's casualty list. The layout is DERIVED from the file resolution by create_landscape_from_build.py, which refuses rather than resampling when it does not close.",
+    "scale_xy": 100.0,
+    "scale_z": 180.8358010032807,
+    "z_scale_provenance": "measured — build 006 height_normalization.json: Gaea Terrain/Height 2500.0 m x occupancy 0.37035172045471887 = 925.8793011367972 m span, / 512.0 * 100. READ from the sidecar by the creating script, never retyped.",
+    "_z_scale_warning": "The naive answer — Gaea's declared Terrain/Height — is 2.7x too tall, and no instrument downstream of the import can detect it. This value is only recoverable because the un-normalized source was archived.",
+    "origin_cm": -406400.0,
+    "extent_cm": 812800.0,
+    "_extent_note": "8128 quads x 100 cm = 812800 cm = 8128 m, centred on the world origin, so the actor sits at (-406400, -406400, 0). Location READ BACK from the live actor after import, not assumed from the request.",
+    "world_partition_grid_size": 2,
+    "streaming_proxies": 256,
+    "components_total": 1024,
+    "_proxy_note": "grid size 2 means 2x2 components per proxy: (32/2)^2 = 256 proxies x 4 components = 1024. Confirmed by landscape_inventory.py, which derives the geometry from engine section bases (32 distinct, 0..7874, step 254 -> implied resolution 8129) rather than from this file."
+  },
+  "heightmap": {
+    "build_dir": "C:\\Dev\\LandscapeLab\\TerrainData\\AlpineLab_v1\\006",
+    "import_file": "UE5_Ready/AlpineLabHeight.png",
+    "import_sha256": "ccf416b8f1c44e635997617b7159a0c7508a1a4e483d31bac7b3ac41d07eb40a",
+    "root_file": "AlpineLab_v1_Height_normalized.png",
+    "root_sha256": "7bbf090ed149b24e6baf8636c142c164234c2e603d8c5522c3232150a4b288ce",
+    "_provenance_note": "root_sha256 equals the sidecar's output_sha256, which is what ties ue_z_scale to THIS build. The import file cannot match it: UE5_Ready holds a BICUBIC RESAMPLE (resize_gaea_build.py — 'RESIZE, NEVER CROP', so masks stay in register with the height). Provenance is proven on the root; the import file's hash is recorded, not matched.",
+    "_scale_check": "root mean 20467.894 vs shipped 20467.894, drift 0.0000%; root 0..65535, shipped 0..65534. This is the check that matters: resampling cannot invalidate the Z scale (it maps the uint16 RANGE to metres), but a SECOND normalization pass would restretch the data, still span 0..65535, and make every height wrong. Range cannot see that. The mean can.",
+    "bit_depth": 16,
+    "resolution": 8129
+  },
+  "material": {
+    "path": "/Game/AlpineLab_8129/M_AlpineLab_8129",
+    "parent_of_landscape": true,
+    "masks": {
+      "_uv": "absolute world XY, remapped to 0..1 over the landscape extent. Column -> X, row -> Y, proven by a collision trace at the summit agreeing with the heightmap to 1 cm.",
+      "_units": "Sampled values are the 16-bit PNG value / 65535. `gain` restores a mask whose simulation range never approached full scale — Deposits peaks at 512 of 65535 and would otherwise be invisible.",
+      "flow": {
+        "texture": "/Game/AlpineLab_8129/T_AL8129_Flow",
+        "gain": 21.4,
+        "ramp_in": 0.1,
+        "ramp_out": 0.6,
+        "_retuned": "12.0 -> 21.4, and this is the ONE material value that did not carry from alpinelab_v1.json. MEASURED, not guessed. At gain 12 the 8129 flow mask covers 2.3366% of the map against the 4033 build's 3.3306%, mean weight 0.0130 against 0.0186 -- a 30% relative drop in a modulator that was tuned to a coverage target on this same terrain. THE CAUSE IS PHYSICAL, NOT A RESAMPLE ARTEFACT: the 8129 flow is SHARPER, not weaker. p99 halves (0.0822 -> 0.0400) while p99.9 RISES (0.9265 -> 0.9386). A higher-resolution erosion sim resolves narrower, better-defined channels, so fewer pixels carry moderate flux and the peaks get stronger. Gain 21.4 was chosen by sweeping against BOTH statistics rather than solving for one: it gives 3.3260% coverage (target 3.3306%) and mean weight 0.0178 (target 0.0186). Gain 24 matches mean weight better (0.0190) and overshoots coverage to 3.58%. THIS IS A LOOK-PARITY DECISION AND NOT A CORRECTNESS ONE -- keeping 12.0 would arguably be more faithful to what the higher-resolution simulation actually computed, and would render drainage narrower and drier. It is recorded here so reverting is one edit."
+      },
+      "wear": {
+        "texture": "/Game/AlpineLab_8129/T_AL8129_Wear",
+        "gain": 10.9,
+        "ramp_in": 0.15,
+        "ramp_out": 0.75
+      },
+      "deposits": {
+        "texture": "/Game/AlpineLab_8129/T_AL8129_Deposits",
+        "gain": 128.0,
+        "ramp_in": 0.02,
+        "ramp_out": 0.18,
+        "_tuned": "0.06-0.40 gave 9.91% coverage at mean weight 0.032, which is a 2.9% share of the map after the blend order — the same unreadable-at-any-range problem /Game/Alpine's 0.41% meadow has. Widened against the CPU reference, before rendering, to 18.10% coverage / mean 0.076."
+      },
+      "snow_depth": {
+        "texture": "/Game/AlpineLab_8129/T_AL8129_SnowDepth",
+        "gain": 1.0,
+        "ramp_in": 0.02,
+        "ramp_out": 0.25
+      },
+      "snow_hard": {
+        "texture": "/Game/AlpineLab_8129/T_AL8129_SnowHard",
+        "gain": 1.0,
+        "ramp_in": 0.35,
+        "ramp_out": 0.65
+      }
+    },
+    "surfaces": {
+      "_order": "rock is the base; sediment and snow are lerped over it in that order, so snow wins where both apply.",
+      "rock": {
+        "color": "/Game/Surfaces/T_Rock051_C",
+        "normal": "/Game/Surfaces/T_Rock051_N",
+        "roughness": "/Game/Surfaces/T_Rock051_R",
+        "tile_m": 12.0,
+        "tint": [
+          0.62,
+          0.6,
+          0.57
+        ],
+        "displacement": "/Game/Surfaces/T_Rock051_D"
+      },
+      "sediment": {
+        "color": "/Game/Surfaces/T_Ground037_C",
+        "normal": "/Game/Surfaces/T_Ground037_N",
+        "roughness": "/Game/Surfaces/T_Ground037_R",
+        "tile_m": 8.0,
+        "tint": [
+          0.66,
+          0.6,
+          0.5
+        ],
+        "driven_by": "deposits",
+        "displacement": "/Game/Surfaces/T_Ground037_D"
+      },
+      "snow": {
+        "color": "/Game/Surfaces/T_Snow006_C",
+        "normal": "/Game/Surfaces/T_Snow006_N",
+        "roughness": "/Game/Surfaces/T_Snow006_R",
+        "tile_m": 10.0,
+        "tint": [
+          0.92,
+          0.94,
+          0.98
+        ],
+        "driven_by": "max(snow_depth, snow_hard)",
+        "displacement": "/Game/Surfaces/T_Snow006_D"
+      }
+    },
+    "grass": {
+      "_comment": [
+        "The LANDSCAPE GRASS SYSTEM, not instanced foliage. GrassOutput",
+        "spawns from the material and costs nothing against the 60,000",
+        "instance ceiling, which is the only way to get ground cover at",
+        "this density on this machine. /Game/Alpine's Meadow runs the",
+        "same mechanism at 120,000 per hectare.",
+        "",
+        "density is INSTANCES PER 10 SQUARE METRES (LandscapeGrassType.h)",
+        "-- not per hectare, not per square metre. Getting that wrong by",
+        "a factor of 1,000 is the obvious way to hang this GPU."
+      ],
+      "name": "AlpineLabGround",
+      "grass_type_path": "/Game/AlpineLab_8129/GT_AlpineLab_8129",
+      "cull_cm": 6000.0,
+      "weight": "(1 - snow) * (1 - wear) -- not under snow, not on stripped ridges. The same weights the surfaces use, so the grass cannot disagree with the ground it stands on.",
+      "varieties": [
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
+          "density": 14.0
+        },
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
+          "density": 18.0
+        },
+        {
+          "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
+          "density": 22.0
+        }
+      ]
+    },
+    "modulators": {
+      "_comment": "Scalar effects. They change how an already-selected surface reads; they do not select one, so no extra texture set is needed.",
+      "wear_lighten": {
+        "driven_by": "wear",
+        "albedo_gain_at_1": 1.22,
+        "_why": "Wear's top 5% sits at height 0.340 against a map mean of 0.3125 — it marks the exposed ridges, which read lighter."
+      },
+      "flow_wet": {
+        "driven_by": "flow",
+        "albedo_gain_at_1": 0.62,
+        "roughness_at_1": 0.3,
+        "_why": "Drainage. Its top 5% sits at height 0.290, below the map mean, so it darkens and smooths the low channels."
+      }
+    },
+    "_derived_from": "recipes/alpinelab_v1.json, programmatically. Every gain, ramp_in, ramp_out, tile_m and tint is CARRIED UNCHANGED -- each was tuned against a measured percentile of the same simulation, and the 8129 masks are that simulation resampled, not a new one. Retyping them by hand is how a 0.35 becomes a 0.53. Only asset PATHS differ. Whether the thresholds still land where they did is a MEASUREMENT: run --stats and compare the coverage table against v1's (flow 3.33%, wear 48.96%, deposits 18.10%, snow_hard 12.04%, snow_depth 10.06%; rock 81.44% / sediment 6.64% / snow 11.92%).",
+    "displacement": {
+      "enabled": true,
+      "magnitude": 0.16,
+      "center": 0.5,
+      "centre_on_mip": true,
+      "_magnitude_why": "0.16, NOT the engine default 4.0 this material shipped with. R2 settled 0.16 on /Game/Alpine = 0.40 m peak amplitude. 4.0 would be +/-10 m of displacement on a 1 m/vertex landscape, which is not relief, it is a different terrain.",
+      "_centre_why": "centre_on_mip re-centres every height sample on its OWN fully-mipped value instead of the single scalar `center`. The maps do not agree with 0.5 -- measured means run 0.5257 to 0.7602 -- so a fixed centre spends up to half the amplitude as a per-surface DC offset and puts a ~19 cm step at layer boundaries that is not relief. The neutral is READ FROM THE TEXTURE so it cannot drift on reimport or recompression, and these maps have been recompressed before.",
+      "_all_or_nothing": "build_spec REFUSES if displacement is enabled and any surface lacks a `displacement` texture, and it refuses BEFORE the destructive graph clear. A partial set would blend real height against missing height and put a cliff at every layer boundary -- the sub-surface trap R2 already paid for.",
+      "_corruption_note": "The two strings above were rewritten 2026-08-12 after bash backtick expansion silently deleted the words `center` and `displacement` from them while this block was being written by an inline python -c. Standing rule 3 routes COMMIT MESSAGES through a file for exactly this reason; the same hazard applies to any inline shell payload, and the script still exited 0."
+    }
+  },
+  "lighting": {
+    "sun": {
+      "elevation_deg": 12.0,
+      "azimuth_deg": 285.0,
+      "intensity_lux": 130000.0,
+      "temperature_kelvin": 7800.0,
+      "light_shaft_bloom": true
+    },
+    "sky": {
+      "type": "physical",
+      "intensity": 1.8,
+      "color": [
+        0.42,
+        0.6,
+        1.0
+      ]
+    },
+    "fog": {
+      "enabled": true,
+      "density": 0.0015,
+      "start_distance_m": 1500.0,
+      "volumetric": true,
+      "height_datum_m": 101.0,
+      "half_height_m": 202.0
+    },
+    "exposure": {
+      "method": "manual",
+      "compensation_ev": -1.867,
+      "_solve": "SOLVED FOR THIS TERRAIN 2026-08-13, not ported. Measured top-down linear luma 0.3385 against the solver's sunlit-terrain target 0.3201 at albedo 0.2675, so this scene is ~7% brighter than /Game/Alpine (whose same-method reading is 0.3169) and its implied albedo is ~0.286. bias = -1.786 - log2(0.3385/0.3201) = -1.867. NOTE THIS IS NOT ALPINE'S -1.897: that value corrects for LUMEN BOUNCE on a different scene, this one corrects for ALBEDO on this one, and arriving near the same number by a different mechanism is a coincidence, not a confirmation. Artefact: _verify/20260813_8129_exposure_solve.md"
+    },
+    "_comment": "SUN/SKY/FOG ARE PORTED VERBATIM from recipes/alpine.json, which is R13 -- the SOLVED atmosphere. EXPOSURE IS NO LONGER PORTED: it was re-solved against this terrain on 2026-08-13, see exposure._solve above. The sun is 130000 lux because intensity_lux is TOP-OF-ATMOSPHERE and 18000 delivered only 8,288 lux of green at the ground against a physical 49,000-60,000 at 12 degrees; exposure -1.786 EV was solved against that sun, not tuned by eye. WHY THIS BLOCK EXISTS AT ALL: the level was created by LevelEditorSubsystem.new_level(), which makes an EMPTY partitioned world -- no directional light, no sky, no atmosphere. Four 4K captures came back PURE BLACK (mean 0.0000, std 0.0000, all four the same SHA) before anyone noticed the level had never been lit. Everything upstream reported success."
+  },
+  "scatter": {
+    "_comment": [
+      "Rock meshes placed from the SAME masks the material samples, so a",
+      "rock lands on the ground its mask describes. Read by",
+      "scripts/scatter_alpinelab.py; planning is entirely offline.",
+      "",
+      "THE BUDGET IS THE CONSTRAINT. 'The highest-res meshes we can hold'",
+      "is a question about instances x triangles inside a cull disc, not",
+      "about picking the biggest mesh. scree_slab_001 is 33,855 triangles",
+      "at LOD0 and 829 at LOD3; what it costs is decided by how many are",
+      "close, which is density and cull_m. The planner prints the",
+      "worst-case load per species and REFUSES over the ceilings below.",
+      "",
+      "Reference point: /Game/Alpine's conifers are 39.6M triangles worst",
+      "case at 157,554 instances, on this same iGPU."
+    ],
+    "budget": {
+      "max_instances": 250000,
+      "max_worst_tris": 30000000,
+      "_why": [
+        "250,000 -- 4.06x v1's 60,000, because the map is 4.06x the area and the",
+        "per-hectare densities below are UNCHANGED. It is also exactly the ceiling",
+        "/Game/Alpine uses, and this machine already holds 171,069 instances there.",
+        "v1's 60,000 was set for a 15.4 GB iGPU laptop; this one has 31.4 GB and an",
+        "RTX 5080."
+      ],
+      "_max_worst_tris_why": "DELIBERATELY UNCHANGED AT 30,000,000, and this is the derivation that matters. Worst-case triangle load is density x cull-disc AREA x triangles per mesh -- it is a LOCAL quantity. per_hectare and cull_m are identical to v1, so the worst case inside any cull disc is identical to v1 no matter how much bigger the map is. Only the TOTAL instance count scales with area. Scaling this ceiling with the map would have raised a GPU limit that nothing about the GPU changed."
+    },
+    "species": {
+      "_note": "mask_window keys are mask names, plus the derived `slope_deg`. Every window is inclusive. max_snow drops candidates under snow, because a rock under a snow surface reads as an error.",
+      "TalusSlab": {
+        "mesh_id": "scree_slab_001",
+        "_why": "The highest-poly mesh in the palette, 33,855 tris. Placed only on deposits — the valley floors where Gaea says material accumulated — so the expensive mesh is where the geology puts it.",
+        "mask_window": {
+          "deposits": [
+            0.0004,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            34.0
+          ]
+        },
+        "max_snow": 0.25,
+        "per_hectare": 40.0,
+        "scale_range": [
+          0.7,
+          1.6
+        ],
+        "embed_m": 0.35,
+        "cull_m": 120.0,
+        "_cull_why": "SHORTER than the cheaper meshes, not longer. At 33,855 triangles the cull disc is what sets the cost, so the expensive mesh gets the smallest one and buys its density back.",
+        "max_instances": 16000
+      },
+      "TalusSlabB": {
+        "mesh_id": "scree_slab_002a",
+        "_why": "A second slab shape at 15,425 tris breaks the repeat without doubling the cost.",
+        "mask_window": {
+          "deposits": [
+            0.0002,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            38.0
+          ]
+        },
+        "max_snow": 0.25,
+        "per_hectare": 60.0,
+        "scale_range": [
+          0.6,
+          1.4
+        ],
+        "embed_m": 0.3,
+        "cull_m": 140.0,
+        "max_instances": 32000
+      },
+      "RidgeOutcrop": {
+        "mesh_id": "mountain_rock_closed",
+        "_why": "Wear marks the exposed ridges (its top 5% sits at height 0.340). Outcrops belong where rock is being stripped, not where it is piling up.",
+        "mask_window": {
+          "wear": [
+            0.03,
+            1.0
+          ],
+          "slope_deg": [
+            22.0,
+            70.0
+          ]
+        },
+        "max_snow": 0.4,
+        "per_hectare": 12.0,
+        "scale_range": [
+          0.8,
+          2.2
+        ],
+        "embed_m": 0.55,
+        "cull_m": 220.0,
+        "_window_why": "wear >= 0.045 is past p99 and left 5.2 hectares eligible — 31 outcrops on a 1,627 ha terrain. 0.030 is p90 of the mask and is what makes the ridges read.",
+        "max_instances": 36000
+      },
+      "ChannelRock": {
+        "mesh_id": "river_rock",
+        "_why": "Flow is drainage, and its top 5% sits below the map mean. Small rounded rock in the wet channels — 2,038 tris, the cheapest in the palette, which is what lets it be dense.",
+        "mask_window": {
+          "flow": [
+            0.02,
+            1.0
+          ],
+          "slope_deg": [
+            0.0,
+            30.0
+          ]
+        },
+        "max_snow": 0.2,
+        "per_hectare": 250.0,
+        "scale_range": [
+          0.5,
+          1.3
+        ],
+        "embed_m": 0.1,
+        "cull_m": 70.0,
+        "max_instances": 12000
+      },
+      "Conifer": {
+        "mesh_id": "_direct:/Game/Meshes/fir_tree_01_c_LOD0",
+        "_why": [
+          "Trees are the largest readability gain available on this",
+          "terrain, and /Game/Alpine already proves the asset renders",
+          "here: 157,554 conifers at 24.2 per hectare with a 730 m cull",
+          "measure 75-94 ms on this same iGPU. This population is",
+          "smaller and culled shorter, so it sits inside an envelope",
+          "that has been MEASURED rather than modelled.",
+          "",
+          "The altitude window is the treeline. Height is normalized",
+          "0..1 over the 925.7 m span, so 0.10-0.62 is roughly -370 m to",
+          "+112 m in world Z: valley floor up to well below the summit,",
+          "which is where a forest belongs and where the snow masks are",
+          "quiet."
+        ],
+        "mask_window": {
+          "slope_deg": [
+            0.0,
+            26.0
+          ],
+          "height01": [
+            0.1,
+            0.62
+          ]
+        },
+        "max_snow": 0.15,
+        "per_hectare": 34.0,
+        "scale_range": [
+          0.75,
+          1.35
+        ],
+        "embed_m": 0.15,
+        "cull_m": 420.0,
+        "max_instances": 36000,
+        "budget_tris_per_instance": 3892,
+        "_budget_basis": "LOD3. The fir's LOD0 is 505,494 triangles and its chain is 505,494 / 126,374 / 22,293 / 3,892; charging every instance in a 420 m disc at LOD0 would predict 2 billion triangles, which is arithmetic about a state the renderer never enters. The far-field LOD is the honest single number, and it is FLAGGED as an approximation rather than dressed up as a measurement. The real evidence is the alpine precedent above."
+      },
+      "FieldBoulder": {
+        "mesh_id": "boulder_medium_01",
+        "_why": "The broad pass. The three mask-driven species above cover 143, 213 and 17 hectares of a 1,627 ha terrain, which leaves most of the ground bare. At 4,136 triangles and a 100 m cull this covers the rest for almost nothing.",
+        "mask_window": {
+          "slope_deg": [
+            3.0,
+            45.0
+          ]
+        },
+        "max_snow": 0.3,
+        "per_hectare": 22.0,
+        "scale_range": [
+          0.6,
+          1.8
+        ],
+        "embed_m": 0.22,
+        "cull_m": 100.0,
+        "max_instances": 24000,
+        "_cap_why": "24,000 put the plan at 71,556 against the 60,000 ceiling and the budget gate REFUSED. Boulders were the thing to cut rather than trees: a conifer covers far more of the frame per instance, and the ground it hides is ground the boulders were padding."
+      }
+    },
+    "_cap_note": "Per-species max_instances are v1's x4. v1's placement was CAP-limited, not density-limited -- it placed 4,000 / 8,000 / 3,000 / 9,000 / 6,000 against exactly those caps -- so scaling the caps with the area is what preserves the ACHIEVED density, which is what the render actually looked like. RidgeOutcrop placed 589 against a 9,000 cap and was density-limited; it will scale with area on its own."
+  },
+  "measured": {
+    "_source": "scripts/make_alpinelab_material.py --stats, over the UE5_Ready PNGs. Shader units = PNG value / 65535.",
+    "_date": "2026-08-09",
+    "percentiles": {
+      "flow": {
+        "p50": 0.0,
+        "p90": 0.00163,
+        "p99": 0.0822,
+        "max": 1.0
+      },
+      "wear": {
+        "p50": 0.01346,
+        "p90": 0.03,
+        "p99": 0.05892,
+        "max": 0.09184
+      },
+      "deposits": {
+        "p50": 0.0,
+        "p90": 0.00046,
+        "p99": 0.00305,
+        "max": 0.00781
+      },
+      "snow_hard": {
+        "p50": 0.0,
+        "p90": 1.0,
+        "p99": 1.0,
+        "max": 1.0
+      },
+      "snow_depth": {
+        "p50": 0.0,
+        "p90": 0.02077,
+        "p99": 0.38671,
+        "max": 1.0
+      }
+    },
+    "height_agreement": {
+      "_what": "Mean normalized HEIGHT under each mask's top 5%, against a map mean of 0.3125. This is the check that a mask means what its name says.",
+      "deposits": 0.1875,
+      "flow": 0.2903,
+      "wear": 0.3401,
+      "snow_depth": 0.3991
+    },
+    "snow_hard_is_binary": {
+      "_what": "Snow_Snow carries ~12.2% coverage at EVERY threshold from 0.02 to 0.40 — it is a hard 0/1 mask, not a gradient.",
+      "coverage_at_0.02": 0.125,
+      "coverage_at_0.40": 0.12
+    },
+    "_inherited": "Percentiles carried from alpinelab_v1.json, measured on build 002 at 4033. They are NOT re-measured here. The 8129 masks are the same simulation resampled, so they should agree closely -- 'should' is why --stats prints the recomputed coverage and why the material builder recomputes it at build time. Treat a disagreement as a finding about the resample, not as noise."
+  },
+  "capture": {
+    "_comment": "Viewpoints for LOOKING at this terrain, read by scripts/park_viewport.py --recipe recipes/alpinelab_8129.json --camera <name>. park_viewport reads capture.cameras directly and does not validate the schema, so these work despite this being a lean evaluation recipe.",
+    "_height_note": "Terrain spans -462.9 m to +462.9 m (measured from the heightmap: min 0 / max 65534 of uint16, mapped through scale_z 180.8358). Every aerial camera here sits well above +462.9 m so none can end up inside the ground. ground_origin is at 314.0 m, which is the terrain height at world (0,0) and is VERIFIED — a capture rendered from it.",
+    "_axis_caveat": "~~UNVERIFIED~~ RESOLVED 2026-08-12. The column->X / row->Y mapping was an assumption; it is now tested. scripts/site_ground_cameras.py traced six stations straight down with SystemLibrary.line_trace_single and compared the engine collision height against the height predicted from the PNG under that mapping: agreement to 0.00 m at all six, max |0.00| m. Transposed axes on this asymmetric terrain would disagree by hundreds of metres. CAVEAT ON THE CAVEAT: the heightmap and the collision heightfield share an ancestor (the same PNG), so this is not two independent sources in the non-negotiable 0 sense -- but the MAPPING is precisely what differs between them, so for that one question it is a valid discriminator. peak_orbit was sited under the old assumption and is unchanged.",
+    "cameras": [
+      {
+        "name": "overview",
+        "_what": "The whole 8128 m massif from outside the SW corner at 2000 m. Start here.",
+        "location_cm": [
+          -600000.0,
+          -600000.0,
+          200000.0
+        ],
+        "rotation_deg": [
+          -18.0,
+          45.0,
+          0.0
+        ],
+        "fov_deg": 60.0
+      },
+      {
+        "name": "peak_orbit",
+        "_what": "Oblique on the highest ground, 462.9 m at approx world (-79400, -58200), from 1200 m.",
+        "location_cm": [
+          -199400.0,
+          -178200.0,
+          120000.0
+        ],
+        "rotation_deg": [
+          -20.0,
+          45.0,
+          0.0
+        ],
+        "fov_deg": 55.0
+      },
+      {
+        "name": "top_down",
+        "_what": "Straight down from 6 km. Shows the drainage pattern and the full extent at once.",
+        "location_cm": [
+          0.0,
+          0.0,
+          600000.0
+        ],
+        "rotation_deg": [
+          -90.0,
+          0.0,
+          0.0
+        ],
+        "fov_deg": 60.0
+      },
+      {
+        "name": "ground_origin",
+        "_what": "Eye height on the 314.0 m high point at the world origin. HAND-AUTHORED, not generated — it is the station the first 4K ground frame in _verify/ was shot from.",
+        "location_cm": [
+          0.0,
+          0.0,
+          31566.0
+        ],
+        "rotation_deg": [
+          -3.0,
+          0.0,
+          0.0
+        ],
+        "fov_deg": 70.0
+      },
+      {
+        "name": "ground_valley_drain",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on valley_drain; slope 2.9 deg, snow 0.00, traced ground -457.9 m",
+        "location_cm": [
+          368000.0,
+          403200.0,
+          -45615.4
+        ],
+        "rotation_deg": [
+          -4.0,
+          -134.1,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "ground_sediment_flat",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on sediment_flat; slope 12.3 deg, snow 0.00, traced ground -249.8 m",
+        "location_cm": [
+          -120800.0,
+          242400.0,
+          -24810.8
+        ],
+        "rotation_deg": [
+          -4.0,
+          -82.1,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "ground_snow_edge",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on snow_edge; slope 3.1 deg, snow 0.50, traced ground -273.7 m",
+        "location_cm": [
+          192000.0,
+          -231200.0,
+          -27197.0
+        ],
+        "rotation_deg": [
+          -4.0,
+          147.4,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "ground_ridge_wear",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on ridge_wear; slope 8.8 deg, snow 0.00, traced ground 462.4 m",
+        "location_cm": [
+          -79200.0,
+          -57600.0,
+          46407.3
+        ],
+        "rotation_deg": [
+          -4.0,
+          0.0,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "ground_mid_slope",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on mid_slope; slope 25.0 deg, snow 0.00, traced ground -155.0 m",
+        "location_cm": [
+          -272000.0,
+          -40000.0,
+          -15325.4
+        ],
+        "rotation_deg": [
+          -4.0,
+          -5.2,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "ground_basin_open",
+        "_generated_by": "scripts/site_ground_cameras.py",
+        "_what": "eye height on basin_open; slope 0.3 deg, snow 0.00, traced ground -439.2 m",
+        "location_cm": [
+          -383200.0,
+          388800.0,
+          -43747.7
+        ],
+        "rotation_deg": [
+          -4.0,
+          -55.7,
+          0.0
+        ],
+        "fov_deg": 75.0
+      }
+    ],
+    "_ground_cameras": "The ground_* stations are sited by MASK CHARACTER, one per terrain type, at least 600 m apart so scrolling between them shows different ground rather than six views of one slope. Their Z is the ENGINE TRACE plus 1.7 m eye height -- not the heightmap prediction -- so they stand on the collidable surface whatever the mapping turns out to be. Regenerate with scripts/site_ground_cameras.py --write-recipe; it replaces ground_* and leaves every other camera alone."
+  },
+  "comparison": {
+    "against": "recipes/alpinelab_v1.json",
+    "_note": "Same Gaea terrain, build 002 vs 006: occupancy 0.37029 -> 0.37035, span 925.73 -> 925.88 m, Z 180.81 -> 180.84. 0.02%. That control came free and is what makes this a RESOLUTION comparison rather than a different terrain.",
+    "vertices_v1": 4033,
+    "vertices_8129": 8129,
+    "vertex_count_ratio": 4.06
+  },
+  "status": {
+    "created": "2026-08-12",
+    "imported": true,
+    "saved": true,
+    "nanite": false,
+    "material_assigned": false,
+    "frame_cost_measured": false,
+    "_status_note": "UNVERIFIED: that the terrain is the RIGHT terrain. Everything recorded here describes the component grid and the import parameters. No collision trace, no render, and no comparison of the live surface against the heightmap has been taken — and non-negotiable 0 warns that the grid and the plan are closer to one source than two."
+  }
+}

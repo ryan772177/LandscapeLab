@@ -1,0 +1,121 @@
+{
+ "brief": {
+  "terrain_entities": [
+   {
+    "id": "lake",
+    "read": "still lake filling centre frame"
+   },
+   {
+    "id": "massif",
+    "read": "mountain wall rising behind the far shore"
+   }
+  ],
+  "lighting_geometry": {
+   "sun_elevation_deg": 24.0,
+   "sun_azimuth_deg": 245.0,
+   "fog_height_datum_m": 140.0,
+   "fog_half_height_m": 90.0,
+   "sky_intensity": 1.0
+  },
+  "acceptance": [
+   {
+    "id": "lake_basin_flat",
+    "kind": "flat_site",
+    "placement": "lake_basin",
+    "at_m": [
+     0.0,
+     100.8
+    ],
+    "box_m": 458.64,
+    "elev_m": [
+     88.0,
+     108.0
+    ],
+    "slope_mean_deg_max": 3.0
+   },
+   {
+    "id": "massif_peak",
+    "kind": "peak",
+    "placement": "massif",
+    "at_m": [
+     151.2,
+     -1562.4
+    ],
+    "box_m": 800.0,
+    "max_elev_m": [
+     550,
+     1200
+    ]
+   }
+  ],
+  "render_camera": {
+   "at_m": [
+    -705.6,
+    1562.4
+   ],
+   "height_above_ground_m": 170.0,
+   "pitch_deg": 0.7,
+   "yaw_deg": -71.9,
+   "fov": 73.2
+  },
+  "water": {
+   "kind": "lake",
+   "label": "WaterPlane_import",
+   "centre_cm": [
+    0.0,
+    0.0
+   ],
+   "level_cm": 10500.0,
+   "scale_xy": [
+    4100.0,
+    4100.0
+   ],
+   "color_linear": [
+    0.0482,
+    0.159,
+    0.1946
+   ],
+   "roughness": 0.05,
+   "opacity": 0.75
+  },
+  "lighting_measured": {
+   "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+   "sunlit_rb_split": 0.232,
+   "minluma_rise": 0.109,
+   "sunlit_rgb": [
+    0.742,
+    0.597,
+    0.509
+   ]
+  },
+  "source_image": "Free/gemini_v2/concept_highland_dusk.jpg"
+ },
+ "placements": [
+  {
+   "id": "massif",
+   "stamp_hash": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+   "centre_m": [
+    151.2,
+    -1562.4
+   ],
+   "size_m": 2217.6,
+   "rotation_deg": 90.0,
+   "blend": "MAX",
+   "anchor_m": 0.0,
+   "amplitude_m": 870.0
+  },
+  {
+   "id": "lake_basin",
+   "stamp_hash": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+   "centre_m": [
+    0.0,
+    100.8
+   ],
+   "size_m": 1310.4,
+   "rotation_deg": 0.0,
+   "blend": "MIN",
+   "anchor_m": 88.0,
+   "amplitude_m": 25.0
+  }
+ ]
+}

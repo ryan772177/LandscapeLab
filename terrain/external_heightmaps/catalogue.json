@@ -1,0 +1,1311 @@
+{
+ "category": "TERRAIN",
+ "count": 50,
+ "cross_tier_note": "NO cross-tier 'same map' relationship is recorded: the resolution folders hold independently generated terrains",
+ "identity": "sha256 of file bytes; name/folder are metadata only and are never used to match or dedupe",
+ "licence": "CC0",
+ "maps": [
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_01_Mountain.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "2ae1f1d3e960d728be0e64aa7d43f6ce0e566e8324420819c85a15acf1701fd9",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 25241.0,
+    "mean": 14742.161282844881,
+    "min": 146.0,
+    "std": 3853.6346449696043
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_01_Mountain.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_02_Hills.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "71c5b3d9813a88f0d99b534588a79c3b669cb95a4055a043fa34aa79f36fa04b",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 12673.0,
+    "mean": 8070.73498375866,
+    "min": 17.0,
+    "std": 2305.330851308237
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_02_Hills.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_03_Meadows.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "983c541b3a5f1cc6fb0e8b1c5844df6faba4e0e2a03b60a85a240f6fc2fe23b2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6610.0,
+    "mean": 3629.807505493178,
+    "min": 1.0,
+    "std": 1060.0724195572075
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_03_Meadows.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_04_Plains.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "856f96b38399e83dfaa1daaf16f44819f160607db8368e8ae76d6ae7413cf168",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6596.0,
+    "mean": 2754.24536161661,
+    "min": 1.0,
+    "std": 1198.7551208501172
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_04_Plains.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "plains",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_05_Dunes.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "8957550af1f0561280aff58787343f3955a57cbcd9fc7cb478cfeea6d3289ea2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 5438.0,
+    "mean": 1948.5427073091435,
+    "min": 1.0,
+    "std": 724.0846095756028
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_05_Dunes.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_06_Canyon.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "9e65c1ed450de3ab18a374ec0addcbe6340b58f59aca2ffd4c347df75eba3b67",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10404.0,
+    "mean": 5109.839987191589,
+    "min": 26.0,
+    "std": 1752.1892750102552
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_06_Canyon.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_07_Wetlands.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "8f710af0b68f1d748859b897729cb2f666c8450d84cc5d964b92193e183fdf2b",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 985.0,
+    "mean": 71.7936765345783,
+    "min": 1.0,
+    "std": 138.755302074623
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_07_Wetlands.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "wetlands",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_08_Island.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "b0bbe90de351bb2aacf023068f4edb88a6272f8cbaa428c6ba727aee4bb1815c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 11310.0,
+    "mean": 2729.722023100323,
+    "min": 0.0,
+    "std": 3153.0167321084655
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_08_Island.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_09_Archipelago.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "55993e9658b37b1179f339c0ef8bf9f6759435e4914344c84c1b501c9b960665",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1817.0,
+    "mean": 255.25562995478748,
+    "min": 0.0,
+    "std": 357.2707127089842
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_09_Archipelago.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "archipelago",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_10_Alien.png",
+   "folder": "1K",
+   "has_alpha": false,
+   "hash": "f173b25d7d0ce4aa9984847d957e8f9995d0193fed9d70b89ee2250c1ed74af9",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10297.0,
+    "mean": 6408.306122990214,
+    "min": 1.0,
+    "std": 1668.2433861269417
+   },
+   "relpath": "terrain/external_heightmaps/1K/Heightmap_10_Alien.png",
+   "resolution_px": [
+    1009,
+    1009
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_01_Mountains.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "6ad4ed5abcbbb1b279c8ef647a335c3bccee48547aa5135f275ef089b28b096f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 17681.0,
+    "mean": 10239.601036701179,
+    "min": 1.0,
+    "std": 2470.5976169909204
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_01_Mountains.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_02_Hills.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "ef7a864e47f519c649b17de088674c596ca5d114ba73339c88cb6a1642292f8e",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 13296.0,
+    "mean": 6663.099310545539,
+    "min": 4.0,
+    "std": 1931.4741429575602
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_02_Hills.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_03_Meadows.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "3e115ec955fb1062f8fe3027cdf426ffe3c5f96a8f29a863eaa78bedd3c8c3d8",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 8645.0,
+    "mean": 4173.414519224175,
+    "min": 1.0,
+    "std": 1403.342324132862
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_03_Meadows.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_04_Plains.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "bfab1623fd42c2f4afc5bd2b8015ef375292a4d4b275bb8f86d8aac9cbbf2263",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1055.0,
+    "mean": 276.2955175996592,
+    "min": 1.0,
+    "std": 191.75245278010917
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_04_Plains.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "plains",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_05_Dunes.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "ad3628486ea6c00634db598eea7aa31a925ca020279695355bf606298e7813ef",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10242.0,
+    "mean": 4153.182449181953,
+    "min": 1.0,
+    "std": 1380.662366987041
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_05_Dunes.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_06_Canyon.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "f38313e4e6f66a243a4fae850f396506274c5d0df587eec9eff00f9d35dc7e87",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 13346.0,
+    "mean": 6924.816459450152,
+    "min": 1.0,
+    "std": 1960.2105653120793
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_06_Canyon.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_07_Wetlands.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "7fe0a9ada4058894d7d545b077db9a3a148107a4f8e1765ce8010feb07c86777",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1371.0,
+    "mean": 210.0878811706838,
+    "min": 1.0,
+    "std": 192.27657471236745
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_07_Wetlands.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "wetlands",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_08_Island.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "ef108fe0d6f4df2367dae3b93a49b6f1168e532d3a5486c4bf6eadc71fc86732",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 13237.0,
+    "mean": 2881.4801325569547,
+    "min": 0.0,
+    "std": 3110.596288573389
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_08_Island.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_09_Archipelago.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "9afbe9ac5df07c1add974827f164b3dd9cb20e1f4df00c2a7434b526675b04e6",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10362.0,
+    "mean": 1527.9534811809092,
+    "min": 0.0,
+    "std": 2529.9928763910225
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_09_Archipelago.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "archipelago",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_10_Alien.png",
+   "folder": "2K",
+   "has_alpha": false,
+   "hash": "fabba6b70ee09228b0f82ca9b6596ed1f344e22af191c443fd343dc3e6da57d2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 12610.0,
+    "mean": 5043.434189901455,
+    "min": 1.0,
+    "std": 2623.0650154648597
+   },
+   "relpath": "terrain/external_heightmaps/2K/Heightmap_10_Alien.png",
+   "resolution_px": [
+    2017,
+    2017
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_01_Mountains.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "e95b76dc1ce7382e1d55fad66ec24f0a7dcab52d07537668242d68ab35a8643d",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 39260.0,
+    "mean": 26861.683717869604,
+    "min": 1.0,
+    "std": 4982.215878033924
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_01_Mountains.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_02_Hills.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "b3fc579ae79f8c000dcf33daa1c8e7d88088d47b0182c17023e5b705e0bba41f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 25387.0,
+    "mean": 16219.718092535491,
+    "min": 1.0,
+    "std": 3600.878984029177
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_02_Hills.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_03_Meadows.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "af91706c57e294fc6211e080b16c50edbe63cb8ff29d386f663b43c8e17d0a79",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 17806.0,
+    "mean": 11298.078899906419,
+    "min": 1.0,
+    "std": 2892.204507523632
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_03_Meadows.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_04_Plains.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "f087355f4f58cca6b98b7041f5df878b77f9ca7d9ac55c6fe045f82f38aa3ea0",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1056.0,
+    "mean": 406.35366120652645,
+    "min": 1.0,
+    "std": 194.43718028857305
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_04_Plains.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "plains",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_05_Dunes.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "ef2451d90eb9e1c538658568c18e419af951ad67645311d28d191d5498e19a97",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10302.0,
+    "mean": 4537.227211360479,
+    "min": 1.0,
+    "std": 1419.0532603040165
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_05_Dunes.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_06_Canyons.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "b1a0b820a975e6070ec47ad3d5ab608f545090128e1b8f6c9f7774944cf363c0",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 13371.0,
+    "mean": 7187.9679979617695,
+    "min": 1.0,
+    "std": 2247.185188731489
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_06_Canyons.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_07_Wetlands.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "9c1a40f881414198968a607ee40c06bf6726b687a5a7eb329f0f6c753fcc4850",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1061.0,
+    "mean": 469.0689882483889,
+    "min": 1.0,
+    "std": 225.77802041857683
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_07_Wetlands.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "wetlands",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_08_Island.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "e4b7c688712fee526b131f95f24af3e2fc4752c251396b589e9548ab50477c6d",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 17850.0,
+    "mean": 6491.078660436472,
+    "min": 1.0,
+    "std": 2923.679903616613
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_08_Island.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_09_Archipelago.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "c2c3cb7c31fd4bf159870d911a9f0c595e09c45799ee1ae295737bf1328001de",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6524.0,
+    "mean": 998.8840859708791,
+    "min": 1.0,
+    "std": 1342.8539623952568
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_09_Archipelago.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "archipelago",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_10_Alien.png",
+   "folder": "4K",
+   "has_alpha": false,
+   "hash": "0a59183aff7522d0756464616a7a3ed7fa9be9f15f8ce5405675f85e1087e20a",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 14539.0,
+    "mean": 5524.802402249382,
+    "min": 0.0,
+    "std": 3526.1524500584524
+   },
+   "relpath": "terrain/external_heightmaps/4K/Heightmap_10_Alien.png",
+   "resolution_px": [
+    4033,
+    4033
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_01_Mountains.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "5c0d8b0cf6954338ec14c324b1b1fb6ee9990de769db0f2de7b367f869237e07",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10154.0,
+    "mean": 5412.464805411234,
+    "min": 3.0,
+    "std": 1685.7455199213646
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_01_Mountains.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_02_Hills.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "37c353fdbacdbcaeb41cf87024f2b63854cc3549d345d0a3d577aed7e08a9dd6",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6613.0,
+    "mean": 4194.011614547593,
+    "min": 1.0,
+    "std": 1105.448906983394
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_02_Hills.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_03_Meadows.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "f026646262a6af6d0e470285572446da9be210cfc324ce6a0572f7f2cad91ce2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 3950.0,
+    "mean": 2269.053630036271,
+    "min": 1.0,
+    "std": 649.4937477164206
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_03_Meadows.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_04_Dunes.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "f5a0732e6972554c81814c3c94e5c718d5853548a36f313e79e5a27c78f38d22",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 4703.0,
+    "mean": 2170.0909832369375,
+    "min": 122.0,
+    "std": 772.6687914824258
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_04_Dunes.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_05_Plains.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "231386496c9abcf17fb6e24025cd4d4f2763d0c8e2808b776c0f7425822c4070",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 4000.0,
+    "mean": 1734.6298558964806,
+    "min": 1.0,
+    "std": 755.7603095513136
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_05_Plains.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "plains",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_06_Canyon.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "1569e71822a94ff8a76354d11cd402408cb86a24165306e100150a7442a64421",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6538.0,
+    "mean": 3283.5225134790708,
+    "min": 2.0,
+    "std": 1017.3213808690409
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_06_Canyon.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_07_Wetlands.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "047ffc2d15ae73882aca55284013fb1f6cfba06c875aab75c437a99ac4c7b657",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 973.0,
+    "mean": 395.55494559356924,
+    "min": 1.0,
+    "std": 218.66120376611687
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_07_Wetlands.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "wetlands",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_08_Island.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "d3dc907c224c1381c591144aa6afea1adc359e6642b5fbd526f1794f697ab83c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 10321.0,
+    "mean": 2314.4027526713066,
+    "min": 1.0,
+    "std": 2506.046514293898
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_08_Island.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_09_Archipelago.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "2accad02fb83c9856270a382ede95de662627656d337e29b0a83a49a675f16a2",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 6090.0,
+    "mean": 1006.7257994314283,
+    "min": 1.0,
+    "std": 1103.6103505696797
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_09_Archipelago.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "archipelago",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_10_Alien.png",
+   "folder": "512",
+   "has_alpha": false,
+   "hash": "df3cc174dfc2c5f4ed1ea6a6e5ed06b196a01995ad2a07a2917e48dbf4643dea",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 5772.0,
+    "mean": 1220.7320890108813,
+    "min": 1.0,
+    "std": 1277.3730529785862
+   },
+   "relpath": "terrain/external_heightmaps/512/Heightmap_10_Alien.png",
+   "resolution_px": [
+    505,
+    505
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_01_Mountains.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "ae56a0c22931742aca78bc7cb6770a730f6f1c0f0a5a64fa8d1f81b6c957462c",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 45530.0,
+    "mean": 34172.48750943563,
+    "min": 1.0,
+    "std": 5608.342958021732
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_01_Mountains.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "mountain",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_02_Hills.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "d3324a135c03a0d4955c9a6dad5694b4e2d4926282f42639b9c4b56a02614abc",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 34108.0,
+    "mean": 22929.333439940452,
+    "min": 7.0,
+    "std": 4510.15675132415
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_02_Hills.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "hills",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_03_Meadows.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "a23a2d807a312e3e856f8e3edf70c3f86c94104757de5cd5cbe83b57b3c05997",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 11957.0,
+    "mean": 7041.092673556239,
+    "min": 1.0,
+    "std": 1813.536884888688
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_03_Meadows.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "meadows",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_04_Plains.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "f8167b12e9ed54c4f8cd109a8e06120c99b72acfa8014127287c8e46e2cf746f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1062.0,
+    "mean": 409.66266332071444,
+    "min": 1.0,
+    "std": 249.21719562193158
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_04_Plains.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "plains",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_05_Dunes.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "b74c36a21eda11cd086bf5685ac714c2656d99d8f2a867588048a25e44af977f",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 15771.0,
+    "mean": 8317.795375380816,
+    "min": 1.0,
+    "std": 2361.6294843299374
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_05_Dunes.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "dunes",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_06_Canyon.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "2340280ad6a8ac131fdf771f7c195b359bfda91fa4e281019ec1e311e7805c31",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 15804.0,
+    "mean": 9205.72993647262,
+    "min": 1.0,
+    "std": 2208.040542295079
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_06_Canyon.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "canyon",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_07_Wetlands.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "556b838d2dee9bf69df3e5e42eae628ed91ee2c646e8c616ed9b5e7e45b0baef",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 1979.0,
+    "mean": 202.1557920722954,
+    "min": 0.0,
+    "std": 347.18093354511865
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_07_Wetlands.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "wetlands",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_08_Island.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "ed902c2b78aabf209cad8e4879ec3cf2d5d4c4cf9ec61f43df7579e8097f3fba",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 25412.0,
+    "mean": 10293.123089771481,
+    "min": 1.0,
+    "std": 4198.924407348856
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_08_Island.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "island",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_09_Archipelago.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "9f23b52ec34e3673e726b4aae2d9aecbf1ae300228dc4b3744f1ca924ce56fd6",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 25342.0,
+    "mean": 5091.365555110157,
+    "min": 0.0,
+    "std": 6128.471284068906
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_09_Archipelago.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "archipelago",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  },
+  {
+   "bits": 16,
+   "category": "TERRAIN",
+   "conforms_to_r11": true,
+   "filename": "Heightmap_10_Alien.png",
+   "folder": "8K",
+   "has_alpha": false,
+   "hash": "06b36f8804c1db1c4c1371162ff1e6394f90c0366ac6fa4d696447f55d8a805d",
+   "mode": "I;16",
+   "relief_stats": {
+    "max": 42796.0,
+    "mean": 26906.516737284677,
+    "min": 142.0,
+    "std": 6514.470765585203
+   },
+   "relpath": "terrain/external_heightmaps/8K/Heightmap_10_Alien.png",
+   "resolution_px": [
+    8129,
+    8129
+   ],
+   "square": true,
+   "tag": "alien",
+   "tag_source": "filename",
+   "ue_action": "none",
+   "ue_legal": true
+  }
+ ],
+ "source": "GameDevGary \u2014 50 Free .PNG Heightmaps for Unreal Engine (itch.io)",
+ "spec": "RECIPES.md R1 EXTERNAL HEIGHTMAP CATALOGUE SPEC"
+}

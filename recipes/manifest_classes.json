@@ -1,0 +1,107 @@
+{
+ "schema": "1.0-manifest",
+ "what": "Editorial classification for refs/MANIFEST.md. The COUNTS, kit coverage, material roles and done-markers are all derived from live sources by scripts/gen_manifest.py; only the judgement calls live here, so they are reviewable in one place instead of buried in prose.",
+ "why_a_data_file": "The operator ruled MANIFEST.md is regenerated from the recipes and never hand-edited. Classification is a judgement a script cannot make, so it is DECLARED here rather than typed into the output. Editing this file and re-running the generator is the supported path; editing MANIFEST.md is not.",
+ "prose_key_rule": "No key here begins with an underscore. This file is DATA and scripts read it; the repo rule that scripts must not read prose keys stays satisfied because there are none.",
+ "classes": {
+  "church": {
+   "klass": "forge_subject",
+   "status": "done",
+   "evidence_dir": "_verify/20260830_forge/church",
+   "note": "Focal anchor of both concepts. Ratio-scored against the chalet silhouette."
+  },
+  "wood_stack": {
+   "klass": "forge_subject",
+   "status": "done",
+   "evidence_dir": "_verify/20260830_forge/wood_stack",
+   "note": "Most repeated object in concept 02; what makes the place read as inhabited."
+  },
+  "cart": {
+   "klass": "forge_subject",
+   "status": "open",
+   "height_cm": 110.0,
+   "height_basis": "DERIVED from the crossed kit wheel, not proposed. SM_WoodenWheelA measures 87.2 x 87.3 cm across the disc (consistent to 0.1%), so the axle sits at 43.6 cm and 87.2 cm is a HARD FLOOR for any cart carrying it. The body above the wheel top is the one modelling assumption: a low-sided cart adds roughly a quarter of the wheel diameter. 87.2 is measured; the step to 110.0 is declared and is the part to check against the first frame.",
+   "view_spec": "4 views az 000/035/090/180 at 1280. Long-and-low like the wood stack, so the 800 px per-image floor binds on WIDTH; the set ruling covers rotations but shoot at 1280 to keep the master comfortable.",
+   "note": "Concept 02 only, count 1, left frame edge, painted red detail."
+  },
+  "crate": {
+   "klass": "forge_subject",
+   "status": "open",
+   "height_cm": 60.0,
+   "height_basis": "PROPOSED, not measured. Knee-to-thigh against the 176.0 cm character capsule; single crates stay under the 45 cm max step height. Nothing on disk gives a crate dimension.",
+   "view_spec": "4 views az 000/035/090/180 at 1024. Near-equidimensional, so the 80-90% fill band applies cleanly -- the easy subject for the spec.",
+   "note": "Concept 02 clutter, density few."
+  },
+  "chalet": {
+   "klass": "kit_or_authored",
+   "status": "kit_crossed_material_wrong",
+   "note": "31 unique measured meshes stand and render (33 rows, two duplicated). Look is plaster; concepts say stone + timber. A material problem, not geometry."
+  },
+  "chalet_large": {
+   "klass": "kit_or_authored",
+   "status": "kit_crossed_plus_assembly",
+   "note": "The two framing buildings of concept 02. Closest, most legible architecture in either concept -- they set the material bar."
+  },
+  "stone_arch": {
+   "klass": "kit_or_authored",
+   "status": "pack_only_unconfirmed",
+   "note": "A declared PLACEMENT in concept 02, not clutter -- architecture the concept names, so it outranks the clutter rows despite appearing once. Outcrop* and Construction_Pieces are candidates; the gap report says not confirmed by eye and neither is crossed."
+  },
+  "lantern": {
+   "klass": "kit_or_authored",
+   "status": "kit_crossed",
+   "note": "SM_LanternPost is crossed. The concept says WALL-MOUNTED and LIT; the crossed asset is a POST. Geometry servable, mounting and emissive are authoring."
+  },
+  "bench": {
+   "klass": "kit_or_authored",
+   "status": "kit_crossed",
+   "note": "SM_OldWoodenBench, measured 32.9 x 190.1 x 48.0 cm."
+  },
+  "river_stone": {
+   "klass": "kit_or_authored",
+   "status": "tool_ready_recipe_empty",
+   "note": "rock_scatter.py is built and proven with a talus field, and recipes/alpine_8k.json declares NO rock species -- the list is empty while recipes/alpine.json declares ten. A declaration gap, cheap to close."
+  },
+  "wildflower": {
+   "klass": "kit_or_authored",
+   "status": "system_ready_asset_undeclared",
+   "note": "The grass system carries varieties; no flower asset is declared."
+  },
+  "track": {
+   "klass": "kit_or_authored",
+   "status": "geometry_exists_material_wrong",
+   "note": "Recorded in DIFFERENT sections -- clutter in 01, terrain in 02 -- so a naive per-section count reports it as two things appearing once each. 838 street slabs placed; needs continuous-surface re-emission plus a dirt/cobble material."
+  },
+  "stream": {
+   "klass": "system",
+   "status": "roadmap",
+   "note": "WATER IS A SYSTEM, NOT AN ASSET, and takes no forge slot (ruled). No water in any recipe, no shoreline handling, no landscape-material or navmesh interaction. Concept 01 builds without it; concept 02 cannot be fully matched."
+  },
+  "peak": {
+   "klass": "system",
+   "status": "terrain",
+   "note": "Terrain, not a mesh. The same peak in both concepts -- once both cameras are solved the village-to-peak vector must agree, which is the concepts' own cross-check."
+  },
+  "slope": {"klass": "system", "status": "terrain", "note": "Terrain."},
+  "basin": {"klass": "system", "status": "terrain", "note": "Terrain."}
+ },
+ "material_tiles": {
+  "rock_wall": {
+   "status": "sourced",
+   "source": "refs/polyhaven/rock_wall_08_diff_2k.jpg",
+   "note": "CC0 from polyhaven.com, byte-identical to the .fbm copy. NOT legally blocked -- the restriction belongs to the donor mesh, not the third-party textures bundled beside it. Every chalet in both concepts has a masonry ground floor, plus the church base."
+  },
+  "floor_worn": {
+   "status": "sourced",
+   "source": "refs/polyhaven/concrete_floor_worn_001_diff_4k.jpg",
+   "note": "CC0 from polyhaven.com, byte-identical to the .fbm copy."
+  },
+  "copper_patina": {
+   "status": "operator_will_generate",
+   "note": "The operator is generating this. Until it lands, a PIPELINE-DERIVED placeholder from an existing base is permitted and must never become the artefact of record. Concept 02's single most specific material call: WEATHERED COPPER ONION DOME, dark red-brown, with a finial."
+  }
+ },
+ "removed": {
+  "barrel": "Not declared in EITHER concept -- the string does not occur in alpine_village_01.json or _02.json. It came from the gap report's prose 'Crates / barrels'. Removed by ruling 2026-08-30; cross the pack asset if it is ever wanted."
+ }
+}

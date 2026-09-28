@@ -1,0 +1,65 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Thin the hair WITHOUT touching HairWidth.
+#
+# `hair_width` is the obvious lever and it is the one that just took the groom
+# from PRESENT 56,067 px to ABSENT 3,952 px: it carries
+# `meta = (editcondition = "HairWidth_Override")` (GroomAssetRendering.h:24),
+# arming that override REPLACES the shipped per-strand widths rather than
+# scaling them, and on this asset the replacement does not draw.
+#
+# HairRootScale and HairTipScale sit ten lines below it (:30-35) with NO
+# editcondition -- they are plain multipliers on whatever width the asset
+# already has. Multiplying a working width is a different operation from
+# replacing it, and it is the one that cannot produce the zero-width state.
+#
+# Tip below root is the taper the art spec asks for: "wide at root, aggressive
+# taper to sharp fine tips".
+
+GROOM = "__GROOM__"
+ROOT = __ROOT__
+TIP = __TIP__
+
+_out = {"ok": False, "error": None, "groom": GROOM}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+    _before, _new = [], []
+    for _s in _g.get_editor_property("hair_groups_rendering"):
+        _gs = _s.get_editor_property("geometry_settings")
+        _before.append({
+            "hair_width": round(float(_gs.get_editor_property("hair_width")), 6),
+            "hair_root_scale": round(float(
+                _gs.get_editor_property("hair_root_scale")), 4),
+            "hair_tip_scale": round(float(
+                _gs.get_editor_property("hair_tip_scale")), 4)})
+        _gs.set_editor_property("hair_root_scale", float(ROOT))
+        _gs.set_editor_property("hair_tip_scale", float(TIP))
+        _s.set_editor_property("geometry_settings", _gs)
+        _new.append(_s)
+    _g.set_editor_property("hair_groups_rendering", _new)
+    _u.EditorAssetLibrary.save_asset(GROOM, only_if_is_dirty=False)
+    _out["before"] = _before
+
+    _g2 = _u.EditorAssetLibrary.load_asset(GROOM)
+    _rb = []
+    for _s in _g2.get_editor_property("hair_groups_rendering"):
+        _gs = _s.get_editor_property("geometry_settings")
+        _rb.append({
+            "hair_width": round(float(_gs.get_editor_property("hair_width")), 6),
+            "hair_root_scale": round(float(
+                _gs.get_editor_property("hair_root_scale")), 4),
+            "hair_tip_scale": round(float(
+                _gs.get_editor_property("hair_tip_scale")), 4)})
+    _out["after"] = _rb
+    _out["ok"] = all(abs(_r["hair_root_scale"] - ROOT) < 1e-4
+                     and abs(_r["hair_tip_scale"] - TIP) < 1e-4 for _r in _rb)
+    if not _out["ok"]:
+        _out["error"] = "a scale did not read back at its target"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

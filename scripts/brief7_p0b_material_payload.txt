@@ -1,0 +1,103 @@
+# brief7 Phase 0b material read-back. READ-ONLY: loads M_Alpine8K and
+# reads its expression graph. Compiles nothing, saves nothing, mutates
+# nothing. Reports: expression-class histogram; every LandscapeLayerCoords
+# mapping_scale; every LandscapeGrassOutput's grass types; every
+# LandscapeLayerBlend's layers+blend types; the material's Nanite
+# displacement scaling (magnitude/center).
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"error": None, "material": "/Game/Materials/M_Alpine8K",
+        "loaded": False, "class_histogram": {}, "layer_coords": [],
+        "grass_outputs": [], "layer_blends": [], "displacement_scaling": None,
+        "expr_count": None, "expr_access": None}
+
+try:
+    _m = _u.load_asset("/Game/Materials/M_Alpine8K")
+    _out["loaded"] = _m is not None
+
+    # Nanite displacement scaling on the Material (5.6+).
+    for _n in ("displacement_scaling", "nanite_override_material"):
+        try:
+            _v = _m.get_editor_property(_n)
+            if _n == "displacement_scaling" and _v is not None:
+                _out["displacement_scaling"] = {
+                    "magnitude": str(_v.get_editor_property("magnitude")),
+                    "center": str(_v.get_editor_property("center"))}
+        except Exception as _e:
+            _out.setdefault("disp_err", {})[_n] = str(_e)[:80]
+
+    # Get the expression list.
+    _exprs = None
+    try:
+        _coll = _m.get_editor_property("expression_collection")
+        _exprs = list(_coll.get_editor_property("expressions"))
+        _out["expr_access"] = "expression_collection.expressions"
+    except Exception as _e1:
+        try:
+            _exprs = list(_u.MaterialEditingLibrary.get_material_expressions(_m))
+            _out["expr_access"] = "MaterialEditingLibrary.get_material_expressions"
+        except Exception as _e2:
+            _out["expr_access"] = "FAILED: %s | %s" % (str(_e1)[:80], str(_e2)[:80])
+
+    if _exprs is not None:
+        _out["expr_count"] = len(_exprs)
+        _hist = {}
+        for _x in _exprs:
+            _cn = _x.get_class().get_name()
+            _hist[_cn] = _hist.get(_cn, 0) + 1
+
+            if "LandscapeLayerCoords" in _cn:
+                _row = {}
+                for _p in ("mapping_scale", "mapping_rotation",
+                           "mapping_pan_u", "mapping_pan_v", "mapping_type"):
+                    try:
+                        _row[_p] = str(_x.get_editor_property(_p))
+                    except Exception:
+                        _row[_p] = None
+                _out["layer_coords"].append(_row)
+
+            if "LandscapeGrassOutput" in _cn:
+                _go = {"grass_types": []}
+                try:
+                    _gts = _x.get_editor_property("grass_types")
+                    for _gt in _gts:
+                        _e = {}
+                        try:
+                            _e["name"] = str(_gt.get_editor_property("name"))
+                        except Exception:
+                            _e["name"] = None
+                        try:
+                            _asset = _gt.get_editor_property("grass_type")
+                            _e["grass_type"] = str(_asset.get_path_name()) if _asset else None
+                        except Exception:
+                            _e["grass_type"] = None
+                        _go["grass_types"].append(_e)
+                except Exception as _e:
+                    _go["err"] = str(_e)[:100]
+                _out["grass_outputs"].append(_go)
+
+            if "LandscapeLayerBlend" in _cn:
+                _lb = {"layers": []}
+                try:
+                    _layers = _x.get_editor_property("layers")
+                    for _ly in _layers:
+                        _e = {}
+                        for _p in ("layer_name", "blend_type", "preview_weight",
+                                   "const_layer_input"):
+                            try:
+                                _e[_p] = str(_ly.get_editor_property(_p))
+                            except Exception:
+                                _e[_p] = None
+                        _lb["layers"].append(_e)
+                except Exception as _e:
+                    _lb["err"] = str(_e)[:100]
+                _out["layer_blends"].append(_lb)
+
+        _out["class_histogram"] = _hist
+
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL_MAT__" + _json.dumps(_out, default=str))

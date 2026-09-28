@@ -1,0 +1,247 @@
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "unreadable": [], "import": {}, "mesh": {},
+        "captures": [], "chosen": None}
+
+_SSC = _unreal.MetaHumanCharacterEditorSubsystem
+_OBJ = "C:/Users/Admin/UE5LandscapePipeline/hero/generated/hero_head_conform.obj"
+_DEST = "/Game/Hero/Generated"
+_NAME = "SM_HeroHead_Conform"
+_W = 1024
+_H = 1024
+
+try:
+    # ---- import the cropped, decimated head ----
+    # ALWAYS re-import. The source .obj is re-derived by the crop tool, and an
+    # "already present" shortcut would silently render the PREVIOUS crop --
+    # which is exactly the kind of stale-input failure that looks like a bad
+    # algorithm.
+    _m = None
+    if True:
+        _t = _unreal.AssetImportTask()
+        _t.set_editor_property("filename", _OBJ)
+        _t.set_editor_property("destination_path", _DEST)
+        _t.set_editor_property("destination_name", _NAME)
+        _t.set_editor_property("automated", True)
+        _t.set_editor_property("replace_existing", True)
+        _t.set_editor_property("save", True)
+        _unreal.AssetToolsHelpers.get_asset_tools().import_asset_tasks([_t])
+        _m = _unreal.EditorAssetLibrary.load_asset(_DEST + "/" + _NAME)
+        _out["import"]["action"] = "imported"
+    else:
+        _out["import"]["action"] = "already present"
+    if _m is None:
+        raise RuntimeError("conform head mesh did not resolve")
+
+    _v, _i = _SSC.get_mesh_data_for_conforming(_m)
+    _out["mesh"]["vertices"] = len(_v)
+    _out["mesh"]["tri_indices"] = len(_i)
+    _mn = [1e30, 1e30, 1e30]
+    _mx = [-1e30, -1e30, -1e30]
+    for _p in _v:
+        _c = (float(_p.x), float(_p.y), float(_p.z))
+        for _k in range(3):
+            if _c[_k] < _mn[_k]: _mn[_k] = _c[_k]
+            if _c[_k] > _mx[_k]: _mx[_k] = _c[_k]
+    _ctr = [(_mn[_k] + _mx[_k]) * 0.5 for _k in range(3)]
+    _ext = [_mx[_k] - _mn[_k] for _k in range(3)]
+    _out["mesh"]["bbox_min"] = [round(_x, 4) for _x in _mn]
+    _out["mesh"]["bbox_max"] = [round(_x, 4) for _x in _mx]
+    _out["mesh"]["extent"] = [round(_x, 4) for _x in _ext]
+
+    # ---- put it somewhere empty, at a size a face tracker expects ----
+    # 24 cm crown-to-chin, scaled from the mesh's own Z extent. This is the
+    # combination that TRACKED (16 curves); a lower crop with a width-based
+    # scale and a dimmer light did not, and the frames showed why -- see
+    # LESSONS 2026-08-16.
+    _scale = 24.0 / max(1e-9, _ext[2])
+    _out["mesh"]["scale_applied"] = round(_scale, 3)
+
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        if _a.get_actor_label().startswith("HeadTrackProbe"):
+            _eas.destroy_actor(_a)
+
+    # FAR above the terrain. At 45,000 cm the mountainside and a low sun were
+    # still in frame and the head rendered as a black silhouette against them.
+    _loc = _unreal.Vector(354600.0, -321400.0, 250000.0)
+    _act = _eas.spawn_actor_from_class(_unreal.StaticMeshActor, _loc,
+                                       _unreal.Rotator(0.0, 0.0, 0.0))
+    _act.set_actor_label("HeadTrackProbe")
+    _act.static_mesh_component.set_static_mesh(_m)
+    _act.set_actor_scale3d(_unreal.Vector(_scale, _scale, _scale))
+
+    # A PLAIN MATERIAL. The imported mesh carries none, so it rendered with the
+    # engine's default CHECKERBOARD -- a face tracker looking at a chequered
+    # silhouette has nothing to find, and that is a property of the render, not
+    # of the geometry.
+    _mat = _unreal.EditorAssetLibrary.load_asset(
+        "/Engine/BasicShapes/BasicShapeMaterial")
+    if _mat is not None:
+        for _s in range(max(1, _m.get_num_sections(0))):
+            _act.static_mesh_component.set_material(_s, _mat)
+        _out["mesh"]["material"] = _mat.get_path_name()
+    else:
+        _out["unreadable"].append("BasicShapeMaterial did not load")
+
+    _w = _unreal.EditorLevelLibrary.get_editor_world()
+    _rt = _unreal.RenderingLibrary.create_render_target2d(
+        _w, _W, _H, _unreal.TextureRenderTargetFormat.RTF_RGBA8,
+        _unreal.LinearColor(0.25, 0.25, 0.27, 1.0))
+
+    _cap = _eas.spawn_actor_from_class(_unreal.SceneCapture2D, _loc,
+                                       _unreal.Rotator(0.0, 0.0, 0.0))
+    _cap.set_actor_label("HeadTrackCapture")
+    _cc = _cap.capture_component2d
+    _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("capture_source",
+                            _unreal.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("fov_angle", 35.0)
+
+    # THE TRACKER IS THE DISCRIMINATOR FOR WHICH WAY THE HEAD FACES.
+    # Bounding extents cannot say which direction a nose points, and I had
+    # assumed "same axis convention" from extents alone earlier tonight. A face
+    # tracker returns curves for a face and nothing for the back of a skull, so
+    # capturing from four directions and asking it is a MEASUREMENT rather than
+    # a guess.
+    _dist = 70.0
+    _dirs = [("plus_y", _unreal.Vector(0.0, _dist, 0.0), -90.0),
+             ("minus_y", _unreal.Vector(0.0, -_dist, 0.0), 90.0),
+             ("plus_x", _unreal.Vector(_dist, 0.0, 0.0), 180.0),
+             ("minus_x", _unreal.Vector(-_dist, 0.0, 0.0), 0.0)]
+
+    # A PORTRAIT LIGHT that travels with the camera. The scene sun is fixed at
+    # 12 degrees and put the head in silhouette; a face tracker needs SHADING,
+    # so a flat unlit render would fail for the opposite reason.
+    for _a in _eas.get_all_level_actors():
+        if _a.get_actor_label().startswith("HeadTrackLight"):
+            _eas.destroy_actor(_a)
+    _lt = _eas.spawn_actor_from_class(_unreal.PointLight, _loc,
+                                      _unreal.Rotator(0.0, 0.0, 0.0))
+    _lt.set_actor_label("HeadTrackLight")
+    _lc = _lt.point_light_component
+    _lc.set_editor_property("intensity", 200000.0)
+    _lc.set_editor_property("attenuation_radius", 5000.0)
+    _lc.set_editor_property("source_radius", 60.0)
+
+    _head_ctr = _unreal.Vector(_loc.x, _loc.y, _loc.z)
+    for _tag, _off, _yaw in _dirs:
+        # Light from just above and beside the camera, which is how a portrait
+        # is lit and what the tracker's training data looks like.
+        _lt.set_actor_location(
+            _unreal.Vector(_head_ctr.x + _off.x * 0.55,
+                           _head_ctr.y + _off.y * 0.55,
+                           _head_ctr.z + 45.0), False, True)
+        _cap.set_actor_location(
+            _unreal.Vector(_head_ctr.x + _off.x, _head_ctr.y + _off.y,
+                           _head_ctr.z + _off.z), False, True)
+        _cap.set_actor_rotation(_unreal.Rotator(0.0, 0.0, _yaw), False)
+        _cc.capture_scene()
+        _px = _unreal.RenderingLibrary.read_render_target(_w, _rt, False)
+        _rec = {"tag": _tag, "yaw": _yaw,
+                "pixels": (len(_px) if _px is not None else None)}
+        # Export the frame so the FRAMING can be checked. A tracker that finds
+        # nothing because the head is off-screen looks identical to one that
+        # finds nothing because it is looking at the back of a skull.
+        try:
+            _unreal.RenderingLibrary.export_render_target(
+                _w, _rt, "C:/Users/Admin/UE5LandscapePipeline/_verify",
+                "20260816_headtrack_" + _tag + ".png")
+            _rec["exported"] = True
+        except Exception as _e:
+            _out["unreadable"].append("export " + _tag + ": " + str(_e))
+        if _px is not None:
+            try:
+                # INSTANCE method (self), unlike get_mesh_data_for_conforming
+                # which is a classmethod (cls). Calling it on the class gives
+                # "requires a 'MetaHumanCharacterEditorSubsystem' object but
+                # received a 'Array'" -- the first argument is silently taken
+                # as self.
+                _ssi = _unreal.get_editor_subsystem(_SSC)
+                _curves = _ssi.track_face_landmarks_from_image(_px, _W, _H)
+                if _curves is None:
+                    _rec["landmarks"] = None
+                else:
+                    _rec["landmarks"] = len(_curves)
+                    _rec["curve_names"] = sorted(
+                        [str(_k) for _k in _curves.keys()])[:12]
+                    _rec["_curves"] = _curves
+                    _rec["_cam_loc"] = _cap.get_actor_location()
+                    _rec["_cam_rot"] = _cap.get_actor_rotation()
+            except Exception as _e:
+                _rec["track_error"] = type(_e).__name__ + ": " + str(_e)
+        _out["captures"].append(_rec)
+
+    _best = None
+    for _r in _out["captures"]:
+        if _r.get("landmarks"):
+            if _best is None or _r["landmarks"] > _best["landmarks"]:
+                _best = _r
+    _out["chosen"] = {"tag": _best["tag"], "landmarks": _best["landmarks"]} \
+        if _best else None
+
+    # ==================== THE CONFORM ====================
+    if _best is None:
+        _out["conform"] = {"skipped": "no direction produced landmarks"}
+    else:
+        _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+        _ssi = _unreal.get_editor_subsystem(_SSC)
+        if not _ssi.is_object_added_for_editing(_ch):
+            _ssi.try_add_object_to_edit(_ch)
+
+        # VERTICES IN THE SAME SPACE AS THE CAMERA. The landmarks are 2D in the
+        # image the camera produced, so the mesh the solver is told about must
+        # be where that camera saw it -- world space, actor transform applied.
+        # Passing local-space vertices with a world-space camera would be
+        # self-inconsistent in a way nothing would report.
+        _wv = _unreal.Array(_unreal.Vector3f)
+        for _p in _v:
+            _wv.append(_unreal.Vector3f(
+                float(_p.x) * _scale + _loc.x,
+                float(_p.y) * _scale + _loc.y,
+                float(_p.z) * _scale + _loc.z))
+        _wi = _unreal.Array(int)
+        for _n in _i:
+            _wi.append(int(_n))
+
+        _ctm = _unreal.ConformTargetMesh()
+        _ctm.set_editor_property("target_parts_type",
+                                 _unreal.TargetPartsType.HEAD_ONLY)
+        _ctm.set_editor_property("head_vertices", _wv)
+        _ctm.set_editor_property("head_vertex_indices", _wi)
+
+        _mvi = _unreal.MinimalViewInfo()
+        _mvi.set_editor_property("location", _best["_cam_loc"])
+        _mvi.set_editor_property("rotation", _best["_cam_rot"])
+        _mvi.set_editor_property("fov", 35.0)
+        _mvi.set_editor_property("aspect_ratio", 1.0)
+        _mvi.set_editor_property("projection_mode",
+                                 _unreal.CameraProjectionMode.PERSPECTIVE)
+
+        _params = _unreal.ConformTargetParams()
+        _params.set_editor_property("conform_target_mesh", _ctm)
+        _params.set_editor_property("curve_tracking_points", _best["_curves"])
+        _params.set_editor_property("camera_view_info", _mvi)
+        _params.set_editor_property("image_size", _unreal.IntPoint(_W, _H))
+        _params.set_editor_property("auto_solve", True)
+
+        _key = _unreal.MetaHumanCharacterTargetMeshKey()
+        _key.set_editor_property("head_mesh", _m)
+
+        _out["conform"] = {"attempted": True, "direction": _best["tag"],
+                           "vertices": len(_wv), "indices": len(_wi)}
+        _res = _ssi.conform_to_target_meshes(_ch, _key, _params)
+        _out["conform"]["returned"] = bool(_res)
+
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+
+# Strip the live struct payloads: they are working data, not findings, and a
+# reply that is too large is how this project has lost completed results before.
+for _r in _out.get("captures", []):
+    for _k in ("_curves", "_cam_loc", "_cam_rot"):
+        if _k in _r:
+            _r[_k] = "(held)"
+
+print("__LL__" + _json.dumps(_out, default=str))

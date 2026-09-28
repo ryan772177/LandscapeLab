@@ -1,0 +1,135 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# Does the greybox town actually COLLIDE?
+#
+# Everything the navmesh work rests on presumes it: buildings block (so they
+# carve the navmesh and stop the player) and the ground between them stays
+# navigable. Nothing in the placer ever SET collision on the 1,446 spawned
+# primitives -- engine BasicShapes carry it by default, but "the component was
+# spawned with it enabled" is exactly the class of claim this project refuses to
+# inherit. Unit 6 found FOURTEEN foliage types silently carrying NoCollision
+# because a default was never named, and 219,659 trees were pass-through.
+#
+# TWO REPRESENTATIONS, because a property read and a trace can disagree:
+#   1. the component's collision_enabled / collision_profile  (what it SAYS)
+#   2. line traces against the live world                     (what it DOES)
+#
+# THE TRACES ARE A DISCRIMINATING PAIR, not one hopeful shot:
+#   POSITIVE  horizontally into a wall at mid-height  -> MUST hit that building
+#   NEGATIVE  same ray, same direction, ABOVE the roof -> MUST NOT hit it
+# A trace that hits in both cases is measuring nothing.
+
+TAG = "LandscapeLab.City"
+CX, CY = -210800.0, 278800.0
+
+_out = {"ok": False, "error": None, "traces": []}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    _ignore = [a for a in _all if isinstance(a, _u.InstancedFoliageActor)]
+
+    _blds = []
+    for _a in _all:
+        try:
+            if TAG not in [str(t) for t in _a.tags]:
+                continue
+        except Exception:
+            continue
+        if _a.get_actor_label().startswith("City_Bldg_"):
+            _l = _a.get_actor_location()
+            _blds.append((_math.hypot(_l.x - CX, _l.y - CY), _a))
+    _blds.sort(key=lambda r: r[0])
+    if not _blds:
+        raise RuntimeError("no City_Bldg_ actors found")
+
+    # ---- what the component SAYS ---------------------------------------
+    _probe = _blds[0][1]
+    _sc = _probe.static_mesh_component
+    _says = {}
+    for _k in ("collision_enabled", "collision_profile_name"):
+        try:
+            _says[_k] = str(_sc.get_editor_property(_k))
+        except Exception as _e:
+            _says[_k] = "UNREADABLE: %s" % _e
+    try:
+        _bs = _sc.static_mesh.get_editor_property("body_setup")
+        _says["body_setup"] = "present" if _bs else "NULL"
+        if _bs:
+            _ag = _bs.get_editor_property("agg_geom")
+            _says["simple_prims"] = (len(_ag.box_elems) + len(_ag.sphere_elems)
+                                     + len(_ag.sphyl_elems)
+                                     + len(_ag.convex_elems))
+    except Exception as _e:
+        _says["body_setup"] = "UNREADABLE: %s" % _e
+    _out["component_says"] = _says
+    _out["probe_building"] = _probe.get_actor_label()
+
+    def _trace(name, s, e, expect_label):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, s, e, _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ignore,
+            _u.DrawDebugTrace.NONE, True)
+        _row = {"name": name, "expect": expect_label}
+        if _h:
+            _t = _h.to_tuple()
+            _hit_actor = _t[9] if len(_t) > 9 else None
+            _lbl = None
+            try:
+                _lbl = _hit_actor.get_actor_label() if _hit_actor else None
+            except Exception:
+                _lbl = "unreadable"
+            _row["hit"] = True
+            _row["hit_label"] = _lbl
+            _row["hit_class"] = (_hit_actor.get_class().get_name()
+                                 if _hit_actor else None)
+            _p = _t[4]
+            _row["hit_point"] = [round(_p.x, 1), round(_p.y, 1), round(_p.z, 1)]
+        else:
+            _row["hit"] = False
+        _out["traces"].append(_row)
+        return _row
+
+    # geometry of the probe building
+    _bl = _probe.get_actor_location()
+    _bsz = _probe.get_actor_scale3d()
+    _h_cm = float(_bsz.z) * 100.0
+    _hx = float(_bsz.x) * 50.0
+    _yaw = _math.radians(_probe.get_actor_rotation().yaw)
+    _ux, _uy = _math.cos(_yaw), _math.sin(_yaw)
+    _standoff = _hx + 1500.0
+    _mid_z = _bl.z                      # Cube is centre-pivoted
+    _above_z = _bl.z + _h_cm * 0.5 + 800.0
+
+    _sx = _bl.x - _ux * _standoff
+    _sy = _bl.y - _uy * _standoff
+
+    _pos = _trace("POSITIVE wall hit, mid-height",
+                  _u.Vector(_sx, _sy, _mid_z), _u.Vector(_bl.x, _bl.y, _mid_z),
+                  _probe.get_actor_label())
+    _neg = _trace("NEGATIVE same ray above the roof",
+                  _u.Vector(_sx, _sy, _above_z),
+                  _u.Vector(_bl.x, _bl.y, _above_z),
+                  "must NOT hit the building")
+
+    # ---- ground between structures is still navigable -------------------
+    _gnd = _trace("ground under the plaza centre",
+                  _u.Vector(CX, CY, _bl.z + 20000.0),
+                  _u.Vector(CX, CY, _bl.z - 20000.0), "Landscape or a street")
+
+    _pos_ok = bool(_pos.get("hit")) and _pos.get("hit_label") == _probe.get_actor_label()
+    _neg_ok = (not _neg.get("hit")) or _neg.get("hit_label") != _probe.get_actor_label()
+    _gnd_ok = bool(_gnd.get("hit"))
+    _out["positive_ok"] = _pos_ok
+    _out["negative_ok"] = _neg_ok
+    _out["ground_ok"] = _gnd_ok
+    _out["verdict"] = ("THE TOWN COLLIDES" if (_pos_ok and _neg_ok and _gnd_ok)
+                       else "REFUSE -- the premise of the navmesh work is false")
+    _out["ok"] = bool(_pos_ok and _neg_ok and _gnd_ok)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

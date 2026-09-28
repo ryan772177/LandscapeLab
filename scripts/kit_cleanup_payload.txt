@@ -1,0 +1,48 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Put the world back: destroy the eval actors, unhide the city, report dirt.
+#
+# NOTHING IS SAVED HERE, AND M_GlobalRGB_Blend MUST NOT BE.
+# recompile_material() dirtied it. Saving it would rewrite bytes that
+# Free/_measured/kit_medievalvillage_closure.json has SHA-256'd, which is the
+# whole basis of the copy being hash-proven against its source. A dirty package
+# in memory costs nothing; a saved one costs the provenance.
+
+KIT_TAG = "LandscapeLab.KitEval"
+CITY_TAG = "LandscapeLab.City"
+_out = {"ok": False, "error": None, "destroyed": 0, "unhidden": 0}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in list(_eas.get_all_level_actors()):
+        try:
+            _t = [str(x) for x in _a.tags]
+        except Exception:
+            continue
+        if KIT_TAG in _t:
+            _eas.destroy_actor(_a)
+            _out["destroyed"] += 1
+        elif CITY_TAG in _t:
+            try:
+                _a.set_is_temporarily_hidden_in_editor(False)
+                _out["unhidden"] += 1
+            except Exception:
+                pass
+
+    _left = 0
+    for _a in _eas.get_all_level_actors():
+        try:
+            if KIT_TAG in [str(t) for t in _a.tags]:
+                _left += 1
+        except Exception:
+            pass
+    _out["eval_left"] = _left
+
+    _dirty = _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()
+    _out["dirty"] = [p.get_path_name() for p in _dirty]
+    _out["ok"] = (_left == 0)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

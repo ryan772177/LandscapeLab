@@ -1,0 +1,2255 @@
+{
+  "schema_version": 1,
+  "biome_id": "alpine",
+  "display_name": "Alpine \u2014 golden hour ridgeline",
+  "world": {
+    "primary_movement_mode": "mount",
+    "min_crossable_frac": 0.6,
+    "min_connected_frac": 0.8,
+    "max_border_flat_frac": 0.1
+  },
+  "engine": {
+    "target_version": "5.8",
+    "on_version_mismatch": "abort"
+  },
+  "heightmap": {
+    "source": "terrain/alpine_heightmap_v2.png",
+    "format": "png16",
+    "resolution": 2017,
+    "section_size": 63,
+    "sections_per_component": 1,
+    "component_count": 32
+  },
+  "stamps": {
+    "base": "terrain/alpine_heightmap.png",
+    "output": "terrain/alpine_stamped.png",
+    "catalogue": "terrain/stampit_catalogue.json",
+    "allow_edge_clip": false,
+    "placements": [
+      {
+        "id": "foothill_basin_east",
+        "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+        "centre_m": [
+          1900.0,
+          -500.0
+        ],
+        "size_m": 4200.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 430.0,
+        "falloff": 0.55,
+        "falloff_shape": "euclidean",
+        "opacity": 0.9,
+        "falloff_jitter": 0.45,
+        "falloff_jitter_scale": 0.22,
+        "anchor_m": 120.0
+      },
+      {
+        "id": "foothill_basin_southwest",
+        "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+        "centre_m": [
+          -2300.0,
+          2200.0
+        ],
+        "size_m": 3400.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 380.0,
+        "falloff": 0.55,
+        "falloff_shape": "euclidean",
+        "opacity": 0.9,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.3,
+        "anchor_m": 80.0
+      },
+      {
+        "id": "summit_massif_north",
+        "stamp_sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+        "centre_m": [
+          -1500.0,
+          -1200.0
+        ],
+        "size_m": 2600.0,
+        "rotation_deg": 45.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 760.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.3,
+        "falloff_jitter_scale": 0.35,
+        "datum": "min"
+      },
+      {
+        "id": "summit_massif_south",
+        "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+        "centre_m": [
+          1500.0,
+          1700.0
+        ],
+        "size_m": 2200.0,
+        "rotation_deg": 30.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 560.0,
+        "falloff": 0.42,
+        "falloff_shape": "chebyshev",
+        "opacity": 1.0,
+        "falloff_jitter": 0.42,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "summit_massif_south_shoulder",
+        "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+        "centre_m": [
+          1080.0,
+          2180.0
+        ],
+        "size_m": 1700.0,
+        "rotation_deg": 335.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 300.0,
+        "falloff": 0.6,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.4,
+        "falloff_jitter_scale": 0.3,
+        "datum": "min"
+      },
+      {
+        "id": "spine_aretes",
+        "stamp_sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+        "centre_m": [
+          -100.0,
+          200.0
+        ],
+        "size_m": 4200.0,
+        "rotation_deg": 43.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 420.0,
+        "falloff": 0.55,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.32,
+        "falloff_jitter_scale": 0.45,
+        "datum": "min"
+      },
+      {
+        "id": "cliff_band_west",
+        "stamp_sha256": "620ba332535b8a5de9bcbb2db526da59e1a501000fd41a11ede8015f0d668926",
+        "centre_m": [
+          -2500.0,
+          -200.0
+        ],
+        "size_m": 2000.0,
+        "rotation_deg": 60.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 230.0,
+        "falloff": 0.45,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.25,
+        "falloff_jitter_scale": 0.35,
+        "datum": "min"
+      },
+      {
+        "id": "outcrops_mid",
+        "stamp_sha256": "ef1d447ce98a7003959a1ff4680ca0b751525bc40ddd1ba3c5016f4c4ccf7910",
+        "centre_m": [
+          500.0,
+          -1900.0
+        ],
+        "size_m": 2200.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 140.0,
+        "falloff": 0.45,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.25,
+        "falloff_jitter_scale": 0.3,
+        "datum": "min"
+      },
+      {
+        "id": "drainage_south",
+        "stamp_sha256": "f346eef3eff75e4a183778c267e6e21fbfac7549cb3135aa948b5c8d6df9607b",
+        "centre_m": [
+          -600.0,
+          2000.0
+        ],
+        "size_m": 2400.0,
+        "rotation_deg": 20.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 650.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 0.7,
+        "falloff_jitter": 0.3,
+        "falloff_jitter_scale": 0.4,
+        "anchor_m": 60.0
+      }
+    ],
+    "detail_relief": {
+      "amplitude_m": 9.0,
+      "wavelength_m": 28.0,
+      "octaves": 3,
+      "lacunarity": 2.0,
+      "gain": 0.75,
+      "slope_deg": [
+        30.0,
+        90.0
+      ],
+      "slope_feather_deg": 9.0,
+      "seed": 20260803
+    }
+  },
+  "landscape": {
+    "level_path": "/Game/Alpine",
+    "actor_name": "Landscape_Alpine",
+    "location_cm": [
+      -403200.0,
+      -403200.0,
+      128000.0
+    ],
+    "scale_xy_cm": 400.0,
+    "z_scale_cm": 256000.0
+  },
+  "material": {
+    "parent_material": "/Game/Materials/M_AutoLandscape",
+    "height_jitter_m": 45.0,
+    "height_jitter_scale_m": 700.0,
+    "layers": [
+      {
+        "name": "Snow",
+        "base_color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "roughness": 0.3,
+        "slope_deg": [
+          0.0,
+          48.0
+        ],
+        "height_m": [
+          730.0,
+          2560.0
+        ],
+        "blend_sharpness": 0.25,
+        "texture": "textures/alpine_snow.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0,
+        "surface": "Snow006"
+      },
+      {
+        "name": "Rock",
+        "base_color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "roughness": 0.85,
+        "slope_deg": [
+          29.0,
+          90.0
+        ],
+        "height_m": [
+          0.0,
+          2560.0
+        ],
+        "blend_sharpness": 0.7,
+        "texture": "textures/alpine_rock.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0,
+        "surface": "Rock051",
+        "sub_surface": {
+          "surface": "Rock026",
+          "height_contrast": 0.35
+        }
+      },
+      {
+        "name": "Grass",
+        "base_color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "roughness": 0.6,
+        "slope_deg": [
+          0.0,
+          29.0
+        ],
+        "height_m": [
+          0.0,
+          730.0
+        ],
+        "blend_sharpness": 0.5,
+        "texture": "textures/alpine_grass.png",
+        "tiling_m": 2.1,
+        "macro_tiling_m": 98.7,
+        "surface": "WildGrass",
+        "sub_surface": {
+          "surface": "Ground037",
+          "height_contrast": 0.35
+        }
+      }
+    ],
+    "weightmap": "textures/alpine_weights.png",
+    "forest_floor": {
+      "layer": "Grass",
+      "height_m": [
+        120.0,
+        640.0
+      ],
+      "feather_m": 55.0,
+      "tint": [
+        0.36,
+        0.44,
+        0.28
+      ],
+      "strength": 0.72
+    },
+    "variant_map": "textures/alpine_variants.png",
+    "triplanar": {
+      "layers": [
+        "Rock"
+      ],
+      "slope_deg": [
+        45.0,
+        50.0
+      ],
+      "sharpness": 2.0
+    },
+    "macro_variation": {
+      "seed": 20260803,
+      "map_resolution": 1024,
+      "feature_scale_m": [
+        800.0,
+        2700.0
+      ],
+      "strength": 0.1,
+      "chroma_ratio": 0.3
+    },
+    "displacement": {
+      "enabled": true,
+      "center": 0.5,
+      "per_layer": {
+        "Snow": 0.02,
+        "Rock": 0.2,
+        "Grass": 0.03
+      },
+      "_schema": "v1.27 (Brief 7 Phase 1). Migrated off the retired global amplitude_m 0.4 to per-layer metres keyed by this pre-8K recipe's three layers (Snow/Rock/Grass). Legacy EVALUATION world; migrated only so the shared displacement_spec/_validate_displacement schema bump does not refuse a committed recipe. prove_gates.py exercises this recipe's displacement_spec."
+    }
+  },
+  "foliage": {
+    "density_per_hectare": 68.0,
+    "seed": 20260731,
+    "species": [
+      {
+        "name": "Meadow",
+        "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+        "layer": "Grass",
+        "slope_deg": [
+          0.0,
+          29.0
+        ],
+        "height_m": [
+          0.0,
+          730.0
+        ],
+        "scale_range": [
+          0.9,
+          1.6
+        ],
+        "system": "grass",
+        "cull_distance_m": 50.0,
+        "density_per_10m2": 120.0,
+        "varieties": [
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_tiny_a_LOD0",
+            "share": 0.55,
+            "scale_range": [
+              1.3,
+              2.4
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
+            "share": 0.25,
+            "scale_range": [
+              0.9,
+              1.5
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
+            "share": 0.12,
+            "scale_range": [
+              1.0,
+              1.7
+            ]
+          },
+          {
+            "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
+            "share": 0.08,
+            "scale_range": [
+              0.9,
+              1.6
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Conifer",
+        "mesh": "/Game/Meshes/fir_tree_01_c_LOD0",
+        "layer": "Grass",
+        "weight_share": 1.0,
+        "slope_deg": [
+          0.0,
+          24.0
+        ],
+        "height_m": [
+          120.0,
+          640.0
+        ],
+        "flow_bias": 0.45,
+        "scale_range": [
+          0.7,
+          1.4
+        ],
+        "align_to_normal": 0.15,
+        "cull_distance_m": 730.0,
+        "lods": [
+          {
+            "percent_triangles": 0.25,
+            "screen_size": 0.5
+          },
+          {
+            "percent_triangles": 0.0441,
+            "screen_size": 0.21
+          },
+          {
+            "percent_triangles": 0.0077,
+            "screen_size": 0.088
+          }
+        ],
+        "sink_depth_m": 0.12,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "Boulder",
+        "role": "hero",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001",
+        "mask": {
+          "kind": "layer",
+          "layer": "Grass",
+          "slope_deg": [
+            0.0,
+            22.0
+          ],
+          "exclude_talus_above": 0.2
+        },
+        "height_m": [
+          120.0,
+          700.0
+        ],
+        "density_per_hectare_on_mask": 0.35,
+        "scale_range": [
+          0.75,
+          1.7
+        ],
+        "align_to_normal": 0.85,
+        "tumble_deg": 12.0,
+        "embed_frac": 0.18,
+        "cull_distance_m": 140.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "TreeStump",
+        "role": "clutter",
+        "mesh": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01",
+        "mask": {
+          "kind": "layer",
+          "layer": "Grass",
+          "slope_deg": [
+            0.0,
+            20.0
+          ],
+          "exclude_talus_above": 0.1
+        },
+        "height_m": [
+          120.0,
+          640.0
+        ],
+        "density_per_hectare_on_mask": 0.6,
+        "scale_range": [
+          0.8,
+          1.2
+        ],
+        "align_to_normal": 0.2,
+        "tumble_deg": 4.0,
+        "embed_frac": 0.12,
+        "cull_distance_m": 120.0,
+        "lod_depth": 4,
+        "canopy_bias": 0.9,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "GroundClutter",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+        "layer": "Grass",
+        "slope_deg": [
+          0.0,
+          26.0
+        ],
+        "height_m": [
+          100.0,
+          700.0
+        ],
+        "scale_range": [
+          0.6,
+          1.4
+        ],
+        "system": "grass",
+        "cull_distance_m": 40.0,
+        "density_per_10m2": 10.0,
+        "varieties": [
+          {
+            "mesh": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+            "share": 0.6,
+            "scale_range": [
+              0.6,
+              1.4
+            ]
+          },
+          {
+            "mesh": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+            "share": 0.4,
+            "scale_range": [
+              0.7,
+              1.5
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CliffOutcrop",
+        "role": "cliff",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed",
+        "mask": {
+          "kind": "slope",
+          "slope_deg": [
+            40.0,
+            78.0
+          ]
+        },
+        "height_m": [
+          200.0,
+          1700.0
+        ],
+        "density_per_hectare_on_mask": 2.0,
+        "scale_range": [
+          0.7,
+          1.6
+        ],
+        "align_to_normal": 0.55,
+        "tumble_deg": 10.0,
+        "embed_frac": 0.3,
+        "cull_distance_m": 400.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "CliffOutcropB",
+        "role": "cliff",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock",
+        "mask": {
+          "kind": "slope",
+          "slope_deg": [
+            38.0,
+            75.0
+          ]
+        },
+        "height_m": [
+          180.0,
+          1700.0
+        ],
+        "density_per_hectare_on_mask": 2.5,
+        "scale_range": [
+          0.7,
+          1.5
+        ],
+        "align_to_normal": 0.55,
+        "tumble_deg": 12.0,
+        "embed_frac": 0.28,
+        "cull_distance_m": 350.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "CliffFace",
+        "role": "cliff",
+        "mesh": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01",
+        "mask": {
+          "kind": "slope",
+          "slope_deg": [
+            48.0,
+            85.0
+          ]
+        },
+        "height_m": [
+          250.0,
+          1500.0
+        ],
+        "density_per_hectare_on_mask": 0.12,
+        "scale_range": [
+          0.8,
+          1.3
+        ],
+        "align_to_normal": 0.4,
+        "tumble_deg": 5.0,
+        "embed_frac": 0.35,
+        "cull_distance_m": 900.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "TalusField",
+        "role": "talus",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001",
+        "mask": {
+          "kind": "talus",
+          "slope_deg": [
+            18.0,
+            46.0
+          ],
+          "saturation": 0.05
+        },
+        "height_m": [
+          150.0,
+          1500.0
+        ],
+        "density_per_hectare_on_mask": 9.0,
+        "scale_range": [
+          0.7,
+          1.4
+        ],
+        "align_to_normal": 0.9,
+        "tumble_deg": 12.0,
+        "embed_frac": 0.26,
+        "cull_distance_m": 260.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "TalusFieldB",
+        "role": "talus",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a",
+        "mask": {
+          "kind": "talus",
+          "slope_deg": [
+            18.0,
+            46.0
+          ],
+          "saturation": 0.05
+        },
+        "height_m": [
+          150.0,
+          1500.0
+        ],
+        "density_per_hectare_on_mask": 7.0,
+        "scale_range": [
+          0.7,
+          1.4
+        ],
+        "align_to_normal": 0.9,
+        "tumble_deg": 14.0,
+        "embed_frac": 0.26,
+        "cull_distance_m": 240.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "TalusFieldC",
+        "role": "talus",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B",
+        "mask": {
+          "kind": "talus",
+          "slope_deg": [
+            20.0,
+            44.0
+          ],
+          "saturation": 0.05
+        },
+        "height_m": [
+          150.0,
+          1500.0
+        ],
+        "density_per_hectare_on_mask": 6.0,
+        "scale_range": [
+          0.75,
+          1.35
+        ],
+        "align_to_normal": 0.88,
+        "tumble_deg": 15.0,
+        "embed_frac": 0.24,
+        "cull_distance_m": 220.0,
+        "lod_depth": 4,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      },
+      {
+        "name": "TalusChannel",
+        "role": "talus",
+        "mesh": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend",
+        "mask": {
+          "kind": "talus",
+          "slope_deg": [
+            16.0,
+            40.0
+          ],
+          "saturation": 0.04
+        },
+        "height_m": [
+          140.0,
+          1400.0
+        ],
+        "density_per_hectare_on_mask": 2.5,
+        "scale_range": [
+          0.8,
+          1.5
+        ],
+        "align_to_normal": 0.92,
+        "tumble_deg": 8.0,
+        "embed_frac": 0.22,
+        "cull_distance_m": 320.0,
+        "lod_depth": 3,
+        "collision": {
+          "enabled": "none",
+          "navigable_geometry": "yes"
+        }
+      }
+    ],
+    "rock_scatter": {
+      "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19). Read by BOTH the Pass 2 landscape material's scree sub-surface mask AND Pass 3's talus mesh scatter. Defined once here; neither consumer may keep its own copy. These are properties of rock, not style knobs.",
+      "repose_deg": 35.0,
+      "cliff_source_slope_deg": 45.0,
+      "source_smooth_m": 16.0,
+      "runout_m": 120.0,
+      "mfd_exponent": 1.3,
+      "max_steps": 600,
+      "saturation": 0.03
+    },
+    "canopy": {
+      "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19), sibling to rock_scatter. The canopy radius is a MEASURED property of the tree, not a style knob, and any consumer that clusters under trees reads it from here. Currently read by rock_scatter.py via placement_priors.canopy_occupancy for Pass 5 ground clutter.",
+      "_source": "Free/_measured/fir_tree_01.json -> object fir_tree_01_c_LOD0, dims_xyz [6.305939, 5.96624, 14.520583] m. radius_m is the mean horizontal half-extent: (6.305939 + 5.96624) / 4 = 3.068 m. This is the mesh PLACED as Conifer (foliage.species[].mesh ends fir_tree_01_c_LOD0), not the higher-poly _a or _b variants, which measure 6.534 x 6.427 and 5.613 x 6.057.",
+      "plan": "alpine_Conifer.json",
+      "radius_m": 3.068
+    }
+  },
+  "lighting": {
+    "sun": {
+      "elevation_deg": 12.0,
+      "azimuth_deg": 285.0,
+      "intensity_lux": 130000.0,
+      "temperature_kelvin": 7800.0,
+      "light_shaft_bloom": true
+    },
+    "sky": {
+      "type": "physical",
+      "intensity": 1.8,
+      "color": [
+        0.42,
+        0.6,
+        1.0
+      ]
+    },
+    "fog": {
+      "enabled": true,
+      "density": 0.0015,
+      "start_distance_m": 1500.0,
+      "volumetric": true,
+      "height_datum_m": 101.0,
+      "half_height_m": 202.0
+    },
+    "exposure": {
+      "method": "manual",
+      "compensation_ev": -1.786
+    }
+  },
+  "capture": {
+    "output_dir": "captures/alpine",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "cameras": [
+      {
+        "name": "ridge_wide",
+        "location_cm": [
+          -380000.0,
+          -380000.0,
+          165451.3
+        ],
+        "rotation_deg": [
+          -6.0,
+          67.7,
+          0.0
+        ],
+        "fov_deg": 55.0
+      },
+      {
+        "name": "diag_oblique",
+        "location_cm": [
+          -300000.0,
+          -300000.0,
+          234445.8
+        ],
+        "rotation_deg": [
+          -30.0,
+          45.0,
+          0.0
+        ],
+        "fov_deg": 60.0
+      },
+      {
+        "name": "diag_topdown",
+        "location_cm": [
+          0.0,
+          0.0,
+          900000.0
+        ],
+        "rotation_deg": [
+          -90.0,
+          0.0,
+          0.0
+        ],
+        "fov_deg": 60.0
+      },
+      {
+        "name": "snowline_detail",
+        "location_cm": [
+          -320000.0,
+          -120000.0,
+          72175.4
+        ],
+        "rotation_deg": [
+          0.0,
+          57.7,
+          0.0
+        ],
+        "fov_deg": 34.0
+      },
+      {
+        "name": "player_eye",
+        "location_cm": [
+          286344.7,
+          -128836.4,
+          14172.9
+        ],
+        "rotation_deg": [
+          22.92,
+          -160.0,
+          0.0
+        ],
+        "fov_deg": 65.0
+      },
+      {
+        "name": "forest_floor",
+        "location_cm": [
+          377601.3,
+          -302771.8,
+          28732.7
+        ],
+        "rotation_deg": [
+          3.05,
+          135.0,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "verify_ground",
+        "location_cm": [
+          -356900.6,
+          300122.7,
+          31402.0
+        ],
+        "rotation_deg": [
+          -6.0,
+          -31.74,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "verify_aerial",
+        "location_cm": [
+          118666.6,
+          -118666.6,
+          283934.0
+        ],
+        "rotation_deg": [
+          -50.0,
+          135.0,
+          0.0
+        ],
+        "fov_deg": 75.0
+      },
+      {
+        "name": "cliff_face",
+        "location_cm": [
+          263870.3,
+          137560.5,
+          77634.0
+        ],
+        "rotation_deg": [
+          14.03,
+          160.45,
+          0.0
+        ],
+        "fov_deg": 55.0
+      },
+      {
+        "name": "rock_grounding",
+        "location_cm": [
+          -144037.6,
+          -364593.8,
+          29011.8
+        ],
+        "rotation_deg": [
+          -11.1,
+          -135.0,
+          0.0
+        ],
+        "fov_deg": 55.0
+      },
+      {
+        "name": "trunk_base",
+        "location_cm": [
+          -27855.8,
+          215540.6,
+          22545.3
+        ],
+        "rotation_deg": [
+          11.3,
+          -75.0,
+          0.0
+        ],
+        "fov_deg": 35.0
+      },
+      {
+        "name": "lod_near",
+        "location_cm": [
+          287439.1,
+          -399260.5,
+          41346.4
+        ],
+        "rotation_deg": [
+          6.5,
+          -75.0,
+          0.0
+        ],
+        "fov_deg": 25.0
+      },
+      {
+        "name": "lod_far",
+        "location_cm": [
+          287102.7,
+          -398004.8,
+          41315.2
+        ],
+        "rotation_deg": [
+          5.3,
+          -75.0,
+          0.0
+        ],
+        "fov_deg": 25.0
+      },
+      {
+        "name": "sweep_0060",
+        "location_cm": [
+          -171041.9,
+          -53291.2,
+          49558.8
+        ],
+        "rotation_deg": [
+          -0.303,
+          -80.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      },
+      {
+        "name": "sweep_0150",
+        "location_cm": [
+          -174134.6,
+          -44781.1,
+          45805.5
+        ],
+        "rotation_deg": [
+          -0.303,
+          -74.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      },
+      {
+        "name": "sweep_0350",
+        "location_cm": [
+          -152500.0,
+          -28889.1,
+          52694.4
+        ],
+        "rotation_deg": [
+          -6.245,
+          -120.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      },
+      {
+        "name": "sweep_0700",
+        "location_cm": [
+          -209143.5,
+          -1167.4,
+          66360.3
+        ],
+        "rotation_deg": [
+          -0.303,
+          -56.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      },
+      {
+        "name": "sweep_1200",
+        "location_cm": [
+          -289926.9,
+          -63387.9,
+          36131.5
+        ],
+        "rotation_deg": [
+          -0.303,
+          2.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      },
+      {
+        "name": "sweep_2000",
+        "location_cm": [
+          -368053.6,
+          -87034.6,
+          25046.1
+        ],
+        "rotation_deg": [
+          -0.303,
+          8.0,
+          0.0
+        ],
+        "fov_deg": 50.0
+      }
+    ]
+  },
+  "palette": {
+    "_generated_by": "scripts/make_alpine_palette.py",
+    "_curation": "recipes/alpine_palette_curation.json",
+    "_measurements": "Free/_measured/fab_registry_*.json (zero assets loaded)",
+    "_verified_policy": "Every entry is verified=false. Promotion requires a spawn and a render, in the pass that places the asset. This file cannot assert true.",
+    "tier_gate": {
+      "metric": "triangles / bbox_area_m2, blobs only",
+      "reference_group": "KiteDemo:/Rocks/",
+      "reference_median_tri_per_m2": 299.5,
+      "reference_min_tri_per_m2": 105.8,
+      "rule": "A blob-shaped rock asset is admitted only if its measured density falls inside the reference group's observed range. Planar and spanning assets are NOT gated by this metric \u2014 see the limits in scripts/palette_evidence.py."
+    },
+    "surface_rulings": [
+      {
+        "id": "scree_surface",
+        "decision": "Rock026",
+        "decided": "2026-08-03",
+        "role": "Rock layer sub-surface (scree / talus), Pass 2",
+        "criteria": "coherence with Rock051 at the talus boundary; tiling at ground AND 2 km; displacement quality, since scree is where displacement reads most",
+        "evidence": "_verify/20260803_scree_candidates.png",
+        "rejected": {
+          "id": "Rock063",
+          "disqualifier": "CONTENT, not statistics: it is MOSS-COVERED VEGETATED BEDROCK, bright green, not fractured stone. Scree is by definition unvegetated \u2014 talus is actively moving, which is exactly why vegetation cannot establish on it. A mossy scree field is a geological error.",
+          "why_the_numbers_said_otherwise": "Every numeric coherence metric FAVOURED Rock063: RGB distance from Rock051 0.197 vs Rock026's 0.338, and luminance ratio 0.91x vs 1.45x. Those metrics cannot distinguish 'similar brown rock' from 'green moss at similar luminance' \u2014 the low blue channel (0.192) that reads as warm-rust in numbers is chlorophyll. The disqualifier was found by LOOKING at the contact sheet, and by nothing else.",
+          "secondary": "Also 4096x2048, a 2:1 aspect that the builder's single scalar UV divisor would stretch 2:1."
+        },
+        "winner_weaknesses_recorded_not_hidden": [
+          "Displacement detail is WEAK: laplacian std 0.00200 against Rock051's 0.00623 (3.1x less), and its range is compressed to 0.242..0.909 rather than full. This is the criterion that matters most for scree.",
+          "Low-frequency energy is 0.1364, 2.07x Rock051's 0.0659 \u2014 the most visible-tiling candidate of the three at the 2 km verification scale. The macro-variation layer (Pass 2c) is what must break it up, and this is the surface that will test it.",
+          "Luminance is 1.45x Rock051. Judged ACCEPTABLE rather than ignored: fresh rockfall exposes unweathered interior with no lichen, so scree genuinely IS lighter than the weathered cliff above it. This one is physically right, not merely tolerated."
+        ],
+        "mitigation_already_in_the_design": "R2's PASS 2 UPGRADE requires the HeightLerp transition contrast to be PER LAYER PAIR, derived from each surface's measured displacement range. Rock026's weak, compressed height map is exactly the case that requirement exists for; one global contrast constant would render this pair nearly unblended.",
+        "honest_verdict": "Rock026 is the better of two, not a good scree surface. It is the only candidate of the right MATERIAL CLASS. A dedicated scree/talus scan would beat it and is a BACKLOG intake item."
+      }
+    ],
+    "entries": [
+      {
+        "id": "boulder_medium_01",
+        "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001",
+        "role": "boulder",
+        "pass": 3,
+        "admit": "YES",
+        "note": "General mid-size scatter.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 4136,
+          "vertices": 2330,
+          "material_slots": 2,
+          "collision_prims": 4,
+          "dims_m": [
+            1.53,
+            1.77,
+            1.3
+          ],
+          "bbox_area_m2": 14.0,
+          "tri_per_m2": 295.5,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "boulder_medium_02",
+        "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_LowPoly",
+        "role": "boulder",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Named LowPoly, but MEASURES inside the reference tier. The metric admitted it and the name did not; that is the metric doing its job. Do not exclude on the filename.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2712,
+          "vertices": 1490,
+          "material_slots": 2,
+          "collision_prims": 4,
+          "dims_m": [
+            1.31,
+            2.08,
+            1.41
+          ],
+          "bbox_area_m2": 15.01,
+          "tri_per_m2": 180.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "volcanic_rock_01",
+        "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_001",
+        "role": "boulder",
+        "pass": 3,
+        "admit": "CONDITIONAL",
+        "note": "Passes tier. BIOME UNRESOLVED: basaltic rock beside the granite-family Rock051 landscape surface may read as two different geologies in one frame. Needs a render next to a Rock051 slope before admission. Three siblings 002/003/004 are held out until this one is judged.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 16257,
+          "vertices": 8191,
+          "material_slots": 5,
+          "collision_prims": 4,
+          "dims_m": [
+            2.78,
+            4.43,
+            1.74
+          ],
+          "bbox_area_m2": 49.72,
+          "tri_per_m2": 327.0,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "boulder_small",
+        "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+        "role": "boulder_small",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Sub-metre. Doubles as Pass 5 ground detail.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2572,
+          "vertices": 1662,
+          "material_slots": 4,
+          "collision_prims": 4,
+          "dims_m": [
+            0.89,
+            0.9,
+            0.43
+          ],
+          "bbox_area_m2": 3.14,
+          "tri_per_m2": 818.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "cliff_face_01",
+        "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01",
+        "role": "cliff_face",
+        "pass": 3,
+        "admit": "YES",
+        "note": "The only true cliff-face mesh in the inventory. 22 m span suits the stamped east ridge.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 29154,
+          "vertices": 14771,
+          "material_slots": 1,
+          "collision_prims": 4,
+          "dims_m": [
+            22.07,
+            7.22,
+            15.62
+          ],
+          "bbox_area_m2": 1233.71,
+          "tri_per_m2": 23.6,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "mountain_rock",
+        "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock",
+        "role": "cliff_outcrop",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Outcrop for steep slopes. Open-backed; pair with SM_MountainRock_Closed where the back is visible.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 9088,
+          "vertices": 4649,
+          "material_slots": 1,
+          "collision_prims": 4,
+          "dims_m": [
+            2.39,
+            3.74,
+            2.9
+          ],
+          "bbox_area_m2": 53.43,
+          "tri_per_m2": 170.1,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "mountain_rock_closed",
+        "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed",
+        "role": "cliff_outcrop",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Closed variant. Use where the silhouette is seen from more than one side.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 15320,
+          "vertices": 8193,
+          "material_slots": 4,
+          "collision_prims": 4,
+          "dims_m": [
+            4.11,
+            3.7,
+            3.84
+          ],
+          "bbox_area_m2": 90.39,
+          "tri_per_m2": 169.5,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "ground_reveal_rock_001",
+        "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+        "role": "embedded_outcrop",
+        "pass": 3,
+        "admit": "HAZARD",
+        "note": "DO NOT LOAD CASUALLY. Its texture T_GroundRevealRock001a_D_CC_R is 8192x8192 and the editor log put its first-build encode at a Required Memory Estimate of 4608.99 MB, against ~1.8 GB free on this host. This one asset hung the editor for 20+ minutes and killed the first intake audit. Load it alone, with nothing else running, or not at all until the GPU desktop.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 13536,
+          "vertices": 7115,
+          "material_slots": 2,
+          "collision_prims": 6,
+          "dims_m": [
+            3.34,
+            2.44,
+            0.65
+          ],
+          "bbox_area_m2": 23.81,
+          "tri_per_m2": 568.4,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "ground_reveal_rock_002",
+        "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002",
+        "role": "embedded_outcrop",
+        "pass": 3,
+        "admit": "HAZARD",
+        "note": "Same family as ground_reveal_rock_001; assume the same 8K texture cost until measured otherwise.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 10589,
+          "vertices": 5658,
+          "material_slots": 7,
+          "collision_prims": 4,
+          "dims_m": [
+            1.78,
+            3.54,
+            1.17
+          ],
+          "bbox_area_m2": 25.05,
+          "tri_per_m2": 422.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "hero_boulder_large",
+        "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/SM_LargePlainsBoulder002",
+        "role": "hero_boulder",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Largest free-standing boulder at 6.7 m. Meadow hero placement, low count.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 13998,
+          "vertices": 7393,
+          "material_slots": 3,
+          "collision_prims": 4,
+          "dims_m": [
+            6.72,
+            5.06,
+            2.73
+          ],
+          "bbox_area_m2": 132.33,
+          "tri_per_m2": 105.8,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "scree_bend",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend",
+        "role": "talus_channel",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Bent slab for talus running into a channel rather than straight downslope.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 27354,
+          "vertices": 14422,
+          "material_slots": 1,
+          "collision_prims": 4,
+          "dims_m": [
+            5.64,
+            6.63,
+            0.72
+          ],
+          "bbox_area_m2": 92.46,
+          "tri_per_m2": 295.9,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "scree_slab_001",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001",
+        "role": "talus_field",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Planar slab, 5.6 x 3.3 x 0.5 m. NOT tier-gated (planar). 33.8k tris is the single most expensive asset in the palette \u2014 see the budget warning in the generated block.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 33855,
+          "vertices": 17645,
+          "material_slots": 5,
+          "collision_prims": 4,
+          "dims_m": [
+            5.64,
+            3.29,
+            0.46
+          ],
+          "bbox_area_m2": 45.33,
+          "tri_per_m2": 746.9,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "scree_slab_001a",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_A",
+        "role": "talus_field",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Cheaper Scree001 variant. Prefer this and _B over the full slab wherever the camera is not close.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 15566,
+          "vertices": 8117,
+          "material_slots": 12,
+          "collision_prims": 2,
+          "dims_m": [
+            3.19,
+            2.47,
+            0.49
+          ],
+          "bbox_area_m2": 21.31,
+          "tri_per_m2": 730.6,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "scree_slab_001b",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B",
+        "role": "talus_field",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Cheaper Scree001 variant.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 20218,
+          "vertices": 10602,
+          "material_slots": 4,
+          "collision_prims": 2,
+          "dims_m": [
+            3.4,
+            3.07,
+            0.52
+          ],
+          "bbox_area_m2": 27.6,
+          "tri_per_m2": 732.4,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "scree_slab_002a",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a",
+        "role": "talus_field",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Second scree family; different stone size to Scree001. Mixing the two is what stops a talus field reading as one tiled slab.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 15425,
+          "vertices": 8038,
+          "material_slots": 1,
+          "collision_prims": 4,
+          "dims_m": [
+            4.23,
+            4.39,
+            0.54
+          ],
+          "bbox_area_m2": 46.45,
+          "tri_per_m2": 332.1,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+        "nanite": true
+      },
+      {
+        "id": "scree_slab_002b",
+        "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002b",
+        "role": "talus_field",
+        "pass": 3,
+        "admit": "YES",
+        "note": "Cheapest scree at 11.9k tris. The workhorse for the bulk of any talus field.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 11947,
+          "vertices": 6404,
+          "material_slots": 1,
+          "collision_prims": 2,
+          "dims_m": [
+            3.5,
+            2.88,
+            0.55
+          ],
+          "bbox_area_m2": 27.18,
+          "tri_per_m2": 439.6,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "hill_tree",
+        "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_02",
+        "role": "broadleaf",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "11.8 m broadleaf. Same ruling as hill_tree_tall; the two stand or fall together.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 49495,
+          "vertices": 58219,
+          "material_slots": 6,
+          "collision_prims": 1,
+          "dims_m": [
+            7.65,
+            8.54,
+            11.78
+          ],
+          "bbox_area_m2": 512.1,
+          "tri_per_m2": 96.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "hill_tree_tall",
+        "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_02",
+        "role": "broadleaf",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "22.5 m broadleaf. Correct for a temperate FOOTHILL band and wrong above the treeline. Admission depends on whether the region carries a broadleaf band at all \u2014 that is a Pass 4 elevation-zone decision, not an asset decision.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 58321,
+          "vertices": 69152,
+          "material_slots": 5,
+          "collision_prims": 1,
+          "dims_m": [
+            11.76,
+            9.0,
+            22.48
+          ],
+          "bbox_area_m2": 1145.05,
+          "tri_per_m2": 50.9,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "scots_pine_broad",
+        "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01",
+        "role": "conifer_secondary",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "MEASUREMENT LOOKS WRONG: 18.9 x 13.3 x 12.7 m, i.e. WIDER than it is tall, at 60.1k tris \u2014 the heaviest tree in the pack. Either it is a broad open-grown specimen or the bounding box includes something unexpected. Inspect before use; do not scatter on the strength of the name.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 60120,
+          "vertices": 81140,
+          "material_slots": 5,
+          "collision_prims": 2,
+          "dims_m": [
+            18.9,
+            13.3,
+            12.7
+          ],
+          "bbox_area_m2": 1320.62,
+          "tri_per_m2": 45.5,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "scots_pine_tall",
+        "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+        "role": "conifer_secondary",
+        "pass": 4,
+        "admit": "YES",
+        "note": "22.1 m Scots pine, 27.8k tris. The best answer on file to the open backlog item 'conifers read thin/sparse' \u2014 a second conifer silhouette, not a denser fir. Scots pine is a real montane species and sits correctly below the treeline.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 27824,
+          "vertices": 33729,
+          "material_slots": 5,
+          "collision_prims": 2,
+          "dims_m": [
+            8.52,
+            9.13,
+            22.1
+          ],
+          "bbox_area_m2": 935.71,
+          "tri_per_m2": 29.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "field_grass",
+        "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+        "role": "grass",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "765 tris, 0.2 m. The region already runs a grass SYSTEM at 12 tufts/m2 through the landscape material (R11), not scattered grass meshes. Admitting this must not mean running two grass systems \u2014 decide in Pass 4 whether it REPLACES a grass variety or is dropped.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 765,
+          "vertices": 621,
+          "material_slots": 5,
+          "collision_prims": 0,
+          "dims_m": [
+            1.06,
+            1.2,
+            0.2
+          ],
+          "bbox_area_m2": 3.45,
+          "tri_per_m2": 221.9,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "heather_clumps",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2",
+        "role": "montane_shrub",
+        "pass": 4,
+        "admit": "YES",
+        "note": "376 tris for a 0.6 m clump \u2014 the cheapest real coverage in the palette. Heather is the signature open-montane shrub between treeline and scree, which is exactly the band the region currently has nothing in.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 376,
+          "vertices": 531,
+          "material_slots": 5,
+          "collision_prims": 0,
+          "dims_m": [
+            1.64,
+            1.53,
+            0.57
+          ],
+          "bbox_area_m2": 8.63,
+          "tri_per_m2": 43.6,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "heather_clumps_wp",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2_WorldPopulate",
+        "role": "montane_shrub",
+        "pass": 4,
+        "admit": "YES",
+        "note": "Smaller world-populate variant of the same clump, 0.3 m. Use as the distance filler behind the full clump.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 376,
+          "vertices": 531,
+          "material_slots": 5,
+          "collision_prims": 0,
+          "dims_m": [
+            0.99,
+            0.92,
+            0.34
+          ],
+          "bbox_area_m2": 3.12,
+          "tri_per_m2": 120.5,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "fern_01",
+        "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_01",
+        "role": "understory",
+        "pass": 4,
+        "admit": "YES",
+        "note": "Forest-floor understory under the conifer canopy. Shade species \u2014 keep it out of open meadow.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 1923,
+          "vertices": 1933,
+          "material_slots": 1,
+          "collision_prims": 0,
+          "dims_m": [
+            1.65,
+            2.0,
+            0.91
+          ],
+          "bbox_area_m2": 13.24,
+          "tri_per_m2": 145.2,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "fern_02",
+        "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_02",
+        "role": "understory",
+        "pass": 4,
+        "admit": "YES",
+        "note": "Understory variety.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 1826,
+          "vertices": 1836,
+          "material_slots": 1,
+          "collision_prims": 0,
+          "dims_m": [
+            2.16,
+            2.03,
+            0.79
+          ],
+          "bbox_area_m2": 15.39,
+          "tri_per_m2": 118.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "fern_03",
+        "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03",
+        "role": "understory",
+        "pass": 4,
+        "admit": "YES",
+        "note": "Understory variety.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 1812,
+          "vertices": 1822,
+          "material_slots": 1,
+          "collision_prims": 0,
+          "dims_m": [
+            1.34,
+            2.07,
+            1.21
+          ],
+          "bbox_area_m2": 13.8,
+          "tri_per_m2": 131.3,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "bog_myrtle",
+        "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01",
+        "role": "wetland_shrub",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "Same wetland ruling as bog_myrtle_bush_01.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2537,
+          "vertices": 2543,
+          "material_slots": 2,
+          "collision_prims": 0,
+          "dims_m": [
+            0.45,
+            0.49,
+            0.96
+          ],
+          "bbox_area_m2": 2.25,
+          "tri_per_m2": 1129.7,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "bog_myrtle_bush_01",
+        "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01",
+        "role": "wetland_shrub",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "Bog myrtle is a WETLAND species. Correct only where the terrain actually holds water \u2014 drainage lines and valley floors, driven by alpine_flow.png / alpine_deposition.png. Scattered on dry slope it is a botanical error that a viewer will not name but will feel.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2867,
+          "vertices": 2881,
+          "material_slots": 2,
+          "collision_prims": 0,
+          "dims_m": [
+            0.73,
+            0.75,
+            0.74
+          ],
+          "bbox_area_m2": 3.29,
+          "tri_per_m2": 872.6,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "bog_myrtle_bush_02",
+        "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02",
+        "role": "wetland_shrub",
+        "pass": 4,
+        "admit": "CONDITIONAL",
+        "note": "Same wetland ruling as bog_myrtle_bush_01.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 6124,
+          "vertices": 6158,
+          "material_slots": 4,
+          "collision_prims": 0,
+          "dims_m": [
+            1.22,
+            1.05,
+            0.96
+          ],
+          "bbox_area_m2": 6.92,
+          "tri_per_m2": 884.9,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "river_rock",
+        "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+        "role": "drainage_stone",
+        "pass": 5,
+        "admit": "YES",
+        "note": "0.5 m water-worn stone. Belongs in drainage channels only, where alpine_flow.png is high.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2038,
+          "vertices": 1135,
+          "material_slots": 2,
+          "collision_prims": 2,
+          "dims_m": [
+            0.49,
+            0.56,
+            0.39
+          ],
+          "bbox_area_m2": 1.37,
+          "tri_per_m2": 1490.0,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "dead_leaves",
+        "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves",
+        "role": "ground_detail",
+        "pass": 5,
+        "admit": "CONDITIONAL",
+        "note": "BROADLEAF litter. Only coherent underneath broadleaf trees, so it is gated on the same Pass 4 decision as hill_tree. Under a pure conifer canopy the correct litter is needles, which the inventory does not have.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 4791,
+          "vertices": 3192,
+          "material_slots": 1,
+          "collision_prims": 0,
+          "dims_m": [
+            0.82,
+            0.89,
+            0.15
+          ],
+          "bbox_area_m2": 1.97,
+          "tri_per_m2": 2428.8,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "dead_leaves_flat",
+        "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat",
+        "role": "ground_detail",
+        "pass": 5,
+        "admit": "CONDITIONAL",
+        "note": "Same broadleaf gating as dead_leaves.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 4791,
+          "vertices": 3192,
+          "material_slots": 1,
+          "collision_prims": 0,
+          "dims_m": [
+            0.82,
+            0.89,
+            0.09
+          ],
+          "bbox_area_m2": 1.77,
+          "tri_per_m2": 2710.8,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "tree_stump",
+        "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01",
+        "role": "ground_detail",
+        "pass": 5,
+        "admit": "YES",
+        "note": "Reads as a felled or storm-broken trunk. Sparse placement in clearings.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 5853,
+          "vertices": 3119,
+          "material_slots": 4,
+          "collision_prims": 1,
+          "dims_m": [
+            0.79,
+            0.67,
+            2.33
+          ],
+          "bbox_area_m2": 7.86,
+          "tri_per_m2": 744.4,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "vegetation_debris",
+        "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/SM_Vegetation_Debris_002",
+        "role": "ground_detail",
+        "pass": 5,
+        "admit": "YES",
+        "note": "Fallen branch litter. Pass 5's near-path scatter.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 4538,
+          "vertices": 2618,
+          "material_slots": 4,
+          "collision_prims": 3,
+          "dims_m": [
+            3.64,
+            1.03,
+            0.75
+          ],
+          "bbox_area_m2": 14.5,
+          "tri_per_m2": 312.9,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "buttercup_patch",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/SM_Buttercup_Patch_01",
+        "role": "meadow_flower",
+        "pass": 5,
+        "admit": "YES",
+        "note": "274 tris for a 3.2 m patch \u2014 a card, not a plant. Cheap meadow colour at distance; check it edge-on before trusting it near the camera.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 274,
+          "vertices": 368,
+          "material_slots": 11,
+          "collision_prims": 0,
+          "dims_m": [
+            3.21,
+            2.21,
+            0.55
+          ],
+          "bbox_area_m2": 20.15,
+          "tri_per_m2": 13.6,
+          "shape": "planar",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "field_scabious",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/SM_FieldScabious_01",
+        "role": "meadow_flower",
+        "pass": 5,
+        "admit": "YES",
+        "note": "Montane meadow species.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 3362,
+          "vertices": 2898,
+          "material_slots": 3,
+          "collision_prims": 0,
+          "dims_m": [
+            1.03,
+            1.04,
+            0.65
+          ],
+          "bbox_area_m2": 4.83,
+          "tri_per_m2": 695.6,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "yarrow",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow",
+        "role": "meadow_flower",
+        "pass": 5,
+        "admit": "YES",
+        "note": "0.5 m. Real montane meadow species. Sparse \u2014 flowers read as filler the moment they are even.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2410,
+          "vertices": 1968,
+          "material_slots": 2,
+          "collision_prims": 0,
+          "dims_m": [
+            0.35,
+            0.42,
+            0.54
+          ],
+          "bbox_area_m2": 1.13,
+          "tri_per_m2": 2141.1,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      },
+      {
+        "id": "yarrow_03",
+        "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow3",
+        "role": "meadow_flower",
+        "pass": 5,
+        "admit": "YES",
+        "note": "Yarrow variant.",
+        "measured": {
+          "pack": "KiteDemo",
+          "class": "StaticMesh",
+          "triangles": 2846,
+          "vertices": 2348,
+          "material_slots": 3,
+          "collision_prims": 0,
+          "dims_m": [
+            0.45,
+            0.56,
+            0.52
+          ],
+          "bbox_area_m2": 1.55,
+          "tri_per_m2": 1830.9,
+          "shape": "blob",
+          "nanite": "UNKNOWN \u2014 registry tag absent",
+          "unmeasured": []
+        },
+        "verified": false,
+        "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+      }
+    ],
+    "excluded": [
+      {
+        "group": "Rock063 \u2014 rejected as the scree surface",
+        "reason": "Moss-covered vegetated bedrock, not fractured stone. See surface_rulings.scree_surface. Every numeric metric favoured it; the contact sheet disqualified it in one look.",
+        "disposition": "Not imported. Genuinely useful LATER for wet shaded bedrock near drainage, where moss is correct \u2014 that is a different role, and it would need its 2:1 aspect handled."
+      },
+      {
+        "group": "DragonCave \u2014 all rock and stone meshes",
+        "reason": "MEASURED below the region's quality tier and NOT MARGINALLY. Median 14.5 tri/m2 for SM_LargeRock* (n=7) and 21.9 for SM_CaveRock* (n=4), against 299.5 for the KiteDemo rock reference group (n=12). The ranges do not overlap at all: the KiteDemo minimum is 105.8 and the DragonCave maximum is 23.9, so no DragonCave rock is as dense as the sparsest KiteDemo rock. This is an exclusion by measurement, not by taste.",
+        "instrument": "scripts/palette_evidence.py --compare",
+        "disposition": "Keep for cave/dungeon interiors, where the lighting is close and the silhouette carries the read. Catalogue only; not alpine inventory."
+      },
+      {
+        "group": "DragonCave \u2014 Stoneworks, Bridge, Treasure, Skeleton, Dragon props",
+        "reason": "Built architecture and hero fantasy props. Nothing in the alpine region's brief calls for them, and POI placement is blocked on the world-structure ruling in any case.",
+        "disposition": "POI inventory for a future region."
+      },
+      {
+        "group": "Atlantis_Ruins \u2014 entire pack",
+        "reason": "WRONG BIOME. Submerged classical ruins, coral and seaweed. The brief pre-ruled it likely wrong-biome and nothing in the measurement contradicts that: SM_Coral_*, SM_Seaweed_* are marine, and the rock family is dressed to match them.",
+        "disposition": "Catalogue as POI inventory for a coastal or underwater region. Excluded here with no per-asset review, per the brief's 'exclude unless a specific piece passes coherence'."
+      },
+      {
+        "group": "KiteDemo \u2014 /LevelContent/**",
+        "reason": "Showcase scaffolding, not world content: SM_1Meter_01 is a measuring reference, SM_AssetPlatform_02 and SM_CycRoom_01 are a turntable and a cyclorama, SM_Arrows is a gizmo, Skybox is a demo backdrop that would fight the Pass 6 Sky Atmosphere.",
+        "disposition": "Never alpine inventory. SM_1Meter_01 is genuinely useful as a scale reference when eyeballing an import; that is a tool, not a placement."
+      },
+      {
+        "group": "KiteDemo \u2014 LargeVolcanicRock_002 / _003 / _004",
+        "reason": "Held out pending the volcanic_rock_01 biome render. Admitting four near-identical siblings before judging one of them would multiply a possible mistake by four.",
+        "disposition": "Promote all three the moment volcanic_rock_01 passes; drop all three if it fails."
+      }
+    ],
+    "budget_warning": {
+      "role": "talus_field",
+      "most_expensive": {
+        "id": "scree_slab_001",
+        "triangles": 33855
+      },
+      "cheapest": {
+        "id": "scree_slab_002b",
+        "triangles": 11947
+      },
+      "warning": "At 33855 tris, 1,169 instances of scree_slab_001 alone reach the 39.6M triangle load the conifer forest already carries. Pass 3 must state a talus instance ceiling BEFORE scattering, and prefer scree_slab_002b (11947 tris) for bulk coverage."
+    }
+  }
+}

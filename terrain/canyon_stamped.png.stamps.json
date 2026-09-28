@@ -1,0 +1,303 @@
+{
+  "base": "terrain/canyon_base.png",
+  "base_sha256": "b97ea7eb86914af1ba73ab30c6718842a1cd9ca098981c222b0b9b8d99170561",
+  "biome_id": "canyon",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 18713.0,
+    "pre_clamp_min_units": 72.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/canyon_stamped.png",
+  "output_sha256": "340f69e85aff11a31aef8e2f7083f35f8e38169ce3cedfb7e0693266751c8047",
+  "pixels_changed": 546243,
+  "placements": [
+    {
+      "amplitude_m": 420.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        54,
+        956
+      ],
+      "bbox_rows": [
+        54,
+        956
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        504.5,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        0.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.01068,
+      "delta_max_m": 411.69162464251906,
+      "delta_max_units": 13490.105310473744,
+      "delta_mean_abs_m": 118.36211844621191,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.4,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "canyon_massif",
+      "mask_pixels": 463816,
+      "moved_pixels": 461982,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 3600.0,
+      "size_px": 900.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 1024,
+      "stamp_sha256": "19f7b810e36d7d9e0fc13890217b85caa33406ff28a5aa0dccf338619bf90df3"
+    },
+    {
+      "amplitude_m": 468.1,
+      "anchor_m": null,
+      "bbox_cols": [
+        29,
+        331
+      ],
+      "bbox_rows": [
+        29,
+        331
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        179.5,
+        179.5
+      ],
+      "centre_world_m": [
+        -1300.0,
+        -1300.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.043664,
+      "delta_max_m": 348.67332439981175,
+      "delta_max_units": 11425.153157270832,
+      "delta_mean_abs_m": 78.43744558038962,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "rim_crags_nw",
+      "mask_pixels": 52031,
+      "moved_pixels": 51620,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1200.0,
+      "size_px": 300.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252"
+    },
+    {
+      "amplitude_m": 180.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        679,
+        981
+      ],
+      "bbox_rows": [
+        679,
+        981
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        829.5,
+        829.5
+      ],
+      "centre_world_m": [
+        1300.0,
+        1300.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.200647,
+      "delta_max_m": 111.6751332466709,
+      "delta_max_units": 3659.314928660289,
+      "delta_mean_abs_m": 20.872716854509118,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "rim_crags_se",
+      "mask_pixels": 51863,
+      "moved_pixels": 51273,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1200.0,
+      "size_px": 300.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2"
+    },
+    {
+      "amplitude_m": 25.0,
+      "anchor_m": 75.0,
+      "bbox_cols": [
+        372,
+        548
+      ],
+      "bbox_rows": [
+        417,
+        593
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        504.5,
+        459.5
+      ],
+      "centre_world_m": [
+        -180.0,
+        0.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 71.40580421015174,
+      "delta_min_m": -313.2581230951001,
+      "delta_min_units": -10264.685548518692,
+      "edge_clipped": false,
+      "falloff": 0.55,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "floor_bed",
+      "mask_pixels": 19045,
+      "moved_pixels": 18825,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 700.0,
+      "size_px": 175.0,
+      "stamp_prereduce_factor": 16,
+      "stamp_sampled_side_px": 256,
+      "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4"
+    },
+    {
+      "amplitude_m": 12.0,
+      "anchor_m": 255.0,
+      "bbox_cols": [
+        254,
+        396
+      ],
+      "bbox_rows": [
+        299,
+        441
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        369.5,
+        324.5
+      ],
+      "centre_world_m": [
+        -720.0,
+        -540.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 55.30232741627286,
+      "delta_min_m": -167.14899590458074,
+      "delta_min_units": -5477.054723303349,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "ledge_city",
+      "mask_pixels": 13433,
+      "moved_pixels": 13230,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 560.0,
+      "size_px": 140.0,
+      "stamp_prereduce_factor": 16,
+      "stamp_sampled_side_px": 256,
+      "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d"
+    }
+  ],
+  "recipe": "_verify/20260901_overnight/canyon.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "canyon_massif": {
+      "filename": "HM_Canyon_04_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Canyon_04_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "19f7b810e36d7d9e0fc13890217b85caa33406ff28a5aa0dccf338619bf90df3",
+      "tag": "canyon"
+    },
+    "floor_bed": {
+      "filename": "HM_Meadows_28_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_28_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+      "tag": "meadows"
+    },
+    "ledge_city": {
+      "filename": "HM_Meadows_04_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_04_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+      "tag": "meadows"
+    },
+    "rim_crags_nw": {
+      "filename": "HM_Pride_Rocks_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+      "tag": "outcrop"
+    },
+    "rim_crags_se": {
+      "filename": "HM_Pride_Rocks_11_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_11_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+      "tag": "outcrop"
+    }
+  },
+  "stamps_block_sha256": "b2c3d2cee17eaccf5c8017a5f9545274ee507fbe2653cec86bf087c72b64b956",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-01T06:13:35Z",
+  "z_scale_m": 2000.0
+}

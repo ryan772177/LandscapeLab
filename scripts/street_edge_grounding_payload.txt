@@ -1,0 +1,147 @@
+# Do the street slabs sit on the ground AT THEIR EDGES?
+#
+#   --set PLAN=<abs path to the city plan>   (used only for a count check)
+#
+# WHY THE EXISTING VERIFIER SAYS 0.0 cm AND THE SCREENSHOT SAYS OTHERWISE
+# ----------------------------------------------------------------------
+# `city_verify_payload.txt` reports `base_above_ground max 0.0 cm`, and it is
+# not wrong -- it traces under each actor's ORIGIN. A slab laid on sloping
+# ground touches at its centre and lifts at its ends, and a centre trace cannot
+# see that by construction. The operator's eye-level screenshot shows daylight
+# under slab edges.
+#
+# **THE MISLEADING-DENOMINATOR CLASS IN GEOMETRIC FORM** (non-negotiable 22):
+# the number is true about the point it measured and answers a question nobody
+# asked. A slab is not a point.
+#
+# ** THIS READS THE PLACED ACTORS, NOT THE PLAN. **
+# The first version of this computed each corner's slab height from the PLAN's
+# centre Z -- i.e. it ASSUMED the slab was flat. That quantity is invariant
+# under rotating the slab, so it returned byte-identical numbers before and
+# after the seating fix and would have reported the fix as having done nothing.
+# An instrument whose reading cannot move when the thing it measures moves is
+# not measuring that thing.
+#
+# So each corner's slab-surface height comes from the ACTOR'S OWN TRANSFORM --
+# location, rotation and scale read out of the world -- and is compared against
+# a collision trace at the same XY. Two representations, and only one of them
+# is the plan.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+PLAN = r"__PLAN__"
+TAG = "LandscapeLab.City"
+
+_out = {"error": None, "streets_in_plan": 0, "actors": 0, "misses": 0,
+        "corner_gap_cm": {}, "centre_gap_cm": {}, "worst": [],
+        "rot_seen": {}}
+try:
+    _unreal.LandscapeLabTools.load_all_world_partition_regions()
+    _ues = _unreal.get_editor_subsystem(_unreal.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+    _out["streets_in_plan"] = len(_p.get("streets") or [])
+
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    # Exclude the city's own actors and foliage, or the ray lands on a roof or
+    # a tree. 17 streets once measured 12.9 m "above ground" for that reason.
+    _ignore = []
+    _streets = []
+    for _a in _all:
+        try:
+            _tags = [str(_t) for _t in _a.tags]
+        except Exception:
+            _tags = []
+        if TAG in _tags or isinstance(_a, _unreal.InstancedFoliageActor):
+            _ignore.append(_a)
+        if "streets" in _tags:
+            _streets.append(_a)
+
+    _corner, _centre = [], []
+    _pitches = []
+    for _a in _streets:
+        _loc = _a.get_actor_location()
+        _rot = _a.get_actor_rotation()
+        _scl = _a.get_actor_scale3d()
+        _pitches.append(abs(float(_rot.pitch)) + abs(float(_rot.roll)))
+
+        # The slab is a unit Cube scaled to (len, width, thickness) in cm, so
+        # its half-extents in LOCAL space are 50 * scale.
+        _hl = 50.0 * float(_scl.x)
+        _hw = 50.0 * float(_scl.y)
+        _ht = 50.0 * float(_scl.z)
+
+        _pts = [(0.0, 0.0)]
+        for _dx, _dy in ((-_hl, -_hw), (-_hl, _hw), (_hl, -_hw), (_hl, _hw)):
+            _pts.append((_dx, _dy))
+
+        _gaps = []
+        for _dx, _dy in _pts:
+            # LOCAL -> WORLD through the actor's own rotation. Using the
+            # rotator rather than re-deriving a matrix keeps this honest about
+            # the transform the engine actually applied.
+            # `Rotator` has NO rotate_vector in 5.8 -- that lives on `Quat`.
+            # The library call that takes a Vector and a Rotator is
+            # MathLibrary.greater_greater_vector_rotator (the reflected name of
+            # Blueprint's `>>` node). Confirmed at the stub, not remembered.
+            _v = _unreal.MathLibrary.greater_greater_vector_rotator(
+                _unreal.Vector(_dx, _dy, -_ht), _rot)
+            _wx = float(_loc.x) + float(_v.x)
+            _wy = float(_loc.y) + float(_v.y)
+            _wz = float(_loc.z) + float(_v.z)
+
+            _start = _unreal.Vector(_wx, _wy, _wz + 20000.0)
+            _end = _unreal.Vector(_wx, _wy, _wz - 20000.0)
+            _hit = _unreal.SystemLibrary.line_trace_single(
+                _w, _start, _end,
+                _unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, _ignore,
+                _unreal.DrawDebugTrace.NONE, True,
+                _unreal.LinearColor.RED, _unreal.LinearColor.GREEN, 0.0)
+            if not _hit:
+                _out["misses"] += 1
+                continue
+            _gz = float(_hit.to_tuple()[4].z)
+            _gaps.append(_wz - _gz)
+
+        if not _gaps:
+            continue
+        _out["actors"] += 1
+        _centre.append(_gaps[0])
+        _cg = max(_gaps[1:]) if len(_gaps) > 1 else _gaps[0]
+        _corner.append(_cg)
+        if _cg > 20.0 and len(_out["worst"]) < 10:
+            _out["worst"].append(
+                {"label": str(_a.get_actor_label()),
+                 "corner_gap_cm": round(_cg, 1),
+                 "centre_gap_cm": round(_gaps[0], 1),
+                 "pitch": round(float(_rot.pitch), 2),
+                 "roll": round(float(_rot.roll), 2)})
+
+    def _q(v):
+        if not v:
+            return None
+        v = sorted(v)
+        return {"n": len(v), "min": round(v[0], 1),
+                "p50": round(v[len(v) // 2], 1),
+                "p90": round(v[int(0.9 * (len(v) - 1))], 1),
+                "max": round(v[-1], 1)}
+
+    _out["corner_gap_cm"] = _q(_corner)
+    _out["centre_gap_cm"] = _q(_centre)
+    _out["over_20cm"] = sum(1 for g in _corner if g > 20.0)
+    _out["over_50cm"] = sum(1 for g in _corner if g > 50.0)
+    # POSITIVE CONTROL ON THE INPUT: if every placed slab has zero pitch and
+    # zero roll, the seating never reached the world and any improvement in the
+    # numbers below would be coming from somewhere else.
+    _out["rot_seen"] = {
+        "n_with_tilt": sum(1 for x in _pitches if x > 0.01),
+        "n_total": len(_pitches),
+        "max_tilt_deg": round(max(_pitches), 2) if _pitches else None}
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

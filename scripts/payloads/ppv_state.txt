@@ -1,0 +1,28 @@
+import json as _json
+import unreal as _u
+_out = {"ok": False}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _v = None
+    for _a in _eas.get_all_level_actors():
+        if isinstance(_a, _u.PostProcessVolume) and _a.get_actor_label().startswith("Lighting_"):
+            _v = _a
+            _out["label"] = _a.get_actor_label()
+            break
+    if _v is None:
+        raise RuntimeError("no recipe PostProcessVolume")
+    _s = _v.get_editor_property("settings")
+    _cc = _s.get_editor_property("color_contrast")
+    _out["unbound"] = bool(_v.get_editor_property("unbound"))
+    _out["white_temp"] = float(_s.get_editor_property("white_temp"))
+    _out["color_contrast"] = [round(float(_cc.x),4), round(float(_cc.y),4), round(float(_cc.z),4), round(float(_cc.w),4)]
+    _out["bloom_method"] = str(_s.get_editor_property("bloom_method"))
+    _out["bloom_intensity"] = float(_s.get_editor_property("bloom_intensity"))
+    _out["film_grain_intensity"] = float(_s.get_editor_property("film_grain_intensity"))
+    _out["vignette_intensity"] = float(_s.get_editor_property("vignette_intensity"))
+    _out["scene_fringe_intensity"] = float(_s.get_editor_property("scene_fringe_intensity"))
+    _out["auto_exposure_bias"] = float(_s.get_editor_property("auto_exposure_bias"))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

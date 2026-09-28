@@ -1,0 +1,86 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What can actually be dragged in the Groom Asset Editor, and what
+# is it set to right now.
+#
+# "Names come from the asset, never convention" -- four separate mis-namings in
+# this project have come from writing down a plausible property name instead of
+# reading it. So this enumerates the real structs and prints their current
+# values, and the operator gets a list they can find in the panel.
+
+GROOM = "__GROOM__"
+SUBJECT = "__SUBJECT__"
+
+_out = {"ok": False, "error": None, "groom": GROOM}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+
+    def _dump(_s, _skip=()):
+        _d = {}
+        for _p in dir(_s):
+            if _p.startswith("_") or _p in _skip:
+                continue
+            try:
+                _v = _s.get_editor_property(_p)
+            except Exception:
+                continue
+            if isinstance(_v, (int, float, bool, str)):
+                _d[_p] = _v
+        return _d
+
+    _rows = {}
+    for _arr in ("hair_groups_rendering", "hair_groups_interpolation",
+                 "hair_groups_lod", "hair_groups_physics",
+                 "hair_groups_info"):
+        try:
+            _a = _g.get_editor_property(_arr)
+        except Exception:
+            continue
+        _grp = []
+        for _s in _a:
+            _e = {"_direct": _dump(_s)}
+            for _sub in dir(_s):
+                if _sub.startswith("_"):
+                    continue
+                try:
+                    _v = _s.get_editor_property(_sub)
+                except Exception:
+                    continue
+                if hasattr(_v, "get_editor_property") and not isinstance(
+                        _v, (int, float, bool, str)):
+                    _dd = _dump(_v)
+                    if _dd:
+                        _e[_sub] = _dd
+            _grp.append(_e)
+        if _grp:
+            _rows[_arr] = _grp
+    _out["asset"] = _rows
+
+    # and what the PLACED actor's component overrides, which is the other place
+    # a slider lives and the one that does not survive a re-import
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _c in _a.get_components_by_class(_u.GroomComponent):
+            if not _c.get_name().lower().startswith("hair"):
+                continue
+            _ga = _c.get_editor_property("groom_asset")
+            _ba = _c.get_editor_property("binding_asset")
+            _out["component"] = {
+                "name": _c.get_name(),
+                "groom_asset": _ga.get_path_name() if _ga else None,
+                "binding_asset": _ba.get_path_name() if _ba else None,
+                "overrides": _dump(_c, _skip=("groom_asset", "binding_asset"))}
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

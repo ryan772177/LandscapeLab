@@ -1,0 +1,104 @@
+# READ-ONLY. Enumerate every DirectionalLight in the open level and describe it
+# by PROPERTY SIGNATURE, never by label.
+#
+# The editor is warning "Multiple directional lights are competing". Two lights
+# both called something plausible is exactly the collision standing rule 8 was
+# written for -- this project already has two landscapes whose proxies carried
+# identical labels. What identifies a light here is its intensity, rotation,
+# atmosphere-sun flag and the PACKAGE its actor was loaded from, because the
+# package says where it came from.
+#
+# It also reports the recipe's declared sun so the FOREIGN one is identifiable
+# rather than merely "the second in the list" -- list order is not provenance.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "level": None, "lights": [], "recipe_sun": None}
+try:
+    _ues = _unreal.get_editor_subsystem(_unreal.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    _out["level"] = str(_w.get_path_name()) if _w else None
+
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    for _a in _all:
+        if not isinstance(_a, _unreal.DirectionalLight):
+            continue
+        _row = {"label": None, "path": None, "package": None,
+                "intensity": None, "temp": None, "atmosphere_sun": None,
+                "pitch": None, "yaw": None, "roll": None,
+                "visible": None, "hidden_in_game": None,
+                "cast_shadows": None, "fwd_priority": None,
+                "mobility": None, "colour": None}
+        try:
+            _row["label"] = str(_a.get_actor_label())
+        except Exception:
+            pass
+        _row["path"] = str(_a.get_path_name())
+        try:
+            _row["package"] = str(_a.get_outermost().get_name())
+        except Exception:
+            pass
+        _r = _a.get_actor_rotation()
+        _row["pitch"] = round(float(_r.pitch), 4)
+        _row["yaw"] = round(float(_r.yaw), 4)
+        _row["roll"] = round(float(_r.roll), 4)
+        try:
+            _row["hidden_in_game"] = bool(_a.get_editor_property("hidden"))
+        except Exception:
+            pass
+        try:
+            _row["visible"] = bool(_a.get_editor_property("is_temporarily_hidden_in_editor"))
+        except Exception:
+            pass
+        try:
+            # light_component, NOT directional_light_component.
+            # apply_lighting.py:246-248 already says so in a comment:
+            # "light_component on EVERY light actor -- there is no
+            #  directional_light_component / sky_light_component."
+            # The stub DOES list directional_light_component, as an EditorOnly
+            # READ-ONLY reference, which is exactly why the wrong name looks
+            # plausible right up until it raises. Non-negotiable 23.
+            _c = _a.light_component
+            _row["intensity"] = round(float(_c.get_editor_property("intensity")), 3)
+            _row["temp"] = round(float(_c.get_editor_property("temperature")), 2)
+            _row["atmosphere_sun"] = bool(
+                _c.get_editor_property("atmosphere_sun_light"))
+            _row["cast_shadows"] = bool(
+                _c.get_editor_property("cast_shadows"))
+            _row["mobility"] = str(_c.get_editor_property("mobility"))
+            _lc = _c.get_editor_property("light_color")
+            _row["colour"] = [int(_lc.r), int(_lc.g), int(_lc.b)]
+            # THE FIELD THE WARNING NAMES. Absent means the property does not
+            # exist on this build, which is not the same as zero.
+            try:
+                _row["fwd_priority"] = int(_c.get_editor_property(
+                    "forward_shading_priority"))
+            except Exception as _fe:
+                _row["fwd_priority"] = "UNREADABLE: " + type(_fe).__name__
+            try:
+                _row["atmosphere_sun_index"] = int(_c.get_editor_property(
+                    "atmosphere_sun_light_index"))
+            except Exception:
+                _row["atmosphere_sun_index"] = None
+        except Exception as _ce:
+            _row["component_error"] = type(_ce).__name__ + ": " + str(_ce)
+        _out["lights"].append(_row)
+
+    # The recipe's declared sun, so the foreign light is identified by
+    # DISAGREEMENT with the declaration rather than by position in a list.
+    try:
+        with open(r"C:/Users/Admin/UE5LandscapePipeline/recipes/alpine_8k.json",
+                  "r", encoding="utf-8") as _fh:
+            _rec = _json.load(_fh)
+        _s = ((_rec.get("lighting") or {}).get("sun") or {})
+        _out["recipe_sun"] = {"intensity_lux": _s.get("intensity_lux"),
+                              "temperature_k": _s.get("temperature_k"),
+                              "elevation_deg": _s.get("elevation_deg"),
+                              "azimuth_deg": _s.get("azimuth_deg")}
+    except Exception as _re:
+        _out["recipe_sun"] = {"error": type(_re).__name__ + ": " + str(_re)}
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL_SUN__" + _json.dumps(_out))

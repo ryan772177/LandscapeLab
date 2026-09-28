@@ -1,0 +1,37 @@
+{
+  "dest": "/Game/Materials/PN_NoWind",
+  "switches": [
+    "Level 1 Wind",
+    "Level 2 Wind",
+    "Level 3 Wind",
+    "Level 1 Bending",
+    "Level 2 Bending",
+    "Level 3 Bending"
+  ],
+  "overrides_by_mesh": {
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_01": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_01_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_02": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_02_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_03_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_04": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_04_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_05": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_05_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_06": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_06_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_07": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_07_nowind"
+    ],
+    "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_08": [
+      "/Game/Materials/PN_NoWind/MI_MI_Blueberry_08_nowind"
+    ]
+  }
+}

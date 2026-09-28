@@ -1,0 +1,55 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# WHICH LEVEL IS LOADED. Read-only: spawns nothing, mutates nothing, saves
+# nothing, and OPENS NOTHING.
+#
+# WHY THIS EXISTS. Standing rule 11 says "wait for ZERO editors before
+# launching one, then ASK WHICH LEVEL is loaded before any shot or mutation",
+# and until 2026-08-30 there was no tool that answered it -- every caller
+# either hand-rolled the query inside a bigger payload or skipped the check.
+# A rule with no instrument is a rule that gets remembered instead of run,
+# which is the shape of step (a): the directory is ground truth, so the
+# directory has to contain the thing.
+#
+# The failure mode rule 11 names is a PLAUSIBLE ARTEFACT FROM THE WRONG LEVEL
+# -- it renders clean, passes every tonal check, and nothing downstream can
+# detect it. Cheap to prevent, undetectable afterwards.
+#
+# This payload must never CHANGE which level is loaded. Opening a level from a
+# hand-rolled payload fatals the editor at EditorServer.cpp:1951, and the one
+# sanctioned path is scripts/open_level.py.
+
+_out = {"ok": False, "error": None}
+try:
+    # UnrealEditorSubsystem is the 5.8 surface; EditorLevelLibrary is the
+    # older path and is still what most payloads in this repo call. Both are
+    # tried so this reports a level rather than an AttributeError if one is
+    # deprecated out from under us -- and it SAYS which one answered.
+    _w = None
+    _via = None
+    try:
+        _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+        _w = _ues.get_editor_world()
+        _via = "UnrealEditorSubsystem.get_editor_world"
+    except Exception as _e1:
+        _out["subsystem_error"] = str(_e1)
+    if _w is None:
+        _w = _u.EditorLevelLibrary.get_editor_world()
+        _via = "EditorLevelLibrary.get_editor_world"
+    if _w is None:
+        raise RuntimeError("no editor world; cannot report a level")
+
+    _out["via"] = _via
+    _out["path_name"] = _w.get_path_name()
+    _out["name"] = _w.get_name()
+    # The /Game/... package path is what recipes and payloads actually name a
+    # level by, so report it in that form rather than only the object path.
+    _outer = _w.get_outer()
+    _out["package"] = _outer.get_path_name() if _outer else None
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

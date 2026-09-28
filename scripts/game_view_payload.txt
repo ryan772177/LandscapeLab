@@ -1,0 +1,29 @@
+# game_view — toggle the level viewport's GAME VIEW and report both states.
+#
+# WHY. 2026-09-01 overnight: every shot measured +0.19..+0.44 luma brighter
+# than its concept, and the recipe's manual exposure (-4.4 EV on highland)
+# visibly did not reach the frame. The volumes agreed on the value
+# (read_exposure's remit) but the EDITOR VIEWPORT renders with its own
+# exposure override unless GAME VIEW is on. Game view also drops editor
+# sprites and gizmos from shots — the R-CITYSHOT showflag list's intent,
+# engine-enforced.
+#
+# Reflected surface: LevelEditorSubsystem.editor_set_game_view /
+# editor_get_game_view (PythonStub; the EditorLevelLibrary twins are
+# marked deprecated in favour of these).
+#
+# Reads DESIRED from the __GV__ marker line injected via --set GV=0/1.
+import json as _json
+import unreal as _u
+
+_out = {"ok": False, "before": None, "after": None, "error": None}
+try:
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _out["before"] = bool(_les.editor_get_game_view())
+    _want = bool(int("__GV__"))  # ue_exec --set GV=0/1, literal token
+    _les.editor_set_game_view(_want)
+    _out["after"] = bool(_les.editor_get_game_view())
+    _out["ok"] = _out["after"] == _want
+except Exception as _e:
+    _out["error"] = str(_e)
+print("__LL__" + _json.dumps(_out))

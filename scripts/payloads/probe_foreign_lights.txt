@@ -1,0 +1,57 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. Are the HeroStage_* DirectionalLights actually lighting Alpine8K?
+#
+# apply_lighting's foreign-actor gate refuses on them, and it is right to:
+# hard rule 2 says the recipe owns every scene parameter, and its motivating
+# case is a stray fog at ~20x the recipe density that whited out every capture
+# while the script reported success. But "present" and "contributing" are
+# different claims, and --allow-foreign should not be reached for until the
+# second one is measured.
+#
+# If these are hidden or zero-intensity, they are inert clutter and the
+# captures already taken are unaffected. If they are visible and bright, then
+# every bench frame this project has measured was lit by more than the recipe,
+# which is a much larger finding than Task 1.
+
+_out = {"ok": False, "error": None, "lights": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        try:
+            _lab = _a.get_actor_label()
+        except Exception:
+            continue
+        if not _lab.startswith("HeroStage"):
+            continue
+        _c = _a.get_component_by_class(_u.DirectionalLightComponent)
+        _row = {"label": _lab, "path": _a.get_path_name()}
+        if _c is None:
+            _row["component"] = "NONE"
+            _out["lights"].append(_row)
+            continue
+        for _p in ("intensity", "visible", "affects_world",
+                   "cast_shadows", "atmosphere_sun_light"):
+            try:
+                _row[_p] = _c.get_editor_property(_p)
+            except Exception as _e:
+                _row[_p] = "unreadable: " + str(_e)[:60]
+        try:
+            _row["actor_hidden_in_game"] = _a.get_editor_property("hidden")
+        except Exception:
+            pass
+        try:
+            _row["is_temporarily_hidden_in_editor"] = \
+                _a.is_temporarily_hidden_in_editor()
+        except Exception:
+            pass
+        _out["lights"].append(_row)
+    _out["count"] = len(_out["lights"])
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+    _out["trace"] = _tb.format_exc()[-600:]
+
+print("__LL__" + _json.dumps(_out, default=str))

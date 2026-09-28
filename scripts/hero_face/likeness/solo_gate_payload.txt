@@ -1,0 +1,121 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# THE REHABILITATED SOLO GATE. Spawn one groom, capture, hide it, capture again.
+#
+# WHY IT NEEDS REHABILITATING. On 2026-08-22 the gate returned ABSENT for the
+# vendor groom -- which the owner then watched rendering in the viewport -- on a
+# frame measuring mean 254.10, std 3.90. It was reporting verdicts over a white
+# rectangle. A gate that cannot say "I am blind" will say "absent" instead, and
+# those two words have disjoint fix lists.
+#
+# SO THE FIRST THING IT DOES IS CHECK ITSELF. Mean > 250 or std < 5 is a
+# REFUSAL, not a verdict. That bar comes from the failure: 254.10 / 3.90.
+#
+# Exposure is pinned MANUAL, because a SceneCapture with auto-exposure and no
+# post-process settings is what produced the white frame -- the rig this project
+# already uses carries exposure settings and the bare spawned one does not.
+
+GROOM_PATH = "__GROOM_PATH__"
+LABEL      = "__LABEL__"
+LOC        = __LOC__
+OUT_DIR    = r"__OUT_DIR__"
+WARM       = __WARM__
+EV_BIAS    = __EV_BIAS__
+
+_out = {"ok": False, "error": None, "label": LABEL, "groom": GROOM_PATH}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _os.makedirs(OUT_DIR, exist_ok=True)
+
+    for _a in _eas.get_all_level_actors():
+        try:
+            _l = _a.get_actor_label()
+        except Exception:
+            continue
+        if _l.startswith("SOLOGATE_"):
+            _eas.destroy_actor(_a)
+
+    _g = _u.EditorAssetLibrary.load_asset(GROOM_PATH)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM_PATH)
+    _act = _eas.spawn_actor_from_class(
+        _u.GroomActor, _u.Vector(LOC[0], LOC[1], LOC[2]),
+        _u.Rotator(0.0, 0.0, 0.0))
+    _act.set_actor_label("SOLOGATE_SUBJECT")
+    _act.set_actor_scale3d(_u.Vector(1.0, 1.0, 1.0))
+    _gc = _act.get_editor_property("groom_component")
+    _gc.set_editor_property("groom_asset", _g)
+    _rb = _gc.get_editor_property("groom_asset")
+    _out["assignment_matches"] = bool(
+        _rb and _rb.get_path_name().startswith(GROOM_PATH))
+
+    # AIM AT THE GEOMETRY, NOT THE ACTOR. The groom carries the head's own
+    # ~155 cm offset in local space, so an actor-relative camera misses it.
+    _o, _e = _act.get_actor_bounds(False)
+    _out["bounds_origin"] = [round(_o.x, 2), round(_o.y, 2), round(_o.z, 2)]
+    _out["bounds_size_cm"] = [round(_e.x * 2, 2), round(_e.y * 2, 2),
+                              round(_e.z * 2, 2)]
+
+    _cap = _eas.spawn_actor_from_class(
+        _u.SceneCapture2D, _u.Vector(_o.x - 90.0, _o.y, _o.z + 10.0),
+        _u.Rotator(0.0, -6.0, 0.0))
+    _cap.set_actor_label("SOLOGATE_Capture")
+    _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+    _rt = _u.RenderingLibrary.create_render_target2d(_w, 1024, 1024)
+    _rt.set_editor_property("render_target_format",
+                            _u.TextureRenderTargetFormat.RTF_RGBA8)
+    _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("capture_source",
+                            _u.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("fov_angle", 24.0)
+    _cc.set_editor_property("capture_every_frame", False)
+
+    # ---- COPY THE RIG THAT WORKS. DO NOT RE-DERIVE IT.
+    #
+    # My first version pinned exposure to AEM_MANUAL at a computed bias, on the
+    # theory that an unconfigured SceneCapture auto-exposes and blows out. Every
+    # frame came back mean ~254. Then I diffed against `HeroShot_Capture`, the
+    # rig this project's own gate uses and which produces usable frames, and it
+    # overrides NOTHING on exposure -- histogram auto, every override False.
+    #
+    # The two fields that actually differed:
+    #     always_persist_rendering_state  True on the working rig, False on mine
+    #     capture_on_movement             True on the working rig, False on mine
+    #
+    # Without persisted rendering state each capture_scene() starts from a blank
+    # history, and the temporal passes have nothing to converge from -- which is
+    # what a white frame looks like. The exposure theory was a guess that
+    # explained the symptom and was not the cause; the diff took one payload.
+    _cc.set_editor_property("capture_on_movement", True)
+    _cc.set_editor_property("always_persist_rendering_state", True)
+    _out["ev_bias_arg_ignored"] = EV_BIAS
+    _out["exposure_policy"] = "engine default (copied from HeroShot_Capture)"
+
+    def _shoot(_tag):
+        for _i in range(WARM):
+            _cc.capture_scene()
+        _fn = "%s_%s.png" % (LABEL, _tag)
+        _u.RenderingLibrary.export_render_target(_w, _rt, OUT_DIR, _fn)
+        return _os.path.join(OUT_DIR, _fn)
+
+    # THREE identical captures, not two. Two give a STABILITY MASK; they cannot
+    # give a FLOOR, because the floor is the false-positive rate ON that mask
+    # and a mask cannot measure itself. The first version compared "pixels that
+    # changed when the groom was hidden" against "pixels that were unstable",
+    # which are different populations, and it read 0.8x on a groom that draws.
+    _out["frames"] = {"a": _shoot("a"), "b": _shoot("b"), "c": _shoot("c")}
+    _gc.set_editor_property("visible", False)
+    _act.set_is_temporarily_hidden_in_editor(True)
+    _out["frames"]["hidden"] = _shoot("hidden")
+    _gc.set_editor_property("visible", True)
+    _act.set_is_temporarily_hidden_in_editor(False)
+    _out["restored_visible"] = _gc.get_editor_property("visible")
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

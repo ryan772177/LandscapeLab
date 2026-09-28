@@ -1,0 +1,186 @@
+# apply_face_sculpt — move the hero's face landmarks onto measured targets.
+#
+# =====================================================================
+# TWO CALIBRATED FACTS DRIVE THE SHAPE OF THIS PAYLOAD
+# =====================================================================
+# Measured by scripts/hero_face/calibrate_sculpt_units.txt, ladder of five
+# deltas on one landmark:
+#
+#   1. THE DELTA ARGUMENT IS NOT IN LANDMARK SPACE. Response is linear at
+#      745.0 delta units per landmark unit (744.85 / 745.32 / 744.99 / 745.11
+#      across three decades -- that consistency is what makes it a
+#      calibration rather than a coincidence). The first sculpt attempt asked
+#      for 3.48e-03 and got 6.08e-06 because it was 745x too small.
+#
+#   2. THE MODEL SATURATES. At a requested 10.0 the ratio degrades to 1702,
+#      so the face model is constraining large single moves. A one-shot
+#      delta therefore CANNOT be trusted to land on target.
+#
+# So this iterates: each pass asks for (target - current) * 745, clamped into
+# the linear regime, then re-reads. Residual is reported per pass, so
+# convergence is visible and a failure to converge is legible instead of
+# being averaged away.
+#
+# =====================================================================
+# THE DOWNSTREAM CHECK
+# =====================================================================
+# get_face_landmarks reads the field translate_face_landmarks writes, so it
+# proves only that the value landed (non-negotiable 8). The facial rig joints
+# are the different representation -- but they read ZERO movement until the
+# editor pipeline runs, so assemble_for_preview is called before they are
+# measured. Without that the check would report a false no-op.
+import json as _json
+import unreal as _unreal
+
+_SPEC = r"__SPEC__"
+_COMMIT = __COMMIT__
+_OUT_PATH = r"__OUTPATH__"
+_SCALE = 745.0
+_CAP = 1.0
+_PASSES = __PASSES__
+
+_out = {"error": None, "unreadable": [], "spec": _SPEC, "scale": _SCALE,
+        "requested": None, "passes": [], "converged": None,
+        "residual_start": None, "residual_end": None,
+        "rig_before": None, "rig_after": None, "rig_moved": None,
+        "committed": False, "saved": None, "wrote": None}
+_actor = None
+
+
+def _facial(actor, limit=64):
+    face = None
+    for c in actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        if c.get_name() == "Face":
+            face = c
+    if face is None:
+        return None
+    names = []
+    for i in range(int(face.get_num_bones())):
+        bn = str(face.get_bone_name(i))
+        if "FACIAL" in bn.upper():
+            names.append(bn)
+    if not names:
+        return None
+    step = max(1, len(names) // limit)
+    out = {}
+    for bn in names[::step][:limit]:
+        v = face.get_socket_location(bn)
+        out[bn] = [float(v.x), float(v.y), float(v.z)]
+    return out or None
+
+
+def _maxmove(a, b):
+    if not a or not b:
+        return None
+    m = 0.0
+    for k in a:
+        if k in b:
+            m = max(m, sum((a[k][i] - b[k][i]) ** 2 for i in range(3)) ** 0.5)
+    return m
+
+
+try:
+    with open(_SPEC, "r") as _fh:
+        _spec = _json.load(_fh)
+    _targets = _spec["targets"]
+    _idx = [int(_k) for _k in _targets.keys()]
+    _out["requested"] = len(_idx)
+
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _cur = [[float(v.x), float(v.y), float(v.z)]
+            for v in _ss.get_face_landmarks(_ch)]
+    _first = [list(_p) for _p in _cur]
+    if max(_idx) >= len(_cur):
+        raise RuntimeError("spec names landmark %d but the face has %d"
+                           % (max(_idx), len(_cur)))
+
+    # SPAWN IS OPT-IN AND DEFAULTS OFF, for two independent reasons.
+    #
+    #  1. The rig-joint check it feeds is USELESS: get_socket_location returns
+    #     reference-pose positions and reads 0.0 on a sculpt that demonstrably
+    #     worked, even after assemble_for_preview.
+    #  2. It is IMPLICATED IN A DEADLOCK. Spawning the MetaHuman actor brings
+    #     up the preview collection's streamed level instances
+    #     (/Temp/MetaHumanCharacter/LightingEnvironments/...), and the
+    #     subsequent save_asset froze the editor twice at
+    #     "InternalPromptForCheckoutAndSave" -> "FlushAsyncLoading", game
+    #     thread at 0.04 CPU per wall-second. The sculpt was committed in
+    #     memory and lost.
+    #
+    # The sculpt is verified from the asset's BYTES ON DISK instead, which is
+    # a better instrument than the one being removed.
+    _rb = None
+    if __SPAWN__:
+        _actor = _ss.spawn_meta_human_actor(_ch, True)
+        _rb = _facial(_actor) if _actor else None
+    _out["rig_before"] = ("%d facial joints" % len(_rb)) if _rb else "not spawned"
+
+    def _residual():
+        return max(sum((_targets[str(i)][k] - _cur[i][k]) ** 2
+                       for k in range(3)) ** 0.5 for i in _idx)
+
+    _out["residual_start"] = round(_residual(), 8)
+    for _p in range(_PASSES):
+        _vecs = []
+        for _i in _idx:
+            _d = [(_targets[str(_i)][_k] - _cur[_i][_k]) * _SCALE
+                  for _k in range(3)]
+            _m = sum(_c * _c for _c in _d) ** 0.5
+            if _m > _CAP:
+                _d = [_c * _CAP / _m for _c in _d]
+            _vecs.append(_unreal.Vector(_d[0], _d[1], _d[2]))
+        _ss.translate_face_landmarks(_ch, _idx, _vecs)
+        _cur = [[float(v.x), float(v.y), float(v.z)]
+                for v in _ss.get_face_landmarks(_ch)]
+        _r = _residual()
+        _out["passes"].append({"pass": _p + 1, "residual": round(_r, 8)})
+        if _r < 1e-5:
+            break
+    _out["residual_end"] = round(_residual(), 8)
+    _out["converged"] = bool(_out["residual_end"] <
+                             0.10 * (_out["residual_start"] or 1.0))
+    _out["landmarks_changed"] = sum(
+        1 for i in range(len(_cur))
+        if sum((_cur[i][k] - _first[i][k]) ** 2 for k in range(3)) > 1e-12)
+
+    _ra = None
+    if __SPAWN__ and _actor is not None:
+        try:
+            _ss.assemble_for_preview(_ch)
+        except Exception as _e:
+            _out["unreadable"].append("assemble_for_preview: " + str(_e))
+        _ra = _facial(_actor)
+    _out["rig_after"] = ("%d facial joints" % len(_ra)) if _ra else "not spawned"
+    _mv = _maxmove(_rb, _ra)
+    _out["rig_moved"] = None if _mv is None else round(_mv, 9)
+
+    _moved_enough = (_out["residual_end"] or 0.0) < (_out["residual_start"] or 0.0)
+    if not _moved_enough:
+        _out["error"] = ("residual did not decrease (%s -> %s): the sculpt is "
+                         "not reaching the face model. Not committing."
+                         % (_out["residual_start"], _out["residual_end"]))
+    elif _COMMIT:
+        _ss.commit_face_state(_ch)
+        _out["committed"] = True
+        _unreal.EditorAssetLibrary.save_asset("/Game/Hero/MHC_AlpineHero", False)
+        _out["saved"] = True
+
+    with open(_OUT_PATH, "w") as _fh:
+        _json.dump({"before": _first, "after": _cur,
+                    "targets": _targets}, _fh)
+    _out["wrote"] = _OUT_PATH
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception as _e:
+        _out["unreadable"].append("destroy: " + str(_e))
+print("__LL__" + _json.dumps(_out, default=str))

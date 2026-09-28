@@ -1,0 +1,15 @@
+import json as _json, traceback as _tb
+import unreal as _u
+BIAS=__BIAS__
+_out={"error":None}
+try:
+    _t=_u.load_asset("/Game/Textures/T_Alpine_8k_Weights")
+    _out["mip_gen"]=str(_t.get_editor_property("mip_gen_settings"))
+    _t.set_editor_property("lod_bias", int(BIAS))
+    _out["lod_bias"]=int(_t.get_editor_property("lod_bias"))
+    # force a global weightmap-group mip drop too, so a coarse mip is sampled
+    _u.SystemLibrary.execute_console_command(None,"r.Streaming.FullyLoadUsedTextures 1")
+    _out["ok"]=True
+except Exception as _e:
+    _out["error"]=str(_e)+" | "+_tb.format_exc()[:200]
+print("__LL__"+_json.dumps(_out,default=str))

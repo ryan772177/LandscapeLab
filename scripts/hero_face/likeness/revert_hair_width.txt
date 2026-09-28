@@ -1,0 +1,60 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Put the groom asset's width override back the way it was.
+#
+# WHAT HAPPENED: arming `hair_width_override` and writing 0.0085 took the hair
+# from PRESENT 56,067 px to ABSENT 3,952 px, 1.9x floor, reproduced over two
+# passes. The mirror alone had been fine at 56,067, so the width write is what
+# did it -- single variable.
+#
+# That is the zero-width class again in a new place: the value reads back
+# exactly as asked (0.0085, width_took True) and the groom does not draw. The
+# override does not scale the shipped per-strand widths, it REPLACES them, and
+# on this asset the replacement does not survive whatever the builder does next.
+#
+# Restores both the value and the flag, then reads them back off a reloaded
+# asset. The recovery is judged by the RENDER afterwards, not by this read.
+
+GROOM = "__GROOM__"
+WIDTH = __WIDTH__
+ARM = __ARM__
+
+_out = {"ok": False, "error": None, "groom": GROOM}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+    _arr = _g.get_editor_property("hair_groups_rendering")
+    _new = []
+    for _s in _arr:
+        _gs = _s.get_editor_property("geometry_settings")
+        try:
+            _gs.set_editor_property("hair_width_override", bool(ARM))
+        except Exception:
+            pass
+        _gs.set_editor_property("hair_width", float(WIDTH))
+        _s.set_editor_property("geometry_settings", _gs)
+        _new.append(_s)
+    _g.set_editor_property("hair_groups_rendering", _new)
+    _u.EditorAssetLibrary.save_asset(GROOM, only_if_is_dirty=False)
+
+    _g2 = _u.EditorAssetLibrary.load_asset(GROOM)
+    _rb = []
+    for _s in _g2.get_editor_property("hair_groups_rendering"):
+        _gs = _s.get_editor_property("geometry_settings")
+        _row = {"hair_width": round(float(
+            _gs.get_editor_property("hair_width")), 6)}
+        try:
+            _row["hair_width_override"] = bool(
+                _gs.get_editor_property("hair_width_override"))
+        except Exception:
+            _row["hair_width_override"] = "UNREADABLE"
+        _rb.append(_row)
+    _out["readback"] = _rb
+    _out["ok"] = all(abs(_r["hair_width"] - WIDTH) < 1e-6 for _r in _rb)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

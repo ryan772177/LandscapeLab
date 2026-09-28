@@ -1,0 +1,130 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# R-ASSET step 6, first half: prove the kit's materials BIND and COMPILE, and
+# stand the 15 modules up in the world so a frame can be taken.
+#
+# ISOLATION: THESE ACTORS ARE NEVER SAVED. /Game/Alpine8K is World Partition and
+# "spawn and never save" is stronger than a sublevel -- nothing reaches disk, so
+# no city package can be dirtied even by accident. Same pattern as
+# fabeval_place_payload.txt. The actors carry a tag so they can be found and
+# removed without touching anything else.
+#
+# THE DEFAULT-MATERIAL CHECK IS THE POINT. A mesh whose material failed to load
+# renders as the engine checkerboard, and this project has shipped that once. So
+# each binding is compared against the engine defaults BY PATH rather than
+# merely being non-null -- WorldGridMaterial IS non-null and IS the failure.
+
+KIT_TAG = "LandscapeLab.KitEval"
+MASTER = "/Game/Materials/Masters/M_GlobalRGB_Blend"
+BASE = "/Game/Megascans/3D_Assets"
+CX, CY = -210800.0, 278800.0
+MODULES = __MODULES__          # [name, ...]
+
+DEFAULTS = ("/Engine/EngineMaterials/WorldGridMaterial",
+            "/Engine/EngineMaterials/DefaultMaterial",
+            "/Engine/EngineMaterials/DefaultDeferredDecalMaterial")
+
+_out = {"ok": False, "error": None, "modules": [], "master": {},
+        "spawned": 0, "dirty_packages": None, "ground_cm": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    # ---- 1. remove any previous eval actors (idempotent) ----------------
+    _removed = 0
+    for _a in _eas.get_all_level_actors():
+        try:
+            if KIT_TAG in [str(t) for t in _a.tags]:
+                _eas.destroy_actor(_a)
+                _removed += 1
+        except Exception:
+            pass
+    _out["removed_prior"] = _removed
+
+    # ---- 2. the master material: does it COMPILE? -----------------------
+    _m = _u.EditorAssetLibrary.load_asset(MASTER)
+    if _m is None:
+        _out["master"] = {"loaded": False}
+    else:
+        _errs = _u.MaterialEditingLibrary.recompile_material(_m)
+        _out["master"] = {"loaded": True,
+                          "path": MASTER,
+                          "compile_errors": [str(e) for e in _errs][:20],
+                          "n_errors": len(_errs)}
+
+    # ---- 3. ground under the row, TRACED not assumed --------------------
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _hit = _u.SystemLibrary.line_trace_single(
+        _w, _u.Vector(CX, CY + 4000.0, 40000.0),
+        _u.Vector(CX, CY + 4000.0, -5000.0),
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, [], _u.DrawDebugTrace.NONE,
+        True)
+    # EVERY FHitResult FIELD IS PROTECTED IN 5.8 PYTHON -- `.location` raises
+    # AttributeError. to_tuple()[4] is the impact vector, and it is the
+    # accessor every other city payload in this repo already uses.
+    _ground = float(_hit.to_tuple()[4].z) if _hit else None
+    _out["ground_cm"] = _ground
+    if _ground is None:
+        raise RuntimeError("no ground under the eval row -- refusing to place "
+                           "modules at a guessed Z")
+
+    # ---- 4. per module: binding, then spawn -----------------------------
+    _x = CX - (len(MODULES) - 1) * 200.0
+    for _name in MODULES:
+        _row = {"module": _name}
+        _sm_path = "%s/%s/SM_%s" % (BASE, _name, _name)
+        _sm = _u.EditorAssetLibrary.load_asset(_sm_path)
+        if _sm is None:
+            _row["error"] = "static mesh did not load"
+            _out["modules"].append(_row)
+            continue
+        _mats = []
+        for _slot in _sm.static_materials:
+            # StaticMaterial is a STRUCT with a material_interface property.
+            # It has no get_material() -- that belongs to the COMPONENT.
+            _mi = _slot.material_interface
+            _mats.append(_mi.get_path_name().split(".")[0] if _mi else None)
+        _row["slot_materials"] = _mats
+        _row["slots"] = len(_mats)
+        _row["bound_to_default"] = any(
+            (m is None) or (m in DEFAULTS) for m in _mats)
+
+        _a = _eas.spawn_actor_from_object(
+            _sm, _u.Vector(_x, CY + 4000.0, _ground), _u.Rotator(0, 0, 0))
+        if _a:
+            _a.tags = [KIT_TAG]
+            _a.set_actor_label("KitEval_" + _name)
+            _out["spawned"] += 1
+            # read the binding back off the SPAWNED COMPONENT, not the asset
+            try:
+                _c = _a.static_mesh_component
+                _live = []
+                for _i in range(len(_mats)):
+                    _lm = _c.get_material(_i)
+                    _live.append(_lm.get_path_name().split(".")[0]
+                                 if _lm else None)
+                _row["live_materials"] = _live
+                _row["live_matches_asset"] = (_live == _mats)
+            except Exception as _e2:
+                _row["live_read_error"] = str(_e2)[:120]
+        else:
+            _row["error"] = "spawn returned None"
+        _x += 400.0
+        _out["modules"].append(_row)
+
+    # ---- 5. nothing may have been dirtied -------------------------------
+    _out["dirty_packages"] = len(
+        _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+
+    _bad = [m for m in _out["modules"]
+            if m.get("error") or m.get("bound_to_default")]
+    _out["modules_bound_to_default"] = len(
+        [m for m in _out["modules"] if m.get("bound_to_default")])
+    _out["ok"] = (_out["spawned"] == len(MODULES)
+                  and not _bad
+                  and _out["master"].get("n_errors") == 0)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,76 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Put an EXISTING groom + binding pair on the hero's Hair component.
+#
+# Both assets already exist and are already built -- this is a swap, not an
+# ingest, so it does none of the duplicate/import/bind work and cannot dirty
+# vendor content. It is here so a known-good groom can be re-mounted as a
+# CONTROL without paying a full cycle, which is what the crown-height
+# calibration needs: the operator's declared best groom, photographed through
+# the SAME gate at the SAME framing as the candidate.
+#
+# ORDER IS LOAD-BEARING AND MEASURED. Writing `override_materials` NULLS the
+# component's `binding_asset` (RECIPES R-HAIRCOLOUR), so the binding is
+# asserted AFTER every other write and the payload refuses if it is gone --
+# an unbound groom draws nothing while every read-back still reports success.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+GROOM = "__GROOM__"
+BINDING = "__BINDING__"
+
+_out = {"ok": False, "error": None, "groom": GROOM, "binding": BINDING}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _x in _a.get_components_by_class(_u.GroomComponent):
+            if _x.get_name().lower().startswith(SLOT.lower()):
+                _c = _x
+    if _c is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+    _out["component"] = _c.get_name()
+    _out["before"] = {
+        "groom": (_c.get_editor_property("groom_asset").get_name()
+                  if _c.get_editor_property("groom_asset") else None),
+        "binding": (_c.get_editor_property("binding_asset").get_name()
+                    if _c.get_editor_property("binding_asset") else None)}
+
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    _b = _u.EditorAssetLibrary.load_asset(BINDING)
+    if _g is None:
+        raise RuntimeError("groom did not load: " + GROOM)
+    if _b is None:
+        raise RuntimeError("binding did not load: " + BINDING)
+
+    _c.set_editor_property("groom_asset", _g)
+    # THE FIRST BINDING ASSIGNMENT IS INTERMITTENTLY REFUSED -- set, read back,
+    # get None, call again and it sticks. Observed many times across several
+    # assets on 2026-08-21. Behaviour, not mechanism; retried a bounded number
+    # of times and the count is REPORTED so it stays data rather than folklore.
+    _attempts = 0
+    for _i in range(6):
+        _attempts += 1
+        _c.set_editor_property("binding_asset", _b)
+        if _c.get_editor_property("binding_asset") is not None:
+            break
+    _out["binding_attempts"] = _attempts
+
+    _ga = _c.get_editor_property("groom_asset")
+    _ba = _c.get_editor_property("binding_asset")
+    _out["after"] = {"groom": _ga.get_name() if _ga else None,
+                     "binding": _ba.get_name() if _ba else None}
+    _out["ok"] = bool(_ba) and _ga is not None and _ga.get_name() == GROOM.rsplit("/", 1)[1]
+    if not _out["ok"]:
+        _out["error"] = "groom or binding did not stick on the component"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,189 @@
+# render_and_track_face — photograph the hero's CURRENT face and track it.
+#
+# Produces the other half of the comparison: the same 16 contour curves, from
+# the same tracker, on the MetaHuman as it stands. The hero's curves come from
+# a photograph; these come from a render. Like for like.
+#
+# THE SCALE PROBLEM, AND HOW THIS SIDESTEPS IT
+#   The preview mesh does not live at the scale its actor bounds imply, and
+#   the absolute size of a landmark unit is only known to about +/-20%. But
+#   get_socket_location("head") returns a point INSIDE the landmark bounding
+#   box, sharing its sagittal X to four decimals -- so landmarks and world
+#   positions are the same space, whatever that space's unit is.
+#   Every distance below is therefore derived FROM THE LANDMARK EXTENT, and
+#   the unit cancels. Nothing here needs to know what a unit is worth.
+#
+# LIGHTING IS THE SCENE'S OWN SUN, NOT A LAMP
+#   A point light at an unknown distance in an unknown unit is an exposure
+#   guess. The level's directional light is already correct at any scale, so
+#   the actor is turned to FACE THE SUN and the camera placed on the sun side.
+#   The sun's travel direction is read from the light itself rather than from
+#   the recipe, because lighting.sun.azimuth_deg is the light's YAW and
+#   reading it as the sun's position puts the camera on the shadowed side --
+#   a mistake already recorded here on 2026-08-04.
+#
+# EVERY RUN WRITES ITS OWN FILENAME. The 2026-08-16 tracker hunt exported
+# every probe to one path, so the single frame that ever tracked was
+# overwritten by the failures after it.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+_TAG = "__TAG__"
+_OUT_PATH = r"__OUTPATH__"
+_VERIFY = r"C:/Users/Admin/UE5LandscapePipeline/_verify"
+_PNG_NAME = "20260816_hero_face_render_" + _TAG + ".png"
+_W = 1024
+_H = 1024
+_SPAWN_Z = 250000.0
+_FOV = 35.0
+_FRAME = 1.55
+# The preview mesh is TINY in world units: the head socket sits 0.508 above
+# the actor origin and the whole face spans 0.088. At that size the subject
+# falls entirely inside the renderer's near clip plane and the capture
+# photographs sky -- measured, mean RGB 255/255/255 on the first attempt.
+# Scaling the actor is the fix; every distance here is derived from the
+# landmark extent, so the scale simply multiplies through.
+_SCALE = __SCALE__
+
+_out = {"error": None, "unreadable": [], "tag": _TAG, "actor": None,
+        "sun": None, "head_world": None, "head_extent": None,
+        "cam_loc": None, "cam_yaw": None, "actor_yaw": None,
+        "png": None, "mean_rgb": None, "red_dominant": None,
+        "curve_count": None, "curve_names": None, "wrote": None}
+_actor = None
+_cap = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _lm = [[float(_v.x), float(_v.y), float(_v.z)]
+           for _v in _ss.get_face_landmarks(_ch)]
+    _zs = [_p[2] for _p in _lm]
+    _ext_z = max(_zs) - min(_zs)
+    _out["head_extent"] = round(_ext_z, 6)
+
+    # --- the sun, read from the level ---
+    _sun = None
+    for _a in _unreal.GameplayStatics.get_all_actors_of_class(
+            _unreal.EditorLevelLibrary.get_editor_world(),
+            _unreal.DirectionalLight):
+        _sun = _a
+        break
+    if _sun is None:
+        raise RuntimeError("no DirectionalLight in the level to light the face")
+    _fwd = _sun.get_actor_forward_vector()
+    _out["sun"] = {"actor": _sun.get_name(),
+                   "forward": [round(float(_fwd.x), 4), round(float(_fwd.y), 4),
+                               round(float(_fwd.z), 4)]}
+    # direction TOWARDS the sun is the reverse of the light's travel
+    _tsx, _tsy = -float(_fwd.x), -float(_fwd.y)
+    _n = _math.hypot(_tsx, _tsy)
+    if _n < 1e-6:
+        _tsx, _tsy, _n = 1.0, 0.0, 1.0
+    _tsx, _tsy = _tsx / _n, _tsy / _n
+    _sun_yaw = _math.degrees(_math.atan2(_tsy, _tsx))
+
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    if _actor is None:
+        raise RuntimeError("spawn_meta_human_actor returned None")
+    _base = _unreal.Vector(0.0, 0.0, _SPAWN_Z)
+    _actor.set_actor_location(_base, False, False)
+    # Rotator is (ROLL, PITCH, YAW) -- PythonStub:66750. Putting yaw first
+    # cost this project a -25 degree roll on a camera that still looked fine.
+    _actor.set_actor_rotation(_unreal.Rotator(0.0, 0.0, _sun_yaw), False)
+    _actor.set_actor_scale3d(_unreal.Vector(_SCALE, _SCALE, _SCALE))
+    _out["actor"] = _actor.get_name()
+    _out["actor_yaw"] = round(_sun_yaw, 3)
+    _out["scale"] = _SCALE
+
+    _face = None
+    for _c in _actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        if _c.get_name() == "Face":
+            _face = _c
+    if _face is None:
+        raise RuntimeError("no component named 'Face' on the spawned actor")
+    _hw = _face.get_socket_location("head")
+    _out["head_world"] = [round(float(_hw.x), 5), round(float(_hw.y), 5),
+                          round(float(_hw.z), 5)]
+
+    # Frame the head using the landmark extent -- the unit cancels.
+    _ext_w = _ext_z * _SCALE
+    _dist = (_ext_w * 0.5) / _math.tan(_math.radians(_FOV * 0.5)) * _FRAME
+    # aim slightly above the head socket, where a portrait's eye line sits
+    _tgt = _unreal.Vector(float(_hw.x), float(_hw.y),
+                          float(_hw.z) + _ext_w * 0.16)
+    _cam = _unreal.Vector(_tgt.x + _tsx * _dist, _tgt.y + _tsy * _dist, _tgt.z)
+    _cam_yaw = _sun_yaw + 180.0
+    _out["cam_loc"] = [round(float(_cam.x), 5), round(float(_cam.y), 5),
+                       round(float(_cam.z), 5)]
+    _out["cam_yaw"] = round(_cam_yaw, 3)
+
+    _world = _unreal.EditorLevelLibrary.get_editor_world()
+    _rt = _unreal.RenderingLibrary.create_render_target2d(
+        _world, _W, _H, _unreal.TextureRenderTargetFormat.RTF_RGBA8,
+        _unreal.LinearColor(0.2, 0.2, 0.2, 1.0))
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _cap = _els.spawn_actor_from_class(_unreal.SceneCapture2D, _cam,
+                                       _unreal.Rotator(0.0, 0.0, _cam_yaw))
+    _cc = _cap.get_component_by_class(_unreal.SceneCaptureComponent2D)
+    _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("fov_angle", _FOV)
+    _cc.set_editor_property("capture_source",
+                            _unreal.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("capture_every_frame", False)
+    _cc.set_editor_property("capture_on_movement", False)
+    _cc.capture_scene()
+
+    try:
+        _unreal.RenderingLibrary.export_render_target(_world, _rt, _VERIFY,
+                                                      _PNG_NAME)
+        _out["png"] = _VERIFY + "/" + _PNG_NAME
+    except Exception as _e:
+        _out["unreadable"].append("export: " + str(_e))
+
+    _px = _unreal.RenderingLibrary.read_render_target(_world, _rt, False)
+    if _px is None:
+        raise RuntimeError("read_render_target returned None")
+    _sr = _sg = _sb = 0
+    _n2 = 0
+    for _y in range(_H // 3, 2 * _H // 3, 8):
+        for _x in range(_W // 3, 2 * _W // 3, 8):
+            _c2 = _px[_y * _W + _x]
+            _sr += int(_c2.r); _sg += int(_c2.g); _sb += int(_c2.b)
+            _n2 += 1
+    _out["mean_rgb"] = [round(_sr / _n2, 1), round(_sg / _n2, 1),
+                        round(_sb / _n2, 1)]
+    _out["red_dominant"] = bool(_sr > _sb)
+
+    _curves = _ss.track_face_landmarks_from_image(_px, _W, _H)
+    if _curves is None:
+        _out["curve_count"] = 0
+        _out["error"] = ("tracker returned None on the rendered face. The "
+                         "frame is kept at " + str(_out["png"]) +
+                         " -- measure it before theorising.")
+    else:
+        _data = {}
+        for _k in _curves.keys():
+            _data[str(_k)] = [[float(_p.x), float(_p.y)] for _p in
+                              _curves[_k].get_editor_property("tracking_points")]
+        _out["curve_count"] = len(_data)
+        _out["curve_names"] = sorted(_data.keys())
+        with open(_OUT_PATH, "w") as _fh:
+            _json.dump({"source": "render:" + _TAG, "width": _W, "height": _H,
+                        "curves": _data}, _fh)
+        _out["wrote"] = _OUT_PATH
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    for _a in (_cap, _actor):
+        try:
+            if _a is not None:
+                _unreal.EditorLevelLibrary.destroy_actor(_a)
+        except Exception as _e:
+            _out["unreadable"].append("destroy: " + str(_e))
+print("__LL__" + _json.dumps(_out, default=str))

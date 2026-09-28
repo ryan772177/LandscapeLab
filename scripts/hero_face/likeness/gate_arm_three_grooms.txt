@@ -1,0 +1,135 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# THE SAME-FRAME GATE ARM. READ-ONLY: hides and unhides actors, captures, and
+# restores every visibility flag it touched.
+#
+# THIS IS THE PRE-REGISTERED DISCRIMINATOR. The ten HighResShots above went
+# through the LEVEL VIEWPORT. This goes through the SceneCapture path every
+# groom verdict in this project has ever used, at the SAME camera pose, on the
+# SAME three actors, in the SAME session. If a groom reads PRESENT to the eye in
+# the viewport frames and ABSENT here, the instrument is the defect and every
+# historical ABSENT verdict downgrades to absent-in-capture.
+#
+# Method is groom_presence.py's: capture the scene, hide ONE subject, capture
+# again, count changed pixels. The floor comes from two captures of the
+# UNCHANGED scene, because this scene re-renders itself -- measured 11.3% of
+# frame on the world rig -- and without that floor a "difference" is noise.
+#
+# A POSITIVE CONTROL IS MANDATORY. If hiding a known-visible actor does not move
+# the picture, the rig cannot see anything and a zero for the others means
+# "I could not look", not "absent".
+
+CAP_LABEL = "__CAP_LABEL__"
+OUT_DIR   = r"__OUT_DIR__"
+STAMP     = "__STAMP__"
+CAM_LOC   = __CAM_LOC__
+CAM_ROT   = __CAM_ROT__
+WARM      = __WARM__
+
+_out = {"ok": False, "error": None, "subjects": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.EditorLevelLibrary.get_editor_world()
+
+    _stage = {}
+    for _a in _eas.get_all_level_actors():
+        try:
+            _lbl = _a.get_actor_label()
+        except Exception:
+            continue
+        if _lbl.startswith("STAGE_GROOM_"):
+            _stage[_lbl] = _a
+    if not _stage:
+        raise RuntimeError("no STAGE_GROOM_* actors present")
+
+    # SPAWN OUR OWN CAPTURE with a TRANSIENT render target.
+    # The saved `HeroShot_Capture` actor was found in the level and its
+    # `texture_target` reads None -- the render target this project's capture
+    # rig uses is transient and is recreated by place_hero_in_world.py, which
+    # has not run in this editor session. Reusing it would mean writing the RT
+    # onto a level actor; spawning is explicitly in scope for this session and
+    # writing is explicitly not, so we spawn.
+    _cap = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() == "GATEARM_Capture":
+                _eas.destroy_actor(_a)
+        except Exception:
+            pass
+    _cap = _eas.spawn_actor_from_class(
+        _u.SceneCapture2D, _u.Vector(CAM_LOC[0], CAM_LOC[1], CAM_LOC[2]),
+        _u.Rotator(CAM_ROT[0], CAM_ROT[1], CAM_ROT[2]))
+    _cap.set_actor_label("GATEARM_Capture")
+    _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+    _rt = _u.RenderingLibrary.create_render_target2d(_w, 2048, 2048)
+    # FORMAT DECIDES THE FILE TYPE, AND THE EXTENSION LIES ABOUT IT.
+    # create_render_target2d defaults to a FLOAT format, and
+    # export_render_target then writes an OpenEXR -- under whatever filename you
+    # gave it. The first run of this probe produced five 7.6 MB files named
+    # `.png` whose first bytes are `v/1 ... channels`, and PIL refused them with
+    # "cannot identify image file", which reads as a corrupt capture rather than
+    # a format mismatch. Force 8-bit so the name matches the bytes.
+    _rt.set_editor_property("render_target_format",
+                            _u.TextureRenderTargetFormat.RTF_RGBA8)
+    _cc.set_editor_property("texture_target", _rt)
+    _out["rt_format"] = str(_rt.get_editor_property("render_target_format"))
+    _cc.set_editor_property("capture_source",
+                            _u.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("fov_angle", 24.0)
+    _cc.set_editor_property("capture_every_frame", False)
+    _cc.set_editor_property("capture_on_movement", False)
+    if _cc.get_editor_property("texture_target") is None:
+        raise RuntimeError("render target did not take on the spawned capture")
+    _out["capture_actor"] = "GATEARM_Capture (spawned this run)"
+
+    _cap.set_actor_location_and_rotation(
+        _u.Vector(CAM_LOC[0], CAM_LOC[1], CAM_LOC[2]),
+        _u.Rotator(CAM_ROT[0], CAM_ROT[1], CAM_ROT[2]), False, False)
+    _rl, _rr = _cap.get_actor_location(), _cap.get_actor_rotation()
+    _out["capture_pose"] = {"loc": [_rl.x, _rl.y, _rl.z],
+                            "rot": [_rr.roll, _rr.pitch, _rr.yaw]}
+    _os.makedirs(OUT_DIR, exist_ok=True)
+
+    def _shoot(_tag):
+        for _i in range(WARM):
+            _cc.capture_scene()
+        _fn = "%s_%s.png" % (STAMP, _tag)
+        _u.RenderingLibrary.export_render_target(_w, _rt, OUT_DIR, _fn)
+        return _os.path.join(OUT_DIR, _fn)
+
+    _out["frames"] = {}
+    _out["frames"]["all_a"] = _shoot("all_a")
+    _out["frames"]["all_b"] = _shoot("all_b")          # the noise floor pair
+
+    # `hidden_in_game` is not a reflected property on GroomActor in 5.8 -- the
+    # SETTER exists and the GETTER does not, which is exactly the reflected-
+    # surface-is-the-contract trap. Hide via the COMPONENT's visibility, which
+    # is what the capture actually reads, and record the prior value from the
+    # component so the restore is against a measured baseline.
+    _orig = {}
+    for _lbl, _a in sorted(_stage.items()):
+        _gc = _a.get_editor_property("groom_component")
+        _orig[_lbl] = _gc.get_editor_property("visible")
+        _gc.set_editor_property("visible", False)
+        _a.set_is_temporarily_hidden_in_editor(True)
+        _out["frames"]["minus_" + _lbl] = _shoot("minus_" + _lbl)
+        _gc.set_editor_property("visible", _orig[_lbl])
+        _a.set_is_temporarily_hidden_in_editor(False)
+        _out["subjects"].append(_lbl)
+
+    # RESTORE, then READ BACK -- a restore that is not checked is a claim
+    _out["restored"] = {}
+    for _lbl, _a in sorted(_stage.items()):
+        _gc = _a.get_editor_property("groom_component")
+        _out["restored"][_lbl] = {
+            "component_visible": _gc.get_editor_property("visible"),
+            "was": _orig.get(_lbl),
+            "temporarily_hidden": _a.is_temporarily_hidden_in_editor()}
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

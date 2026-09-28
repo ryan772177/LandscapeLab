@@ -1,0 +1,163 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+BP         = "__BP__"
+X          = __X__
+Y          = __Y__
+RES        = __RES__
+DIST       = __DIST__
+FOV        = __FOV__
+CAM_UP     = __CAM_UP__
+LOOK_UP    = __LOOK_UP__
+YAW_OFFSET = __YAW_OFFSET__
+MAIN_VIEW  = "__MAIN_VIEW__"
+RESPAWN    = "__RESPAWN__"
+
+LABEL = "HeroInWorld"
+CAPL  = "HeroShot_Capture"
+
+_out = {"ok": False, "error": None, "refusals": [], "main_view": MAIN_VIEW}
+try:
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _ues.get_editor_world()
+
+    _ok, _mn, _mx, _err = _u.LandscapeLabTools.load_all_world_partition_regions()
+    _out["regions_loaded"] = bool(_ok)
+
+    _hit = _u.SystemLibrary.line_trace_single(
+        _w, _u.Vector(X, Y, 500000.0), _u.Vector(X, Y, -100000.0),
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, [],
+        _u.DrawDebugTrace.NONE, True)
+    if _hit is None:
+        raise RuntimeError("no collision hit under the spawn point")
+    _gz = None
+    for _k, _v in _hit.to_dict().items():
+        if _k.lower() in ("location", "impact_point"):
+            _gz = float(_v.z)
+            break
+    _out["ground_z_cm"] = _gz
+
+    # THE CAMERA IS DERIVED ONCE AND BOTH VIEWS USE IT. The whole point of
+    # the test is that the SceneCapture transform is IDENTICAL between arms;
+    # only where the MAIN VIEW looks may differ, so the capture geometry
+    # cannot be the explanation for any difference in the pixels.
+    _cx = X - DIST
+    _cam = _u.Vector(_cx, Y, _gz + CAM_UP)
+    _tgt = _u.Vector(X, Y, _gz + LOOK_UP)
+    _rot = _u.MathLibrary.find_look_at_rotation(_cam, _tgt)
+
+    _hero = None
+    _cap = None
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == LABEL:
+            _hero = _a
+        elif _l == CAPL:
+            _cap = _a
+
+    # A FRESH SPAWN IS THE ONLY HONEST RESET. Groom evaluation, once a main
+    # view has done it, PERSISTS -- measured: arm A repeated after arm C still
+    # drew hair with the main view turned away. So re-pointing the viewport
+    # does not restore the never-evaluated state; re-registering the
+    # components does.
+    if RESPAWN == "yes" and _hero is not None:
+        _eas.destroy_actor(_hero)
+        _hero = None
+        _out["respawned"] = True
+
+    if _hero is None:
+        _bp = _u.EditorAssetLibrary.load_asset(BP)
+        if _bp is None:
+            raise RuntimeError("could not load " + BP)
+        _hero = _eas.spawn_actor_from_object(_bp, _u.Vector(X, Y, _gz),
+                                             _u.Rotator(0.0, 0.0, 0.0))
+        _hero.set_actor_label(LABEL)
+        _out["spawned"] = True
+    else:
+        _hero.set_actor_location(_u.Vector(X, Y, _gz), False, False)
+        _out["spawned"] = False
+
+    # The MetaHuman Blueprint's forward axis is not +X; the offset is applied
+    # explicitly and named rather than folded into the look-at.
+    _hrot = _u.MathLibrary.find_look_at_rotation(
+        _u.Vector(X, Y, _gz), _u.Vector(_cx, Y, _gz))
+    _yaw = float(_hrot.yaw) + float(YAW_OFFSET)
+    _hero.set_actor_rotation(_u.Rotator(0.0, 0.0, _yaw), False)
+    _rbr = _hero.get_actor_rotation()
+    if abs(((_rbr.yaw - _yaw + 180.0) % 360.0) - 180.0) > 0.5:
+        _out["refusals"].append("hero yaw read back %.2f, set %.2f"
+                                % (_rbr.yaw, _yaw))
+    _out["hero_yaw"] = round(_yaw, 3)
+
+    _present = {}
+    for _c in _hero.get_components_by_class(_u.GroomComponent):
+        _g = _c.get_editor_property("groom_asset")
+        _b = _c.get_editor_property("binding_asset")
+        _present[str(_c.get_name())] = {
+            "groom": None if _g is None else str(_g.get_name()),
+            "binding": None if _b is None else str(_b.get_name()),
+            "visible": bool(_c.get_editor_property("visible"))}
+    _out["groom_components"] = _present
+
+    for _cv in ("r.Streaming.FullyLoadUsedTextures 1",
+                "r.VT.MaxUploadsPerFrame 2048",
+                "r.VT.MaxContinuousUpdatesPerFrame 2048",
+                "r.Streaming.Boost 4",
+                "r.Streaming.MipBias 0"):
+        _u.SystemLibrary.execute_console_command(_w, _cv)
+
+    if _cap is None:
+        _cap = _eas.spawn_actor_from_class(
+            _u.SceneCapture2D, _u.Vector(0, 0, 0), _u.Rotator(0, 0, 0))
+        _cap.set_actor_label(CAPL)
+    _cc = _cap.get_component_by_class(_u.SceneCaptureComponent2D)
+    _rt = _cc.get_editor_property("texture_target")
+    if _rt is None:
+        _rt = _u.RenderingLibrary.create_render_target2d(
+            _w, RES, RES, _u.TextureRenderTargetFormat.RTF_RGBA8)
+        _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("capture_source",
+                            _u.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("capture_every_frame", False)
+    _cc.set_editor_property("always_persist_rendering_state", True)
+    _cc.set_editor_property("fov_angle", float(FOV))
+    _cap.set_actor_location_and_rotation(_cam, _rot, False, False)
+
+    _cl = _cap.get_actor_location()
+    if (abs(_cl.x - _cam.x) > 0.5 or abs(_cl.y - _cam.y) > 0.5
+            or abs(_cl.z - _cam.z) > 0.5):
+        _out["refusals"].append("capture location read back off target")
+    _out["capture"] = {"loc": [_cl.x, _cl.y, _cl.z],
+                       "rot": [_rot.roll, _rot.pitch, _rot.yaw],
+                       "fov": float(FOV), "res": RES}
+
+    # THE ONE VARIABLE. Same position in both arms; only the yaw differs, so
+    # streaming residency and everything else around the viewpoint is held
+    # constant and the hero is either in the main view's frustum or behind it.
+    if MAIN_VIEW == "on":
+        _vloc, _vrot = _cam, _rot
+    else:
+        _vrot = _u.Rotator(0.0, 0.0, float(_rot.yaw) + 180.0)
+        _vloc = _cam
+    _ues.set_level_viewport_camera_info(_vloc, _vrot)
+    _info = _ues.get_level_viewport_camera_info()
+    if _info is None:
+        _out["refusals"].append("viewport camera info unreadable")
+    else:
+        _vl, _vr = _info
+        _out["viewport"] = {"loc": [_vl.x, _vl.y, _vl.z],
+                            "rot": [_vr.roll, _vr.pitch, _vr.yaw]}
+        if (abs(_vl.x - _vloc.x) > 1.0 or abs(_vl.y - _vloc.y) > 1.0
+                or abs(_vl.z - _vloc.z) > 1.0):
+            _out["refusals"].append("viewport location did not take")
+        if abs(((_vr.yaw - _vrot.yaw + 180.0) % 360.0) - 180.0) > 1.0:
+            _out["refusals"].append("viewport yaw did not take")
+
+    _out["frame_count"] = int(_u.SystemLibrary.get_frame_count())
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:800]
+
+print("__LL__" + _json.dumps(_out, default=str))

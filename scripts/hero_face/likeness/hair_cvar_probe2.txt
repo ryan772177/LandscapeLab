@@ -1,0 +1,73 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# HAIR CVAR PROBE, REBUILT ON VERIFIED NAMES.
+#
+# THE FIRST PROBE WAS UNINTERPRETABLE AND I RECORDED ITS RESULT AS A FINDING.
+# It read 0 back from `r.HairStrands.Cluster.Culling`, `r.HairStrands.Streaming`,
+# `r.HairStrands.Visibility` and `r.HairStrands.Interpolation` and I read that as
+# "set to 0" / "on". Grepping the 5.8 engine source for '"r.HairStrands...' finds
+# 145 registered names and NOT ONE of those four is among them. All four reads
+# were of names that do not exist.
+#
+# So the FIRST thing this probe does is measure its own instrument: read a name
+# that is deliberately fake and show what an unknown cvar returns. Without that
+# row, every 0 in the table is ambiguous between "off" and "absent", which is
+# non-negotiable 6 -- a diagnostic must distinguish "I looked and it is absent"
+# from "I could not look".
+#
+# Names below are from the engine source at the 5.8 install path, Tier 1.
+# `r.HairStrands.ViewMode` is documented by GroomVisualizationData.h:100 and its
+# int -> mode switch is GroomVisualizationData.cpp:45-90 -- the cvar int is NOT
+# the enum index (34 = ControlPoints, 41 = Bounds, 31 = Cluster).
+
+REAL = [
+    "r.HairStrands.Enable",
+    "r.HairStrands.Strands",
+    "r.HairStrands.Binding",
+    "r.HairStrands.LODMode",
+    "r.HairStrands.ViewMode",
+    "r.HairStrands.Visibility.ComputeRaster.Culling",
+    "r.HairStrands.Visibility.ComputeRaster",
+    "r.HairStrands.Visibility.PPLL",
+    "r.HairStrands.Shadow.CastShadowWhenNonVisible",
+]
+# a name chosen to be impossible, as the instrument's own control
+FAKE = ["r.HairStrands.ThisCvarDoesNotExist.AtAll"]
+
+SET_VIEWMODE = __SET_VIEWMODE__     # -1 to leave alone
+
+_out = {"ok": False, "error": None, "cvars": {}}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+
+    def _read(_n):
+        _r = {}
+        for _k, _f in (("float", "get_console_variable_float_value"),
+                       ("int", "get_console_variable_int_value"),
+                       ("bool", "get_console_variable_bool_value")):
+            try:
+                _r[_k] = getattr(_u.SystemLibrary, _f)(_n)
+            except Exception as _e:
+                _r[_k] = "RAISED: " + type(_e).__name__
+        return _r
+
+    for _n in REAL:
+        _out["cvars"][_n] = {"exists_per_source": True, "read": _read(_n)}
+    for _n in FAKE:
+        _out["cvars"][_n] = {"exists_per_source": False,
+                             "INSTRUMENT CONTROL": True, "read": _read(_n)}
+
+    if SET_VIEWMODE >= 0:
+        _u.SystemLibrary.execute_console_command(
+            _w, "r.HairStrands.ViewMode %d" % SET_VIEWMODE)
+        _out["viewmode_requested"] = SET_VIEWMODE
+        _out["viewmode_readback"] = _read("r.HairStrands.ViewMode")
+        _out["viewmode_took"] = (
+            _out["viewmode_readback"].get("int") == SET_VIEWMODE)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

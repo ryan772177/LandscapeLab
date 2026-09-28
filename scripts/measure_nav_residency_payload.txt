@@ -1,0 +1,113 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# HOW MUCH NAVMESH IS RESIDENT AT RUNTIME, and can this machine hold it?
+#
+# WHY NOW. The region went from 2 navmesh volumes to 72 and from 35 MB of chunk
+# actors to 757 MB. Those stream with World Partition, so DISK size is not the
+# runtime cost -- but nobody has measured what is actually RESIDENT, and the
+# machine has 31.4 GB of RAM. Measuring after a problem appears is the wrong
+# order, and unit 10's acceptance (nav resident before the streaming marker, at
+# mounted speed) only became testable once tiles existed beyond the town.
+#
+# WHAT IT REPORTS
+#   * every NavigationDataChunkActor in the level, and how many are LOADED
+#   * the editor's own memory, from FPlatformMemory, before and after forcing
+#     region residency
+#   * the worst-case resident set implied by the streaming range
+#
+# ** LOADED IS NOT THE SAME AS SPAWNED. ** In a World Partition world an actor
+# descriptor exists for every chunk whether or not its package is resident, so
+# counting actors overstates residency. `is_actor_being_loaded` / the actor's
+# package being non-null is what separates them, and both are reported rather
+# than one being chosen silently.
+#
+# THIS IS AN EDITOR MEASUREMENT, NOT PIE. It bounds the number; a cooked build
+# streams differently and would need its own reading. Said here so the figure is
+# not quoted as a shipping one.
+
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    def _mem():
+        try:
+            _s = _u.SystemLibrary.get_platform_memory_stats()
+            return {"used_physical_mb": round(
+                        float(_s.used_physical) / 1048576.0, 1),
+                    "peak_used_physical_mb": round(
+                        float(_s.peak_used_physical) / 1048576.0, 1),
+                    "available_physical_mb": round(
+                        float(_s.available_physical) / 1048576.0, 1)}
+        except Exception as _e:
+            return {"UNREADABLE": str(_e)[:90]}
+
+    _out["memory_before_load"] = _mem()
+
+    _actors = _eas.get_all_level_actors()
+    _chunks = [a for a in _actors
+               if "NavigationDataChunkActor" in a.get_class().get_name()]
+    _out["chunk_actors_before_load"] = len(_chunks)
+
+    _nav = [a for a in _actors if a.get_class().get_name() == "RecastNavMesh"]
+    _out["recast_actors"] = len(_nav)
+    if _nav:
+        _out["agent"] = {
+            "agent_max_slope": float(_nav[0].get_editor_property(
+                "agent_max_slope")),
+            "tile_size_uu": float(_nav[0].get_editor_property(
+                "tile_size_uu")),
+        }
+
+    # force every region resident -- the worst case the editor can produce
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _actors2 = _eas.get_all_level_actors()
+    _chunks2 = [a for a in _actors2
+                if "NavigationDataChunkActor" in a.get_class().get_name()]
+    _out["chunk_actors_all_regions_loaded"] = len(_chunks2)
+    _out["memory_all_regions_loaded"] = _mem()
+
+    # per-chunk package sizes, read from the packages the actors belong to
+    _sizes = []
+    _unreadable = 0
+    for _a in _chunks2:
+        try:
+            _pkg = _a.get_outermost()
+            _nm = _pkg.get_name()
+            _sizes.append(_nm)
+        except Exception:
+            _unreadable += 1
+    _out["chunk_packages_named"] = len(_sizes)
+    _out["chunk_packages_unreadable"] = _unreadable
+
+    _b = _out["memory_before_load"]
+    _a2 = _out["memory_all_regions_loaded"]
+    if "used_physical_mb" in _b and "used_physical_mb" in _a2:
+        _out["delta_used_physical_mb"] = round(
+            _a2["used_physical_mb"] - _b["used_physical_mb"], 1)
+
+    _out["_caveat"] = (
+        "EDITOR measurement with EVERY region forced resident -- the worst "
+        "case this process can produce, and an UPPER BOUND rather than a "
+        "shipping figure. A cooked build streams differently and would need "
+        "its own reading. The delta also includes landscape proxies, foliage "
+        "and everything else the regions carry, so it is not navmesh alone.")
+
+    if OUT and not OUT.startswith("__"):
+        if not _os.path.isabs(OUT):
+            raise RuntimeError("OUT must be absolute")
+        _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+        with open(OUT, "w", encoding="utf-8") as _fh:
+            _json.dump(_out, _fh, indent=1)
+        _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

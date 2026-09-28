@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "LandscapeLab Editor Tools",
+	"Description": "Exposes the landscape editor operations that UE 5.8 declares LANDSCAPE_API but never marks UFUNCTION: ALandscapeProxy::Import, ULandscapeSubsystem::BuildNanite and ULandscapeSubsystem::ChangeGridSize. Without these, a landscape cannot be created or imported from Python at all.",
+	"Category": "Editor",
+	"CreatedBy": "LandscapeLab",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EnabledByDefault": true,
+	"Modules": [
+		{
+			"Name": "LandscapeLabEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "RigLogic",
+			"Enabled": true,
+			"_why": "IDNAReader and DNAUtils. Ruling 2: an engine plugin dependency lives beside the code that needs it, not in the .uproject, so 'why is this on?' is answerable by attribution."
+		},
+		{
+			"Name": "DNACalib",
+			"Enabled": true,
+			"_why": "FDNACalibDNAReader and FDNACalibSetNeutralJointTranslationsCommand. Ships with UE 5.8 and speaks DNA 2.5 natively."
+		}
+	]
+}

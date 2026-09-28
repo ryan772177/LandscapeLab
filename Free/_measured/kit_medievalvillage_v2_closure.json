@@ -1,0 +1,770 @@
+{
+  "_what": "SHA-256 manifest of the Medieval Village kit closure copied into the project. Source is gitignored and re-downloadable; this manifest is the committed DERIVATIVE and is what makes the copy hash-proven against its source at adoption time.",
+  "_source": "C:\\ProgramData\\Epic\\EpicGamesLauncher\\VaultCache\\MedievalGame_5.3\\data\\Content",
+  "_dest": "LandscapeLab/Content (package paths preserved)",
+  "_adopted": "2026-08-29",
+  "packages": 152,
+  "bytes": 1871705426,
+  "files": [
+    {
+      "package": "/Game/Materials/Functions/MF_BlendRVT",
+      "bytes": 14805,
+      "sha256": "f4e7778b245a918ae8e41896b060dbe9926f9052a6f2b4ba4d8c24d9edc90c06"
+    },
+    {
+      "package": "/Game/Materials/Functions/MF_BlendRVTMaterial",
+      "bytes": 62376,
+      "sha256": "27738614116ec81118cc0f0bbbddacf2a9cff5f28d0b2d403c05200d0e0dcd27"
+    },
+    {
+      "package": "/Game/Materials/Functions/MF_Fuzz",
+      "bytes": 37578,
+      "sha256": "a1050675525e229f750ed78f8590a97f90479613d8aa7a0671ef328cfd9a047e"
+    },
+    {
+      "package": "/Game/Materials/Functions/T_Mask",
+      "bytes": 8905662,
+      "sha256": "e7f8fd98fe1c31e877a3f7dc8fe0620824cc9217ea0e8797a2b979f9116568b4"
+    },
+    {
+      "package": "/Game/Materials/Landscape/RVT/RVT_Landscape_01",
+      "bytes": 5052,
+      "sha256": "d2617d51a7f2cc66e4061f88d9ed640d77fa0097caaa866b84b39a6810349edf"
+    },
+    {
+      "package": "/Game/Materials/Landscape/RVT/RVT_Landscape_Height_01",
+      "bytes": 5688,
+      "sha256": "0eee681efca93495c0a9b6225abd8270691a2ad23df9af4806aa5e5d97acd2b0"
+    },
+    {
+      "package": "/Game/Materials/Masters/M_BlendMaster",
+      "bytes": 44493,
+      "sha256": "05c72a1b720790ffbc5a29663cc154d4f8c8045fef8eaccd5cc0fa15a396a5bb"
+    },
+    {
+      "package": "/Game/Materials/Masters/M_RoofMaster",
+      "bytes": 46354,
+      "sha256": "35bb2c2d805a739aee01be427490afec9732a4848a5cd4a1cb98ae7a48eed18f"
+    },
+    {
+      "package": "/Game/Materials/Masters/M_StandardMaster",
+      "bytes": 44805,
+      "sha256": "15ac630cae6ce1886434bd03c54b9e7549d76128c275e332a987225da698798a"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/HorseHitchingPost/MI_HorseHitchingPost",
+      "bytes": 143226,
+      "sha256": "a51621237dfc1dd9b05e415c4c8a0d0039320c12df26def23560ceee480fce33"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/HorseHitchingPost/T_HorseHitchingPost_A",
+      "bytes": 24485559,
+      "sha256": "da5830e4b1314003199170f3769398fa974ce27852e4fd24d8335e884251c804"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/HorseHitchingPost/T_HorseHitchingPost_N",
+      "bytes": 38937872,
+      "sha256": "e795822cbf1dc4ee93836f69ede2cbbd32b20dbd7c3c98f44bd1bae573ddf597"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/HorseHitchingPost/T_HorseHitchingPost_R",
+      "bytes": 10003547,
+      "sha256": "4cf4dfde99775cea890d5aa5a77611e34a03e53d5823c9e79a6fcdcfce82b2be"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBench/MI_OldWoodenBench",
+      "bytes": 147103,
+      "sha256": "376a24b219fc856f70a5e82085644a2458c7df88c00e9d8f14cc3b283d152899"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBench/SM_OldWoodenBench",
+      "bytes": 513484,
+      "sha256": "f5bd1b44301b54688b997626d8eaac8662727c2fe9075da1ebf50a48418f35d3"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBench/T_OldWoodenBench_A",
+      "bytes": 7295419,
+      "sha256": "1760f07ca74579fff8437a65710f02cb830220a742f6a1a30628502a4f31e35a"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBench/T_OldWoodenBench_N",
+      "bytes": 10126478,
+      "sha256": "d0459f61d85cffd2ed5249c6cbd423486ddf3e9fc1cda9c01c07c3ebea615174"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBench/T_OldWoodenBench_R",
+      "bytes": 2649698,
+      "sha256": "17e6730f5dbd218f0a8ebcc35f4718b7eea03214f9ffd917e287b124b654bb5e"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBoards/MI_OldWoodenBoards",
+      "bytes": 18722,
+      "sha256": "9778615f121a4995fdcaacf12d7334eed0e31e78eeb69312bcf5b9b59523100a"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBoards/T_OldWoodenBoards_A",
+      "bytes": 31391270,
+      "sha256": "0d07ab2c2fb99070bdc8dbafa97ef632e06c76c449688fc72416eb94f5118d8e"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBoards/T_OldWoodenBoards_N",
+      "bytes": 39248868,
+      "sha256": "357a35e4987d9de6374ce3dfb74f6e3cdd3c6e6cb7fdfb33eb6dc34e4926a68a"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/OldWoodenBoards/T_OldWoodenBoards_R",
+      "bytes": 11133135,
+      "sha256": "b3e23cd90e3c02330a066b427861a568eb30b07d38617c4b555acbf6c4768d14"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/Shingles/MI_Shingles",
+      "bytes": 139336,
+      "sha256": "fa983f551125fb109fefdf0945bd775fb6258c9278ecaa1a3303fc76ae988c6d"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/Shingles/T_Shingles_A",
+      "bytes": 26911536,
+      "sha256": "c6767296b48e703aef4933606fc7be4e7530d7292cc51144ac377bfbf6e1440c"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/Shingles/T_Shingles_N",
+      "bytes": 34533737,
+      "sha256": "90450d3860915e7111af0a92c7ecfb99976f86a1846ab802c8568fea3a97ff04"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/Shingles/T_Shingles_R",
+      "bytes": 10273912,
+      "sha256": "7e6ab27aa71be02f73e1945fc4ccd06c8c295ab005022445ea43630e7688ea75"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/MI_WoodenBeam_01",
+      "bytes": 132094,
+      "sha256": "87c7b9b64adf35b90b4a661c37a33c959490c00300cc4d481a61e7ea6f4a6d81"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/MI_WoodenBeam_02",
+      "bytes": 134474,
+      "sha256": "1feee231ed9ccf09b809d589da94f65f873dd7488ca9c75a9bc2b3b6839fc821"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/MI_WoodenBeam_04",
+      "bytes": 144011,
+      "sha256": "19ae6eea621b353233d4a2085286aaaa35cf776a6ee55964cab4807fd8ad7853"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam01_A",
+      "bytes": 27245267,
+      "sha256": "415e6c1fff42daf7450dbac536d19dab408a1a0c14194cfed37f93a56c1980dc"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam01_N",
+      "bytes": 40305062,
+      "sha256": "db354b8f909ee5e4fd00f519e04a2b856847a0aa05d6d30eac95d26fa9f56c4f"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam01_R",
+      "bytes": 9866776,
+      "sha256": "d787860d673a43bfd6fe5251af3cc416e240ef5624962e8a4cb5a447afbeeb53"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam02_A",
+      "bytes": 25055089,
+      "sha256": "fd39a31a1413a1ebaa03968084f4639c6fd9b46dfa1e271c6b5f1da129b344a1"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam02_N",
+      "bytes": 34744368,
+      "sha256": "66e75319e6686caa8dfd58260e54428dbf8e424ac0c768845f4bd588da32d27f"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam02_R",
+      "bytes": 9085897,
+      "sha256": "07d491d2d1376fef06acc4c1f4c150921bc07365cca86fd3ef724e4f67d8a199"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam04_A",
+      "bytes": 26866335,
+      "sha256": "79036d8487f75a2e26320167a98877a3623773e5d3bf7ca0f74a73e6b4616762"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam04_N",
+      "bytes": 45305712,
+      "sha256": "4749b4902019cdb1b2c859e7ce46733eb3b2bf2032f9d1750e10824645041847"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenBeam/T_WoodenBeam04_R",
+      "bytes": 9695877,
+      "sha256": "7a885db805511ed4bc916fddf6b919a632a35843760ada614096bd81d2a9d952"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelA/MI_WoodenWheelA",
+      "bytes": 148510,
+      "sha256": "15b3324528bf0501b6c8f2d90a7ebfac939e9883b08e4df10c7378943c464f69"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelA/SM_WoodenWheelA",
+      "bytes": 357480,
+      "sha256": "63bd72ace64a60ced3e5bf083ee053c88bd572eafe478e56f4a1d4d795c39b54"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelA/T_WoodenWheelA_A",
+      "bytes": 8225275,
+      "sha256": "e887d3f0363833e0ac3cb3ba4b7c5d2fea8c33dd6013330e7cb0c47febf602b5"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelA/T_WoodenWheelA_N",
+      "bytes": 11137880,
+      "sha256": "7b67e02e77f506bf9a1f9a2fd1f5829006efead8f7151b2d97c0aa0c4777aa72"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelA/T_WoodenWheelA_R",
+      "bytes": 2944820,
+      "sha256": "9c513e1b9302bd222b007de3ad1ca4b5740e47dec378f957b1b6462b761a9fd8"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelB/MI_WoodenWheelB",
+      "bytes": 135582,
+      "sha256": "857b08eec79cc1e9bdc90b6680b16e79dabc6a328de9ee01402b756e41a9879b"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelB/SM_WoodenWheelB",
+      "bytes": 992363,
+      "sha256": "70d3c269d2b0d7cb7c63f4bdd3055eb176ae16106aefebb11632796791009c79"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelB/T_WoodenWheelB_A",
+      "bytes": 7633365,
+      "sha256": "7463ba4a4250dfd6ddc243e3a889cf324eec846de1ba341db404d6678056b804"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelB/T_WoodenWheelB_N",
+      "bytes": 10583156,
+      "sha256": "2597a36f6a543a0590b643c67779e6d53ffeb501ab91f9d95ae3b53d657337bc"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelB/T_WoodenWheelB_RMF",
+      "bytes": 2849013,
+      "sha256": "4ff59fe7c1ace8d646aa6878eafc4c53fed4253b0f9934e533d17c95c0b40ccb"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/MI_WoodenWheelbarrow",
+      "bytes": 153056,
+      "sha256": "4b0e80d558f8265e34a90547e26794f7c5e6faddeba895eccdad9493260953a4"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/SM_WoodenWheelbarrow",
+      "bytes": 826945,
+      "sha256": "f17d0b13f38403a8b93164804baf1a6b0026b606e792bc1fc8835a44887752c0"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/T_WoodenWheelbarrow_A",
+      "bytes": 8071730,
+      "sha256": "17a1e7e1f3caa4f48d8a3cf4125b55c13cb28b6c05befd82817c07f20c8e6e13"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/T_WoodenWheelbarrow_N",
+      "bytes": 10163998,
+      "sha256": "59453c842cf51a53a6fedfe7e916deedcad0f103e4d9dc5bd0f241099a389d43"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/T_WoodenWheelbarrow_R",
+      "bytes": 2850832,
+      "sha256": "39e32b527296fbfc3808ec5d89185f33cff2ce0c2d97f4baf61c6e5870f9a851"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WornWoodenBeamA/MI_WornWoodenBeamA",
+      "bytes": 22061,
+      "sha256": "1dd20e118fc5f5988b32805c4a22acdf6acb50777dae795058343ca0def38bc1"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WornWoodenBeamA/T_WornWoodenBeamA_A",
+      "bytes": 23854571,
+      "sha256": "fa68c2e013b6ed9426a68accc4b69c45329ee42fb7e66403f5d7dc6d693c71ce"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WornWoodenBeamA/T_WornWoodenBeamA_N",
+      "bytes": 38384721,
+      "sha256": "f8108a0b71e19be4b1d24908d22b311de77d2c6894110ee1e14cea8002d1f52c"
+    },
+    {
+      "package": "/Game/Megascans/3D_Assets/WornWoodenBeamA/T_WornWoodenBeamA_R",
+      "bytes": 9780582,
+      "sha256": "2bd2bcc203808e1182c4770ed4bdf2fee7af80c708439e125e2e0a1d84ab16d5"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Construction_Pieces/SM_LanternPost",
+      "bytes": 160434,
+      "sha256": "0f0277e59f77d87c9ca3e45116765c978091e7347cfaa40f6e9b78553d7d0a1a"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Construction_Pieces/SM_PorchBase",
+      "bytes": 611218,
+      "sha256": "60357ec4aae28ab8876853f88f143271f74a9b6d0b66c9b10264b1a285ed5d81"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/MI_WoodenBoards",
+      "bytes": 161109,
+      "sha256": "902ef453b7176ed352c1fe20a0499be39c4bb1ea85a4dd1b28ec346a6551cfe7"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/SM_BoardWall",
+      "bytes": 154743,
+      "sha256": "a3e3563768fc99778c816a178f77de54186ca08a4f471f90f35d59f30ff8b463"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/SM_BoardWallSide",
+      "bytes": 47542,
+      "sha256": "e439e64e9efeff80f4be1af7daf7468586421522d6486d8d4468b969beb103bd"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/T_WoodBoards_MaskRGB",
+      "bytes": 19925317,
+      "sha256": "779067070332379311d71286ef42ccee76dc1f5b2012d699bc6e3542c51d5d9e"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Gable/MI_GableSet_01",
+      "bytes": 24641,
+      "sha256": "77a39b664f13695f23b22607dda9e57964486d677cf457bab2551947bc476592"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Gable/MI_Gableset_02",
+      "bytes": 160529,
+      "sha256": "3f4bd06713221bbdcafbfc6be6e3ab6b867802bdf94a4757f6d301e74de72cc4"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Gable/T_GableSet_01_RGB",
+      "bytes": 26572216,
+      "sha256": "12c1f93e46a279cb66750ba002b7b0bd55dcfae6f4d293bf3cf559ea3e995a05"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Gable/T_GableSet_02_MaskRGB",
+      "bytes": 29804230,
+      "sha256": "a33d23b6a9a4329ec5b76fbf060dfab979bb4c4bf1f046307ebc8e2ba3e7f79b"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_L_01",
+      "bytes": 148135,
+      "sha256": "7c5b561bc600345ae8043ca70b4bcd6c29b1c142f5b49375b7c4da0383611bb7"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_L_02",
+      "bytes": 150098,
+      "sha256": "99aeb1fdbb6efdccf67a3204eac23023592e62a0b464d9191e3ada4a5bd81273"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_M_01",
+      "bytes": 147073,
+      "sha256": "904c9be11453da5d467b290a0be7317a4b5509b83ac5d55c5743612334fde36a"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_M_02",
+      "bytes": 149926,
+      "sha256": "1d8d183e9950bcd5719d8b101d4d33858cde03557e788dad41a09a2413cccfe3"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_S_01",
+      "bytes": 144949,
+      "sha256": "06a8ad4f07595e2ad58754c06871e525a7c43c74f50ca3d3ea87a8cf42f906b3"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/MI_HBeam_S_02",
+      "bytes": 147886,
+      "sha256": "96b0eb7f299b33ae0f64f68965c31f28784f46578f7a2321759ced68b07e83b7"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_01",
+      "bytes": 61588,
+      "sha256": "8b3e467e128e4a6eb0fde0e20039451f57b7462feecc118627da824392c276a3"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_03",
+      "bytes": 60521,
+      "sha256": "acda6487b2105f44e267df5bbc4c802f0a4564cc71bbe5c0bfd2a00a5eb8251f"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_04",
+      "bytes": 63276,
+      "sha256": "d206ffdd64a840876779704dcb52c21333d04e538a989e96f4c2f8f8f18a3246"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_01",
+      "bytes": 61156,
+      "sha256": "2d44efd096c7ffb655aa614998ace4f97aabebb9ef5fe055d0cf6b7b60b500c1"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_02",
+      "bytes": 62406,
+      "sha256": "f5d84ca506c1e481018f923e3131453f2c66c91f3190b792ddbbfd524cc45b52"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_03",
+      "bytes": 61611,
+      "sha256": "9d77595968893caf9ac74cf3a952ece4f1157cac9eac6c2fcc0303b4fa19bd68"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_04",
+      "bytes": 61820,
+      "sha256": "4f9b0976e01221ef8cdce22ec31702aba05ebf4ed215efa6d3ce8c740cd020ef"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_01",
+      "bytes": 45690,
+      "sha256": "34b1adb8a741b63fde0d4d879a5ff8cad3cc3126c29f3f11a375a00410f00c22"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_02",
+      "bytes": 46088,
+      "sha256": "5ade9149802c2a978fb4ec8ba468505f0a24b140f09144c53f0525c53901ab88"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_03",
+      "bytes": 46707,
+      "sha256": "8edb0d23f9582e06680586dc08f451e361a327321e45ef89d249ae9e215f6af7"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_04",
+      "bytes": 46735,
+      "sha256": "bb3612b9dd924a819cfdb4f83a9f2c1b26dbd536e568c9c0ffb47d20de8487c0"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/T_HBeam_LS_MaskRGB",
+      "bytes": 28439999,
+      "sha256": "2799b1d7b2b0b437d54b7ae78f16840458fa15e061c84d4c06e8b2c9ead3e241"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/T_HBeam_MS_MaskRGB",
+      "bytes": 25334777,
+      "sha256": "b1772108f435e680d992852630ecba30aced93a0b7d848c75d5c4a91275c7a60"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/T_HBeam_S_MaskRGB",
+      "bytes": 26293698,
+      "sha256": "69907ca6896f2f9e0e0369b2352c92bf066d8d681ef3e74e404c63972ae901c3"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/LanternPost/MI_LanternPost_01",
+      "bytes": 25465,
+      "sha256": "47ea2216f3471f9fe51b8ddb8219f209dc3ea882f998cc3e0a1a1a9c6e66fd2c"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/LanternPost/MI_LanternPost_02",
+      "bytes": 22972,
+      "sha256": "6564b39a28357a89ce14af5c63638126ec33e9af2c864ea7a472cc6e5b15b036"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/LanternPost/MI_LanternPost_03",
+      "bytes": 28132,
+      "sha256": "3c1d52618463851d23a0b0d69639478aa66e75d5464259c94c2e106aa1b9d2be"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/LanternPost/MI_LanternPost_04",
+      "bytes": 145418,
+      "sha256": "80be74d1bd7c3dfcee9ba51ec34beae6d88b31f2fb5d2a12352e9ec25a8097e8"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/LanternPost/T_LanternPostMask_RGB",
+      "bytes": 24002833,
+      "sha256": "d2ec2275d9e30d7627172dbe0ad75aefedb2ce95076d896fa807bf09424e6d0e"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Porch/MI_PorchBase_01",
+      "bytes": 147811,
+      "sha256": "e401f06a1b0e58ae20d586f8e265c6c38c31a7b834ffa9a45615e8b2193352db"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Porch/MI_PorchBase_02",
+      "bytes": 160396,
+      "sha256": "905fee6b234416cdc1e386f5256fe66d09fe8a46675c6453ee57031c548c9e77"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Porch/MI_PorchBase_03",
+      "bytes": 144521,
+      "sha256": "d74b07800f51f56f1de6ce0defc264056a73f721a822e4e92aadeb04eedb1026"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Porch/T_PorchBase_MaskRGB",
+      "bytes": 28425154,
+      "sha256": "59890eb0501c29f0d9a2ff9c50ae2f6a2e058cfde124438258d48b22b4494109"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_GableSet_01",
+      "bytes": 406831,
+      "sha256": "86fa8bbd51fa0ec6ae1df7ab65afff08204f0cdb05916412dfb7c074e6e4ce6f"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_GableSet_02",
+      "bytes": 384934,
+      "sha256": "1adde8d795ee50db92a4ebe37950df8262b91e1c246b3e446ba4bb96d416ccad"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_LanternPost",
+      "bytes": 164816,
+      "sha256": "290cfde473f0302f8f7762a002fd505f8ecc665ac8d98129ab4d6c76b90ac9ae"
+    },
+    {
+      "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_PorchBase",
+      "bytes": 183847,
+      "sha256": "271fe313ccb246ad5f20eeeb45e7028c1cbb805f8afece09b071b8992ea31d5f"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House02_Roof/MI_Roof",
+      "bytes": 157522,
+      "sha256": "8f937d34811737182876b5ec86471d4be6f07e6eef97ecc87ed05b5c2a976053"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+      "bytes": 50616537,
+      "sha256": "8efe7e14d5273920f0214995d39288e7e7db43b6ff5d7ea822f163c6dcdccdc5"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House02_Roof/T_House02Roof_A",
+      "bytes": 35405950,
+      "sha256": "67ef05b5d055d1f2736f9cdf6a5696bb8c0f49e20ce39647f18e6166a3c95c36"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House02_Roof/T_House02Roof_N",
+      "bytes": 39181478,
+      "sha256": "cf75dcc1db2ff0032dbafbd297edc50e23abccc1bfd104acb162cfa8bfaefa4b"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House02_Roof/T_House02Roof_R",
+      "bytes": 13895551,
+      "sha256": "4e4486e36b6f41619551fdeaf18ba920eabbea42ba1abafdcd596a1b2971abb8"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House03_Roof/MI_Roof03",
+      "bytes": 166005,
+      "sha256": "c83760c8952aa321ab4ae80a294865bb7e703db8447909b091e376e003600f6a"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House03_Roof/SM_House03_RoofC",
+      "bytes": 13636176,
+      "sha256": "26083f42c825a6679ce5c3b64b60b848d955845153bae32b6b7d5e9c07dc1838"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House03_Roof/T_House03Roof_A",
+      "bytes": 36888342,
+      "sha256": "e17f52513c1b30b42d7cbc02d6b731bade5667d1d58d622155e95b44273c1a26"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House03_Roof/T_House03Roof_N",
+      "bytes": 42711150,
+      "sha256": "ebca032e40c855cf926da329670fe8d64bf07ea6f4f52fa1e5f10b730c2fa9b9"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House03_Roof/T_House03Roof_R",
+      "bytes": 15223995,
+      "sha256": "7ed6889d7431e3ece6799dcd02ed48fbe4f39bef8287daf1b3e4ae7ffe7c3c8a"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House04_Roof/MI_Roof04",
+      "bytes": 16606,
+      "sha256": "b2b367fb45b3a0c51fbb470143dd0595a1905a360cfbd8d49ee99bc0e5fc330c"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House04_Roof/SM_House04",
+      "bytes": 3457129,
+      "sha256": "f05a80308cc6f09654d7aa652f53e90a4788ed1b63edc5c3d8784a9bc83d2406"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House04_Roof/T_House04Roof_A",
+      "bytes": 34853923,
+      "sha256": "4bb46d59dec8185dfae8c625ae65ecd6637cd533b6580c55fb1db6d354836223"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House04_Roof/T_House04Roof_N",
+      "bytes": 41758563,
+      "sha256": "34e98eb88d72c9d3304f8bdc331f4317c3d33d0312d1b0934c9157103ca8ff34"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House04_Roof/T_House04Roof_R",
+      "bytes": 14424149,
+      "sha256": "c32a34c0f444ae8c7c4ca947f9d12b3f679faab215f7f823a845a2ae3bffa8c9"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/MI_Roof05",
+      "bytes": 167766,
+      "sha256": "d49a9b155afaebbaa408560227fdcbd3b17486e20ee7e3ce479a72238cd93451"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/MI_Roof05Small",
+      "bytes": 177452,
+      "sha256": "b5bb10e94044cd0faf271afaa28640b9d150bf5cb8cd79c3bf111f2464ab5dca"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/SM_Roof_05",
+      "bytes": 26417977,
+      "sha256": "c37ee7ec70d096a7365aebff820745c275ecd6c6c97c7b8d1b0c1fc8dd0ba83c"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/SM_Roof_05small",
+      "bytes": 20945731,
+      "sha256": "d0d2e95cd37f03508eaa0712b6e85e9c95636cc66f4b29f63d41d51d5b44ea33"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05RoofSmall_A",
+      "bytes": 9902383,
+      "sha256": "0d2b7481061941b3d30a2c216113881d9d14b6e8cd870a685e7b651ba4127488"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05RoofSmall_N",
+      "bytes": 12302337,
+      "sha256": "6e1eabca556f1e919d97f1a28f540d25eb196e32dd5ad8b28a0b5453caeccb46"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05RoofSmall_R",
+      "bytes": 4474523,
+      "sha256": "3eacfa8df0f8bf120741f6cbd634547ebe05ba85a93d1d0c21b2dc0777b8ba55"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05Roof_A",
+      "bytes": 36346447,
+      "sha256": "e96dbba7cc608dbb2c7e3b1de3bb115523f24d54db033f6a6ba4eb92c69b4e02"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05Roof_N",
+      "bytes": 42655703,
+      "sha256": "364f4f47006c011ef174f32d43059a965d2a9d3840922050ab6e780400faf466"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House05_Roof/T_House05Roof_R",
+      "bytes": 14928144,
+      "sha256": "8674432370f746ba6de203a2d2798ea64d408b3ddbc50aaf860afd304fed637d"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House06_Roof/MI_Roof06",
+      "bytes": 171120,
+      "sha256": "c8ff2ec17df565a82b0bae8109cc968b72bbcdc9cc6ccf00f5202310f8188626"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House06_Roof/SM_Roof06",
+      "bytes": 9616320,
+      "sha256": "632b00b67e3145875f828bbd88f9dd55f269c442fa0a899b6c8a5c5dabf14e3a"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House06_Roof/T_House06Roof_A",
+      "bytes": 39413164,
+      "sha256": "e04f6b63ba477d5d602d12d7e46e045f6d47726a6a974fde919e2423f97dba80"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House06_Roof/T_House06Roof_N",
+      "bytes": 45272614,
+      "sha256": "da82721e1927771855764742165ff4f6833c5ca86b0d2f25fe309d6991a85fc2"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House06_Roof/T_House06Roof_R",
+      "bytes": 15657473,
+      "sha256": "47d2898cb53a2007534939b70d73cbc5b5e8e7c13f684368ae32be49dddeddec"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07",
+      "bytes": 174789,
+      "sha256": "2efb9281c17a8dd8d8419e94bd69a2a74396d2b5027ac16b2a32edde201244e8"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07_02",
+      "bytes": 175262,
+      "sha256": "2207e99c3bdd8c5a1cc54ef9464ac4ce48d21cb5c76130c4dc0968944eabc8b0"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07_Small",
+      "bytes": 173551,
+      "sha256": "b82c4b62c3323a5c846c6c1f13ebc8371e008d7e0fc7117d0795955d92055408"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof01",
+      "bytes": 61650757,
+      "sha256": "03359b1c317baeb2095973b314297f2a78db96fdce0eeaeef9e6da358234e312"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof02",
+      "bytes": 2111967,
+      "sha256": "e1cc010e9ff988fb7b75bb64b69bfde3aa3d9ce67e560ff61e6ce1f3c5fac8d9"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_RoofSmall",
+      "bytes": 1966560,
+      "sha256": "0cafadd3de787d9789a0faa61656c6ff672ce62e7dcf0a5eaaf5430cc2149760"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof02_A",
+      "bytes": 34979438,
+      "sha256": "0a6f6e9353fc82f935c4323ffd0d3f1b1b8f42070144b243cd3dc5d5ccccfc9f"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof02_N",
+      "bytes": 43492126,
+      "sha256": "72d70e02a33a43f7e7db35e3e46714701edc18f247dedd56c135c1321bff1c87"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof02_R",
+      "bytes": 14834612,
+      "sha256": "7c88f34506addbd6c0859ac3bce1cb862479be27c92644a105d2f167ec727649"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07RoofSmall_A",
+      "bytes": 10188350,
+      "sha256": "c7758d9bf403368201b2433ef16bbe422ee0522c9a68fcd36552dcc3353d0399"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07RoofSmall_N",
+      "bytes": 12037709,
+      "sha256": "9ae1af25bb974e4c9e643fb9b89966ea7a8388e428e71fb95905a801ed162d19"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07RoofSmall_R",
+      "bytes": 4635794,
+      "sha256": "731b612d9c540a0d14a376454cdbf9d7bd7921a0f10149a253b46311c3ad62e1"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof_A",
+      "bytes": 36371841,
+      "sha256": "958340914286203147fef0e3507c14d95c9a2c9924b69c7c39e455e797f36be8"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof_N",
+      "bytes": 42032179,
+      "sha256": "cad64b3754f89d040ff23b0a966fdacedd91d9d18de824b146bc55c555766682"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House07_Roof/T_House07Roof_R",
+      "bytes": 14597137,
+      "sha256": "bea916e8d2f9871e00b612f0714dfdd9999db1cb544c6404fa1f946a152fcc64"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House08_Roof/MI_Roof08",
+      "bytes": 169613,
+      "sha256": "c68aece76fcd658352e2fca907fa860b029ed2d98b803ec73262346c2a090f48"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House08_Roof/SM_House08_Roof",
+      "bytes": 8121456,
+      "sha256": "86c4819baf368f25b421b7a1bb0ed0cc2538b55edf62e186b046118f674a525f"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House08_Roof/T_House08Roof_A",
+      "bytes": 35805482,
+      "sha256": "114d44a76e714291dd215640546084bc87dba9c56d00b0cc636526556a345bf9"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House08_Roof/T_House08Roof_N",
+      "bytes": 41467625,
+      "sha256": "ca398bb97830b631eecd56153df9252142a448ba766d08a5b0a379222a610c5c"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/House08_Roof/T_House08Roof_R",
+      "bytes": 14588173,
+      "sha256": "fd8548c9d381d84d38e130bbfa86efe1adf17161c1dac138a1431cd7a8524676"
+    },
+    {
+      "package": "/Game/Meshes/Houses/Roofs/T_Roof01_N",
+      "bytes": 33031671,
+      "sha256": "5341dfe70ab817697cb27744aaa781fcabd12a8efd654a0b69e70a5f03eddfd6"
+    },
+    {
+      "package": "/Game/PhysMat/PM_Wood",
+      "bytes": 1239,
+      "sha256": "d675197589817abc774bdc8bece8534532cf1274742cbd82f0bd96489c91747f"
+    }
+  ]
+}

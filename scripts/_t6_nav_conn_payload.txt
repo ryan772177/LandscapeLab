@@ -1,0 +1,96 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY: is the post-carve navmesh FRAGMENTED? From the PlayerStart,
+# get_path_length to a spread of projecting points. SUCCESS = connected;
+# FAIL = disconnected component (or search-budget, but these are direct
+# single queries so a FAIL over a projecting target is the signal). Also
+# report RecastNavMesh tile/poly counts if the accessor exists.
+
+OUT = r"__OUT__"
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actors = _eas.get_all_level_actors()
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _nav = [a for a in _actors if a.get_class().get_name() == "RecastNavMesh"][0]
+    # tile/poly stats via reflected props (report what exists)
+    _stats = {}
+    for _p in ("tile_number_x", "tile_number_y", "tile_size_uu"):
+        try:
+            _stats[_p] = _nav.get_editor_property(_p)
+        except Exception as _e:
+            _stats[_p] = "n/a:%s" % _e
+    _out["nav_stats"] = _stats
+
+    _ps = [a for a in _actors if a.get_class().get_name() == "PlayerStart"][0]
+    _psl = _ps.get_actor_location()
+    _out["player_start_cm"] = [round(_psl.x, 1), round(_psl.y, 1),
+                               round(_psl.z, 1)]
+
+    _CITY_TAG = "LandscapeLab.City"
+    _ign = [a for a in _actors if isinstance(a, _u.InstancedFoliageActor)]
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    _seed = _proj(_psl.x, _psl.y)
+    _out["seed_projects"] = _seed is not None
+
+    _targets = {
+        "near_60m": (_psl.x + 6000.0, _psl.y),
+        "near_1km": (_psl.x + 100000.0, _psl.y),
+        "treeline": (-190000.0, 100000.0),
+        "vista": (-216400.0, 63600.0),
+        "centre": (0.0, 0.0),
+        "north_mid": (0.0, -200000.0),
+        "SW_corner": (-350000.0, 350000.0),
+        "SE_corner": (350000.0, 350000.0),
+    }
+    _rows = {}
+    for _nm, (_x, _y) in _targets.items():
+        _p = _proj(_x, _y)
+        if _p is None or _seed is None:
+            _rows[_nm] = {"projects": _p is not None, "path": None}
+            continue
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, _seed, _p, None, None)
+            _rows[_nm] = {"projects": True,
+                          "path_success": bool(_res == _SUCCESS),
+                          "path_len_m": round(_ln / 100.0, 1)
+                          if _res == _SUCCESS else None}
+        except Exception as _e:
+            _rows[_nm] = {"projects": True, "path_err": str(_e)}
+    _out["paths_from_seed"] = _rows
+
+    if OUT and not OUT.startswith("__"):
+        with open(OUT, "w", encoding="utf-8") as _fh:
+            _json.dump(_out, _fh, indent=1)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

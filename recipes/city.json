@@ -1,0 +1,152 @@
+{
+ "schema_version": "1.1-planner",
+ "_schema_status": "DOCUMENTED in recipes/schema.md 2026-08-26. NOTE: that section flags an UNRESOLVED inconsistency -- the character-recipe convention says \"no prose keys\" and these recipes are roughly half prose. Operator ruling needed; nothing was changed.",
+ "city_id": "alpine_basin_town",
+ "display_name": "Basin Town",
+ "biome": "alpine_8k",
+ "level_path": "/Game/Alpine8K",
+ "_what_this_is": "A MASSING BLOCKOUT, not architecture. Volumes, streets and plot footprints placed from measured terrain, built from /Engine/BasicShapes primitives. It answers where a town stands, how big it is and how it reads at range. It does NOT answer what it looks like.",
+ "_why_a_blockout": "PHASE2_PLAN.md ruling 13 cut towns as a PLACEMENT activity on three grounds, and explicitly preserved 'the settlement schema, the Level-Instance + three-data-layer structure, and grey-box blockout'. Ground 1 (the contiguous-vs-multi-region tripwire) was DISCHARGED when Ryan ruled multi-region on 2026-08-15. Ground 2 stands: there is no modular architecture kit on this machine, verified -- KiteDemo/LevelContent/Architecture is a photo-studio lookdev kit (SM_1Meter_01, SM_AssetPlatform_02, SM_CycRoom_01). A kit must be bought; BACKLOG.md:238 carries 'Medieval Village'.",
+ "_correction_to_our_own_record": "PHASE2_PLAN.md:66 names Templates/TemplateResources/High/LevelPrototyping/ as the grey-box kit. THAT PATH HOLDS ZERO ASSETS ON THIS INSTALL -- searched the whole engine, 0 uasset hits for LevelPrototyping. /Engine/BasicShapes/ is what actually exists and is what this recipe uses.",
+ "site": {
+  "_source": "scripts/find_city_site.py, measured from terrain/alpine_8k.png, artefact _verify/20260824_city/site_survey.json",
+  "centre_world_cm": [
+   -210800.0,
+   278800.0
+  ],
+  "usable_radius_m": 184.2,
+  "context_radius_m": 370.0,
+  "centre_elev_m": 187.0,
+  "_elev_context": "the terrain spans 0.0 .. 1552.5 m, so 187 m is genuinely a basin floor and not a shoulder",
+  "region_area_ha": 109.8,
+  "measured_slope_deg": {
+   "mean": 6.25,
+   "p90": 10.32
+  },
+  "_selection_bars": {
+   "cell_m": 8.0,
+   "_why_8m": "flatness is evaluated at the scale a CITY occupies. Per-vertex slope answers a question about footsteps. This project already paid for a bar with no declared denominator once: traversability read 29.26% reachable at 1 m and 94.39% at 8 m on the SAME terrain.",
+   "max_slope_deg": 12.0,
+   "_why_12": "streets want <= 8 deg (a 15% grade) and terraced building pads tolerate more. 12 deg is the town EXTENT bar; the street bar below is tighter. Measured frontier: 6 deg -> 82.4 m usable radius, 8 -> 108.8, 10 -> 169.7, 12 -> 184.2, 15 -> 237.9. 15 deg was rejected because a 27% street grade is not a street.",
+   "foothill_pct": 40.0,
+   "_foothill_was_NOT_BINDING": "identical usable radius at p40, p60 and p80 -- the flattest ground already lies in the lowest 40% of the terrain. So WORLD_VISION.md:303 ('the two foothill basins are the settlement zones') is CORROBORATED by measurement rather than imposed as a constraint."
+  }
+ },
+ "plan": {
+  "_form": "Concentric rings joined by radial spokes, warped onto the terrain. A hill town grows around a market or citadel and its streets follow contours; a Cartesian grid is a flat-ground form and would fight this site.",
+  "core_radius_m": 60.0,
+  "extent_radius_m": 470.0,
+  "_why_470": "At 340 m the boundary came out a PERFECT CIRCLE, and the planner's own reject tally said why: outside_radius 0. No candidate was ever generated beyond the circle, so the circle was drawing the edge and the terrain was not. Pushed out until the pad gates -- cut/fill and pad slope -- are what stop the town. The reject counts are the evidence: if outside_radius is the dominant rejection, the extent is binding again and the boundary is an artefact of this number.",
+  "_extent_vs_usable": "usable_radius_m (184.2) is the largest circle of <=12 deg ground -- the flat core. extent_radius_m is how far the town is ALLOWED to reach. Beyond the core the ground steepens, and the per-building pad gates (cut/fill and pad slope) decide which candidates survive. Letting a measured gate draw the edge gives a boundary that follows the terrain; letting a circle draw it gives a circle.",
+  "ring_count": 12,
+  "_ring_count_is_the_real_extent": "THE EXTENT RADIUS WAS NEVER BINDING. Plots exist only BETWEEN rings, so the town reaches core + (ring_count-1)*ring_spacing and no further, whatever extent_radius_m says. At ring_count 8 that is 60 + 7*38 = 326 m, and raising the extent from 340 to 470 m changed the plan by ONE building. The reject tally said so both times -- outside_radius 0 -- and my first reading of it was wrong: 0 does not mean the circle is binding, it means nothing is ever generated near it. 12 rings reach 478 m, which runs the outer rings onto ground the pad gates refuse, so the terrain draws the boundary.",
+  "ring_spacing_m": 38.0,
+  "spoke_count": 14,
+  "candidates_per_plot": 5,
+  "_candidates_per_plot": "was hardcoded at 3 inside the planner. Pipeline rule 2: every scene parameter comes from the recipe.",
+  "street_width_m": 7.0,
+  "max_street_slope_deg": 8.0,
+  "_why_the_street_bar_is_tighter": "8 deg is roughly a 15% grade, about the limit for a cart or a main street. The BUILDING pad bar is 14 deg, because a pad can be terraced and a street cannot. Gating only buildings produced a full circular lattice of streets over ground the buildings themselves had refused -- a building bar cannot speak for a street.",
+  "_what_the_bar_is_measured_against": "END-TO-END GRADE: rise over run between the segment's two ends. That is the quantity '8 deg is about the limit for a cart' is a statement about. CHANGED 2026-08-25 -- see the REJECTED note below, because the bar never moved and the metric did.",
+  "_REJECTED_max_of_six_subinterval_differences": "The original street_slope_deg took the MAX of six consecutive height samples along the run and divided by a sixth of the length. WRONG QUANTITY: that is a ROUGHNESS statistic, so a single rough 2.5 m sub-interval condemned the whole segment. SYMPTOM YOU WILL SEE: streets_rejected_slope in the high hundreds against a few hundred kept, and a street network that renders as disconnected stubs -- measured at 883 of 1342 rejected, 155 disconnected pieces, largest holding 9.2% of segments, and the town CENTRE stranded in a 22-segment fragment. It read p50 10.54 deg over a basin surveyed at mean slope 6.25 deg, i.e. it rejected the median segment of ground already certified flat enough to hold a town. CORRECT VALUE: end-to-end grade, p50 3.84 deg on the same lattice. REFERENCE: LESSONS.md 2026-08-25; scripts/measure_city_connectivity.py.",
+  "max_street_cut_fill_m": 1.8,
+  "_why_a_street_also_has_a_cut_fill_bar": "GRADE ALONE IS INSUFFICIENT BY CONSTRUCTION -- a segment that dives into a gully and climbs out level at the far side has a grade of zero and is not a street. This is the largest deviation of natural ground from the straight run joining the two ends: the earth that must be moved to build the strip. A street is the same kind of object as a building pad, a levelled surface cut into a slope, so it carries the same kind of gate.",
+  "_why_this_is_a_SEPARATE_key_from_the_pad_allowance": "it starts at the same 1.8 m as buildings.max_pad_cut_fill_m and is deliberately NOT a reference to it. An earthmoving allowance is an ENGINEERING choice, not a physical constant, so streets and buildings may legitimately diverge -- non-negotiable 19's own test is whether the quantity is physical. An angle of repose would have to be shared; how much digging we are willing to pay for does not.",
+  "street_join_tol_m": 7.0,
+  "_street_join_tol": "two street centrelines passing within this distance are treated as JOINED, because two strips of street_width_m overlap on the ground and a person can walk from one to the other. Equal to street_width_m by intent, stated explicitly rather than derived so a change to street width cannot silently redefine connectivity. Measured insensitive: the component count moves 166 -> 155 across 200-700 cm, so the verdict is not an artefact of this knob.",
+  "plaza_radius_m": 22.0,
+  "_plaza": "the open centre; no buildings inside it"
+ },
+ "buildings": {
+  "_placement": "one candidate per plot between consecutive rings and spokes, jittered within the plot, rejected if it fails a gate",
+  "footprint_m": {
+   "min": 7.0,
+   "max": 15.0
+  },
+  "aspect_max": 1.9,
+  "height_m": {
+   "centre": 14.0,
+   "edge": 6.5
+  },
+  "_height_falloff": "tallest at the plaza, lowest at the rim -- density and height both fall outward, which is what makes a town read as a town from a ridge",
+  "storey_m": 2.0,
+  "_storey_m_RULED_2026-08-29": "3.2 -> 2.0 by operator ruling. storey_m is a QUANTISATION STEP, not a floor height multiplied by a fixed storey count: plan_city.py:392-395 computes a CONTINUOUS height from the falloff (height_m.centre 14.0 -> edge 6.5) and then snaps it to a multiple of this value. So changing it re-quantises the SAME heights onto a finer grid rather than shortening the town. 2.00 m is the Medieval Village kit's wall-course height, measured live on all 15 modules (Free/_measured/kit_medievalvillage.json), so every building now stands a whole number of courses and the kit can build it without a cut top course.",
+  "_storey_m_MEASURED_EFFECT": "heights 6.4/9.6/12.8 m (counts 51/164/88) -> 6/8/10/12 m (19/73/113/98). Mean height 9.99 -> 9.91 m, a fall of 0.8% -- NOT the 33% the first write-up predicted. Max snap error against the declared falloff HALVES, 1.59 -> 1.00 m, and the town gains a fourth distinct height, so this is strictly CLOSER to what height_m already declares. Positive control before the change: heights reconstructed from building positions reproduced the shipped plan exactly, 0 mismatches of 303.",
+  "_storey_m_REJECTED_33_PERCENT_CUT": "WRONG VALUE TO FEAR: that setting storey_m to 2.0 shortens 2/3/4-storey buildings to 4/6/8 m. SYMPTOM THAT WOULD HAVE FOLLOWED: the ruling refused on a cost that does not exist. ROOT CAUSE: reading storey_m as a per-floor height with the STOREY COUNT held fixed. The planner holds the HEIGHT and derives the count. REFERENCE: _verify/20260828_kit/COVERAGE.md correction banner, 2026-08-29.",
+  "gap_min_m": 2.5,
+  "max_pad_cut_fill_m": 1.8,
+  "_pad": "each building sits on a terrace levelled to the mean terrain under its own footprint. A pad needing more than this much cut or fill is REFUSED rather than floated or buried.",
+  "max_pad_slope_deg": 14.0,
+  "seed": 20260824,
+  "roof_servability": {
+   "enabled": true,
+   "tolerance": 0.2,
+   "bias": 0.85,
+   "jitter": 0.5,
+   "landmark_compose_max": 6
+  },
+  "_roof_servability": "RULED 2026-08-30 (4b, with a small 4a allowance). Roof servability is now a planner constraint like footprint servability. A roof piece is a WHOLE object with a fixed span, unlike the modular walls, so a footprint either takes one at +-tolerance or it does not. Before this, footprints were drawn UNIFORMLY over 7-15 m and only 132 of 303 (43.6%) could take a kit roof. bias = the fraction drawn from servable targets; the remainder stays free so the town keeps some size variety -- every servable target is 7.5-10.2 m, so a full bias would erase the 10-15 m end entirely. jitter = fraction of the tolerance band used when perturbing a target, so a biased draw sits INSIDE its band with margin rather than on its edge. landmark_compose_max = how many buildings may compose a roof from other kit pieces; everything else that is not servable stays a COUNTED greybox. Spans come from Free/_measured/kit_medievalvillage_v2.json via scripts/roof_servability.py, which owns the fit test for both the planner and the audit."
+ },
+ "roofs": {
+  "enabled": true,
+  "_what": "A GABLE roof on every building, ridge running along the building's LONG axis. Added 2026-08-25 because the blockout had no roofs at all and flat-topped boxes are the least alpine silhouette there is. A steep pitch with deep eaves is THE recognisable form of alpine building, and it is a snow-shedding adaptation rather than a style choice.",
+  "_INERT_FIELD_CORRECTED": "recipes/city.json declared meshes.roof = Cone from 2026-08-24 and NOTHING EVER CONSUMED IT -- the placer loaded only building/tower/street. A declared field nobody reads is the inert-field class non-negotiable 21 forbids: it reads like a setting and is not one. It is now genuinely used, via the gable construction below rather than as a cone.",
+  "pitch_deg": 45.0,
+  "_PITCH_IS_FIXED_AT_45_BY_THE_PRIMITIVE_AND_THIS_IS_NOT_A_PREFERENCE": "The gable is one Cube rolled 45 degrees about the ridge axis, so its cross-section is a square standing on a corner: the two upper faces slope at exactly 45 and the lower half is buried inside the building. ANY OTHER ROLL ANGLE GIVES AN ASYMMETRIC ROOF -- a square rolled 30 degrees presents slopes of 30 and 60, which is a shed roof with a kink, not a gable. Arbitrary pitch needs TWO slabs per building, which doubles the actor count and therefore the World Partition package count (303 buildings -> 606 extra packages). 45 degrees is inside the real alpine range (roughly 30-45, steeper where snow load is higher), so the constraint and the target agree and the cheap construction was taken deliberately.",
+  "eaves_overhang_m": 0.7,
+  "_eaves": "the roof oversails the wall by this much on each side. Deep eaves are as much of the alpine signature as the pitch itself -- they throw snow and rain clear of the walls. This widens the gable, so it also RAISES the ridge: ridge height above the eaves line is (width + 2*overhang)/2.",
+  "gable_overhang_m": 0.4,
+  "_gable_overhang": "how far the roof projects beyond the two gable ends, along the ridge.",
+  "mesh": "/Engine/BasicShapes/Cube.Cube",
+  "_mesh_note": "the Cube again, not the Cone. The Cone would give a HIP roof -- and scaled to a rectangular footprint, an elliptical one that reads soft and rounded. A gable is the crisper and more alpine form."
+ },
+ "landmark": {
+  "_what": "one tall volume at the plaza edge, so the town has a silhouette anchor at range",
+  "enabled": true,
+  "footprint_m": 11.0,
+  "height_m": 34.0,
+  "spire_height_m": 16.0,
+  "spire_mesh": "/Engine/BasicShapes/Cone.Cone",
+  "_INERT_FIELD_FOUND_2026-08-29": "spire_mesh IS NOT READ. scripts/city_place_payload.txt:77 HARDCODES ('spire', '/Engine/BasicShapes/Cone.Cone') instead of loading this key. The two agree today, so nothing is broken and nothing LOOKS broken -- which is what makes it the dangerous shape: change this value and the spire will not change. Violates PIPELINE RULE 2 (every scene parameter comes from recipe JSON, never hardcoded) and non-negotiable 24 (two copies of one value that must agree). A RECURRENCE: the _INERT_FIELD_CORRECTED note in the roofs block records the SAME class found and fixed for meshes.roof on 2026-08-25. NOT fixed here -- the fix belongs in a payload that mutates the world and wants an editor to test. Recorded so the next session fixes the CODE rather than trusting the key.",
+  "_spire": "a cone on top of the tower, so the landmark reads as a CHURCH rather than as a grain silo. At range the spire is the single most legible thing about an alpine settlement, and it is what tells a player where the town centre is from a ridge. 11 m wide and 16 m tall gives a slender point; the tower plus spire stands 50 m against a plaza building height of 14 m."
+ },
+ "meshes": {
+  "_source": "/Engine/BasicShapes/ -- verified present: Cube, Cylinder, Cone, Plane, Sphere. The engine's own primitives, so nothing here depends on vendor content that could vanish on a re-download.",
+  "building": "/Engine/BasicShapes/Cube.Cube",
+  "tower": "/Engine/BasicShapes/Cylinder.Cylinder",
+  "roof": "/Engine/BasicShapes/Cone.Cone",
+  "street": "/Engine/BasicShapes/Plane.Plane",
+  "_cube_extent_cm": 100.0,
+  "_note_on_extent": "the engine Cube is 100 cm on a side with its pivot at the CENTRE, so a building of height h sits at pad_z + h/2 and scales by h/100. The pivot is asserted at placement rather than assumed -- a pivot read wrongly is how this project buried 50% of a rock species."
+ },
+ "foliage_clearing": {
+  "_what": "Founding a settlement means clearing ground. 6,244 trees stood inside the town extent and 1,266 inside its core, so buildings and mature spruce occupied the same ground -- measured 2026-08-25 from the engine's own instance transforms.",
+  "building_margin_m": 3.0,
+  "street_margin_m": 2.0,
+  "_margins_were_measured_not_typed": "swept before applying: a 1 m building margin removes 2,250 instances, 3 m removes 2,541, 5 m removes 2,842. 3 m clears the immediate surround of every structure without stripping the village.",
+  "_IT_FOLLOWS_THE_TOWN_SHAPE_NOT_A_RADIUS": "instances are tested against each building, street and the landmark as ORIENTED RECTANGLES plus a margin -- never against a disc. A radial clear would leave a perfectly circular bald patch, which is the same error this recipe already fixed once for the town boundary itself ('at 340 m the boundary came out a PERFECT CIRCLE'). Per-structure testing keeps roughly 3,700 trees in the GAPS BETWEEN houses, which is what an alpine village looks like, and lets the cleared area end where the buildings end.",
+  "_WHY_THIS_IS_NOT_IN_THE_FOLIAGE_RECIPE": "SUPERSEDED 2026-09-12b, AND THE ORIGINAL REASONING IS KEPT BECAUSE IT WAS HALF RIGHT. It said: 'it cannot be. Re-running place_foliage would restore every tree, and re-planting with an exclusion mask would RE-ROLL all 219,659 positions and move the entire forest -- the rock-species RNG hazard at world scale.' That is TRUE of a mask applied during SAMPLING, which changes how many draws the generator makes and shifts every subsequent value. It is FALSE of a filter applied after the rows are built, and false by construction of one applied to the committed rows. The exclusion now lives in foliage.settlement_exclusion and is applied by place_foliage; MEASURED 2026-09-12: 219,659 -> 2,557 removed -> 217,102 with every survivor an IDENTICAL row. The editor-side clear it pointed at (scripts/city_clear_foliage_payload.txt) is RETIRED to _trash/20260912_city_clear_foliage/ -- nothing ever filled its margin placeholders, so it had no caller in the repo's history.",
+  "_WHY_THE_CLEAR_WAS_NOT_ENOUGH": "the clear removed INSTANCES from the editor; derive_layer_weights reads the PLACEMENT JSON. Two representations of one forest, one cleared and one not, each internally consistent -- so no audit could see it, and the weightmap went on painting ForestFloor under the town. Buildings whose dominant layer is ForestFloor: 43.23% before, 0.00% after.",
+  "plaza_margin_m": 6.0,
+  "_plaza_margin_is_added_to_the_plans_own_radius": "the cleared disc is plan.plaza_radius_cm PLUS this margin, never a separately declared radius -- two numbers for the plaza's size would be two sources for one physical fact and would drift the first time the plaza was resized (non-negotiable 19).",
+  "_why_a_disc_is_correct_HERE_and_nowhere_else": "this block already warns that the clear follows the town's SHAPE and not a radius, because clearing the settlement as a circle drew a bald ring the terrain had no part in. That reasoning does not transfer to the plaza: the plaza IS a declared circle, so clearing it as one matches its own geometry rather than imposing one.",
+  "_why_the_plaza_needed_its_own_clear": "the per-structure clear tests instances against buildings, streets and the landmark plus a margin. The plaza is DEFINED as ground with no structures on it, so nothing inside it was ever a candidate for removal. Measured consequence, seen at eye level 2026-08-27: a conifer stands 3-4 m in front of the PlayerStart and the player spawns facing a trunk."
+ },
+ "gates": {
+  "all_inside_radius": true,
+  "no_footprint_overlap": true,
+  "_INERT_FLAGS_FOUND_2026-08-29": "all_inside_radius, no_footprint_overlap and streets_are_one_network are READ BY NOBODY -- audited against every .py and .txt under scripts/. They are NOT unenforced invariants: plan_city applies both unconditionally (rej['outside_radius'] and rej['overlap'] at :330) and prunes streets to the plaza's component. The INVARIANTS hold; these FLAGS are decorative mirrors of them. THE TRAP IS THAT THEY SIT IN THE SAME gates BLOCK AS max_pad_cut_fill_m, min_buildings AND min_street_segments, WHICH ARE ALL GENUINELY READ -- so the block reads as uniform and every entry looks like a switch. Setting any of these three to false would change NOTHING. Non-negotiable 21. Left in place rather than removed: removing a key is a schema change, and the fix (read them, or move them under a documentation key) is a ruling.",
+  "max_pad_cut_fill_m": 1.8,
+  "min_buildings": 40,
+  "_min_buildings": "below this it is a hamlet and the plan should be reported as failing, not shipped as a city",
+  "min_street_segments": 200,
+  "_min_street_segments": "the planner prunes streets to the component containing the plaza, so this is a floor on the size of the CONNECTED network rather than on how much lattice was drawn. A prune that collapses to a handful means the gates upstream shredded the lattice, which is exactly what happened on 2026-08-24 and went unnoticed because nothing counted the surviving network.",
+  "streets_are_one_network": true,
+  "_streets_are_one_network": "ASSERTED after the prune by re-deriving the component count, not printed. A message claiming the network is one piece is a belief compiled into text and nothing re-checks it when the code changes underneath (non-negotiable 25). The planner exits non-zero if it is not 1.",
+  "max_building_to_street_m": 40.0,
+  "max_orphan_building_fraction": 0.05,
+  "_whole_network_gate": "Every building must sit within max_building_to_street_m of the CONNECTED street network. Per-structure pad gates say nothing about the whole: they passed this town, and 185 of 838 streets and 50 of 303 buildings turned out unreachable from its own plaza. This is the same lesson the street network taught one level down.",
+  "_this_is_an_OFFLINE_PROXY": "It cannot see a navmesh step, so it is NECESSARY AND NOT SUFFICIENT. On this town it finds 11 orphans (3.6%) where the BUILT navmesh finds 50 buildings unreachable (16.5%) -- it catches a subset. scripts/reachability.py against the built navmesh remains the authority.",
+  "_THRESHOLD_NEEDS_A_RULING": "0.05 is provisional and was chosen ABOVE this town s measured 3.6% so the gate is live without retroactively condemning a committed town that cannot be re-formed. The defensible alternatives are 0.0 (every building on the network, which the current town would FAIL and which would make plan_city unable to reproduce its own committed plan, breaking pipeline rule 3) or report-only. Operator ruling needed."
+ }
+}

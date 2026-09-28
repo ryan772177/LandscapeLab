@@ -1,0 +1,30 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Which package is dirty, and are the eval actors standing?
+# Read-only. NOTHING here saves.
+
+KIT_TAG = "LandscapeLab.KitEval"
+_out = {"ok": False, "error": None}
+try:
+    _dirty = _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()
+    _out["dirty"] = [p.get_path_name() for p in _dirty]
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _n = 0
+    _z = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            if KIT_TAG in [str(t) for t in _a.tags]:
+                _n += 1
+                _l = _a.get_actor_location()
+                _z.append([round(_l.x, 1), round(_l.y, 1), round(_l.z, 1)])
+        except Exception:
+            pass
+    _out["eval_actors"] = _n
+    _out["first_locs"] = _z[:3]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

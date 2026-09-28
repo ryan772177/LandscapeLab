@@ -1,0 +1,98 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Find the LENGTH lever on a groom that has no .blend behind it.
+#
+# The hero is wearing the vendor Hair_M_SideSweptFringe, a shipped .uasset --
+# there is no strand data of ours to edit, so shortening has to happen through a
+# property. The 2026-08-21 ladder recorded "component hair_length_scale 1.0,
+# override False", so a lever exists; its exact name and the flag that arms it
+# are read here rather than remembered, because a write to a property that is
+# not armed returns success and changes nothing.
+#
+# Asks the COMPONENT and the ASSET separately: a component override is
+# per-instance and dies on respawn, an asset value is durable. Which one is
+# wanted depends on whether this is a look or a decision.
+
+SUBJECT = "__SUBJECT__"
+SLOT = "__SLOT__"
+GROOM = "__GROOM__"
+
+COMP_FIELDS = ("hair_length_scale", "hair_length_scale_override",
+               "override_hair_length_scale", "hair_width", "hair_root_scale",
+               "hair_tip_scale", "hair_clip_scale", "hair_shadow_density",
+               "hair_raytracing_radius_scale", "b_override_hair_length_scale",
+               "hair_group_desc", "groom_group_desc", "hair_length",
+               "length_scale", "scale_in_world")
+ASSET_FIELDS = ("hair_length", "hair_clip_scale", "hair_length_scale",
+                "max_curve_length", "hair_width")
+
+_out = {"ok": False, "error": None, "component": {}, "asset": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _c = None
+    for _a in _eas.get_all_level_actors():
+        try:
+            if _a.get_actor_label() != SUBJECT:
+                continue
+        except Exception:
+            continue
+        for _x in _a.get_components_by_class(_u.GroomComponent):
+            if _x.get_name().lower().startswith(SLOT.lower()):
+                _c = _x
+    if _c is None:
+        raise RuntimeError("no GroomComponent for slot " + SLOT)
+    _out["component_name"] = _c.get_name()
+
+    for _f in COMP_FIELDS:
+        try:
+            _out["component"][_f] = str(_c.get_editor_property(_f))[:80]
+        except Exception:
+            pass
+
+    # the per-group description struct is where UE keeps the live overrides
+    for _arrname in ("groom_group_descs", "hair_group_descs",
+                     "group_descs", "hair_groups_desc"):
+        try:
+            _arr = _c.get_editor_property(_arrname)
+        except Exception:
+            continue
+        _rows = []
+        for _s in _arr:
+            _e = {}
+            for _f in ("hair_length", "hair_length_scale", "hair_width",
+                       "hair_root_scale", "hair_tip_scale", "hair_clip_scale",
+                       "hair_shadow_density", "lod_bias", "lod_forced_index"):
+                try:
+                    _e[_f] = _s.get_editor_property(_f)
+                except Exception:
+                    pass
+            if _e:
+                _rows.append(_e)
+        if _rows:
+            _out["component"][_arrname] = _rows
+
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is not None:
+        for _arr, _sub in (("hair_groups_rendering", "geometry_settings"),
+                           ("hair_groups_info", None)):
+            try:
+                _a2 = _g.get_editor_property(_arr)
+            except Exception:
+                continue
+            for _i, _s in enumerate(_a2):
+                _t = _s.get_editor_property(_sub) if _sub else _s
+                _e = {}
+                for _f in ASSET_FIELDS:
+                    try:
+                        _e[_f] = _t.get_editor_property(_f)
+                    except Exception:
+                        pass
+                if _e:
+                    _out["asset"]["%s[%d].%s" % (_arr, _i, _sub or "-")] = _e
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

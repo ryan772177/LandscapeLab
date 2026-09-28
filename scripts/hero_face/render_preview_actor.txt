@@ -1,0 +1,127 @@
+# render_preview_actor — photograph the LIVE sculpted character, two framings.
+#
+# WHY BOUNDS AND NOT THE HEAD SOCKET
+#   The spawned MetaHuman editor actor gives two readings that disagree:
+#   get_actor_bounds says extent (17.93, 16.41, 31.33) -- a subject about
+#   62 units tall -- while Face.get_socket_location("head") returns
+#   (-0.0103, 0.3647, 0.5083), half a unit above the actor origin. Both
+#   cannot describe the same head.
+#
+#   The first render trusted the socket, derived a camera 0.056 units away,
+#   and photographed sky (mean RGB 255/255/255). Scaling the actor 2000x to
+#   compensate almost certainly made a 1.2 km giant with the camera INSIDE
+#   it, and produced white again. Two whites from one bad premise.
+#
+#   So this trusts BOUNDS, applies no scaling, and takes TWO framings -- the
+#   whole subject and the head -- because a wide shot cannot be wrong about
+#   where the subject is, and it is the frame that tells you what the close
+#   one is looking at.
+#
+# Both frames are exported unconditionally, per-run named.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+_TAG = "__TAG__"
+_Z = 250000.0
+_VERIFY = r"C:/Users/Admin/UE5LandscapePipeline/_verify"
+_W = 1024
+_H = 1024
+
+_out = {"error": None, "unreadable": [], "tag": _TAG, "actor": None,
+        "bounds_origin": None, "bounds_extent": None, "shots": []}
+_actor = None
+_cap = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _world = _unreal.EditorLevelLibrary.get_editor_world()
+    _sun = None
+    for _s in _unreal.GameplayStatics.get_all_actors_of_class(
+            _world, _unreal.DirectionalLight):
+        _sun = _s
+        break
+    _f = _sun.get_actor_forward_vector()
+    _tx, _ty = -float(_f.x), -float(_f.y)
+    _n = _math.hypot(_tx, _ty) or 1.0
+    _tx, _ty = _tx / _n, _ty / _n
+    _yaw = _math.degrees(_math.atan2(_ty, _tx))
+
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    _actor.set_actor_location(_unreal.Vector(0.0, 0.0, _Z), False, False)
+    _actor.set_actor_rotation(_unreal.Rotator(0.0, 0.0, _yaw), False)
+    _out["actor"] = _actor.get_name()
+
+    _b = _actor.get_actor_bounds(False)
+    _o, _e = _b[0], _b[1]
+    _out["bounds_origin"] = [round(float(_o.x), 3), round(float(_o.y), 3),
+                             round(float(_o.z), 3)]
+    _out["bounds_extent"] = [round(float(_e.x), 3), round(float(_e.y), 3),
+                             round(float(_e.z), 3)]
+
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _rt = _unreal.RenderingLibrary.create_render_target2d(
+        _world, _W, _H, _unreal.TextureRenderTargetFormat.RTF_RGBA8,
+        _unreal.LinearColor(0.2, 0.2, 0.2, 1.0))
+    _cap = _els.spawn_actor_from_class(
+        _unreal.SceneCapture2D, _unreal.Vector(0.0, 0.0, _Z),
+        _unreal.Rotator(0.0, 0.0, _yaw + 180.0))
+    _cc = _cap.get_component_by_class(_unreal.SceneCaptureComponent2D)
+    _cc.set_editor_property("texture_target", _rt)
+    _cc.set_editor_property("capture_source",
+                            _unreal.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+    _cc.set_editor_property("capture_every_frame", False)
+    _cc.set_editor_property("capture_on_movement", False)
+
+    _total_h = 2.0 * float(_e.z)
+    _top = float(_o.z) + float(_e.z)
+    # (label, height to frame, z to aim at)
+    _shots = [("full", _total_h, float(_o.z)),
+              ("head", _total_h * 0.16, _top - _total_h * 0.075)]
+    for _lbl, _fh, _tz in _shots:
+        _fov = 35.0
+        _dist = (_fh * 0.5) / _math.tan(_math.radians(_fov * 0.5)) * 1.45
+        _cam = _unreal.Vector(float(_o.x) + _tx * _dist,
+                              float(_o.y) + _ty * _dist, _tz)
+        _cap.set_actor_location(_cam, False, False)
+        _cc.set_editor_property("fov_angle", _fov)
+        _cc.capture_scene()
+        _name = "20260816_preview_" + _TAG + "_" + _lbl + ".png"
+        _rec = {"shot": _lbl, "cam": [round(float(_cam.x), 1),
+                                      round(float(_cam.y), 1),
+                                      round(float(_cam.z), 1)],
+                "dist": round(_dist, 1), "png": None, "mean_rgb": None,
+                "nonwhite_frac": None}
+        try:
+            _unreal.RenderingLibrary.export_render_target(_world, _rt,
+                                                          _VERIFY, _name)
+            _rec["png"] = _VERIFY + "/" + _name
+        except Exception as _e2:
+            _out["unreadable"].append("export " + _lbl + ": " + str(_e2))
+        _px = _unreal.RenderingLibrary.read_render_target(_world, _rt, False)
+        if _px is not None:
+            _sr = _sg = _sb = _c2 = _nw = 0
+            for _y in range(0, _H, 6):
+                for _x in range(0, _W, 6):
+                    _p = _px[_y * _W + _x]
+                    _sr += int(_p.r); _sg += int(_p.g); _sb += int(_p.b)
+                    _c2 += 1
+                    if int(_p.r) < 250 or int(_p.g) < 250 or int(_p.b) < 250:
+                        _nw += 1
+            _rec["mean_rgb"] = [round(_sr / _c2, 1), round(_sg / _c2, 1),
+                                round(_sb / _c2, 1)]
+            _rec["nonwhite_frac"] = round(_nw / _c2, 4)
+        _out["shots"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    for _x in (_cap, _actor):
+        try:
+            if _x is not None:
+                _unreal.EditorLevelLibrary.destroy_actor(_x)
+        except Exception:
+            pass
+print("__LL__" + _json.dumps(_out, default=str))

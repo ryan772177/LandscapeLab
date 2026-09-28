@@ -1,0 +1,70 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Put a groom's render/decimation settings back to what the pipeline writes.
+#
+# The operator explored the Groom Asset Editor sliders on a LIVE asset. Those
+# edits are real writes to the .uasset, not a preview, so "revert" means writing
+# the values back and reading them off the asset again -- not reloading, which
+# is refused project-wide (reload_packages fataled this editor twice out of two
+# on 2026-08-19).
+#
+# NOT TOUCHED: enable_simulation and enable_global_interpolation. Setting either
+# on an already-built groom fatals the editor at GroomResources.cpp:1919,
+# measured 2026-08-22. They are not part of a settings revert.
+
+GROOM = "__GROOM__"
+
+DEFAULTS = {
+    ("hair_groups_rendering", "geometry_settings"): {
+        "hair_width": 0.01, "hair_root_scale": 1.0, "hair_tip_scale": 1.0},
+    ("hair_groups_interpolation", "decimation_settings"): {
+        "curve_decimation": 1.0, "vertex_decimation": 1.0},
+}
+
+_out = {"ok": False, "error": None, "groom": GROOM, "before": {}, "after": {}}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+    if not GROOM.startswith("/Game/Characters/AlpineHero/Grooms/"):
+        raise RuntimeError("REFUSE: %s is outside our derived groom folder"
+                           % GROOM)
+
+    for (_arr, _sub), _vals in DEFAULTS.items():
+        _a = _g.get_editor_property(_arr)
+        _new = []
+        for _s in _a:
+            _st = _s.get_editor_property(_sub)
+            for _k, _v in _vals.items():
+                _out["before"].setdefault(_sub, {})[_k] = \
+                    _st.get_editor_property(_k)
+                _st.set_editor_property(_k, _v)
+            # struct arrays iterate as COPIES in UE Python -- write the whole
+            # array back or the edit lands on a temporary and reads as success
+            _s.set_editor_property(_sub, _st)
+            _new.append(_s)
+        _g.set_editor_property(_arr, _new)
+
+    _u.EditorAssetLibrary.save_asset(GROOM, only_if_is_dirty=False)
+
+    # READ BACK off a freshly loaded asset, not the object just written
+    _g2 = _u.EditorAssetLibrary.load_asset(GROOM)
+    _ok = True
+    for (_arr, _sub), _vals in DEFAULTS.items():
+        for _s in _g2.get_editor_property(_arr):
+            _st = _s.get_editor_property(_sub)
+            for _k, _v in _vals.items():
+                _r = _st.get_editor_property(_k)
+                _out["after"].setdefault(_sub, {})[_k] = _r
+                if abs(float(_r) - float(_v)) > 1e-6:
+                    _ok = False
+    _out["reverted"] = _ok
+    _out["ok"] = _ok
+    if not _ok:
+        _out["error"] = "a value did not read back at its default"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,136 @@
+import json as _json
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# Build the Dubiniec house material from its EXTRACTED texture pack.
+#
+# The FBX ships no textures -- the pack delivers them as a separate archive, so
+# the mesh imported with one material and nothing behind it. These are the
+# Unreal_textures set, which is the one authored for this engine (there are also
+# cycles_textury/ and Unity_textures/ variants; picking by folder name is the
+# asset telling us which it wants, not a guess).
+#
+# THE MATERIAL IS DELETED AND RE-CREATED, NOT CLEARED. This project promoted
+# "incomplete clear, then append debris" to shared infrastructure
+# (scripts/material_graph.py) after it recurred in three tools and left WIRED
+# survivors feeding BaseColor from the wrong textures. An asset that has just
+# been created cannot hold debris at all, which is stronger than any clear.
+#
+# SAMPLER TYPES ARE SET EXPLICITLY. VerifySamplerType errors on EVERY mismatch
+# and applies an extra sRGB check that fires only for Normal and Masks, so a
+# wrong type here is a compile failure, not a silent miscolour.
+
+TEXDIR = r"__TEXDIR__"
+MESH = "/Game/Scratch/FabEval/SM_medieval_house_10"
+MATPATH = "/Game/Scratch/FabEval"
+MATNAME = "M_medieval_house_10"
+
+_out = {"ok": False, "error": None, "textures": {}, "steps": []}
+try:
+    _tools = _u.AssetToolsHelpers.get_asset_tools()
+    _mel = _u.MaterialEditingLibrary
+
+    # role -> (filename, srgb, compression, sampler)
+    _WANT = {
+        "BaseColor": ("medieval_houses_BaseColor.png", True,
+                      _u.TextureCompressionSettings.TC_DEFAULT,
+                      _u.MaterialSamplerType.SAMPLERTYPE_COLOR),
+        "Normal": ("medieval_housesl_Normal.png", False,
+                   _u.TextureCompressionSettings.TC_NORMALMAP,
+                   _u.MaterialSamplerType.SAMPLERTYPE_NORMAL),
+        "ORM": ("medieval_housesl_OcclusionRoughnessMetallic.png", False,
+                _u.TextureCompressionSettings.TC_MASKS,
+                _u.MaterialSamplerType.SAMPLERTYPE_MASKS),
+    }
+
+    # ---- import the textures --------------------------------------------
+    _tex = {}
+    for _role, (_fn, _srgb, _comp, _samp) in _WANT.items():
+        _src = _os.path.join(TEXDIR, _fn)
+        if not _os.path.isfile(_src):
+            raise RuntimeError("missing texture %s" % _src)
+        _t = _u.AssetImportTask()
+        _t.set_editor_property("filename", _src)
+        _t.set_editor_property("destination_path", MATPATH)
+        _t.set_editor_property("destination_name", "T_med10_" + _role)
+        _t.set_editor_property("automated", True)
+        _t.set_editor_property("replace_existing", True)
+        _t.set_editor_property("save", False)
+        _tools.import_asset_tasks([_t])
+        _a = _u.EditorAssetLibrary.load_asset(
+            "%s/T_med10_%s" % (MATPATH, _role))
+        if not isinstance(_a, _u.Texture2D):
+            raise RuntimeError("texture did not import: %s" % _role)
+        _a.set_editor_property("srgb", _srgb)
+        _a.set_editor_property("compression_settings", _comp)
+        _u.EditorAssetLibrary.save_loaded_asset(_a, False)
+        _tex[_role] = _a
+        _out["textures"][_role] = {
+            "path": _a.get_path_name(),
+            "size": [_a.blueprint_get_size_x(), _a.blueprint_get_size_y()],
+            "srgb": bool(_a.get_editor_property("srgb"))}
+
+    # ---- delete then create the material --------------------------------
+    _full = "%s/%s" % (MATPATH, MATNAME)
+    if _u.EditorAssetLibrary.does_asset_exist(_full):
+        _u.EditorAssetLibrary.delete_asset(_full)
+        _out["steps"].append("deleted pre-existing material")
+    _mat = _tools.create_asset(MATNAME, MATPATH, _u.Material,
+                              _u.MaterialFactoryNew())
+    if _mat is None:
+        raise RuntimeError("material creation returned None")
+
+    _y = -350
+    _made = {}
+    for _role in ("BaseColor", "Normal", "ORM"):
+        _n = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionTextureSample, -420, _y)
+        _n.set_editor_property("texture", _tex[_role])
+        _n.set_editor_property("sampler_type", _WANT[_role][3])
+        _made[_role] = _n
+        _y += 300
+
+    _mel.connect_material_property(_made["BaseColor"], "RGB",
+                                   _u.MaterialProperty.MP_BASE_COLOR)
+    _mel.connect_material_property(_made["Normal"], "RGB",
+                                   _u.MaterialProperty.MP_NORMAL)
+    # ORM convention: R occlusion, G roughness, B metallic
+    _mel.connect_material_property(_made["ORM"], "R",
+                                   _u.MaterialProperty.MP_AMBIENT_OCCLUSION)
+    _mel.connect_material_property(_made["ORM"], "G",
+                                   _u.MaterialProperty.MP_ROUGHNESS)
+    _mel.connect_material_property(_made["ORM"], "B",
+                                   _u.MaterialProperty.MP_METALLIC)
+
+    _mel.recompile_material(_mat)
+    _u.EditorAssetLibrary.save_loaded_asset(_mat, False)
+
+    # ---- assign to the mesh, then READ IT BACK ---------------------------
+    _m = _u.EditorAssetLibrary.load_asset(MESH)
+    if not isinstance(_m, _u.StaticMesh):
+        raise RuntimeError("mesh not found: %s" % MESH)
+    # ⛔ NOT `_m.static_materials[i].material_interface = _mat`.
+    # UE struct arrays come back as COPIES in Python, so mutating an element
+    # mutates a copy and the asset never changes -- measured here: the write
+    # reported no error and the read-back still showed the FBX's own material.
+    # This project has the same trap recorded on a body-parameter write that
+    # "looked exactly like the advertised body lock".
+    # `StaticMesh.set_material` is the reflected setter, proven in this repo at
+    # make_foliage_material.py:341.
+    for _i in range(len(_m.static_materials)):
+        _m.set_material(_i, _mat)
+    _u.EditorAssetLibrary.save_loaded_asset(_m, False)
+
+    _back = _u.EditorAssetLibrary.load_asset(MESH)
+    _out["assigned"] = [
+        (s.material_interface.get_path_name() if s.material_interface else None)
+        for s in _back.static_materials]
+    _out["assign_verified"] = all(
+        p == _mat.get_path_name() for p in _out["assigned"])
+    _out["expressions"] = len(_mel.get_material_expressions(_mat))
+    _out["ok"] = bool(_out["assign_verified"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

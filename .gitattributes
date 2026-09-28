@@ -1,0 +1,86 @@
+# ORDER MATTERS: in .gitattributes, LATER lines override earlier ones for
+# the same attribute. The general text rule therefore comes FIRST, and the
+# binary/LFS rules after it, so `-text` actually wins on UE assets.
+#
+# Getting this backwards (LFS lines first, `* text=auto` last) silently
+# re-enabled EOL conversion on every .uasset — `git check-attr text` read
+# `auto` instead of `unset`, and git emitted CRLF warnings for 162 binary
+# assets on their first commit.
+
+# Line endings: this repo is developed on Windows only. Normalise text so
+# the CRLF warnings on every commit stop being noise.
+* text=auto
+*.py       text eol=lf
+*.json     text eol=lf
+*.md       text eol=lf
+*.uproject text eol=lf
+# .sh MUST be LF: these run under WSL, and core.autocrlf=true would
+# otherwise hand bash a CRLF shebang on every fresh clone. Added
+# 2026-08-30 after `git check-attr` reported eol UNSPECIFIED for the
+# TRELLIS runners -- they work in this tree only because the files
+# happen to hold LF today, which a clone would not preserve.
+*.sh       text eol=lf
+# Git LFS — UE binary assets.
+# The UE project is pipeline state: an untracked project means the repo
+# cannot rebuild the world it governs. But .uasset/.umap are opaque binaries
+# that git would store as a full copy per revision, so they go to LFS from
+# the first commit — retrofitting LFS later means rewriting history.
+# Started while LandscapeLab/Content/ was essentially empty, so the
+# migration cost was zero then and unbounded later.
+*.uasset filter=lfs diff=lfs merge=lfs -text
+*.umap   filter=lfs diff=lfs merge=lfs -text
+# Heightmaps and other binaries are binary regardless of extension.
+*.png    binary
+*.raw    binary
+*.r16    binary
+# 8K-class heightmaps go to LFS; the 2017-class ones stay inline.
+# WHY THE SPLIT RATHER THAN `*.png filter=lfs`. A 2017 heightmap is ~7 MB and
+# has been stored inline since the first commit. Moving `*.png` to LFS now
+# would put existing maps in LFS on their next write while their history stays
+# inline -- the retrofit this file's own header warns about. An 8129 map is
+# ~104 MB, which is squarely what LFS exists for, and it is NEW, so it goes to
+# LFS from its first commit at zero migration cost. Same reasoning as the
+# .uasset rule above, applied at the point where the size actually changed.
+terrain/*_8k*.png  filter=lfs diff=lfs merge=lfs -text
+textures/*_8k*.png filter=lfs diff=lfs merge=lfs -text
+# The hero face maps exported by MetaHuman "Save Face Textures". ~40 MB of
+# 2048 PNGs, and re-derivable ONLY through an editor UI command -- so they are
+# tracked (a script cannot rebuild them) and LFS carries the weight.
+hero/generated/Textures/*.png filter=lfs diff=lfs merge=lfs -text
+# MetaHuman DNA. ~54 MB per head, exported by
+# MetaHumanCharacterExportBlueprintLibrary.export_dna.
+# TRACKED RATHER THAN GITIGNORED, DELIBERATELY, even though a script can
+# re-derive it from the character asset. Importing a modified DNA with
+# `import_whole_rig` REPLACES the entire rig and makes the body type
+# non-editable, so the ORIGINAL dna is the only thing that puts the head
+# back. This project has already lost a hero to content that was gitignored
+# as "re-derivable" and could not be restored from a tag -- re-derivable
+# from an asset you are about to overwrite is not re-derivable.
+*.dna filter=lfs diff=lfs merge=lfs -text
+# DiffLocks raw groom output. hair_output_strands.npz is ~300 MB of opaque
+# float32 and is NOT re-derivable the way the .abc exports are: the diffusion
+# run is stochastic and no seed is recorded, so losing the file loses the
+# groom. That rules out the `characters/*/grooms/*.abc` gitignore precedent,
+# and by the same rule as the UE assets above it goes to LFS from its FIRST
+# commit rather than being retrofitted later.
+characters/*/grooms/difflocks_raw/*.npz filter=lfs diff=lfs merge=lfs -text
+/hero/blender/AlpineHero_Snap_deform.blend1 filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_ppi0a/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_ppi0b/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_gA/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_gB/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_ppisolve/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_s3_128/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_s3_256/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_s3_32/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_s3_64/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_tcread/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-13/target_t4base/ground.exr filter=lfs diff=lfs merge=lfs -text
+/research/audit/pipeline_full_2026-09-14_part3.zip filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_gr_base/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_gr_ev/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_gr_temp/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_gr_tint/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_grade_after/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-14/target_grade_before_lin/near_ground.exr filter=lfs diff=lfs merge=lfs -text
+/_verify/bench/2026-09-15/target_a7_shade_ml/near_ground.exr filter=lfs diff=lfs merge=lfs -text

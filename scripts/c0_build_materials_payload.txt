@@ -1,0 +1,268 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- import the 21 maps, build ONE master material, mint SEVEN instances.
+#
+# ONE MASTER, SEVEN INSTANCES, not seven materials. Seven materials would be
+# seven copies of the same graph, and the next change to the shading model
+# would have to be made seven times and remembered seven times -- which is
+# non-negotiable 24 wearing a different hat.
+#
+# EVERY WRITE IS READ BACK. set_material_instance_texture_parameter_value has
+# returned False on this project before while looking like it worked
+# (2026-08-16, the hero face bake: six instances created, "bound": [] on all
+# of them), so the setter's return value is not trusted and the parameter is
+# read off the instance afterwards.
+#
+# SAMPLER TYPES ARE SET EXPLICITLY. VerifySamplerType errors on EVERY
+# mismatch and applies an extra sRGB check that fires only for Normal and
+# Masks -- the correction recorded in CLAUDE.md non-negotiable 9. A wrong
+# sampler here does not render wrong, it stops the material compiling.
+
+# PARAMETERISED 2026-08-31. DEST / MASTER_NAME / TEX_PREFIX / MI_PREFIX are
+# substituted by the host alongside ROLES_JSON, so a second asset reuses THIS
+# graph rather than forking it. The docstring above argues against seven
+# materials because seven copies of one graph is non-negotiable 24 wearing a
+# different hat; copying this whole payload for the church would be the same
+# argument one level up.
+#
+# C0 passes exactly the constants it used to hardcode, so its substituted
+# payload is unchanged.
+DEST = "__DEST__"
+TEX = DEST + "/Tex"
+MASTER = DEST + "/__MASTER_NAME__"
+REPO = "C:/Users/Admin/UE5LandscapePipeline/"
+
+ROLES = ROLES_JSON
+
+_out = {"ok": False, "error": None, "textures": [], "master": {},
+        "instances": [], "compile_errors": None}
+try:
+    _at = _u.AssetToolsHelpers.get_asset_tools()
+    _mel = _u.MaterialEditingLibrary
+
+    # ---------- 1. textures -------------------------------------------
+    _KIND = {
+        "A": ("srgb", True, "TC_DEFAULT", "SAMPLERTYPE_COLOR"),
+        "N": ("srgb", False, "TC_NORMALMAP", "SAMPLERTYPE_NORMAL"),
+        "R": ("srgb", False, "TC_MASKS", "SAMPLERTYPE_MASKS"),
+    }
+    _texpath = {}
+    for _role in sorted(ROLES.keys()):
+        for _kind in ("A", "N", "R"):
+            _src = REPO + ROLES[_role][_kind]
+            _name = "__TEX_PREFIX__" + _role + "_" + _kind
+            _asset = TEX + "/" + _name
+            _r = {"role": _role, "kind": _kind, "asset": _asset,
+                  "imported": False, "settings": {}, "error": None}
+            try:
+                _t = _u.AssetImportTask()
+                _t.set_editor_property("filename", _src)
+                _t.set_editor_property("destination_path", TEX)
+                _t.set_editor_property("destination_name", _name)
+                _t.set_editor_property("automated", True)
+                _t.set_editor_property("replace_existing", True)
+                _t.set_editor_property("save", False)
+                _at.import_asset_tasks([_t])
+
+                _tex = _u.EditorAssetLibrary.load_asset(_asset)
+                if _tex is None:
+                    _r["error"] = "import produced no asset"
+                    _out["textures"].append(_r)
+                    continue
+                _r["imported"] = True
+                _srgb = _KIND[_kind][1]
+                _tex.set_editor_property("srgb", _srgb)
+                _tex.set_editor_property(
+                    "compression_settings",
+                    getattr(_u.TextureCompressionSettings, _KIND[_kind][2]))
+                _tex.set_editor_property("address_x", _u.TextureAddress.TA_WRAP)
+                _tex.set_editor_property("address_y", _u.TextureAddress.TA_WRAP)
+
+                def _rb(_p, _o=_tex):
+                    _v = _o.get_editor_property(_p)
+                    _n = getattr(_v, "name", None)
+                    return _n if _n is not None else _v
+
+                # ⛔ SAVE IT. AssetImportTask.save is False above, and without
+                # an explicit save the texture exists ONLY IN THE EDITOR.
+                # Measured 2026-08-30: all 21 of these survived every
+                # read-back, every audit and a full material build, and then
+                # VANISHED when the editor restarted -- leaving seven material
+                # instances on disk whose texture references dangled and a
+                # side-by-side frame that rendered an empty plane.
+                #
+                # does_asset_exist() and a successful get_editor_property are
+                # BOTH TRUE for an in-memory-only asset. The only instrument
+                # that distinguishes "saved" from "loaded" is the FILE.
+                _u.EditorAssetLibrary.save_asset(_asset)
+                _r["on_disk"] = bool(_u.EditorAssetLibrary.do_assets_exist(
+                    [_asset]))
+                for _p in ("srgb", "compression_settings", "address_x"):
+                    _r["settings"][_p] = _rb(_p)
+                # THE READ-BACK IS THE GATE, not the setter's silence.
+                if _r["settings"]["srgb"] != _srgb:
+                    _r["error"] = "srgb did not take"
+                if _r["settings"]["compression_settings"] != _KIND[_kind][2]:
+                    _r["error"] = "compression did not take"
+                _texpath[(_role, _kind)] = _asset
+            except Exception as _e:
+                _r["error"] = str(_e)[:160]
+            _out["textures"].append(_r)
+
+    _bad = [t for t in _out["textures"] if t["error"] or not t["imported"]]
+    if _bad:
+        raise RuntimeError("%d texture(s) failed -- nothing downstream may run"
+                           % len(_bad))
+
+    # ---------- 2. the master -----------------------------------------
+    # REUSE, THEN TOTALLY CLEAR -- never delete-then-create. The first
+    # version deleted the master and re-created it; on the SECOND run
+    # create_asset returned None, because the seven instances minted by the
+    # first run still referenced it, so the delete could not complete and the
+    # name stayed taken. The failure only appears on re-run, which is the
+    # worst kind: the tool works once and then reports "could not create" over
+    # a perfectly good asset. Reuse-and-clear is idempotent by construction
+    # and is what pipeline rule 3 asks for anyway.
+    _mat = _u.EditorAssetLibrary.load_asset(MASTER)
+    _out["master"]["reused"] = _mat is not None
+    if _mat is None:
+        _mat = _at.create_asset("__MASTER_NAME__", DEST, _u.Material,
+                                _u.MaterialFactoryNew())
+    if _mat is None:
+        raise RuntimeError("could not create " + MASTER)
+
+    # A fresh Material is empty, but the total clear runs anyway: the trap
+    # this project promoted to shared infrastructure is a SURVIVING node, and
+    # "it should be empty" is exactly the assumption that cost it three times.
+    _pre = _mel.get_material_expressions(_mat)
+    _out["master"]["expressions_before"] = len(_pre)
+    if _pre:
+        _mel.delete_all_material_expressions(_mat)
+        for _e0 in _mel.get_material_expressions(_mat):
+            _mel.delete_material_expression(_mat, _e0)
+        _rem = len(_mel.get_material_expressions(_mat))
+        _out["master"]["remaining_after_clear"] = _rem
+        if _rem:
+            raise RuntimeError(
+                "graph not empty after total clear: %d survived" % _rem)
+
+    _uv = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionTextureCoordinate, -900, 300)
+    _til = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionScalarParameter, -900, 420)
+    _til.set_editor_property("parameter_name", "Tiling")
+    _til.set_editor_property("default_value", 1.0)
+    _mul = _mel.create_material_expression(
+        _mat, _u.MaterialExpressionMultiply, -700, 340)
+    _mel.connect_material_expressions(_uv, "", _mul, "A")
+    _mel.connect_material_expressions(_til, "", _mul, "B")
+
+    _SAMP = [("BaseColor", "SAMPLERTYPE_COLOR", "MP_BASE_COLOR", "RGB", -450, 0),
+             ("Roughness", "SAMPLERTYPE_MASKS", "MP_ROUGHNESS", "R", -450, 300),
+             ("Normal", "SAMPLERTYPE_NORMAL", "MP_NORMAL", "RGB", -450, 600)]
+    _made = {}
+    for _pname, _stype, _prop, _pin, _x, _y in _SAMP:
+        _s = _mel.create_material_expression(
+            _mat, _u.MaterialExpressionTextureSampleParameter2D, _x, _y)
+        _s.set_editor_property("parameter_name", _pname)
+        _s.set_editor_property("sampler_type",
+                               getattr(_u.MaterialSamplerType, _stype))
+        # A default texture of the RIGHT KIND, so the master itself compiles
+        # and so an instance that forgets a parameter fails visibly rather
+        # than sampling whatever the engine had lying around.
+        _dk = {"BaseColor": "A", "Roughness": "R", "Normal": "N"}[_pname]
+        # ⛔ THE DEFAULT ROLE IS NOT HARDCODED. It was `plaster_wall` -- a C0
+        # role name -- which made the master wiring silently asset-specific
+        # while everything around it had been parameterised. Reusing the graph
+        # for the church failed here with KeyError ('plaster_wall', 'A') AFTER
+        # all 9 textures had imported successfully: the parameterisation
+        # looked complete because the part that was left behind was three
+        # levels down inside a loop.
+        #
+        # Same shape as the stage-10 DEST: a NAME THAT KEEPS WORKING FOR THE
+        # ASSET IT WAS WRITTEN FOR. Taking the first role in sorted order is
+        # deterministic and belongs to whatever manifest is being built.
+        _defrole = sorted(ROLES.keys())[0]
+        _s.set_editor_property(
+            "texture",
+            _u.EditorAssetLibrary.load_asset(_texpath[(_defrole, _dk)]))
+        _mel.connect_material_expressions(_mul, "", _s, "UVs")
+        _mel.connect_material_property(_s, _pin,
+                                       getattr(_u.MaterialProperty, _prop))
+        _made[_pname] = _s
+
+    # recompile_material RETURNS THE ERROR LIST. The engine log only says
+    # "Failed to compile", and this project rendered UE's default
+    # checkerboard across a whole landscape once because a sampler mismatch
+    # stopped a material compiling and nothing asked. Captured and GATED --
+    # a material that does not compile is not a material.
+    _errs = _mel.recompile_material(_mat)
+    _out["compile_errors"] = [str(e) for e in (_errs or [])]
+    if _out["compile_errors"]:
+        raise RuntimeError("master does not compile: %d error(s)"
+                           % len(_out["compile_errors"]))
+    _u.EditorAssetLibrary.save_asset(MASTER)
+
+    _exprs = _mel.get_material_expressions(_mat)
+    _out["master"]["expressions_after"] = len(_exprs)
+    _out["master"]["path"] = MASTER
+    _out["master"]["sampler_types"] = {
+        _p: getattr(_made[_p].get_editor_property("sampler_type"), "name", "?")
+        for _p in _made}
+
+    # ---------- 3. seven instances ------------------------------------
+    for _role in sorted(ROLES.keys()):
+        _mip = DEST + "/__MI_PREFIX__" + _role
+        _mi = _u.EditorAssetLibrary.load_asset(_mip)
+        if _mi is None:
+            _mi = _at.create_asset("__MI_PREFIX__" + _role, DEST,
+                                   _u.MaterialInstanceConstant,
+                                   _u.MaterialInstanceConstantFactoryNew())
+        if _mi is None:
+            raise RuntimeError("could not create " + _mip)
+        _mel.set_material_instance_parent(_mi, _mat)
+        _row = {"role": _role, "asset": _mip, "set": {}, "readback": {},
+                "error": None}
+        # ⭐ TILING, when the role table carries one. The master's `Tiling`
+        # scalar defaulted to 1.0 and NOTHING EVER SET IT, so every role
+        # rendered at the machine unwrap's own scale -- one UV tile spanning
+        # ~50 metres of the church, which put shingle courses at half a metre
+        # and read as slate slabs. A parameter that exists, compiles, and is
+        # never written is indistinguishable from one that was never added.
+        #
+        # Read back like every other write: a scalar setter is no more
+        # trustworthy than the texture setter, which returns False on this
+        # project while actually working.
+        if "tiling" in ROLES[_role]:
+            _tv = float(ROLES[_role]["tiling"])
+            _ok = _mel.set_material_instance_scalar_parameter_value(
+                _mi, "Tiling", _tv)
+            _got = _mel.get_material_instance_scalar_parameter_value(
+                _mi, "Tiling")
+            _row["set"]["Tiling"] = bool(_ok)
+            _row["readback"]["Tiling"] = round(float(_got), 4)
+            if abs(float(_got) - _tv) > 1e-3:
+                _row["error"] = ("Tiling read back %.4f, wanted %.4f"
+                                 % (float(_got), _tv))
+        for _pname, _kind in (("BaseColor", "A"), ("Roughness", "R"),
+                              ("Normal", "N")):
+            _tex = _u.EditorAssetLibrary.load_asset(_texpath[(_role, _kind)])
+            _ok = _mel.set_material_instance_texture_parameter_value(
+                _mi, _pname, _tex)
+            _row["set"][_pname] = bool(_ok)
+            _got = _mel.get_material_instance_texture_parameter_value(
+                _mi, _pname)
+            _row["readback"][_pname] = _got.get_name() if _got else None
+            if _got is None or _got.get_name() != _tex.get_name():
+                _row["error"] = _pname + " did not bind"
+        _u.EditorAssetLibrary.save_asset(_mip)
+        _out["instances"].append(_row)
+
+    _out["instances_bad"] = [i["role"] for i in _out["instances"] if i["error"]]
+    _out["ok"] = not _out["instances_bad"]
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

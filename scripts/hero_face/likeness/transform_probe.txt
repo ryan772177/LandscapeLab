@@ -1,0 +1,85 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. World and relative TRANSFORMS of the two groom components, plus
+# the actors and the bone the hero's groom is attached to.
+#
+# THE HYPOTHESIS THIS TESTS: a bound groom's ROOTS are projected onto the
+# target mesh, so they land correctly whatever the component transform does,
+# while the rest of each strand is carried by the component. A scale below 1
+# on the component therefore produces exactly the observed defect -- roots in
+# the right place, strands too short -- and it would be invisible to every
+# check that reads the groom asset, the binding, or the root coverage.
+#
+# The previous diff excluded relative_* fields, which is where this lives.
+
+_out = {"ok": False, "error": None}
+
+
+def _xf(_c):
+    _t = _c.get_world_transform()
+    return {
+        "world_loc": [round(_v, 3) for _v in
+                      [_t.translation.x, _t.translation.y, _t.translation.z]],
+        "world_scale": [round(_v, 6) for _v in
+                        [_t.scale3d.x, _t.scale3d.y, _t.scale3d.z]],
+        "rel_scale": [round(_v, 6) for _v in
+                      [_c.get_editor_property("relative_scale3d").x,
+                       _c.get_editor_property("relative_scale3d").y,
+                       _c.get_editor_property("relative_scale3d").z]],
+        "rel_loc": [round(_v, 3) for _v in
+                    [_c.get_editor_property("relative_location").x,
+                     _c.get_editor_property("relative_location").y,
+                     _c.get_editor_property("relative_location").z]],
+    }
+
+
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in list(_eas.get_all_level_actors()):
+        _l = _a.get_actor_label()
+        if _l == "HeroInWorld":
+            _s = _a.get_actor_scale3d()
+            _out["hero_actor_scale"] = [_s.x, _s.y, _s.z]
+            for _c in _a.get_components_by_class(_u.GroomComponent):
+                _n = str(_c.get_name())
+                if _n in ("Hair", "Beard", "Eyebrows"):
+                    _row = _xf(_c)
+                    _row["attachment_name"] = str(
+                        _c.get_editor_property("attachment_name"))
+                    _out.setdefault("hero_grooms", {})[_n] = _row
+            for _c in _a.get_components_by_class(_u.SkeletalMeshComponent):
+                if str(_c.get_name()) != "Face":
+                    continue
+                _row = _xf(_c)
+                # The bone the hair hangs off. If its world scale is not 1 the
+                # groom inherits it, and a facial rig bone is not something
+                # anyone would think to check.
+                for _b in ("FACIAL_C_FacialRoot", "head", "root"):
+                    try:
+                        _bt = _c.get_socket_transform(
+                            _b, _u.RelativeTransformSpace.RTS_WORLD)
+                        _row.setdefault("bones", {})[_b] = {
+                            "loc": [round(_v, 2) for _v in
+                                    [_bt.translation.x, _bt.translation.y,
+                                     _bt.translation.z]],
+                            "scale": [round(_v, 6) for _v in
+                                      [_bt.scale3d.x, _bt.scale3d.y,
+                                       _bt.scale3d.z]],
+                        }
+                    except Exception as _e:
+                        _row.setdefault("bones", {})[_b] = "unreadable: %s" % (
+                            str(_e)[:80])
+                _out["hero_face"] = _row
+        elif _l == "UnboundGroomProbe":
+            _s = _a.get_actor_scale3d()
+            _out["probe_actor_scale"] = [_s.x, _s.y, _s.z]
+            _c = _a.get_component_by_class(_u.GroomComponent)
+            if _c is not None:
+                _out["probe_groom"] = _xf(_c)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,99 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# STAGE THREE STANDALONE GROOMS FOR AN EYEBALL TEST. READ-ONLY.
+#
+# Spawns actors, moves the LEVEL viewport camera, and writes nothing: no asset
+# property is set, no package is saved, no reimport is run. The last property
+# write on a groom fatalled the editor at GroomResources.cpp:1919 and that
+# discipline is deliberate for this session.
+#
+# WHY STANDALONE, NO BINDING. A GroomActor with no skinned mesh never exercises
+# a binding's transfer data, so this stage isolates "does the groom's own data
+# reach the renderer" from every question about seating. It is the same rung the
+# 2026-08-21 ladder used, and its LIMIT is recorded there too: it proves the
+# ASSET is not corrupt, not that a bound groom will draw.
+#
+# LEFT-TO-RIGHT ORDER IS THE WHOLE POINT OF THE MANIFEST. Three heads of hair in
+# one frame are indistinguishable unless something records which is which, so
+# each actor's world location and groom path is logged and the caller prints
+# them beside the filenames.
+
+GROOMS = [
+    ("difflocks_k28",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_surf"),
+    ("clay_r4",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4"),
+    ("vendor_sidesweptfringe",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Hair_M_SideSweptFringe"),
+]
+
+BASE_X = 354430.0
+BASE_Y = -321400.0
+GROUND_Z = 31019.47
+HEAD_Z = GROUND_Z + 165.0
+SPACING = 40.0
+CAM_DIST = 120.0
+
+_out = {"ok": False, "error": None, "actors": [], "camera": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+
+    # remove any stage actors from a previous run so left-to-right cannot be
+    # contaminated by a leftover -- identified by LABEL PREFIX, and the count
+    # removed is reported rather than assumed
+    _killed = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _lbl = _a.get_actor_label()
+        except Exception:
+            continue
+        if _lbl.startswith("STAGE_GROOM_"):
+            _killed.append(_lbl)
+            _eas.destroy_actor(_a)
+    _out["removed_previous"] = _killed
+
+    # three actors on the Y axis, left (-) to right (+) as seen from -X
+    _n = len(GROOMS)
+    for _i, (_name, _path) in enumerate(GROOMS):
+        _g = _u.EditorAssetLibrary.load_asset(_path)
+        _row = {"index": _i, "name": _name, "groom_path": _path,
+                "loaded": _g is not None}
+        if _g is None:
+            _out["actors"].append(_row)
+            continue
+        _y = BASE_Y + (_i - (_n - 1) / 2.0) * SPACING
+        _loc = _u.Vector(BASE_X, _y, HEAD_Z)
+        _act = _eas.spawn_actor_from_class(_u.GroomActor, _loc,
+                                           _u.Rotator(0.0, 0.0, 0.0))
+        _act.set_actor_label("STAGE_GROOM_%d_%s" % (_i, _name))
+        _comp = _act.get_editor_property("groom_component")
+        _comp.set_editor_property("groom_asset", _g)
+
+        # READ BACK off the component, not off the variable we just set
+        _rb = _comp.get_editor_property("groom_asset")
+        _row["assigned_readback"] = _rb.get_path_name() if _rb else None
+        _row["assignment_matches"] = bool(
+            _rb and _rb.get_path_name().startswith(_path))
+        _row["binding_readback"] = str(
+            _comp.get_editor_property("binding_asset"))
+        _row["label"] = _act.get_actor_label()
+        _row["world_location"] = [_loc.x, _loc.y, _loc.z]
+        _out["actors"].append(_row)
+
+    # camera: stand off along -X, slight down-angle, framing all three
+    _cam = _u.Vector(BASE_X - CAM_DIST, BASE_Y, HEAD_Z + 25.0)
+    _rot = _u.Rotator(0.0, -8.0, 0.0)      # (ROLL, PITCH, YAW) -- 5.8 order
+    _ues.set_level_viewport_camera_info(_cam, _rot)
+    _gl, _gr = _ues.get_level_viewport_camera_info()
+    _out["camera"] = {"requested_loc": [_cam.x, _cam.y, _cam.z],
+                      "requested_rot_roll_pitch_yaw": [0.0, -8.0, 0.0],
+                      "readback_loc": [_gl.x, _gl.y, _gl.z],
+                      "readback_rot": [_gr.roll, _gr.pitch, _gr.yaw]}
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

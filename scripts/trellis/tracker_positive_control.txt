@@ -1,0 +1,120 @@
+import json as _json
+import unreal as _unreal
+
+# =====================================================================
+# POSITIVE CONTROL FOR track_face_landmarks_from_image
+# =====================================================================
+# The tracker has returned None on ten consecutive runs and 16 curves on one.
+# Every hypothesis so far has been about the SUBJECT -- material, normals,
+# triangle count, crop, light, scale. None has been about whether the
+# INSTRUMENT and the PIXEL PATH work at all.
+#
+# This feeds it Ryan's actual PHOTOGRAPH -- a real face, which is what the
+# tracker was trained on -- through the SAME read_render_target path the mesh
+# captures use. Two outcomes and both are informative:
+#
+#   landmarks  -> tracker and pixel path are sound; my MESH RENDER is the
+#                 problem, and the search stays on the subject.
+#   None       -> the pixel path is the problem (channel order: the docstring
+#                 says BGRA8), which would also explain the one success as
+#                 marginal rather than correct.
+#
+# A gate that has only ever refused has not been shown capable of accepting.
+# =====================================================================
+
+_out = {"error": None, "unreadable": [], "texture": {}, "control": {},
+        "mesh_compare": {}}
+
+_SSC = _unreal.MetaHumanCharacterEditorSubsystem
+_PNG = "C:/Users/Admin/UE5LandscapePipeline/hero/reference/hero_face_bald_headcrop.png"
+_DEST = "/Game/Hero/Generated"
+_TNAME = "T_HeroPortrait_Control"
+_W = 1024
+_H = 1024
+
+try:
+    _tex = _unreal.EditorAssetLibrary.load_asset(_DEST + "/" + _TNAME)
+    if _tex is None:
+        _t = _unreal.AssetImportTask()
+        _t.set_editor_property("filename", _PNG)
+        _t.set_editor_property("destination_path", _DEST)
+        _t.set_editor_property("destination_name", _TNAME)
+        _t.set_editor_property("automated", True)
+        _t.set_editor_property("replace_existing", True)
+        _t.set_editor_property("save", True)
+        _unreal.AssetToolsHelpers.get_asset_tools().import_asset_tasks([_t])
+        _tex = _unreal.EditorAssetLibrary.load_asset(_DEST + "/" + _TNAME)
+    if _tex is None:
+        raise RuntimeError("portrait texture did not import")
+    _out["texture"]["path"] = _tex.get_path_name()
+    _out["texture"]["class"] = _tex.get_class().get_name()
+    try:
+        _out["texture"]["size"] = [int(_tex.blueprint_get_size_x()),
+                                   int(_tex.blueprint_get_size_y())]
+    except Exception as _e:
+        _out["unreadable"].append("size: " + str(_e))
+
+    _w = _unreal.EditorLevelLibrary.get_editor_world()
+    _rt = _unreal.RenderingLibrary.create_render_target2d(
+        _w, _W, _H, _unreal.TextureRenderTargetFormat.RTF_RGBA8,
+        _unreal.LinearColor(0.2, 0.2, 0.2, 1.0))
+
+    _canvas, _size, _ctx = (
+        _unreal.RenderingLibrary.begin_draw_canvas_to_render_target(_w, _rt))
+    _canvas.draw_texture(_tex,
+                         _unreal.Vector2D(0.0, 0.0),
+                         _unreal.Vector2D(float(_W), float(_H)),
+                         _unreal.Vector2D(0.0, 0.0),
+                         _unreal.Vector2D(1.0, 1.0),
+                         _unreal.LinearColor(1.0, 1.0, 1.0, 1.0),
+                         _unreal.BlendMode.BLEND_OPAQUE)
+    _unreal.RenderingLibrary.end_draw_canvas_to_render_target(_w, _ctx)
+
+    try:
+        _unreal.RenderingLibrary.export_render_target(
+            _w, _rt, "C:/Users/Admin/UE5LandscapePipeline/_verify",
+            "20260816_tracker_control_photo.png")
+        _out["control"]["exported"] = True
+    except Exception as _e:
+        _out["unreadable"].append("export: " + str(_e))
+
+    _px = _unreal.RenderingLibrary.read_render_target(_w, _rt, False)
+    _out["control"]["pixels"] = len(_px) if _px is not None else None
+
+    # Sample a few pixels so the CHANNEL ORDER is visible in the record. Skin
+    # is red-dominant; if these come back blue-dominant the path is swapped.
+    if _px is not None and len(_px) > (_H // 2) * _W + _W // 2:
+        _i = (_H // 2) * _W + (_W // 2)
+        _c = _px[_i]
+        _out["control"]["centre_pixel_rgba"] = [int(_c.r), int(_c.g),
+                                                int(_c.b), int(_c.a)]
+        _sr = _sg = _sb = 0
+        _n = 0
+        for _y in range(_H // 3, 2 * _H // 3, 8):
+            for _x in range(_W // 3, 2 * _W // 3, 8):
+                _c2 = _px[_y * _W + _x]
+                _sr += int(_c2.r); _sg += int(_c2.g); _sb += int(_c2.b)
+                _n += 1
+        _out["control"]["centre_mean_rgb"] = [round(_sr / _n, 1),
+                                              round(_sg / _n, 1),
+                                              round(_sb / _n, 1)]
+        _out["control"]["red_dominant"] = bool(_sr > _sb)
+
+    _ssi = _unreal.get_editor_subsystem(_SSC)
+    _curves = _ssi.track_face_landmarks_from_image(_px, _W, _H)
+    if _curves is None:
+        _out["control"]["landmarks"] = None
+        _out["control"]["verdict"] = (
+            "TRACKER FOUND NOTHING IN A REAL PHOTOGRAPH -- the instrument or "
+            "the pixel path is the problem, not the mesh")
+    else:
+        _out["control"]["landmarks"] = len(_curves)
+        _out["control"]["curve_names"] = sorted(
+            [str(_k) for _k in _curves.keys()])[:14]
+        _out["control"]["verdict"] = (
+            "TRACKER AND PIXEL PATH ARE SOUND -- the mesh render is the problem")
+
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+
+print("__LL__" + _json.dumps(_out, default=str))

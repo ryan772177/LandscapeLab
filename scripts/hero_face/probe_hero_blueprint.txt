@@ -1,0 +1,88 @@
+# probe_hero_blueprint — what does Assemble's Blueprint actually configure?
+#
+# BP_MHC_AlpineHero is the artefact Assemble produces. Before adopting it as
+# the player pawn, this reads what it IS and what it SETS, because the answer
+# decides the route:
+#
+#   * if it derives from a Pawn/Character, it can BE the pawn
+#   * if it derives from Actor, it cannot, and the job is to graft its
+#     component setup onto LandscapeLabCharacter instead
+#
+# THE SPECIFIC THING BEING HUNTED
+#   The assembled Common library contains ABP_Face_PostProcess and
+#   ABP_Body_PostProcess. A MetaHuman skeletal mesh is deformed by a
+#   POST-PROCESS anim blueprint, which runs after the main anim graph. If the
+#   bare mesh assignment on LandscapeLabCharacter never carried that, the
+#   mesh would evaluate without its deformation -- which is a far better
+#   explanation of "every bone within 6 cm" than the skeleton mismatch I
+#   proposed and the control refuted.
+#
+# So this reports, per component: the mesh, its anim class, and its
+# post-process anim blueprint -- both as set on the COMPONENT and as stored
+# on the MESH ASSET, because either can carry it and they can disagree.
+import json as _json
+import unreal as _unreal
+
+_BP = r"__BP__"
+_out = {"error": None, "unreadable": [], "blueprint": None,
+        "parent_class": None, "components": [], "meshes_checked": []}
+try:
+    _bp = _unreal.EditorAssetLibrary.load_asset(_BP)
+    if _bp is None:
+        raise RuntimeError("blueprint did not load: " + _BP)
+    _out["blueprint"] = _bp.get_path_name()
+    try:
+        _pc = _bp.get_editor_property("parent_class")
+        _out["parent_class"] = None if _pc is None else str(_pc.get_name())
+    except Exception as _e:
+        _out["unreadable"].append("parent_class: " + str(_e)[:110])
+
+    _cls = _unreal.EditorAssetLibrary.load_blueprint_class(_BP)
+    _cdo = _unreal.get_default_object(_cls) if _cls is not None else None
+    _out["cdo"] = None if _cdo is None else _cdo.get_class().get_name()
+    if _cdo is not None:
+        for _c in _cdo.get_components_by_class(_unreal.SkinnedMeshComponent):
+            _rec = {"component": _c.get_name(),
+                    "class": _c.get_class().get_name()}
+            _sk = None
+            try:
+                _sk = _c.get_editor_property("skeletal_mesh_asset")
+                _rec["mesh"] = None if _sk is None else _sk.get_path_name()
+            except Exception as _e:
+                _rec["mesh"] = "UNREADABLE: " + str(_e)[:80]
+            for _k, _p in (("anim_class", "anim_class"),
+                           ("anim_mode", "animation_mode"),
+                           ("leader_pose", "leader_pose_component")):
+                try:
+                    _rec[_k] = str(_c.get_editor_property(_p))[:130]
+                except Exception as _e:
+                    _rec[_k] = "UNREADABLE"
+            # post-process ABP lives on the MESH ASSET
+            if _sk is not None:
+                try:
+                    _pp = _sk.get_editor_property("post_process_anim_blueprint")
+                    _rec["mesh_post_process_abp"] = (
+                        None if _pp is None else str(_pp))
+                except Exception as _e:
+                    _rec["mesh_post_process_abp"] = "UNREADABLE: " + str(_e)[:80]
+            _out["components"].append(_rec)
+
+    # And the SAME question of the meshes the game currently uses, so the
+    # difference between the working artefact and the broken one is visible
+    # side by side rather than inferred.
+    for _p in ("/Game/Hero/Generated/SKM_HeroFace",
+               "/Game/Hero/Generated/SKM_HeroBody",
+               "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh",
+               "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh"):
+        _o = _unreal.EditorAssetLibrary.load_asset(_p)
+        _rec = {"path": _p, "loads": _o is not None}
+        if _o is not None:
+            try:
+                _pp = _o.get_editor_property("post_process_anim_blueprint")
+                _rec["post_process_abp"] = None if _pp is None else str(_pp)[:140]
+            except Exception as _e:
+                _rec["post_process_abp"] = "UNREADABLE: " + str(_e)[:80]
+        _out["meshes_checked"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

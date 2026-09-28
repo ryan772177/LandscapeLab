@@ -1,0 +1,35 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "LandscapeLab Gameplay",
+	"Description": "Runtime gameplay module: the player character, the game mode, and the explicit list of engine plugins this game depends on. Exists so gameplay plugins are enabled HERE and never by editing LandscapeLab.uproject, which standing rule 4 forbids and which PluginManager.cpp:420-433 makes unnecessary -- a project plugin with EnabledByDefault is honoured with no .uproject entry at all.",
+	"Category": "Gameplay",
+	"CreatedBy": "LandscapeLab",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EnabledByDefault": true,
+	"Modules": [
+		{
+			"Name": "LandscapeLabGameplay",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "StateTree",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
+		}
+	]
+}

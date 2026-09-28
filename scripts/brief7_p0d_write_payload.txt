@@ -1,0 +1,201 @@
+# brief7 Phase 0d WRITE. Creates the PPV_Look actor and grades it; sets the
+# sun's light-shaft occlusion; sets fog volumetric scattering distribution;
+# sets the cloud coverage. Records BEFORE values for reversibility. Saves the
+# dirty packages. Reads every written value back IN MEMORY (rule 12); the COLD
+# cross-process read-back is a separate relaunch.
+#
+# R-LOOK-1: does NOT touch the bench PPV (Lighting_alpine_8k_PostProcess), the
+# bench profile, or benchmark.json. PPV_Look is a NEW actor. It is persisted
+# with enabled=False so no bench measurement is affected by default; the Look
+# profile ENABLES it (done at capture time in 0e). The fog/cloud/sun edits are
+# global scene fields the fence explicitly permits.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+BENCH_PPV = "Lighting_alpine_8k_PostProcess"
+SUN = "Lighting_alpine_8k_Sun"
+FOG = "Lighting_alpine_8k_Fog"
+CLOUD_MI = "/Game/Bench/MI_AlpineClouds"
+LOOK_LABEL = "PPV_Look"
+
+# grading targets (starting values; L0 refines)
+WB_TEMP = 6200.0          # sun 5200 K + 1000
+WB_TINT = 0.0
+CONTRAST_W = 0.90
+LOCAL_EXP = 0.8
+BLOOM_INT = 0.4
+DIRT_INT = 0.1
+GRAIN = 0.3
+VIGNETTE = 0.3
+COMP_BIAS = -14.2571      # the A-6 sun solve (matches bench manual comp)
+FOG_SCATTER = 0.2
+CLOUD_COVERAGE = 0.1
+
+_out = {"error": None, "before": {}, "created": None, "applied": {},
+        "saved": {}, "notes": []}
+
+
+def _rb(obj, names):
+    d = {}
+    for n in names:
+        try:
+            d[n] = str(obj.get_editor_property(n))
+        except Exception as e:
+            d[n] = "<unreadable: %s>" % str(e)[:50]
+    return d
+
+
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    # guard: refuse if a PPV_Look already exists (idempotency; do not stack).
+    _existing_look = [a for a in _all if isinstance(a, _u.PostProcessVolume)
+                      and str(a.get_actor_label()) == LOOK_LABEL]
+    if _existing_look:
+        _out["notes"].append("PPV_Look already exists (%d) -- reusing the first, "
+                             "not spawning a duplicate" % len(_existing_look))
+        _look = _existing_look[0]
+    else:
+        _look = _eas.spawn_actor_from_class(
+            _u.PostProcessVolume, _u.Vector(0.0, 0.0, 0.0), _u.Rotator(0, 0, 0))
+        _look.set_actor_label(LOOK_LABEL)
+        _out["created"] = str(_look.get_path_name())
+
+    # --- PPV_Look actor-level props ---
+    _look.set_editor_property("unbound", True)
+    _look.set_editor_property("priority", 1.0)   # above bench PPV's 0.0
+    _look.set_editor_property("blend_weight", 1.0)
+    _look.set_editor_property("enabled", False)   # Look profile enables it
+
+    # --- PPV_Look grading (build on the current settings struct) ---
+    _s = _look.get_editor_property("settings")
+    _s.set_editor_property("override_auto_exposure_method", True)
+    _s.set_editor_property("auto_exposure_method", _u.AutoExposureMethod.AEM_MANUAL)
+    _s.set_editor_property("override_auto_exposure_bias", True)
+    _s.set_editor_property("auto_exposure_bias", COMP_BIAS)
+    _s.set_editor_property("override_local_exposure_highlight_contrast_scale", True)
+    _s.set_editor_property("local_exposure_highlight_contrast_scale", LOCAL_EXP)
+    _s.set_editor_property("override_local_exposure_shadow_contrast_scale", True)
+    _s.set_editor_property("local_exposure_shadow_contrast_scale", LOCAL_EXP)
+    _s.set_editor_property("override_white_temp", True)
+    _s.set_editor_property("white_temp", WB_TEMP)
+    _s.set_editor_property("override_white_tint", True)
+    _s.set_editor_property("white_tint", WB_TINT)
+    _s.set_editor_property("override_color_contrast", True)
+    _s.set_editor_property("color_contrast", _u.Vector4(1.0, 1.0, 1.0, CONTRAST_W))
+    _s.set_editor_property("override_bloom_method", True)
+    _s.set_editor_property("bloom_method", _u.BloomMethod.BM_FFT)
+    _s.set_editor_property("override_bloom_intensity", True)
+    _s.set_editor_property("bloom_intensity", BLOOM_INT)
+    _s.set_editor_property("override_bloom_dirt_mask_intensity", True)
+    _s.set_editor_property("bloom_dirt_mask_intensity", DIRT_INT)
+    _s.set_editor_property("override_film_grain_intensity", True)
+    _s.set_editor_property("film_grain_intensity", GRAIN)
+    _s.set_editor_property("override_vignette_intensity", True)
+    _s.set_editor_property("vignette_intensity", VIGNETTE)
+    _look.modify(True)
+    _look.set_editor_property("settings", _s)
+
+    _sr = _look.get_editor_property("settings")
+    _out["applied"]["ppv_look"] = {
+        "actor": {"unbound": str(_look.get_editor_property("unbound")),
+                  "priority": str(_look.get_editor_property("priority")),
+                  "blend_weight": str(_look.get_editor_property("blend_weight")),
+                  "enabled": str(_look.get_editor_property("enabled"))},
+        "settings": _rb(_sr, [
+            "auto_exposure_method", "auto_exposure_bias",
+            "local_exposure_highlight_contrast_scale",
+            "local_exposure_shadow_contrast_scale",
+            "white_temp", "white_tint", "color_contrast",
+            "bloom_method", "bloom_intensity", "bloom_dirt_mask_intensity",
+            "film_grain_intensity", "vignette_intensity"])}
+
+    # --- Sun light shafts ---
+    _sun_m = [a for a in _all if isinstance(a, _u.DirectionalLight)
+              and str(a.get_actor_label()) == SUN]
+    if not _sun_m:
+        raise RuntimeError("actor not found: " + SUN)
+    _sun = _sun_m[0]
+    _lc = _sun.get_component_by_class(_u.LightComponent)
+    _out["before"]["sun_shaft_occlusion"] = str(
+        _lc.get_editor_property("enable_light_shaft_occlusion"))
+    _out["before"]["sun_shaft_bloom"] = str(
+        _lc.get_editor_property("enable_light_shaft_bloom"))
+    _lc.modify(True)
+    _lc.set_editor_property("enable_light_shaft_bloom", True)
+    _lc.set_editor_property("enable_light_shaft_occlusion", True)
+    _out["applied"]["sun"] = _rb(_lc, ["enable_light_shaft_bloom",
+                                       "enable_light_shaft_occlusion"])
+
+    # --- Fog ---
+    _fog_m = [a for a in _all if isinstance(a, _u.ExponentialHeightFog)
+              and str(a.get_actor_label()) == FOG]
+    if not _fog_m:
+        raise RuntimeError("actor not found: " + FOG)
+    _fog = _fog_m[0]
+    _fc = _fog.get_component_by_class(_u.ExponentialHeightFogComponent)
+    _out["before"]["fog_scatter"] = str(
+        _fc.get_editor_property("volumetric_fog_scattering_distribution"))
+    _out["before"]["fog_volumetric"] = str(
+        _fc.get_editor_property("enable_volumetric_fog"))
+    _fc.modify(True)
+    _fc.set_editor_property("enable_volumetric_fog", True)
+    _fc.set_editor_property("volumetric_fog_scattering_distribution", FOG_SCATTER)
+    _out["applied"]["fog"] = _rb(_fc, ["enable_volumetric_fog",
+                                       "volumetric_fog_scattering_distribution"])
+
+    # --- Cloud coverage (global material param) ---
+    _mi = _u.load_asset(CLOUD_MI)
+    if _mi is None:
+        raise RuntimeError("could not load cloud MI: " + CLOUD_MI)
+    _before_cov = _u.MaterialEditingLibrary.get_material_instance_scalar_parameter_value(
+        _mi, "Cloud_GlobalCoverage")
+    _out["before"]["cloud_coverage"] = float(_before_cov)
+    _u.MaterialEditingLibrary.set_material_instance_scalar_parameter_value(
+        _mi, "Cloud_GlobalCoverage", CLOUD_COVERAGE)
+    _after_cov = _u.MaterialEditingLibrary.get_material_instance_scalar_parameter_value(
+        _mi, "Cloud_GlobalCoverage")
+    _out["applied"]["cloud_coverage"] = float(_after_cov)
+
+    # reversibility note (finding 4): a re-run captures an already-modified
+    # "before", so flag when the baseline is not pristine.
+    if (_existing_look or _out["before"].get("fog_scatter") == str(FOG_SCATTER)
+            or abs(_out["before"].get("cloud_coverage", -1) - CLOUD_COVERAGE) < 1e-4):
+        _out["notes"].append("BEFORE values may NOT be pristine (re-run) -- the "
+                             "true baseline is in the first run's JSON; archive it.")
+
+    # --- PERSIST: save the level (map + dirty external actors) and the MI ---
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _saved_level = _les.save_current_level()
+    _out["saved"]["level_call"] = bool(_saved_level)
+    _out["saved"]["cloud_mi_call"] = bool(
+        _u.EditorAssetLibrary.save_asset(CLOUD_MI, False))
+
+    # finding 1 (MAJOR): save_current_level()/save_asset returning True proves
+    # only the call ran (RECIPES.md:16018; LESSONS.md:18216 save reported True
+    # having written nothing). The artefact is the verification -- census the
+    # dirty set AFTER the save and report counts (rule 13). Non-empty is a
+    # WARNING, not a raise: the definitive proof is the 0e cold cross-process
+    # read-back; incidental unrelated dirties must not mask a real save.
+    _dirty_map = [str(p) for p in
+                  _u.EditorLoadingAndSavingUtils.get_dirty_map_packages()]
+    _dirty_content = [str(p) for p in
+                      _u.EditorLoadingAndSavingUtils.get_dirty_content_packages()]
+    _out["saved"]["dirty_map_count"] = len(_dirty_map)
+    _out["saved"]["dirty_content_count"] = len(_dirty_content)
+    _out["saved"]["dirty_map"] = _dirty_map
+    _out["saved"]["dirty_content"] = _dirty_content
+    _cloud_still_dirty = any("MI_AlpineClouds" in p for p in _dirty_content)
+    _out["saved"]["cloud_mi_persisted"] = not _cloud_still_dirty
+    if _dirty_map or _dirty_content:
+        _out["notes"].append(
+            "POST-SAVE DIRTY: map=%d content=%d -- see lists; 0e cold read-back "
+            "is the definitive persistence proof" % (len(_dirty_map),
+                                                     len(_dirty_content)))
+
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL_0D__" + _json.dumps(_out, default=str))

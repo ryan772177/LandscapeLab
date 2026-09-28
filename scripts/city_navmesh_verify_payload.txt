@@ -1,0 +1,205 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# ACCEPTANCE TEST for the town navmesh: a PROJECTION QUERY with negative
+# controls. Package bytes on disk prove a build ran; only a projection proves
+# the navmesh is where it was asked to be.
+#
+# ⚠ TEST == SUCCESS EXPLICITLY. ENavigationQueryResult is
+# INVALID=0, ERROR=1, FAIL=2, SUCCESS=3 -- so plain truthiness INVERTS the gate
+# (INVALID, the worst outcome, is falsy; ERROR and FAIL are truthy). PHASE2_PLAN
+# unit 9 flags this by name.
+#
+# ⚠ THE QUERY EXTENT MUST SPAN THE LOCAL RELIEF. R-NAVBUILD measured a fixed
+# height with +-20 m tolerance reading 7/25 on a navmesh that reads 25/25 at
+# +-120 m. A coverage number is a property of the query as much as of the
+# navmesh, so the extent is declared here and reported with the result.
+#
+# THREE POPULATIONS, and the controls are what make the hits mean anything:
+#   STREETS   sampled from the committed city plan -> MUST project
+#   FAR       far outside every bounds volume      -> MUST NOT project
+#   MIDGAP    between the two volumes              -> MUST NOT project
+
+PLAN = r"__PLAN__"
+EXTENT_CM = 12000.0
+
+_out = {"ok": False, "error": None, "extent_cm": EXTENT_CM}
+try:
+    # ⛔ LOAD EVERY REGION FIRST. NavigationDataChunkActors are World Partition
+    # actors: if the region holding them is not streamed in, the navmesh is not
+    # RESIDENT and every projection misses. A first run of this test returned
+    # 0/40 streets AND 0/7 on both negative controls -- a result that cannot
+    # distinguish "no navmesh there" from "the query never works", which is
+    # non-negotiable 6 exactly.
+    _ok_l, _mn, _mx, _err_l = _u.LandscapeLabTools.load_all_world_partition_regions()
+    _out["regions_loaded"] = bool(_ok_l)
+    _out["region_load_error"] = _err_l or None
+
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _ns = _u.NavigationSystemV1.get_navigation_system(_w)
+    _out["nav_system"] = bool(_ns)
+
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _chunks = [a for a in _eas.get_all_level_actors()
+               if a.get_class().get_name() == "NavigationDataChunkActor"]
+    _out["nav_chunk_actors_resident"] = len(_chunks)
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+
+    def _project(x, y, z):
+        _loc = _u.Vector(x, y, z)
+        _ext = _u.Vector(EXTENT_CM, EXTENT_CM, EXTENT_CM)
+        # ⛔ FIVE ARGUMENTS, NOT FOUR. The signature is
+        #   (world_context_object, point, nav_data, filter_class, query_extent)
+        # Passing (world, point, None, extent) puts the EXTENT into
+        # filter_class and leaves query_extent at its default [0,0,0] -- a
+        # zero-extent projection, which misses essentially everywhere. That is
+        # what produced 0/40 streets AND a failing positive control on the
+        # first run of this test. An API remembered is an API guessed.
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _loc, None, None, _ext)
+        except Exception:
+            return None
+        return _r
+
+    def _hit(r):
+        # project_point_to_navigation returns the projected Vector, or a
+        # zero/near-origin vector when it fails. A projected point that is
+        # nowhere near the query is a MISS, not a hit -- checked by distance
+        # rather than by truthiness.
+        return r is not None and not (abs(r.x) < 1.0 and abs(r.y) < 1.0)
+
+    # ---- POSITIVE CONTROL: the PlayerStart, on the OTHER volume ----------
+    # Without this, "0 of 40" is not a measurement. This point was verified to
+    # project on 2026-08-17 and its volume was rebuilt in the same run as the
+    # town's, so if it fails the INSTRUMENT is broken, not the town navmesh.
+    _ps = [a for a in _eas.get_all_level_actors()
+           if a.get_class().get_name() == "PlayerStart"]
+    if _ps:
+        _pl = _ps[0].get_actor_location()
+        # ⚠ TIGHT EXTENT HERE TOO. A LARGE EXTENT DOES NOT MERELY WIDEN THE
+        # SEARCH -- IT CHANGES THE ANSWER. Queried at 120 m this same point
+        # reported projecting to a polygon 116.7 m away in Y, which reads as
+        # "the spawn is not navigable". A radial map at 500 cm then showed the
+        # plaza centre projecting with 0.0 cm lateral displacement, and every
+        # ring out to 200 m projecting. The far result was the query, not the
+        # navmesh, so the control must use the same tight extent it gates on.
+        _e3 = _u.Vector(500.0, 500.0, 500.0)
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(_pl.x, _pl.y, _pl.z), None, None, _e3)
+        except Exception:
+            _r = None
+        _out["control_playerstart"] = {
+            "from": [round(_pl.x, 1), round(_pl.y, 1), round(_pl.z, 1)],
+            "extent_cm": 500.0,
+            "projects": _hit(_r),
+            "lateral_cm": (round(_math.hypot(_r.x - _pl.x, _r.y - _pl.y), 1)
+                           if _hit(_r) else None),
+            "to": ([round(_r.x, 1), round(_r.y, 1), round(_r.z, 1)]
+                   if _hit(_r) else None)}
+
+    # ---- STREETS: must project ------------------------------------------
+    _streets = _p["streets"]
+    _step = max(1, len(_streets) // 40)
+    _samples = _streets[::_step][:40]
+    _ok, _miss, _dz = 0, 0, []
+    for _s in _samples:
+        _r = _project(_s["loc_cm"][0], _s["loc_cm"][1], _s["loc_cm"][2])
+        if _hit(_r):
+            _ok += 1
+            _dz.append(abs(_r.z - _s["loc_cm"][2]))
+        else:
+            _miss += 1
+    _out["streets_sampled"] = len(_samples)
+    _out["streets_projected"] = _ok
+    _out["streets_missed"] = _miss
+    if _dz:
+        _dz.sort()
+        _out["street_dz_cm"] = {"p50": round(_dz[len(_dz) // 2], 1),
+                                "max": round(_dz[-1], 1)}
+
+    # ⚠ LATERAL DISPLACEMENT IS THE NUMBER THAT MATTERS, and a big query extent
+    # hides it. "It projects" with a 120 m extent only says navmesh exists
+    # somewhere in a 240 m box -- the plaza's first result landed 116 m away in
+    # Y, which would mean the plaza itself is NOT navigable. Re-query each
+    # sample with a TIGHT extent and report how far the projection moved in XY.
+    _TIGHT = 500.0
+    _lat, _tight_ok, _tight_miss = [], 0, 0
+    for _s in _samples:
+        _loc = _u.Vector(_s["loc_cm"][0], _s["loc_cm"][1], _s["loc_cm"][2])
+        _e2 = _u.Vector(_TIGHT, _TIGHT, _TIGHT)
+        try:
+            _r2 = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _loc, None, None, _e2)
+        except Exception:
+            _r2 = None
+        if _hit(_r2):
+            _tight_ok += 1
+            _lat.append(_math.hypot(_r2.x - _loc.x, _r2.y - _loc.y))
+        else:
+            _tight_miss += 1
+    _out["tight_extent_cm"] = _TIGHT
+    _out["streets_projected_tight"] = _tight_ok
+    _out["streets_missed_tight"] = _tight_miss
+    if _lat:
+        _lat.sort()
+        _out["street_lateral_cm"] = {
+            "p50": round(_lat[len(_lat) // 2], 1),
+            "p90": round(_lat[int(0.9 * (len(_lat) - 1))], 1),
+            "max": round(_lat[-1], 1)}
+
+    # ---- the plaza itself ------------------------------------------------
+    _cx, _cy = _p["site_centre_cm"]
+    _pz = _p["pad_z_cm"]["min"]
+    _r = _project(_cx, _cy, _pz)
+    _out["plaza_projects"] = _hit(_r)
+    if _hit(_r):
+        _out["plaza_point"] = [round(_r.x, 1), round(_r.y, 1), round(_r.z, 1)]
+
+    # ---- NEGATIVE CONTROL: far outside every volume ----------------------
+    _far = [(0.0, 0.0), (100000.0, 100000.0), (-380000.0, -100000.0),
+            (200000.0, 300000.0)]
+    _far_hits = 0
+    for _fx, _fy in _far:
+        if _hit(_project(_fx, _fy, 20000.0)):
+            _far_hits += 1
+    _out["far_points"] = len(_far)
+    _out["far_projected"] = _far_hits
+
+    # ---- NEGATIVE CONTROL: the gap between the two volumes ---------------
+    _mid = [(50000.0, -50000.0), (0.0, 100000.0), (150000.0, 0.0)]
+    _mid_hits = 0
+    for _mx, _my in _mid:
+        if _hit(_project(_mx, _my, 20000.0)):
+            _mid_hits += 1
+    _out["midgap_points"] = len(_mid)
+    _out["midgap_projected"] = _mid_hits
+
+    # THE CONTROL DECIDES WHETHER A ZERO IS EVIDENCE. If the PlayerStart -- a
+    # point known to project -- also misses, this run measured nothing and must
+    # say so rather than report the town as un-navigable.
+    _ctrl = _out.get("control_playerstart", {}).get("projects", False)
+    if not _ctrl:
+        _out["ok"] = False
+        _out["verdict"] = ("COULD NOT LOOK -- the positive control (PlayerStart) "
+                           "did not project either, so a miss on the town says "
+                           "nothing about the town")
+    else:
+        # The GATE is the tight-extent result, not the generous one. A street
+        # that only projects inside a 120 m box is not a navigable street.
+        _out["ok"] = bool(_tight_ok >= int(0.8 * len(_samples))
+                          and _far_hits == 0 and _mid_hits == 0)
+        _out["verdict"] = (
+            "THE TOWN IS NAVIGABLE -- %d/%d streets project within %.0f cm"
+            % (_tight_ok, len(_samples), _TIGHT) if _out["ok"] else
+            "REFUSE -- streets %d/%d at tight extent, far %d, midgap %d"
+            % (_tight_ok, len(_samples), _far_hits, _mid_hits))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

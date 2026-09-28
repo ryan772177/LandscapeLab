@@ -1,0 +1,183 @@
+{
+  "_comment": [
+    "VISUAL SURVEY — CURATION, not measurement. Judgements made by",
+    "HILLSHADING each stamp and LOOKING at it.",
+    "",
+    "This exists because `tag_source: \"filename\"` is a GUESS. A tag matched",
+    "against a filename records what the vendor called the file, not what",
+    "the pixels contain. The pixels are ground truth; the filename is a",
+    "derived record (CLAUDE.md non-negotiable 15).",
+    "",
+    "Surveyed 2026-08-03 for the alpine region composition. Evidence:",
+    "_verify/20260803_stamp_survey_alpine.png",
+    "",
+    "scripts/catalogue_heightmaps.py merges this in and sets",
+    "tag_source = \"visual\" for every entry named here, so the trust tier",
+    "survives regeneration of the catalogue. Entries NOT named here keep",
+    "tag_source = \"filename\" and must be looked at before being trusted.",
+    "",
+    "`character` is what the stamp ACTUALLY depicts. `alpine` is whether it",
+    "belongs in an alpine composition, and is a judgement about THIS region,",
+    "not a quality score — a desert butte is not a bad stamp."
+  ],
+  "surveyed": "2026-08-03",
+  "surveyed_for": "alpine region, Pass 1 terrain composition",
+  "evidence": "_verify/20260803_stamp_survey_alpine.png",
+  "entries": {
+    "HM_Rugged_Rocks_14_Ex.png": {
+      "character": "circular radial dome with a crater-like centre",
+      "alpine": "DISQUALIFIED",
+      "note": "Filename tag said `outcrop`. IT IS NOT AN OUTCROP. This was the ONE placement already committed to the recipe (`east_ridge_outcrops`, ADD 180 m) and it would have put a round bump on the east ridge. Caught only by looking."
+    },
+    "HM_Rugged_Rocks_02_Ex.png": {
+      "character": "circular dome / crater rim",
+      "alpine": "DISQUALIFIED",
+      "note": "Filename tag `outcrop`; same radial family as _14."
+    },
+    "HM_Terraced_Cliffs_06_Ex.png": {
+      "character": "volcanic cone with radial gullies",
+      "alpine": "DISQUALIFIED",
+      "note": "Filename tag `cliffs`. It is a cone, not a cliff band."
+    },
+    "HM_Terraced_Cliffs_Drake_Ex.png": {
+      "character": "volcanic cone with radial gullies",
+      "alpine": "DISQUALIFIED",
+      "note": "Filename tag `cliffs`. Same cone family as _06."
+    },
+    "HM_Monument_Desert_02_Ex.png": {
+      "character": "isolated desert buttes on a flat pan",
+      "alpine": "DISQUALIFIED",
+      "note": "Correct for arid mesa country, wrong biome for alpine. Not a defect in the stamp."
+    },
+    "HM_Terrace_Fields_15_Ex.png": {
+      "character": "man-made agricultural terracing, contour-following field walls",
+      "alpine": "DISQUALIFIED",
+      "note": "Filename tag `terrace` reads as a geological terrace. It is ANTHROPOGENIC. Would imply farming culture wherever placed — a world-building statement, not a landform."
+    },
+    "HM_Dover_Cliffs_06_Ex.png": {
+      "character": "rounded chalk downland, soft convex hills",
+      "alpine": "DOWNGRADED",
+      "note": "A real cliff formation, but far too soft and rounded to read as alpine. Usable in a temperate coastal region."
+    },
+    "HM_Dover_Cliffs_15_Ex.png": {
+      "character": "rounded chalk downland, soft convex hills",
+      "alpine": "DOWNGRADED",
+      "note": "Same as _06."
+    },
+    "HM_Rough_Cliffs_18_Ex.png": {
+      "character": "sharp jagged high-relief arêtes with deep shadowed faces",
+      "alpine": "PRIMARY",
+      "note": "The best summit-massif stamp in the collection. Used as summit_massif_north."
+    },
+    "HM_Seaside_Cliffs_02_Ex.png": {
+      "character": "parallel knife-edge spurs separated by deep linear troughs",
+      "alpine": "PRIMARY",
+      "note": "Despite the name, reads as a parallel arête system. Used as spine_aretes."
+    },
+    "HM_Seaside_Cliffs_06_Ex.png": {
+      "character": "parallel spur-and-trough system, slightly softer than _02",
+      "alpine": "PRIMARY",
+      "note": "Alternate for spine_aretes."
+    },
+    "HM_Pride_Rocks_02_Ex.png": {
+      "character": "angular blocky rock mass with sharp planar faces",
+      "alpine": "PRIMARY",
+      "note": "Used as summit_massif_south."
+    },
+    "HM_Pride_Rocks_11_Ex.png": {
+      "character": "angular rock mass, more dissected than _02",
+      "alpine": "PRIMARY",
+      "note": "Alternate summit."
+    },
+    "HM_Pride_Rocks_01_Ex.png": {
+      "character": "single large rounded rock mass",
+      "alpine": "SECONDARY",
+      "note": "One big mass, less articulated than _02/_11."
+    },
+    "HM_Tundra_01_Ex.png": {
+      "character": "dendritic mountain drainage, sharp ridge-and-valley",
+      "alpine": "PRIMARY",
+      "note": "Excellent high-alpine dissection texture."
+    },
+    "HM_Tundra_11_Ex.png": {
+      "character": "dendritic mountain drainage, denser than _01",
+      "alpine": "PRIMARY",
+      "note": "Excellent high-alpine dissection texture."
+    },
+    "HM_Valleys_01_Ex.png": {
+      "character": "dendritic ridge-and-valley, well-incised",
+      "alpine": "PRIMARY",
+      "note": "Used as drainage_south with MIN to carve."
+    },
+    "HM_Terraced_Cliffs_01_Ex.png": {
+      "character": "linear stepped cliff band, genuine geological terracing",
+      "alpine": "PRIMARY",
+      "note": "The only true cliff BAND. Used as cliff_band_west. Unlike _06/_Drake this one matches its filename."
+    },
+    "HM_Rugged_Sedi_Rocks_24_Ex.png": {
+      "character": "scattered low rock knolls on a broad surface",
+      "alpine": "PRIMARY",
+      "note": "Used as outcrops_mid for mid-slope outcrop scatter."
+    },
+    "HM_Rugged_Sedi_Rocks_08_Ex.png": {
+      "character": "one large sedimentary mass with a steep face",
+      "alpine": "SECONDARY",
+      "note": "Singular rather than scattered."
+    },
+    "HM_Highlands_02_Ex.png": {
+      "character": "elongated parallel ridges, moderate relief",
+      "alpine": "SECONDARY",
+      "note": "Good foothill-band ridging."
+    },
+    "HM_Highlands_09_Ex.png": {
+      "character": "broad smooth elongated ridges",
+      "alpine": "SECONDARY",
+      "note": "Smoother than _02; foothill only."
+    },
+    "HM_Rolling_Hills_06_Ex.png": {
+      "character": "dense sharply-dissected hill field",
+      "alpine": "SECONDARY",
+      "note": "Sharper than the name suggests. Foothill texture."
+    },
+    "HM_Meadows_04_Ex.png": {
+      "character": "softly dissected low relief with broad open floors",
+      "alpine": "PRIMARY",
+      "note": "Used as foothill_basin_southwest with MIN to cap elevation."
+    },
+    "HM_Meadows_28_Ex.png": {
+      "character": "broad low relief, gentle undulation",
+      "alpine": "PRIMARY",
+      "note": "Used as foothill_basin_east with MIN to cap elevation."
+    },
+    "HM_Meadows_12_Ex.png": {
+      "character": "low contrast, soft, near-featureless",
+      "alpine": "SECONDARY",
+      "note": "Too flat to carry a basin floor on its own."
+    },
+    "HM_Canyon_04_Ex.png": {
+      "character": "broad incised canyon with terraced walls",
+      "alpine": "SECONDARY",
+      "note": "Reads arid; usable if the drainage is deep."
+    },
+    "HM_Canyon_18_Ex.png": {
+      "character": "ridge mass cut by a deep canyon",
+      "alpine": "SECONDARY",
+      "note": "The ridge half is alpine-usable."
+    },
+    "HM_Canyon_Shapes_03_Ex.png": {
+      "character": "blocky rectilinear canyon network, artificial-looking",
+      "alpine": "DOWNGRADED",
+      "note": "The right angles read as authored, not eroded."
+    },
+    "HM_Rocky_Plateaus_01_Ex.png": {
+      "character": "single broad plateau mass with steep flanks",
+      "alpine": "SECONDARY",
+      "note": "Usable as a shoulder or bench."
+    },
+    "HM_Rugged_Rocks_20_Ex.png": {
+      "character": "dense sharp rocky micro-relief",
+      "alpine": "SECONDARY",
+      "note": "Good low-amplitude detail overlay; not a landform on its own."
+    }
+  }
+}

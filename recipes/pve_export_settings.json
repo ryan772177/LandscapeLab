@@ -1,0 +1,36 @@
+{
+  "_comment": "THE PVE EXPORT CONFIGURATION, RECORDED BECAUSE IT LIVES NOWHERE ELSE THAT SURVIVES. The working settings are stored inside PVE_Norway_Spruce_01.uasset, which sits under LandscapeLab/Content/Megaplant_Library/ and is gitignored (.gitignore:191). A Fab re-download reverts all four nodes to the vendor defaults SILENTLY -- no error, no diff, and the next export would write SKELETAL meshes into the vendor folder with Replace policy. This file is the repair instructions. It is DATA, not an input: no script reads it, because the Procedural Vegetation export cannot be driven from Python (see _not_scriptable).",
+  "_verified": "2026-08-15. Norway Spruce nodes A-D exported with these settings; result committed at 095348fd and rendered in _verify/20260815_pve_spruce_four_variants.png.",
+
+  "per_node_settings": {
+    "content_browser_folder": "/Game/Meshes/Trees",
+    "mesh_name": "SM_PVE_<Species>_01_<Variant>",
+    "asset_replace_policy": "Replace",
+    "export_mesh_type": "Static Mesh",
+    "create_nanite_foliage": true,
+    "nanite_shape_preservation_method": "Voxelize",
+    "collision": false
+  },
+
+  "_the_trap": "SETTINGS ARE PER NODE AND THE PANEL DOES NOT SAY SO. The Batch tab's tooltip reads 'Batch export all output nodes' and ticks all four, while the Export Settings panel on the right shows ONE set of values that reads as global. It is not: selecting a different node shows that node's own settings. On 2026-08-15 nodes B, C and D still held the vendor defaults -- content_browser_folder /Game/Megaplant_Library/..., export_mesh_type Skeletal Mesh, policy Replace -- after node A had been fixed. Pressing Export then would have written skeletal re-exports OVER THE VENDOR SOURCE ASSETS inside gitignored content, where git cannot restore and only a Fab re-download could. FIX EVERY NODE INDIVIDUALLY AND VERIFY EACH, then read the overwrite-warning dialog: it lists exactly which assets it will destroy, and that list is the last chance to notice.",
+
+  "_defaults_to_expect_after_a_re_download": {
+    "content_browser_folder": "/Game/Megaplant_Library/<Pack>/<Tree>",
+    "export_mesh_type": "Skeletal Mesh",
+    "asset_replace_policy": "Replace"
+  },
+
+  "_not_scriptable": "Established five ways and recorded so nobody re-derives it: FPVExporter is a plain C++ class with no UCLASS; the worker is a namespaced free function; the plugin's six UFUNCTIONs are none of them; its one console command regenerates test scenarios; and the data exported is the PCG inspection cache that only a live asset editor populates. The ~18 minutes per variant is COMPUTE, not clicking -- scripting would remove the dialog navigation, not the time.",
+
+  "exported": [
+    { "node": "Tree_Norway_Spruce_01_A", "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A", "height_m": 29.31 },
+    { "node": "Tree_Norway_Spruce_01_B", "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_B", "height_m": 23.64 },
+    { "node": "Tree_Norway_Spruce_01_C", "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_C", "height_m": 18.09 },
+    { "node": "Tree_Norway_Spruce_01_D", "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_D", "height_m": 8.02 }
+  ],
+  "not_exported": [
+    { "pve_asset": "/Game/Megaplant_Library/Tree_Baltic_Pine/Tree_Baltic_Pine_01/PVE_Baltic_Pine_01",
+      "nodes": ["Tree_Baltic_Pine_01_A", "Tree_Baltic_Pine_01_B", "Tree_Baltic_Pine_01_C", "Tree_Baltic_Pine_01_D"],
+      "note": "Still holds vendor defaults on all four nodes. Verified 2026-08-15 from the package bytes: the spruce asset contains '/Game/Meshes/Trees' and 'EPVExportMeshType::StaticMesh'; this one contains neither." }
+  ]
+}

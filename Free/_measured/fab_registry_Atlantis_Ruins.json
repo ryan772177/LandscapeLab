@@ -1,0 +1,2439 @@
+{
+ "assets": [
+  {
+   "class": "PhysicsAsset",
+   "name": "SK_AngelFish_00_PhysicsAsset",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_AngelFish_00_PhysicsAsset"
+  },
+  {
+   "class": "Skeleton",
+   "name": "SK_AngelFish_00_Skeleton",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_AngelFish_00_Skeleton"
+  },
+  {
+   "class": "PhysicsAsset",
+   "name": "SK_ClownFish_00_PhysicsAsset",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_ClownFish_00_PhysicsAsset"
+  },
+  {
+   "class": "Skeleton",
+   "name": "SK_ClownFish_00_Skeleton",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_ClownFish_00_Skeleton"
+  },
+  {
+   "class": "PhysicsAsset",
+   "name": "SK_Hermit_Crab_00_PhysicsAsset",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_Hermit_Crab_00_PhysicsAsset"
+  },
+  {
+   "class": "Skeleton",
+   "name": "SK_Hermit_Crab_00_Skeleton",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_Hermit_Crab_00_Skeleton"
+  },
+  {
+   "class": "PhysicsAsset",
+   "name": "SK_SeaTurtle_00_PhysicsAsset",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_SeaTurtle_00_PhysicsAsset"
+  },
+  {
+   "class": "Skeleton",
+   "name": "SK_SeaTurtle_00_Skeleton",
+   "path": "/Game/Atlantis_Ruins/Data_Assets/SK_SeaTurtle_00_Skeleton"
+  },
+  {
+   "class": "MapBuildDataRegistry",
+   "name": "Atlantis_Ruins_Demo_BuiltData",
+   "path": "/Game/Atlantis_Ruins/Levels/Atlantis_Ruins_Demo_BuiltData"
+  },
+  {
+   "class": "MapBuildDataRegistry",
+   "name": "Atlantis_Ruins_Layout_BuiltData",
+   "path": "/Game/Atlantis_Ruins/Levels/Atlantis_Ruins_Layout_BuiltData"
+  },
+  {
+   "class": "World",
+   "name": "Atlantis_Ruins_Demo",
+   "path": "/Game/Atlantis_Ruins/Levels/Atlantis_Ruins_Demo"
+  },
+  {
+   "class": "World",
+   "name": "Atlantis_Ruins_Layout",
+   "path": "/Game/Atlantis_Ruins/Levels/Atlantis_Ruins_Layout"
+  },
+  {
+   "class": "Material",
+   "name": "M_Base",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Base"
+  },
+  {
+   "class": "Material",
+   "name": "M_Base_2",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Base_2"
+  },
+  {
+   "class": "Material",
+   "name": "M_Caustic",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Caustic"
+  },
+  {
+   "class": "Material",
+   "name": "M_Glass",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Glass"
+  },
+  {
+   "class": "Material",
+   "name": "M_Leaf",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Leaf"
+  },
+  {
+   "class": "Material",
+   "name": "M_Rocks_Base",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Rocks_Base"
+  },
+  {
+   "class": "Material",
+   "name": "M_Vegetation",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Vegetation"
+  },
+  {
+   "class": "Material",
+   "name": "M_Wall_Stone",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Wall_Stone"
+  },
+  {
+   "class": "Material",
+   "name": "M_Waves",
+   "path": "/Game/Atlantis_Ruins/Materials/M_Waves"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_AngelFish_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_AngelFish_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Arch_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Arch_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Caustic",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Caustic"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Ceiling_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Ceiling_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Ceiling_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Ceiling_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_ClownFish_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_ClownFish_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_02",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_Lowerpart_02",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_Lowerpart_02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_Upperpart_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_Upperpart_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Column_Upperpart_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Column_Upperpart_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Coral_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Coral_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Coral_04",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Coral_04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Coral_05",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Coral_05"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Glass",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Glass"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_HermitCrab_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_HermitCrab_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_02",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_03",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_04",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_05",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_05"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Large_02_Moss",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Large_02_Moss"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Large_02_Moss_2",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Large_02_Moss_2"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Large_06_Moss",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Large_06_Moss"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Large_07_Moss",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Large_07_Moss"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Medium_00_Moss",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Medium_00_Moss"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rocks_Medium_01_Moss",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rocks_Medium_01_Moss"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rock_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rock_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rock_02",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rock_02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rock_03",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rock_03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Rock_04",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Rock_04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_SeaTurtle_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_SeaTurtle_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_SeaTurtle_00_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_SeaTurtle_00_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Seaweed_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Seaweed_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Seaweed_Leaf_03",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Seaweed_Leaf_03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Seaweed_Stem_02",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Seaweed_Stem_02"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Statue_00_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Statue_00_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Statue_00_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Statue_00_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Statue_01_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Statue_01_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Statue_01_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Statue_01_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Sticks_Large_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Sticks_Large_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Sticks_Medium_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Sticks_Medium_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Sticks_Small_10",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Sticks_Small_10"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Wall_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Wall_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Wall_Stone",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Wall_Stone"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Wall_Stone_03",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Wall_Stone_03"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Wall_Stone_04",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Wall_Stone_04"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Waves",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Waves"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_00_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_00_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_00_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_00_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_01_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_01_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_01_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_01_01"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_02_00",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_02_00"
+  },
+  {
+   "class": "MaterialInstanceConstant",
+   "name": "MI_Window_02_01",
+   "path": "/Game/Atlantis_Ruins/Material_Instances/MI_Window_02_01"
+  },
+  {
+   "LODs": "1",
+   "Triangles": "5413",
+   "Vertices": "3649",
+   "class": "SkeletalMesh",
+   "name": "SK_AngelFish_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SK_AngelFish_00"
+  },
+  {
+   "LODs": "1",
+   "Triangles": "2534",
+   "Vertices": "2673",
+   "class": "SkeletalMesh",
+   "name": "SK_ClownFish_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SK_ClownFish_00"
+  },
+  {
+   "LODs": "1",
+   "Triangles": "2271",
+   "Vertices": "1448",
+   "class": "SkeletalMesh",
+   "name": "SK_Hermit_Crab_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SK_Hermit_Crab_00"
+  },
+  {
+   "LODs": "1",
+   "Triangles": "4931",
+   "Vertices": "3529",
+   "class": "SkeletalMesh",
+   "name": "SK_SeaTurtle_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SK_SeaTurtle_00"
+  },
+  {
+   "ApproxSize": "320x84x194",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2024",
+   "Vertices": "1473",
+   "class": "StaticMesh",
+   "name": "SM_Arch_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Arch_00"
+  },
+  {
+   "ApproxSize": "618x618x276",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "4582",
+   "Vertices": "5153",
+   "class": "StaticMesh",
+   "name": "SM_Ceiling_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Ceiling_00"
+  },
+  {
+   "ApproxSize": "618x618x273",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "1362",
+   "Vertices": "1352",
+   "class": "StaticMesh",
+   "name": "SM_Ceiling_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Ceiling_01"
+  },
+  {
+   "ApproxSize": "136x136x599",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "3354",
+   "Vertices": "3579",
+   "class": "StaticMesh",
+   "name": "SM_Column_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_00"
+  },
+  {
+   "ApproxSize": "136x136x165",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2620",
+   "Vertices": "2642",
+   "class": "StaticMesh",
+   "name": "SM_Column_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_01"
+  },
+  {
+   "ApproxSize": "124x124x479",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "3766",
+   "Vertices": "4013",
+   "class": "StaticMesh",
+   "name": "SM_Column_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_02"
+  },
+  {
+   "ApproxSize": "152x152x115",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2782",
+   "Vertices": "3212",
+   "class": "StaticMesh",
+   "name": "SM_Column_Lowerpart_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_Lowerpart_02"
+  },
+  {
+   "ApproxSize": "250x250x364",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2500",
+   "Vertices": "2285",
+   "class": "StaticMesh",
+   "name": "SM_Column_Upperpart_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_Upperpart_00"
+  },
+  {
+   "ApproxSize": "513x513x507",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2114",
+   "Vertices": "2192",
+   "class": "StaticMesh",
+   "name": "SM_Column_Upperpart_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Column_Upperpart_01"
+  },
+  {
+   "ApproxSize": "21x23x35",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "1648",
+   "Vertices": "1134",
+   "class": "StaticMesh",
+   "name": "SM_Coral_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Coral_00"
+  },
+  {
+   "ApproxSize": "50x50x19",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "2318",
+   "Vertices": "2218",
+   "class": "StaticMesh",
+   "name": "SM_Coral_04",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Coral_04"
+  },
+  {
+   "ApproxSize": "36x34x19",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "1787",
+   "Vertices": "1555",
+   "class": "StaticMesh",
+   "name": "SM_Coral_05",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Coral_05"
+  },
+  {
+   "ApproxSize": "289x211x27",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "13441",
+   "Vertices": "8102",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_02"
+  },
+  {
+   "ApproxSize": "8x8x2",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "4962",
+   "Vertices": "3080",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_03",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_03"
+  },
+  {
+   "ApproxSize": "35x25x17",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "3372",
+   "Vertices": "2005",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_04",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_04"
+  },
+  {
+   "ApproxSize": "394x78x110",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "3400",
+   "Vertices": "2104",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_Large_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_Large_02"
+  },
+  {
+   "ApproxSize": "183x278x107",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "34188",
+   "Vertices": "17482",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_Large_06",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_Large_06"
+  },
+  {
+   "ApproxSize": "294x595x103",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "34188",
+   "Vertices": "17487",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_Large_07",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_Large_07"
+  },
+  {
+   "ApproxSize": "100x106x57",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "15360",
+   "Vertices": "8069",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_Medium_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_Medium_00"
+  },
+  {
+   "ApproxSize": "117x95x84",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "18432",
+   "Vertices": "9508",
+   "class": "StaticMesh",
+   "name": "SM_Rocks_Medium_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rocks_Medium_01"
+  },
+  {
+   "ApproxSize": "326x178x208",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "9214",
+   "Vertices": "4901",
+   "class": "StaticMesh",
+   "name": "SM_Rock_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rock_00"
+  },
+  {
+   "ApproxSize": "101x253x293",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "19451",
+   "Vertices": "10247",
+   "class": "StaticMesh",
+   "name": "SM_Rock_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rock_02"
+  },
+  {
+   "ApproxSize": "221x240x304",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "8190",
+   "Vertices": "4422",
+   "class": "StaticMesh",
+   "name": "SM_Rock_03",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rock_03"
+  },
+  {
+   "ApproxSize": "152x254x265",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "7040",
+   "Vertices": "3892",
+   "class": "StaticMesh",
+   "name": "SM_Rock_04",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rock_04"
+  },
+  {
+   "ApproxSize": "26x24x23",
+   "CollisionPrims": "0",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "4694",
+   "Vertices": "2842",
+   "class": "StaticMesh",
+   "name": "SM_Rock_05",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Rock_05"
+  },
+  {
+   "ApproxSize": "27x28x108",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "3579",
+   "Vertices": "3101",
+   "class": "StaticMesh",
+   "name": "SM_Seaweed_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Seaweed_00"
+  },
+  {
+   "ApproxSize": "29x24x115",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "2",
+   "MinLOD": "0",
+   "Triangles": "2924",
+   "Vertices": "2315",
+   "class": "StaticMesh",
+   "name": "SM_Seaweed_03",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Seaweed_03"
+  },
+  {
+   "ApproxSize": "651x675x128",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "10194",
+   "Vertices": "18243",
+   "class": "StaticMesh",
+   "name": "SM_Smelter_Store_Props_05",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Smelter_Store_Props_05"
+  },
+  {
+   "ApproxSize": "367x230x541",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "2",
+   "MinLOD": "0",
+   "Triangles": "36984",
+   "Vertices": "38455",
+   "class": "StaticMesh",
+   "name": "SM_Statue_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Statue_00"
+  },
+  {
+   "ApproxSize": "265x324x497",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "2",
+   "MinLOD": "0",
+   "Triangles": "30357",
+   "Vertices": "28817",
+   "class": "StaticMesh",
+   "name": "SM_Statue_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Statue_01"
+  },
+  {
+   "ApproxSize": "105x26x27",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "1867",
+   "Vertices": "1553",
+   "class": "StaticMesh",
+   "name": "SM_Sticks_Large_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Sticks_Large_01"
+  },
+  {
+   "ApproxSize": "49x9x8",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "1001",
+   "Vertices": "1187",
+   "class": "StaticMesh",
+   "name": "SM_Sticks_Medium_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Sticks_Medium_00"
+  },
+  {
+   "ApproxSize": "26x5x3",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "192",
+   "Vertices": "246",
+   "class": "StaticMesh",
+   "name": "SM_Sticks_Small_10",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Sticks_Small_10"
+  },
+  {
+   "ApproxSize": "79x705x597",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "1",
+   "MinLOD": "0",
+   "Triangles": "12",
+   "Vertices": "24",
+   "class": "StaticMesh",
+   "name": "SM_Wall_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Wall_00"
+  },
+  {
+   "ApproxSize": "510x20x510",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "2",
+   "MinLOD": "0",
+   "Triangles": "2636",
+   "Vertices": "3626",
+   "class": "StaticMesh",
+   "name": "SM_Window_00",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Window_00"
+  },
+  {
+   "ApproxSize": "79x705x597",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "3",
+   "MinLOD": "0",
+   "Triangles": "17242",
+   "Vertices": "16972",
+   "class": "StaticMesh",
+   "name": "SM_Window_01",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Window_01"
+  },
+  {
+   "ApproxSize": "79x705x597",
+   "CollisionPrims": "1",
+   "LODs": "1",
+   "Materials": "3",
+   "MinLOD": "0",
+   "Triangles": "2208",
+   "Vertices": "2468",
+   "class": "StaticMesh",
+   "name": "SM_Window_02",
+   "path": "/Game/Atlantis_Ruins/Meshes/SM_Window_02"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Anchor_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Anchor_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Anchor_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Anchor_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Anchor_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Anchor_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_AngelFish_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_AngelFish_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_AngelFish_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_AngelFish_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_AngelFish_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_AngelFish_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Arch_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Arch_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Arch_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Arch_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Arch_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Arch_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Beam_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Beam_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Beam_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Beam_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Beam_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Beam_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Caustic",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Caustic"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Ceiling_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Ceiling_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Ceiling_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Ceiling_01_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_01_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Ceiling_01_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Ceiling_01_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Ceiling_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_ClownFish_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_ClownFish_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ClownFish_00_BS",
+   "path": "/Game/Atlantis_Ruins/Textures/T_ClownFish_00_BS"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_ClownFish_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_ClownFish_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_01_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_01_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_01_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_01_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_02_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_02_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Lowerpart_02_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Lowerpart_02_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Lowerpart_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Lowerpart_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_Lowerpart_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Lowerpart_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_01_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_01_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_01_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Column_Upperpart_01_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Column_Upperpart_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Coral_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Coral_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Coral_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Coral_04_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_04_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Coral_04_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_04_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Coral_04_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_04_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Coral_05_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_05_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Coral_05_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Coral_05_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1280x720",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Dirt",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Dirt"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "900x901",
+   "Format": "B8G8R8A8",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Grass_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Grass_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HermitCrab_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_HermitCrab_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_HermitCrab_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_HermitCrab_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_HermitCrab_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_HermitCrab_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_00_R",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_00_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_02_R",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_02_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_03_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_03_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_03_R",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_03_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_04_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_04_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_04_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_04_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_04_R",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_04_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_05_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_05_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_05_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_05_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_05_R",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_05_R"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_02_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_02_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_06_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_06_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_06_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_06_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_06_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_06_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_07_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_07_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_07_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_07_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Large_07_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Large_07_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_01_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_01_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_01_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Medium_01_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Medium_01_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "3500x3500",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Small_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Small_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rocks_Small_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Small_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rocks_Small_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rocks_Small_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_02_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_02_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_03_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_03_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_03_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_03_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_04_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_04_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Rock_04_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_04_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_04_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_04_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_Slate_D",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_Slate_D"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "2048x2048",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Rock_Slate_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Rock_Slate_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_SeaTurtleSkin_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtleSkin_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_SeaTurtleSkin_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtleSkin_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_SeaTurtleSkin_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtleSkin_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_SeaTurtle_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtle_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_SeaTurtle_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtle_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_SeaTurtle_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_SeaTurtle_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Seaweed_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "256x256",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Leaf_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Leaf_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "256x256",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Leaf_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Leaf_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Leaf_03_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Leaf_03_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "512x512",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Leaf_03_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Leaf_03_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Stem_02_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Stem_02_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1024x1024",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Seaweed_Stem_02_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Seaweed_Stem_02_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Statue_00_AO_R_MT_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_AO_R_MT_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_00_AO_R_MT_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_AO_R_MT_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_00_BC_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_BC_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_00_BC_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_BC_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Statue_00_N_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_N_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Statue_00_N_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_00_N_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_01_AO_R_MT_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_AO_R_MT_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_01_AO_R_MT_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_AO_R_MT_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_01_BC_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_BC_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Statue_01_BC_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_BC_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Statue_01_N_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_N_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Statue_01_N_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Statue_01_N_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Large_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Large_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Large_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Large_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Large_01_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Large_01_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "2048x2048",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Large_01_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Large_01_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Medium_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Medium_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "1024x1024",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Medium_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Medium_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1023x682",
+   "Format": "B8G8R8A8",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Sticks_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Small_10_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Small_10_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "512x512",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Sticks_Small_10_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Sticks_Small_10_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Wall_00_AO_R_MT",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Wall_00_AO_R_MT"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Wall_00_BC",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Wall_00_BC"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Wall_00_N",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Wall_00_N"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "1024x1024",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Waves",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Waves"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_00_AO_R_MT_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_AO_R_MT_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_00_AO_R_MT_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_AO_R_MT_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_00_BC_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_BC_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_00_BC_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_BC_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_00_N_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_N_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_00_N_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_00_N_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_01_AO_R_MT_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_AO_R_MT_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_01_AO_R_MT_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_AO_R_MT_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_01_BC_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_BC_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_01_BC_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_BC_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_01_N_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_N_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_01_N_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_01_N_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_02_AO_R_MT_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_AO_R_MT_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_02_AO_R_MT_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_AO_R_MT_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_02_BC_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_BC_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Default",
+   "Dimensions": "4096x4096",
+   "Format": "DXT1",
+   "HasAlphaChannel": "False",
+   "class": "Texture2D",
+   "name": "T_Window_02_BC_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_BC_01"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_02_N_00",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_N_00"
+  },
+  {
+   "AddressX": "TA_Wrap",
+   "CompressionSettings": "TC_Normalmap",
+   "Dimensions": "4096x4096",
+   "Format": "BC5",
+   "HasAlphaChannel": "True",
+   "class": "Texture2D",
+   "name": "T_Window_02_N_01",
+   "path": "/Game/Atlantis_Ruins/Textures/T_Window_02_N_01"
+  }
+ ],
+ "count": 274,
+ "registry_ready": true,
+ "root": "/Game/Atlantis_Ruins",
+ "tag_error": null
+}

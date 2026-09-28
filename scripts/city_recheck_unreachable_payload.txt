@@ -1,0 +1,139 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# RE-TEST every street the sidecar calls UNREACHABLE, using a RELAY.
+#
+# The chained-path test showed that plaza->far can FAIL while plaza->mid and
+# mid->far both SUCCEED: a walk exists that a single query does not find. Every
+# "unreachable" verdict in city/alpine_basin_town_reachable.json came from ONE
+# query from the plaza, so all 185 unreachable streets and 50 unreachable
+# buildings are now suspect.
+#
+# METHOD. For each unreachable row, find the NEAREST row the sidecar calls
+# reachable and query from THERE. A short query from a nearby anchor is not
+# subject to whatever budget defeats the long one. If it succeeds, the target is
+# reachable in fact -- reachability over a navmesh is transitive when every leg
+# is a real path.
+#
+# THE CONTROL. A handful of rows the sidecar calls REACHABLE are re-tested the
+# same way and must still succeed; and a point 50 km away must still fail, or
+# the relay is answering yes to everything.
+
+PLAN = r"__SIDECAR__"
+LIMIT = __LIMIT__
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _sc = _json.load(_fh)
+    _rows = _sc.get("street_rows", [])
+    _reach = [r for r in _rows if r.get("reachable") is True]
+    _unre = [r for r in _rows if r.get("reachable") is not True]
+    _out["sidecar"] = {"reachable": len(_reach), "unreachable": len(_unre)}
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    def _ok(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return bool(_res == _SUCCESS)
+        except Exception:
+            return False
+
+    def _nearest_reachable(x, y):
+        _best, _bd = None, None
+        for _r in _reach:
+            _l = _r["loc_cm"]
+            _d = (_l[0] - x) ** 2 + (_l[1] - y) ** 2
+            if _bd is None or _d < _bd:
+                _bd, _best = _d, _r
+        return _best, (_bd ** 0.5 if _bd is not None else None)
+
+    _recovered, _still, _noproj = 0, 0, 0
+    _examples = []
+    for _r in _unre[:LIMIT]:
+        _l = _r["loc_cm"]
+        _p = _proj(_l[0], _l[1])
+        if _p is None:
+            _noproj += 1
+            continue
+        _anchor, _dist = _nearest_reachable(_l[0], _l[1])
+        _pa = _proj(_anchor["loc_cm"][0], _anchor["loc_cm"][1])
+        if _pa is None:
+            _noproj += 1
+            continue
+        if _ok(_pa, _p):
+            _recovered += 1
+            if len(_examples) < 5:
+                _examples.append({"loc_cm": _l,
+                                  "relay_dist_m": round(_dist / 100.0, 1)})
+        else:
+            _still += 1
+    _out["retested"] = min(LIMIT, len(_unre))
+    _out["recovered_via_relay"] = _recovered
+    _out["still_unreachable"] = _still
+    _out["failed_projection"] = _noproj
+    _out["examples"] = _examples
+
+    # CONTROLS
+    _ctrl_ok = 0
+    for _r in _reach[:10]:
+        _l = _r["loc_cm"]
+        _p = _proj(_l[0], _l[1])
+        _a, _d = _nearest_reachable(_l[0] + 1.0, _l[1] + 1.0)
+        _pa = _proj(_a["loc_cm"][0], _a["loc_cm"][1])
+        if _p is not None and _pa is not None and _ok(_pa, _p):
+            _ctrl_ok += 1
+    _out["control_reachable_rows_still_pass"] = "%d of 10" % _ctrl_ok
+
+    # NEGATIVE CONTROL: a point 50 km away must NOT be recoverable by a relay,
+    # or the relay is answering yes to everything.
+    # `loc_cm` is [x, y] -- TWO elements. The first version indexed [2] for z
+    # and died with IndexError AFTER the recovery numbers were computed, so the
+    # run reported ok:false with the headline figures already in the payload.
+    # Believing those without the control is the thing this control exists to
+    # prevent.
+    _l0 = _reach[0]["loc_cm"]
+    _fx, _fy = _l0[0] + 5000000.0, _l0[1]
+    _pfar = _proj(_fx, _fy)
+    _p0 = _proj(_l0[0], _l0[1])
+    if _pfar is None:
+        _out["control_50km"] = "does not project -- correctly unrecoverable"
+    else:
+        _out["control_50km"] = ("PROJECTS and relay says %s -- investigate"
+                                % ("reachable" if _ok(_p0, _pfar)
+                                   else "unreachable"))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,3486 @@
+{
+ "schema_version": 1,
+ "biome_id": "alpine_8k",
+ "display_name": "Alpine 8K",
+ "water": {
+  "from_water_recipe": "recipes/water.json",
+  "_what": "Brief-4 water set (RULING §7, CARVE_PLAN T2): lakes A@180 (id4893, closed), B@140 (id11877, endorheic, 180 m never-exceed), D@590.9 (id8377); north cascade D->tarn B (hero landmark); inflow fall for A; 11 placed falls within the 10-15 cap. The spec lives in its own file per the city.json precedent (foliage.settlement_exclusion.from_city_plan names a file). Consumers: T3 carve (notch cells), water-mesh placement (Plane + M_SideWater), T4 wet_shore levels."
+ },
+ "world": {
+  "primary_movement_mode": "mount",
+  "min_crossable_frac": 0.6,
+  "min_connected_frac": 0.8,
+  "max_border_flat_frac": 0.1
+ },
+ "navigation": {
+  "tile_size_uu": 1600.0,
+  "average_layers_per_tile": 1.5,
+  "max_simultaneous_tile_generation_jobs": 16,
+  "min_region_dimension_uu": 400.0,
+  "data_gathering_mode": "lazy",
+  "chunk_grid_size_cm": 102400,
+  "builder_loading_cell_size_cm": 102400,
+  "bounds_volumes": [
+   {
+    "name": "NavBounds_R-02-06",
+    "min_cm": [
+     -406400.0,
+     -396800.0,
+     27200.0
+    ],
+    "max_cm": [
+     -366400.0,
+     -292800.0,
+     41600.0
+    ],
+    "basis": "Tile (-2, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 92.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-06",
+    "min_cm": [
+     -366400.0,
+     -396800.0,
+     33600.0
+    ],
+    "max_cm": [
+     -262400.0,
+     -292800.0,
+     92800.0
+    ],
+    "basis": "Tile (-1, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 80.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-06",
+    "min_cm": [
+     -262400.0,
+     -396800.0,
+     25600.0
+    ],
+    "max_cm": [
+     -158400.0,
+     -292800.0,
+     91200.0
+    ],
+    "basis": "Tile (0, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 72.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-06",
+    "min_cm": [
+     -158400.0,
+     -396800.0,
+     25600.0
+    ],
+    "max_cm": [
+     -54400.0,
+     -292800.0,
+     72000.0
+    ],
+    "basis": "Tile (1, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 79.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-06",
+    "min_cm": [
+     -54400.0,
+     -396800.0,
+     40000.0
+    ],
+    "max_cm": [
+     49600.0,
+     -292800.0,
+     88000.0
+    ],
+    "basis": "Tile (2, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 71.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-06",
+    "min_cm": [
+     49600.0,
+     -396800.0,
+     40000.0
+    ],
+    "max_cm": [
+     153600.0,
+     -292800.0,
+     81600.0
+    ],
+    "basis": "Tile (3, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 73.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-06",
+    "min_cm": [
+     153600.0,
+     -396800.0,
+     40000.0
+    ],
+    "max_cm": [
+     257600.0,
+     -292800.0,
+     62400.0
+    ],
+    "basis": "Tile (4, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 88.0% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-06",
+    "min_cm": [
+     257600.0,
+     -396800.0,
+     22400.0
+    ],
+    "max_cm": [
+     361600.0,
+     -292800.0,
+     48000.0
+    ],
+    "basis": "Tile (5, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 93.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-06",
+    "min_cm": [
+     361600.0,
+     -396800.0,
+     24000.0
+    ],
+    "max_cm": [
+     406400.0,
+     -292800.0,
+     44800.0
+    ],
+    "basis": "Tile (6, -6) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 92.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02-05",
+    "min_cm": [
+     -406400.0,
+     -292800.0,
+     22400.0
+    ],
+    "max_cm": [
+     -366400.0,
+     -188800.0,
+     49600.0
+    ],
+    "basis": "Tile (-2, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 83.2% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-05",
+    "min_cm": [
+     -366400.0,
+     -292800.0,
+     33600.0
+    ],
+    "max_cm": [
+     -262400.0,
+     -188800.0,
+     92800.0
+    ],
+    "basis": "Tile (-1, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 70.2% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-05",
+    "min_cm": [
+     -262400.0,
+     -292800.0,
+     22400.0
+    ],
+    "max_cm": [
+     -158400.0,
+     -188800.0,
+     102400.0
+    ],
+    "basis": "Tile (0, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 53.2% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-05",
+    "min_cm": [
+     -158400.0,
+     -292800.0,
+     32000.0
+    ],
+    "max_cm": [
+     -54400.0,
+     -188800.0,
+     108800.0
+    ],
+    "basis": "Tile (1, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 62.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-05",
+    "min_cm": [
+     -54400.0,
+     -292800.0,
+     64000.0
+    ],
+    "max_cm": [
+     49600.0,
+     -188800.0,
+     107200.0
+    ],
+    "basis": "Tile (2, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 71.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-05",
+    "min_cm": [
+     49600.0,
+     -292800.0,
+     46400.0
+    ],
+    "max_cm": [
+     153600.0,
+     -188800.0,
+     104000.0
+    ],
+    "basis": "Tile (3, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 62.0% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-05",
+    "min_cm": [
+     153600.0,
+     -292800.0,
+     33600.0
+    ],
+    "max_cm": [
+     257600.0,
+     -188800.0,
+     72000.0
+    ],
+    "basis": "Tile (4, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 80.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-05",
+    "min_cm": [
+     257600.0,
+     -292800.0,
+     12800.0
+    ],
+    "max_cm": [
+     361600.0,
+     -188800.0,
+     46400.0
+    ],
+    "basis": "Tile (5, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 86.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-05",
+    "min_cm": [
+     361600.0,
+     -292800.0,
+     12800.0
+    ],
+    "max_cm": [
+     406400.0,
+     -188800.0,
+     33600.0
+    ],
+    "basis": "Tile (6, -5) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 92.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02-04",
+    "min_cm": [
+     -406400.0,
+     -188800.0,
+     20800.0
+    ],
+    "max_cm": [
+     -366400.0,
+     -84800.0,
+     38400.0
+    ],
+    "basis": "Tile (-2, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 91.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-04",
+    "min_cm": [
+     -366400.0,
+     -188800.0,
+     19200.0
+    ],
+    "max_cm": [
+     -262400.0,
+     -84800.0,
+     54400.0
+    ],
+    "basis": "Tile (-1, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 79.7% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-04",
+    "min_cm": [
+     -262400.0,
+     -188800.0,
+     25600.0
+    ],
+    "max_cm": [
+     -158400.0,
+     -84800.0,
+     110400.0
+    ],
+    "basis": "Tile (0, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 52.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-04",
+    "min_cm": [
+     -158400.0,
+     -188800.0,
+     51200.0
+    ],
+    "max_cm": [
+     -54400.0,
+     -84800.0,
+     148800.0
+    ],
+    "basis": "Tile (1, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 28.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-04",
+    "min_cm": [
+     -54400.0,
+     -188800.0,
+     65600.0
+    ],
+    "max_cm": [
+     49600.0,
+     -84800.0,
+     139200.0
+    ],
+    "basis": "Tile (2, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 56.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-04",
+    "min_cm": [
+     49600.0,
+     -188800.0,
+     35200.0
+    ],
+    "max_cm": [
+     153600.0,
+     -84800.0,
+     121600.0
+    ],
+    "basis": "Tile (3, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 56.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-04",
+    "min_cm": [
+     153600.0,
+     -188800.0,
+     6400.0
+    ],
+    "max_cm": [
+     257600.0,
+     -84800.0,
+     56000.0
+    ],
+    "basis": "Tile (4, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 78.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-04",
+    "min_cm": [
+     257600.0,
+     -188800.0,
+     0.0
+    ],
+    "max_cm": [
+     361600.0,
+     -84800.0,
+     38400.0
+    ],
+    "basis": "Tile (5, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 82.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-04",
+    "min_cm": [
+     361600.0,
+     -188800.0,
+     12800.0
+    ],
+    "max_cm": [
+     406400.0,
+     -84800.0,
+     28800.0
+    ],
+    "basis": "Tile (6, -4) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 91.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02-03",
+    "min_cm": [
+     -406400.0,
+     -84800.0,
+     20800.0
+    ],
+    "max_cm": [
+     -366400.0,
+     19200.0,
+     36800.0
+    ],
+    "basis": "Tile (-2, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 94.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-03",
+    "min_cm": [
+     -366400.0,
+     -84800.0,
+     17600.0
+    ],
+    "max_cm": [
+     -262400.0,
+     19200.0,
+     73600.0
+    ],
+    "basis": "Tile (-1, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 69.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-03",
+    "min_cm": [
+     -262400.0,
+     -84800.0,
+     28800.0
+    ],
+    "max_cm": [
+     -158400.0,
+     19200.0,
+     81600.0
+    ],
+    "basis": "Tile (0, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 58.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-03",
+    "min_cm": [
+     -158400.0,
+     -84800.0,
+     44800.0
+    ],
+    "max_cm": [
+     -54400.0,
+     19200.0,
+     129600.0
+    ],
+    "basis": "Tile (1, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 60.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-03",
+    "min_cm": [
+     -54400.0,
+     -84800.0,
+     60800.0
+    ],
+    "max_cm": [
+     49600.0,
+     19200.0,
+     116800.0
+    ],
+    "basis": "Tile (2, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 72.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-03",
+    "min_cm": [
+     49600.0,
+     -84800.0,
+     33600.0
+    ],
+    "max_cm": [
+     153600.0,
+     19200.0,
+     113600.0
+    ],
+    "basis": "Tile (3, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 67.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-03",
+    "min_cm": [
+     153600.0,
+     -84800.0,
+     6400.0
+    ],
+    "max_cm": [
+     257600.0,
+     19200.0,
+     44800.0
+    ],
+    "basis": "Tile (4, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 85.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-03",
+    "min_cm": [
+     257600.0,
+     -84800.0,
+     1600.0
+    ],
+    "max_cm": [
+     361600.0,
+     19200.0,
+     32000.0
+    ],
+    "basis": "Tile (5, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 84.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-03",
+    "min_cm": [
+     361600.0,
+     -84800.0,
+     19200.0
+    ],
+    "max_cm": [
+     406400.0,
+     19200.0,
+     30400.0
+    ],
+    "basis": "Tile (6, -3) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 92.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02-02",
+    "min_cm": [
+     -406400.0,
+     19200.0,
+     22400.0
+    ],
+    "max_cm": [
+     -366400.0,
+     123200.0,
+     43200.0
+    ],
+    "basis": "Tile (-2, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 91.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-02",
+    "min_cm": [
+     -366400.0,
+     19200.0,
+     27200.0
+    ],
+    "max_cm": [
+     -262400.0,
+     123200.0,
+     80000.0
+    ],
+    "basis": "Tile (-1, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 68.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-02",
+    "min_cm": [
+     -262400.0,
+     19200.0,
+     33600.0
+    ],
+    "max_cm": [
+     -158400.0,
+     123200.0,
+     84800.0
+    ],
+    "basis": "Tile (0, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 58.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-02",
+    "min_cm": [
+     -158400.0,
+     19200.0,
+     38400.0
+    ],
+    "max_cm": [
+     -54400.0,
+     123200.0,
+     76800.0
+    ],
+    "basis": "Tile (1, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 71.0% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-02",
+    "min_cm": [
+     -54400.0,
+     19200.0,
+     40000.0
+    ],
+    "max_cm": [
+     49600.0,
+     123200.0,
+     76800.0
+    ],
+    "basis": "Tile (2, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 81.6% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-02",
+    "min_cm": [
+     49600.0,
+     19200.0,
+     36800.0
+    ],
+    "max_cm": [
+     153600.0,
+     123200.0,
+     107200.0
+    ],
+    "basis": "Tile (3, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 64.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-02",
+    "min_cm": [
+     153600.0,
+     19200.0,
+     24000.0
+    ],
+    "max_cm": [
+     257600.0,
+     123200.0,
+     113600.0
+    ],
+    "basis": "Tile (4, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 73.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-02",
+    "min_cm": [
+     257600.0,
+     19200.0,
+     22400.0
+    ],
+    "max_cm": [
+     361600.0,
+     123200.0,
+     70400.0
+    ],
+    "basis": "Tile (5, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 83.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-02",
+    "min_cm": [
+     361600.0,
+     19200.0,
+     22400.0
+    ],
+    "max_cm": [
+     406400.0,
+     123200.0,
+     52800.0
+    ],
+    "basis": "Tile (6, -2) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 91.0% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02-01",
+    "min_cm": [
+     -406400.0,
+     123200.0,
+     28800.0
+    ],
+    "max_cm": [
+     -366400.0,
+     227200.0,
+     49600.0
+    ],
+    "basis": "Tile (-2, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 91.7% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01-01",
+    "min_cm": [
+     -366400.0,
+     123200.0,
+     32000.0
+    ],
+    "max_cm": [
+     -262400.0,
+     227200.0,
+     62400.0
+    ],
+    "basis": "Tile (-1, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 83.7% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00-01",
+    "min_cm": [
+     -262400.0,
+     123200.0,
+     -1600.0
+    ],
+    "max_cm": [
+     -158400.0,
+     227200.0,
+     54400.0
+    ],
+    "basis": "Tile (0, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 66.2% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01-01",
+    "min_cm": [
+     -158400.0,
+     123200.0,
+     16000.0
+    ],
+    "max_cm": [
+     -54400.0,
+     227200.0,
+     54400.0
+    ],
+    "basis": "Tile (1, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 64.1% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02-01",
+    "min_cm": [
+     -54400.0,
+     123200.0,
+     17600.0
+    ],
+    "max_cm": [
+     49600.0,
+     227200.0,
+     102400.0
+    ],
+    "basis": "Tile (2, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 58.0% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03-01",
+    "min_cm": [
+     49600.0,
+     123200.0,
+     60800.0
+    ],
+    "max_cm": [
+     153600.0,
+     227200.0,
+     158400.0
+    ],
+    "basis": "Tile (3, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 41.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04-01",
+    "min_cm": [
+     153600.0,
+     123200.0,
+     59200.0
+    ],
+    "max_cm": [
+     257600.0,
+     227200.0,
+     124800.0
+    ],
+    "basis": "Tile (4, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 60.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05-01",
+    "min_cm": [
+     257600.0,
+     123200.0,
+     48000.0
+    ],
+    "max_cm": [
+     361600.0,
+     227200.0,
+     118400.0
+    ],
+    "basis": "Tile (5, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 77.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06-01",
+    "min_cm": [
+     361600.0,
+     123200.0,
+     41600.0
+    ],
+    "max_cm": [
+     406400.0,
+     227200.0,
+     89600.0
+    ],
+    "basis": "Tile (6, -1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 79.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02+00",
+    "min_cm": [
+     -406400.0,
+     227200.0,
+     25600.0
+    ],
+    "max_cm": [
+     -366400.0,
+     331200.0,
+     41600.0
+    ],
+    "basis": "Tile (-2, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 95.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01+00",
+    "min_cm": [
+     -366400.0,
+     227200.0,
+     20800.0
+    ],
+    "max_cm": [
+     -262400.0,
+     331200.0,
+     49600.0
+    ],
+    "basis": "Tile (-1, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 89.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_Town",
+    "min_cm": [
+     -262400.0,
+     227200.0,
+     11600.0
+    ],
+    "max_cm": [
+     -158400.0,
+     331200.0,
+     45000.0
+    ],
+    "basis": "1040 m square CENTRED ON THE TOWN at (-210800, 278800), covering all 940 m of its extent with margin. NOT snapped to the 102400 cm chunk grid, and that is deliberate: the grid cell containing the plaza, [-3,2], carries 351.9 m of relief and covers only the SOUTH-WEST part of the town, so most of its voxel volume would be mountainside the town does not occupy. The chunk-grid alignment on the volume above existed so chunk actors would not straddle TILES -- that property comes from 102400 being an exact multiple of TileSizeUU 1600, and it survives here because these bounds are themselves multiples of 1600, asserted at measurement time. A town-centred box simply spans more chunk ACTORS, which R-NAVBUILD already records as arithmetic rather than a defect. Z is MEASURED: 625 downward collision traces on a 43 m lattice, foliage ignored so no trace lands on a canopy, found terrain from 12713.5 to 43013.0 cm with ZERO misses; the bounds add ~11 m below and ~20 m above, matching the convention of the volume above. That is a 334 m column -- 3,340 voxel rows per tile at CellHeight 10 cm against 1,750 for the spawn volume, 1.9x, and still 4.6x cheaper than sizing Z to the whole world. || NavBounds_TownEast below extends coverage outward from this volume's eastern edge. They SHARE the edge at x = -158400 rather than overlapping, so the pair is contiguous and an agent can cross between them."
+   },
+   {
+    "name": "NavBounds_TownEast",
+    "min_cm": [
+     -158400.0,
+     227200.0,
+     11600.0
+    ],
+    "max_cm": [
+     -54400.0,
+     331200.0,
+     33000.0
+    ],
+    "basis": "1040 m square sharing its western edge with NavBounds_Town at x = -158400, extending coverage OUTWARD from the basin. EAST WAS CHOSEN BY MEASUREMENT, not by eye: the offline walkable-component prefilter, run over a 5 km box at the walk agent, reports the plaza's component reaching 2480 m (the sample limit) on bearings 0, 60, 75, 90, 120 and 150 degrees, and closing at 440-780 m on bearings 165-285. The prefilter is OPTIMISTIC so its OPEN verdicts are not trusted -- but its CLOSED verdicts are, and they rule out the western half. Bearing 0 is +X, so this volume covers the strongest open direction. Z is MEASURED: 625 traces on a 43 m lattice, foliage ignored, terrain 12713.5 to 30881.4 cm with ZERO misses; bounds add ~11 m below and ~20 m above, the same convention as the volumes above. That is a 214 m column against the town volume's 334 m -- this ground is gentler, which is why the component runs out through it. Bounds are multiples of TileSizeUU 1600, asserted at measurement time."
+   },
+   {
+    "name": "NavBounds_R+02+00",
+    "min_cm": [
+     -54400.0,
+     227200.0,
+     12800.0
+    ],
+    "max_cm": [
+     49600.0,
+     331200.0,
+     86400.0
+    ],
+    "basis": "Tile (2, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 75.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03+00",
+    "min_cm": [
+     49600.0,
+     227200.0,
+     22400.0
+    ],
+    "max_cm": [
+     153600.0,
+     331200.0,
+     142400.0
+    ],
+    "basis": "Tile (3, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 55.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04+00",
+    "min_cm": [
+     153600.0,
+     227200.0,
+     67200.0
+    ],
+    "max_cm": [
+     257600.0,
+     331200.0,
+     123200.0
+    ],
+    "basis": "Tile (4, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 82.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05+00",
+    "min_cm": [
+     257600.0,
+     227200.0,
+     70400.0
+    ],
+    "max_cm": [
+     361600.0,
+     331200.0,
+     123200.0
+    ],
+    "basis": "Tile (5, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 82.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06+00",
+    "min_cm": [
+     361600.0,
+     227200.0,
+     59200.0
+    ],
+    "max_cm": [
+     406400.0,
+     331200.0,
+     89600.0
+    ],
+    "basis": "Tile (6, 0) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 89.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-02+01",
+    "min_cm": [
+     -406400.0,
+     331200.0,
+     20800.0
+    ],
+    "max_cm": [
+     -366400.0,
+     406400.0,
+     38400.0
+    ],
+    "basis": "Tile (-2, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 89.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R-01+01",
+    "min_cm": [
+     -366400.0,
+     331200.0,
+     20800.0
+    ],
+    "max_cm": [
+     -262400.0,
+     406400.0,
+     33600.0
+    ],
+    "basis": "Tile (-1, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 94.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+00+01",
+    "min_cm": [
+     -262400.0,
+     331200.0,
+     19200.0
+    ],
+    "max_cm": [
+     -158400.0,
+     406400.0,
+     44800.0
+    ],
+    "basis": "Tile (0, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 90.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+01+01",
+    "min_cm": [
+     -158400.0,
+     331200.0,
+     12800.0
+    ],
+    "max_cm": [
+     -54400.0,
+     406400.0,
+     40000.0
+    ],
+    "basis": "Tile (1, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 88.4% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+02+01",
+    "min_cm": [
+     -54400.0,
+     331200.0,
+     8000.0
+    ],
+    "max_cm": [
+     49600.0,
+     406400.0,
+     28800.0
+    ],
+    "basis": "Tile (2, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 88.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+03+01",
+    "min_cm": [
+     49600.0,
+     331200.0,
+     8000.0
+    ],
+    "max_cm": [
+     153600.0,
+     406400.0,
+     72000.0
+    ],
+    "basis": "Tile (3, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 73.9% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+04+01",
+    "min_cm": [
+     153600.0,
+     331200.0,
+     48000.0
+    ],
+    "max_cm": [
+     257600.0,
+     406400.0,
+     102400.0
+    ],
+    "basis": "Tile (4, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 83.3% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+05+01",
+    "min_cm": [
+     257600.0,
+     331200.0,
+     49600.0
+    ],
+    "max_cm": [
+     361600.0,
+     406400.0,
+     107200.0
+    ],
+    "basis": "Tile (5, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 75.5% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   },
+   {
+    "name": "NavBounds_R+06+01",
+    "min_cm": [
+     361600.0,
+     331200.0,
+     43200.0
+    ],
+    "max_cm": [
+     406400.0,
+     406400.0,
+     76800.0
+    ],
+    "basis": "Tile (6, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 88.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
+   }
+  ]
+ },
+ "engine": {
+  "target_version": "5.8",
+  "on_version_mismatch": "abort"
+ },
+ "heightmap": {
+  "source": "terrain/alpine_8k.png",
+  "format": "png16",
+  "resolution": 8129,
+  "section_size": 127,
+  "sections_per_component": 2,
+  "component_count": 32
+ },
+ "stamps": {
+  "base": "terrain/alpine_8k_base.png",
+  "output": "terrain/alpine_8k_stamped.png",
+  "catalogue": "terrain/stampit_catalogue.json",
+  "allow_edge_clip": false,
+  "placements": [
+   {
+    "id": "foothill_basin_east",
+    "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+    "centre_m": [
+     1900.0,
+     -500.0
+    ],
+    "size_m": 4200.0,
+    "rotation_deg": 0.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "MIN",
+    "amplitude_m": 430.0,
+    "falloff": 0.55,
+    "falloff_shape": "euclidean",
+    "opacity": 0.9,
+    "falloff_jitter": 0.45,
+    "falloff_jitter_scale": 0.22,
+    "anchor_m": 120.0
+   },
+   {
+    "id": "foothill_basin_southwest",
+    "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+    "centre_m": [
+     -2300.0,
+     2200.0
+    ],
+    "size_m": 3400.0,
+    "rotation_deg": 0.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "MIN",
+    "amplitude_m": 380.0,
+    "falloff": 0.55,
+    "falloff_shape": "euclidean",
+    "opacity": 0.9,
+    "falloff_jitter": 0.35,
+    "falloff_jitter_scale": 0.3,
+    "anchor_m": 80.0
+   },
+   {
+    "id": "summit_massif_north",
+    "stamp_sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+    "centre_m": [
+     -1500.0,
+     -1200.0
+    ],
+    "size_m": 2600.0,
+    "rotation_deg": 45.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 760.0,
+    "falloff": 0.5,
+    "falloff_shape": "euclidean",
+    "opacity": 1.0,
+    "falloff_jitter": 0.3,
+    "falloff_jitter_scale": 0.35,
+    "datum": "min"
+   },
+   {
+    "id": "summit_massif_south",
+    "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+    "centre_m": [
+     1500.0,
+     1700.0
+    ],
+    "size_m": 2200.0,
+    "rotation_deg": 30.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 560.0,
+    "falloff": 0.42,
+    "falloff_shape": "chebyshev",
+    "opacity": 1.0,
+    "falloff_jitter": 0.42,
+    "falloff_jitter_scale": 0.25,
+    "datum": "min"
+   },
+   {
+    "id": "summit_massif_south_shoulder",
+    "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+    "centre_m": [
+     1080.0,
+     2180.0
+    ],
+    "size_m": 1700.0,
+    "rotation_deg": 335.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 300.0,
+    "falloff": 0.6,
+    "falloff_shape": "euclidean",
+    "opacity": 1.0,
+    "falloff_jitter": 0.4,
+    "falloff_jitter_scale": 0.3,
+    "datum": "min"
+   },
+   {
+    "id": "spine_aretes",
+    "stamp_sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+    "centre_m": [
+     -100.0,
+     200.0
+    ],
+    "size_m": 4200.0,
+    "rotation_deg": 43.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 420.0,
+    "falloff": 0.55,
+    "falloff_shape": "euclidean",
+    "opacity": 1.0,
+    "falloff_jitter": 0.32,
+    "falloff_jitter_scale": 0.45,
+    "datum": "min"
+   },
+   {
+    "id": "cliff_band_west",
+    "stamp_sha256": "620ba332535b8a5de9bcbb2db526da59e1a501000fd41a11ede8015f0d668926",
+    "centre_m": [
+     -2500.0,
+     -200.0
+    ],
+    "size_m": 2000.0,
+    "rotation_deg": 60.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 230.0,
+    "falloff": 0.45,
+    "falloff_shape": "euclidean",
+    "opacity": 1.0,
+    "falloff_jitter": 0.25,
+    "falloff_jitter_scale": 0.35,
+    "datum": "min"
+   },
+   {
+    "id": "outcrops_mid",
+    "stamp_sha256": "ef1d447ce98a7003959a1ff4680ca0b751525bc40ddd1ba3c5016f4c4ccf7910",
+    "centre_m": [
+     500.0,
+     -1900.0
+    ],
+    "size_m": 2200.0,
+    "rotation_deg": 0.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "ADD",
+    "amplitude_m": 140.0,
+    "falloff": 0.45,
+    "falloff_shape": "euclidean",
+    "opacity": 1.0,
+    "falloff_jitter": 0.25,
+    "falloff_jitter_scale": 0.3,
+    "datum": "min"
+   },
+   {
+    "id": "drainage_south",
+    "stamp_sha256": "f346eef3eff75e4a183778c267e6e21fbfac7549cb3135aa948b5c8d6df9607b",
+    "centre_m": [
+     -600.0,
+     2000.0
+    ],
+    "size_m": 2400.0,
+    "rotation_deg": 20.0,
+    "flip_x": false,
+    "flip_y": false,
+    "blend": "MIN",
+    "amplitude_m": 650.0,
+    "falloff": 0.5,
+    "falloff_shape": "euclidean",
+    "opacity": 0.7,
+    "falloff_jitter": 0.3,
+    "falloff_jitter_scale": 0.4,
+    "anchor_m": 60.0
+   }
+  ],
+  "detail_relief": {
+   "amplitude_m": 9.0,
+   "wavelength_m": 28.0,
+   "octaves": 3,
+   "lacunarity": 2.0,
+   "gain": 0.75,
+   "slope_deg": [
+    30.0,
+    90.0
+   ],
+   "slope_feather_deg": 9.0,
+   "seed": 20260803
+  }
+ },
+ "landscape": {
+  "level_path": "/Game/Alpine8K",
+  "actor_name": "Landscape_Alpine8K",
+  "location_cm": [
+   -406400.0,
+   -406400.0,
+   128000.0
+  ],
+  "scale_xy_cm": 100.0,
+  "z_scale_cm": 256000.0
+ },
+ "material": {
+  "parent_material": "/Game/Materials/M_Alpine8K",
+  "height_jitter_m": 45.0,
+  "height_jitter_scale_m": 700.0,
+  "layers": [
+   {
+    "name": "Snow",
+    "base_color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "roughness": 0.3,
+    "slope_deg": [
+     0.0,
+     48.0
+    ],
+    "height_m": [
+     730.0,
+     2560.0
+    ],
+    "blend_sharpness": 0.25,
+    "texture": "textures/alpine_snow.png",
+    "tiling_m": 5.03,
+    "macro_tiling_m": 188.0,
+    "_tiling_derivation": "BRIEF 3 TASK 3, 2026-09-11. tiling_m is DERIVED, not chosen: the texel budget at hfov 90, 3840x2160, near 3 m gives 814.9 texels/m needed, so a 4096 albedo spans 4096/814.9 = 5.03 m at ~1 texel per render pixel. Every surface bound to a layer here is 4096 square (vendor manifest), so 5.03 applies to all three. macro_tiling_m 188.0 = 37.4x the tile, inside the ruled 20-50x band. PREVIOUS: Snow/Rock 4.0 -- that implies 1024 texels/m at 3 m, 26% short of what the camera resolves; Grass 2.1 with macro 98.7 (47x).",
+    "_tile_size_UNSTATED": "R-TILE, RULED 2026-09-13: this layer KEEPS 5.03 and is tagged UNSTATED. Every other bound layer now tiles from its scan's own surface_tile_m, but ambientCG publishes NO physical size for Snow007A -- dimensionX/Y/Z read 0 from its own API, not merely absent from the shipped sidecar (REGISTER B3.11). So 5.03 here is the texel-budget ceiling standing in for a number the vendor does not provide, and the stretch factor is UNKNOWABLE rather than 1.00.",
+    "surface": "Snow007A",
+    "_surface_bind": "RULED 2026-09-12: Snow006 -> Snow007A (ambientCG, CC0). BOUND because it is one of only TWO scans of eight that pass the 16-bit height gate; the six Megascans scans ship 8-bit JPEG Displacement and were REFUSED. Tile stays the DERIVED 5.03 m (texel_budget at the judgement camera), not the scan physical size, which ambientCG does not publish. NOTE: this bind is NOT OBSERVABLE at Bench_ground -- that station sits at 65 m and the snow line is 730 m, so the tiling and albedo tables cannot see it."
+   },
+   {
+    "name": "Rock",
+    "base_color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "roughness": 0.85,
+    "slope_deg": [
+     29.0,
+     90.0
+    ],
+    "height_m": [
+     0.0,
+     2560.0
+    ],
+    "blend_sharpness": 0.7,
+    "texture": "textures/alpine_rock.png",
+    "tiling_m": 1.8,
+    "_tiling_m_from_the_scan": "RULED 2026-09-12b: tile this layer FROM 1.8 m. gray_rocks declares stated_size_m [1.8, 1.8] in its own vendor sidecar, so 1.8 shows the scan at ITS TRUE SIZE. The texel-budget figure below (5.03 m) is a CEILING, not a target: it is the largest tile that still resolves ~1 texel per render pixel at 3 m. Tiling at 5.03 would have STRETCHED a 1.8 m scan by 2.79x -- the stretch factor ASSETS.md row 167 records -- and rocks at 2.8x life size read as a texture rather than as ground. Tiling tighter costs nothing in sharpness: 4096/1.8 = 2276 texels/m, far above the 814.9 needed.",
+    "macro_tiling_m": 188.0,
+    "_tiling_derivation": "BRIEF 3 TASK 3, 2026-09-11. tiling_m is DERIVED, not chosen: the texel budget at hfov 90, 3840x2160, near 3 m gives 814.9 texels/m needed, so a 4096 albedo spans 4096/814.9 = 5.03 m at ~1 texel per render pixel. Every surface bound to a layer here is 4096 square (vendor manifest), so 5.03 applies to all three. macro_tiling_m 188.0 = 37.4x the tile, inside the ruled 20-50x band. PREVIOUS: Snow/Rock 4.0 -- that implies 1024 texels/m at 3 m, 26% short of what the camera resolves; Grass 2.1 with macro 98.7 (47x).",
+    "surface": "gray_rocks",
+    "_surface_bind": "RULED 2026-09-12b, APPLIED 2026-09-13. gray_rocks (Poly Haven, CC0, R-FETCH, author Dimitrios Savva), 4K, 16-bit Displacement, all five maps present, NormalDX. REPLACES Rock051, which had NO RECORDED SOURCE AND NO LICENCE (ASSETS.md row 37: UNRECORDED / UNRECORDED) and therefore could never ship. THE SWAP IS EVIDENCED, NOT ASSERTED: measured linear albedo gray_rocks 0.1795 against Rock051 0.1805 -- 0.6% apart -- so the layer's tonal contribution is preserved and the only thing that changes is that the asset now has a provenance. See ASSETS.md rows 37 and 167.",
+    "_sub_surface_removed": "schema v1.26 (2026-09-12). REMOVED: {surface: Rock026, height_contrast: 0.35}, which was the SCREE/TALUS sub-surface selected by the variant map's G channel (make_variant_map.py:16). Scree is now a real LAYER with its own derived weight (weightmap channel B) and its own scan (rocks_ground_04). Keeping both would be TWO DERIVATIONS OF ONE PHYSICAL FACT -- derive_layer_weights' slope-plus-uphill-source mask and rock_scatter.talus_deposit -- which is NN19, and they cannot be reconciled by inspection because both are plausible. The weightmap's scree wins: R-LAYERS is locked on three independent strands and the eight weights sum to 1 by construction. The sub-surface mechanism was the documented workaround for 'the weightmap carries THREE'; that budget no longer binds."
+   },
+   {
+    "name": "Scree",
+    "base_color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "roughness": 0.85,
+    "slope_deg": [
+     20.0,
+     32.0
+    ],
+    "height_m": [
+     0.0,
+     2560.0
+    ],
+    "blend_sharpness": 0.7,
+    "tiling_m": 2.0,
+    "_tiling_m_from_the_scan": "R-TILE, RULED 2026-09-13. 5.03 -> 2.00 m, the scan's own surface_tile_m from the vendor manifest. 5.03 is the TEXEL-BUDGET CEILING -- the largest tile that still resolves about one texel per render pixel at 3 m -- not a target, and tiling there stretched this 2.00 m scan by 2.52x. Tighter tiling costs no sharpness: 4096/2.00 = 2048 texels/m against the 814.9 required.",
+    "surface": "rocks_ground_04",
+    "_no_macro_tiling": "macro_tiling_m is ABSENT deliberately: it scales the legacy per-layer `texture` (schema v1.2) and this layer has none -- it is bound by `surface` alone. The validator REFUSES macro_tiling_m without texture, correctly: a scale factor with nothing to scale is an inert field that reads like a setting.",
+    "_band_note": "slope_deg 20-32 mirrors derive_layer_weights' SCREE_DEG so the FALLBACK path (no weightmap) is not a different world from the baked one. With the weightmap present these bounds do NOT drive the mask -- the baked B channel does, and it additionally requires a >40 deg cell within 60 m that is HIGHER, which no slope band alone can express.",
+    "_surface_bind": "BRIEF 3 TASK 3, 2026-09-12. rocks_ground_04 (Poly Haven, CC0, R-FETCH). Scree existed as a derived weight from 2026-09-11 and had NO LAYER to bind to -- it was folded into rock by the v1 collapse, so 11.97% of the world rendered as cliff face. Linear albedo 0.2228; stated size 2.00 m against the derived 5.03 m tile = STRETCH 2.51x, recorded not corrected."
+   },
+   {
+    "name": "ForestFloor",
+    "base_color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "roughness": 0.75,
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "blend_sharpness": 0.5,
+    "tiling_m": 2.14,
+    "_tiling_m_from_the_scan": "R-TILE, RULED 2026-09-13. 5.03 -> 2.14 m, the scan's own surface_tile_m from the vendor manifest. 5.03 is the texel-budget CEILING, not a target, and tiling there stretched this 2.14 m scan by 2.35x. 4096/2.14 = 1914 texels/m against the 814.9 required, so the tighter tile costs no sharpness.",
+    "surface": "forest_floor",
+    "_no_macro_tiling": "macro_tiling_m is ABSENT deliberately: it scales the legacy per-layer `texture` (schema v1.2) and this layer has none -- it is bound by `surface` alone.",
+    "_band_note": "The band is a FALLBACK ONLY and is a poor proxy by construction: forest_floor is driven by CANOPY COVER from the placed foliage, not by slope or altitude. The baked A channel carries the real mask (each instance splatted as its crown disk, blurred by crown radius, smoothstepped over the 0.15-0.45 cover band). Slope 0-29 and height 0-730 merely bound where trees can stand.",
+    "_surface_bind": "BRIEF 3 TASK 3, 2026-09-12. forest_floor (Poly Haven, CC0, R-FETCH). PROMOTED FROM A TINT: until now forest_floor was a colour tint applied to the Grass layer (material.forest_floor, schema v1.25) because no litter surface had ever passed the intake gate. It is now a real layer with its own surface, and the tint block is REMOVED rather than kept alongside -- a tint and a layer driven by the SAME alpha channel would double-count the canopy. Linear albedo 0.2760; stated 2.14 m vs the 5.03 m tile = STRETCH 2.35x."
+   },
+   {
+    "name": "Grass",
+    "base_color": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "roughness": 0.6,
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "blend_sharpness": 0.5,
+    "texture": "textures/alpine_grass.png",
+    "tiling_m": 5.03,
+    "macro_tiling_m": 188.0,
+    "_tiling_derivation": "BRIEF 3 TASK 3, 2026-09-11. tiling_m is DERIVED, not chosen: the texel budget at hfov 90, 3840x2160, near 3 m gives 814.9 texels/m needed, so a 4096 albedo spans 4096/814.9 = 5.03 m at ~1 texel per render pixel. Every surface bound to a layer here is 4096 square (vendor manifest), so 5.03 applies to all three. macro_tiling_m 188.0 = 37.4x the tile, inside the ruled 20-50x band. PREVIOUS: Snow/Rock 4.0 -- that implies 1024 texels/m at 3 m, 26% short of what the camera resolves; Grass 2.1 with macro 98.7 (47x).",
+    "_tile_size_UNSTATED": "R-TILE, RULED 2026-09-13: this layer KEEPS 5.03 and is tagged UNSTATED, for the same reason as Snow007A -- the vendor publishes no physical size for WildGrass, so 5.03 is the texel-budget ceiling standing in for a number that does not exist and the stretch factor is UNKNOWABLE rather than 1.00. Note this is the layer the albedo-variation band 0.10-0.20 applies to: the band is the brief's MEADOW band, and meadow is this layer.",
+    "surface": "WildGrass",
+    "_sub_surface_removed": "schema v1.26 (2026-09-12). REMOVED: {surface: Ground037, height_contrast: 0.35}, which was the FOREST FLOOR sub-surface selected by the variant map's B channel (make_variant_map.py:17). forest_floor is now a real LAYER with its own canopy-derived weight (weightmap channel A) and its own scan. Same reason as Rock's: one physical fact, one derivation. This is the THIRD representation of forest_floor to be removed today -- the height-band proxy went on 2026-09-11, the weightmap-alpha TINT went this morning, and this sub-surface goes now.",
+    "_remainder_layer": "⛔ THIS LAYER MUST STAY LAST. schema v1.26, Brief 3 Task 3 (2026-09-12): the weightmap stores FOUR channels -- R=Snow G=Rock B=Scree A=ForestFloor -- and this layer (meadow) is the SHADER REMAINDER 1-(R+G+B+A), clamped at 0. LAYER ORDER IS CHANNEL ORDER: reordering this array silently repaints the world, and nothing downstream can detect it because every mask still sums to 1. The remainder is NOT stored, because a fifth channel would be a fifth number obliged to agree with four others and 8-bit quantisation guarantees it sometimes would not (NN24); derived in the shader the masks sum to 1 by construction. Coverage 25.17% = meadow 24.65 + gravel 0.52, the fold ASSERTED against w8b by `derive_layer_weights.py --expand` (measured gap 0.00392 = 1/255). The channel mapping itself lives ONCE, in make_landscape_material.WEIGHTMAP_CHANNELS; see RECIPES R-LAYERS5."
+   }
+  ],
+  "weightmap": "textures/alpine_8k_weights.png",
+  "weightmap_feather_sigma_px": 1.5,
+  "triplanar": {
+   "layers": [
+    "Rock"
+   ],
+   "slope_deg": [
+    45.0,
+    50.0
+   ],
+   "sharpness": 2.0
+  },
+  "macro_variation": {
+   "seed": 20260803,
+   "map_resolution": 1024,
+   "feature_scale_m": [
+    800.0,
+    2700.0
+   ],
+   "strength": 0.1,
+   "chroma_ratio": 0.3
+  },
+  "displacement": {
+   "enabled": true,
+   "center": 0.5,
+   "per_layer": {
+    "Snow": 0.02,
+    "Rock": 0.2,
+    "Scree": 0.06,
+    "ForestFloor": 0.04,
+    "Grass": 0.03
+   },
+   "_schema": "v1.27 (Brief 7 Phase 1). Per-layer Nanite displacement amplitude in METRES, replacing the single global amplitude_m 0.4 that predated the Brief 3 per-layer 16-bit height scans. Keys MUST be exactly the material.layers names; the validator refuses the retired amplitude_m key and any key that is not a layer. The reducer displacement_spec uses the MAX value as the engine displacement_scaling.magnitude reference and the graph scales each layer's centred-height deviation by amplitude_layer/amplitude_ref, so a fully-mipped or map-less pixel still reads center and moves by nothing. NAME NOTE: the brief calls the remainder layer 'Meadow'; this world's remainder layer is named 'Grass' (R-LAYERS5: R=Snow G=Rock B=Scree A=ForestFloor, remainder=Grass derived in the shader) — Grass 0.03 IS the brief's Meadow 0.03.",
+   "_values": "Snow 0.02 (crisp snow, minimal relief); Rock 0.20 (cliff/boulder mass, within the brief's 0.15-0.25 band); Scree 0.06 (loose fragment relief, ground-scan band 0.03-0.06); ForestFloor 0.04 (litter, ground-scan band); Grass/Meadow 0.03 (turf). All <= the 2.0 m absurdity guard and >= 0.02 m visibility floor."
+  },
+  "height_blend": {
+   "k": 0.0,
+   "_k_ruling": "RULED 0.0 by Ryan 2026-09-24 (Brief 7 Phase 1 retry, step 1). The desk's k=4.0 SHATTERED the terrain into ~1-3 m cubic blocks: w*(h+eps)^k with k=4 sharpens the 1 m weightmap ramps to sub-texel steps (shading, not geometry -- r.Nanite.Tessellation 0 left it unchanged; LESSONS 2026-09-24). k=0 disables the reweight (identity), the positive control that lands per-layer displacement, R-TILE and GroundClutter without blocking. The power form is RETIRED on branch look-p1-heightblend in favour of a BOUNDED modulation w_i*(1 + a*(h_i-0.5)), a=0.6 (schema v1.29, field height_blend.a; validator will refuse k).",
+   "eps": 0.02,
+   "_schema": "v1.28 (Brief 7 Phase 1 addendum). Height-weighted layer blend inside the weightmap composite -- the effect of LB_HeightBlend, which has no referent in M_Alpine8K (it is a LinearInterpolate composite over a baked weightmap, not a LandscapeLayerBlend). Each STORED layer's mask (Snow/Rock/Scree/ForestFloor) is scaled by (h_i + eps)**k, where h_i is that layer's raw height-map sample in [0,1], then the four are renormalised to preserve their sum so the meadow/Grass REMAINDER (1 - sum(stored)) is unchanged. Where two stored layers overlap, the higher-elevation surface wins; a zero-height texel keeps a floor weight (eps) instead of vanishing. k=0 disables the reweighting (absent block behaves identically).",
+   "_height_source": "The RAW height sample (0..1), NOT the displacement-centred value. An even power (k=4) applied to a re-centred height (which straddles 0) would fold a texel far BELOW its own mean onto one far above, which is not a height blend. The desk lever wrote 'centred height'; centring is a displacement-only transform and cannot feed (h+eps)**k -- recorded as an intentional interpretation, see LESSONS.",
+   "_bake_lookup_divergence_RESOLVED": "F2 (audit + cloud review) RULED by Ryan 2026-09-23: MEASURE, then accept (<=2%) or model (>2%). Measured offline on the real weightmap, walkable area only (research/brief7/input/f2_argmax_flip.json): the raw argmax flips on 3.12% of walkable texels (> 2%), margins p50 0.35 -- so MODELLED. bake_surface_lookup.py now applies the same reweight (same _cpu_height_blend, same k/eps, heights sampled at the texel's world position under each layer's tiling) before its argmax, so the footstep/surface answer matches the painted surface by construction. The surface lookup PNG (textures/alpine_8k_surface.png) must be RE-BAKED with --write during Phase 1, in sync with the material rebuild, so the shipped lookup carries the modelled dominant."
+  }
+ },
+ "foliage": {
+  "density_per_hectare": 135.0,
+  "seed": 20260731,
+  "planting_field": "textures/alpine_8k_planting_planting.png",
+  "density_zone_map": "research/brief7/p3/zone_map.json",
+  "density_ceiling": "research/brief5/derived/density_ceiling.json",
+  "_density_2026_09_27": "Brief 7 Phase 3 (R-AESTHETIC-1: ms budgets suspended, perf recorded not gated; VRAM guard only). Zone map = the Brief 5 zones RE-CAPPED at the ruled caps: forest_floor 1.0 (Ryan 2026-09-23, accept m=1 there), plaza 2.157 (t4_recalibration.json at the measured per-tree rate), treeline/vista at the target 5.48. The density ceiling (D_max 1,691 trees per 256 m bin, Ryan ASK#1 2026-09-22) is applied AS RULED, not re-derived: without it the plan is 1,017,096 against the 860,000 ceiling (dry run 1, 2026-09-27); with it ~800k, inside D3's proven 812,258. Generator: research/brief7/scripts/p3_zone_map.py.",
+  "water_exclusion": {
+   "exclusion_mask": "encounters/alpine_8k_water_exclusion.npz",
+   "_what": "Brief-4 T9. The union of the RULING §7 water-body footprints (build_water_exclusion_mask.py, the SAME derived mask the encounters placer reads -- NN24). Trees whose position falls inside it are DROPPED at authoring time as a post-filter on built rows (RNG untouched, no re-roll). The lakes are fill-to-level, so the heightmap under them is unchanged terrain the placement field would otherwise plant; this clears the drowned lakebed."
+  },
+  "settlement_exclusion": {
+   "from_city_plan": "city/alpine_basin_town_plan.json",
+   "_what": "RULED 2026-09-12b. Instances standing inside the committed town footprint are DROPPED AT AUTHORING TIME, so the file every downstream consumer reads no longer describes a forest the world does not have. Margins are NOT declared here -- they are read from recipes/city.json:foliage_clearing, where they were measured by sweep.",
+   "_IT_IS_A_POST_FILTER_AND_THAT_IS_THE_WHOLE_POINT": "city.json argued this could not live in the foliage recipe because 're-planting with an exclusion mask would RE-ROLL all 219,659 positions and move the entire forest'. That is true of a mask applied DURING SAMPLING, which changes how many draws the generator makes and shifts every subsequent value. It is NOT true of a filter applied AFTER the rows are built: yaw, pitch, roll and scale have already been drawn by then, so every surviving instance keeps the exact transform it had before. The claim is therefore TESTABLE rather than argued, and the test is an assertion in the builder -- survivors must match the previous plan position-for-position. See LESSONS 2026-09-12b.",
+   "_why_it_is_needed_when_a_clear_already_exists": "the editor-side clear removes INSTANCES; the weight derivation reads the PLACEMENT JSON. Two representations of one forest, one cleared and one not. Measured 2026-09-12: 2,541 instances inside the footprint in the JSON -- the SAME 2,541 the clear's own margin sweep recorded, reproduced by an independent implementation over a different artefact."
+  },
+  "species": [
+   {
+    "name": "GroundClutter",
+    "mesh": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.6,
+     1.4
+    ],
+    "system": "grass",
+    "cull_distance_m": 70.0,
+    "density_per_10m2": 1.5,
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+      "share": 0.6,
+      "scale_range": [
+       0.6,
+       1.4
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+      "share": 0.4,
+      "scale_range": [
+       0.7,
+       1.5
+      ]
+     }
+    ],
+    "_why": "R-ROCKS-BACK / Brief 7 Phase 1. Restores GroundClutter, which was removed with the rocks at the 8K re-terrain by CC's call (LESSONS/RECIPES.md:7109), not by ruling. Carpet ground detail via the engine grass system per RECIPES.md §6d (ratified 2026-08-08): layer Grass, cull 70 m, density_per_10m2 1.5, boulder_small share 0.6 (0.6-1.4x) + river_rock share 0.4 (0.7-1.5x). VALUES ARE §6d's, not the Brief 7 LEVERS-row paraphrase (that row said cull 40 m / 10 per 10 m²); Phase 1 says 'per §6d', and §6d is the ratified project source of record. Pivot gate (RECIPES.md §6e): boulder_small 17.0% / river_rock 16.8% burial, both under the 25% refuse line -- the grass system places the PIVOT on the surface (it does not read base_offset_z_m), so these near-base-pivot meshes are the two that pass. The material builder's grass_entries picks this up as GT_alpine_8k_GroundClutter on the Grass GrassOutput pin at the next rebuild; no builder code change is needed.",
+    "_owed_run": "This is a recipe-only add; realising it needs the landscape-material rebuild (make_landscape_material.py against the editor) plus the grass placement, which is the world-run gated behind 'merged, go' for this branch."
+   },
+   {
+    "name": "Meadow",
+    "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     0.9,
+     1.6
+    ],
+    "system": "grass",
+    "cull_distance_m": 50.0,
+    "density_per_10m2": 120.0,
+    "varieties": [
+     {
+      "mesh": "/Game/Meshes/grass_medium_01_tiny_a_LOD0",
+      "share": 0.55,
+      "scale_range": [
+       1.3,
+       2.4
+      ]
+     },
+     {
+      "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
+      "share": 0.25,
+      "scale_range": [
+       0.9,
+       1.5
+      ]
+     },
+     {
+      "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
+      "share": 0.12,
+      "scale_range": [
+       1.0,
+       1.7
+      ]
+     },
+     {
+      "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
+      "share": 0.08,
+      "scale_range": [
+       0.9,
+       1.6
+      ]
+     }
+    ],
+    "card": {
+     "hue_percent": 0.08,
+     "brightness_amp": 0.08,
+     "ground_tint": 1.0,
+     "ground_tiling_m": 5.03,
+     "ground_albedo": "/Game/Surfaces/T_WildGrass_C",
+     "ground_albedo_mean": 0.038457,
+     "contact_darkness": 0.55,
+     "contact_height": 0.333,
+     "_why": "BRIEF 3 TASK 4, 2026-09-13. hue_percent and brightness_amp are the ruled +/-8%, driven by PerInstanceRandom; brightness rides frac(r*7.31) so it does not track hue (one PerInstanceRandom is ONE scalar per instance). ground_tint 1.0 applies the underlying Grass layer albedo at the INSTANCE position (ObjectPositionWS, not per-pixel, so a card takes one colour from the ground it stands on), at the Grass layer's own 5.03 m tile. ground_albedo_mean 0.038457 is the MEASURED linear-luma mean of WildGrass_C (4096 square, sRGB decoded); dividing by it makes the tint RESHADE rather than darken -- the ratio averages 1.0. contact_darkness 0.55 over the lower contact_height 0.333 is the ground-contact gradient so soil reads through between blades. Every amplitude at its OFF value (0/0/0/1) makes the chain the exact identity, which _assert_card_identity proves on the CPU at import."
+    }
+   },
+   {
+    "name": "Conifer",
+    "mesh": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+    "layer": "Grass",
+    "weight_share": 0.32,
+    "slope_deg": [
+     0.0,
+     24.0
+    ],
+    "height_m": [
+     120.0,
+     640.0
+    ],
+    "flow_bias": 0.45,
+    "scale_range": [
+     0.6,
+     1.15
+    ],
+    "align_to_normal": 0.15,
+    "cull_distance_m": 730.0,
+    "sink_depth_m": 0.12,
+    "closure": {
+     "at_low": 1.0,
+     "at_high": 0.15
+    },
+    "collision": {
+     "enabled": "query_only",
+     "profile": "FoliageBlockQueryOnly",
+     "navigable_geometry": "yes",
+     "capsule": {
+      "radius_cm": 38.0,
+      "z_min_cm": 0.0,
+      "z_max_cm": 2731.0,
+      "basis": "Measured 2026-08-16 from the mesh's SOURCE_MODEL geometry (76,343 vertices) via GeometryScript_AssetUtils.copy_mesh_from_static_mesh. Trunk radius about the local Z axis: max 37.13 cm in the 0-20 cm root flare, 28.6-34.6 cm from 0.2 m to 3.2 m, r_p50 21-24 cm throughout. 38.0 strictly encloses the flare. Span is the source model's own Z extent (-0.58 to 2731.07 cm). DO NOT re-derive this from RENDER_DATA: on a Nanite mesh that returns the fallback proxy, which overstates the mesh by 6.6% in Z and 36% in X and whose low-Z vertices are far too sparse to contain a trunk at all. Vendor capsules on the sibling spruces run r/h ~0.030 and are gameplay-fattened volumes, not trunks; this mesh measures r/h 0.0120, which matches a real 29 m Norway spruce at DBH 46-74 cm."
+     }
+    },
+    "lod_screen_sizes": [
+     2.0
+    ],
+    "_lod_screen_sizes_note": "asset-true per-LOD ScreenSize after Brief 5 T3 (card pushed past the 512 m cull). recipe == asset; checked by check_recipe_lods.py against tree_lod_probe_t3.json."
+   },
+   {
+    "name": "ConiferPine",
+    "mesh": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+    "layer": "Grass",
+    "weight_share": 0.23,
+    "slope_deg": [
+     0.0,
+     24.0
+    ],
+    "height_m": [
+     120.0,
+     640.0
+    ],
+    "flow_bias": 0.45,
+    "scale_range": [
+     0.6,
+     1.05
+    ],
+    "align_to_normal": 0.15,
+    "cull_distance_m": 730.0,
+    "lods": [
+     {
+      "percent_triangles": 0.4,
+      "screen_size": 0.33642
+     },
+     {
+      "percent_triangles": 0.21,
+      "screen_size": 0.23788
+     },
+     {
+      "percent_triangles": 0.0012,
+      "screen_size": 0.03818
+     }
+    ],
+    "sink_depth_m": 0.12,
+    "closure": {
+     "at_low": 1.0,
+     "at_high": 0.2
+    },
+    "collision": {
+     "enabled": "query_only",
+     "profile": "FoliageBlockQueryOnly",
+     "navigable_geometry": "yes"
+    },
+    "lod_screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "_lod_screen_sizes_note": "asset-true per-LOD ScreenSize after Brief 5 T3 (card pushed past the 512 m cull). recipe == asset; checked by check_recipe_lods.py against tree_lod_probe_t3.json."
+   },
+   {
+    "name": "SpruceSub",
+    "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+    "layer": "Grass",
+    "weight_share": 0.25,
+    "slope_deg": [
+     0.0,
+     24.0
+    ],
+    "height_m": [
+     120.0,
+     640.0
+    ],
+    "flow_bias": 0.45,
+    "scale_range": [
+     0.7,
+     1.15
+    ],
+    "align_to_normal": 0.15,
+    "cull_distance_m": 730.0,
+    "sink_depth_m": 0.12,
+    "closure": {
+     "at_low": 1.0,
+     "at_high": 0.3
+    },
+    "override_materials": [
+     "/Game/Materials/PN_NoWind/MI_spruce_half_01_trunk_nowind",
+     "/Game/Materials/PN_NoWind/MI_spruce_half_01_branch_nowind",
+     "/Game/Materials/PN_NoWind/MI_spruce_half_01_leaf_nowind",
+     "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind"
+    ],
+    "collision": {
+     "enabled": "query_only",
+     "profile": "FoliageBlockQueryOnly",
+     "navigable_geometry": "yes"
+    },
+    "lod_screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "_lod_screen_sizes_note": "asset-true per-LOD ScreenSize after Brief 5 T3 (card pushed past the 512 m cull). recipe == asset; checked by check_recipe_lods.py against tree_lod_probe_t3.json."
+   },
+   {
+    "name": "SpruceSapling",
+    "mesh": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+    "layer": "Grass",
+    "weight_share": 0.2,
+    "slope_deg": [
+     0.0,
+     28.0
+    ],
+    "height_m": [
+     120.0,
+     640.0
+    ],
+    "flow_bias": 0.45,
+    "scale_range": [
+     0.6,
+     1.6
+    ],
+    "align_to_normal": 0.15,
+    "cull_distance_m": 180.0,
+    "sink_depth_m": 0.1,
+    "closure": {
+     "at_low": 1.0,
+     "at_high": 0.55
+    },
+    "override_materials": [
+     "/Game/Materials/PN_NoWind/MI_spruce_small_05_trunk_nowind",
+     "/Game/Materials/PN_NoWind/MI_spruce_small_05_leaf_nowind",
+     "/Game/Materials/PN_NoWind/MI_spruce_small_05_branch_nowind"
+    ],
+    "collision": {
+     "enabled": "query_only",
+     "profile": "FoliageBlockQueryOnly",
+     "navigable_geometry": "yes"
+    },
+    "lod_screen_sizes": [
+     1.0,
+     0.6,
+     0.2,
+     0.1
+    ],
+    "_lod_screen_sizes_note": "asset-true per-LOD ScreenSize after Brief 5 T3 (card pushed past the 512 m cull). recipe == asset; checked by check_recipe_lods.py against tree_lod_probe_t3.json."
+   },
+   {
+    "name": "Blueberry",
+    "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     30.0
+    ],
+    "height_m": [
+     120.0,
+     640.0
+    ],
+    "scale_range": [
+     0.8,
+     1.4
+    ],
+    "system": "grass",
+    "cull_distance_m": 45.0,
+    "density_per_10m2": 12.0,
+    "varieties": [
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_01",
+      "share": 0.14,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_01_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_02",
+      "share": 0.12,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_02_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+      "share": 0.12,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_03_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_04",
+      "share": 0.1,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_04_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_05",
+      "share": 0.08,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_05_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_06",
+      "share": 0.18,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_06_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_07",
+      "share": 0.14,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_07_nowind"
+      ]
+     },
+     {
+      "mesh": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_08",
+      "share": 0.12,
+      "scale_range": [
+       0.8,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/PN_NoWind/MI_MI_Blueberry_08_nowind"
+      ]
+     }
+    ]
+   }
+  ],
+  "rock_scatter": {
+   "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19). Read by BOTH the Pass 2 landscape material's scree sub-surface mask AND Pass 3's talus mesh scatter. Defined once here; neither consumer may keep its own copy. These are properties of rock, not style knobs.",
+   "repose_deg": 35.0,
+   "cliff_source_slope_deg": 45.0,
+   "source_smooth_m": 16.0,
+   "runout_m": 120.0,
+   "mfd_exponent": 1.3,
+   "max_steps": 2400,
+   "saturation": 0.4615,
+   "_saturation_note": "DERIVED FROM THE FIELD, NOT TYPED (ruled 2026-09-26). With the router on the 16 m landform (rock_scatter.py landform_height; run 1: research/brief7/rocks_dryrun2.log, 1953 steps, p99 2.003) the deposit value that exactly 305.4 ha of cells exceed -- R12 4a's apron reference, resolution-independent as an AREA -- is 0.102951; p > 0.2 <=> deposit > 0.2231 * saturation, so saturation = 0.102951 / 0.2231 = 0.4615. History: 0.03 (tuned at 4 m) -> 0.001875 (a /16 dilution guess that did not restore the raw-surface field: apron 88.0 -> 112.6 ha; the raw 1 m surface funnelled fans into pits, max 17,488.8, p99 0.045) -> the router change, then this derivation. SCOPE: read by exclude_talus_above and the report's apron p; each talus mask reads its own mask.saturation, held at the ratified RATIO to this value (TalusField/B/C 5/3, TalusChannel 4/3) -- two copies of one number, NN19, owed a single source.",
+   "_max_steps_note": "RESOLUTION-DEPENDENT, and the ONLY member of this block that is not a property of rock. It is a solver ITERATION BUDGET denominated in CELLS. talus_deposit decays carried mass by trans=exp(-spacing_m/L) per step, so at 1 m spacing mass decays 0.83%/step where 4 m spacing decays 3.3%, and the starting supply is 16x larger on 16x the cells. 600 (tuned at 2017) refused to converge at 8129 with 108.2550 units still in transit; ~1450 are needed and 2400 = 600 x (8129/2017) gives margin. SCALE THIS WITH 1/spacing."
+  },
+  "canopy": {
+   "_comment": "SHARED PHYSICAL FACT (CLAUDE.md non-negotiable 19), sibling to rock_scatter. The canopy radius is a MEASURED property of the tree, not a style knob, and any consumer that clusters under trees reads it from here. Currently read by rock_scatter.py via placement_priors.canopy_occupancy for Pass 5 ground clutter.",
+   "_source": "Free/_measured/pve_spruce.json -> /Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A (the mesh PLACED as Conifer in THIS recipe), get_bounds extent_cm [518.4675903320312, 517.9763793945312, 1465.6336669921875] = half-extents. radius_m is the mean horizontal half-extent: (5.184676 + 5.179764) / 2 = 5.182 m. Until 2026-09-26 this block carried 3.068 m, fir_tree_01_c_LOD0's number copied verbatim from recipes/alpine.json into a recipe whose Conifer is a different tree (rule 9: a copied-true claim is not a verified claim; caught by the rocks audit).",
+   "plan": "alpine_8k_Conifer.json",
+   "radius_m": 5.182
+  }
+ },
+ "streaming": {
+  "main_loading_range_cm": 51200,
+  "_fallback_2026_09_10": "768 m RED'd the perf gate: treeline GPU p90 7.86 vs its 7.0 budget, over by 12% against the 10% tolerance (every other cell held, including all game-thread and frame budgets). Task 0's pre-committed rule executes: 512 m, recorded, and Brief 1's detail threshold moves with the ladder. The 768 m tables are kept in R-RANGE; re-raising is a ruling with those tables in hand.",
+  "hlod_instanced_loading_range_cm": 200000,
+  "hlod_merged_loading_range_cm": 102400,
+  "_task0": "Brief 3 Task 0, RULED (BRIEF 3 sec 3.3): main 25600 -> 76800 cm (768 m -- City's HLOD0 range, between Brief 1's ~700 m 4K detail threshold and a power-of-two cell multiple); instanced HLOD layer 51200 -> 200000 cm (2 km); merged UNCHANGED and now DECLARED at the 102400 it already held (rule 12 -- it was engine-derived prose until today). The x(2<<idx) ladder is ONE-TIME init (WorldPartitionRuntimeHashSet.cpp:264-303, WITH_EDITOR, check(IsEmpty)), so the three values are independent stored properties and no SetupHLODs re-run is needed; GetLoadingRange consults the stored value at streaming time (:125-134). Layers are identified BY PROPERTY SIGNATURE (range+cell), never by name -- Name/HLODIndex are unreflected. FALLBACK if standalone perf fails any zone at 768: main 51200 (512 m), and Brief 1's detail threshold moves with it.",
+  "_verify_note": "Applied by apply_streaming_range; exact-case property names (LoadingRange/CellSize) -- the class has no Python wrapper, so snake_case does not exist for it (measured 2026-09-10)."
+ },
+ "lighting": {
+  "sun": {
+   "elevation_deg": 12.0,
+   "azimuth_deg": 285.0,
+   "intensity_lux": 130000.0,
+   "temperature_kelvin": 5200.0,
+   "_brief2b": "RULED BY RYAN 2026-09-10 (Brief 2b): 7800 -> 5200 K. A low alpine sun at 12 deg elevation runs 4500-5500 K; 7800 K was high for the setting and was the registered suspect behind the shadow_tint_B shortfall. One variable, one capture, no tuning. grade.white_temp_k follows BY THE R-GRADE RULE (= the sun, never above).",
+   "light_shaft_bloom": true
+  },
+  "sky": {
+   "type": "physical",
+   "intensity": 1.0,
+   "_intensity_SLOPE_RESULT_2026_09_12": "⛔ SLOPE MEASURED, VALUE REVERTED to 1.0. near_ground, target class, one variable, read back at both ends (1.0 and 1.600000023): sky 1.0 -> B 1.8051 (R 0.70, shadow_luma 0.00475, lit 0.12044); sky 1.6 -> B 1.9885 (R 0.61, shadow_luma 0.00551, lit 0.11960). SLOPE = 0.3057 B PER UNIT, against a PREDICTION of about 0.60 recorded before the capture -- 2x optimistic; the inherited 0.375 (different white point, different world) was also wrong for here. THE SKY IS WORKING: shadow_luma rose 16% and R fell 0.70 -> 0.61, so shadows do take more blue fill; the RATIO moves slowly. CONCLUSION: reaching the re-derived floor of 2.587 from 1.8051 needs delta 0.7824, i.e. sky about 3.56 -- nearly DOUBLE the 1.8 rejected on 2026-09-09 for over-filling and 3.5x the settled value. SKY INTENSITY CANNOT CLOSE A 30% DEFICIT HERE, which was the pre-committed reading of this outcome. WHAT REMAINS IS CONTENT, NOT LIGHTING: this world reads 0.7674 at neutral WB where Brief 2b read 1.1243 on 2026-09-10, a 32% drop at identical grade and lighting, because the five-layer material changed what is IN the frame and shadow_tint_B is a statistic over the LAND REGION. A ruling, not a lever.",
+   "_intensity_SLOPE_TEST_2026_09_12": "⚠ SUPERSEDED BY THE RESULT ABOVE. TEMPORARY -- 1.0 -> 1.6 to MEASURE THE RESPONSE, reverts after. RULED BY RYAN 2026-09-12. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10). WHY: the band re-derived AT THE GRADE IN FORCE is 2.587-3.764 (neutral-WB band 1.10-1.60 scaled by the MEASURED white-point factor 2.3522, corroborated against the Planck 9454 K slope to 4.09%). near_ground measures 1.8051 = 0.6976 of the floor, so the shade is 30.2% UNDER-blue and needs MORE sky fill -- the OPPOSITE of what the untransformed band said. NO USABLE SLOPE EXISTS at this station and grade: the only historical figure, 0.375 B per unit, comes from a different white point AND a different world (that world read 1.1243 at neutral WB where this one reads 0.7674). So this is a MEASUREMENT, not a solve. 1.6 is a 60% step, large enough to resolve a slope, and already exercised today so it is not new territory. DELIBERATELY NOT 1.8: that is a RECORDED REJECTED value (over-filled at B 1.75, 2026-09-09) and re-testing it needs its own justification rather than being swept into a slope measurement. PREDICTION RECORDED BEFORE MEASURING, so it cannot be fitted afterwards: scaling 0.375 by the world difference and the WB factor gives about 0.60 B per unit, so 1.6 should land near 2.16 -- still SHORT of the 2.587 floor. If that holds, sky intensity alone does not close a 30% deficit and the remedy is a wider question.",
+   "_intensity_excursion_2026_09_12": "⛔ 1.0 -> 1.6 -> 1.0. REVERTED SAME DAY, RULED BY RYAN, and the excursion is kept here because the REASON it was wrong is the useful part. NO DOT-P-Y FILENAMES IN THIS PROSE -- it is interpolated into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10). THE ERROR: the shadow-tint band 1.10-1.60 is specified AT near_ground and NOWHERE ELSE -- the tool's own docstring line 3 says so. I measured it at three RECIPE CAMERAS (forest_floor 1.2526, verify_ground 0.9569, player_eye 0.7366), read 'two of three FAIL' as a world defect, and raised sky intensity to fix it. None of those stations is governed by that band, and near_ground is not even in the recipe camera set -- it is a BENCH station. THE TOOL DOCUMENTS THE EXACT TRAP: 'near band B/luma 0.971 <- sunlit meadow grass, GREEN-dominant ... reading it as the shade answers a different question'. player_eye's B 0.7366 against G 1.10 IS that green bounce, and it is physically correct, not a fault. WHAT IT NEARLY COST: at near_ground sky 1.0 measured 1.45, comfortably inside the band; at the historical slope 1.6 lands near 1.675, ABOVE the 1.60 ceiling. The change would have BROKEN a passing acceptance to 'fix' stations that were never under its jurisdiction. An instrument's premise does not travel to a different specimen -- and this is the third time in one day I applied one outside its class.",
+   "color": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "real_time_capture": true,
+   "lower_hemisphere_is_black": true,
+   "lower_hemisphere_color": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "_task3": "Brief 2 Task 3, 2026-09-09. intensity 1.8 -> 1.0, real-time capture on, lower hemisphere black -- both Epic physical-sun samples. 1.8 over-filled: shadow B/luma measured 1.75 against a natural 1.3-1.7. The sky.color field is INERT for a physical sky (the atmosphere owns the colour); reading it as authority would be a defect. Exposure NOT re-derived: no polish tool exists in this repo. Full reasoning in R13 and LESSONS.",
+   "mie_scattering_scale": 0.01,
+   "_mie_2026_09_12_REJECTED": "⛔ 0.01 -> 0.02 -> 0.01. TESTED AND REVERTED SAME DAY. MEASURED at near_ground, same station, same instrument, one variable, read back at both ends: Mie 0.01 gave shadow_tint B 1.8051 (shadow_luma 0.00475, lit_luma 0.12044); Mie 0.02 gave B 1.8379 (0.00437, 0.10975). B moved UP 0.033 against a needed DROP of 0.21 -- wrong direction, 1.8% where 12% was wanted. R 0.70 and G 1.01 unchanged to two decimals. WHAT DID MOVE: lit_luma fell ~9%, so the haze is doing real extinction; it is simply not desaturating the sky light's contribution to shade. THIS CONTRADICTS _task4's claim that more Mie 'desaturates the sky light's capture, which is the lever for shadow tint once sky intensity is already at 1.0' -- that claim is NOT SUPPORTED at this station and _task4 should not be trusted as a lever again without a measurement. THE SHAPE OF THE FAILURE POINTS UPSTREAM: blue staying pinned while luminance falls is what a capture whose colour is ALREADY SATURATED would do, which is what the editor's pre-exposure warning claims is happening to real-time sky captures. Consistent, not proven. Reverted because 0.02 is worse on the metric and costs 9% scene luminance for nothing. Original note: RULED BY RYAN 2026-09-12.",
+   "_mie_original_note": "0.01, Brief 2 Task 4 2026-09-09. NO DOT-P-Y FILENAMES IN THIS PROSE -- it is interpolated into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10). WHY MIE AND NOT SKY INTENSITY: _task4 names this as the lever -- 'more Mie whitens the horizon and desaturates the sky light's capture, which is the lever for shadow tint once sky intensity is already at 1.0' -- and sky intensity was settled by Brief 2 Task 3. THE DEFECT IT ADDRESSES: the first VALID shadow-tint reading (near_ground, the ONLY station the 1.10-1.60 band governs) measured B 1.8051, ABOVE the ceiling -- shade too blue. The previously trusted 1.45 baseline is void: it was taken on 2026-09-09 while the engine held a weightmap dated 14 AUGUST, reimported only today. STEP SIZE IS NOT FITTED -- there is no measured Mie-vs-shadow-tint slope anywhere (Task 4 moved 0.003996 -> 0.01 and recorded no B). A doubling is chosen to produce a MEASURABLE response: 5x the engine default 0.003996, still physically plausible haze. If it undershoots, the slope is now known; if it overshoots below the 1.10 floor, the answer is bracketed and interpolable. One variable, one capture, no tuning.",
+   "mie_anisotropy": 0.8,
+   "rayleigh_scattering_scale": 0.0331,
+   "_task4": "Brief 2 Task 4, 2026-09-09. Mie scattering scale 0.01, SOURCED to Electric Dreams, not fitted: atmosphere_solve has no fit mode against a measured sky gradient, so the brief's fallback branch applies. Live values before this were ENGINE DEFAULTS -- 0.003996 / 0.8 / 0.0331 read back from the world -- and nothing declared them, so anisotropy and Rayleigh are now DECLARED at the values they already held and only Mie moves. More Mie whitens the horizon and desaturates the sky light's capture, which is the lever for shadow tint once sky intensity is already at 1.0.",
+   "_color_R_SKYCOLOR_2026_09_13": "⭐ RULED BY RYAN 2026-09-13 (R-SKYCOLOR). [0.42, 0.6, 1.0] -> [1, 1, 1]. WHY WHITE: a physical, real-time-captured sky light is not tinted -- the SkyAtmosphere already owns the sky's colour and the capture picks it up, so a tint on the light multiplies a colour that is already there. CORROBORATED, not assumed: all four sky lights in the Epic sample census read white 255,255,255 -- CitySample SkyLight_WP, DarkRuins SkyLight, and both Electric Dreams maps, the last two also real-time capture with SLS_CAPTURED_SCENE exactly as here. AND THE OLD VALUE WAS NEVER THE VALUE IN FORCE: measured 2026-09-13 by reading the actor, the recipe linear triple was stored as FColor 215,231,255, which is the value sRGB-encoded TWICE, so the light actually ran at linear 0.6795/0.7991/1.0 -- R 62 percent high, G 33 percent high, B exact because 1.0 is a fixed point of the curve. The host pre-encode is removed in the same commit; the setter encodes once on its own. NO DOT-P-Y FILENAMES IN THIS PROSE -- this block is serialised whole into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10). SUPERSEDES the _task3 claim that this field is INERT for a physical sky: it is not inert, it is a multiplier on the captured cubemap, and reading it as inert is what left a double-encoded value unexamined."
+  },
+  "fog": {
+   "enabled": true,
+   "density": 0.00416,
+   "start_distance_m": 0.0,
+   "volumetric": true,
+   "height_datum_m": 186.74,
+   "half_height_m": 517.49,
+   "inscattering_luminance": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "directional_inscattering_luminance": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "sky_atmosphere_ambient_contribution_scale": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "_task1": "Brief 2 Task 1, 2026-09-09. Fog colour comes from the SkyAtmosphere: inscattering black, directional black, ambient scale 1,1,1, start distance 0. r.SupportSkyAtmosphereAffectsHeightFog reads 1.0 already and is ECVF_ReadOnly. See R-FOG.",
+   "volumetric_extinction_scale": 1.0,
+   "volumetric_scattering_distribution": 0.4,
+   "_task2": "Brief 2 Task 2, 2026-09-09. density and half_height_m DERIVED by fog_budget, not tuned: T(1km)=0.75 target, world Z 0-1552.5 m, datum at the MEASURED valley floor. Falloff from a stated rule: halves every world-height/3 = 517.5 m. Model verified base-2 against the shader. Full derivation: R-FOG and _verify/bench/2026-09-09/fog_budget json."
+  },
+  "exposure": {
+   "method": "manual",
+   "compensation_ev": -14.2571,
+   "_compensation_solved_on_PPI0": "R-INSTRUMENTS, RULED 2026-09-13c. The exposure solve moves to the SCENE-LINEAR instrument. PPI0 -- the BL_SCENE_COLOR_AFTER_DOF pass-through -- is LINEAR in exposure: a requested -1.000 EV delivers -1.0000 there (ratio 0.5000136), so a correction applies at face value with no slope to divide by. MEASURED at -14.2554: PPI0 card 0.113475, correction -log2(0.113475/0.18) = +0.6656 EV -> -13.5898. The FinalImage card value at this solve is RECORDED BESIDE IT AND NOT TARGETED, because FinalImage is the LOOK instrument: it carries white balance, tint and the grade, which is what makes it the right place to judge those and the wrong place to solve exposure.",
+   "_compensation_at_render_warmup_on": "RE-SOLVED 2026-09-13 once RENDER warm-up was actually enabled. ⛔ EVERY CAPTURE BEFORE THIS PROJECT DATE RAN WITH ZERO RENDERED WARM-UP FRAMES: `render_warm_up_count` defaulted to 32 but `render_warm_up_frames` -- the BOOL that gates it -- defaulted to FALSE, while the sidecar recorded a warm-up of 300. That 300 is the ENGINE count, which ticks the game thread and renders nothing. Turning render warm-up on moved the card 0.180 (predicted by the warm-up-off slope model) to 0.216851, about +0.27 EV. Re-solve: correction -log2(0.216851/0.18) = -0.2687 EV DELIVERED, which at the measured slope 0.7196 is -0.3734 REQUESTED -> -14.2554. MEASURED after applying: card 0.179812 against a 0.18 target, band [0.171, 0.189] -- PASS, the first time this bench's card has landed in band.",
+   "_compensation_resolved_at_manual": "R-METER, RULED 2026-09-12b: RE-SOLVED at Manual metering with Apply Physical Camera Exposure OFF. OLD -4.1268, correction -7.1412, NEW -11.2680. MEASURED per R-GREYCARD on the SCENE-LINEAR EXR: card luma 25.408342 against a 0.18 target, so correction = -log2(25.408342/0.18) = -7.1412. Linearity evidenced by the frame itself -- frame_max_linear 74.5625 EXCEEDS display white, which a tonemapped frame cannot, and disable_tone_curve read back true. WHY IT MOVED SO FAR: with the physical-camera term removed, the scene came back 4-5 stops hot and the capture's own content gate REFUSED it (near_ground luma 0.9576, 57.0% featureless against 0.8% predicted sky). benchmark.json records that exact signature historically -- 'the first ever target run came back 4-5 stops over-exposed, near_ground luma 0.95'. So the old -4.1268 was never a clean exposure: it was a manual bias silently multiplied by the camera's aperture, shutter and ISO, and it only looked right because the two errors cancelled.",
+   "apply_physical_camera_exposure": false,
+   "_apply_physical_camera_exposure": "R-METER, RULED 2026-09-12b: Apply Physical Camera Exposure OFF, so Exposure is exactly 1 over 2^compensation and nothing multiplies it. MEASURED before this key existed: the volume read auto_exposure_apply_physical_camera_exposure TRUE with its override_ companion FALSE -- the ENGINE DEFAULT was in force and the volume asserted nothing either way. An unasserted default is not a setting; it is whatever the engine prefers this version, and it silently scales the manual bias by the camera's aperture, shutter and ISO. Both the value AND the override are now written and read back, and apply_lighting REFUSES on either mismatch -- the value alone proves nothing, which is exactly how this went unnoticed.",
+   "_chain_is_not_linear": "MEASURED 2026-09-11, and it overturns the premise of the scene-linear ruling. With the tone curve DISABLED and read back true, the card still does not respond linearly to exposure: a requested EXACTLY -1.000 EV delivered -0.7266 EV, and a requested -0.4453 EV delivered -0.3276. Two step sizes, one answer -- the chain is a POWER LAW with log-log slope 0.731, not a multiply. Disabling the film curve is NOT a no-op (at a fixed exposure it moved the card 0.26489 -> 0.24480, 8%) but it is also not the whole compression; the grade's own contrast 0.95 and whatever else sits after exposure account for the rest. comp_ev is therefore set from the MEASURED transfer, not the assumed one: from -3.9626 (card 0.195313) the card needs -0.1178 EV delivered, which at slope 0.731 is -0.1611 requested -> -4.1237; the independent extrapolation from -4.9626 (card 0.118032) gives -4.1298. They agree to 0.006 EV, which is the model's own corroboration. Applied: -4.1268.",
+   "_card_scene_linear": "RULED BY RYAN 2026-09-11: card measurements move to SCENE-LINEAR. The tone curve is disabled on the render (MoviePipelineColorSetting bDisableToneCurve, VERIFIED at the engine source -- it lives on the COLOR SETTING, not on the deferred pass as the ruling supposed) and the card is read off the EXR with OpenEXR 3.3.2. Target 0.18 scene-linear +/-5% = [0.171, 0.189]. MEASURED at -3.5173: card luma 0.245095 -> correction -log2(0.245095/0.18) = -0.4453 EV -> -3.9626. THE POINT OF MOVING PASSES: on the display-referred frame the same correction under-delivered by a third (65.0%, matching the white-balance chain's 68% then 40%) because the filmic curve is compressive; in scene-linear there is no curve in the loop, so one step is expected to land exactly. Engine read-back on the capture: disable_tone_curve true, ocio_is_enabled false.",
+   "_card_rederivation": "RULED BY RYAN 2026-09-11. Exposure is now anchored on the 18% GREY CARD, which is the reference _solve_caveat said the method lacked: it is a KNOWN reflectance inside the frame, at the frame's own exposure, so it needs no pre-tonemap value and no albedo assumption about the terrain. Target: card luma 0.18 linear +/-10%; correction = -log2(measured/0.18). MEASURED on near_ground at the previous -1.923: card luma 0.54349 -> +1.5943 EV over target -> -1.923 - 1.5943 = -3.5173. NO DOT-P-Y FILENAMES IN THIS PROSE -- it is interpolated into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10). THE CARD USED IS near_ground's, NOT vista's: the greycard tool's --measure mode returns FAIL for vista (wb_ratio_B 1.2352, card_luma_std 0.06693 vs near_ground's 0.01572) because that card sits on a SHADED flank and is lit by sky alone, so it is not a reference for either exposure or white balance. See R-GREYCARD and LESSONS 2026-09-11e. The old terrain-albedo solve (_solve, _solve_caveat) is SUPERSEDED, not deleted -- it is kept because its three-denominator disagreement is the evidence for why a scene-average method could not settle this.",
+   "_card_rederivation_expectation": "ONE STEP, and it is EXPECTED to under-deliver: the decoded PNG is post-tonemap and the filmic curve is compressive here, which is _solve_caveat's own measured finding (a 0.137 EV step yielded -5.4% where linear arithmetic said -9.1%) and matches the white-balance chain's 68%-then-40% per-step efficiency. The residual is to be RECORDED, not tuned away.",
+   "_solve": "SOLVED FOR THIS SCENE 2026-08-14, not ported. Measured on diag_topdown (9 km, whole-map coverage) with the SKY MASKED OUT by local-variance: terrain-only linear luma 0.4135 against the solver target 0.3201 for sunlit terrain at albedo 0.2675, giving -1.786 - log2(0.4135/0.3201) = -1.923. THREE DENOMINATORS WERE TRIED AND THEY DISAGREE BY 0.13 EV, which is why the masking matters: whole-frame including sky gives 0.3470 -> -1.902 (the frame is ~57% sky at 9 km, so that is a sky-weighted average); a 4 km all-terrain probe gives 0.3805 -> -2.035 but samples only the central massif, which is snow-biased against a map that is 21.56% snow. Only the masked whole-map figure matches the area-weighted albedo the solver assumes. CROSS-CHECK: /Game/Alpine s Lumen-corrected -1.897 was derived independently for this same terrain, material and lighting, and agrees to 0.026 EV. That is confirmation by re-derivation, NOT a port -- and note the AlpineLab_8129 case where porting -1.897 would have been wrong, because that is a different mountain.",
+   "_solve_caveat": "THE SOLVE IS APPROXIMATE AND THE RESIDUAL IS NOT SMALL. Applying -1.923 moved the measured terrain-only linear from 0.4134 to 0.3909, where linear scaling predicted 0.3760 and the target is 0.3201. IT CANNOT CONVERGE BY CONSTRUCTION: the decoded PNG is POST-TONEMAP and the solver target 0.3201 is a PRE-TONEMAP scene value, and the filmic curve is compressive in this range -- a 0.137 EV step yielded -5.4% where linear arithmetic says -9.1%. This limitation applies to every exposure check this project has made by decoding a screenshot, including /Game/Alpine s 0.3169-vs-0.3201 agreement, which is closer than the method can actually resolve. The value is therefore anchored on TWO things that do not share this flaw: the measured brightness ORDERING (this scene reads brighter than the -1.786 reference) and agreement to 0.026 EV with alpine s independently-derived -1.897 for the same terrain, material and lighting. Frames at -1.923 read sRGB mean 0.610 with 0.000% blown. A proper solve needs the pre-tonemap value, which a screenshot cannot give. OPEN.",
+   "_resolve_2026_09_13": "comp_ev -13.5898 -> -14.2571, from the card at 0.25580 against the 0.18 scene-linear target through a MEASURED log-log slope of 0.7598. See the grade block's note for the full derivation and for why the solve is on the EXR. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10)."
+  },
+  "clouds": {
+   "enabled": true,
+   "material_parent": "/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst",
+   "material_instance": "/Game/Bench/MI_AlpineClouds",
+   "coverage_param": "Cloud_GlobalCoverage",
+   "coverage": 0.3,
+   "layer_bottom_km": 2.0,
+   "layer_height_km": 1.5,
+   "_task6": "Brief 2 Task 6, 2026-09-10. One VolumetricCloud (find-or-create by label) on the engine's simple cloud material: bottom 2.0 km, height 1.5 km, coverage 0.3. Cloud_GlobalCoverage VERIFIED on the parent material's reflected surface (the cloud_mi_probe payload against the live 5.8 editor -- the MI exposes it, so the brief's conditional applies). The override lives on a CHILD instance in /Game/Bench because writing a parameter to the ENGINE MI would dirty engine content outside both roots (standing rule 1). layer_bottom_altitude / layer_height are in KILOMETRES on the component (the read_cloud_state script's verified reflected reads). NO DOT-P-Y FILENAMES IN THIS PROSE: it is interpolated into a remote-exec payload, and the engine treats the first such substring as a pathname (LESSONS 12.10, recurred 2026-09-10c)."
+  },
+  "grade": {
+   "white_temp_k": 3438.6,
+   "_wb_joint_2026_09_15": "R-WB2x2 (closure A-6): white_temp_k 3415.7 -> 3438.6 and white_tint -0.0113 -> -0.0248, SOLVED JOINTLY from the measured card at the in-force values (R/G 1.0000, B/G 1.0332 on the finalimage_linear EXR, target_a5_base) against the FULL 2x2 slope matrix of the 2026-09-14 run -- including the off-diagonal coupling terms the first-order solve dropped (temp moves B/G at -3.678e-4 per K; tint moves R/G at +0.588 per unit). The 09-14 first-order solve nulled each axis on its own slope and the dropped coupling became the measured B/G residual 1.033. Solver: wb_joint_solve (selftest reproduces the 09-14 first-order adoption from the same base and predicts its residual). First-order and joint recorded side by side in _verify/bench/2026-09-15/wb_joint_solve_a6.json; adoption per the ruling on the confirm card 0.97-1.03 both axes.",
+   "_wb_TEST_2026_09_12_RESULT": "⛔ TEST COMPLETE, VALUE REVERTED to R-GRADE's card-derived 3481.9. MEASURED at near_ground, target class, one variable, read back at both ends: WB 3481.9 -> B 1.8051 (R 0.70 G 1.01); WB 5200 -> B 0.7674 (R 1.36 G 0.92). TWO FINDINGS. (1) WHITE BALANCE DOMINATES THIS METRIC: a 94.89-mired move swung B by 2.35x and flipped R from 0.70 to 1.36, so shadow_tint_B at this station is substantially a white-balance readout and a WB-calibrated band cannot be transported across a WB change -- which is the very trap its docstring cited when retiring the old 1.3-1.7 band. (2) THE WORLD ALSO CHANGED: at IDENTICAL WB 5200 this reads 0.7674 where Brief 2b read 1.1243 on 2026-09-10, 32% lower, so the band's calibration specimen and today's scene are not the same content -- expected, since the five-layer material put scree and forest_floor in frame as real surfaces and the weightmap feeding them was a month stale on 09-10 too. NEITHER VALUE PASSES: 1.8051 too high at the locked grade, 0.7674 too low at the band's own calibration point. Interpolating the two measured points, the 1.10-1.60 band maps to WB about 3725-4490 K, and 3481.9 sits just BELOW that window -- but the response is known to saturate, so treat that as an indication, not a solve. THE BAND AND R-GRADE ARE IN CONFLICT AND BOTH ARE LOCKED RULINGS; reconciling them is Ryan's, not a value to tune.",
+   "_wb_TEST_2026_09_12_original": "⚠ TEMPORARY TEST VALUE -- 3481.9 -> 5200.0, RULED BY RYAN 2026-09-12, TO BE REVERTED. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10). WHY: near_ground measures shadow_tint_B 1.8051 against a 1.10-1.60 band, and that band was RULED 2026-09-10 on Brief 2b's measurement of 1.1243 taken at sun 5200 / WB 5200 -- WB EXACTLY AT THE SUN. The grade has since moved to 3481.9, i.e. 1718 K BELOW the sun, which is MORE blue-amplifying than the 1300-K-below grade the band was rewritten to EXCLUDE. THE BAND CANNOT BE RE-DERIVED BY EXTRAPOLATION: the only two calibration points (Brief 2b 1.1243 at delta 0 mired; Task 3 1.4456 at delta 25.64 mired) differ in SUN as well as WB, and both a linear and a log mired model predict 2.313 and 2.850 at the current delta of 94.89 mired against an actual 1.8051 -- the response SATURATES, as the recipe's own 45-60%-per-step note says. So instead of extrapolating the band to the grade, this puts the GRADE back to the band's calibration condition and measures. Lands near 1.1243 -> the world is correct and the band and R-GRADE are incompatible by construction. Lands elsewhere -> something else moved since 2026-09-10, and the five-layer material and the un-staled weightmap are the suspects. 5200 sits AT the R-GRADE ceiling ('never above the sun'), so the rule is not violated; it simply is not the card-derived effective illuminant, which is why this reverts.",
+   "_wb_on_the_linear_pass": "RULED BY RYAN 2026-09-11: WB re-checked on the SCENE-LINEAR pass, one step. 3550 -> 3481.9 K. THE DISPLAY-REFERRED READING WAS FLATTERING THE GRADE: at the same 3550 K the tonemapped card read R/G 1.0230 / B/G 1.0000, both inside 0.97-1.03, and R-GRADE was LOCKED on that. On the linear pass the same grade reads R/G 1.0549 / B/G 1.0014 -- R is OUT of band. The tone curve was compressing the white-balance error exactly as it was compressing the exposure error, so the lock was taken against a compressed instrument. Step DERIVED as before: r = (R/G)/(B/G) = 1.0534, delta = ln(r)/9454 = +5.51 mired, 281.69 -> 287.20 mired -> 3481.9 K. The R-GRADE ceiling still holds: 3481.9 is far below the 5200 K sun.",
+   "_task1_final": "RULED 2026-09-11: one final step to the extrapolated neutral (~3550 K -- the geometric extrapolation of the measured ~45%-per-step convergence). Card within 0.97-1.03 locks R-GRADE here; otherwise R-GRADE locks at the best reading with the residual recorded. The chain is NOT von Kries (the per-step efficiency even FELL between steps: 68% then 40% of the theoretical mired slope (audit-recomputed: 0.0688 removed / 0.1721 theoretical)), which is the measured reason a one-shot formula cannot land this.",
+   "_task1_b3_step2": "Step 2 of 2 (2026-09-10). At 4026 the card read R/G 1.1070 / B/G 0.9322 (highlight band PASS, card band 0.97-1.03 not yet). Residual r2 = 1.1070/0.9322 = 1.1875 -> ln 0.1719 / 9454 K = +18.2 mired; 248.4 + 18.2 = 266.6 mired -> 3751 K. Tint left 0: the common factor sqrt(R/G x B/G) = 1.016 puts the green axis within the band once temperature lands. One-step-gets-within-3% (BRIEF 3.7) held approximately: 26% error -> 19% residual... the slope under-corrects because the atmosphere's spectrum is not a blackbody; two steps were allowed for exactly this.",
+   "_shade_band_2026_09_15": "R-SHADEBAND (closure A-7, AMENDED same day): the shade acceptance band is 2.065-2.998 AT WHITE POINT 3438.6 K, SHADE FLOOR D6000, by research/brief3/scripts/shade_reference.py --white 3438.6 --shade 6000 10000. THE FLOOR IS D6000 NOT D6500 because the sun is at 12 deg elevation (< ~30 deg): low-sun hemispherical skylight is warmer than the D6500 overhead-daylight default (Hernandez-Andres et al. 2001, JOSA A 18). The A-7 measurement 2.1896 (near_ground, 09-15) is PASS in this band (it sits at ~D6380). The earlier D6500 figures (2.229-2.998 @ 3438.6, and 2.254-3.029 @ 3415.7 before A-6) were the same white points at the overhead floor. ⛔ THE FinalImage PAIR 2.587-3.764 IS STRUCK: it appears in _intensity_SLOPE_RESULT_2026_09_12 and _intensity_SLOPE_TEST_2026_09_12 below as the band the shade deficit was measured against, and FinalImage is NOT this band's domain (B3.15 moved the acceptance to the scene-linear PPI0 pass). Those two prose blocks are kept as the historical slope measurement but their 2.587-3.764 figure is superseded. The band lives in scripts/shade_card_pair.py and its selftest now RE-DERIVES it from shade_reference at BAND_WHITE_K, so it cannot silently drift from the white point again.",
+   "temperature_type": "white_balance",
+   "_temperature_type": "PINNED 2026-09-10 (Brief 3 Task 1): Scene.h:1503 -- TemperatureType picks White Balance vs Color Temperature and the two are INVERSE; it had been unset since the grade existed (flagged 2026-09-09). white_balance = WhiteTemp names the ILLUMINANT the scene treats as white, which is the semantics every ruling here has assumed.",
+   "white_tint": -0.0248,
+   "_white_tint_2026_09_15": "R-WB2x2 joint solve -- see _wb_joint_2026_09_15 above. The -0.0113 below stands as the 09-13 first-order record.",
+   "_white_tint": "Green-magenta axis (Scene.h:1508-1510). SOLVED 2026-09-13 (R-GRADE tint) by ONE measured step, at Manual metering with RENDER warm-up ON, card read off the scene-linear EXR at near_ground. Baseline at tint 0: R/G 1.0295, B/G 1.0318. At tint 0.2: R/G 1.1412, B/G 1.4887. SLOPES per unit tint: R/G +0.5585, B/G +2.2845. Nulling the out-of-band ratio gives t = (1.0-1.0318)/2.2845 = -0.0139, PREDICTING R/G 1.0217, B/G 1.0000. MEASURED after applying: R/G 1.0221, B/G 1.0091 -- both inside the 0.97-1.03 acceptance; prediction good to 0.04% on R and 0.9% on B. APPLIED and kept.",
+   "_white_tint_is_not_a_clean_green_axis": "MEASURED, and it is why one step could not null both ratios: tint moves B FOUR TIMES harder than R (2.2845 vs 0.5585 per unit). A pure green-magenta axis would move R/G and B/G together, since both are numerators over the same G. Solving for R instead would have driven B to 0.911, far outside the band. The axis is named for the control it exposes, not for what it does to this chain -- so the solve targets the ratio that is OUT of band and checks the other lands inside, rather than pretending one number can null both.",
+   "warmth_bias_k": 0.0,
+   "_warmth_bias_k": "RULED (BRIEF 3 sec 3.7): warmth on the bench is an EXPLICIT offset, 0 for the bench; a look value is a later ruling.",
+   "_task1_b3": "Brief 3 Task 1, step 1 of at most 2. The card at WB 5200 read R/G 1.2623 / B/G 0.7429 -- the GROUND-LEVEL sun is warmer than its 5200 K source (atmosphere at 12 deg). Step DERIVED, not tuned: excess ratio r=(R/G)/(B/G)=1.699; Planck two-channel slope d(ln r)/d(1/T)=c2(1/470nm-1/680nm)=9454 K, so delta = ln(r)/9454 = 56.1 mired; 5200 K = 192.3 mired -> 248.4 mired -> 4026 K. Sign anchored on the measured 8800-on-7800 case (WT above the illuminant renders WARM). Note the R-GRADE rule holds: 4026 < the 5200 K sun -- the effective illuminant IS the refined meaning of 'the sun's temperature'. Acceptance: card R/G and B/G in 0.97-1.03.",
+   "contrast": 0.95,
+   "_contrast_TEST_2026_09_13_RESULT": "⛔ TEST COMPLETE, VALUE RESTORED to 0.95 and read back from the volume. Q12 experiment 2, FinalImage, same two compensations, one variable: contrast 0.95 delivered -0.7199 for a requested -1.000; contrast 1.0 delivered -0.7969. CONTRAST IS ONE FACTOR AND THE COMPOSITION IS NOT A CLEAN PRODUCT: a pure multiplicative model predicts 0.7199/0.95 = 0.7578 at contrast 1.0, and the measurement is 0.7969 -- 0.039 high. That is what a NONLINEAR film curve does; changing contrast moves the card to a different part of the curve, where its local slope differs, so the two stages cannot simply multiply. The residual 0.7969 with contrast removed is the film curve at this operating point (film_slope 0.88, film_toe 0.55, film_shoulder 0.26).",
+   "bloom_intensity": 0.4,
+   "bloom_method": "FFT",
+   "grain": 0.0,
+   "vignette": 0.0,
+   "chromatic_aberration": 0.0,
+   "_rule": "RULED BY RYAN 2026-09-10: white_temp = the sun's temperature (neutral); NEVER above it. Scene.h:1505 -- WhiteTemp is what the scene treats as white, so a WhiteTemp above the sun renders the sun WARM. REFINED by Brief 3 Task 1 (2026-09-10): 'the sun's temperature' means the MEASURED EFFECTIVE ILLUMINANT on the grey card -- the atmosphere reddens the ground-level sun below its source temperature, so the neutral point sits BELOW the source value; the ceiling stands (never above the source). Current value and its derivation: _task1_b3. History: 8800 ('sun + 1000 K') REJECTED -- contradicted its own citation, highlight_tint R 1.3748 / B 0.1895 vs 0.9-1.1, broke Task 3's shadow band; 7800 measured 2026-09-10 (shadow_tint_B 1.2580 truth-class, 0.042 below the floor). See RECIPES R-GRADE and LESSONS 2026-09-09e/2026-09-10.",
+   "_quiet": "grain 0, vignette 0, chromatic aberration 0 -- the bench COMPARES frames and every grade element is noise in that comparison. Bloom is FFT at 0.4 on the engine's default kernel, a quieter version of the Epic grades.",
+   "_resolve_2026_09_13": "⭐ RE-SOLVED 2026-09-13 on the settled bench AFTER R-SKYCOLOR (sky light 0.42/0.6/1.0 -> white, and the double sRGB encode removed). R-GREYCARD measured-slope procedure with the slopes MEASURED THIS RUN, not inherited: one capture per axis at a known offset, near_ground, target class, scene-linear EXR. SLOPES: d(wb_R)/dK = 3.472e-04 from a +500 K step; d(wb_B)/d(tint) = 1.830 from a +0.06 step; d(log2 card_luma)/dEV = 0.7598 from a -0.7 EV step -- that last corroborates the 0.731 measured 2026-09-11 on different data and confirms the chain is NOT linear. BEFORE: white_temp 3481.9, white_tint -0.0139, comp_ev -13.5898, card R/G 1.02300 B/G 0.99520 luma 0.25580. ⛔ THE SOLVE IS ON SCENE-LINEAR, NOT FinalImage, AND THAT WAS A MEASUREMENT NOT A PREFERENCE: on the FinalImage PNG the card read linear 0.28315/0.27889/0.27889, which are 8-bit codes 145/144/144. One code is 1.526 percent of the card, so the whole white-balance signal was 1.00 code in R and 0.00 codes in B against a card spatial std of 1.84 codes -- signal-to-noise below one, and a slope measured there would be a slope of the quantiser. The acceptance BAND (0.85-1.15, about plus or minus 10 codes) is still read on FinalImage; only the SOLVE moved. TINT AND TEMPERATURE ARE COUPLED -- the tint probe moved R/G from 1.023 to 1.0583 as well as B/G -- so the two axes were solved first-order and the residual is recorded after the confirm capture, not tuned away. NO DOT-P-Y FILENAMES IN THIS PROSE -- this block is serialised whole into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10)."
+  }
+ },
+ "capture": {
+  "output_dir": "captures/alpine_8k",
+  "resolution": [
+   1920,
+   1080
+  ],
+  "cameras": [
+   {
+    "name": "hero_spawn",
+    "location_cm": [
+     -210800.0,
+     278800.0,
+     25000.0
+    ],
+    "rotation_deg": [
+     -8.0,
+     35.0,
+     0.0
+    ],
+    "fov_deg": 55.0,
+    "_moved_to_the_town_2026_08_26": "WAS (354600, -321400, 30000) facing yaw 135 -- a clearing 8,245 m from the town, trace-placed in 2026-08-15 to make the kilometre walk test possible. That was INSTRUMENT SCAFFOLDING, never a design decision: nobody ruled that the game begins in that forest. It is now the TOWN PLAZA. WORLD_VISION already decided this at the landform level -- the basins are where people live and the foothill-to-peak arc is distance from safety -- so a player starting 8 km out begins at the WRONG END of the remoteness gradient and the world's difficulty reading is inverted from the first minute. This camera's rotation_deg governs CAPTURE ONLY -- place_player_start takes the actor's facing as its own --yaw argument and does NOT read it from here, so the spawn was placed with --yaw 35 to face the landmark tower across the plaza. Stated because the first run silently used the tool's default 135 and a comment claiming otherwise would have been false the moment it was written. ONE start, not two: UE picks among multiple PlayerStarts unpredictably, and a spawn that depends on engine enumeration order is exactly the silent variable this project exists to kill. The old coordinates survive here and in git; the walk-test tooling spawns pawns anywhere and never needed the actor."
+   },
+   {
+    "name": "ridge_wide",
+    "location_cm": [
+     -380000.0,
+     -380000.0,
+     165451.3
+    ],
+    "rotation_deg": [
+     -6.0,
+     67.7,
+     0.0
+    ],
+    "fov_deg": 55.0
+   },
+   {
+    "name": "diag_oblique",
+    "location_cm": [
+     -300000.0,
+     -300000.0,
+     234445.8
+    ],
+    "rotation_deg": [
+     -30.0,
+     45.0,
+     0.0
+    ],
+    "fov_deg": 60.0
+   },
+   {
+    "name": "diag_topdown",
+    "location_cm": [
+     0.0,
+     0.0,
+     900000.0
+    ],
+    "rotation_deg": [
+     -90.0,
+     0.0,
+     0.0
+    ],
+    "fov_deg": 60.0
+   },
+   {
+    "name": "snowline_detail",
+    "location_cm": [
+     -320000.0,
+     -120000.0,
+     72175.4
+    ],
+    "rotation_deg": [
+     0.0,
+     57.7,
+     0.0
+    ],
+    "fov_deg": 34.0
+   },
+   {
+    "name": "player_eye",
+    "location_cm": [
+     286344.7,
+     -128836.4,
+     14172.9
+    ],
+    "rotation_deg": [
+     22.92,
+     -160.0,
+     0.0
+    ],
+    "fov_deg": 65.0
+   },
+   {
+    "name": "forest_floor",
+    "location_cm": [
+     377601.3,
+     -302771.8,
+     28732.7
+    ],
+    "rotation_deg": [
+     3.05,
+     135.0,
+     0.0
+    ],
+    "fov_deg": 75.0
+   },
+   {
+    "name": "verify_ground",
+    "location_cm": [
+     -356900.6,
+     300122.7,
+     31402.0
+    ],
+    "rotation_deg": [
+     -6.0,
+     -31.74,
+     0.0
+    ],
+    "fov_deg": 75.0
+   },
+   {
+    "name": "verify_aerial",
+    "location_cm": [
+     118666.6,
+     -118666.6,
+     283934.0
+    ],
+    "rotation_deg": [
+     -50.0,
+     135.0,
+     0.0
+    ],
+    "fov_deg": 75.0
+   },
+   {
+    "name": "cliff_face",
+    "location_cm": [
+     263870.3,
+     137560.5,
+     77634.0
+    ],
+    "rotation_deg": [
+     14.03,
+     160.45,
+     0.0
+    ],
+    "fov_deg": 55.0
+   },
+   {
+    "name": "rock_grounding",
+    "location_cm": [
+     -144037.6,
+     -364593.8,
+     29011.8
+    ],
+    "rotation_deg": [
+     -11.1,
+     -135.0,
+     0.0
+    ],
+    "fov_deg": 55.0
+   },
+   {
+    "name": "trunk_base",
+    "location_cm": [
+     -27855.8,
+     215540.6,
+     22990.5
+    ],
+    "rotation_deg": [
+     11.3,
+     -75.0,
+     0.0
+    ],
+    "fov_deg": 35.0
+   },
+   {
+    "name": "lod_near",
+    "location_cm": [
+     287439.1,
+     -399260.5,
+     41346.4
+    ],
+    "rotation_deg": [
+     6.5,
+     -75.0,
+     0.0
+    ],
+    "fov_deg": 25.0
+   },
+   {
+    "name": "lod_far",
+    "location_cm": [
+     287102.7,
+     -398004.8,
+     41602.2
+    ],
+    "rotation_deg": [
+     5.3,
+     -75.0,
+     0.0
+    ],
+    "fov_deg": 25.0
+   },
+   {
+    "name": "sweep_0060",
+    "location_cm": [
+     -171041.9,
+     -53291.2,
+     50162.8
+    ],
+    "rotation_deg": [
+     -0.303,
+     -80.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "sweep_0150",
+    "location_cm": [
+     -174134.6,
+     -44781.1,
+     45805.5
+    ],
+    "rotation_deg": [
+     -0.303,
+     -74.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "sweep_0350",
+    "location_cm": [
+     -152500.0,
+     -28889.1,
+     53201.4
+    ],
+    "rotation_deg": [
+     -6.245,
+     -120.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "sweep_0700",
+    "location_cm": [
+     -209143.5,
+     -1167.4,
+     66360.3
+    ],
+    "rotation_deg": [
+     -0.303,
+     -56.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "sweep_1200",
+    "location_cm": [
+     -289926.9,
+     -63387.9,
+     36131.5
+    ],
+    "rotation_deg": [
+     -0.303,
+     2.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "sweep_2000",
+    "location_cm": [
+     -368053.6,
+     -87034.6,
+     25046.1
+    ],
+    "rotation_deg": [
+     -0.303,
+     8.0,
+     0.0
+    ],
+    "fov_deg": 50.0
+   },
+   {
+    "name": "exposure_probe",
+    "_what": "Straight down from 4 km. Deliberately LOWER than diag_topdown so the frame is ALL TERRAIN: at 9 km with fov 60 the frame spans 10.4 km against an 8.13 km terrain, so ~55% of diag_topdown is SKY and any whole-frame luma taken from it is a sky-weighted average, not a terrain one. At 4 km the frame spans 4.6 km, comfortably inside the terrain. This station exists to solve exposure, not to be looked at.",
+    "location_cm": [
+     0.0,
+     0.0,
+     400000.0
+    ],
+    "rotation_deg": [
+     -90.0,
+     0.0,
+     0.0
+    ],
+    "fov_deg": 60.0
+   }
+  ]
+ },
+ "palette": {
+  "_generated_by": "scripts/make_alpine_palette.py",
+  "_curation": "recipes/alpine_palette_curation.json",
+  "_measurements": "Free/_measured/fab_registry_*.json (zero assets loaded)",
+  "_verified_policy": "Every entry is verified=false. Promotion requires a spawn and a render, in the pass that places the asset. This file cannot assert true.",
+  "tier_gate": {
+   "metric": "triangles / bbox_area_m2, blobs only",
+   "reference_group": "KiteDemo:/Rocks/",
+   "reference_median_tri_per_m2": 299.5,
+   "reference_min_tri_per_m2": 105.8,
+   "rule": "A blob-shaped rock asset is admitted only if its measured density falls inside the reference group's observed range. Planar and spanning assets are NOT gated by this metric — see the limits in scripts/palette_evidence.py."
+  },
+  "surface_rulings": [
+   {
+    "id": "scree_surface",
+    "decision": "Rock026",
+    "decided": "2026-08-03",
+    "role": "Rock layer sub-surface (scree / talus), Pass 2",
+    "criteria": "coherence with Rock051 at the talus boundary; tiling at ground AND 2 km; displacement quality, since scree is where displacement reads most",
+    "evidence": "_verify/20260803_scree_candidates.png",
+    "rejected": {
+     "id": "Rock063",
+     "disqualifier": "CONTENT, not statistics: it is MOSS-COVERED VEGETATED BEDROCK, bright green, not fractured stone. Scree is by definition unvegetated — talus is actively moving, which is exactly why vegetation cannot establish on it. A mossy scree field is a geological error.",
+     "why_the_numbers_said_otherwise": "Every numeric coherence metric FAVOURED Rock063: RGB distance from Rock051 0.197 vs Rock026's 0.338, and luminance ratio 0.91x vs 1.45x. Those metrics cannot distinguish 'similar brown rock' from 'green moss at similar luminance' — the low blue channel (0.192) that reads as warm-rust in numbers is chlorophyll. The disqualifier was found by LOOKING at the contact sheet, and by nothing else.",
+     "secondary": "Also 4096x2048, a 2:1 aspect that the builder's single scalar UV divisor would stretch 2:1."
+    },
+    "winner_weaknesses_recorded_not_hidden": [
+     "Displacement detail is WEAK: laplacian std 0.00200 against Rock051's 0.00623 (3.1x less), and its range is compressed to 0.242..0.909 rather than full. This is the criterion that matters most for scree.",
+     "Low-frequency energy is 0.1364, 2.07x Rock051's 0.0659 — the most visible-tiling candidate of the three at the 2 km verification scale. The macro-variation layer (Pass 2c) is what must break it up, and this is the surface that will test it.",
+     "Luminance is 1.45x Rock051. Judged ACCEPTABLE rather than ignored: fresh rockfall exposes unweathered interior with no lichen, so scree genuinely IS lighter than the weathered cliff above it. This one is physically right, not merely tolerated."
+    ],
+    "mitigation_already_in_the_design": "R2's PASS 2 UPGRADE requires the HeightLerp transition contrast to be PER LAYER PAIR, derived from each surface's measured displacement range. Rock026's weak, compressed height map is exactly the case that requirement exists for; one global contrast constant would render this pair nearly unblended.",
+    "honest_verdict": "Rock026 is the better of two, not a good scree surface. It is the only candidate of the right MATERIAL CLASS. A dedicated scree/talus scan would beat it and is a BACKLOG intake item."
+   }
+  ],
+  "entries": [
+   {
+    "id": "boulder_medium_01",
+    "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001",
+    "role": "boulder",
+    "pass": 3,
+    "admit": "YES",
+    "note": "General mid-size scatter.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 4136,
+     "vertices": 2330,
+     "material_slots": 2,
+     "collision_prims": 4,
+     "dims_m": [
+      1.53,
+      1.77,
+      1.3
+     ],
+     "bbox_area_m2": 14.0,
+     "tri_per_m2": 295.5,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "boulder_medium_02",
+    "path": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_002/Medium_Boulder_LowPoly",
+    "role": "boulder",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Named LowPoly, but MEASURES inside the reference tier. The metric admitted it and the name did not; that is the metric doing its job. Do not exclude on the filename.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2712,
+     "vertices": 1490,
+     "material_slots": 2,
+     "collision_prims": 4,
+     "dims_m": [
+      1.31,
+      2.08,
+      1.41
+     ],
+     "bbox_area_m2": 15.01,
+     "tri_per_m2": 180.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "volcanic_rock_01",
+    "path": "/Game/KiteDemo/Environments/Rocks/Large_Volcanic_Rock_001/LargeVolcanicRock_001",
+    "role": "boulder",
+    "pass": 3,
+    "admit": "CONDITIONAL",
+    "note": "Passes tier. BIOME UNRESOLVED: basaltic rock beside the granite-family Rock051 landscape surface may read as two different geologies in one frame. Needs a render next to a Rock051 slope before admission. Three siblings 002/003/004 are held out until this one is judged.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 16257,
+     "vertices": 8191,
+     "material_slots": 5,
+     "collision_prims": 4,
+     "dims_m": [
+      2.78,
+      4.43,
+      1.74
+     ],
+     "bbox_area_m2": 49.72,
+     "tri_per_m2": 327.0,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "boulder_small",
+    "path": "/Game/KiteDemo/Environments/Rocks/Boulder_05a/SM_Boulder05a",
+    "role": "boulder_small",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Sub-metre. Doubles as Pass 5 ground detail.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2572,
+     "vertices": 1662,
+     "material_slots": 4,
+     "collision_prims": 4,
+     "dims_m": [
+      0.89,
+      0.9,
+      0.43
+     ],
+     "bbox_area_m2": 3.14,
+     "tri_per_m2": 818.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "cliff_face_01",
+    "path": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01",
+    "role": "cliff_face",
+    "pass": 3,
+    "admit": "YES",
+    "note": "The only true cliff-face mesh in the inventory. 22 m span suits the stamped east ridge.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 29154,
+     "vertices": 14771,
+     "material_slots": 1,
+     "collision_prims": 4,
+     "dims_m": [
+      22.07,
+      7.22,
+      15.62
+     ],
+     "bbox_area_m2": 1233.71,
+     "tri_per_m2": 23.6,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "mountain_rock",
+    "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock",
+    "role": "cliff_outcrop",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Outcrop for steep slopes. Open-backed; pair with SM_MountainRock_Closed where the back is visible.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 9088,
+     "vertices": 4649,
+     "material_slots": 1,
+     "collision_prims": 4,
+     "dims_m": [
+      2.39,
+      3.74,
+      2.9
+     ],
+     "bbox_area_m2": 53.43,
+     "tri_per_m2": 170.1,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "mountain_rock_closed",
+    "path": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed",
+    "role": "cliff_outcrop",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Closed variant. Use where the silhouette is seen from more than one side.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 15320,
+     "vertices": 8193,
+     "material_slots": 4,
+     "collision_prims": 4,
+     "dims_m": [
+      4.11,
+      3.7,
+      3.84
+     ],
+     "bbox_area_m2": 90.39,
+     "tri_per_m2": 169.5,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "ground_reveal_rock_001",
+    "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+    "role": "embedded_outcrop",
+    "pass": 3,
+    "admit": "HAZARD",
+    "note": "DO NOT LOAD CASUALLY. Its texture T_GroundRevealRock001a_D_CC_R is 8192x8192 and the editor log put its first-build encode at a Required Memory Estimate of 4608.99 MB, against ~1.8 GB free on this host. This one asset hung the editor for 20+ minutes and killed the first intake audit. Load it alone, with nothing else running, or not at all until the GPU desktop.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 13536,
+     "vertices": 7115,
+     "material_slots": 2,
+     "collision_prims": 6,
+     "dims_m": [
+      3.34,
+      2.44,
+      0.65
+     ],
+     "bbox_area_m2": 23.81,
+     "tri_per_m2": 568.4,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "ground_reveal_rock_002",
+    "path": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002",
+    "role": "embedded_outcrop",
+    "pass": 3,
+    "admit": "HAZARD",
+    "note": "Same family as ground_reveal_rock_001; assume the same 8K texture cost until measured otherwise.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 10589,
+     "vertices": 5658,
+     "material_slots": 7,
+     "collision_prims": 4,
+     "dims_m": [
+      1.78,
+      3.54,
+      1.17
+     ],
+     "bbox_area_m2": 25.05,
+     "tri_per_m2": 422.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "hero_boulder_large",
+    "path": "/Game/KiteDemo/Environments/Rocks/LargePlainsBoulder002/SM_LargePlainsBoulder002",
+    "role": "hero_boulder",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Largest free-standing boulder at 6.7 m. Meadow hero placement, low count.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 13998,
+     "vertices": 7393,
+     "material_slots": 3,
+     "collision_prims": 4,
+     "dims_m": [
+      6.72,
+      5.06,
+      2.73
+     ],
+     "bbox_area_m2": 132.33,
+     "tri_per_m2": 105.8,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "scree_bend",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend",
+    "role": "talus_channel",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Bent slab for talus running into a channel rather than straight downslope.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 27354,
+     "vertices": 14422,
+     "material_slots": 1,
+     "collision_prims": 4,
+     "dims_m": [
+      5.64,
+      6.63,
+      0.72
+     ],
+     "bbox_area_m2": 92.46,
+     "tri_per_m2": 295.9,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "scree_slab_001",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001",
+    "role": "talus_field",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Planar slab, 5.6 x 3.3 x 0.5 m. NOT tier-gated (planar). 33.8k tris is the single most expensive asset in the palette — see the budget warning in the generated block.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 33855,
+     "vertices": 17645,
+     "material_slots": 5,
+     "collision_prims": 4,
+     "dims_m": [
+      5.64,
+      3.29,
+      0.46
+     ],
+     "bbox_area_m2": 45.33,
+     "tri_per_m2": 746.9,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "scree_slab_001a",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_A",
+    "role": "talus_field",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Cheaper Scree001 variant. Prefer this and _B over the full slab wherever the camera is not close.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 15566,
+     "vertices": 8117,
+     "material_slots": 12,
+     "collision_prims": 2,
+     "dims_m": [
+      3.19,
+      2.47,
+      0.49
+     ],
+     "bbox_area_m2": 21.31,
+     "tri_per_m2": 730.6,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "scree_slab_001b",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B",
+    "role": "talus_field",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Cheaper Scree001 variant.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 20218,
+     "vertices": 10602,
+     "material_slots": 4,
+     "collision_prims": 2,
+     "dims_m": [
+      3.4,
+      3.07,
+      0.52
+     ],
+     "bbox_area_m2": 27.6,
+     "tri_per_m2": 732.4,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "scree_slab_002a",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a",
+    "role": "talus_field",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Second scree family; different stone size to Scree001. Mixing the two is what stops a talus field reading as one tiled slab.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 15425,
+     "vertices": 8038,
+     "material_slots": 1,
+     "collision_prims": 4,
+     "dims_m": [
+      4.23,
+      4.39,
+      0.54
+     ],
+     "bbox_area_m2": 46.45,
+     "tri_per_m2": 332.1,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only",
+    "nanite": true
+   },
+   {
+    "id": "scree_slab_002b",
+    "path": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002b",
+    "role": "talus_field",
+    "pass": 3,
+    "admit": "YES",
+    "note": "Cheapest scree at 11.9k tris. The workhorse for the bulk of any talus field.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 11947,
+     "vertices": 6404,
+     "material_slots": 1,
+     "collision_prims": 2,
+     "dims_m": [
+      3.5,
+      2.88,
+      0.55
+     ],
+     "bbox_area_m2": 27.18,
+     "tri_per_m2": 439.6,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "hill_tree",
+    "path": "/Game/KiteDemo/Environments/Trees/HillTree_02/HillTree_02",
+    "role": "broadleaf",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "11.8 m broadleaf. Same ruling as hill_tree_tall; the two stand or fall together.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 49495,
+     "vertices": 58219,
+     "material_slots": 6,
+     "collision_prims": 1,
+     "dims_m": [
+      7.65,
+      8.54,
+      11.78
+     ],
+     "bbox_area_m2": 512.1,
+     "tri_per_m2": 96.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "hill_tree_tall",
+    "path": "/Game/KiteDemo/Environments/Trees/HillTree_Tall_02/HillTree_Tall_02",
+    "role": "broadleaf",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "22.5 m broadleaf. Correct for a temperate FOOTHILL band and wrong above the treeline. Admission depends on whether the region carries a broadleaf band at all — that is a Pass 4 elevation-zone decision, not an asset decision.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 58321,
+     "vertices": 69152,
+     "material_slots": 5,
+     "collision_prims": 1,
+     "dims_m": [
+      11.76,
+      9.0,
+      22.48
+     ],
+     "bbox_area_m2": 1145.05,
+     "tri_per_m2": 50.9,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "scots_pine_broad",
+    "path": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01",
+    "role": "conifer_secondary",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "MEASUREMENT LOOKS WRONG: 18.9 x 13.3 x 12.7 m, i.e. WIDER than it is tall, at 60.1k tris — the heaviest tree in the pack. Either it is a broad open-grown specimen or the bounding box includes something unexpected. Inspect before use; do not scatter on the strength of the name.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 60120,
+     "vertices": 81140,
+     "material_slots": 5,
+     "collision_prims": 2,
+     "dims_m": [
+      18.9,
+      13.3,
+      12.7
+     ],
+     "bbox_area_m2": 1320.62,
+     "tri_per_m2": 45.5,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "scots_pine_tall",
+    "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+    "role": "conifer_secondary",
+    "pass": 4,
+    "admit": "YES",
+    "note": "22.1 m Scots pine, 27.8k tris. The best answer on file to the open backlog item 'conifers read thin/sparse' — a second conifer silhouette, not a denser fir. Scots pine is a real montane species and sits correctly below the treeline.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 27824,
+     "vertices": 33729,
+     "material_slots": 5,
+     "collision_prims": 2,
+     "dims_m": [
+      8.52,
+      9.13,
+      22.1
+     ],
+     "bbox_area_m2": 935.71,
+     "tri_per_m2": 29.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "field_grass",
+    "path": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "role": "grass",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "765 tris, 0.2 m. The region already runs a grass SYSTEM at 12 tufts/m2 through the landscape material (R11), not scattered grass meshes. Admitting this must not mean running two grass systems — decide in Pass 4 whether it REPLACES a grass variety or is dropped.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 765,
+     "vertices": 621,
+     "material_slots": 5,
+     "collision_prims": 0,
+     "dims_m": [
+      1.06,
+      1.2,
+      0.2
+     ],
+     "bbox_area_m2": 3.45,
+     "tri_per_m2": 221.9,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "heather_clumps",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2",
+    "role": "montane_shrub",
+    "pass": 4,
+    "admit": "YES",
+    "note": "376 tris for a 0.6 m clump — the cheapest real coverage in the palette. Heather is the signature open-montane shrub between treeline and scree, which is exactly the band the region currently has nothing in.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 376,
+     "vertices": 531,
+     "material_slots": 5,
+     "collision_prims": 0,
+     "dims_m": [
+      1.64,
+      1.53,
+      0.57
+     ],
+     "bbox_area_m2": 8.63,
+     "tri_per_m2": 43.6,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "heather_clumps_wp",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Heather/SM_Heather_Mesh_Clumps2_WorldPopulate",
+    "role": "montane_shrub",
+    "pass": 4,
+    "admit": "YES",
+    "note": "Smaller world-populate variant of the same clump, 0.3 m. Use as the distance filler behind the full clump.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 376,
+     "vertices": 531,
+     "material_slots": 5,
+     "collision_prims": 0,
+     "dims_m": [
+      0.99,
+      0.92,
+      0.34
+     ],
+     "bbox_area_m2": 3.12,
+     "tri_per_m2": 120.5,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "fern_01",
+    "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_01",
+    "role": "understory",
+    "pass": 4,
+    "admit": "YES",
+    "note": "Forest-floor understory under the conifer canopy. Shade species — keep it out of open meadow.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 1923,
+     "vertices": 1933,
+     "material_slots": 1,
+     "collision_prims": 0,
+     "dims_m": [
+      1.65,
+      2.0,
+      0.91
+     ],
+     "bbox_area_m2": 13.24,
+     "tri_per_m2": 145.2,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "fern_02",
+    "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_02",
+    "role": "understory",
+    "pass": 4,
+    "admit": "YES",
+    "note": "Understory variety.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 1826,
+     "vertices": 1836,
+     "material_slots": 1,
+     "collision_prims": 0,
+     "dims_m": [
+      2.16,
+      2.03,
+      0.79
+     ],
+     "bbox_area_m2": 15.39,
+     "tri_per_m2": 118.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "fern_03",
+    "path": "/Game/KiteDemo/Environments/Foliage/Ferns/SM_Fern_03",
+    "role": "understory",
+    "pass": 4,
+    "admit": "YES",
+    "note": "Understory variety.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 1812,
+     "vertices": 1822,
+     "material_slots": 1,
+     "collision_prims": 0,
+     "dims_m": [
+      1.34,
+      2.07,
+      1.21
+     ],
+     "bbox_area_m2": 13.8,
+     "tri_per_m2": 131.3,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "bog_myrtle",
+    "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtle_01/BogMyrtle_01",
+    "role": "wetland_shrub",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "Same wetland ruling as bog_myrtle_bush_01.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2537,
+     "vertices": 2543,
+     "material_slots": 2,
+     "collision_prims": 0,
+     "dims_m": [
+      0.45,
+      0.49,
+      0.96
+     ],
+     "bbox_area_m2": 2.25,
+     "tri_per_m2": 1129.7,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "bog_myrtle_bush_01",
+    "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_01/BogMyrtleBush_01",
+    "role": "wetland_shrub",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "Bog myrtle is a WETLAND species. Correct only where the terrain actually holds water — drainage lines and valley floors, driven by alpine_flow.png / alpine_deposition.png. Scattered on dry slope it is a botanical error that a viewer will not name but will feel.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2867,
+     "vertices": 2881,
+     "material_slots": 2,
+     "collision_prims": 0,
+     "dims_m": [
+      0.73,
+      0.75,
+      0.74
+     ],
+     "bbox_area_m2": 3.29,
+     "tri_per_m2": 872.6,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "bog_myrtle_bush_02",
+    "path": "/Game/KiteDemo/Environments/Foliage/BogMyrtleBush_02/BogMyrtleBush_02",
+    "role": "wetland_shrub",
+    "pass": 4,
+    "admit": "CONDITIONAL",
+    "note": "Same wetland ruling as bog_myrtle_bush_01.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 6124,
+     "vertices": 6158,
+     "material_slots": 4,
+     "collision_prims": 0,
+     "dims_m": [
+      1.22,
+      1.05,
+      0.96
+     ],
+     "bbox_area_m2": 6.92,
+     "tri_per_m2": 884.9,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "river_rock",
+    "path": "/Game/KiteDemo/Environments/Rocks/River_Rock_01/SM_River_Rock_01",
+    "role": "drainage_stone",
+    "pass": 5,
+    "admit": "YES",
+    "note": "0.5 m water-worn stone. Belongs in drainage channels only, where alpine_flow.png is high.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2038,
+     "vertices": 1135,
+     "material_slots": 2,
+     "collision_prims": 2,
+     "dims_m": [
+      0.49,
+      0.56,
+      0.39
+     ],
+     "bbox_area_m2": 1.37,
+     "tri_per_m2": 1490.0,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "dead_leaves",
+    "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves",
+    "role": "ground_detail",
+    "pass": 5,
+    "admit": "CONDITIONAL",
+    "note": "BROADLEAF litter. Only coherent underneath broadleaf trees, so it is gated on the same Pass 4 decision as hill_tree. Under a pure conifer canopy the correct litter is needles, which the inventory does not have.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 4791,
+     "vertices": 3192,
+     "material_slots": 1,
+     "collision_prims": 0,
+     "dims_m": [
+      0.82,
+      0.89,
+      0.15
+     ],
+     "bbox_area_m2": 1.97,
+     "tri_per_m2": 2428.8,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "dead_leaves_flat",
+    "path": "/Game/KiteDemo/Environments/Foliage/Leaves/SM_DeadLeaves_Flat",
+    "role": "ground_detail",
+    "pass": 5,
+    "admit": "CONDITIONAL",
+    "note": "Same broadleaf gating as dead_leaves.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 4791,
+     "vertices": 3192,
+     "material_slots": 1,
+     "collision_prims": 0,
+     "dims_m": [
+      0.82,
+      0.89,
+      0.09
+     ],
+     "bbox_area_m2": 1.77,
+     "tri_per_m2": 2710.8,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "tree_stump",
+    "path": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01",
+    "role": "ground_detail",
+    "pass": 5,
+    "admit": "YES",
+    "note": "Reads as a felled or storm-broken trunk. Sparse placement in clearings.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 5853,
+     "vertices": 3119,
+     "material_slots": 4,
+     "collision_prims": 1,
+     "dims_m": [
+      0.79,
+      0.67,
+      2.33
+     ],
+     "bbox_area_m2": 7.86,
+     "tri_per_m2": 744.4,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "vegetation_debris",
+    "path": "/Game/KiteDemo/Environments/Trees/Vegetation_Debris_002/SM_Vegetation_Debris_002",
+    "role": "ground_detail",
+    "pass": 5,
+    "admit": "YES",
+    "note": "Fallen branch litter. Pass 5's near-path scatter.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 4538,
+     "vertices": 2618,
+     "material_slots": 4,
+     "collision_prims": 3,
+     "dims_m": [
+      3.64,
+      1.03,
+      0.75
+     ],
+     "bbox_area_m2": 14.5,
+     "tri_per_m2": 312.9,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "buttercup_patch",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Buttercup/SM_Buttercup_Patch_01",
+    "role": "meadow_flower",
+    "pass": 5,
+    "admit": "YES",
+    "note": "274 tris for a 3.2 m patch — a card, not a plant. Cheap meadow colour at distance; check it edge-on before trusting it near the camera.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 274,
+     "vertices": 368,
+     "material_slots": 11,
+     "collision_prims": 0,
+     "dims_m": [
+      3.21,
+      2.21,
+      0.55
+     ],
+     "bbox_area_m2": 20.15,
+     "tri_per_m2": 13.6,
+     "shape": "planar",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "field_scabious",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/FieldScabious/SM_FieldScabious_01",
+    "role": "meadow_flower",
+    "pass": 5,
+    "admit": "YES",
+    "note": "Montane meadow species.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 3362,
+     "vertices": 2898,
+     "material_slots": 3,
+     "collision_prims": 0,
+     "dims_m": [
+      1.03,
+      1.04,
+      0.65
+     ],
+     "bbox_area_m2": 4.83,
+     "tri_per_m2": 695.6,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "yarrow",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow",
+    "role": "meadow_flower",
+    "pass": 5,
+    "admit": "YES",
+    "note": "0.5 m. Real montane meadow species. Sparse — flowers read as filler the moment they are even.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2410,
+     "vertices": 1968,
+     "material_slots": 2,
+     "collision_prims": 0,
+     "dims_m": [
+      0.35,
+      0.42,
+      0.54
+     ],
+     "bbox_area_m2": 1.13,
+     "tri_per_m2": 2141.1,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   },
+   {
+    "id": "yarrow_03",
+    "path": "/Game/KiteDemo/Environments/Foliage/Flowers/Yarrow/SM_Yarrow3",
+    "role": "meadow_flower",
+    "pass": 5,
+    "admit": "YES",
+    "note": "Yarrow variant.",
+    "measured": {
+     "pack": "KiteDemo",
+     "class": "StaticMesh",
+     "triangles": 2846,
+     "vertices": 2348,
+     "material_slots": 3,
+     "collision_prims": 0,
+     "dims_m": [
+      0.45,
+      0.56,
+      0.52
+     ],
+     "bbox_area_m2": 1.55,
+     "tri_per_m2": 1830.9,
+     "shape": "blob",
+     "nanite": "UNKNOWN — registry tag absent",
+     "unmeasured": []
+    },
+    "verified": false,
+    "verified_reason": "not spawned and not rendered; registry tags prove existence and size only"
+   }
+  ],
+  "excluded": [
+   {
+    "group": "Rock063 — rejected as the scree surface",
+    "reason": "Moss-covered vegetated bedrock, not fractured stone. See surface_rulings.scree_surface. Every numeric metric favoured it; the contact sheet disqualified it in one look.",
+    "disposition": "Not imported. Genuinely useful LATER for wet shaded bedrock near drainage, where moss is correct — that is a different role, and it would need its 2:1 aspect handled."
+   },
+   {
+    "group": "DragonCave — all rock and stone meshes",
+    "reason": "MEASURED below the region's quality tier and NOT MARGINALLY. Median 14.5 tri/m2 for SM_LargeRock* (n=7) and 21.9 for SM_CaveRock* (n=4), against 299.5 for the KiteDemo rock reference group (n=12). The ranges do not overlap at all: the KiteDemo minimum is 105.8 and the DragonCave maximum is 23.9, so no DragonCave rock is as dense as the sparsest KiteDemo rock. This is an exclusion by measurement, not by taste.",
+    "instrument": "scripts/palette_evidence.py --compare",
+    "disposition": "Keep for cave/dungeon interiors, where the lighting is close and the silhouette carries the read. Catalogue only; not alpine inventory."
+   },
+   {
+    "group": "DragonCave — Stoneworks, Bridge, Treasure, Skeleton, Dragon props",
+    "reason": "Built architecture and hero fantasy props. Nothing in the alpine region's brief calls for them, and POI placement is blocked on the world-structure ruling in any case.",
+    "disposition": "POI inventory for a future region."
+   },
+   {
+    "group": "Atlantis_Ruins — entire pack",
+    "reason": "WRONG BIOME. Submerged classical ruins, coral and seaweed. The brief pre-ruled it likely wrong-biome and nothing in the measurement contradicts that: SM_Coral_*, SM_Seaweed_* are marine, and the rock family is dressed to match them.",
+    "disposition": "Catalogue as POI inventory for a coastal or underwater region. Excluded here with no per-asset review, per the brief's 'exclude unless a specific piece passes coherence'."
+   },
+   {
+    "group": "KiteDemo — /LevelContent/**",
+    "reason": "Showcase scaffolding, not world content: SM_1Meter_01 is a measuring reference, SM_AssetPlatform_02 and SM_CycRoom_01 are a turntable and a cyclorama, SM_Arrows is a gizmo, Skybox is a demo backdrop that would fight the Pass 6 Sky Atmosphere.",
+    "disposition": "Never alpine inventory. SM_1Meter_01 is genuinely useful as a scale reference when eyeballing an import; that is a tool, not a placement."
+   },
+   {
+    "group": "KiteDemo — LargeVolcanicRock_002 / _003 / _004",
+    "reason": "Held out pending the volcanic_rock_01 biome render. Admitting four near-identical siblings before judging one of them would multiply a possible mistake by four.",
+    "disposition": "Promote all three the moment volcanic_rock_01 passes; drop all three if it fails."
+   }
+  ],
+  "budget_warning": {
+   "role": "talus_field",
+   "most_expensive": {
+    "id": "scree_slab_001",
+    "triangles": 33855
+   },
+   "cheapest": {
+    "id": "scree_slab_002b",
+    "triangles": 11947
+   },
+   "warning": "At 33855 tris, 1,169 instances of scree_slab_001 alone reach the 39.6M triangle load the conifer forest already carries. Pass 3 must state a talus instance ceiling BEFORE scattering, and prefer scree_slab_002b (11947 tris) for bulk coverage."
+  }
+ },
+ "perception": {
+  "_what": "Declared camera and pixel thresholds from which foliage cull distances are DERIVED. Replaces authored cull_distance_m as the source of truth. BRIEF 1 measured that every authored cull deleted an object while it was still 15-63 px tall, and four of them deleted trees inside the DETAIL band.",
+  "declared_camera": {
+   "fov_h_deg": 90.0,
+   "res": [
+    3840,
+    2160
+   ],
+   "floor_res": [
+    2560,
+    1440
+   ],
+   "_note": "RULED 2026-09-05: derive at 4K, verify at 1440p. 8K is an inspection tool, not a camera."
+  },
+  "thresholds_px": {
+   "vanish": 1.5,
+   "silhouette": 6.0,
+   "detail": 40.0,
+   "_note": "vanish: below the render's own Nyquist limit. silhouette: ~2-3 cycles across the object at the CSF peak, where a flat blob of the right colour is indistinguishable from the mesh. detail: ~1 arcmin acuity over a ~40 arcmin object, where internal structure is resolvable. BRIEF 1 section 2."
+  },
+  "fade_seconds": 0.35,
+  "_fade_seconds": "Any band transition is dithered over >= 0.35 s. At a 1.4 m/s walk that is a 0.5 m fade band in distance -- trivial in space, decisive in time, because it moves the switch's energy out of the 5-10 Hz band the temporal CSF watches.",
+  "cull_threshold": "detail",
+  "cull_ceiling": "streaming.main_loading_range_cm",
+  "_cull_ceiling": "RULED 2026-09-11 (R-RANGE at 512): every DERIVED cull clamps to the streaming block's main range -- the detail band ends where the world streams out, and a larger cull is dead code. A POINTER, not a number: place_foliage._cull_cm_for reads the streaming block, so a future range ruling re-derives the culls by construction. At 512 m this clamps Conifer (1148.6), ConiferPine (875.0) and SpruceSub (743.5). NOTE the ground-cover gap WIDENED with the 256->512 change: Meadow's authored 50 m cull now leaves 50-512 m unrepresented (was 50-256). The 2026-09-09 ruling (ground cover keeps authored culls; needs a REPRESENTATION below, not a different cull) stands; the BACKLOG'd representation work is more pressing, not different.",
+  "_cull_threshold": "Which threshold the CULL sits at. `detail` is ruled for trees because the next band down is now occupied: HLOD MeshApproximate proxies exist for all 1,042 Merged cells as of 2026-09-09, and SpruceSub and ScotsPineTall ship imposters. *** GROUND COVER IS NOT COVERED BY THAT ARGUMENT. *** HLOD proxies only activate BEYOND the World Partition streaming range (256 m, RuntimePartition.cpp:27), so a Meadow culled at its detail boundary of 18.6 m is absent from 18.6 m to 256 m with nothing representing it. The brief's own rule is that a cull may only sit at a band boundary WHERE THE NEXT BAND EXISTS. Derived values are recorded for every species. RULED 2026-09-09 by Ryan: GROUND COVER KEEPS ITS AUTHORED CULLS -- Meadow 50 m, Blueberry 45 m. The `silhouette` alternative is CLOSED, not deferred: Meadow's silhouette boundary is 123.8 m, still inside the 256 m streaming range, so it would narrow the gap without closing it. Ground cover needs a REPRESENTATION in the band below, not a different cull; BACKLOG carries that as separate work. The ground-cover species keep their authored culls and are marked as such in the sidecar.",
+  "_derived_by": "scripts/place_foliage.py, using scripts/angular_budget.py's dist_for_pixels. Species height comes from _verify/bench/2026-09-05/species_heights.json (mesh_height_m, each citing a Free/_measured/ row) at the PLACED p50 scale. NOTE the recipe field `height_m` on a species is the ELEVATION BAND it is planted in, NOT the plant's height -- they are different quantities and the collision is why the measured file uses `mesh_height_m`."
+ }
+}

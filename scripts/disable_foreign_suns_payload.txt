@@ -1,0 +1,109 @@
+# Disable every DirectionalLight in the open level that is NOT the recipe's sun.
+#
+#   ue_exec.py scripts/disable_foreign_suns_payload.txt --set GO=False   dry run
+#   ue_exec.py scripts/disable_foreign_suns_payload.txt --set GO=True    act
+#
+# WHY THIS EXISTS
+# ---------------
+# /Game/Alpine8K carries FOUR DirectionalLights, all with atmosphere_sun_light
+# True at index 0 and forward_shading_priority 0 -- which is exactly the
+# collision the editor warns about. Three are HeroStage_Key / _Fill / _Rim, the
+# flat-lit face-comparison rig from R-HEROCAP, swept into the level save by the
+# city placement commit 84b992ba on 2026-08-24. Together they add 43,750 lux
+# from three directions at 6500 K on top of the recipe's 130,000 lux at 7800 K.
+#
+# IDENTIFICATION IS BY PROPERTY SIGNATURE, NOT BY LABEL (standing rule 8).
+# `build_capture_stage.py:102` tears its own rig down by label prefix, and that
+# is fine for a rig rebuilding itself. This is a different operation on saved,
+# committed actors in the game world, and this project already has two
+# landscapes whose proxies carried identical labels. The signature used here is
+# AGREEMENT WITH THE RECIPE: intensity, temperature and rotation, all four
+# within tolerance. A light that matches the declaration is the sun; everything
+# else is foreign.
+#
+# IT REFUSES UNLESS THE SIGNATURE DISCRIMINATES. If zero lights match the
+# recipe, or more than one does, the signature is not identifying anything and
+# the payload writes nothing -- an ambiguous match is the case where acting is
+# worst, not the case where acting is urgent.
+#
+# DISABLE, NOT DELETE. `affects_world` is documented as "Whether the light can
+# affect the world, or whether it is disabled" -- complete, one property,
+# reversible. Deleting would leave HeroStage_Subject and the stage camera
+# behind, which is a half-removed rig: worse than either whole state.
+import json as _json
+import unreal as _unreal
+
+GO = __GO__
+# Overridable ONLY so the refusal can be positive-controlled against a recipe
+# whose sun matches nothing. A gate that has only seen good input has not been
+# tested (non-negotiable 2).
+RECIPE = r"__RECIPE__"
+
+# Tolerances. Rotation is compared in degrees; the recipe stores ELEVATION and
+# the actor stores PITCH as its negative, which is stated here rather than
+# silently applied -- reading one as the other is how a camera ended up under
+# the terrain on this project once already.
+LUX_TOL = 1.0
+DEG_TOL = 0.5
+
+_out = {"error": None, "go": GO, "matched_recipe": [], "foreign": [],
+        "changed": [], "refused": None, "readback": []}
+try:
+    with open(RECIPE, "r", encoding="utf-8") as _fh:
+        _rec = _json.load(_fh)
+    _s = ((_rec.get("lighting") or {}).get("sun") or {})
+    _want_lux = float(_s["intensity_lux"])
+    _want_pitch = -float(_s["elevation_deg"])
+    _out["recipe"] = {"lux": _want_lux, "pitch": _want_pitch}
+
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _lights = [_a for _a in _eas.get_all_level_actors()
+               if isinstance(_a, _unreal.DirectionalLight)]
+
+    for _a in _lights:
+        _c = _a.light_component
+        _i = float(_c.get_editor_property("intensity"))
+        _r = _a.get_actor_rotation()
+        _row = {"label": str(_a.get_actor_label()),
+                "package": str(_a.get_outermost().get_name()),
+                "intensity": _i,
+                "temperature": float(_c.get_editor_property("temperature")),
+                "pitch": round(float(_r.pitch), 4),
+                "yaw": round(float(_r.yaw), 4),
+                "affects_world": bool(_c.get_editor_property("affects_world")),
+                "atmosphere_sun": bool(
+                    _c.get_editor_property("atmosphere_sun_light"))}
+        _is_sun = (abs(_i - _want_lux) <= LUX_TOL
+                   and abs(float(_r.pitch) - _want_pitch) <= DEG_TOL)
+        (_out["matched_recipe"] if _is_sun else _out["foreign"]).append(_row)
+
+    if len(_out["matched_recipe"]) != 1:
+        _out["refused"] = (
+            "the signature does not discriminate: %d of %d lights match the "
+            "recipe's sun (need exactly 1). Nothing was written."
+            % (len(_out["matched_recipe"]), len(_lights)))
+    elif GO:
+        for _a in _lights:
+            _lbl = str(_a.get_actor_label())
+            if any(_m["label"] == _lbl for _m in _out["matched_recipe"]):
+                continue
+            _c = _a.light_component
+            _c.set_editor_property("affects_world", False)
+            # Also drop the atmosphere-sun claim, so that re-enabling the rig
+            # later cannot silently re-enter the competition this is fixing.
+            _c.set_editor_property("atmosphere_sun_light", False)
+            _a.modify()
+            _out["changed"].append(_lbl)
+        # READ BACK off the components, after the writes.
+        for _a in _lights:
+            _c = _a.light_component
+            _out["readback"].append({
+                "label": str(_a.get_actor_label()),
+                "affects_world": bool(
+                    _c.get_editor_property("affects_world")),
+                "atmosphere_sun": bool(
+                    _c.get_editor_property("atmosphere_sun_light")),
+                "intensity": float(_c.get_editor_property("intensity"))})
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL_SUNFIX__" + _json.dumps(_out))

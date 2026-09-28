@@ -1,0 +1,115 @@
+import json as _json
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+# Bind a CUSTOM groom (one imported from an .abc, with no vendor binding of
+# its own) onto the placed character's face mesh, then assign it.
+#
+# The vendor binding named below is borrowed ONLY as a retarget source: it is
+# duplicated, pointed at our face mesh, and then its groom is replaced by
+# OverrideGroom before the RBF bake. Which vendor binding is used should not
+# matter to the result, and that is worth testing rather than assuming.
+
+GROOM     = "__GROOM__"          # the imported custom groom
+DONOR     = "__DONOR__"          # any already-built vendor binding
+BIND_PATH = "__BIND_PATH__"
+OUT_GROOM = "__OUT_GROOM__"
+SUBJECT   = "__SUBJECT__"
+SLOT      = "Hair"
+
+_out = {"ok": False, "error": None, "groom": GROOM, "donor": DONOR, "t": {}}
+try:
+    _eal = _u.EditorAssetLibrary
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _subj = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == SUBJECT:
+            _subj = _a
+            break
+    if _subj is None:
+        raise RuntimeError("subject not placed: " + SUBJECT)
+
+    # The target mesh is READ OFF THE ACTOR, never named by convention.
+    _face = None
+    for _c in _subj.get_components_by_class(_u.SkeletalMeshComponent):
+        if "face" in str(_c.get_name()).lower():
+            _face = _c
+            break
+    if _face is None:
+        raise RuntimeError("no Face component")
+    _mesh = _face.get_editor_property("skeletal_mesh")
+
+    _src = _eal.load_asset(DONOR)
+    if _src is None:
+        raise RuntimeError("no donor binding at " + DONOR)
+    _g = _eal.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("no groom at " + GROOM)
+    if not isinstance(_g, _u.GroomAsset):
+        raise RuntimeError("%s is %s, not a GroomAsset"
+                           % (GROOM, type(_g).__name__))
+
+    # Record the groom's curve count BEFORE the bake, so a bake that silently
+    # produces an empty groom is visible rather than inferred from a render.
+    def _curves(_asset):
+        try:
+            return sum(int(_i.get_editor_property("num_curves"))
+                       for _i in _asset.get_editor_property("hair_groups_info"))
+        except Exception:
+            return None
+    _out["curves_before"] = _curves(_g)
+
+    _t0 = _time.time()
+    _res = _u.LandscapeLabTools.build_groom_binding_for_mesh(
+        _src, _mesh, BIND_PATH, OUT_GROOM, _g)
+    _out["t"]["bind"] = round(_time.time() - _t0, 2)
+    if not bool(_res[2]):
+        raise RuntimeError("UFUNCTION refused: " + str(_res[3]))
+
+    _b = _eal.load_asset(str(_res[0]))
+    _ng = _eal.load_asset(str(_res[1]))
+    if _b is None or _ng is None:
+        raise RuntimeError("assets missing after build")
+    _out["curves_after"] = _curves(_ng)
+    if _out["curves_before"] and _out["curves_after"]:
+        _out["curve_retention"] = round(
+            _out["curves_after"] / float(_out["curves_before"]), 4)
+
+    _comp = None
+    for _c in _subj.get_components_by_class(_u.GroomComponent):
+        if str(_c.get_name()) == SLOT:
+            _comp = _c
+            break
+    if _comp is None:
+        raise RuntimeError("no %s groom component" % SLOT)
+    _comp.set_groom_asset(_ng)
+    _comp.set_binding_asset(_b)
+    _comp.set_editor_property("override_materials", [])
+
+    _rb = _comp.get_editor_property("binding_asset")
+    _rg = _comp.get_editor_property("groom_asset")
+    _out["readback"] = {
+        "groom": None if _rg is None else str(_rg.get_name()),
+        "binding": None if _rb is None else str(_rb.get_name())}
+    if _rb is None:
+        raise RuntimeError("binding did not assign")
+
+    # SCALE, measured on the assembled actor. GroomAsset and GroomComponent
+    # both refuse a `bounds` property in 5.8, and a groom with no binding
+    # reports zero, so this is taken here -- bound, on the character, where
+    # the number means something.
+    try:
+        _org, _ext = _subj.get_actor_bounds(False)
+        _out["actor_bounds_size_cm"] = [round(float(_ext.x) * 2, 1),
+                                        round(float(_ext.y) * 2, 1),
+                                        round(float(_ext.z) * 2, 1)]
+    except Exception as _e:
+        _out["actor_bounds_error"] = str(_e)
+
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

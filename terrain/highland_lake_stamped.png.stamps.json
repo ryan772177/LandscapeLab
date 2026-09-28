@@ -1,0 +1,356 @@
+{
+  "base": "terrain/highland_lake_base.png",
+  "base_sha256": "42d5c7e7bf8acfadcce7659d046170c50492546e1f59761a5dc1c9c7975fec03",
+  "biome_id": "highland_lake",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 0,
+    "clamped": false,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.0,
+    "pre_clamp_max_units": 23118.0,
+    "pre_clamp_min_units": 909.0
+  },
+  "detail_relief": null,
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -2018.0,
+    -2018.0
+  ],
+  "output": "terrain/highland_lake_stamped.png",
+  "output_sha256": "2bc2999bffe9e9300b9431d7751d3893b954e7b79871bbd7b24b6ff895df4687",
+  "pixels_changed": 538754,
+  "placements": [
+    {
+      "amplitude_m": 700.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        229,
+        781
+      ],
+      "bbox_rows": [
+        0,
+        406
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        129.5,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        -1500.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.01459,
+      "delta_max_m": 664.3620578545722,
+      "delta_max_units": 21769.483730749696,
+      "delta_mean_abs_m": 128.71302153970635,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "north_massif",
+      "mask_pixels": 136662,
+      "moved_pixels": 135022,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2200.0,
+      "size_px": 550.0,
+      "stamp_prereduce_factor": 4,
+      "stamp_sampled_side_px": 1024,
+      "stamp_sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183"
+    },
+    {
+      "amplitude_m": 550.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        0,
+        451
+      ],
+      "bbox_rows": [
+        122,
+        738
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        429.5,
+        142.0
+      ],
+      "centre_world_m": [
+        -1450.0,
+        -300.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.002162,
+      "delta_max_m": 540.5065528074492,
+      "delta_max_units": 17711.048469118094,
+      "delta_mean_abs_m": 68.57587031382334,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "west_ridge",
+      "mask_pixels": 108310,
+      "moved_pixels": 106926,
+      "opacity": 1.0,
+      "rotation_deg": 300.0,
+      "size_m": 1800.0,
+      "size_px": 450.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c"
+    },
+    {
+      "amplitude_m": 520.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        607,
+        1009
+      ],
+      "bbox_rows": [
+        132,
+        678
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        404.5,
+        879.5
+      ],
+      "centre_world_m": [
+        1500.0,
+        -400.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.017961,
+      "delta_max_m": 503.0376371915878,
+      "delta_max_units": 16483.285776675355,
+      "delta_mean_abs_m": 81.39020761962277,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "east_ridge",
+      "mask_pixels": 91471,
+      "moved_pixels": 91041,
+      "opacity": 1.0,
+      "rotation_deg": 250.0,
+      "size_m": 1700.0,
+      "size_px": 425.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "4ac4b1b2f853b587ea0027bf1d1a427bdc76b235843fddb98318e08ff375536a"
+    },
+    {
+      "amplitude_m": 180.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        254,
+        756
+      ],
+      "bbox_rows": [
+        629,
+        1009
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        879.5,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        1500.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.27417,
+      "delta_max_m": 118.05108796735523,
+      "delta_max_units": 3868.2390249703126,
+      "delta_mean_abs_m": 32.17607903616405,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": true,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "south_forest_roll",
+      "mask_pixels": 121160,
+      "moved_pixels": 120316,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2000.0,
+      "size_px": 500.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "6f99158b8d28d6fb3d18a5977234b4912ce59e01ba8958baf555909717046c28"
+    },
+    {
+      "amplitude_m": 25.0,
+      "anchor_m": 17.0,
+      "bbox_cols": [
+        317,
+        693
+      ],
+      "bbox_rows": [
+        254,
+        631
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        442.0,
+        504.5
+      ],
+      "centre_world_m": [
+        0.0,
+        -250.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 25.159071044161003,
+      "delta_min_m": -100.51210872017074,
+      "delta_min_units": -3293.530522488195,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "lake_basin",
+      "mask_pixels": 90204,
+      "moved_pixels": 89249,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 1500.0,
+      "size_px": 375.0,
+      "stamp_prereduce_factor": 8,
+      "stamp_sampled_side_px": 512,
+      "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4"
+    },
+    {
+      "amplitude_m": 6.2,
+      "anchor_m": 55,
+      "bbox_cols": [
+        623,
+        737
+      ],
+      "bbox_rows": [
+        485,
+        600
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        542.0,
+        679.5
+      ],
+      "centre_world_m": [
+        700.0,
+        150.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 9.806955761282264,
+      "delta_min_m": -35.23004250154931,
+      "delta_min_units": -1154.400417669517,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "village_terrace",
+      "mask_pixels": 8500,
+      "moved_pixels": 8359,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 450.0,
+      "size_px": 112.5,
+      "stamp_prereduce_factor": 32,
+      "stamp_sampled_side_px": 128,
+      "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d"
+    }
+  ],
+  "recipe": "_verify/20260901_overnight/highland_lake.json",
+  "resolution": 1009,
+  "spacing_m": 4.0,
+  "stamp_meta": {
+    "east_ridge": {
+      "filename": "HM_Seaside_Cliffs_06_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_06_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "4ac4b1b2f853b587ea0027bf1d1a427bdc76b235843fddb98318e08ff375536a",
+      "tag": "cliffs"
+    },
+    "lake_basin": {
+      "filename": "HM_Meadows_28_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_28_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+      "tag": "meadows"
+    },
+    "north_massif": {
+      "filename": "HM_Rough_Cliffs_18_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rough_Cliffs_18_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+      "tag": "cliffs"
+    },
+    "south_forest_roll": {
+      "filename": "HM_Highlands_09_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Highlands_09_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "6f99158b8d28d6fb3d18a5977234b4912ce59e01ba8958baf555909717046c28",
+      "tag": "highland"
+    },
+    "village_terrace": {
+      "filename": "HM_Meadows_04_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_04_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+      "tag": "meadows"
+    },
+    "west_ridge": {
+      "filename": "HM_Seaside_Cliffs_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+      "tag": "cliffs"
+    }
+  },
+  "stamps_block_sha256": "c1664b4f1ad4b1913a1abaf573730dd83f9885a7c2cc1ffc122584f4547ff6af",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-09-01T06:07:05Z",
+  "z_scale_m": 2000.0
+}

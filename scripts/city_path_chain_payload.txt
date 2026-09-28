@@ -1,0 +1,141 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# IS THE GROUND DISCONNECTED, OR IS THE QUERY RUNNING OUT OF SEARCH BUDGET?
+#
+# Everything measured so far says the ground beyond ~400 m is fine: the terrain
+# is walkable (93% of quads under the agent bar, no continuous band of steep
+# cells at 1 m resolution, and erosion up to 2 m does not disconnect it), the
+# navmesh EXISTS there (919 of 925 probe points project), and it sits on the
+# ground at the same offset as the reachable side (nav_dz p50 13.4 cm against
+# 12.4). And yet a path query from the plaza fails.
+#
+# There is a mechanism that produces exactly that and is not terrain at all: a
+# path query has a FINITE NODE POOL. dtNavMeshQuery is initialised with a
+# maximum node count, and a search that exhausts it fails -- which looks like a
+# roughly circular reachable region centred on the query START, in every
+# direction, regardless of the ground. The 24-bearing sweep found furthest
+# reachable 252-504 m with a median of 360, which is the shape a budget makes.
+#
+# THE DISCRIMINATING TEST, and it needs no terrain edit:
+#
+#   A  plaza      -> far point     expected FAIL if either explanation holds
+#   B  mid point  -> far point     SUCCEEDS only if the ground is connected
+#   C  plaza      -> mid point     control, must succeed
+#
+# If B succeeds while A fails, THE GROUND IS CONNECTED and the barrier is the
+# QUERY, not the world. If B fails too, the ground really is disconnected.
+#
+# A a-to-b chain is not a proof of a-to-c in general; it is here, because
+# reachability over a navmesh is transitive when every leg is a real path.
+
+CX, CY = -210800.0, 278800.0
+BEARING_DEG = __BEARING_DEG__
+MID_M = __MID_M__
+FAR_M = __FAR_M__
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+    # NavigationQueryResult is NOT int-convertible in 5.8 -- int(_res) raises
+    # "int() argument must be a string ... not 'NavigationQueryResult'". Compare
+    # against the enum MEMBERS. Truthiness is also wrong here: INVALID is 0 and
+    # SUCCESS is 3, so `if result:` is true for ERROR and FAIL as well.
+    _RES = [(_u.NavigationQueryResult.INVALID, "INVALID"),
+            (_u.NavigationQueryResult.ERROR, "ERROR"),
+            (_u.NavigationQueryResult.FAIL, "FAIL"),
+            (_u.NavigationQueryResult.SUCCESS, "SUCCESS")]
+
+    def _name(res):
+        for _m, _n in _RES:
+            if res == _m:
+                return _n
+        return "UNKNOWN(%r)" % (res,)
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None, None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None, _g
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None, _g
+        return _r, _g
+
+    def _at(d_m):
+        _th = _math.radians(BEARING_DEG)
+        return (CX + d_m * 100.0 * _math.cos(_th),
+                CY + d_m * 100.0 * _math.sin(_th))
+
+    def _path(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return _name(_res), float(_ln)
+        except Exception as _e:
+            return "EXCEPTION: %s" % _e, None
+
+    _pl, _ = _proj(CX, CY)
+    if _pl is None:
+        raise RuntimeError("the plaza does not project -- COULD NOT LOOK")
+
+    _mx, _my = _at(MID_M)
+    _fx, _fy = _at(FAR_M)
+    _pm, _gm = _proj(_mx, _my)
+    _pf, _gf = _proj(_fx, _fy)
+    _out["mid_projects"] = _pm is not None
+    _out["far_projects"] = _pf is not None
+    _out["mid_ground_m"] = (round(_gm / 100.0, 2) if _gm else None)
+    _out["far_ground_m"] = (round(_gf / 100.0, 2) if _gf else None)
+    if _pm is None or _pf is None:
+        raise RuntimeError("mid or far does not project; pick points that do")
+
+    _ra, _la = _path(_pl, _pf)
+    _rb, _lb = _path(_pm, _pf)
+    _rc, _lc = _path(_pl, _pm)
+    _out["A_plaza_to_far"] = {"result": _ra, "length_cm": _la}
+    _out["B_mid_to_far"] = {"result": _rb, "length_cm": _lb}
+    _out["C_plaza_to_mid"] = {"result": _rc, "length_cm": _lc}
+
+    _a_ok = _ra == "SUCCESS"
+    _b_ok = _rb == "SUCCESS"
+    _c_ok = _rc == "SUCCESS"
+    if _c_ok and _b_ok and not _a_ok:
+        _out["verdict"] = ("THE GROUND IS CONNECTED AND THE QUERY IS THE "
+                           "BARRIER. plaza->mid and mid->far both succeed "
+                           "while plaza->far fails, so a walk exists that the "
+                           "single query cannot find. This is a SEARCH BUDGET "
+                           "limit, not terrain.")
+    elif _c_ok and not _b_ok:
+        _out["verdict"] = ("THE GROUND REALLY IS DISCONNECTED beyond the mid "
+                           "point: even a short query from nearby cannot reach "
+                           "the far point.")
+    elif _a_ok:
+        _out["verdict"] = ("the far point IS reachable from the plaza -- the "
+                           "earlier reading does not reproduce here.")
+    else:
+        _out["verdict"] = ("INCONCLUSIVE: the control leg plaza->mid failed, "
+                           "so nothing downstream can be read.")
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

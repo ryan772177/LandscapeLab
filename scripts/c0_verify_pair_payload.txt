@@ -1,0 +1,79 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- is the pair actually SEATED, and is the swap actually ON?
+#
+# The placement computed z from a trace and a pivot correction, then reported
+# success. That is the writer checking its own arithmetic. This asks two
+# different questions of the placed actors instead:
+#
+#   1. take the actor's WORLD BOUNDS -- which the engine computes from the
+#      mesh, not from my constant -- and compare its minimum z against a
+#      FRESH ground trace at the same XY. If the pivot correction had the
+#      wrong SIGN the house would be 79.6 cm out, which is the whole point:
+#      a sign error survives every check that reads back the number it wrote.
+#
+#   2. read the materials off the LIVE COMPONENT, not off the asset, and
+#      require the two actors to DISAGREE. A pair that renders identically
+#      because the override silently did not apply is the failure this frame
+#      exists to rule out, and it would photograph as "the swap did nothing".
+
+TAG = "LandscapeLab.C0"
+
+_out = {"ok": False, "error": None, "actors": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.UnrealEditorSubsystem().get_editor_world()
+
+    _all = _eas.get_all_level_actors()
+    _ours = [a for a in _all if any(str(t) == TAG for t in a.tags)]
+    _ignore = [a for a in _all
+               if ("InstancedFoliageActor" in a.get_class().get_name()
+                   or any(str(t).startswith("LandscapeLab.City")
+                          for t in a.tags)
+                   or any(str(t) == TAG for t in a.tags))]
+
+    def _ground(_x, _y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(_x, _y, 60000.0), _u.Vector(_x, _y, -20000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, False, _ignore,
+            _u.DrawDebugTrace.NONE, True, _u.LinearColor.RED,
+            _u.LinearColor.GREEN, 0.0)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    _sig = {}
+    for _a in sorted(_ours, key=lambda x: str(x.get_actor_label())):
+        _o, _e = _a.get_actor_bounds(False)
+        _loc = _a.get_actor_location()
+        _g = _ground(_loc.x, _loc.y)
+        _base = float(_o.z - _e.z)
+        _comp = _a.static_mesh_component
+        _mats = []
+        for _i in range(len(_comp.get_materials())):
+            _m = _comp.get_material(_i)
+            _mats.append(_m.get_name() if _m else None)
+        _sig[str(_a.get_actor_label())] = tuple(_mats)
+        _out["actors"].append({
+            "label": str(_a.get_actor_label()),
+            "loc": [round(_loc.x, 1), round(_loc.y, 1), round(_loc.z, 2)],
+            "bounds_min_z": round(_base, 2),
+            "ground_z": None if _g is None else round(_g, 2),
+            "base_above_ground_cm": None if _g is None else round(_base - _g, 2),
+            "materials": _mats})
+
+    _keys = sorted(_sig.keys())
+    _out["materials_differ"] = (len(_keys) == 2 and _sig[_keys[0]] != _sig[_keys[1]])
+    _gaps = [a["base_above_ground_cm"] for a in _out["actors"]
+             if a["base_above_ground_cm"] is not None]
+    _out["worst_gap_cm"] = max(abs(g) for g in _gaps) if _gaps else None
+    # 5 cm: the base is a flat footprint on a heightfield sampled at 1 m, so
+    # a few centimetres of disagreement between one trace and the mesh's
+    # extent is the terrain, not the placement. A SIGN error would read 79.6.
+    _out["seated"] = _out["worst_gap_cm"] is not None and _out["worst_gap_cm"] <= 5.0
+    _out["ok"] = bool(_out["seated"] and _out["materials_differ"]
+                      and len(_out["actors"]) == 2)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

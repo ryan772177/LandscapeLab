@@ -1,0 +1,88 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. Reports the geometry UE actually holds for each named groom, so a
+# Blender-side shape claim can be checked against the asset rather than against
+# a render. max_curve_length is the discriminating field: a pipeline that
+# SHORTENS strands and a pipeline that HIDES them look identical in a picture.
+
+PATHS = [
+    "/Game/Characters/AlpineHero/Grooms/GL_iter016",
+    "/Game/Characters/AlpineHero/Grooms/GL_iter000",
+    "/Game/Hero/Grooms/SC_Hairstyle_Male_11/SC_Hairstyle_Male_11",
+]
+
+_out = {"ok": False, "error": None, "grooms": {}, "component": None}
+try:
+    for _p in PATHS:
+        _row = {}
+        _g = _u.EditorAssetLibrary.load_asset(_p)
+        if _g is None:
+            _row["error"] = "could not load"
+            _out["grooms"][_p] = _row
+            continue
+        _row["class"] = _g.get_class().get_name()
+        try:
+            _row["lod_mode"] = str(_g.get_editor_property("lod_mode"))
+            _row["auto_lod_bias"] = float(_g.get_editor_property("auto_lod_bias"))
+            _row["global_interp"] = bool(
+                _g.get_editor_property("enable_global_interpolation"))
+        except Exception as _e:
+            _row["settings_error"] = str(_e)
+        _groups = []
+        try:
+            for _i, _gi in enumerate(_g.get_editor_property("hair_groups_info")):
+                _groups.append({
+                    "index": _i,
+                    "num_curves": int(_gi.get_editor_property("num_curves")),
+                    "num_curve_vertices": int(
+                        _gi.get_editor_property("num_curve_vertices")),
+                    "num_guides": int(_gi.get_editor_property("num_guides")),
+                    "max_curve_length": float(
+                        _gi.get_editor_property("max_curve_length")),
+                })
+        except Exception as _e:
+            _row["groups_error"] = str(_e)
+        _row["groups"] = _groups
+        # LOD table: a curve-count reduction and a length change are different
+        # defects and the picture cannot tell them apart.
+        try:
+            _lods = []
+            for _l in _g.get_editor_property("hair_groups_lod"):
+                _lods.append(str(_l))
+            _row["lod_entries"] = len(_lods)
+        except Exception as _e:
+            _row["lod_error"] = str(_e)
+        _out["grooms"][_p] = _row
+
+    # What the live component is actually pointing at, read at the same moment,
+    # so the asset numbers above can be tied to the thing that was photographed.
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() != "HeroInWorld":
+            continue
+        _comps = {}
+        for _c in _a.get_components_by_class(_u.GroomComponent):
+            _ga = _c.get_editor_property("groom_asset")
+            _ba = _c.get_editor_property("binding_asset")
+            _entry = {
+                "groom": None if _ga is None else _ga.get_path_name(),
+                "binding": None if _ba is None else _ba.get_path_name(),
+                "visible": bool(_c.get_editor_property("visible")),
+            }
+            for _k in ("lod_bias", "lod_forced_index", "hair_length_scale",
+                       "hair_radius_scale", "hair_width"):
+                try:
+                    _entry[_k] = _c.get_editor_property(_k)
+                except Exception:
+                    pass
+            _comps[str(_c.get_name())] = _entry
+        _out["component"] = _comps
+        break
+
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

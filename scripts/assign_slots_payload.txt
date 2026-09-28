@@ -1,0 +1,78 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Assign material instances to a static mesh's slots BY SLOT NAME, and read
+# the assignment back off the mesh afterwards.
+#
+# ⛔ BY NAME, NEVER BY INDEX. The church mesh carries four slots (stone,
+# plaster, copper, roof) in a fixed splitter order, but an index is a position
+# and a name is an identity: a re-split, a
+# re-import or an FBX that reorders sections would silently move an index
+# while every line of code kept looking correct. Stone on the dome renders
+# perfectly and is wrong.
+#
+# ⛔ AND THE ASSIGNMENT IS READ BACK. This project has watched
+# set_material_instance_texture_parameter_value return False while actually
+# working, and watched replace_existing=True report success while handing back
+# a stale asset. A setter's return value is not evidence; the mesh's own
+# static_materials list is.
+
+MESH = r"__MESH__"
+# {"slot name": "/Game/.../MI_x"} as a Python literal
+PAIRS = PAIRS_JSON
+
+_out = {"ok": False, "error": None, "assigned": [], "readback": []}
+try:
+    _eal = _u.EditorAssetLibrary
+    _m = _eal.load_asset(MESH)
+    if _m is None:
+        raise RuntimeError("mesh not found: " + MESH)
+
+    _slots = [str(s.material_slot_name) for s in _m.static_materials]
+    _out["slots_before"] = _slots
+    _missing = [k for k in PAIRS if k not in _slots]
+    if _missing:
+        raise RuntimeError(
+            "mesh has no slot(s) named %s -- it has %s. Refusing to guess by "
+            "index." % (_missing, _slots))
+
+    _sm = list(_m.static_materials)
+    for _name, _mip in PAIRS.items():
+        _mi = _eal.load_asset(_mip)
+        if _mi is None:
+            raise RuntimeError("material instance not found: " + _mip)
+        _idx = _slots.index(_name)
+        _entry = _sm[_idx]
+        _entry.set_editor_property("material_interface", _mi)
+        _sm[_idx] = _entry
+        _out["assigned"].append({"slot": _name, "index": _idx,
+                                 "material": _mip})
+    _m.set_editor_property("static_materials", _sm)
+    # save_asset returns False when the package did not persist; a discarded
+    # return is rule 12's "value not read back is prose" -- surface it so the
+    # driver can refuse a mesh that was assigned in memory but never written.
+    _out["saved"] = bool(_eal.save_asset(MESH))
+
+    # ---- READ BACK from a freshly loaded asset, not the object we just held
+    _eal.load_asset(MESH)
+    _m2 = _eal.load_asset(MESH)
+    for _s in _m2.static_materials:
+        _mi = _s.material_interface
+        _out["readback"].append({
+            "slot": str(_s.material_slot_name),
+            "material": str(_mi.get_path_name()) if _mi else None})
+
+    _want = {k: v for k, v in PAIRS.items()}
+    _got = {r["slot"]: (r["material"] or "").split(".")[0]
+            for r in _out["readback"]}
+    _bad = [k for k, v in _want.items() if _got.get(k) != v]
+    _out["all_match"] = not _bad
+    if _bad:
+        raise RuntimeError("READ-BACK MISMATCH on %s: wanted %s, got %s"
+                           % (_bad, _want, _got))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

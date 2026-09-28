@@ -1,0 +1,80 @@
+{
+  "_what_this_is": "The single declaration of WHICH IMAGE each character's look answers to, and where that character's authored content lives. Tools take a character NAME and resolve paths here; nothing hardcodes a hero path any more.",
+  "_why_it_exists": "LandscapeLab is heading toward party development, so the groom pipeline is per-character content infrastructure rather than a hero one-off. A comparison tool with a hero path compiled into it becomes wrong the moment there is a second character, and the failure is silent -- it would happily judge character two against character one's face.",
+  "_the_trap_this_closes": "TWO REFERENCES ARE NOT INTERCHANGEABLE. Every character gets an APPEARANCE target (grooming, colour, wardrobe) and a SHAPE target (geometry, the fit). Confusing them cost this project 1.29 cm of jaw width when the fit widened the mandible to match a beard. Both are declared per character, both are hashed, and a tool that is handed the shape image where it wants the appearance image REFUSES rather than comparing.",
+  "conventions": {
+    "reference_images": "characters/<Name>/reference/  -- source images, hashed here. The hero predates this and keeps hero/reference/; its paths are declared below rather than moved, because rewriting a path that appears in committed records falsifies what was true when they were written.",
+    "ue_groom_content": "/Game/Characters/<Name>/Grooms/  -- authored grooms. The hero's existing /Game/Hero/Grooms/ is grandfathered and declared below.",
+    "groom_asset_naming": "<Char>_<Style>_v<N>  e.g. AlpineHero_Shag_v1. The version is part of the NAME because a groom is re-authored, not edited in place, and a comparison frame must be able to name exactly which one it photographed.",
+    "provenance_sidecar": "characters/<Name>/grooms/<asset>.json -- source .abc sha256, Blender file, export settings, import settings, binding target, colour params. THE PRODUCER MUST EXIST: every derived asset in this project is either committed or re-derivable from a recorded producer, and a 74 MB groom is firmly in the second class."
+  },
+  "characters": {
+    "AlpineHero": {
+      "display_name": "the hero",
+      "ue_character_asset": "/Game/Hero/MHC_AlpineHero",
+      "ue_assembled_bp": "/Game/Hero/Unpacked/MHC_AlpineHero/BP_MHC_AlpineHero",
+      "ue_groom_content": "/Game/Hero/Grooms/",
+      "_grandfathered": "Predates the /Game/Characters/<Name>/ convention. Declared, not moved.",
+      "reference": {
+        "appearance": {
+          "path": "hero/reference/hero_example_pic.jpg",
+          "sha256": "f62b53ff9e228f3119eb075fc695b63475e73533d874e591b6dd09a252a806b2",
+          "_also_known_as": "hero/reference/hero_face_haired_frontal.jpg is the SAME BYTES, and so is the operator's desktop Gemini_Generated_Image_qv94... -- one target under three names, hash-proven.",
+          "_ruled_by": "Ryan, 2026-08-16: the image starting with qv94 is the final product look."
+        },
+        "appearance_rear": {
+          "path": "hero/reference/hero_example_pic_rear.jpg",
+          "sha256": "ebbe21b75f4bb6cf9ae3efb6233b65e9a97d8deefc9bbb4b8fd87c83f293b719",
+          "_adopted": "2026-08-21 from the operator's desktop Gemini_Generated_Image_37sctt..., hash equal at adoption. The repo copy is canonical: desktop files move, registry entries do not.",
+          "_same_character": "Collar, pauldron and colour match the frontal. It is the SAME CUT from behind, not a second look.",
+          "_scope": "THE FRONTAL REMAINS PRIMARY. The rear governs ONLY what the frontal cannot see -- nape, rear layering, rear width profile. Where they both constrain something, the frontal wins.",
+          "_not_a_colour_target": "Both references are portrait-graded. Colour scoring stays anchored to the ruled durable-surface values 0.92 / 0.28 / 0.00 and never to either image's grade.",
+          "measured_constraints": {
+            "_measured_by": "scripts/hero_face/likeness/rear_metrics.py, 2026-08-21, luma_max 70.0 sat_max 0.35, mask inspected as a PNG before the numbers were used",
+            "_mask_dump": "_verify/20260821_rear/ref_mask.png",
+            "mask_frac": 0.1943,
+            "hair_height_px": 566,
+            "taper_ratio": 0.5533,
+            "edge_roughness": 27.9648,
+            "crown_width_px": 476.0,
+            "nape_width_px": 263.3,
+            "_taper_reading": "The nape is 55% of the crown width. A blunt bottom edge reads near 1.0, so this number is what separates 'short at the back' from 'tapered at the back' -- the distinction the brief names and the one an eye judges unreliably.",
+            "_profile_reading": "Width rises 0.38 -> 1.00 over the upper half and falls to 0.42 at the nape, so it is widest at mid/upper skull and narrows downward, as the brief states.",
+            "_roughness_reading": "27.96 perimeter over sqrt(area), dimensionless so it survives the scale difference between a 1375x768 portrait and a 2048x2048 SceneCapture. A smooth helmet scores far lower; this is the choppy-feathered-chunks number to beat."
+          }
+        },
+        "shape": {
+          "path": "hero/reference/hero_face_bald_frontal.jpg",
+          "sha256": "4cb7d442a87cee435262a0fc2e217709b9ee9c9d592242e4b3ef4238e018af1e",
+          "_why_bald": "Hair adds false volume at the cranium and a beard adds it at the mandible, which is exactly where the fit measures."
+        },
+        "appearance_groom_clay": {
+          "path": "hero/reference/appearance_groom_clay.jpg",
+          "sha256": "d331043ecd6629a40f33744419b140f96b374fc2b698056e6e82e72ca8cc17ac",
+          "_adopted": "2026-08-22 from the operator's Desktop appearance_groom_clay.jpg, hash equal at adoption. The repo copy is canonical: desktop files move, registry entries do not.",
+          "_why_primary_for_silhouette": "IT IS THE TARGET IN THE WORKING MEDIUM. Grey clay, neutral light, the same bust and framing preview_hair.py already renders -- so a silhouette comparison against it carries no lighting or grade noise, which is exactly what made the two portrait references unusable for shape. Every earlier shape ruling was taken by eye against a graded portrait.",
+          "_scope": "PRIMARY for fringe, crown lift, chunk direction and front silhouette. The photo rear governs nape taper and rear density. The photo front is a COLOUR ANCHOR CHECK and final human judgement only.",
+          "_not_a_colour_target": "Clay is untextured grey. Colour stays anchored to the ruled durable-surface values 0.92 / 0.28 / 0.00.",
+          "_crop_note": "The source carries a title strip across the top ~30 px ('Brie: The sculpt/groom'). Any measurement crops it; the file is NOT edited, because a reference is never overwritten."
+        },
+        "appearance_front_v2": {
+          "path": "characters/AlpineHero/grooms/difflocks_raw_v2/appearance_front_v2.jpg",
+          "sha256": "1db4f859f8a95c74b8f249a1e55aa45b24391e094f59f81fe9fe6a533fc19d54",
+          "bytes": 745907,
+          "_adopted": "2026-08-23 from the operator's Desktop Ahero.jpg, hash-equal at adoption. The Desktop original is unmodified.",
+          "_scope": "THE GENERATION INPUT for the v2 DiffLocks groom, and NOTHING ELSE. `appearance` remains the ruled product-look target and `shape` remains the geometry target; this image is the thing the diffusion model actually saw, which is a third role and must not be conflated with either. Two references were already confused once on this character and it cost 1.29 cm of a 2.616 cm residual.",
+          "_not_a_colour_target": "Colour is ruled and locked in RECIPES R-HAIRCOLOUR; this image does not govern it.",
+          "_consumed_by": "characters/AlpineHero/grooms/difflocks_raw_v2/hair_output_strands.npz"
+        }
+      },
+      "comparison_framing": {
+        "_what": "The capture the comparison sheet expects, so two sheets taken weeks apart are actually comparable.",
+        "dist_cm": 110.0,
+        "fov_deg": 26.0,
+        "cam_up_cm": 152.0,
+        "look_up_cm": 158.0,
+        "resolution": 2048
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+# diff_hero_meshes — what did duplicate_asset actually drop?
+#
+# The duplicated SKM_HeroFace was found to have post_process_anim_blueprint
+# NULL. That was noticed, not searched for. Setting only what I happened to
+# notice would be fixing the symptom I saw rather than the ones that exist,
+# so this DIFFS the duplicate against the assembled mesh across every
+# property worth carrying, and reports both sides.
+#
+# READ ONLY. It changes nothing; the fix is a separate, deliberate step
+# driven by what this finds.
+import json as _json
+import unreal as _unreal
+
+_PAIRS = [
+    ("face",
+     "/Game/Hero/Generated/SKM_HeroFace",
+     "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh"),
+    ("body",
+     "/Game/Hero/Generated/SKM_HeroBody",
+     "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh"),
+]
+
+# Properties a SkeletalMesh carries that affect whether it evaluates and
+# draws. Curated rather than exhaustive, because dir() on a UObject returns
+# mostly methods and the noise would bury the answer.
+_PROPS = [
+    "post_process_anim_blueprint",
+    "skeleton",
+    "physics_asset",
+    "shadow_physics_asset",
+    "lod_settings",
+    "min_lod",
+    "disable_below_min_lod_stripping",
+    "default_animation_rig",
+    "enable_per_poly_collision",
+    "positive_bounds_extension",
+    "negative_bounds_extension",
+    "support_ray_tracing",
+    "skin_weight_profiles",
+    "asset_user_data",
+]
+
+_out = {"error": None, "pairs": []}
+try:
+    for _label, _a_path, _b_path in _PAIRS:
+        _rec = {"which": _label, "duplicate": _a_path, "assembled": _b_path,
+                "differs": [], "same": [], "unreadable": []}
+        _a = _unreal.EditorAssetLibrary.load_asset(_a_path)
+        _b = _unreal.EditorAssetLibrary.load_asset(_b_path)
+        _rec["duplicate_loads"] = _a is not None
+        _rec["assembled_loads"] = _b is not None
+        if _a is None or _b is None:
+            _out["pairs"].append(_rec)
+            continue
+        for _p in _PROPS:
+            try:
+                _va = _a.get_editor_property(_p)
+            except Exception as _e:
+                _rec["unreadable"].append(_p + " (duplicate): " + str(_e)[:70])
+                continue
+            try:
+                _vb = _b.get_editor_property(_p)
+            except Exception as _e:
+                _rec["unreadable"].append(_p + " (assembled): " + str(_e)[:70])
+                continue
+            _sa = str(_va)[:150]
+            _sb = str(_vb)[:150]
+            if _sa == _sb:
+                _rec["same"].append(_p)
+            else:
+                _rec["differs"].append({"property": _p,
+                                        "duplicate": _sa,
+                                        "assembled": _sb})
+        # LOD count too -- a mesh stripped to no LODs would not draw.
+        for _tag, _o in (("duplicate", _a), ("assembled", _b)):
+            try:
+                _rec[_tag + "_lods"] = int(_o.get_lod_num())
+            except Exception as _e:
+                _rec[_tag + "_lods"] = "UNREADABLE: " + str(_e)[:60]
+        _out["pairs"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

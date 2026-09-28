@@ -1,0 +1,52 @@
+# release_character — hand MHC_AlpineHero back to the UI.
+#
+# WHY THIS EXISTS, AND IT COST RYAN A SCARE
+#   Every payload in scripts/hero_face/ calls try_add_object_to_edit and none
+#   of them called remove_object_to_edit, even though the engine's own
+#   docstring says "Call RemoveObjectToEdit when done editing."
+#
+#   The consequence is not a leak, it is a LOCKOUT WITH A LYING MESSAGE.
+#   Double-clicking the asset in the Content Browser produces:
+#
+#     Error: TryAddObjectToEdit called for 'MHC_AlpineHero' which is already
+#            added for editing
+#     Error: Failed to open MHC_AlpineHero failed to create editing state.
+#            The asset may be corrupted
+#
+#   The asset is NOT corrupted. It saved cleanly and passed
+#   "AssetCheck: Validating asset" on the way in. The editor cannot tell
+#   "somebody else holds the editing state" from "the bytes are bad", and it
+#   guesses the alarming one.
+#
+# Reports the registration state before and after, so the release is a
+# measurement rather than an assumption.
+import json as _json
+import os as _os
+import unreal as _unreal
+
+_PATH = "/Game/Hero/MHC_AlpineHero"
+_FILE = r"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Content/Hero/MHC_AlpineHero.uasset"
+_out = {"error": None, "added_before": None, "added_after": None,
+        "released": None, "size": None, "can_build": None}
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset(_PATH)
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load -- THAT would be a "
+                           "real corruption; this message is not one.")
+    _out["size"] = _os.path.getsize(_FILE)
+    _out["added_before"] = bool(_ss.is_object_added_for_editing(_ch))
+    if _out["added_before"]:
+        # Read this while we still hold the registration: can_build needs it.
+        try:
+            _out["can_build"] = bool(_ss.can_build_meta_human(_ch, False))
+        except Exception as _e:
+            _out["can_build"] = "unreadable: " + str(_e)
+        _ss.remove_object_to_edit(_ch)
+        _out["released"] = True
+    else:
+        _out["released"] = False
+    _out["added_after"] = bool(_ss.is_object_added_for_editing(_ch))
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

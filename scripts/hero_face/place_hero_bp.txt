@@ -1,0 +1,54 @@
+# place_hero_bp — put the assembled MetaHuman in the level, or take it out.
+#
+# Validates the Blueprint route before anything is built on it: PIE duplicates
+# the editor world, so an actor placed here can be measured while animation
+# is actually ticking. Editor-only readings are worthless for this -- an
+# untick ed MetaHuman reports head_rise 0.51 cm whether it is healthy or not,
+# which is why the editor-spawn measurements earlier proved nothing.
+#
+# ADD then REMOVE, both here, so the level does not quietly keep a spawned
+# hero. It is placed NON-transient deliberately (PIE only duplicates real
+# level actors), so removing it again is the caller's job and this payload
+# owns both halves.
+import json as _json
+import unreal as _unreal
+
+_BP = r"__BP__"
+_MODE = "__MODE__"
+_TAG = "HeroBP_RouteTest"
+
+_out = {"error": None, "mode": _MODE, "acted": None, "found": [],
+        "level_dirty_warning": ("this places a REAL actor in /Game/Alpine8K; "
+                                "remove it and do NOT save the level")}
+try:
+    _els = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _existing = [_a for _a in _els.get_all_level_actors()
+                 if _a is not None and _TAG in _a.get_actor_label()]
+    _out["found"] = [_a.get_actor_label() for _a in _existing]
+
+    if _MODE == "add":
+        if _existing:
+            _out["acted"] = "already present -- not adding a second"
+        else:
+            _cls = _unreal.EditorAssetLibrary.load_blueprint_class(_BP)
+            if _cls is None:
+                raise RuntimeError("blueprint class did not load")
+            # At the hero's own PlayerStart, so it stands where he stands.
+            _a = _els.spawn_actor_from_class(
+                _cls, _unreal.Vector(354600.0, -321400.0, 31139.5),
+                _unreal.Rotator(0.0, 0.0, 0.0))
+            if _a is None:
+                raise RuntimeError("spawn returned None")
+            _a.set_actor_label(_TAG)
+            _out["acted"] = "placed " + _a.get_name()
+    elif _MODE == "remove":
+        _n = 0
+        for _a in _existing:
+            _unreal.EditorLevelLibrary.destroy_actor(_a)
+            _n += 1
+        _out["acted"] = "removed %d" % _n
+    else:
+        _out["acted"] = "probe only"
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

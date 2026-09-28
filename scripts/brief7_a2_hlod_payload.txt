@@ -1,0 +1,89 @@
+# brief7 A2 HLOD-proxy-black read-back. READ-ONLY. Why do the far-forest HLOD
+# proxies render unlit/black? Reports every WorldPartitionHLOD actor's material
+# (shading model, blend mode, emissive/base overrides, two-sided), plus the
+# Lumen far-field + hardware-RT cvars and the SkyLight state. Fix is deferred
+# to P2 step 0 -- this only diagnoses.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"error": None, "hlod_actor_count": 0, "hlod_materials": {},
+        "cvars": {}, "skylight": None}
+
+
+def _mat_info(m):
+    d = {"path": str(m.get_path_name()) if m else None}
+    if m is None:
+        return d
+    # resolve to the base material for shading-model / blend reads
+    _base = m
+    try:
+        if isinstance(m, _u.MaterialInstance):
+            _bp = m.get_base_material()
+            if _bp:
+                _base = _bp
+    except Exception:
+        pass
+    for _n in ("shading_model", "blend_mode", "two_sided",
+               "material_domain", "used_with_nanite"):
+        try:
+            d[_n] = str(_base.get_editor_property(_n))
+        except Exception:
+            d[_n] = None
+    d["base_path"] = str(_base.get_path_name())
+    return d
+
+
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+    _seen = {}
+    for _a in _all:
+        _cn = _a.get_class().get_name()
+        if "HLOD" not in _cn:
+            continue
+        _out["hlod_actor_count"] += 1
+        # static mesh components on the proxy carry the generated material(s)
+        try:
+            _comps = _a.get_components_by_class(_u.StaticMeshComponent)
+        except Exception:
+            _comps = []
+        for _c in _comps:
+            try:
+                _mats = _c.get_materials()
+            except Exception:
+                _mats = []
+            for _m in _mats:
+                if _m is None:
+                    continue
+                _key = str(_m.get_path_name())
+                if _key not in _seen:
+                    _seen[_key] = _mat_info(_m)
+                    _seen[_key]["seen_on_class"] = _cn
+    _out["hlod_materials"] = _seen
+
+    _sl = _u.SystemLibrary
+    for _cv in ("r.LumenScene.FarField", "r.LumenScene.FarField.MaxTraceDistance",
+                "r.Lumen.HardwareRayTracing", "r.Lumen.HardwareRayTracing.LightingMode",
+                "r.Lumen.TraceMeshSDFs", "r.RayTracing.Geometry.InstancedStaticMeshes",
+                "r.HLOD"):
+        try:
+            _s = _sl.get_console_variable_string_value(_cv)
+            _out["cvars"][_cv] = None if _s == "" else float(
+                _sl.get_console_variable_float_value(_cv))
+        except Exception as _e:
+            _out["cvars"][_cv] = "<err %s>" % str(_e)[:40]
+
+    for _a in _all:
+        if isinstance(_a, _u.SkyLight):
+            _c = _a.get_component_by_class(_u.SkyLightComponent)
+            _out["skylight"] = {
+                "intensity": str(_c.get_editor_property("intensity")),
+                "affects_world": str(_c.get_editor_property("affects_world")),
+                "real_time_capture": str(_c.get_editor_property("real_time_capture")),
+                "lower_hemisphere_is_black": str(_c.get_editor_property("lower_hemisphere_is_black"))}
+            break
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL_A2__" + _json.dumps(_out, default=str))

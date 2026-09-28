@@ -1,0 +1,24 @@
+{
+  "dest": "/Game/Materials/PN_NoWind",
+  "switches": [
+    "Level 1 Wind",
+    "Level 2 Wind",
+    "Level 3 Wind",
+    "Level 1 Bending",
+    "Level 2 Bending",
+    "Level 3 Bending"
+  ],
+  "overrides_by_mesh": {
+    "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01": [
+      "/Game/Materials/PN_NoWind/MI_spruce_half_01_trunk_nowind",
+      "/Game/Materials/PN_NoWind/MI_spruce_half_01_branch_nowind",
+      "/Game/Materials/PN_NoWind/MI_spruce_half_01_leaf_nowind",
+      "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind"
+    ],
+    "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05": [
+      "/Game/Materials/PN_NoWind/MI_spruce_small_05_trunk_nowind",
+      "/Game/Materials/PN_NoWind/MI_spruce_small_05_leaf_nowind",
+      "/Game/Materials/PN_NoWind/MI_spruce_small_05_branch_nowind"
+    ]
+  }
+}

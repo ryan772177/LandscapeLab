@@ -1,0 +1,60 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+CH = "__CH__"
+QUALITY = "__QUALITY__"
+
+_out = {"ok": False, "error": None}
+try:
+    _eal = _u.EditorAssetLibrary
+    _sub = _u.get_editor_subsystem(_u.MetaHumanCharacterEditorSubsystem)
+    _ch = _eal.load_asset(CH)
+    if not _sub.is_object_added_for_editing(_ch):
+        _sub.try_add_object_to_edit(_ch)
+    if not _sub.can_build_meta_human(_ch):
+        raise RuntimeError("can_build_meta_human is FALSE — refusing to build")
+
+    _p = _u.MetaHumanCharacterEditorBuildParameters()
+    _p.set_editor_property("pipeline_type",
+                           _u.MetaHumanDefaultPipelineType.OPTIMIZED)
+    _p.set_editor_property("pipeline_quality",
+                           getattr(_u.MetaHumanQualityLevel, QUALITY))
+    _out["params"] = {
+        "pipeline_type": str(_p.get_editor_property("pipeline_type")),
+        "pipeline_quality": str(_p.get_editor_property("pipeline_quality")),
+    }
+
+    _before = set(str(p.get_name()) for p in
+                  _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _sub.build_meta_human(_ch, _p)
+    _after = set(str(p.get_name()) for p in
+                 _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _new = sorted(_after - _before)
+    _out["dirty_new_count"] = len(_new)
+
+    # SAVE IN THE SAME PAYLOAD. Measured 2026-08-19: after a CINEMATIC
+    # assemble the editor stopped answering remote execution entirely -- one
+    # core spinning, working set flat at 20.4 GB, zero log growth, 0.67 GB
+    # free -- so a SECOND remote call to save could never be delivered and 91
+    # freshly built packages were lost with the process. The assemble and its
+    # save are one operation or the build is not durable.
+    _ok = 0
+    _failed = []
+    for _n in _new:
+        try:
+            if _eal.save_asset(_n, only_if_is_dirty=False):
+                _ok += 1
+            else:
+                _failed.append(_n)
+        except Exception as _e2:
+            _failed.append(_n + " :: " + str(_e2)[:60])
+    _out["saved"] = _ok
+    _out["failed"] = _failed[:8]
+    _out["still_dirty"] = len(
+        _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

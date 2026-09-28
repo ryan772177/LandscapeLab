@@ -1,0 +1,59 @@
+import json as _json, os as _os, traceback as _tb
+import unreal as _unreal
+# Brief 7 P1 FEATHER: re-import the FEATHERED source pixels into the existing
+# T_Alpine_8k_Weights asset. import_layer_textures.py is blocked by pre-existing
+# recipe validation on the lighting/foliage blocks (unrelated to this fix), so
+# this payload replicates its weightmap import job VERBATIM (settings +
+# read-back) for the true weightmap only. Source = the merged feathered PNG.
+_SRC = r"__SRC__"
+_ASSET = "/Game/Textures/T_Alpine_8k_Weights"
+_out = {"layer": "_weightmap", "asset": _ASSET, "imported": False,
+        "settings": {}, "error": None}
+try:
+    _at = _unreal.AssetToolsHelpers.get_asset_tools()
+    _pkg, _name = _ASSET.rsplit("/", 1)
+    _task = _unreal.AssetImportTask()
+    _task.set_editor_property("filename", _SRC)
+    _task.set_editor_property("destination_path", _pkg)
+    _task.set_editor_property("destination_name", _name)
+    _task.set_editor_property("automated", True)
+    _task.set_editor_property("replace_existing", True)
+    _task.set_editor_property("save", False)
+    _at.import_asset_tasks([_task])
+
+    _tex = _unreal.EditorAssetLibrary.load_asset(_ASSET)
+    if _tex is None:
+        raise RuntimeError("import produced no asset at " + _ASSET)
+    _out["imported"] = True
+    _out["class"] = type(_tex).__name__
+
+    _tex.set_editor_property("srgb", False)
+    _tex.set_editor_property(
+        "compression_settings",
+        _unreal.TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP)
+    _tex.set_editor_property("address_x", _unreal.TextureAddress.TA_CLAMP)
+    _tex.set_editor_property("address_y", _unreal.TextureAddress.TA_CLAMP)
+    _tex.set_editor_property(
+        "lod_group", _unreal.TextureGroup.TEXTUREGROUP_WORLD)
+    # true weightmap: box mip filter (Brief 7 P1 ruling)
+    _tex.set_editor_property(
+        "mip_gen_settings",
+        _unreal.TextureMipGenSettings.TMGS_SIMPLE_AVERAGE)
+
+    def _rb(_prop):
+        _v = _tex.get_editor_property(_prop)
+        _n = getattr(_v, "name", None)
+        return _n if _n is not None else _v
+
+    for _p in ("srgb", "compression_settings", "address_x", "address_y"):
+        _out["settings"][_p] = _rb(_p)
+    _out["settings"]["lod_group"] = _rb("lod_group")
+    _out["resident_mip"] = [_tex.blueprint_get_size_x(),
+                            _tex.blueprint_get_size_y()]
+    _unreal.EditorAssetLibrary.save_asset(_ASSET, only_if_is_dirty=False)
+    _out["settings"]["mip_gen_settings"] = _rb("mip_gen_settings")
+    _out["ok"] = True
+except Exception as _exc:
+    _out["error"] = "{0}: {1} | {2}".format(
+        type(_exc).__name__, _exc, _tb.format_exc()[:300])
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,38 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# Brief 7 P1 shoot: place the editor viewport camera at a bench station, at
+# TRACED ground + eye height (never the heightmap-derived Z), and RETURN the
+# final loc so the host can sleep for the foliage-LOD settle and then shoot the
+# SAME camera. Returns immediately so the editor is free to TICK during the
+# host-side settle (a game-thread time.sleep would freeze the tick and defeat
+# the settle). Traces complex, ignoring foliage, exactly like city_shot_payload.
+_X = float(__X__); _Y = float(__Y__)
+_PITCH = float(__PITCH__); _YAW = float(__YAW__); _EYE = float(__EYE__)
+_out = {"ok": False, "error": None}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _hit = _u.SystemLibrary.line_trace_single(
+        _w, _u.Vector(_X, _Y, 400000.0), _u.Vector(_X, _Y, -400000.0),
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+        _u.DrawDebugTrace.NONE, True)
+    if not _hit:
+        raise RuntimeError("no ground hit at XY (%.1f, %.1f)" % (_X, _Y))
+    _gz = float(_hit.to_tuple()[4].z)
+    _z = _gz + _EYE
+    _loc = _u.Vector(_X, _Y, _z)
+    _rot = _u.Rotator(0.0, _PITCH, _YAW)   # (roll, pitch, yaw)
+    _u.EditorLevelLibrary.set_level_viewport_camera_info(_loc, _rot)
+    _rl, _rr = _u.EditorLevelLibrary.get_level_viewport_camera_info()
+    _out["ground_z_cm"] = round(_gz, 1)
+    _out["cam_loc"] = [round(_rl.x, 1), round(_rl.y, 1), round(_rl.z, 1)]
+    _out["cam_rot_rpy"] = [round(_rr.roll, 2), round(_rr.pitch, 2),
+                           round(_rr.yaw, 2)]
+    _out["shoot_loc"] = "%.1f,%.1f,%.1f" % (_X, _Y, _z)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e,
+                                     _tb.format_exc()[:200])
+print("__LL__" + _json.dumps(_out, default=str))

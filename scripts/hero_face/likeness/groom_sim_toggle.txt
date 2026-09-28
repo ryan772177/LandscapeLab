@@ -1,0 +1,97 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# SET THE ONE PROPERTY THAT SEPARATES DRAWS FROM BALD, AND SAY SO.
+#
+# With `AlpineHero_Clay_R4` now MEASURED bald (Hair 4,126 px, 1.9x floor,
+# reproduced) the per-group physics table inverts. It was read as an acquittal
+# on the premise that the procedural groom drew. It does not:
+#
+#     groom                    renders   enable_simulation   curve/vertex decim
+#     DiffLocks k28              BALD         False              1.0 / 1.0
+#     DiffLocks k12              BALD         False              1.0 / 1.0
+#     procedural Clay_R4         BALD         False              1.0 / 1.0
+#     vendor SideSweptFringe     DRAWS        True               0.8 / 0.5
+#
+# Three bald grooms on one side of the flag and the only groom that draws on the
+# other. That is a correlation over four assets, not a mechanism -- so this sets
+# the flag and lets the render decide, rather than arguing about it.
+#
+# WRITES AN ASSET. The target is a gitignored derived groom copy, never a vendor
+# package. The prior value is recorded so it can be put back.
+
+GROOM = "__GROOM__"
+SET_SIM = __SET_SIM__          # 1 / 0
+SET_CURVE_DECIM = __SET_CURVE_DECIM__     # -1 to leave alone
+SET_VERTEX_DECIM = __SET_VERTEX_DECIM__
+
+_out = {"ok": False, "error": None, "groom": GROOM, "before": [], "after": []}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+
+    # refuse to touch anything outside our own derived groom folder
+    if not GROOM.startswith("/Game/Characters/AlpineHero/Grooms/"):
+        raise RuntimeError("REFUSE: %s is not under our derived groom folder"
+                           % GROOM)
+
+    _phys = _g.get_editor_property("hair_groups_physics")
+    _interp = _g.get_editor_property("hair_groups_interpolation")
+
+    for _s in _phys:
+        _ss = _s.get_editor_property("solver_settings")
+        _out["before"].append({"enable_simulation":
+                               _ss.get_editor_property("enable_simulation")})
+    for _s in _interp:
+        _ds = _s.get_editor_property("decimation_settings")
+        _out["before"].append({
+            "curve_decimation": _ds.get_editor_property("curve_decimation"),
+            "vertex_decimation": _ds.get_editor_property("vertex_decimation")})
+
+    # struct arrays iterate as COPIES in UE Python -- read, modify, WRITE BACK
+    # the whole array. This project has already shipped a body-parameter write
+    # that looked exactly like a working lock because of this.
+    _newphys = []
+    for _s in _phys:
+        _ss = _s.get_editor_property("solver_settings")
+        _ss.set_editor_property("enable_simulation", bool(SET_SIM))
+        _s.set_editor_property("solver_settings", _ss)
+        _newphys.append(_s)
+    _g.set_editor_property("hair_groups_physics", _newphys)
+
+    if SET_CURVE_DECIM >= 0:
+        _newint = []
+        for _s in _interp:
+            _ds = _s.get_editor_property("decimation_settings")
+            _ds.set_editor_property("curve_decimation",
+                                    float(SET_CURVE_DECIM))
+            _ds.set_editor_property("vertex_decimation",
+                                    float(SET_VERTEX_DECIM))
+            _s.set_editor_property("decimation_settings", _ds)
+            _newint.append(_s)
+        _g.set_editor_property("hair_groups_interpolation", _newint)
+
+    _u.EditorAssetLibrary.save_asset(GROOM, only_if_is_dirty=False)
+
+    # READ BACK OFF A RELOADED ASSET, not off the object we just wrote.
+    _g2 = _u.EditorAssetLibrary.load_asset(GROOM)
+    for _s in _g2.get_editor_property("hair_groups_physics"):
+        _ss = _s.get_editor_property("solver_settings")
+        _out["after"].append({"enable_simulation":
+                              _ss.get_editor_property("enable_simulation")})
+    for _s in _g2.get_editor_property("hair_groups_interpolation"):
+        _ds = _s.get_editor_property("decimation_settings")
+        _out["after"].append({
+            "curve_decimation": _ds.get_editor_property("curve_decimation"),
+            "vertex_decimation": _ds.get_editor_property("vertex_decimation")})
+
+    _out["sim_took"] = all(_r.get("enable_simulation") == bool(SET_SIM)
+                           for _r in _out["after"]
+                           if "enable_simulation" in _r)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

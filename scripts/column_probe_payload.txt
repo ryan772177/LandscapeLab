@@ -1,0 +1,43 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# WHAT IS STACKED AT THIS XY? A multi-hit downward trace, reporting every
+# actor the ray passes through with its Z.
+#
+# WHY. perf_flythrough traces ONE hit to find "ground" and puts the eye 175 cm
+# above it. A single hit cannot tell terrain from a roof, a street slab, or the
+# underside of something -- and a camera placed 175 cm above the wrong hit
+# renders the inside of whatever it is in. The main_street station rendered as
+# a dark noise field on 2026-09-05 and the plan says it is NOT inside any
+# building footprint, so the single-hit trace is the next thing to distrust.
+
+X = __X__
+Y = __Y__
+TOP = __TOP__
+BOTTOM = __BOTTOM__
+
+_out = {"ok": False, "error": None, "hits": []}
+try:
+    _start = _u.Vector(X, Y, TOP)
+    _end = _u.Vector(X, Y, BOTTOM)
+    _hits = _u.SystemLibrary.line_trace_multi(
+        _u.EditorLevelLibrary.get_editor_world(), _start, _end,
+        _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, [], _u.DrawDebugTrace.NONE,
+        True)
+    for _h in (_hits or []):
+        _t = _h.to_tuple()
+        _act = _t[9] if len(_t) > 9 else None
+        _comp = _t[10] if len(_t) > 10 else None
+        _out["hits"].append({
+            "z": round(float(_t[4].z), 1),
+            "actor": str(_act.get_actor_label()) if _act else None,
+            "class": str(type(_act).__name__) if _act else None,
+            "component": str(_comp.get_name()) if _comp else None,
+        })
+    _out["hit_count"] = len(_out["hits"])
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

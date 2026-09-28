@@ -1,0 +1,88 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. PER-GROUP PHYSICS / SIMULATION / INTERPOLATION on both grooms.
+#
+# The one discriminator in the advisor's catalog that has NOT been run. Its
+# reasoning is the good kind: the documented contract says interpolation only
+# runs with simulation enabled or a skinned binding attached, which would
+# exempt an unbound groom -- but a per-group simulation flag defaulting ON
+# would put the unbound groom through interpolation anyway, with whatever
+# guide weights it has. And "interpolation settings read identical" covered the
+# ASSET-level settings, not the per-GROUP ones.
+#
+# Both grooms in one run, same call, so the comparison is two readings from one
+# instrument. Every accessor that raises is RECORDED, never skipped: this table
+# is being used to eliminate suspects, and "the accessor raised" must not look
+# like "the value is false".
+
+PAIRS = [
+    ("DiffLocks k28 (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_surf"),
+    ("DiffLocks k12 (bald)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_k12"),
+    ("procedural (draws)",
+     "/Game/Characters/AlpineHero/Grooms/AlpineHero_Clay_R4"),
+    ("vendor (draws)",
+     "/Game/Hero/Unpacked/MHC_AlpineHero/Grooms/Hair_M_SideSweptFringe"),
+]
+
+ARRAYS = ("hair_groups_physics", "hair_groups_interpolation",
+          "hair_groups_lod", "hair_groups_info", "hair_groups_rendering")
+
+FIELDS = ("solver_settings", "strands_parameters", "simulation",
+          "enable_simulation", "interpolation_settings", "decimation_settings",
+          "hair_interpolation_quality", "hair_interpolation_distance",
+          "guide_type", "hair_to_guide_density", "riding_alpha",
+          "use_unique_guide", "curve_decimation", "vertex_decimation")
+
+
+def _get(_o, _n):
+    try:
+        return str(_o.get_editor_property(_n))[:120]
+    except Exception as _e:
+        return "RAISED"
+
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    for _label, _p in PAIRS:
+        _row = {}
+        _g = _u.EditorAssetLibrary.load_asset(_p)
+        if _g is None:
+            _out["grooms"][_label] = {"error": "could not load"}
+            continue
+        for _an in ARRAYS:
+            try:
+                _arr = _g.get_editor_property(_an)
+            except Exception:
+                continue
+            _groups = []
+            for _s in _arr:
+                _e = {}
+                for _f in FIELDS:
+                    _v = _get(_s, _f)
+                    if _v != "RAISED":
+                        _e[_f] = _v
+                # one level down into any nested settings struct
+                for _sub in ("solver_settings", "strands_parameters",
+                             "interpolation_settings", "decimation_settings"):
+                    try:
+                        _ss = _s.get_editor_property(_sub)
+                        for _f in FIELDS:
+                            _v = _get(_ss, _f)
+                            if _v != "RAISED":
+                                _e["%s.%s" % (_sub, _f)] = _v
+                    except Exception:
+                        pass
+                if _e:
+                    _groups.append(_e)
+            if _groups:
+                _row[_an] = _groups
+        _out["grooms"][_label] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

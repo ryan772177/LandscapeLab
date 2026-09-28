@@ -1,0 +1,76 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. Why does a pack groom land on the JAW?
+#
+# The hypothesis is boring and testable: the pack's groom and the hero's face
+# mesh put their scalps at DIFFERENT HEIGHTS in their own local spaces, so an
+# identity binding -- which asserts "this groom was authored on the target's
+# own topology" -- drops it by exactly that difference. If so the fix is a
+# measured vertical offset, not a new binding mechanism.
+#
+# Measures both sides in the SAME space (UE local cm) so the difference is
+# subtraction rather than inference:
+#   - the hero Face mesh's bounds, and its topmost region (the scalp)
+#   - each groom's own bounds, via a throwaway GroomActor at the origin
+
+_out = {"ok": False, "error": None, "grooms": {}}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _eal = _u.EditorAssetLibrary
+
+    # --- the hero's face mesh -------------------------------------------
+    _face = _eal.load_asset(
+        "/Game/Hero/Unpacked/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh")
+    if _face is not None:
+        _b = _face.get_bounds()
+        _o = _b.box_extent
+        _c = _b.origin
+        _out["hero_face_mesh"] = {
+            "origin": [round(_c.x, 2), round(_c.y, 2), round(_c.z, 2)],
+            "extent": [round(_o.x, 2), round(_o.y, 2), round(_o.z, 2)],
+            "z_min": round(_c.z - _o.z, 2), "z_max": round(_c.z + _o.z, 2)}
+
+    # --- each groom's own extent, measured the same way ------------------
+    _probe = _eas.spawn_actor_from_class(_u.GroomActor,
+                                         _u.Vector(0, 0, 0),
+                                         _u.Rotator(0, 0, 0))
+    _probe.set_actor_label("ScalpOffsetProbe")
+    _pc = _probe.get_component_by_class(_u.GroomComponent)
+    for _p in ("/Game/Characters/AlpineHero/Grooms/GL_iter028_ue",
+               "/Game/Hero/Grooms/SC_Hairstyle_Male_11/SC_Hairstyle_Male_11"):
+        try:
+            _g = _eal.load_asset(_p)
+            if _g is None:
+                continue
+            _pc.set_editor_property("binding_asset", None)
+            _pc.set_editor_property("groom_asset", _g)
+            if _pc.get_editor_property("groom_asset") is None:
+                _out["grooms"][_p] = {"error": "groom did not assign"}
+                continue
+            _org, _ext, _r = _u.SystemLibrary.get_component_bounds(_pc)
+            _out["grooms"][_p] = {
+                "z_min": round(_org.z - _ext.z, 2),
+                "z_max": round(_org.z + _ext.z, 2),
+                "z_centre": round(_org.z, 2)}
+        except Exception as _e:
+            _out["grooms"][_p] = {"error": str(_e)[:120]}
+    _eas.destroy_actor(_probe)
+
+    # --- the offset the hypothesis predicts ------------------------------
+    # A groom's ROOTS sit at the top of its own extent; the hero's scalp sits
+    # at the top of his face mesh. Align those two, not the centres.
+    _hf = _out.get("hero_face_mesh")
+    _gl = _out["grooms"].get(
+        "/Game/Characters/AlpineHero/Grooms/GL_iter028_ue")
+    if _hf and _gl and "z_max" in _gl:
+        _out["predicted_offset_cm"] = round(_hf["z_max"] - _gl["z_max"], 2)
+        _out["_reading"] = ("add this to the groom's Z to put its crown where "
+                            "the hero's crown is; positive means the groom "
+                            "currently sits LOW, which is the jaw symptom")
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

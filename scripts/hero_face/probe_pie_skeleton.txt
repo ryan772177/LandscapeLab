@@ -1,0 +1,91 @@
+# probe_pie_skeleton — is the hero POSED, or collapsed?
+#
+# The meshes are assigned, visible, unhidden and correctly offset (-88 cm
+# against an 88 cm capsule, yaw -90). Ryan still sees nothing. The remaining
+# candidate is the pose: ABP_Unarmed targets SK_Mannequin (161 bones) and the
+# assembled MetaHuman body is metahuman_base_skel (342). CURRENT STATE
+# records that this combination "poses correctly anyway" for the OLD meshes
+# and warns not to assume interchangeability -- so the new meshes have to be
+# asked, not assumed.
+#
+# THE DISCRIMINATING MEASUREMENT is bone SPREAD. A posed skeleton has bones
+# metres apart; a mesh whose anim instance failed collapses every bone onto
+# the component origin, which renders as nothing at all and looks exactly
+# like a hero who did not spawn.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "in_play": None, "meshes": []}
+try:
+    _world = _unreal.EditorLevelLibrary.get_game_world()
+    _p = _unreal.GameplayStatics.get_player_pawn(_world, 0)
+    if _p is None:
+        raise RuntimeError("no player pawn -- is PIE running?")
+    _out["in_play"] = True
+
+    for _c in _p.get_components_by_class(_unreal.SkeletalMeshComponent):
+        _rec = {"component": _c.get_name()}
+        try:
+            _sk = _c.get_skeletal_mesh_asset()
+            _rec["mesh"] = None if _sk is None else _sk.get_name()
+            if _sk is not None:
+                _s = _sk.get_editor_property("skeleton")
+                _rec["skeleton"] = None if _s is None else _s.get_path_name()
+        except Exception as _e:
+            _rec["skeleton"] = "UNREADABLE: " + str(_e)[:80]
+        try:
+            _ai = _c.get_anim_instance()
+            _rec["anim_instance"] = (None if _ai is None
+                                     else _ai.get_class().get_name())
+        except Exception as _e:
+            _rec["anim_instance"] = "UNREADABLE: " + str(_e)[:80]
+        try:
+            _rec["anim_class"] = str(_c.get_editor_property("anim_class"))[:110]
+        except Exception:
+            pass
+        try:
+            _nb = int(_c.get_num_bones())
+            _rec["bones"] = _nb
+            # Spread over a sample of bones. Collapsed == ~0.
+            _pts = []
+            _step = max(1, _nb // 24)
+            for _i in range(0, _nb, _step):
+                _bn = _c.get_bone_name(_i)
+                _v = _c.get_socket_location(_bn)
+                _pts.append([float(_v.x), float(_v.y), float(_v.z)])
+            if _pts:
+                _mn = [min(_q[_k] for _q in _pts) for _k in range(3)]
+                _mx = [max(_q[_k] for _q in _pts) for _k in range(3)]
+                _rec["bone_spread_cm"] = [round(_mx[_k] - _mn[_k], 1)
+                                          for _k in range(3)]
+                _rec["bones_sampled"] = len(_pts)
+            # ABSOLUTE positions of named bones, and the component's own world
+            # location beside them. A spread alone cannot distinguish "the
+            # skeleton is collapsed" from "this accessor is not returning
+            # world space" -- and get_socket_location already returned
+            # suspiciously tiny values on the preview actor, so that
+            # alternative is live and has to be excluded rather than assumed
+            # away.
+            _named = {}
+            for _bn in ("root", "pelvis", "spine_05", "head", "hand_l",
+                        "foot_l", "FACIAL_C_FacialRoot"):
+                try:
+                    _v = _c.get_socket_location(_bn)
+                    _named[_bn] = [round(float(_v.x), 1), round(float(_v.y), 1),
+                                   round(float(_v.z), 1)]
+                except Exception:
+                    pass
+            _rec["named_bones_world"] = _named
+            try:
+                _w = _c.get_world_location()
+                _rec["component_world"] = [round(float(_w.x), 1),
+                                           round(float(_w.y), 1),
+                                           round(float(_w.z), 1)]
+            except Exception:
+                pass
+        except Exception as _e:
+            _rec["bone_spread_cm"] = "UNREADABLE: " + str(_e)[:80]
+        _out["meshes"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

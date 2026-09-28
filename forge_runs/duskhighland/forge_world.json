@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "biome_id": "forge_world",
+  "display_name": "Forge: forge_world",
+  "heightmap": {
+    "source": "terrain/forge_world.png",
+    "format": "png16",
+    "resolution": 1009,
+    "section_size": 63,
+    "sections_per_component": 2,
+    "component_count": 8
+  },
+  "landscape": {
+    "level_path": "/Game/ForgeWorld",
+    "actor_name": "Landscape_forge_world",
+    "location_cm": [
+      -201800.0,
+      -201800.0,
+      100000.0
+    ],
+    "scale_xy_cm": 400.0,
+    "z_scale_cm": 200000.0
+  },
+  "stamps": {
+    "base": "terrain/forge_world_base.png",
+    "output": "terrain/forge_world_stamped.png",
+    "catalogue": "recipes/forge_stamps_catalogue.json",
+    "allow_edge_clip": true,
+    "placements": [
+      {
+        "id": "north_massif",
+        "stamp_sha256": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+        "centre_m": [
+          0.0,
+          -1500.0
+        ],
+        "size_m": 2200.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 700.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "west_ridge",
+        "stamp_sha256": "39aa62479350d4541b6eb28d52c8a1c1a7d1d8b7559c8e43fd93cdf7cbcddb4d",
+        "centre_m": [
+          -1450.0,
+          -300.0
+        ],
+        "size_m": 1800.0,
+        "rotation_deg": 300.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 550.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "east_ridge",
+        "stamp_sha256": "87e005b1640a5b5f182d90d38ed164401148f393fb1192a164a5a6c373c5efc4",
+        "centre_m": [
+          1500.0,
+          -400.0
+        ],
+        "size_m": 1700.0,
+        "rotation_deg": 250.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 520.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "south_roll",
+        "stamp_sha256": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94",
+        "centre_m": [
+          0.0,
+          1500.0
+        ],
+        "size_m": 2000.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "ADD",
+        "amplitude_m": 180.0,
+        "falloff": 0.5,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.35,
+        "falloff_jitter_scale": 0.25,
+        "datum": "min"
+      },
+      {
+        "id": "lake_basin",
+        "stamp_sha256": "f51c88f8cf5e4612fa67d7f939c2e1289ce647d0feb8b722bfd82db0f29a63b5",
+        "centre_m": [
+          0.0,
+          -250.0
+        ],
+        "size_m": 1500.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MIN",
+        "amplitude_m": 25.0,
+        "falloff": 0.6,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.2,
+        "falloff_jitter_scale": 0.25,
+        "anchor_m": 17.0
+      },
+      {
+        "id": "village_terrace",
+        "stamp_sha256": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+        "centre_m": [
+          700.0,
+          150.0
+        ],
+        "size_m": 600.0,
+        "rotation_deg": 0.0,
+        "flip_x": false,
+        "flip_y": false,
+        "blend": "MAX",
+        "amplitude_m": 250.0,
+        "falloff": 0.6,
+        "falloff_shape": "euclidean",
+        "opacity": 1.0,
+        "falloff_jitter": 0.2,
+        "falloff_jitter_scale": 0.25,
+        "anchor_m": 0.0
+      }
+    ]
+  },
+  "engine": {
+    "target_version": "5.8",
+    "on_version_mismatch": "abort"
+  },
+  "material": {
+    "parent_material": "/Game/Materials/M_ForgeWorld",
+    "height_jitter_m": 45.0,
+    "height_jitter_scale_m": 700.0,
+    "layers": [
+      {
+        "name": "Snow",
+        "base_color": [
+          0.9,
+          0.88,
+          0.86
+        ],
+        "roughness": 0.8,
+        "slope_deg": [
+          0.0,
+          34.0
+        ],
+        "height_m": [
+          480.0,
+          2000.0
+        ],
+        "blend_sharpness": 0.35,
+        "texture": "textures/spike_scree.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0
+      },
+      {
+        "name": "Rock",
+        "base_color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "roughness": 0.85,
+        "slope_deg": [
+          30.0,
+          90.0
+        ],
+        "height_m": [
+          0.0,
+          2000.0
+        ],
+        "blend_sharpness": 0.7,
+        "texture": "textures/spike_rock.png",
+        "tiling_m": 4.0,
+        "macro_tiling_m": 188.0
+      },
+      {
+        "name": "Grass",
+        "base_color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "roughness": 0.6,
+        "slope_deg": [
+          0.0,
+          30.0
+        ],
+        "height_m": [
+          0.0,
+          480.0
+        ],
+        "blend_sharpness": 0.5,
+        "texture": "textures/spike_forest.png",
+        "tiling_m": 2.1,
+        "macro_tiling_m": 98.7
+      }
+    ],
+    "weightmap": "textures/forge_world_weights.png",
+    "variant_map": "textures/forge_world_variants.png",
+    "triplanar": {
+      "layers": [
+        "Rock"
+      ],
+      "slope_deg": [
+        45.0,
+        50.0
+      ],
+      "sharpness": 2.0
+    },
+    "macro_variation": {
+      "seed": 20260902,
+      "map_resolution": 1024,
+      "feature_scale_m": [
+        800.0,
+        2700.0
+      ],
+      "strength": 0.1,
+      "chroma_ratio": 0.3
+    },
+    "displacement": {
+      "enabled": true,
+      "amplitude_m": 0.4
+    }
+  },
+  "lighting": {
+    "sun": {
+      "elevation_deg": 7.0,
+      "azimuth_deg": 300.0,
+      "intensity_lux": 130000.0,
+      "temperature_kelvin": 4500.0,
+      "light_shaft_bloom": true
+    },
+    "sky": {
+      "type": "physical",
+      "intensity": 0.8,
+      "color": [
+        0.0913,
+        0.0876,
+        0.1348
+      ]
+    },
+    "fog": {
+      "enabled": true,
+      "density": 0.0008,
+      "start_distance_m": 1500.0,
+      "volumetric": true,
+      "height_datum_m": 30.0,
+      "half_height_m": 60.0
+    },
+    "exposure": {
+      "method": "manual",
+      "compensation_ev": -1.923,
+      "_solve": "-1.923: the solved family baseline (highland recipe _solve provenance); inject_lighting may override from the brief"
+    }
+  },
+  "capture": {
+    "output_dir": "captures/forge_world",
+    "resolution": [
+      2032,
+      1273
+    ],
+    "cameras": [
+      {
+        "name": "forge_world_render",
+        "location_cm": [
+          -15000.0,
+          85000.0,
+          100000.0
+        ],
+        "rotation_deg": [
+          -6.0,
+          -80.0,
+          0.0
+        ],
+        "fov_deg": 64.0
+      }
+    ]
+  },
+  "foliage": {
+    "density_per_hectare": 0.0,
+    "seed": 20260902,
+    "species": [
+      {
+        "name": "Meadow",
+        "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+        "layer": "Grass",
+        "slope_deg": [
+          0.0,
+          29.0
+        ],
+        "height_m": [
+          0.0,
+          500.0
+        ],
+        "scale_range": [
+          0.9,
+          1.6
+        ],
+        "system": "grass",
+        "cull_distance_m": 50.0,
+        "density_per_10m2": 1.0
+      }
+    ],
+    "rock_scatter": {
+      "repose_deg": 35.0,
+      "cliff_source_slope_deg": 45.0,
+      "source_smooth_m": 16.0,
+      "runout_m": 120.0,
+      "mfd_exponent": 1.3,
+      "max_steps": 2400,
+      "saturation": 0.03
+    }
+  }
+}

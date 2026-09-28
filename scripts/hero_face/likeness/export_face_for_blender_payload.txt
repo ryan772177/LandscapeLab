@@ -1,0 +1,92 @@
+import json as _json
+import os as _os
+import time as _time
+import traceback as _tb
+import unreal as _u
+
+# Export a character's FACE MESH to FBX so a groom can be authored ON IT in
+# Blender.
+#
+# WHY THIS IS THE RIGHT DIRECTION. The custom groom brought in from the demo
+# .blend seats wrongly and cannot be rescued by any binding, because the head
+# it was authored on and our archetype are NOT related by a rigid transform:
+#
+#     demo head        Z 118.16..151.18   height 33.02   width 28.68
+#     our archetype    Z 140.88..178.44   height 37.56   width 38.10
+#     height ratio 1.1375        width ratio 1.3285
+#
+# Same 24,049-vertex topology, different proportions. So instead of trying to
+# transfer roots from a foreign head, give Blender OUR head and let the roots
+# be authored in the target's own space from the start. Then there is nothing
+# for a binding to reconcile.
+#
+# THE SPACE IS THE POINT, so it is verified rather than assumed: the export
+# is checked against the mesh's own imported bounds, and the Blender side
+# checks the same numbers again on arrival.
+
+MESH    = "__MESH__"
+OUT_FBX = r"__OUT_FBX__"
+
+_out = {"ok": False, "mesh": MESH, "fbx": OUT_FBX}
+try:
+    _eal = _u.EditorAssetLibrary
+    _m = _eal.load_asset(MESH)
+    if _m is None:
+        raise RuntimeError("no asset at " + MESH)
+    if not isinstance(_m, _u.SkeletalMesh):
+        raise RuntimeError("%s is %s, not a SkeletalMesh"
+                           % (MESH, type(_m).__name__))
+
+    # Record the space BEFORE exporting, so the FBX can be checked against
+    # the source rather than against an expectation typed in by hand.
+    _b = _m.get_imported_bounds()
+    _o, _e = _b.origin, _b.box_extent
+    _out["ue_bounds"] = {
+        "origin": [round(float(_o.x), 3), round(float(_o.y), 3), round(float(_o.z), 3)],
+        "extent": [round(float(_e.x), 3), round(float(_e.y), 3), round(float(_e.z), 3)],
+        "z_min": round(float(_o.z - _e.z), 3),
+        "z_max": round(float(_o.z + _e.z), 3),
+        "size": [round(float(_e.x) * 2, 3), round(float(_e.y) * 2, 3),
+                 round(float(_e.z) * 2, 3)]}
+
+    _opts = _u.FbxExportOption()
+    # NO unit or axis conversion. The whole value of this file is the space
+    # its vertices are in; a helpful rescale would put the groom's roots back
+    # in a foreign space, which is the exact defect being fixed.
+    _opts.set_editor_property("ascii", False)
+    _opts.set_editor_property("collision", False)
+    _opts.set_editor_property("level_of_detail", False)
+    _opts.set_editor_property("vertex_color", True)
+    _opts.set_editor_property("map_skeletal_motion_to_root", False)
+    try:
+        _opts.set_editor_property("export_morph_targets", True)
+    except Exception:
+        pass
+
+    _task = _u.AssetExportTask()
+    _task.set_editor_property("object", _m)
+    _task.set_editor_property("filename", OUT_FBX)
+    _task.set_editor_property("automated", True)
+    _task.set_editor_property("prompt", False)
+    _task.set_editor_property("exporter", _u.SkeletalMeshExporterFBX())
+    _task.set_editor_property("options", _opts)
+    _task.set_editor_property("replace_identical", True)
+
+    _t0 = _time.time()
+    _ok = _u.Exporter.run_asset_export_task(_task)
+    _out["t_export_s"] = round(_time.time() - _t0, 2)
+    _out["task_returned"] = bool(_ok)
+
+    # A task returning True is not a file. This project has shipped that
+    # mistake before, in both directions.
+    if not _os.path.isfile(OUT_FBX):
+        raise RuntimeError("task returned %s but no file at %s"
+                           % (_ok, OUT_FBX))
+    _out["bytes"] = _os.path.getsize(OUT_FBX)
+    _out["ok"] = _out["bytes"] > 0
+    if not _out["ok"]:
+        _out["error"] = "wrote a ZERO BYTE file"
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

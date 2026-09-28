@@ -1,0 +1,50 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# What is dirty in memory, and WHERE IT LIVES -- read before deciding how to
+# close the editor.
+#
+# THIS DECIDES THE CLOSE, AND IT INVERTS THE USUAL PREFERENCE. Building a groom
+# binding duplicates the source groom's cards/helmet static meshes WITHOUT
+# deep-copying them, so `PostEditChangeProperty` rebuilds them inside the VENDOR
+# package. Those packages live under /MetaHumanCharacter/ in Program Files --
+# outside both roots -- so a Save All or a save-on-quit breaks the never-edit-
+# vendor-content floor AND standing rule 1 in one action.
+#
+# When the dirty set is vendor content, A FORCE-KILL IS THE CORRECT CLOSE: it
+# writes nothing. When the dirty set is OURS, a force-kill loses work and a
+# clean save is correct. Neither is right unconditionally, which is why this is
+# measured rather than assumed.
+#
+# AN UNREADABLE COUNT IS A REFUSAL, NOT A ZERO. If the census cannot run, the
+# caller must not read "nothing dirty" from silence.
+
+_out = {"ok": False, "error": None}
+try:
+    _pkgs = [str(_p) for _p in _u.EditorLoadingAndSavingUtils
+             .get_dirty_content_packages()]
+    _mine, _vendor, _other = [], [], []
+    for _p in _pkgs:
+        if _p.startswith("/Game/"):
+            _mine.append(_p)
+        elif _p.startswith("/MetaHumanCharacter/") or _p.startswith("/Engine/"):
+            _vendor.append(_p)
+        else:
+            _other.append(_p)
+    _out["total"] = len(_pkgs)
+    _out["ours_Game"] = _mine
+    _out["vendor_count"] = len(_vendor)
+    _out["vendor_sample"] = _vendor[:8]
+    _out["other"] = _other
+    _out["close_recommendation"] = (
+        "FORCE-KILL: dirty set is vendor/engine content in Program Files; a save "
+        "would write outside both roots"
+        if _vendor and not _mine else
+        ("CLEAN CLOSE: nothing dirty" if not _pkgs else
+         "SAVE OURS FIRST: /Game/ packages are dirty and a force-kill loses them"))
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

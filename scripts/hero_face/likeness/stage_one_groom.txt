@@ -1,0 +1,74 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# SPAWN ONE GROOM, ALONE, ON THE GROUND, AND FRAME IT. READ-ONLY on assets.
+#
+# The first staging put three grooms at head height, 40 cm apart. Measured
+# afterwards: each groom's bounds BOTTOM sat 318 cm above ground while its actor
+# origin was at 165. The groom asset carries the head's own ~155 cm offset in
+# its local space, so spawning at head height ADDS it twice -- which is the
+# midair float, and it is arithmetic rather than a defect.
+#
+# So: spawn at GROUND level, scale 1.0, one at a time, well clear of the
+# PlayerStart (the blue capsule icon in the earlier frames) and of HeroInWorld.
+# One subject per frame is what makes an eyeball verdict unambiguous.
+
+GROOM_PATH = "__GROOM_PATH__"
+LABEL      = "__LABEL__"
+LOC        = __LOC__
+CAM_BACK   = __CAM_BACK__
+CAM_UP     = __CAM_UP__
+
+_out = {"ok": False, "error": None}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ues = _u.get_editor_subsystem(_u.UnrealEditorSubsystem)
+
+    _removed = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _l = _a.get_actor_label()
+        except Exception:
+            continue
+        if _l.startswith("SOLO_GROOM_") or _l.startswith("STAGE_GROOM_"):
+            _removed.append(_l)
+            _eas.destroy_actor(_a)
+    _out["removed"] = _removed
+
+    _g = _u.EditorAssetLibrary.load_asset(GROOM_PATH)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM_PATH)
+    _act = _eas.spawn_actor_from_class(
+        _u.GroomActor, _u.Vector(LOC[0], LOC[1], LOC[2]),
+        _u.Rotator(0.0, 0.0, 0.0))
+    _act.set_actor_label("SOLO_GROOM_" + LABEL)
+    _act.set_actor_scale3d(_u.Vector(1.0, 1.0, 1.0))
+    _c = _act.get_editor_property("groom_component")
+    _c.set_editor_property("groom_asset", _g)
+
+    _rb = _c.get_editor_property("groom_asset")
+    _out["assigned"] = _rb.get_path_name() if _rb else None
+    _out["assignment_matches"] = bool(
+        _rb and _rb.get_path_name().startswith(GROOM_PATH))
+    _out["binding"] = str(_c.get_editor_property("binding_asset"))
+    _out["scale3d"] = [_act.get_actor_scale3d().x, _act.get_actor_scale3d().y,
+                       _act.get_actor_scale3d().z]
+
+    # WHERE THE GEOMETRY ACTUALLY IS, not where the actor is -- the camera is
+    # aimed at the bounds centre so the subject cannot be off-frame.
+    _o, _e = _act.get_actor_bounds(False)
+    _out["bounds_origin"] = [round(_o.x, 2), round(_o.y, 2), round(_o.z, 2)]
+    _out["bounds_size_cm"] = [round(_e.x * 2, 2), round(_e.y * 2, 2),
+                              round(_e.z * 2, 2)]
+
+    _cam = _u.Vector(_o.x - CAM_BACK, _o.y, _o.z + CAM_UP)
+    _ues.set_level_viewport_camera_info(_cam, _u.Rotator(0.0, -6.0, 0.0))
+    _l2, _r2 = _ues.get_level_viewport_camera_info()
+    _out["camera"] = {"loc": [_l2.x, _l2.y, _l2.z],
+                      "rot": [_r2.roll, _r2.pitch, _r2.yaw]}
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

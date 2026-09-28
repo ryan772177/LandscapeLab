@@ -1,0 +1,116 @@
+{
+ "terrain_entities": [
+  {
+   "id": "sea_shelf",
+   "read": "open water filling the west"
+  },
+  {
+   "id": "coast_ridge",
+   "read": "cliff wall rising from the shore, running north-south"
+  },
+  {
+   "id": "harbor_flat",
+   "read": "level ground at the shore where the harbor sits"
+  },
+  {
+   "id": "inland_hills",
+   "read": "rolling high ground behind the cliffs"
+  }
+ ],
+ "lighting_geometry": {
+  "sun_elevation_deg": 22.0,
+  "sun_azimuth_deg": 250.0,
+  "fog_height_datum_m": 10.0,
+  "fog_half_height_m": 80.0,
+  "sky_intensity": 1.0,
+  "exposure_compensation_ev_override": -5.76,
+  "_ev_provenance": "fidelity loop iter 2: -5.18 measured +0.299 EV over concept; slope 0.52 -> push -0.58 -> -5.76"
+ },
+ "acceptance": [
+  {
+   "id": "sea_floor",
+   "kind": "flat_site",
+   "placement": "sea_carve",
+   "at_m": [
+    -1300.0,
+    0.0
+   ],
+   "box_m": 500.0,
+   "elev_m": [
+    0.0,
+    6.0
+   ],
+   "slope_mean_deg_max": 2.0
+  },
+  {
+   "id": "harbor_site",
+   "kind": "flat_site",
+   "placement": "harbor_pad",
+   "at_m": [
+    -900.0,
+    250.0
+   ],
+   "box_m": 180.0,
+   "elev_m": [
+    20.0,
+    40.0
+   ],
+   "slope_mean_deg_max": 6.0
+  },
+  {
+   "id": "ridge_peaks",
+   "kind": "peak",
+   "placement": "coast_ridge",
+   "at_m": [
+    600.0,
+    0.0
+   ],
+   "box_m": 700.0,
+   "max_elev_m": [
+    280.0,
+    700.0
+   ]
+  }
+ ],
+ "render_camera": {
+  "at_m": [
+   -1500.0,
+   -700.0
+  ],
+  "height_above_ground_m": 60.0,
+  "pitch_deg": -8.0,
+  "yaw_deg": 46.0,
+  "fov": 75.0
+ },
+ "water": {
+  "kind": "sea",
+  "label": "WaterPlane_coastforge",
+  "centre_cm": [
+   -130000.0,
+   0.0
+  ],
+  "level_cm": 400.0,
+  "scale_xy": [
+   2200.0,
+   2200.0
+  ],
+  "color_linear": [
+   0.012,
+   0.07,
+   0.085
+  ],
+  "roughness": 0.06,
+  "opacity": 0.75
+ },
+ "lighting_measured": {
+  "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+  "sunlit_rb_split": -0.121,
+  "minluma_rise": 0.153,
+  "sunlit_rgb": [
+   0.303,
+   0.441,
+   0.425
+  ]
+ },
+ "source_image": "Free/gemini_v1/concept_coast.jpg"
+}

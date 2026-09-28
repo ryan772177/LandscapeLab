@@ -1,0 +1,107 @@
+# Apply a (pitch, roll) sign convention to the PLACED street actors and measure.
+#
+#   --set PLAN=<abs>  --set PS=1  --set RS=1  --set SWAP=False
+#
+# The analytic convention test already showed the PLAN's plane-fit values are
+# right: scored against one set of ground traces, (+pitch, +roll) gives p50
+# 14.1 cm against FLAT's 45.9 on the same streets. But that scored a MODEL.
+# The placed world reads p50 60.0, barely better than flat, so the gap is in how
+# the ENGINE applies `Rotator(ROLL, PITCH, YAW)` -- not in the numbers.
+#
+# UE is left-handed with Z up and a positive Pitch raises the forward vector,
+# which is where a sign flips relative to a plain right-handed plane fit.
+# **THIS DOES NOT REASON ABOUT THAT.** It sets the rotation on the actors
+# directly, re-measures, and lets the four combinations argue it out. Rotating
+# in place costs one payload; re-placing 1,142 actors per variant would cost
+# four full placements.
+#
+# Nothing is saved. The rotation is set in memory and the winning convention is
+# then written into the PLACER, which is the durable surface.
+import json as _json
+import math as _math
+import unreal as _unreal
+
+PLAN = r"__PLAN__"
+PS = float(__PS__)
+RS = float(__RS__)
+SWAP = __SWAP__
+TAG = "LandscapeLab.City"
+
+_out = {"error": None, "set": 0, "measured": 0, "misses": 0,
+        "corner_gap_cm": {}, "convention": {"pitch_sign": PS,
+                                            "roll_sign": RS, "swap": SWAP}}
+try:
+    _unreal.LandscapeLabTools.load_all_world_partition_regions()
+    _ues = _unreal.get_editor_subsystem(_unreal.UnrealEditorSubsystem)
+    _w = _ues.get_editor_world()
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+    _plan_streets = _p.get("streets") or []
+
+    _eas = _unreal.get_editor_subsystem(_unreal.EditorActorSubsystem)
+    _ignore, _actors = [], {}
+    for _a in _eas.get_all_level_actors():
+        try:
+            _tags = [str(_t) for _t in _a.tags]
+        except Exception:
+            _tags = []
+        if TAG in _tags or isinstance(_a, _unreal.InstancedFoliageActor):
+            _ignore.append(_a)
+        if "streets" in _tags:
+            _actors[str(_a.get_actor_label())] = _a
+
+    # Index by the label the placer assigns, so a row is matched to ITS actor
+    # rather than to whatever the iterator returned in that position.
+    _gaps = []
+    for _i, _s in enumerate(_plan_streets):
+        _a = _actors.get("City_St_%03d" % _i)
+        if _a is None:
+            continue
+        _pit = float(_s.get("pitch_deg") or 0.0) * PS
+        _rol = float(_s.get("roll_deg") or 0.0) * RS
+        if SWAP:
+            _pit, _rol = _rol, _pit
+        _a.set_actor_rotation(
+            _unreal.Rotator(_rol, _pit, float(_s.get("yaw_deg") or 0.0)),
+            False)
+        _out["set"] += 1
+
+        _loc = _a.get_actor_location()
+        _rot = _a.get_actor_rotation()
+        _scl = _a.get_actor_scale3d()
+        _hl, _hw = 50.0 * float(_scl.x), 50.0 * float(_scl.y)
+        _ht = 50.0 * float(_scl.z)
+        _worst = None
+        for _dx, _dy in ((-_hl, -_hw), (-_hl, _hw), (_hl, -_hw), (_hl, _hw)):
+            _v = _unreal.MathLibrary.greater_greater_vector_rotator(
+                _unreal.Vector(_dx, _dy, -_ht), _rot)
+            _wx = float(_loc.x) + float(_v.x)
+            _wy = float(_loc.y) + float(_v.y)
+            _wz = float(_loc.z) + float(_v.z)
+            _hit = _unreal.SystemLibrary.line_trace_single(
+                _w, _unreal.Vector(_wx, _wy, _wz + 20000.0),
+                _unreal.Vector(_wx, _wy, _wz - 20000.0),
+                _unreal.TraceTypeQuery.TRACE_TYPE_QUERY1, False, _ignore,
+                _unreal.DrawDebugTrace.NONE, True,
+                _unreal.LinearColor.RED, _unreal.LinearColor.GREEN, 0.0)
+            if not _hit:
+                _out["misses"] += 1
+                continue
+            _g = _wz - float(_hit.to_tuple()[4].z)
+            _worst = _g if _worst is None else max(_worst, _g)
+        if _worst is not None:
+            _gaps.append(_worst)
+            _out["measured"] += 1
+
+    if _gaps:
+        _v = sorted(_gaps)
+        _out["corner_gap_cm"] = {
+            "n": len(_v), "min": round(_v[0], 1),
+            "p50": round(_v[len(_v) // 2], 1),
+            "p90": round(_v[int(0.9 * (len(_v) - 1))], 1),
+            "max": round(_v[-1], 1)}
+        _out["over_20cm"] = sum(1 for g in _v if g > 20.0)
+        _out["over_50cm"] = sum(1 for g in _v if g > 50.0)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

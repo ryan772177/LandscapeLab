@@ -1,0 +1,128 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# WHICH DATUM SHOULD A REACHABILITY QUERY PROJECT FROM?
+#
+# The old reachable-region payload projected each street from its PLANNED z --
+# the value the city plan computed off the heightmap. The rewritten one traces
+# the COLLIDABLE ground at that XY first and projects from there. They disagree
+# on 17 of 838 streets, reproducibly.
+#
+# That is not a rounding difference. `project_point_to_navigation` searches a
+# box around the point it is given, so two different starting heights can land
+# on two DIFFERENT POLYGONS -- and different polygons can have different
+# connectivity. Neither is obviously right, so this measures both.
+#
+# For each disputed row it reports, side by side:
+#     planned z   -> projected point, its z, and whether a path exists
+#     ground z    -> projected point, its z, and whether a path exists
+# plus the gap between planned and traced ground, which is what makes the two
+# queries different in the first place.
+#
+# A value can arrive and still mean something else: ask not only "did it
+# arrive" but "in what space, against what datum".
+
+PLAN = r"__PLAN__"
+DISPUTED = r"__DISPUTED__"
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actors = _eas.get_all_level_actors()
+    _ign = [a for a in _actors if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _ps = [a for a in _actors if a.get_class().get_name() == "PlayerStart"]
+    _psl = _ps[0].get_actor_location()
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+    with open(DISPUTED, "r", encoding="utf-8") as _fh:
+        _disp = _json.load(_fh)
+
+    _planned_z = {}
+    for _s in _p.get("streets", []):
+        _l = _s["loc_cm"]
+        _planned_z[(round(_l[0], 1), round(_l[1], 1))] = _l[2]
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj_at(x, y, z):
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, z), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    def _path(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return bool(_res == _SUCCESS)
+        except Exception:
+            return False
+
+    _gz = _ground(_psl.x, _psl.y)
+    _anchor = _proj_at(_psl.x, _psl.y, _gz)
+    if _anchor is None:
+        raise RuntimeError("the anchor does not project -- COULD NOT LOOK")
+
+    _rows = []
+    _pl_ok = 0
+    _gr_ok = 0
+    _same_poly = 0
+    for _d in _disp:
+        _x = float(_d[0])
+        _y = float(_d[1])
+        _pz = _planned_z.get((round(_x, 1), round(_y, 1)))
+        _g = _ground(_x, _y)
+        _r = {"loc_cm": [_x, _y], "planned_z": _pz,
+              "ground_z": (round(_g, 1) if _g is not None else None),
+              "gap_cm": (round(_pz - _g, 1)
+                         if (_pz is not None and _g is not None) else None)}
+        _pp = _proj_at(_x, _y, _pz) if _pz is not None else None
+        _pg = _proj_at(_x, _y, _g) if _g is not None else None
+        _r["planned_projects"] = _pp is not None
+        _r["ground_projects"] = _pg is not None
+        _r["planned_nav_z"] = (round(_pp.z, 1) if _pp else None)
+        _r["ground_nav_z"] = (round(_pg.z, 1) if _pg else None)
+        if _pp is not None and _pg is not None:
+            _r["nav_z_differ_cm"] = round(abs(_pp.z - _pg.z), 1)
+            if abs(_pp.z - _pg.z) < 1.0:
+                _same_poly += 1
+        _r["planned_reachable"] = (_path(_anchor, _pp) if _pp else None)
+        _r["ground_reachable"] = (_path(_anchor, _pg) if _pg else None)
+        if _r["planned_reachable"]:
+            _pl_ok += 1
+        if _r["ground_reachable"]:
+            _gr_ok += 1
+        _rows.append(_r)
+
+    _out["n"] = len(_rows)
+    _out["reachable_from_planned_z"] = _pl_ok
+    _out["reachable_from_ground_z"] = _gr_ok
+    _out["projected_to_same_height"] = _same_poly
+    _gaps = [abs(r["gap_cm"]) for r in _rows if r.get("gap_cm") is not None]
+    if _gaps:
+        _gaps.sort()
+        _out["planned_vs_ground_gap_cm"] = {
+            "p50": _gaps[len(_gaps) // 2], "max": _gaps[-1]}
+    _out["rows"] = _rows[:8]
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

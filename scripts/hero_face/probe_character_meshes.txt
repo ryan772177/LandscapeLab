@@ -1,0 +1,57 @@
+# probe_character_meshes — which meshes will the hero actually wear?
+#
+# probe_pie proves the PAWN CLASS is LandscapeLabCharacter. It does not say
+# which skeletal meshes that pawn resolves, and after repointing
+# recipes/character.json at the assembled MetaHuman that is the only question
+# that matters.
+#
+# Reads the CLASS DEFAULT OBJECT, because the mesh paths arrive as config
+# UPROPERTYs read at class load -- so the CDO is where "did the ini take
+# effect" is answerable. An editor restart is a precondition and this reports
+# enough to tell a stale CDO from a fresh one.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "unreadable": [], "cdo": None, "props": {},
+        "resolved": {}}
+try:
+    _cls = _unreal.LandscapeLabCharacter
+    _cdo = _unreal.get_default_object(_cls)
+    _out["cdo"] = None if _cdo is None else _cdo.get_path_name()
+    if _cdo is None:
+        raise RuntimeError("no CDO for LandscapeLabCharacter")
+
+    # Enumerate rather than guess the property names -- three guesses at
+    # EditorPerformanceSettings' properties is why this project enumerates.
+    _names = [_n for _n in dir(_cdo)
+              if not _n.startswith("_")
+              and ("mesh" in _n.lower() or "face" in _n.lower()
+                   or "anim" in _n.lower() or "skel" in _n.lower())]
+    for _n in sorted(set(_names)):
+        try:
+            _v = _cdo.get_editor_property(_n)
+            _out["props"][_n] = str(_v)[:200]
+        except Exception as _e:
+            _out["unreadable"].append(_n + ": " + str(_e)[:110])
+
+    # And confirm the assembled assets actually load, so a good-looking path
+    # that points at nothing cannot read as success.
+    for _label, _p in (
+            ("body", "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh"),
+            ("face", "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh"),
+            ("blueprint", "/Game/MetaHumans/MHC_AlpineHero/BP_MHC_AlpineHero")):
+        _o = _unreal.EditorAssetLibrary.load_asset(_p)
+        _rec = {"path": _p, "loads": _o is not None}
+        if _o is not None:
+            _rec["class"] = _o.get_class().get_name()
+            try:
+                _md = (_unreal.MetaHumanCharacterEditorSubsystem
+                       .get_mesh_data_for_conforming(_o))
+                if _md is not None:
+                    _rec["vertices"] = len(_md[0])
+            except Exception:
+                pass
+        _out["resolved"][_label] = _rec
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,874 @@
+{
+ "_what": "Wider-seed kit meshes, measured live 2026-08-30. Same fields as the 2026-08-29 rows so the two intakes read as ONE table.",
+ "_source": "VaultCache MedievalGame_5.3, copied by dependency closure; see kit_medievalvillage_v2_closure.json for the SHA-256 manifest.",
+ "_seed": "recipes/kit_seed_v2.txt (Gate-A approved names)",
+ "_fallback_vs_nanite": "fallback_tris_by_lod is the chain that renders with Nanite OFF; nanite_tris is what renders with it on. On a Nanite mesh these are DIFFERENT MESHES.",
+ "measured": 33,
+ "rows": [
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/SM_BoardWall",
+   "name": "SM_BoardWall",
+   "size_cm": [
+    238.4,
+    8.8,
+    114.1
+   ],
+   "pivot_base_error_cm": -57.04,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    1894,
+    946,
+    473,
+    237,
+    119,
+    64
+   ],
+   "nanite_tris": 4024,
+   "nanite_verts": 2770,
+   "materials": [
+    "MI_WoodenBoards"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/Forge/WoodBoards/SM_BoardWallSide",
+   "name": "SM_BoardWallSide",
+   "size_cm": [
+    6.0,
+    129.6,
+    117.3
+   ],
+   "pivot_base_error_cm": -18.67,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    483,
+    241,
+    121,
+    64,
+    64,
+    64
+   ],
+   "nanite_tris": 509,
+   "nanite_verts": 412,
+   "materials": [
+    "MI_WoodenBoards"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_GableSet_01",
+   "name": "SM_GableSet_01",
+   "size_cm": [
+    440.2,
+    27.1,
+    214.0
+   ],
+   "pivot_base_error_cm": -101.08,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2083,
+    1042,
+    521,
+    261,
+    131,
+    65
+   ],
+   "nanite_tris": 11672,
+   "nanite_verts": 11615,
+   "materials": [
+    "MI_GableSet_01"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_GableSet_02",
+   "name": "SM_GableSet_02",
+   "size_cm": [
+    21.3,
+    415.4,
+    161.0
+   ],
+   "pivot_base_error_cm": -82.52,
+   "lods": 4,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    1993,
+    996,
+    498,
+    249
+   ],
+   "nanite_tris": 9892,
+   "nanite_verts": 6125,
+   "materials": [
+    "MI_Gableset_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_01",
+   "name": "SM_HBeam_LS_01",
+   "size_cm": [
+    274.3,
+    18.7,
+    17.3
+   ],
+   "pivot_base_error_cm": -8.65,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    777,
+    388,
+    194,
+    97,
+    64,
+    64
+   ],
+   "nanite_tris": 888,
+   "nanite_verts": 596,
+   "materials": [
+    "MI_HBeam_L_01",
+    "MI_HBeam_L_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_03",
+   "name": "SM_HBeam_LS_03",
+   "size_cm": [
+    274.3,
+    17.2,
+    17.3
+   ],
+   "pivot_base_error_cm": -8.63,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    820,
+    409,
+    204,
+    103,
+    64,
+    64
+   ],
+   "nanite_tris": 888,
+   "nanite_verts": 557,
+   "materials": [
+    "MI_HBeam_L_02",
+    "MI_HBeam_L_01"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_04",
+   "name": "SM_HBeam_LS_04",
+   "size_cm": [
+    274.3,
+    17.5,
+    16.8
+   ],
+   "pivot_base_error_cm": -8.33,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    876,
+    438,
+    218,
+    109,
+    64,
+    64
+   ],
+   "nanite_tris": 961,
+   "nanite_verts": 603,
+   "materials": [
+    "MI_HBeam_L_01",
+    "MI_HBeam_L_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_01",
+   "name": "SM_HBeam_MS_01",
+   "size_cm": [
+    254.2,
+    17.5,
+    17.1
+   ],
+   "pivot_base_error_cm": -8.57,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    855,
+    427,
+    213,
+    107,
+    64,
+    64
+   ],
+   "nanite_tris": 889,
+   "nanite_verts": 562,
+   "materials": [
+    "MI_HBeam_M_02",
+    "MI_HBeam_M_01"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_02",
+   "name": "SM_HBeam_MS_02",
+   "size_cm": [
+    255.5,
+    19.3,
+    16.9
+   ],
+   "pivot_base_error_cm": -8.38,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    854,
+    426,
+    214,
+    107,
+    63,
+    63
+   ],
+   "nanite_tris": 925,
+   "nanite_verts": 623,
+   "materials": [
+    "MI_HBeam_M_01",
+    "MI_HBeam_M_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_03",
+   "name": "SM_HBeam_MS_03",
+   "size_cm": [
+    253.5,
+    18.9,
+    16.9
+   ],
+   "pivot_base_error_cm": -8.44,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    869,
+    435,
+    217,
+    108,
+    63,
+    63
+   ],
+   "nanite_tris": 897,
+   "nanite_verts": 570,
+   "materials": [
+    "MI_HBeam_M_01",
+    "MI_HBeam_M_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_MS_04",
+   "name": "SM_HBeam_MS_04",
+   "size_cm": [
+    255.5,
+    17.0,
+    17.2
+   ],
+   "pivot_base_error_cm": -8.58,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    860,
+    429,
+    214,
+    107,
+    64,
+    64
+   ],
+   "nanite_tris": 895,
+   "nanite_verts": 600,
+   "materials": [
+    "MI_HBeam_M_02",
+    "MI_HBeam_M_01"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_01",
+   "name": "SM_HBeam_S_01",
+   "size_cm": [
+    144.8,
+    16.6,
+    18.1
+   ],
+   "pivot_base_error_cm": -8.91,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    448,
+    224,
+    112,
+    64,
+    64,
+    64
+   ],
+   "nanite_tris": 469,
+   "nanite_verts": 319,
+   "materials": [
+    "MI_HBeam_S_01",
+    "MI_HBeam_S_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_02",
+   "name": "SM_HBeam_S_02",
+   "size_cm": [
+    144.6,
+    17.7,
+    16.8
+   ],
+   "pivot_base_error_cm": -8.52,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    444,
+    221,
+    110,
+    64,
+    64,
+    64
+   ],
+   "nanite_tris": 472,
+   "nanite_verts": 322,
+   "materials": [
+    "MI_HBeam_S_01",
+    "MI_HBeam_S_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_03",
+   "name": "SM_HBeam_S_03",
+   "size_cm": [
+    144.8,
+    17.1,
+    18.1
+   ],
+   "pivot_base_error_cm": -9.21,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    477,
+    239,
+    120,
+    63,
+    63,
+    63
+   ],
+   "nanite_tris": 499,
+   "nanite_verts": 352,
+   "materials": [
+    "MI_HBeam_S_01",
+    "MI_HBeam_S_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_S_04",
+   "name": "SM_HBeam_S_04",
+   "size_cm": [
+    144.8,
+    15.5,
+    16.8
+   ],
+   "pivot_base_error_cm": -8.63,
+   "lods": 6,
+   "material_slots": 2,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    451,
+    226,
+    113,
+    63,
+    63,
+    63
+   ],
+   "nanite_tris": 480,
+   "nanite_verts": 344,
+   "materials": [
+    "MI_HBeam_S_01",
+    "MI_HBeam_S_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+   "name": "SM_House02_Roof",
+   "size_cm": [
+    899.3,
+    916.6,
+    338.0
+   ],
+   "pivot_base_error_cm": -201.49,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    8902,
+    2225,
+    1068,
+    446,
+    179,
+    71
+   ],
+   "nanite_tris": 1417280,
+   "nanite_verts": 720630,
+   "materials": [
+    "MI_Roof"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House03_Roof/SM_House03_RoofC",
+   "name": "SM_House03_RoofC",
+   "size_cm": [
+    815.3,
+    986.9,
+    322.5
+   ],
+   "pivot_base_error_cm": -158.99,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    22260,
+    7791,
+    3339,
+    1781,
+    445
+   ],
+   "nanite_tris": 217708,
+   "nanite_verts": 116561,
+   "materials": [
+    "MI_Roof03"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House04_Roof/SM_House04",
+   "name": "SM_House04",
+   "size_cm": [
+    822.0,
+    494.9,
+    229.6
+   ],
+   "pivot_base_error_cm": -34.6,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    7178,
+    3588,
+    1293,
+    431,
+    72
+   ],
+   "nanite_tris": 80000,
+   "nanite_verts": 43102,
+   "materials": [
+    "MI_Roof04"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof01",
+   "name": "SM_House07_Roof01",
+   "size_cm": [
+    1000.7,
+    750.3,
+    286.3
+   ],
+   "pivot_base_error_cm": -136.91,
+   "lods": 4,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    8372,
+    4186,
+    2093,
+    1047
+   ],
+   "nanite_tris": 1769952,
+   "nanite_verts": 896567,
+   "materials": [
+    "MI_Roof07"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof02",
+   "name": "SM_House07_Roof02",
+   "size_cm": [
+    522.7,
+    677.3,
+    275.3
+   ],
+   "pivot_base_error_cm": -146.51,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    6324,
+    3162,
+    1265,
+    633,
+    190
+   ],
+   "nanite_tris": 49425,
+   "nanite_verts": 26395,
+   "materials": [
+    "MI_Roof07_02"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_RoofSmall",
+   "name": "SM_House07_RoofSmall",
+   "size_cm": [
+    377.8,
+    174.9,
+    75.8
+   ],
+   "pivot_base_error_cm": -19.75,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    24246,
+    10910,
+    6062,
+    2424,
+    606
+   ],
+   "nanite_tris": 45568,
+   "nanite_verts": 24250,
+   "materials": [
+    "MI_Roof07_Small"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House08_Roof/SM_House08_Roof",
+   "name": "SM_House08_Roof",
+   "size_cm": [
+    826.1,
+    668.0,
+    304.1
+   ],
+   "pivot_base_error_cm": -157.34,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    23725,
+    11862,
+    5932,
+    1897,
+    474
+   ],
+   "nanite_tris": 186412,
+   "nanite_verts": 99654,
+   "materials": [
+    "MI_Roof08"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Construction_Pieces/SM_LanternPost",
+   "name": "SM_LanternPost",
+   "size_cm": [
+    23.5,
+    110.2,
+    94.4
+   ],
+   "pivot_base_error_cm": -10.45,
+   "lods": 6,
+   "material_slots": 4,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2025,
+    1013,
+    507,
+    254,
+    127,
+    63
+   ],
+   "nanite_tris": 4612,
+   "nanite_verts": 3209,
+   "materials": [
+    "MI_WoodenBeam_04",
+    "MI_WoodenBeam_02",
+    "MI_WoodenBeam_01",
+    "MI_Shingles"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_LanternPost",
+   "name": "SM_LanternPost",
+   "size_cm": [
+    23.6,
+    110.6,
+    94.5
+   ],
+   "pivot_base_error_cm": -85.15,
+   "lods": 6,
+   "material_slots": 4,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2155,
+    1078,
+    539,
+    269,
+    135,
+    68
+   ],
+   "nanite_tris": 2932,
+   "nanite_verts": 2570,
+   "materials": [
+    "MI_LanternPost_03",
+    "MI_LanternPost_04",
+    "MI_LanternPost_02",
+    "MI_LanternPost_01"
+   ]
+  },
+  {
+   "package": "/Game/Megascans/3D_Assets/OldWoodenBench/SM_OldWoodenBench",
+   "name": "SM_OldWoodenBench",
+   "size_cm": [
+    32.9,
+    190.1,
+    48.0
+   ],
+   "pivot_base_error_cm": -0.8,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2154,
+    1076,
+    538,
+    270,
+    134,
+    68
+   ],
+   "nanite_tris": 10044,
+   "nanite_verts": 5631,
+   "materials": [
+    "MI_OldWoodenBench"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Construction_Pieces/SM_PorchBase",
+   "name": "SM_PorchBase",
+   "size_cm": [
+    202.2,
+    143.4,
+    266.1
+   ],
+   "pivot_base_error_cm": -32.35,
+   "lods": 6,
+   "material_slots": 3,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2723,
+    1361,
+    681,
+    340,
+    170,
+    86
+   ],
+   "nanite_tris": 23727,
+   "nanite_verts": 15862,
+   "materials": [
+    "MI_OldWoodenBoards",
+    "MI_HorseHitchingPost",
+    "MI_WornWoodenBeamA"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/MODULAR_ASSETS/SM_PorchBase",
+   "name": "SM_PorchBase",
+   "size_cm": [
+    202.0,
+    143.4,
+    266.2
+   ],
+   "pivot_base_error_cm": -32.38,
+   "lods": 6,
+   "material_slots": 3,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    2798,
+    1398,
+    699,
+    350,
+    172,
+    88
+   ],
+   "nanite_tris": 3798,
+   "nanite_verts": 3416,
+   "materials": [
+    "MI_PorchBase_02",
+    "MI_PorchBase_03",
+    "MI_PorchBase_01"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House06_Roof/SM_Roof06",
+   "name": "SM_Roof06",
+   "size_cm": [
+    1019.4,
+    832.6,
+    359.5
+   ],
+   "pivot_base_error_cm": -188.27,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    16680,
+    3002,
+    1334,
+    333,
+    84
+   ],
+   "nanite_tris": 195257,
+   "nanite_verts": 101731,
+   "materials": [
+    "MI_Roof06"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House05_Roof/SM_Roof_05",
+   "name": "SM_Roof_05",
+   "size_cm": [
+    1013.9,
+    814.6,
+    448.0
+   ],
+   "pivot_base_error_cm": -162.33,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    10563,
+    2112,
+    1056,
+    316,
+    64
+   ],
+   "nanite_tris": 675492,
+   "nanite_verts": 345630,
+   "materials": [
+    "MI_Roof05"
+   ]
+  },
+  {
+   "package": "/Game/Meshes/Houses/Roofs/House05_Roof/SM_Roof_05small",
+   "name": "SM_Roof_05small",
+   "size_cm": [
+    262.1,
+    267.3,
+    83.0
+   ],
+   "pivot_base_error_cm": -43.86,
+   "lods": 5,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    16551,
+    3476,
+    1820,
+    662,
+    82
+   ],
+   "nanite_tris": 595584,
+   "nanite_verts": 303607,
+   "materials": [
+    "MI_Roof05Small"
+   ]
+  },
+  {
+   "package": "/Game/Megascans/3D_Assets/WoodenWheelA/SM_WoodenWheelA",
+   "name": "SM_WoodenWheelA",
+   "size_cm": [
+    87.2,
+    64.9,
+    87.3
+   ],
+   "pivot_base_error_cm": -0.1,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    3368,
+    1684,
+    842,
+    420,
+    210,
+    106
+   ],
+   "nanite_tris": 12048,
+   "nanite_verts": 6933,
+   "materials": [
+    "MI_WoodenWheelA"
+   ]
+  },
+  {
+   "package": "/Game/Megascans/3D_Assets/WoodenWheelB/SM_WoodenWheelB",
+   "name": "SM_WoodenWheelB",
+   "size_cm": [
+    147.7,
+    148.0,
+    35.7
+   ],
+   "pivot_base_error_cm": -0.11,
+   "lods": 6,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    3106,
+    1552,
+    776,
+    388,
+    194,
+    96
+   ],
+   "nanite_tris": 21788,
+   "nanite_verts": 12780,
+   "materials": [
+    "MI_WoodenWheelB"
+   ]
+  },
+  {
+   "package": "/Game/Megascans/3D_Assets/WoodenWheelbarrow/SM_WoodenWheelbarrow",
+   "name": "SM_WoodenWheelbarrow",
+   "size_cm": [
+    60.0,
+    140.7,
+    42.1
+   ],
+   "pivot_base_error_cm": -0.07,
+   "lods": 4,
+   "material_slots": 1,
+   "nanite": true,
+   "fallback_tris_by_lod": [
+    4004,
+    2002,
+    1000,
+    500
+   ],
+   "nanite_tris": 24220,
+   "nanite_verts": 14158,
+   "materials": [
+    "MI_WoodenWheelbarrow"
+   ]
+  }
+ ]
+}

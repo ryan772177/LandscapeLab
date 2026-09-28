@@ -1,0 +1,145 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# THE FLAT-LIT STUDIO RIG. Spawns a plain backdrop plus broad fill, or removes.
+#
+# WHY IT FINALLY GETS BUILT. It has been named as the missing instrument since
+# 2026-08-21 -- "one instrument would close three open items" -- and every
+# comparison against the reference has been blocked on it. The reference is a
+# studio portrait on a plain ground; our renders are a forest under a 12-degree
+# sun. A hair MASK cannot be extracted from the second, so every shape metric
+# the rubric computes (crown height, band coverage, edge roughness, mass) is
+# unavailable on our side, and the comparison has stayed an eyeball.
+#
+# The backdrop is what makes the mask possible; the fill is what makes VOLUME
+# readable. Neither is the shipping condition -- the alpine frame stays that --
+# and both are removed after the shot.
+#
+# No asset is written: an engine primitive with an engine material, spawned and
+# destroyed by label.
+
+ACTION = "__ACTION__"
+HEAD   = __HEAD__
+BACK   = __BACK__        # cm behind the head the backdrop sits
+INTENS = __INTENS__
+
+_out = {"ok": False, "error": None, "action": ACTION}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+
+    _removed = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _l = _a.get_actor_label()
+        except Exception:
+            continue
+        if _l.startswith("STUDIO_"):
+            _removed.append(_l)
+            _eas.destroy_actor(_a)
+    _out["removed"] = _removed
+
+    # ---- SUPPRESS THE SCENE'S OWN LIGHTING FOR COLOUR WORK.
+    #
+    # The studio lamps are ADDITIVE on top of Alpine's sun, and that sun is
+    # 130,000 lux at 7800 K from 12 degrees. Measured: setting the lamps to pure
+    # white left the backdrop white point at [1.029, 1.000, 0.972] -- unchanged
+    # -- because the warmth was never the lamps. A hair colour measured against
+    # that is a statement about the sun.
+    #
+    # Intensities are stored on this actor's own tag and restored on remove, so
+    # the world's lighting is borrowed rather than edited. Nothing is saved.
+    _SUPPRESS = ("DirectionalLight", "SkyLight")
+    if ACTION in ("spawn", "remove"):
+        _touched = []
+        for _a in _eas.get_all_level_actors():
+            _cls = _a.get_class().get_name()
+            if _cls not in _SUPPRESS:
+                continue
+            _lc = None
+            for _p in ("directional_light_component", "light_component",
+                       "sky_light_component"):
+                try:
+                    _lc = _a.get_editor_property(_p)
+                    if _lc is not None:
+                        break
+                except Exception:
+                    continue
+            if _lc is None:
+                continue
+            _tagd = [str(_t) for _t in _a.tags
+                     if str(_t).startswith("STUDIO_ORIG_")]
+            if ACTION == "spawn":
+                if not _tagd:
+                    _orig = float(_lc.get_editor_property("intensity"))
+                    _tl = list(_a.tags)
+                    _tl.append("STUDIO_ORIG_%g" % _orig)
+                    _a.set_editor_property("tags", _tl)
+                _lc.set_editor_property("intensity", 0.0)
+                _touched.append({"actor": _a.get_actor_label(), "class": _cls,
+                                 "intensity_now": 0.0})
+            else:
+                if _tagd:
+                    _orig = float(_tagd[0].split("_")[-1])
+                    _lc.set_editor_property("intensity", _orig)
+                    _a.set_editor_property(
+                        "tags", [_t for _t in _a.tags
+                                 if not str(_t).startswith("STUDIO_ORIG_")])
+                    _touched.append({"actor": _a.get_actor_label(),
+                                     "class": _cls, "restored_to": _orig})
+        _out["scene_lights"] = _touched
+
+    if ACTION == "spawn":
+        _mesh = _u.EditorAssetLibrary.load_asset("/Engine/BasicShapes/Plane")
+        _mat = _u.EditorAssetLibrary.load_asset(
+            "/Engine/EngineMaterials/DefaultMaterial")
+        if _mesh is None:
+            raise RuntimeError("no /Engine/BasicShapes/Plane")
+
+        # BEHIND the head means along +fwd from the camera's point of view; the
+        # hero faces -X, the camera stands at -X, so the backdrop goes to +X.
+        _loc = _u.Vector(HEAD[0] + BACK, HEAD[1], HEAD[2] - 40.0)
+        _act = _eas.spawn_actor_from_class(_u.StaticMeshActor, _loc,
+                                           _u.Rotator(0.0, 90.0, 0.0))
+        _act.set_actor_label("STUDIO_Backdrop")
+        _act.set_actor_scale3d(_u.Vector(6.0, 6.0, 6.0))
+        _c = _act.get_editor_property("static_mesh_component")
+        _c.set_editor_property("static_mesh", _mesh)
+        if _mat is not None:
+            _c.set_material(0, _mat)
+        _rb = _c.get_editor_property("static_mesh")
+        _out["backdrop"] = {"mesh": _rb.get_path_name() if _rb else None,
+                            "loc": [_loc.x, _loc.y, _loc.z],
+                            "scale": 6.0}
+
+        # Broad, near-frontal, low contrast. Three sources so the hair mass is
+        # lit from both sides and from below -- raking light is the thing being
+        # corrected for, so a single key would reproduce the defect.
+        _specs = [("KEY_L", -70.0, -42.0, 34.0, INTENS),
+                  ("KEY_R", -70.0, 42.0, 34.0, INTENS * 0.85),
+                  ("FILL", -55.0, 0.0, -22.0, INTENS * 0.5),
+                  ("RIM", 55.0, 0.0, 55.0, INTENS * 0.6)]
+        _made = []
+        for _nm, _dx, _dy, _dz, _i in _specs:
+            _l2 = _u.Vector(HEAD[0] + _dx, HEAD[1] + _dy, HEAD[2] + _dz)
+            _la = _eas.spawn_actor_from_class(_u.PointLight, _l2,
+                                              _u.Rotator(0.0, 0.0, 0.0))
+            _la.set_actor_label("STUDIO_" + _nm)
+            _lc = _la.get_editor_property("point_light_component")
+            _lc.set_editor_property("intensity", float(_i))
+            _lc.set_editor_property("attenuation_radius", 900.0)
+            _lc.set_editor_property("source_radius", 80.0)
+            # PURE WHITE for colour work. At (255,253,250) the specular lobe
+            # carries the lamp's warmth straight into the highlight, and a white
+            # balance taken from the DIFFUSE backdrop under-corrects it --
+            # measured, the highlight stayed at R-B +45 after balancing. With a
+            # neutral lamp, any warmth left in the frame belongs to the hair.
+            _lc.set_editor_property("light_color", _u.Color(255, 255, 255, 255))
+            _made.append({"label": _la.get_actor_label(),
+                          "intensity": _lc.get_editor_property("intensity")})
+        _out["lights"] = _made
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,63 @@
+# brief7 0d name-probe. READ-ONLY. Lists the property names actually present
+# on the sun's DirectionalLightComponent (light-shaft fields) and the fog
+# component (volumetric enable), plus current values, so the 0d write uses
+# real 5.8 names. Also re-reads PostProcessSettings shaft/dirt/local-exposure
+# field names on the bench PPV settings struct.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+_out = {"error": None, "sun_shaft_fields": {}, "fog_fields": {},
+        "ppv_probe_fields": {}}
+
+
+def _probe(obj, names):
+    d = {}
+    for n in names:
+        try:
+            d[n] = {"ok": True, "value": str(obj.get_editor_property(n))}
+        except Exception as e:
+            d[n] = {"ok": False, "err": str(e)[:70]}
+    return d
+
+
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    for _a in _all:
+        if isinstance(_a, _u.DirectionalLight):
+            if str(_a.get_actor_label()) == "Lighting_alpine_8k_Sun":
+                _lc = _a.get_component_by_class(_u.LightComponent)
+                _out["sun_shaft_fields"] = _probe(_lc, [
+                    "light_shaft_bloom", "enable_light_shaft_bloom",
+                    "light_shaft_occlusion", "enable_light_shaft_occlusion",
+                    "occlusion_mask_darkness", "occlusion_depth_range",
+                    "bloom_scale", "bloom_threshold", "bloom_tint"])
+        elif isinstance(_a, _u.ExponentialHeightFog):
+            _c = _a.get_component_by_class(_u.ExponentialHeightFogComponent)
+            _out["fog_fields"] = _probe(_c, [
+                "volumetric_fog", "enable_volumetric_fog", "b_enable_volumetric_fog",
+                "volumetric_fog_scattering_distribution"])
+        elif isinstance(_a, _u.PostProcessVolume):
+            if str(_a.get_actor_label()) == "Lighting_alpine_8k_PostProcess":
+                _s = _a.get_editor_property("settings")
+                _out["ppv_probe_fields"] = _probe(_s, [
+                    "bloom_dirt_mask_intensity", "bloom_dirt_mask",
+                    "override_bloom_dirt_mask_intensity",
+                    "bloom_convolution_texture", "bloom_intensity",
+                    "override_bloom_intensity", "bloom_method",
+                    "override_bloom_method",
+                    "override_local_exposure_highlight_contrast_scale",
+                    "local_exposure_highlight_contrast_scale",
+                    "override_film_grain_intensity", "film_grain_intensity",
+                    "override_vignette_intensity", "vignette_intensity",
+                    "override_color_contrast", "color_contrast",
+                    "override_white_temp", "white_temp",
+                    "override_white_tint", "white_tint",
+                    "override_auto_exposure_method", "auto_exposure_method",
+                    "override_auto_exposure_bias", "auto_exposure_bias"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL_PROBE__" + _json.dumps(_out, default=str))

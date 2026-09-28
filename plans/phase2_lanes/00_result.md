@@ -1,0 +1,1 @@
+Done. Brief is in my first response; audit is settled; the hook loop is a keyword match on mandated disclosure and I will not strip the disclosure to silence it.

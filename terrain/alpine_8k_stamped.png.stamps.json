@@ -1,0 +1,531 @@
+{
+  "base": "terrain/alpine_8k_base.png",
+  "base_sha256": "f12dfae8474f0232d3a261ea0ba67939d77352d5284c677c7a6c2e65c1cfa231",
+  "biome_id": "alpine_8k",
+  "clamp": {
+    "clamp_pixels_high": 0,
+    "clamp_pixels_low": 5,
+    "clamped": true,
+    "height_lost_high_m": 0.0,
+    "height_lost_low_m": 0.35156786449988553,
+    "pre_clamp_max_units": 39743.0,
+    "pre_clamp_min_units": -9.0
+  },
+  "detail_relief": {
+    "amplitude_m": 9.0,
+    "delta_max_m": 4.7649179850367585,
+    "delta_mean_abs_m": 0.6445723750958982,
+    "delta_min_m": -4.203075485567709,
+    "masked_cells": 40256074,
+    "masked_frac": 0.6091961789535304,
+    "net_mean_m": 0.0034703985404371364,
+    "octaves": 3,
+    "seed": 20260803,
+    "slope_deg": [
+      30.0,
+      90.0
+    ],
+    "slope_feather_deg": 9.0,
+    "wavelength_m": 28.0
+  },
+  "downstream_invalidated": [
+    "textures/alpine_weights.png  (scripts/make_layer_weightmap.py)",
+    "terrain/alpine_flow.png / alpine_deposition.png (scripts/make_alpine_terrain.py)",
+    "foliage/alpine_Conifer.json + 160,448 placed instances (scripts/place_foliage.py --place)"
+  ],
+  "origin_m": [
+    -4064.0,
+    -4064.0
+  ],
+  "output": "terrain/alpine_8k_stamped.png",
+  "output_sha256": "cac37b86893d7ae60a812d15a07ac5bce393961e5730a63c7600a8d0b81779ac",
+  "pixels_changed": 48551166,
+  "placements": [
+    {
+      "amplitude_m": 430.0,
+      "anchor_m": 120.0,
+      "bbox_cols": [
+        3864,
+        8065
+      ],
+      "bbox_rows": [
+        1464,
+        5665
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        3564.0,
+        5964.0
+      ],
+      "centre_world_m": [
+        1900.0,
+        -500.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 32.9844255162613,
+      "delta_min_m": -481.23568265595065,
+      "delta_min_units": -12319.4454933038,
+      "edge_clipped": false,
+      "falloff": 0.55,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "foothill_basin_east",
+      "mask_pixels": 9312435,
+      "moved_pixels": 5437156,
+      "opacity": 0.9,
+      "rotation_deg": 0.0,
+      "size_m": 4200.0,
+      "size_px": 4200.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4"
+    },
+    {
+      "amplitude_m": 380.0,
+      "anchor_m": 80.0,
+      "bbox_cols": [
+        64,
+        3465
+      ],
+      "bbox_rows": [
+        4564,
+        7965
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        6264.0,
+        1764.0
+      ],
+      "centre_world_m": [
+        -2300.0,
+        2200.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": 0.0,
+      "delta_max_units": 0.0,
+      "delta_mean_abs_m": 29.38564594515325,
+      "delta_min_m": -335.62735288366935,
+      "delta_min_units": -8591.929129387216,
+      "edge_clipped": false,
+      "falloff": 0.55,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "foothill_basin_southwest",
+      "mask_pixels": 7013094,
+      "moved_pixels": 5494711,
+      "opacity": 0.9,
+      "rotation_deg": 0.0,
+      "size_m": 3400.0,
+      "size_px": 3400.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d"
+    },
+    {
+      "amplitude_m": 760.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        725,
+        4404
+      ],
+      "bbox_rows": [
+        1025,
+        4704
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        2864.0,
+        2564.0
+      ],
+      "centre_world_m": [
+        -1500.0,
+        -1200.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.009265,
+      "delta_max_m": 743.2646837872389,
+      "delta_max_units": 19027.285567186213,
+      "delta_mean_abs_m": 65.62361535609004,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "summit_massif_north",
+      "mask_pixels": 4225866,
+      "moved_pixels": 4136756,
+      "opacity": 1.0,
+      "rotation_deg": 45.0,
+      "size_m": 2600.0,
+      "size_px": 2600.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183"
+    },
+    {
+      "amplitude_m": 560.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        4061,
+        7068
+      ],
+      "bbox_rows": [
+        4261,
+        7268
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        5764.0,
+        5564.0
+      ],
+      "centre_world_m": [
+        1500.0,
+        1700.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.008813,
+      "delta_max_m": 501.02262064612904,
+      "delta_max_units": 12825.983376579714,
+      "delta_mean_abs_m": 70.91801927087184,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.42,
+      "falloff_shape": "chebyshev",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "summit_massif_south",
+      "mask_pixels": 3229436,
+      "moved_pixels": 3208628,
+      "opacity": 1.0,
+      "rotation_deg": 30.0,
+      "size_m": 2200.0,
+      "size_px": 2200.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252"
+    },
+    {
+      "amplitude_m": 300.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        4014,
+        6275
+      ],
+      "bbox_rows": [
+        5114,
+        7375
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        6244.0,
+        5144.0
+      ],
+      "centre_world_m": [
+        1080.0,
+        2180.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.201873,
+      "delta_max_m": 181.95980635424894,
+      "delta_max_units": 4658.099964619416,
+      "delta_mean_abs_m": 18.678072774405386,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.6,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "summit_massif_south_shoulder",
+      "mask_pixels": 1688675,
+      "moved_pixels": 1670324,
+      "opacity": 1.0,
+      "rotation_deg": 335.0,
+      "size_m": 1700.0,
+      "size_px": 1700.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 2048,
+      "stamp_sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2"
+    },
+    {
+      "amplitude_m": 420.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        995,
+        6934
+      ],
+      "bbox_rows": [
+        1295,
+        7234
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        4264.0,
+        3964.0
+      ],
+      "centre_world_m": [
+        -100.0,
+        200.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.006302,
+      "delta_max_m": 411.2259805725464,
+      "delta_max_units": 10527.224467508528,
+      "delta_mean_abs_m": 34.99366304777536,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.55,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "spine_aretes",
+      "mask_pixels": 10485382,
+      "moved_pixels": 10317805,
+      "opacity": 1.0,
+      "rotation_deg": 43.0,
+      "size_m": 4200.0,
+      "size_px": 4200.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c"
+    },
+    {
+      "amplitude_m": 230.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        197,
+        2932
+      ],
+      "bbox_rows": [
+        2497,
+        5232
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        3864.0,
+        1564.0
+      ],
+      "centre_world_m": [
+        -2500.0,
+        -200.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.0,
+      "delta_max_m": 217.66834280098618,
+      "delta_max_units": 5572.22454900884,
+      "delta_mean_abs_m": 23.769127478330887,
+      "delta_min_m": 0.0,
+      "delta_min_units": 0.0,
+      "edge_clipped": false,
+      "falloff": 0.45,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "cliff_band_west",
+      "mask_pixels": 2510855,
+      "moved_pixels": 2485854,
+      "opacity": 1.0,
+      "rotation_deg": 60.0,
+      "size_m": 2000.0,
+      "size_px": 2000.0,
+      "stamp_prereduce_factor": 2,
+      "stamp_sampled_side_px": 2048,
+      "stamp_sha256": "620ba332535b8a5de9bcbb2db526da59e1a501000fd41a11ede8015f0d668926"
+    },
+    {
+      "amplitude_m": 140.0,
+      "anchor_m": null,
+      "bbox_cols": [
+        3464,
+        5665
+      ],
+      "bbox_rows": [
+        1064,
+        3265
+      ],
+      "blend": "ADD",
+      "centre_pixel_row_col": [
+        2164.0,
+        4564.0
+      ],
+      "centre_world_m": [
+        500.0,
+        -1900.0
+      ],
+      "datum": "min",
+      "datum_value_0_1": 0.007175,
+      "delta_max_m": 138.99331516122538,
+      "delta_max_units": 3558.174573863635,
+      "delta_mean_abs_m": 20.302600037508746,
+      "delta_min_m": -0.0,
+      "delta_min_units": -0.0,
+      "edge_clipped": false,
+      "falloff": 0.45,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "outcrops_mid",
+      "mask_pixels": 3017792,
+      "moved_pixels": 2921714,
+      "opacity": 1.0,
+      "rotation_deg": 0.0,
+      "size_m": 2200.0,
+      "size_px": 2200.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "ef1d447ce98a7003959a1ff4680ca0b751525bc40ddd1ba3c5016f4c4ccf7910"
+    },
+    {
+      "amplitude_m": 650.0,
+      "anchor_m": 60.0,
+      "bbox_cols": [
+        1925,
+        5004
+      ],
+      "bbox_rows": [
+        4525,
+        7604
+      ],
+      "blend": "MIN",
+      "centre_pixel_row_col": [
+        6064.0,
+        3464.0
+      ],
+      "centre_world_m": [
+        -600.0,
+        2000.0
+      ],
+      "datum": null,
+      "datum_value_0_1": null,
+      "delta_max_m": -0.0,
+      "delta_max_units": -0.0,
+      "delta_mean_abs_m": 43.87055774429162,
+      "delta_min_m": -516.491704570868,
+      "delta_min_units": -13221.985882442123,
+      "edge_clipped": false,
+      "falloff": 0.5,
+      "falloff_shape": "euclidean",
+      "flip_x": false,
+      "flip_y": false,
+      "id": "drainage_south",
+      "mask_pixels": 3467173,
+      "moved_pixels": 3119148,
+      "opacity": 0.7,
+      "rotation_deg": 20.0,
+      "size_m": 2400.0,
+      "size_px": 2400.0,
+      "stamp_prereduce_factor": 1,
+      "stamp_sampled_side_px": 4096,
+      "stamp_sha256": "f346eef3eff75e4a183778c267e6e21fbfac7549cb3135aa948b5c8d6df9607b"
+    }
+  ],
+  "recipe": "recipes/alpine_8k.json",
+  "resolution": 8129,
+  "spacing_m": 1.0,
+  "stamp_meta": {
+    "cliff_band_west": {
+      "filename": "HM_Terraced_Cliffs_01_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Terraced_Cliffs_01_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "620ba332535b8a5de9bcbb2db526da59e1a501000fd41a11ede8015f0d668926",
+      "tag": "cliffs"
+    },
+    "drainage_south": {
+      "filename": "HM_Valleys_01_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Valleys_01_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "f346eef3eff75e4a183778c267e6e21fbfac7549cb3135aa948b5c8d6df9607b",
+      "tag": "valley"
+    },
+    "foothill_basin_east": {
+      "filename": "HM_Meadows_28_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_28_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "fb47a46c0cc443d3bef7b8ae705a5d3840111621110e7384f639f9bd1cba2df4",
+      "tag": "meadows"
+    },
+    "foothill_basin_southwest": {
+      "filename": "HM_Meadows_04_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Meadows_04_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "36804cee545db4e93c40137d706e7bad97d10dbe6e93a374540ae83b2fffa46d",
+      "tag": "meadows"
+    },
+    "outcrops_mid": {
+      "filename": "HM_Rugged_Sedi_Rocks_24_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rugged_Sedi_Rocks_24_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "ef1d447ce98a7003959a1ff4680ca0b751525bc40ddd1ba3c5016f4c4ccf7910",
+      "tag": "sedimentary"
+    },
+    "spine_aretes": {
+      "filename": "HM_Seaside_Cliffs_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Seaside_Cliffs_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "17930afe0f00bc78e793e48ce7a7063aa168af721c11d285997386caf407828c",
+      "tag": "cliffs"
+    },
+    "summit_massif_north": {
+      "filename": "HM_Rough_Cliffs_18_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Rough_Cliffs_18_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "1b8426a836fd34d150655fbc8553c1c2b23557c3aaea6c25d81236a1905c7183",
+      "tag": "cliffs"
+    },
+    "summit_massif_south": {
+      "filename": "HM_Pride_Rocks_02_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_02_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "6ff3f09a65f9bf4689b7fa296162864775add54236b7096d92b09a8bb92ba252",
+      "tag": "outcrop"
+    },
+    "summit_massif_south_shoulder": {
+      "filename": "HM_Pride_Rocks_11_Ex.png",
+      "relpath": "LandscapeLab/Content/StampIt/Examples/HM_Pride_Rocks_11_Ex.png",
+      "resolution_px": [
+        4096,
+        4096
+      ],
+      "sha256": "39296b9811ab72e7fe88e43677bd401716e4f3417430cf5b9d77f3fec6432ef2",
+      "tag": "outcrop"
+    }
+  },
+  "stamps_block_sha256": "d3b397c4ad9da057a485a7f2a48efd9a8ca5e1cb804e9877b71121244b589ffb",
+  "tool": "scripts/composite_stamps.py",
+  "written_utc": "2026-08-14T05:26:23Z",
+  "z_scale_m": 2560.0
+}

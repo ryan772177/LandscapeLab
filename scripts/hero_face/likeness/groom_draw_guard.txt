@@ -1,0 +1,78 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# THE STANDING DRAW GUARD. Runs on every ingested groom, fails closed.
+#
+# The 2026-08-22 defect: an exporter silently skipped `groom_width`, the .abc
+# shipped a PRESENT, correct-length, correctly-typed widths array of ZEROS, and
+# the groom bound cleanly, reported the right curve count, produced correct
+# bounds, read back correctly on every property -- and drew nothing. Nine days.
+#
+# The Blender-side fixes (export pointer table, validator check 8) stop it at
+# source. This is the UE-side belt: the last point at which a zero-width groom
+# can be caught before four minutes of bind, colour and render say nothing.
+#
+# WHY A SECOND CHECK AND NOT JUST THE FIRST. Non-negotiable 3 prefers an input
+# that cannot express the bad value over a gate that rejects it -- and the
+# export path now cannot. But the ingest path accepts ANY .abc, including ones
+# produced before the fix, by an unpatched process, or by another tool. The
+# guard is here because the artefact can arrive from outside the fixed path.
+
+GROOM = "__GROOM__"
+
+_out = {"ok": False, "error": None, "groom": GROOM, "refusals": []}
+try:
+    _g = _u.EditorAssetLibrary.load_asset(GROOM)
+    if _g is None:
+        raise RuntimeError("could not load " + GROOM)
+
+    _rows = []
+    for _s in _g.get_editor_property("hair_groups_info"):
+        _r = {}
+        for _f in ("num_curves", "num_guides", "num_curve_vertices",
+                   "max_curve_length", "max_import_width", "import_width"):
+            try:
+                _r[_f] = _s.get_editor_property(_f)
+            except Exception:
+                _r[_f] = "RAISED"
+        _rows.append(_r)
+    _out["groups"] = _rows
+
+    _rend = []
+    for _s in _g.get_editor_property("hair_groups_rendering"):
+        try:
+            _gs = _s.get_editor_property("geometry_settings")
+            _rend.append({
+                "hair_width": _gs.get_editor_property("hair_width"),
+                "hair_root_scale": _gs.get_editor_property("hair_root_scale"),
+                "hair_tip_scale": _gs.get_editor_property("hair_tip_scale")})
+        except Exception as _e:
+            _rend.append({"error": str(_e)[:80]})
+    _out["rendering"] = _rend
+
+    # ---- THE REFUSALS. Each names the artefact and the number.
+    for _i, _r in enumerate(_rows):
+        _w = _r.get("max_import_width")
+        if _w == "RAISED":
+            _out["refusals"].append(
+                "group %d: max_import_width UNREADABLE -- could not look, "
+                "which is not a pass" % _i)
+        elif isinstance(_w, float) and _w <= 0.0:
+            _out["refusals"].append(
+                "group %d: max_import_width %g -- the .abc carried zero "
+                "widths and this groom will bind and draw NOTHING" % (_i, _w))
+        _c = _r.get("num_curves")
+        if isinstance(_c, int) and _c <= 0:
+            _out["refusals"].append("group %d: num_curves %d" % (_i, _c))
+        _l = _r.get("max_curve_length")
+        if isinstance(_l, float) and _l <= 0.0:
+            _out["refusals"].append(
+                "group %d: max_curve_length %g" % (_i, _l))
+
+    _out["verdict"] = "REFUSE" if _out["refusals"] else "PASS"
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,962 @@
+{
+  "_what_this_is": "Single config for the MetaHuman face-likeness pipeline. Every script reads it; nothing hardcodes a path, a joint index or a gain.",
+  "_one_declaration": "joint INDICES are NOT restated here. They live in the joint map, which is the single declaration of them; this file names which GROUPS to drive and how hard. Two lists that must agree are one list, badly stored.",
+  "dna_format_expected": "2.5 (gen 2, ver 5)",
+  "joint_count_expected": 870,
+  "paths": {
+    "joint_map": "C:/Users/Admin/Desktop/AlpineHero_joint_map.json",
+    "dna_parser": "C:/Users/Admin/Desktop/dna25_parser.py",
+    "dna_canonical": "hero/dna/MHC_AlpineHero_Head.dna",
+    "reference_image": "hero/reference/hero_face_bald_frontal.jpg",
+    "reference_appearance": "hero/reference/hero_face_haired_frontal.jpg",
+    "mediapipe_model": "hero/models/face_landmarker.task",
+    "landmarks_dir": "hero/landmarks",
+    "renders_dir": "_verify/hero_likeness",
+    "backups_dir": "_trash/hero_likeness_backups",
+    "log_dir": "_verify/hero_likeness"
+  },
+  "unreal": {
+    "character_asset": "/Game/Hero/MHC_AlpineHero",
+    "face_skeletal_mesh": "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh",
+    "body_skeletal_mesh": "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh"
+  },
+  "_reference_image_choice": "The BALD frontal is the SHAPE input, per hero/reference/README.md: hair adds false volume at the cranium and a beard adds it at the mandible, which is exactly where this pipeline measures. The haired frontal is Ryan's ruled APPEARANCE target and is used for grooming decisions, not geometry.",
+  "regions": {
+    "_gains_are_uncalibrated": "cm of joint translation per 1.0 of normalized (IPD-unit) landmark delta. NOT MEASURED YET. The axis-direction test must pass before any of these is trusted, and the iterate loop tunes them. A MetaHuman head IPD is ~6.3 cm, so a gain of 6.3 would be nominal full correction; these start deliberately under that.",
+    "jaw_width": {
+      "group": "jaw_width",
+      "axis": "x",
+      "gain_cm": 3.0,
+      "mirror": true,
+      "enabled": true
+    },
+    "jaw_line": {
+      "group": "jaw_line",
+      "axis": "x",
+      "gain_cm": 2.0,
+      "mirror": true,
+      "enabled": true
+    },
+    "chin": {
+      "group": "chin",
+      "axis": "z",
+      "gain_cm": 2.0,
+      "mirror": true,
+      "enabled": true
+    },
+    "cheekbones": {
+      "group": "cheekbones",
+      "axis": "x",
+      "gain_cm": 3.0,
+      "mirror": true,
+      "enabled": true
+    },
+    "temples": {
+      "group": "temples",
+      "axis": "x",
+      "gain_cm": 2.0,
+      "mirror": true,
+      "enabled": true
+    },
+    "brow": {
+      "group": "brow",
+      "axis": "z",
+      "gain_cm": 1.5,
+      "mirror": true,
+      "enabled": true
+    },
+    "nose_bridge": {
+      "group": "nose_bridge",
+      "axis": "z",
+      "gain_cm": 1.5,
+      "mirror": false,
+      "enabled": true
+    },
+    "nose_tip": {
+      "group": "nose_tip",
+      "axis": "z",
+      "gain_cm": 1.5,
+      "mirror": false,
+      "enabled": true
+    },
+    "jaw_pivot": {
+      "group": "jaw_pivot",
+      "axis": "z",
+      "gain_cm": 0.0,
+      "mirror": false,
+      "enabled": false,
+      "_why_disabled": "FACIAL_C_Jaw is the pivot the TEETH follow. Moving it is a different kind of edit from widening the mandible and is left off until the cheap regions are proven."
+    }
+  },
+  "axis_test": {
+    "_what": "ONE exaggerated move on ONE joint, rendered, before any sign is trusted. UE is Z-up and the DNA is in centimetres, but which way +X points on a FACIAL_ joint is a property of the rig, not of the engine, and guessing it inverts the whole fit.",
+    "group": "chin",
+    "axis": "x",
+    "offset_cm": 2.0,
+    "expected": "the chin moves visibly to ONE side in the front render; record which, then set axis_sign"
+  },
+  "axis_sign": null,
+  "loop": {
+    "max_iterations": 5,
+    "residual_threshold": 0.02,
+    "_threshold_units": "IPD units, worst-region absolute residual. 0.02 IPD is ~1.3 mm on a 6.3 cm IPD.",
+    "_stop_early": "stop if a pass makes the worst residual WORSE than the pass before it; a diverging loop is a wrong gain sign, not a reason to iterate harder"
+  },
+  "safety": {
+    "backup_before_every_write": true,
+    "backup_targets": [
+      "dna_canonical",
+      "face_skeletal_mesh",
+      "character_asset"
+    ],
+    "_rig_lock": "The asset is rigged, and rigged assets are LOCKED for modeling edits. Every write pass must Remove Rig first and Create Full Rig last.",
+    "_import_whole_rig_cost": "MetaHumanCharacterEditorSubsystem.import_from_face_dna with import_whole_rig=False uses the DNA for NECK ALIGNMENT ONLY -- the sculpt does nothing. With import_whole_rig=True the entire rig is replaced and the body type becomes FIXED AND NON-EDITABLE. There is no middle setting. Confirm with Ryan before the first write that lands."
+  },
+  "capture": {
+    "_what": "The measuring instrument. Framed ONCE, by search, and confirmed by the same gate capture_landmarks applies, so every capture afterwards passes it by construction.",
+    "_level_note": "Built in whatever level is open, subject lifted against sky. A payload that switches levels fatals the editor (EditorServer.cpp:1951) and open_level.py takes a recipe, not a raw path.",
+    "resolution": [
+      2048,
+      2048
+    ],
+    "fov_angle_deg": 24.0,
+    "_lens": "24.0 deg horizontal FOV ~= 85 mm on a 36 mm sensor; long, to keep perspective out of the landmark solve.",
+    "exposure_bias": 0.0,
+    "_exposure": "AEM_MANUAL, min == max brightness. No auto-anything.",
+    "warmup_frames": 30,
+    "stage_z_cm": 250000.0,
+    "dist_mul": 3.2,
+    "height_frac": 0.62,
+    "azimuth_deg": 90.0,
+    "hide_grooms": true,
+    "camera": {
+      "location": [
+        2.9740836206035486e-05,
+        86.78391638185356,
+        250167.34455280696
+      ],
+      "rotation": [
+        0.0,
+        -90.00000000000001,
+        0.0
+      ],
+      "target": [
+        2.9740836200886633e-05,
+        2.6967637422633466,
+        250167.34455280696
+      ],
+      "azimuth_deg": 90.0,
+      "distance_cm": 84.08715263959022,
+      "fov_angle": 24.0,
+      "warmup_frames": 30,
+      "subject_extent": [
+        18.72412040425695,
+        10.85929116458406,
+        26.27723519987194
+      ],
+      "persist_rendering_state": true
+    },
+    "subject_actor": "HeroStage_Subject",
+    "camera_actor": "HeroStage_Camera",
+    "gate_at_framing": {
+      "ipd_px": 424.1019145089277,
+      "roll_deg": 0.26221715202620405,
+      "yaw_frac": 0.5048170584505501,
+      "worst_asymmetry": 0.013538252059782208
+    },
+    "presence": {
+      "_what": "Named components that MUST be visibly rendering on a capture run. Absence is a NAMED FAILURE, not a silent pass.",
+      "_why": "SETTLING CANNOT SEE ABSENCE. The reproduce-gate proves a frame is STABLE, not that it is COMPLETE: two frames agreeing on a missing element pass every statistical check we have. Measured 2026-08-19 -- the hair groom was absent from every capture for an entire session and every gate was green. Presence of expected elements is a CHECKLIST ASSERTION, not a statistical one.",
+      "_and_a_checklist_cannot_see_absence_either": "The first implementation of this gate asserted COMPONENT STATE -- asset, binding, visible -- and returned DELIVERABLE on a portrait with no visible grooms at all. A component can be present, bound, visible and drawing nothing. The gate is now groom_presence.py, which hides each groom in turn and requires a non-empty difference IN PIXELS, with a positive control proving the hide reaches the renderer and a stability map excluding the pixels the forest re-renders. Property reads are recorded by that tool as CONTEXT and are never the verdict.",
+      "required_components": [
+        "Beard",
+        "Mustache",
+        "Eyebrows",
+        "Hair"
+      ],
+      "_hair_promoted_2026_08_19": "Hair was declared known-absent for two days on the strength of renders in which it genuinely did not appear. Measured by difference render on the assembled in-level build: Hair_M_Layered changes 96,147-97,338 stable pixels when hidden, 87-88x the repeat floor -- the LARGEST signal of the four. It draws. The RBF / enable_global_interpolation lead was correlational and is now moot; no vendor groom asset was ever edited.",
+      "known_absent": {},
+      "_coverage_is_not_presence": "A groom can be genuinely rendering and still contribute almost nothing at a given framing. Measured on the same build in the same session: at a 2.1 m portrait the stubble grooms sit at 1.8-3.1x the floor and this gate calls them ABSENT; at 0.9 m they are 3.6-17x and it calls them PRESENT, with the SAME assets and the same components. So a gate verdict belongs to its FRAMING, and the framing is recorded in every report this tool writes.",
+      "later": [
+        "Outfit"
+      ]
+    },
+    "noise_floor": {
+      "_what": "Two captures of the UNCHANGED character. This is what the instrument does on its own; a later delta smaller than p90 is NOT evidence that a joint moved.",
+      "_units": "Per-landmark Euclidean movement in interpupillary units \u2014 the same frame capture_landmarks measures in, so a delta and the floor are directly comparable.",
+      "_bar_is_the_worst_pair": "Every pair of shots was compared and the WORST p90 adopted. Averaging the pairs would hide the bad case a real delta could then sit under.",
+      "measured_utc": "20260823T204542Z",
+      "shots": [
+        "noise_a",
+        "noise_b",
+        "noise_c",
+        "noise_d"
+      ],
+      "all_pairs": [
+        {
+          "a": "noise_a",
+          "b": "noise_b",
+          "p50_ipd": 0.003491,
+          "p90_ipd": 0.005262,
+          "max_ipd": 0.006994
+        },
+        {
+          "a": "noise_a",
+          "b": "noise_c",
+          "p50_ipd": 0.004784,
+          "p90_ipd": 0.007352,
+          "max_ipd": 0.011416
+        },
+        {
+          "a": "noise_a",
+          "b": "noise_d",
+          "p50_ipd": 0.007396,
+          "p90_ipd": 0.010875,
+          "max_ipd": 0.017181
+        },
+        {
+          "a": "noise_b",
+          "b": "noise_c",
+          "p50_ipd": 0.002245,
+          "p90_ipd": 0.003493,
+          "max_ipd": 0.006952
+        },
+        {
+          "a": "noise_b",
+          "b": "noise_d",
+          "p50_ipd": 0.005046,
+          "p90_ipd": 0.007792,
+          "max_ipd": 0.012595
+        },
+        {
+          "a": "noise_c",
+          "b": "noise_d",
+          "p50_ipd": 0.00349,
+          "p90_ipd": 0.005453,
+          "max_ipd": 0.007802
+        }
+      ],
+      "per_landmark": {
+        "landmarks": 478,
+        "p50_ipd": 0.007396,
+        "p90_ipd": 0.010875,
+        "max_ipd": 0.017181,
+        "mean_ipd": 0.007045
+      },
+      "scale": {
+        "_how": "Pinhole off the LOCKED camera: cm/px = 2*d*tan(fov/2)/res_x, then x IPD in px. APPROXIMATE \u2014 the irises sit nearer than the orbit centre the distance is measured to.",
+        "cm_per_px": 0.017454,
+        "ipd_px": 428.433,
+        "cm_per_ipd": 7.478
+      },
+      "floor_cm": {
+        "p50": 0.05531,
+        "p90": 0.08133,
+        "max": 0.12848
+      },
+      "summary_drift": {
+        "ipd_px": 3.40296,
+        "roll_deg": 0.05621,
+        "yaw_frac": -0.003121
+      }
+    }
+  },
+  "geometry_regions": {
+    "_what": "Region edits for Pass 1. Pass 1 is GEOMETRY-FIRST: FitToFaceDna fits the parametric state to the DNA geometry and never reads neutral joints, so joint writes are out of the pipeline entirely.",
+    "_space": "The DNAs OWN space, which is NOT UE. This file declares axes X=Left Y=Up Z=Front, centimetres. The jaw is LOW Y; down is -Y.",
+    "_feather": "The box is the CORE at weight 1.0; feather_band_cm extends outward with a smoothstep falloff to 0. A HARD box changes the attenuation it is used to measure, because seam vertices drag unmoved neighbours through skinning and the fit. Ruled 2026-08-17: feather before any gain calibration.",
+    "_gain_note": "Attenuation is a property of (region x mask), NOT of region alone. Every gain-table entry carries its mask parameters.",
+    "chin_jaw": {
+      "mesh": 0,
+      "_mesh_name": "head_lod0_mesh",
+      "box_min": [
+        -12.0,
+        148.0,
+        4.0
+      ],
+      "box_max": [
+        12.0,
+        158.0,
+        15.0
+      ],
+      "feather_band_cm": 2.5,
+      "gain": {
+        "boxed_2026_08_17": {
+          "attenuation": 0.65,
+          "feather_band_cm": 0.0,
+          "note": "PROVISIONAL BY CONSTRUCTION - hard box, visible chin seams. Superseded by the feathered entry; kept because a gain number without its selection method is not a gain number."
+        },
+        "feathered_2026_08_17": {
+          "attenuation": 1.078,
+          "feather_band_cm": 2.5,
+          "falloff": "smoothstep",
+          "box_min": [
+            -12.0,
+            148.0,
+            4.0
+          ],
+          "box_max": [
+            12.0,
+            158.0,
+            15.0
+          ],
+          "mesh": 0,
+          "command_cm": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "chin_measured_cm": -2.1553,
+          "weighted_vertices": 6703,
+          "core_vertices": 1661,
+          "render_x_floor": 21.16,
+          "floor_p90_ipd": 0.01044,
+          "status": "CURRENT gain-table entry #1",
+          "note": "Replaces the boxed 0.650, which was 66 percent off because a hard edge lets unmoved neighbours drag the region back through skinning and the fit. Seam gone in the render. Attenuation is a property of (region x mask), so these mask parameters are part of the number."
+        }
+      }
+    },
+    "_fit_note": "Each fit region names the landmark measure it drives. MIRRORED regions are widths: they run as a LEFT box and a RIGHT box with opposite X deltas, because a single box translated sideways would move the face off-centre instead of widening it. The mirror is applied by the driver and is NOT assumed to be a sign flip of some other region -- each side has its own explicit box.",
+    "chin_height": {
+      "measure": "chin_height",
+      "mirrored": false,
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "_axis_note": "POSITIVE unit vector of the measure. chin_height is negative downward, so a negative delta already means 'move down'; the axis must not negate it again. Measured 2026-08-17: axis [0,-1,0] sent the chin UP at 1:1.",
+      "mesh": 0,
+      "box_min": [
+        -7.0,
+        147.0,
+        3.0
+      ],
+      "box_max": [
+        7.0,
+        157.0,
+        15.0
+      ],
+      "feather_band_cm": 2.5,
+      "gain": 0.944,
+      "_gain_source": "measured 2026-08-18, sign-corrected iteration 1->2, with the mask parameters recorded in this same block",
+      "addressable": true
+    },
+    "jaw_width": {
+      "measure": "jaw_width",
+      "mirrored": true,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mesh": 0,
+      "box_min": [
+        4.0,
+        148.0,
+        -3.0
+      ],
+      "box_max": [
+        19.5,
+        160.0,
+        13.0
+      ],
+      "feather_band_cm": 2.5,
+      "gain": 5.1448,
+      "_gain_source": "measured 2026-08-18, sign-corrected iteration 1->2, with the mask parameters recorded in this same block",
+      "addressable": true
+    },
+    "cheek_width": {
+      "measure": "cheek_width",
+      "mirrored": true,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mesh": 0,
+      "box_min": [
+        5.0,
+        155.0,
+        -2.0
+      ],
+      "box_max": [
+        19.5,
+        162.5,
+        13.0
+      ],
+      "feather_band_cm": 1.5,
+      "gain": 5.0976,
+      "_gain_source": "measured 2026-08-18, sign-corrected iteration 1->2, with the mask parameters recorded in this same block",
+      "addressable": true
+    },
+    "temple_width": {
+      "measure": "temple_width",
+      "mirrored": true,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mesh": 0,
+      "box_min": [
+        6.0,
+        171.0,
+        -5.0
+      ],
+      "box_max": [
+        19.5,
+        177.0,
+        11.0
+      ],
+      "feather_band_cm": 1.5,
+      "gain": 4.622,
+      "_gain_source": "measured 2026-08-18, sign-corrected iteration 1->2, with the mask parameters recorded in this same block",
+      "addressable": true
+    },
+    "brow_height": {
+      "measure": "brow_height",
+      "mirrored": false,
+      "axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "_axis_note": "FORWARD, not down. brow_height's delta is negative (the reference brow sits lower), and axis -Z turns that into +Z: the ridge projects FORWARD, which is what a heavy brow over deep-set eyes is. A vertical edit here is impossible without entering the eye band, and the forehead box that avoided it was inert (commanded -0.619 cm, moved -0.010). A Z move also cannot disturb IPD, which is an X distance. UNPROVEN that it registers on the landmark at all.",
+      "mesh": 0,
+      "box_min": [
+        -10.0,
+        169.5,
+        6.0
+      ],
+      "box_max": [
+        10.0,
+        175.0,
+        15.0
+      ],
+      "feather_band_cm": 1.5,
+      "gain": 1.0,
+      "_eye_band_exception": "box+band reaches Y 168.0, inside the 164.5..169.5 eye band. Permitted because the delta is pure +Z: it cannot change the interpupillary distance the frame normalises by. The loop's IPD drift guard is the check on that claim, not this comment.",
+      "addressable": false,
+      "_not_addressable": "NOT ADDRESSABLE. Commanded -0.594 cm, render moved +0.123 -- opposite and near the floor. The brow landmarks sit just above the eyelids, inside/against the Y 164.5..169.5 eye band that no edit may enter because the frame is IPD-normalised. Editing what would move this measure means editing the ruler. A vertical box above the band was inert (-0.010 cm) and a forward +Z box is opposite. Not a gain to tune."
+    },
+    "nose_bridge": {
+      "measure": "nose_bridge",
+      "mirrored": true,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mesh": 0,
+      "box_min": [
+        0.5,
+        157.5,
+        8.0
+      ],
+      "box_max": [
+        4.5,
+        163.0,
+        15.0
+      ],
+      "feather_band_cm": 1.0,
+      "gain": 1.0,
+      "addressable": false,
+      "_not_addressable": "NOT ADDRESSABLE. Commanded +0.180 cm, render moved -0.199 -- opposite. capture_landmarks measures this from points 193 and 417, at the TOP of the nose beside the inner eye corners, inside the protected eye band."
+    },
+    "_eye_band_rule": "NO edit box, including its feather reach, may enter Y 164.5..169.5. The measurement frame is iris-centred and IPD-scaled, so editing near the eyes changes the normaliser and every other region appears to move. Measured 2026-08-17: IPD moved +2.7% in one iteration and the residual went backwards.",
+    "_gain_reset_note": "Gains reset 2026-08-17. Anything learned while the IPD normaliser was moving was fitted to a ruler that changed between measurements. Only chin_height's 1.078 survives, because it was measured in a single before/after pair with no other region edited."
+  },
+  "fit": {
+    "_what": "The likeness loop. Reference is Ryan's 'Hero Example Pic', adopted at hero/reference/hero_example_pic.jpg and hash-proven against the Desktop original.",
+    "reference_image": "hero/reference/hero_face_bald_frontal.jpg",
+    "deadband_ipd": 0.02,
+    "_deadband": "Below this a delta is not distinguishable from the instrument. The measured noise floor is ~0.0104 IPD; this is about 2x it.",
+    "max_step_cm": 1.2,
+    "_max_step": "No single iteration commands more than this on one region. A large step through a non-linear parametric fit lands somewhere unpredictable, and the gain is only trustworthy near where it was measured.",
+    "iterations_run": [
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T132327Z.png",
+        "total_abs_delta_ipd": 0.34968,
+        "ipd_px": 429.027,
+        "regions": {
+          "chin_height": -0.10668,
+          "jaw_width": 0.1152,
+          "cheek_width": 0.07877,
+          "temple_width": 0.04902
+        },
+        "commands": {
+          "chin_height": -0.6653,
+          "jaw_width": 0.1545,
+          "cheek_width": 0.1145,
+          "temple_width": 0.0653
+        },
+        "cumulative_cm": {
+          "chin_height": -0.6653,
+          "jaw_width": 0.1545,
+          "cheek_width": 0.1145,
+          "temple_width": 0.0653
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T132843Z.png",
+        "total_abs_delta_ipd": 0.2203,
+        "ipd_px": 422.271,
+        "regions": {
+          "chin_height": -0.03238,
+          "jaw_width": 0.07297,
+          "cheek_width": 0.06876,
+          "temple_width": 0.04619
+        },
+        "commands": {
+          "chin_height": -0.2899,
+          "jaw_width": 0.267,
+          "cheek_width": 0.0999,
+          "temple_width": 0.0616
+        },
+        "cumulative_cm": {
+          "chin_height": -0.9552,
+          "jaw_width": 0.4215,
+          "cheek_width": 0.2144,
+          "temple_width": 0.1269
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T133352Z.png",
+        "total_abs_delta_ipd": 0.10686,
+        "ipd_px": 421.035,
+        "regions": {
+          "chin_height": 0.00619,
+          "jaw_width": 0.0161,
+          "cheek_width": 0.04826,
+          "temple_width": 0.03632
+        },
+        "commands": {
+          "cheek_width": 0.0701,
+          "temple_width": 0.0484
+        },
+        "cumulative_cm": {
+          "chin_height": -0.9552,
+          "jaw_width": 0.4215,
+          "cheek_width": 0.2845,
+          "temple_width": 0.1753
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T133805Z.png",
+        "total_abs_delta_ipd": 0.26753,
+        "ipd_px": 427.28,
+        "regions": {
+          "chin_height": -0.10488,
+          "jaw_width": 0.06445,
+          "cheek_width": 0.05814,
+          "temple_width": 0.04007
+        },
+        "commands": {
+          "chin_height": -0.7883,
+          "jaw_width": 0.3026,
+          "cheek_width": 0.0845,
+          "temple_width": 0.0534
+        },
+        "cumulative_cm": {
+          "chin_height": -1.7435,
+          "jaw_width": 0.7241,
+          "cheek_width": 0.369,
+          "temple_width": 0.2287
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T134312Z.png",
+        "total_abs_delta_ipd": 0.15069,
+        "ipd_px": 420.467,
+        "regions": {
+          "chin_height": 0.06507,
+          "jaw_width": -0.03387,
+          "cheek_width": 0.0263,
+          "temple_width": 0.02544
+        },
+        "commands": {
+          "chin_height": 0.3018,
+          "jaw_width": -0.1043,
+          "cheek_width": 0.0382,
+          "temple_width": 0.0339
+        },
+        "cumulative_cm": {
+          "chin_height": -1.4417,
+          "jaw_width": 0.6198,
+          "cheek_width": 0.4072,
+          "temple_width": 0.2626
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T134821Z.png",
+        "total_abs_delta_ipd": 0.1107,
+        "ipd_px": 420.241,
+        "regions": {
+          "chin_height": 0.03597,
+          "jaw_width": -0.03496,
+          "cheek_width": 0.02068,
+          "temple_width": 0.01909
+        },
+        "commands": {
+          "chin_height": 0.3731,
+          "jaw_width": -0.1076,
+          "cheek_width": 0.0301
+        },
+        "cumulative_cm": {
+          "chin_height": -1.0686,
+          "jaw_width": 0.5122,
+          "cheek_width": 0.4373,
+          "temple_width": 0.2626
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T135355Z.png",
+        "total_abs_delta_ipd": 0.13799,
+        "ipd_px": 425.192,
+        "regions": {
+          "chin_height": 0.02135,
+          "jaw_width": -0.0503,
+          "cheek_width": 0.031,
+          "temple_width": 0.03535
+        },
+        "commands": {
+          "chin_height": 0.3202,
+          "jaw_width": -0.1548,
+          "cheek_width": 0.045,
+          "temple_width": 0.0471
+        },
+        "cumulative_cm": {
+          "chin_height": -0.7484,
+          "jaw_width": 0.3574,
+          "cheek_width": 0.4823,
+          "temple_width": 0.3097
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T135903Z.png",
+        "total_abs_delta_ipd": 0.12255,
+        "ipd_px": 423.338,
+        "regions": {
+          "chin_height": -0.02168,
+          "jaw_width": -0.03833,
+          "cheek_width": 0.03155,
+          "temple_width": 0.03098
+        },
+        "commands": {
+          "chin_height": -0.2386,
+          "jaw_width": -0.2419,
+          "cheek_width": 0.0459,
+          "temple_width": 0.0413
+        },
+        "cumulative_cm": {
+          "chin_height": -0.987,
+          "jaw_width": 0.1155,
+          "cheek_width": 0.5282,
+          "temple_width": 0.351
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T140457Z.png",
+        "total_abs_delta_ipd": 0.04163,
+        "ipd_px": 421.155,
+        "regions": {
+          "chin_height": 0.00196,
+          "jaw_width": -0.0062,
+          "cheek_width": 0.02308,
+          "temple_width": 0.0104
+        },
+        "commands": {
+          "cheek_width": 0.0335
+        },
+        "cumulative_cm": {
+          "chin_height": -0.987,
+          "jaw_width": 0.1155,
+          "cheek_width": 0.5617,
+          "temple_width": 0.351
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T140822Z.png",
+        "total_abs_delta_ipd": 0.18416,
+        "ipd_px": 425.753,
+        "regions": {
+          "chin_height": -0.11462,
+          "jaw_width": 0.01179,
+          "cheek_width": 0.03133,
+          "temple_width": 0.02642
+        },
+        "commands": {
+          "chin_height": -1.2,
+          "cheek_width": 0.0455,
+          "temple_width": 0.0352
+        },
+        "cumulative_cm": {
+          "chin_height": -2.187,
+          "jaw_width": 0.1155,
+          "cheek_width": 0.6072,
+          "temple_width": 0.3862
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T162004Z.png",
+        "total_abs_delta_ipd": 0.20817,
+        "ipd_px": 424.756,
+        "regions": {
+          "chin_height": 0.09165,
+          "jaw_width": -0.07683,
+          "cheek_width": -0.00083,
+          "temple_width": 0.03887
+        },
+        "commands": {
+          "chin_height": 0.7176,
+          "jaw_width": -0.5295,
+          "temple_width": 0.0518
+        },
+        "cumulative_cm": {
+          "chin_height": -0.2694,
+          "jaw_width": -0.414,
+          "cheek_width": 0.5617,
+          "temple_width": 0.4028
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260818T163604Z.png",
+        "total_abs_delta_ipd": 0.18689,
+        "ipd_px": 430.432,
+        "regions": {
+          "chin_height": -0.0075,
+          "jaw_width": 0.09927,
+          "cheek_width": 0.05065,
+          "temple_width": 0.02947
+        },
+        "commands": {
+          "jaw_width": 0.4519,
+          "cheek_width": 0.0736,
+          "temple_width": 0.0393
+        },
+        "cumulative_cm": {
+          "chin_height": -0.2694,
+          "jaw_width": 0.0379,
+          "cheek_width": 0.6353,
+          "temple_width": 0.4421
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T025204Z.png",
+        "total_abs_delta_ipd": 0.14697,
+        "ipd_px": 422.751,
+        "regions": {
+          "chin_height": 0.03945,
+          "jaw_width": 0.04527,
+          "cheek_width": 0.03161,
+          "temple_width": 0.03064
+        },
+        "commands": {
+          "chin_height": 0.297,
+          "jaw_width": 0.2794,
+          "cheek_width": 0.0459,
+          "temple_width": 0.0408
+        },
+        "cumulative_cm": {
+          "chin_height": 0.0276,
+          "jaw_width": 0.3173,
+          "cheek_width": 0.6812,
+          "temple_width": 0.4829
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T025727Z.png",
+        "total_abs_delta_ipd": 0.24107,
+        "ipd_px": 425.975,
+        "regions": {
+          "chin_height": -0.045,
+          "jaw_width": -0.14856,
+          "cheek_width": -0.03488,
+          "temple_width": -0.01263
+        },
+        "commands": {
+          "chin_height": -0.2315,
+          "jaw_width": -0.4431,
+          "cheek_width": -0.0507
+        },
+        "cumulative_cm": {
+          "chin_height": -0.2039,
+          "jaw_width": -0.1258,
+          "cheek_width": 0.6305,
+          "temple_width": 0.4829
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T030210Z.png",
+        "total_abs_delta_ipd": 0.10935,
+        "ipd_px": 423.998,
+        "regions": {
+          "chin_height": -0.02516,
+          "jaw_width": -0.04939,
+          "cheek_width": 0.01107,
+          "temple_width": 0.02373
+        },
+        "commands": {
+          "chin_height": -0.1949,
+          "jaw_width": -0.1803,
+          "temple_width": 0.0316
+        },
+        "cumulative_cm": {
+          "chin_height": -0.3988,
+          "jaw_width": -0.3061,
+          "cheek_width": 0.6305,
+          "temple_width": 0.5145
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T030647Z.png",
+        "total_abs_delta_ipd": 0.15346,
+        "ipd_px": 429.648,
+        "regions": {
+          "chin_height": 0.01057,
+          "jaw_width": 0.07438,
+          "cheek_width": 0.04346,
+          "temple_width": 0.02505
+        },
+        "commands": {
+          "jaw_width": 0.1715,
+          "cheek_width": 0.0632,
+          "temple_width": 0.0334
+        },
+        "cumulative_cm": {
+          "chin_height": -0.3988,
+          "jaw_width": -0.1346,
+          "cheek_width": 0.6937,
+          "temple_width": 0.5479
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T031146Z.png",
+        "total_abs_delta_ipd": 0.14345,
+        "ipd_px": 426.889,
+        "regions": {
+          "chin_height": -0.04201,
+          "jaw_width": -0.08244,
+          "cheek_width": -0.01492,
+          "temple_width": -0.00408
+        },
+        "commands": {
+          "chin_height": -0.2731,
+          "jaw_width": -0.1398
+        },
+        "cumulative_cm": {
+          "chin_height": -0.6719,
+          "jaw_width": -0.2744,
+          "cheek_width": 0.6937,
+          "temple_width": 0.5479
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T031657Z.png",
+        "total_abs_delta_ipd": 0.23945,
+        "ipd_px": 426.283,
+        "regions": {
+          "chin_height": 0.03328,
+          "jaw_width": 0.08786,
+          "cheek_width": 0.06605,
+          "temple_width": 0.05226
+        },
+        "commands": {
+          "chin_height": 0.1616,
+          "jaw_width": 0.1496,
+          "cheek_width": 0.1496,
+          "temple_width": 0.1496
+        },
+        "cumulative_cm": {
+          "chin_height": -0.5103,
+          "jaw_width": -0.1248,
+          "cheek_width": 0.8433,
+          "temple_width": 0.6975
+        }
+      },
+      {
+        "iteration": 1,
+        "png": "fit_i1_r1_20260819T032219Z.png",
+        "total_abs_delta_ipd": 0.19564,
+        "ipd_px": 426.796,
+        "regions": {
+          "chin_height": 0.02078,
+          "jaw_width": -0.11609,
+          "cheek_width": -0.03492,
+          "temple_width": -0.02385
+        },
+        "commands": {
+          "chin_height": 0.1646,
+          "jaw_width": -0.1688,
+          "cheek_width": -0.1496,
+          "temple_width": -0.1496
+        },
+        "cumulative_cm": {
+          "chin_height": -0.3457,
+          "jaw_width": -0.2936,
+          "cheek_width": 0.6937,
+          "temple_width": 0.5479
+        }
+      }
+    ],
+    "last_run_utc": "20260819T032625Z",
+    "max_ipd_drift_frac": 0.015,
+    "_max_ipd_drift": "REFUSE if the measured IPD moves more than this between iterations. The frame is iris-centred and IPD-scaled; if the normaliser moves, every region's number is about the ruler and not about the face.",
+    "_addressable_note": "Four of six regions respond: chin_height, jaw_width, cheek_width, temple_width. brow_height and nose_bridge are driven by landmarks inside the eye band and cannot be moved without moving the IPD normaliser. The reference's heavy brow is therefore OUT OF REACH of frontal landmark fitting, and closing it needs a different instrument, not a bigger gain.",
+    "cumulative_cm": {
+      "chin_height": 0.0,
+      "jaw_width": 0.0,
+      "cheek_width": 0.0,
+      "temple_width": 0.0
+    },
+    "best_known": {
+      "cumulative_cm": {
+        "chin_height": -0.987,
+        "jaw_width": 0.1155,
+        "cheek_width": 0.5617,
+        "temple_width": 0.351
+      },
+      "total_residual_cm": 0.311,
+      "fixed_ipd_px": 429.027,
+      "_note": "Best of 10 iterations at FIXED measurement scale. Three of four addressable regions inside the 0.150 cm deadband. Recovered from the manifest history, which appends across processes."
+    },
+    "fixed_ipd_px": 429.027,
+    "appearance_target": "hero/reference/hero_example_pic.jpg",
+    "_reference_split": "SHAPE targets come from the BALD frontal; the haired/bearded hero_example_pic is the APPEARANCE and adjudication target only. Ruled in this manifest at _reference_image_choice and violated by fit.reference_image until 2026-08-18. MEASURED cost of the violation: jaw_width +0.570 cm, chin_height -0.514, cheek_width +0.202 -- about 1.29 cm of a 2.616 cm starting residual was BEARD, not skull, and the fit widened the jaw to match it.",
+    "_cumulative_note": "ZERO = the character is at CANONICAL, which is where the session left it. The cumulative and the character must agree: a stale cumulative makes the next run correct a state it did not produce, which is the oscillation defect logged 2026-08-18."
+  },
+  "grooms": {
+    "ruled_look": {
+      "Hair": "WI_Hair_M_Layered",
+      "Beard": "WI_Beard_M_Stubble",
+      "Mustache": "WI_Mustache_M_Stubble",
+      "Eyebrows": "WI_Eyebrows_M_Dense"
+    },
+    "color": {
+      "Melanin": 0.92,
+      "Redness": 0.28,
+      "Whiteness": 0.0,
+      "_what": "Ryan ruled look: very dark brown-black with slight warmth, per the reference. Written to the INSTANCE PARAMETERS, not the material -- the preview materials are transient and recreated by every assemble_for_preview."
+    },
+    "_binding_note": "Groom bindings are TRANSIENT and rebuilt by every assemble_for_preview against the CURRENT mesh (verified 2026-08-19: all three target the live preview FaceMesh). The fit loop therefore needs NO binding-rebuild step after a geometry write."
+  }
+}

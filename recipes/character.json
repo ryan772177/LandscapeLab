@@ -1,0 +1,106 @@
+{
+  "schema_version": "character-1.0",
+  "character_id": "player",
+  "display_name": "Player character (on foot)",
+  "movement": {
+    "profile": "climb",
+    "max_walk_speed_cm_s": 600.0,
+    "max_step_height_cm": 45.0,
+    "jump_z_velocity_cm_s": 420.0,
+    "max_acceleration_cm_s2": 2048.0,
+    "gravity_scale": 1.0
+  },
+  "capsule": {
+    "radius_cm": 34.0,
+    "half_height_cm": 88.0
+  },
+  "camera": {
+    "arm_length_cm": 400.0,
+    "probe_size_cm": 4.0,
+    "socket_offset_z_cm": 70.0
+  },
+  "navigation": {
+    "agent_profile": "walk",
+    "agent_radius_cm": 34.0,
+    "agent_height_cm": 176.0,
+    "_agent_profile_changed_20260826": "WAS 'mount' (35 deg). The navmesh is built for the agents that actually use it, and nothing mounted exists in this project -- no mounts, no roads, no corridors. The consumers are the on-foot player and on-foot NPCs, which walk at 44.765 deg, engine-derived from the CharacterMovementComponent CDO. MEASURED CONSEQUENCE of the mount agent: the town's outer third was unreachable from its own plaza -- 19 of 60 street points in a different navmesh island, 0 failed projection, so navmesh existed under them and no path did. A basin town whose rim climbs 186.7 to 333 m is EXPECTED to fragment at 35 deg; that is what a basin is.",
+    "_why_not_climb_70": "REFUSED, deliberately. Recast at 70 deg pathfinds NPCs up cliff faces. Climb is the PLAYER's traversal reward, not an AI pathing surface. Do not fix navmesh fragmentation by raising this.",
+    "_why_not_two_agents": "A second +SupportedAgents entry creates a second navdata instance but CANNOT carry a different slope: AgentMaxSlope is not part of FNavDataConfig, it lives on the RecastNavMesh CLASS CONFIG, and setting it per-actor reverts via ARecastNavMesh::PostLoad when the voxel cache is on (RecastNavMesh.cpp:963-1015, already a REJECTED entry in R-NAVBUILD). Two agents would differ in radius/height/step and be identical in the one property that causes the fragmentation."
+  },
+  "input": {
+    "content_root": "/Game/Characters/Input",
+    "mapping_context": "IMC_LandscapeLabDefault",
+    "actions": [
+      {
+        "name": "IA_Move",
+        "value_type": "axis2d",
+        "bindings": [
+          {
+            "key": "W",
+            "swizzle": "YXZ"
+          },
+          {
+            "key": "S",
+            "swizzle": "YXZ",
+            "negate": true
+          },
+          {
+            "key": "A",
+            "negate": true
+          },
+          {
+            "key": "D"
+          },
+          {
+            "key": "Gamepad_Left2D"
+          }
+        ]
+      },
+      {
+        "name": "IA_Look",
+        "value_type": "axis2d",
+        "bindings": [
+          {
+            "key": "Mouse2D"
+          },
+          {
+            "key": "Gamepad_Right2D"
+          }
+        ]
+      },
+      {
+        "name": "IA_Jump",
+        "value_type": "boolean",
+        "bindings": [
+          {
+            "key": "SpaceBar"
+          },
+          {
+            "key": "Gamepad_FaceButton_Bottom"
+          }
+        ]
+      }
+    ]
+  },
+  "spawn": {
+    "from_camera": "hero_spawn",
+    "height_above_ground_cm": 120.0
+  },
+  "assets": {
+    "status": "migrated",
+    "source_root": "UE_5.8/Templates/TemplateResources/High/Characters/Content/Mannequins",
+    "content_root": "/Game/Characters/Mannequins",
+    "skeletal_mesh": "/Game/MetaHumans/MHC_AlpineHero/Body/SKM_MHC_AlpineHero_BodyMesh",
+    "face_mesh": "/Game/MetaHumans/MHC_AlpineHero/Face/SKM_MHC_AlpineHero_FaceMesh",
+    "_mesh_provenance": {
+      "source": "MetaHuman Assemble on MHC_AlpineHero, 2026-08-16 18:27, re-run by Ryan from the RESTORED pre-sculpt character.",
+      "why_not_hero_generated": "/Game/Hero/Generated/SKM_HeroFace and SKM_HeroBody are produced by scripts/build_hero_assets.py, which DUPLICATES the preview actor's transient meshes. That route is a DEAD END: duplicate_asset does not carry the reference skeleton, so the copies are degenerate -- every bone within 6 mm of one point. Measured with a negative control: assembled meshes read head_rise 160.6 cm and bone_z_spread 132-170 cm; the duplicated ones read 0.5 cm. A 320x separation.",
+      "acceptance_test": "python scripts/hero_face/probe_mesh_refpose.txt via ue_exec, or hero_face/_archive/run_pie_probe.py (archived) probe_pie_skeleton.txt in PIE. PASS is head ~150 cm ABOVE root. FAIL is ~0.5 cm.",
+      "what_these_carry": "Real baked head and body virtual textures, the ABP_Face / ABP_Face_PostProcess / ABP_Body_PostProcess chain, PHYS_MHC_AlpineHero, and the Hair_M_Layered groom -- none of which the duplication route could produce.",
+      "face_is_the_ORIGINAL_face": "This character was reverted to its pre-sculpt state to obtain a healthy one, so these meshes carry the hero's ORIGINAL face and NO grooms. The sculpted and groomed character is preserved at tag sculpted-hero-before-revert-20260816."
+    },
+    "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+    "physics_asset": "/Game/Characters/Mannequins/Rigs/PA_Mannequin",
+    "anim_blueprint": "/Game/Characters/Mannequins/Anims/Unarmed/ABP_Unarmed"
+  }
+}

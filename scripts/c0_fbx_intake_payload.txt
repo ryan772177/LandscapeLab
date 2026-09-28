@@ -1,0 +1,127 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 step 1 -- intake the donor house and MEASURE it.
+#
+# Answers three things the swap needs and cannot guess:
+#   1. UNIT SCALE. Blender FBX exports lie about units routinely. The brief
+#      says verify against a known 2 m reference -- the kit's wall modules are
+#      measured at 200.0 cm tall, so the house's storey height is checked
+#      against real geometry rather than against an assumption.
+#   2. PIVOT. Base-centred or not, in cm.
+#   3. SLOT -> TEXTURE WIRING. The operator's role mapping binds BY WHAT EACH
+#      SLOT REFERENCES, not by slot number, so the reference is the thing that
+#      must be read. A binary FBX string scan gives names but NOT connections;
+#      only the imported asset has the wiring.
+#
+# Import options are fabeval_import_payload's, which are import_static_mesh's.
+# Nothing here is invented.
+
+DEST = "/Game/Scratch/C0House"
+SRC = r"__SRC__"
+NAME = "SM_C0_DonorHouse"
+
+_out = {"ok": False, "error": None}
+try:
+    _tools = _u.AssetToolsHelpers.get_asset_tools()
+    _t = _u.AssetImportTask()
+    _t.set_editor_property("filename", SRC)
+    _t.set_editor_property("destination_path", DEST)
+    _t.set_editor_property("destination_name", NAME)
+    _t.set_editor_property("automated", True)
+    _t.set_editor_property("replace_existing", True)
+    _t.set_editor_property("save", False)
+
+    _o = _u.FbxImportUI()
+    _o.set_editor_property("import_mesh", True)
+    _o.set_editor_property("import_textures", True)
+    _o.set_editor_property("import_materials", True)
+    _o.set_editor_property("import_as_skeletal", False)
+    _o.set_editor_property("mesh_type_to_import",
+                           _u.FBXImportType.FBXIT_STATIC_MESH)
+    _sm = _o.get_editor_property("static_mesh_import_data")
+    _sm.set_editor_property("combine_meshes", True)
+    _sm.set_editor_property("generate_lightmap_u_vs", False)
+    _sm.set_editor_property("build_nanite", False)
+    _t.set_editor_property("options", _o)
+    _tools.import_asset_tasks([_t])
+
+    _paths = list(_t.get_editor_property("imported_object_paths") or [])
+    _out["imported_count"] = len(_paths)
+
+    _mesh = None
+    for _p in _paths:
+        _a = _u.EditorAssetLibrary.load_asset(_p.split(".")[0])
+        if isinstance(_a, _u.StaticMesh):
+            _mesh = _a
+            break
+    if _mesh is None:
+        _a = _u.EditorAssetLibrary.load_asset("%s/%s" % (DEST, NAME))
+        if isinstance(_a, _u.StaticMesh):
+            _mesh = _a
+    if _mesh is None:
+        raise RuntimeError("no StaticMesh landed from the import")
+
+    _out["mesh_path"] = _mesh.get_path_name().split(".")[0]
+
+    # ⛔ SAVE THE MESH AND EVERYTHING THE IMPORT CREATED WITH IT.
+    # `save` is False on the task above, so without this the mesh lives ONLY
+    # IN THE EDITOR. Measured 2026-08-30: it survived a wiring read, a scale
+    # measurement, a full material build and a level save, and then vanished
+    # on restart -- the C0 stage came back an EMPTY PLANE, because a saved
+    # level referencing an unsaved mesh is a level referencing nothing.
+    #
+    # does_asset_exist() is TRUE for an in-memory-only asset, so it cannot
+    # detect this. Saving the whole DIRECTORY catches the import's byproducts
+    # (materials, textures) as well as the mesh itself.
+    _u.EditorAssetLibrary.save_directory(DEST, recursive=True,
+                                         only_if_is_dirty=False)
+    _out["saved_directory"] = DEST
+
+    # ---- geometry: size, pivot, triangles -----------------------------
+    _b = _mesh.get_bounds()
+    _ext = _b.box_extent
+    _org = _b.origin
+    _out["size_cm"] = [round(_ext.x * 2, 2), round(_ext.y * 2, 2),
+                       round(_ext.z * 2, 2)]
+    _out["bounds_origin_cm"] = [round(_org.x, 2), round(_org.y, 2),
+                                round(_org.z, 2)]
+    _out["pivot_base_error_cm"] = round(float(_org.z - _ext.z), 2)
+    try:
+        _out["tris_lod0"] = _mesh.get_num_triangles(0)
+        _out["verts_lod0"] = _mesh.get_num_vertices(0)
+        _out["lods"] = _mesh.get_num_lods()
+    except Exception as _e:
+        _out["tri_read_error"] = str(_e)[:120]
+    try:
+        _out["uv_channels"] = _mesh.get_num_uv_channels(0)
+    except Exception:
+        _out["uv_channels"] = None
+
+    # ---- slot -> material -> texture wiring ---------------------------
+    _slots = []
+    for _i, _s in enumerate(_mesh.static_materials):
+        _row = {"index": _i,
+                "slot_name": str(_s.material_slot_name),
+                "material": None, "textures": []}
+        _mi = _s.material_interface
+        if _mi is not None:
+            _row["material"] = _mi.get_path_name().split(".")[0]
+            try:
+                _texs = _u.MaterialEditingLibrary.get_material_used_textures(_mi)
+                _row["textures"] = sorted(
+                    {t.get_path_name().split(".")[-1] for t in _texs if t})
+            except Exception as _e:
+                _row["texture_read_error"] = str(_e)[:100]
+        _slots.append(_row)
+    _out["slots"] = _slots
+    _out["slot_count"] = len(_slots)
+
+    _out["dirty_packages"] = len(
+        _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:500]
+
+print("__LL__" + _json.dumps(_out, default=str))

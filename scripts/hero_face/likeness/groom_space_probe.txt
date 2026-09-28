@@ -1,0 +1,85 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY apart from swapping grooms on a THROWAWAY probe actor.
+#
+# THE QUESTION: what SPACE is a groom's strand data supposed to be in?
+#
+# Ours is authored in Blender on the exported Face mesh, whose local Z runs
+# 140.9 - 178.4 cm, so our strands sit at Z 158 - 182 in groom space. If the
+# vendor grooms -- which render correctly on the hero's own component -- sit
+# somewhere else entirely, then our groom is authored in the wrong space and
+# every downstream fix has been treating a symptom.
+#
+# Measured by putting each groom on the SAME unbound probe component at a
+# known identity transform and reading the component's world bounds, so the
+# only thing that varies between rows is the asset.
+
+_out = {"ok": False, "error": None, "grooms": {}, "listed": []}
+try:
+    _ear = _u.EditorAssetLibrary
+    # Names come from the asset registry, not from convention: this project
+    # has had four separate defects from a guessed asset name.
+    for _d in ("/Game/Characters/AlpineHero/Grooms",
+               "/Game/Hero/Grooms/SC_Hairstyle_Male_11"):
+        try:
+            for _a in _ear.list_assets(_d, recursive=False, include_folder=False):
+                _out["listed"].append(_a)
+        except Exception as _e:
+            _out["listed"].append("UNREADABLE %s: %s" % (_d, str(_e)[:60]))
+
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _probe = None
+    for _a in list(_eas.get_all_level_actors()):
+        if _a.get_actor_label() == "UnboundGroomProbe":
+            _probe = _a
+            break
+    if _probe is None:
+        raise RuntimeError("no UnboundGroomProbe -- run unbound_groom_control "
+                           "MODE=on first")
+    _pc = _probe.get_component_by_class(_u.GroomComponent)
+    _base = _probe.get_actor_location()
+    _out["probe_actor_loc"] = [_base.x, _base.y, _base.z]
+
+    _targets = [_p for _p in _out["listed"]
+                if isinstance(_p, str) and (
+                    "GL_iter" in _p or "SC_Hairstyle" in _p)
+                and "Binding" not in _p and "BND_" not in _p
+                and not _p.endswith("_Binding")]
+
+    for _p in _targets:
+        _row = {}
+        try:
+            _g = _ear.load_asset(_p)
+            if _g is None or not isinstance(_g, _u.GroomAsset):
+                continue
+            _pc.set_editor_property("binding_asset", None)
+            _pc.set_editor_property("groom_asset", _g)
+            _rb = _pc.get_editor_property("groom_asset")
+            if _rb is None or _rb.get_path_name() != _g.get_path_name():
+                _row["error"] = "groom did not take; row is void"
+                _out["grooms"][_p] = _row
+                continue
+            _o, _e2, _r = _u.SystemLibrary.get_component_bounds(_pc)
+            # Relative to the actor, so the numbers are the groom's own space.
+            _row["local_centre_z"] = round(_o.z - _base.z, 2)
+            _row["local_z_min"] = round(_o.z - _base.z - _e2.z, 2)
+            _row["local_z_max"] = round(_o.z - _base.z + _e2.z, 2)
+            _row["extent"] = [round(_e2.x, 2), round(_e2.y, 2), round(_e2.z, 2)]
+            try:
+                _gi = _g.get_editor_property("hair_groups_info")[0]
+                _row["num_curves"] = int(_gi.get_editor_property("num_curves"))
+                _row["max_curve_length"] = round(
+                    float(_gi.get_editor_property("max_curve_length")), 3)
+            except Exception:
+                pass
+        except Exception as _e:
+            _row["error"] = str(_e)[:150]
+        _out["grooms"][_p] = _row
+
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:600]
+
+print("__LL__" + _json.dumps(_out, default=str))

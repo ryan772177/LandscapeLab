@@ -1,0 +1,52 @@
+{
+  "biome_id": "tree_scratch_pn",
+  "landscape": {
+    "level_path": "/Game/Scratch/TreeQuadPN",
+    "location_cm": [0.0, 0.0, 0.0],
+    "z_scale_cm": 5000.0,
+    "_note": "level_path is declared so apply_lighting.py's LEVEL GATE names THIS level. The gate exists because lighting was once written to the wrong world; it is satisfied here, not bypassed.",
+    "_geometry_note": "THERE IS NO LANDSCAPE HERE - the ground is a 300 m /Engine/BasicShapes/Plane at z=0. location_cm and z_scale_cm are read by apply_lighting.py:511-513 for one purpose only, parking the lighting actors somewhere findable in the viewport, and its own comment records that the value 'is not sampled by anything'. 5000 cm gives a 50 m span over trees measuring up to 16.95 m, so the sun parks at 37.5 m. These are NOT terrain geometry and nothing should read them as such."
+  },
+  "lighting_ref": "recipes/alpine_8k.json",
+  "_lighting_note": "The R13 lighting VALUES are declared exactly once, in alpine_8k.json, and borrowed. Copying them here would be the duplicated-physical-description defect (NN24). This recipe declares only what genuinely differs: its own level.",
+  "_comment": "SCRATCH LOOK-TEST SCENE for PN_interactiveSpruceForest (D2 intake). A flat plane and a size-spread of the pack's trees. It exists to answer two questions no property read can: does the wind ANIMATE without PN_GlobalUpdater (which would break every future frame A/B against this project's 0.00298 noise floor), and does the canopy read as a forest. It is NOT a biome recipe and declares no lighting of its own -- apply_lighting.py is run against recipes/alpine_8k.json so the R13 block stays declared in exactly one place (NN24). Delete the level freely; nothing references it.",
+  "capture": {
+    "output_dir": "captures/tree_scratch_pn",
+    "resolution": [1920, 1080],
+    "_cameras_note": "Two stations, both looking down +X (yaw 0) at trees standing on the x=0 line. rotation_deg is [pitch, yaw, roll], matching every camera in alpine_8k.json. `canopy_close` is the WIND instrument: wind displaces needles and branch tips, so a tight canopy framing is where an animating material shows up furthest above the 0.00298 noise floor. A wide station would dilute the same motion across mostly-empty sky and ground, which is the misleading-denominator trap (NN22).",
+    "cameras": [
+      {
+        "name": "spread_wide",
+        "_what": "Three trees across the size range at 35 m: small_06 (6.35 m), full_01 (10.52 m), half_01 (16.72 m). Judges whether the pack reads as a forest rather than as scrub.",
+        "location_cm": [-3500.0, 3200.0, 1200.0],
+        "rotation_deg": [-3.0, 0.0, 0.0],
+        "fov_deg": 60.0
+      },
+      {
+        "name": "canopy_close",
+        "_what": "spruce_half_01's canopy at 12 m, looking up. The wind A/B station.",
+        "location_cm": [-1200.0, 4800.0, 900.0],
+        "rotation_deg": [10.0, 0.0, 0.0],
+        "fov_deg": 50.0
+      }
+    ]
+  },
+  "scratch": {
+    "level": "/Game/Scratch/TreeQuadPN",
+    "ground": {
+      "mesh": "/Engine/BasicShapes/Plane",
+      "scale": 300.0,
+      "_note": "Plane is 100x100 cm, so scale 300 gives a 300 m square."
+    },
+    "spacing_cm": 1600.0,
+    "_spacing_note": "Tallest measured 16.95 m (spruce_half_01_low). 16 m spacing keeps crowns clear so each silhouette is judged alone. Wider than the PVE scratch scene's 14 m because these trees are taller.",
+    "_trees_note": "A size spread across the pack rather than every mesh: one sapling, one mid, one full and two of the tallest half forms. All 21 were MEASURED (Free/_measured/pn_spruce_forest.json); this scene is for the questions that need pixels. spruce_half_03 is included because it carries the pack's worst pivot offset, 0.293 m.",
+    "trees": [
+      "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_03",
+      "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_06",
+      "/Game/PN_interactiveSpruceForest/Meshes/full/high/spruce_full_01",
+      "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+      "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_03"
+    ]
+  }
+}

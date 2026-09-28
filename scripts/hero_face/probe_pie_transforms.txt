@@ -1,0 +1,103 @@
+# probe_pie_transforms — where is the hero's mesh, relative to his capsule?
+#
+# walk_character proves the pawn spawns, binds 3 of 3 actions and walks
+# 28.6 m. Ryan still sees no hero. So the character is not broken; something
+# about how the mesh SITS is.
+#
+# The MetaHuman assembled meshes replaced meshes authored for a different
+# rig. A character's mesh is offset from its capsule by a fixed relative
+# transform (classically -88 cm Z and -90 deg yaw for the UE mannequin). If
+# the new mesh's origin convention differs, it can be assigned, visible,
+# correctly located by world_location and still be somewhere the camera
+# never looks -- or wrapped around the camera.
+#
+# So this reports the RELATIVE transform, the world SCALE and the rendered
+# BOUNDS of every mesh, plus the capsule and the camera boom. Bounds is the
+# one that discriminates: a mesh with a 10 m radius is not a person.
+#
+# Run while PIE is active.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "in_play": None, "pawn": None, "capsule": None,
+        "boom": None, "meshes": []}
+try:
+    _les = _unreal.get_editor_subsystem(_unreal.LevelEditorSubsystem)
+    _out["in_play"] = bool(_les.is_in_play_in_editor())
+    _world = _unreal.EditorLevelLibrary.get_game_world()
+    _p = _unreal.GameplayStatics.get_player_pawn(_world, 0)
+    if _p is None:
+        raise RuntimeError("no player pawn -- is PIE running?")
+    _l = _p.get_actor_location()
+    _out["pawn"] = {"name": _p.get_name(),
+                    "loc": [round(float(_l.x), 1), round(float(_l.y), 1),
+                            round(float(_l.z), 1)]}
+
+    for _c in _p.get_components_by_class(_unreal.CapsuleComponent):
+        _out["capsule"] = {
+            "name": _c.get_name(),
+            "radius": round(float(_c.get_unscaled_capsule_radius()), 2),
+            "half_height": round(float(_c.get_unscaled_capsule_half_height()), 2)}
+        break
+    for _c in _p.get_components_by_class(_unreal.SpringArmComponent):
+        _out["boom"] = {
+            "name": _c.get_name(),
+            "length": round(float(_c.get_editor_property("target_arm_length")), 1)}
+        break
+
+    for _c in _p.get_components_by_class(_unreal.SkeletalMeshComponent):
+        _rec = {"component": _c.get_name()}
+        try:
+            _sk = _c.get_skeletal_mesh_asset()
+            _rec["mesh"] = None if _sk is None else _sk.get_name()
+        except Exception as _e:
+            _rec["mesh"] = "UNREADABLE"
+        # REFLECTED PROPERTIES, not guessed methods. get_relative_location
+        # does not exist on SkeletalMeshComponent, and because the accessor
+        # was evaluated while BUILDING the loop's tuple the AttributeError
+        # fired outside the try and killed the whole mesh loop -- so the
+        # first run of this probe reported "meshes": [] and looked like the
+        # pawn had none.
+        for _k, _prop in (("rel_loc", "relative_location"),
+                          ("rel_scale", "relative_scale3d")):
+            try:
+                _v = _c.get_editor_property(_prop)
+                _rec[_k] = [round(float(_v.x), 2), round(float(_v.y), 2),
+                            round(float(_v.z), 2)]
+            except Exception as _e:
+                _rec[_k] = "UNREADABLE: " + str(_e)[:70]
+        try:
+            _r = _c.get_editor_property("relative_rotation")
+            _rec["rel_rot_pyr"] = [round(float(_r.pitch), 1),
+                                   round(float(_r.yaw), 1),
+                                   round(float(_r.roll), 1)]
+        except Exception as _e:
+            _rec["rel_rot_pyr"] = "UNREADABLE: " + str(_e)[:70]
+        try:
+            _v = _c.get_world_location()
+            _rec["world_loc"] = [round(float(_v.x), 1), round(float(_v.y), 1),
+                                 round(float(_v.z), 1)]
+        except Exception as _e:
+            _rec["world_loc"] = "UNREADABLE: " + str(_e)[:70]
+        # THE DISCRIMINATING NUMBER: how big is it, really. A person is
+        # about 180 cm; anything wildly off explains an invisible hero.
+        try:
+            _bo, _be = _c.get_local_bounds()
+            _rec["local_bounds_extent"] = [round(float(_be.x), 1),
+                                           round(float(_be.y), 1),
+                                           round(float(_be.z), 1)]
+        except Exception as _e:
+            _rec["local_bounds_extent"] = "UNREADABLE: " + str(_e)[:70]
+        try:
+            _rec["visible"] = bool(_c.is_visible())
+            _rec["hidden_in_game"] = bool(
+                _c.get_editor_property("hidden_in_game"))
+            _rec["owner_no_see"] = bool(_c.get_editor_property("owner_no_see"))
+            _rec["only_owner_see"] = bool(
+                _c.get_editor_property("only_owner_see"))
+        except Exception as _e:
+            _out.setdefault("unreadable", []).append(str(_e)[:90])
+        _out["meshes"].append(_rec)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

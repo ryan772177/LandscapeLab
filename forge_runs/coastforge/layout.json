@@ -1,0 +1,168 @@
+{
+ "brief": {
+  "terrain_entities": [
+   {
+    "id": "sea_shelf",
+    "read": "open water filling the west"
+   },
+   {
+    "id": "coast_ridge",
+    "read": "cliff wall rising from the shore, running north-south"
+   },
+   {
+    "id": "harbor_flat",
+    "read": "level ground at the shore where the harbor sits"
+   },
+   {
+    "id": "inland_hills",
+    "read": "rolling high ground behind the cliffs"
+   }
+  ],
+  "lighting_geometry": {
+   "sun_elevation_deg": 22.0,
+   "sun_azimuth_deg": 250.0,
+   "fog_height_datum_m": 10.0,
+   "fog_half_height_m": 80.0,
+   "sky_intensity": 1.0
+  },
+  "acceptance": [
+   {
+    "id": "sea_floor",
+    "kind": "flat_site",
+    "placement": "sea_carve",
+    "at_m": [
+     -1300.0,
+     0.0
+    ],
+    "box_m": 500.0,
+    "elev_m": [
+     0.0,
+     6.0
+    ],
+    "slope_mean_deg_max": 2.0
+   },
+   {
+    "id": "harbor_site",
+    "kind": "flat_site",
+    "placement": "harbor_pad",
+    "at_m": [
+     -900.0,
+     250.0
+    ],
+    "box_m": 180.0,
+    "elev_m": [
+     20.0,
+     40.0
+    ],
+    "slope_mean_deg_max": 6.0
+   },
+   {
+    "id": "ridge_peaks",
+    "kind": "peak",
+    "placement": "coast_ridge",
+    "at_m": [
+     600.0,
+     0.0
+    ],
+    "box_m": 700.0,
+    "max_elev_m": [
+     280.0,
+     700.0
+    ]
+   }
+  ],
+  "render_camera": {
+   "at_m": [
+    -1100.0,
+    500.0
+   ],
+   "height_above_ground_m": 90.0,
+   "pitch_deg": -8.0,
+   "yaw_deg": 15.0,
+   "fov": 70.0
+  },
+  "water": {
+   "kind": "sea",
+   "label": "WaterPlane_coastforge",
+   "centre_cm": [
+    -130000.0,
+    0.0
+   ],
+   "level_cm": 400.0,
+   "scale_xy": [
+    2200.0,
+    2200.0
+   ],
+   "color_linear": [
+    0.012,
+    0.07,
+    0.085
+   ],
+   "roughness": 0.06,
+   "opacity": 0.75
+  },
+  "lighting_measured": {
+   "_source": "analyse_concept.measure_for_brief band 0.60-0.85",
+   "sunlit_rb_split": -0.121,
+   "minluma_rise": 0.153,
+   "sunlit_rgb": [
+    0.303,
+    0.441,
+    0.425
+   ]
+  },
+  "source_image": "Free/gemini_v1/concept_coast.jpg"
+ },
+ "placements": [
+  {
+   "id": "coast_ridge",
+   "stamp_hash": "94f4ba59f041b06181acd1d6ff9931b0956f83d1ce36626cdf9f55b11d936bb6",
+   "centre_m": [
+    600.0,
+    0.0
+   ],
+   "size_m": 2000.0,
+   "rotation_deg": 90.0,
+   "blend": "ADD",
+   "amplitude_m": 420.0
+  },
+  {
+   "id": "inland_hills",
+   "stamp_hash": "98990c4bbe48f0dda39ee143001f9931698dc881f8f0f81266c77e07c22dca94",
+   "centre_m": [
+    1500.0,
+    400.0
+   ],
+   "size_m": 1800.0,
+   "rotation_deg": 0.0,
+   "blend": "ADD",
+   "amplitude_m": 200.0
+  },
+  {
+   "id": "sea_carve",
+   "stamp_hash": "8aa06e88d60be04b46d47d85b66a95b43b5c5cd555dfb62e016e78f16acff3ee",
+   "centre_m": [
+    -1300.0,
+    0.0
+   ],
+   "size_m": 2600.0,
+   "rotation_deg": 0.0,
+   "blend": "MIN",
+   "amplitude_m": 12.0,
+   "anchor_m": 2.0
+  },
+  {
+   "id": "harbor_pad",
+   "stamp_hash": "c337679533ea2000060ef0d3b4f728414e37f4c61f969fbf8eda5d544cfb7d42",
+   "centre_m": [
+    -900.0,
+    250.0
+   ],
+   "size_m": 450.0,
+   "rotation_deg": 0.0,
+   "blend": "MAX",
+   "amplitude_m": 10.0,
+   "anchor_m": 0.0
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# =====================================================================
+# !!!! PARTLY SUPERSEDED 2026-08-27 -- THE `reachable` COLUMN UNDER-REPORTS
+# =====================================================================
+# Each cell's `reachable` comes from ONE get_path_length from the plaza, so
+# it inherits the pathfinder's SEARCH BUDGET: this grid showed 421 of 925
+# points reachable and 498 as "islands", and the islands were not islands.
+#
+# For reachability use scripts/city_reachable_lattice_payload.txt, which does
+# a grid BFS -- every query between ADJACENT cells, so no query approaches
+# the budget. On the same class of ground it finds 1261 of 1431 cells
+# reachable across both nav volumes.
+#
+# STILL VALID AND STILL USEFUL: the `projects` column and `nav_dz`. Those are
+# what showed the navmesh EXISTS out there and sits at the same offset from
+# the ground on both sides (p50 12.4 vs 13.4 cm) -- the evidence that the
+# barrier was never terrain. Keep using it for that.
+# =====================================================================
+
+# A 2-D PICTURE OF THE NAVMESH over a box, not a ray through it.
+#
+# WHY. The offline heightmap model says the ground north-west of the town is
+# 89.6% walkable and already connected to the plaza; the built navmesh says the
+# player stops at ~380 m. Collision has been checked and AGREES with the
+# heightmap to p90 0.039 m, so the surface is not the disagreement. Something
+# the navmesh does -- agent radius erosion, region merging, the bounds volume,
+# foliage obstacles -- is carving ground the gradient model cannot see.
+#
+# A RAY CANNOT ANSWER THIS. It reports where one line stops and says nothing
+# about the SHAPE of the thing that stopped it, so it cannot tell a wall from a
+# gap the agent must walk around. This samples a grid and reports, per point:
+#
+#     ground      the collision surface (line trace)
+#     projects    is there a navmesh polygon underfoot
+#     reachable   does a PATH exist from the plaza
+#
+# projects-but-not-reachable is a DISCONNECTED island; not-projects is ABSENT
+# navmesh. They have different fixes and only both fields together separate
+# them.
+#
+# WRITES A FILE. A grid of any useful size will not fit in the reply channel.
+
+CX, CY = -210800.0, 278800.0
+BEARING_DEG = __BEARING_DEG__
+FROM_M = __FROM_M__
+TO_M = __TO_M__
+HALF_W_M = __HALF_W_M__
+STEP_M = __STEP_M__
+OUT = r"__OUT__"
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, _u.InstancedFoliageActor)]
+    _E = _u.Vector(500.0, 500.0, 500.0)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _nav = [a for a in _eas.get_all_level_actors()
+            if a.get_class().get_name() == "RecastNavMesh"]
+    _out["agent_max_slope"] = (float(_nav[0].get_editor_property(
+        "agent_max_slope")) if _nav else None)
+    _chunks = len([a for a in _eas.get_all_level_actors()
+                   if "NavigationDataChunkActor" in a.get_class().get_name()])
+    _out["nav_chunk_actors"] = _chunks
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y, z):
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, z), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    _gz = _ground(CX, CY)
+    _start = _proj(CX, CY, _gz)
+    if _start is None:
+        raise RuntimeError("the plaza anchor does not project -- COULD NOT "
+                           "LOOK, not 'nothing is reachable'")
+
+    _th = _math.radians(BEARING_DEG)
+    _fwd = (_math.cos(_th), _math.sin(_th))
+    _lat = (-_math.sin(_th), _math.cos(_th))
+
+    _rows = []
+    _nd = int((TO_M - FROM_M) / STEP_M) + 1
+    _nw = int((2.0 * HALF_W_M) / STEP_M) + 1
+    for _a in range(_nd):
+        _d = FROM_M + _a * STEP_M
+        for _b in range(_nw):
+            _s = -HALF_W_M + _b * STEP_M
+            _x = CX + (_d * _fwd[0] + _s * _lat[0]) * 100.0
+            _y = CY + (_d * _fwd[1] + _s * _lat[1]) * 100.0
+            _g = _ground(_x, _y)
+            if _g is None:
+                _rows.append([round(_d, 1), round(_s, 1), None, False, False,
+                              None])
+                continue
+            _p = _proj(_x, _y, _g)
+            if _p is None:
+                _rows.append([round(_d, 1), round(_s, 1), round(_g / 100.0, 2),
+                              False, False, None])
+                continue
+            _reach = False
+            try:
+                _res, _ln = _u.NavigationSystemV1.get_path_length(
+                    _w, _start, _p, None, None)
+                _reach = bool(_res == _SUCCESS)
+            except Exception:
+                _reach = False
+            _rows.append([round(_d, 1), round(_s, 1), round(_g / 100.0, 2),
+                          True, _reach, round(_p.z - _g, 1)])
+
+    _np_ = sum(1 for r in _rows if r[3])
+    _nr = sum(1 for r in _rows if r[4])
+    _out["counts"] = {"total": len(_rows), "projects": _np_,
+                      "reachable": _nr,
+                      "projects_not_reachable": _np_ - _nr,
+                      "no_projection": len(_rows) - _np_}
+    _out["grid"] = {"bearing_deg": BEARING_DEG, "from_m": FROM_M,
+                    "to_m": TO_M, "half_width_m": HALF_W_M,
+                    "step_m": STEP_M, "n_along": _nd, "n_across": _nw}
+
+    if not _os.path.isabs(OUT):
+        raise RuntimeError("OUT must be absolute")
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump({"_what": "per-point ground / projects / reachable over a "
+                             "box straddling one bearing, against the BUILT "
+                             "navmesh",
+                    "_columns": ["along_m", "across_m", "ground_m",
+                                 "projects", "reachable", "nav_dz_cm"],
+                    "agent_max_slope": _out["agent_max_slope"],
+                    "nav_chunk_actors": _chunks,
+                    "grid": _out["grid"], "rows": _rows}, _fh)
+    _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

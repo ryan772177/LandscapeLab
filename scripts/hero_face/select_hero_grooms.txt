@@ -1,0 +1,77 @@
+# select_hero_grooms — SELECT the added grooms on the hero's instance.
+#
+# apply_hero_grooms added the wardrobe items to the palette, which makes them
+# AVAILABLE. An item that is available is not an item that is worn: the
+# instance has to select it per slot. That distinction is exactly the kind
+# that lets a tool report success over a hero who is still bald.
+#
+# Route: collection.default_instance.set_single_slot_selection(slot, key),
+# with the key recovered from get_item_keys_for_slot rather than carried
+# across runs. Then on_edit_preview_collection to propagate, then save.
+#
+# Does not spawn the MetaHuman actor -- that path deadlocks the save.
+import json as _json
+import os as _os
+import unreal as _unreal
+
+_GO = __GO__
+_SLOTS = ["Hair", "Beard", "Mustache", "Eyebrows"]
+_FILE = r"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Content/Hero/MHC_AlpineHero.uasset"
+
+_out = {"error": None, "unreadable": [], "go": _GO, "instance": None,
+        "per_slot": {}, "selected": {}, "propagated": None, "saved": None,
+        "size_before": None, "size_after": None}
+try:
+    _out["size_before"] = _os.path.getsize(_FILE)
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+    _col = _ss.get_preview_collection(_ch)
+    if _col is None:
+        raise RuntimeError("get_preview_collection returned None")
+
+    _inst = _col.get_editor_property("default_instance")
+    _out["instance"] = None if _inst is None else _inst.get_class().get_name()
+    if _inst is None:
+        raise RuntimeError("collection has no default_instance")
+
+    _chosen = {}
+    for _slot in _SLOTS:
+        _keys = _col.get_item_keys_for_slot(_slot)
+        _rec = {"count": len(_keys), "display": []}
+        for _k in _keys:
+            try:
+                _rec["display"].append(str(_col.get_item_display_name(_k)))
+            except Exception as _e:
+                _rec["display"].append("<unnamed>")
+        _out["per_slot"][_slot] = _rec
+        # One key per slot is the expected case here: this palette had no
+        # grooms before. If there are several, take the LAST added rather
+        # than guessing by name -- and say so in the record.
+        if _keys:
+            _chosen[_slot] = _keys[len(_keys) - 1]
+
+    if not _GO:
+        _out["note"] = "probe only -- nothing selected, nothing saved"
+    else:
+        for _slot, _key in _chosen.items():
+            try:
+                _inst.set_single_slot_selection(_slot, _key)
+                _out["selected"][_slot] = True
+            except Exception as _e:
+                _out["unreadable"].append("select " + _slot + ": " + str(_e))
+                _out["selected"][_slot] = False
+        try:
+            _ss.on_edit_preview_collection(_ch)
+            _out["propagated"] = True
+        except Exception as _e:
+            _out["unreadable"].append("on_edit_preview_collection: " + str(_e))
+            _out["propagated"] = False
+        _out["saved"] = bool(
+            _unreal.EditorAssetLibrary.save_asset("/Game/Hero/MHC_AlpineHero",
+                                                  False))
+        _out["size_after"] = _os.path.getsize(_FILE)
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

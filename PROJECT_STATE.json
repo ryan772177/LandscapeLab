@@ -1,0 +1,395 @@
+{
+  "cvars": {
+    "foliage.DensityScale": 1.0,
+    "grass.CullDistanceScale": 1.0,
+    "grass.DensityScale": 1.0,
+    "r.DynamicGlobalIlluminationMethod": 0.0,
+    "r.Nanite.MaxPixelsPerEdge": 4.0,
+    "r.ReflectionMethod": 0.0,
+    "r.ScreenPercentage": 70.0,
+    "r.ShaderPipelineCache.Enabled": 1.0,
+    "r.ViewDistanceScale": 1.0,
+    "sg.AntiAliasingQuality": 1.0,
+    "sg.EffectsQuality": 1.0,
+    "sg.FoliageQuality": 1.0,
+    "sg.GlobalIlluminationQuality": 0.0,
+    "sg.PostProcessQuality": 1.0,
+    "sg.ReflectionQuality": 0.0,
+    "sg.ShadingQuality": 1.0,
+    "sg.ShadowQuality": 1.0,
+    "sg.TextureQuality": 1.0,
+    "sg.ViewDistanceQuality": 1.0,
+    "t.MaxFPS": 0.0
+  },
+  "engine": {
+    "project_dir": "../../../../../../Users/ryanb/UE5LandscapePipeline/LandscapeLab/",
+    "project_file": "../../../../../../Users/ryanb/UE5LandscapePipeline/LandscapeLab/LandscapeLab.uproject",
+    "version": "5.8.0-55116800+++UE5+Release-5.8"
+  },
+  "foliage_instances": {
+    "actors": 1328,
+    "by_mesh": {
+      "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001.Medium_Boulder_001": {
+        "components": 504,
+        "cull_end": 14000,
+        "cull_start": 10500,
+        "instances": 759
+      },
+      "/Game/Meshes/fir_tree_01_c_LOD0.fir_tree_01_c_LOD0": {
+        "components": 1044,
+        "cull_end": 73000,
+        "cull_start": 54750,
+        "instances": 157554
+      }
+    }
+  },
+  "foliage_types": {
+    "/Game/Foliage/FT_Conifer": {
+      "affect_dynamic_indirect_lighting": true,
+      "align_max_angle": 0.0,
+      "align_to_normal": true,
+      "cast_shadow": true,
+      "collision_with_world": false,
+      "cull_distance": {
+        "max": 73000,
+        "min": 54750
+      },
+      "density": 100.0,
+      "enable_density_scaling": false,
+      "ground_slope_angle": {
+        "max": 45.0,
+        "min": 0.0
+      },
+      "height": {
+        "max": 262144.0,
+        "min": -262144.0
+      },
+      "mesh": "/Game/Meshes/fir_tree_01_c_LOD0.fir_tree_01_c_LOD0",
+      "mobility": "<ComponentMobility.STATIC: 0>",
+      "radius": 0.0,
+      "random_pitch_angle": 0.0,
+      "random_yaw": true,
+      "scale_x": {
+        "max": 1.0,
+        "min": 1.0
+      },
+      "scaling": "<FoliageScaling.UNIFORM: 0>"
+    }
+  },
+  "grass_types": {
+    "/Game/Foliage/GT_alpine_Meadow": {
+      "enable_density_scaling": false,
+      "varieties": [
+        {
+          "align_to_surface": true,
+          "cast_dynamic_shadow": false,
+          "end_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0BF1D0) {default: 5000}>",
+          "grass_density": "<Struct 'PerPlatformFloat' (0x000002187A0BF018) {default: 66.000000}>",
+          "mesh": "/Game/Meshes/grass_medium_01_tiny_a_LOD0.grass_medium_01_tiny_a_LOD0",
+          "random_rotation": true,
+          "scale_x": {
+            "max": 2.4000000953674316,
+            "min": 1.2999999523162842
+          },
+          "start_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0BF0F8) {default: 3750}>"
+        },
+        {
+          "align_to_surface": true,
+          "cast_dynamic_shadow": false,
+          "end_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0B8BD0) {default: 5000}>",
+          "grass_density": "<Struct 'PerPlatformFloat' (0x000002187A0B8A18) {default: 30.000000}>",
+          "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0.grass_medium_01_tall_a_LOD0",
+          "random_rotation": true,
+          "scale_x": {
+            "max": 1.5,
+            "min": 0.8999999761581421
+          },
+          "start_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0B8AF8) {default: 3750}>"
+        },
+        {
+          "align_to_surface": true,
+          "cast_dynamic_shadow": false,
+          "end_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0BA9D0) {default: 5000}>",
+          "grass_density": "<Struct 'PerPlatformFloat' (0x000002187A0BA818) {default: 14.400000}>",
+          "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0.grass_medium_01_small_a_LOD0",
+          "random_rotation": true,
+          "scale_x": {
+            "max": 1.7000000476837158,
+            "min": 1.0
+          },
+          "start_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0BA8F8) {default: 3750}>"
+        },
+        {
+          "align_to_surface": true,
+          "cast_dynamic_shadow": false,
+          "end_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0B88D0) {default: 5000}>",
+          "grass_density": "<Struct 'PerPlatformFloat' (0x000002187A0B8718) {default: 9.600000}>",
+          "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0.grass_medium_01_mid_b_LOD0",
+          "random_rotation": true,
+          "scale_x": {
+            "max": 1.600000023841858,
+            "min": 0.8999999761581421
+          },
+          "start_cull_distance": "<Struct 'PerPlatformInt' (0x000002187A0B87F8) {default: 3750}>"
+        }
+      ]
+    }
+  },
+  "landscape": {
+    "cast_shadow": true,
+    "label": "Landscape_Alpine",
+    "location_cm": [
+      -403200.0,
+      -403200.0,
+      128000.0
+    ],
+    "lod_distance_factor": {
+      "error": "Exception: Landscape: Failed to find property 'lod_distance_factor' for attribute 'lod_distance_factor' on 'Landscape'"
+    },
+    "material": "/Game/Materials/M_AutoLandscape.M_AutoLandscape",
+    "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+    },
+    "scale": [
+      400.0,
+      400.0,
+      500.0
+    ],
+    "streaming_distance_multiplier": 1.0
+  },
+  "landscape_count": 1,
+  "proxy_count": 256,
+  "scene": {
+    "DirectionalLight": {
+      "atmosphere_sun_light": true,
+      "cast_shadows": true,
+      "count": 1,
+      "intensity": 130000.0,
+      "intensity_units": {
+        "error": "Exception: DirectionalLightComponent: Failed to find property 'intensity_units' for attribute 'intensity_units' on 'DirectionalLightComponent'"
+      },
+      "label": "Lighting_alpine_Sun",
+      "light_color": "<Struct 'Color' (0x00000216F40FF2B8) {b: 255, g: 255, r: 255, a: 255}>",
+      "location_cm": [
+        0.0,
+        0.0,
+        192000.0
+      ],
+      "rotation": {
+        "pitch": -12.0,
+        "roll": -0.0,
+        "yaw": -75.0
+      },
+      "source_type": {
+        "error": "Exception: DirectionalLightComponent: Failed to find property 'source_type' for attribute 'source_type' on 'DirectionalLightComponent'"
+      },
+      "temperature": 7800.0,
+      "use_temperature": true
+    },
+    "ExponentialHeightFog": {
+      "count": 1,
+      "enable_volumetric_fog": true,
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.03431421518325806,
+      "fog_inscattering_luminance": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "fog_max_opacity": 1.0,
+      "label": "Lighting_alpine_Fog",
+      "location_cm": [
+        0.0,
+        0.0,
+        10100.0
+      ],
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      },
+      "start_distance": 150000.0,
+      "volumetric_fog_distance": 6000.0
+    },
+    "SkyAtmosphere": {
+      "count": 1,
+      "label": "Lighting_alpine_SkyAtmo",
+      "location_cm": [
+        0.0,
+        0.0,
+        192000.0
+      ],
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      }
+    },
+    "SkyLight": {
+      "atmosphere_sun_light": {
+        "error": "Exception: SkyLightComponent: Failed to find property 'atmosphere_sun_light' for attribute 'atmosphere_sun_light' on 'SkyLightComponent'"
+      },
+      "cast_shadows": true,
+      "count": 1,
+      "intensity": 1.7999999523162842,
+      "intensity_units": {
+        "error": "Exception: SkyLightComponent: Failed to find property 'intensity_units' for attribute 'intensity_units' on 'SkyLightComponent'"
+      },
+      "label": "Lighting_alpine_SkyLight",
+      "light_color": "<Struct 'Color' (0x0000021786F025B8) {b: 255, g: 231, r: 215, a: 255}>",
+      "location_cm": [
+        0.0,
+        0.0,
+        192000.0
+      ],
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      },
+      "source_type": "<SkyLightSourceType.SLS_CAPTURED_SCENE: 0>",
+      "temperature": {
+        "error": "Exception: SkyLightComponent: Failed to find property 'temperature' for attribute 'temperature' on 'SkyLightComponent'"
+      },
+      "use_temperature": {
+        "error": "Exception: SkyLightComponent: Failed to find property 'use_temperature' for attribute 'use_temperature' on 'SkyLightComponent'"
+      }
+    },
+    "VolumetricCloud": {
+      "count": 1,
+      "label": "VolumetricCloud",
+      "location_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      }
+    }
+  },
+  "static_meshes": {
+    "/Game/Meshes/fir_tree_01_c_LOD0": {
+      "bounds_cm": [
+        315.297,
+        298.3118,
+        726.0291
+      ],
+      "lods": [
+        {
+          "lod": 0,
+          "screen_size": 1.0,
+          "sections": 4,
+          "triangles": 505494
+        },
+        {
+          "lod": 1,
+          "screen_size": 0.5,
+          "sections": 4,
+          "triangles": 126374
+        },
+        {
+          "lod": 2,
+          "screen_size": 0.21,
+          "sections": 4,
+          "triangles": 22293
+        },
+        {
+          "lod": 3,
+          "screen_size": 0.088,
+          "sections": 4,
+          "triangles": 3892
+        }
+      ],
+      "slots": [
+        {
+          "index": 0,
+          "material": "/Game/Meshes/Materials/M_fir_bark.M_fir_bark",
+          "slot": "fir_tree_01_bark"
+        },
+        {
+          "index": 1,
+          "material": "/Game/Meshes/Materials/M_fir_twig.M_fir_twig",
+          "slot": "fir_tree_01_twig"
+        },
+        {
+          "index": 2,
+          "material": "/Game/Meshes/Materials/M_fir_bark.M_fir_bark",
+          "slot": "fir_tree_01_dead_branches"
+        },
+        {
+          "index": 3,
+          "material": "/Game/Meshes/Materials/M_fir_bark.M_fir_bark",
+          "slot": "fir_tree_01_trunk_c"
+        }
+      ]
+    }
+  },
+  "textures": {
+    "/Game/Surfaces/T_Ground037_C": {
+      "compression_settings": "<TextureCompressionSettings.TC_DEFAULT: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "never_stream": false,
+      "size": [
+        4096,
+        4096
+      ],
+      "srgb": true
+    },
+    "/Game/Surfaces/T_Ground037_N": {
+      "compression_settings": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD_NORMAL_MAP: 1>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "never_stream": false,
+      "size": [
+        4096,
+        4096
+      ],
+      "srgb": false
+    },
+    "/Game/Surfaces/T_Ground037_R": {
+      "compression_settings": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "never_stream": false,
+      "size": [
+        4096,
+        4096
+      ],
+      "srgb": false
+    },
+    "/Game/Textures/T_Alpine_Grass": {
+      "compression_settings": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "never_stream": false,
+      "size": [
+        1024,
+        1024
+      ],
+      "srgb": false
+    },
+    "/Game/Textures/T_alpine_weights": {
+      "compression_settings": "<TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP: 5>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "never_stream": false,
+      "size": [
+        2017,
+        2017
+      ],
+      "srgb": false
+    }
+  }
+}

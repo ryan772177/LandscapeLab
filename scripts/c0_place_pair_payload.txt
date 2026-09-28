@@ -1,0 +1,125 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# C0 -- stand the SAME house twice, side by side, materials the only variable.
+#
+# WHY A PAIR AND NOT A BEFORE/AFTER PHOTOGRAPH. Two frames taken minutes apart
+# differ in more than the thing under test: streaming residency, virtual
+# texture warm-up and TAA history all move, and this project has measured its
+# own repeat floor at 11.3% of pixels for an UNCHANGED subject. Two actors in
+# ONE frame share the sun, the exposure, the camera and the frame's history,
+# so the difference between them is the materials and nothing else.
+#
+# BINDING IS BY SLOT NAME, NOT SLOT INDEX -- the operator's ruling. Index
+# order is an FBX import detail; the name is what the wiring read was keyed
+# on. An index-keyed bind would silently shift the whole table if the mesh
+# were ever re-imported.
+#
+# GROUND TRACE IGNORES FOLIAGE, CITY AND PRIOR C0 ACTORS. A trace that
+# excludes only foliage measures the ROOF: 17 streets were traced 12.9 m up
+# onto buildings on 2026-08-27 for exactly that reason.
+
+MESH = "/Game/Scratch/C0House/SM_C0_DonorHouse"
+MI_DIR = "/Game/Scratch/C0House/MI_C0_"
+TAG = "LandscapeLab.C0"
+PIVOT_BASE_ERROR_CM = -39.81      # mesh extends this far BELOW the pivot
+CENTRE = (-210800.0, 278800.0)    # the cleared plaza
+SEP_CM = 2600.0                   # ~2.5x the house's 10.5 m width
+
+SLOT_ROLE = SLOT_ROLE_JSON
+
+_out = {"ok": False, "error": None, "destroyed": 0, "actors": [],
+        "slot_bind": [], "unmapped_slots": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.UnrealEditorSubsystem().get_editor_world()
+    _mesh = _u.EditorAssetLibrary.load_asset(MESH)
+    if _mesh is None:
+        raise RuntimeError("mesh not loaded")
+
+    # ---- idempotent: remove any prior C0 pair -------------------------
+    _prior = []
+    for _a in _eas.get_all_level_actors():
+        if any(str(t) == TAG for t in _a.tags):
+            _prior.append(_a)
+    for _a in _prior:
+        _eas.destroy_actor(_a)
+    _out["destroyed"] = len(_prior)
+
+    # ---- what to ignore when asking where the ground is ---------------
+    _ignore = []
+    for _a in _eas.get_all_level_actors():
+        _cn = _a.get_class().get_name()
+        if ("InstancedFoliageActor" in _cn
+                or any(str(t).startswith("LandscapeLab.City") for t in _a.tags)
+                or any(str(t) == TAG for t in _a.tags)):
+            _ignore.append(_a)
+    _out["ignored_actors"] = len(_ignore)
+
+    def _ground(_x, _y):
+        _s = _u.Vector(_x, _y, 60000.0)
+        _e = _u.Vector(_x, _y, -20000.0)
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _s, _e, _u.TraceTypeQuery.TRACE_TYPE_QUERY1, False,
+            _ignore, _u.DrawDebugTrace.NONE, True,
+            _u.LinearColor.RED, _u.LinearColor.GREEN, 0.0)
+        if not _h:
+            return None
+        return float(_h.to_tuple()[4].z)
+
+    # ---- the two placements ------------------------------------------
+    _mis = {}
+    for _slot, _role in SLOT_ROLE.items():
+        if _role not in _mis:
+            _m = _u.EditorAssetLibrary.load_asset(MI_DIR + _role)
+            if _m is None:
+                raise RuntimeError("missing instance for role " + _role)
+            _mis[_role] = _m
+
+    for _label, _dy, _swap in (("ORIGINAL", -SEP_CM * 0.5, False),
+                               ("SWAPPED", SEP_CM * 0.5, True)):
+        _x, _y = CENTRE[0], CENTRE[1] + _dy
+        _g = _ground(_x, _y)
+        if _g is None:
+            raise RuntimeError("no ground under " + _label)
+        # base sits on the ground: pivot goes UP by however far the mesh
+        # hangs below it.
+        _z = _g - PIVOT_BASE_ERROR_CM
+        _act = _eas.spawn_actor_from_object(
+            _mesh, _u.Vector(_x, _y, _z), _u.Rotator(0.0, 0.0, 0.0))
+        _act.set_actor_label("C0_House_" + _label)
+        _act.tags = [TAG, TAG + "." + _label]
+        _comp = _act.static_mesh_component
+
+        _bound = 0
+        if _swap:
+            for _i, _sm in enumerate(_mesh.static_materials):
+                _sn = str(_sm.material_slot_name)
+                _role = SLOT_ROLE.get(_sn)
+                if _role is None:
+                    _out["unmapped_slots"].append(_sn)
+                    continue
+                _comp.set_material(_i, _mis[_role])
+                # READ BACK off the component, not off the call.
+                _got = _comp.get_material(_i)
+                _gn = _got.get_name() if _got else None
+                _ok = _gn == ("MI_C0_" + _role)
+                _bound += 1 if _ok else 0
+                _out["slot_bind"].append(
+                    {"index": _i, "slot": _sn, "role": _role,
+                     "readback": _gn, "ok": _ok})
+
+        _out["actors"].append({
+            "label": _label, "loc": [_x, _y, round(_z, 2)],
+            "ground_z": round(_g, 2), "swapped": _swap,
+            "slots_bound": _bound})
+
+    _bad = [b for b in _out["slot_bind"] if not b["ok"]]
+    _out["bind_failures"] = len(_bad)
+    _out["ok"] = (not _bad and not _out["unmapped_slots"]
+                  and len(_out["actors"]) == 2)
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

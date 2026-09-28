@@ -1,0 +1,39 @@
+# brief7 L0 rig-hide FIX. The first L0 write set the 3 HeroStage lights'
+# hidden_in_game without marking their packages dirty, so save_current_level
+# skipped them and the flag did not persist (R1 persist lesson: a setter that
+# does not dirty the package is a save no-op). This calls modify(True) FIRST,
+# then set_actor_hidden_in_game(True), then saves and asserts the rig OFPA
+# packages actually went through the dirty set.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+RIG = ["HeroStage_Key", "HeroStage_Fill", "HeroStage_Rim"]
+_out = {"error": None, "applied": {}, "dirty_before_save": [], "saved": {},
+        "post_save_dirty": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+    _rig_actors = [a for a in _all if isinstance(a, _u.DirectionalLight)
+                   and str(a.get_actor_label()) in RIG]
+    if len(_rig_actors) != 3:
+        raise RuntimeError("expected 3 rig lights, found %d" % len(_rig_actors))
+
+    for _a in _rig_actors:
+        _a.modify(True)                       # dirty the OFPA package FIRST
+        _a.set_actor_hidden_in_game(True)
+        _out["applied"][str(_a.get_actor_label())] = bool(
+            _a.get_editor_property("hidden"))
+
+    _out["dirty_before_save"] = [str(p) for p in
+                                 _u.EditorLoadingAndSavingUtils.get_dirty_map_packages()]
+
+    _les = _u.get_editor_subsystem(_u.LevelEditorSubsystem)
+    _out["saved"]["level_call"] = bool(_les.save_current_level())
+    _out["post_save_dirty"] = [str(p) for p in
+                               _u.EditorLoadingAndSavingUtils.get_dirty_map_packages()]
+    _out["saved"]["post_save_dirty_map_count"] = len(_out["post_save_dirty"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL_RIGFIX__" + _json.dumps(_out, default=str))

@@ -1,0 +1,55 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# THE ONE-WRITE TEST: put a PROVEN strands-qualified material into the
+# DiffLocks groom's own slot.
+#
+# The read that motivated it came back ambiguous in an informative way: the
+# DiffLocks groom's `hair_groups_materials` is EMPTY -- and so is the
+# procedural groom's, which DRAWS. So an empty slot is not by itself fatal;
+# UE evidently falls back. The vendor groom is the one that carries real
+# entries (MI_Hair, MI_Hair_Cards, MI_Hair_Helmet), and MI_Hair is the material
+# every working MetaHuman hair on this character shades through.
+#
+# So this does not copy "the working groom's material" -- there is none to copy.
+# It gives the DiffLocks groom the vendor's proven one and asks whether an
+# explicit qualified material makes it draw.
+#
+# WRITES TO AN ASSET, so it targets the SURF copy rather than the original, and
+# it reads the slot back off the asset before reporting success.
+
+GROOM = "/Game/Characters/AlpineHero/Grooms/AlpineHero_DiffLocks_surf"
+MAT = "/MetaHumanCharacter/Materials/MI_Hair"
+
+_out = {"ok": False, "error": None, "groom": GROOM, "material": MAT}
+try:
+    _eal = _u.EditorAssetLibrary
+    _g = _eal.load_asset(GROOM)
+    _m = _eal.load_asset(MAT)
+    if _g is None or _m is None:
+        raise RuntimeError("could not load groom or material")
+
+    _before = _g.get_editor_property("hair_groups_materials")
+    _out["slots_before"] = len(_before)
+
+    _slot = _u.HairGroupsMaterial()
+    _slot.set_editor_property("slot_name", "MI_Hair")
+    _slot.set_editor_property("material", _m)
+    _g.set_editor_property("hair_groups_materials", [_slot])
+
+    _after = _g.get_editor_property("hair_groups_materials")
+    _out["slots_after"] = len(_after)
+    _out["readback"] = [
+        {"slot_name": str(_s.get_editor_property("slot_name")),
+         "material": (lambda _v: None if _v is None else _v.get_path_name())(
+             _s.get_editor_property("material"))}
+        for _s in _after]
+
+    # A WRITE THAT IS NOT SAVED IS A WRITE THE NEXT LOAD DISCARDS.
+    _out["saved"] = bool(_eal.save_asset(GROOM, only_if_is_dirty=False))
+    _out["ok"] = _out["slots_after"] > 0
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

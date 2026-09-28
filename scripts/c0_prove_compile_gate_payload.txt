@@ -1,0 +1,62 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# POSITIVE CONTROL for the compile gate in c0_build_materials.
+#
+# The gate reads recompile_material's returned error list and refuses on a
+# non-empty one. It has only ever seen a clean build, and non-negotiable 2
+# says that is not a tested gate. This builds a DELIBERATELY BROKEN material
+# in scratch -- a linear-data texture bound to a sampler declared COLOR, the
+# exact VerifySamplerType mismatch class -- and requires the same call to
+# report errors.
+#
+# Control first: the SAME graph with the SAME texture and the CORRECT sampler
+# must compile clean. Without that, "it errored" could just mean the scratch
+# material is malformed for some unrelated reason.
+
+SCRATCH = "/Game/Scratch/C0House/_gateproof"
+ROUGH = "/Game/Scratch/C0House/Tex/T_C0_plaster_wall_R"
+
+_out = {"ok": False, "error": None, "cases": []}
+try:
+    _at = _u.AssetToolsHelpers.get_asset_tools()
+    _mel = _u.MaterialEditingLibrary
+    _tex = _u.EditorAssetLibrary.load_asset(ROUGH)
+    if _tex is None:
+        raise RuntimeError("no roughness texture at " + ROUGH)
+
+    for _label, _stype, _expect_errors in (
+            ("control: MASKS sampler on linear data", "SAMPLERTYPE_MASKS",
+             False),
+            ("broken: COLOR sampler on the same linear data",
+             "SAMPLERTYPE_COLOR", True)):
+        _name = "M_GateProof_" + _stype
+        _p = SCRATCH + "/" + _name
+        _m = _u.EditorAssetLibrary.load_asset(_p)
+        if _m is None:
+            _m = _at.create_asset(_name, SCRATCH, _u.Material,
+                                  _u.MaterialFactoryNew())
+        for _e0 in _mel.get_material_expressions(_m):
+            _mel.delete_material_expression(_m, _e0)
+        _s = _mel.create_material_expression(
+            _m, _u.MaterialExpressionTextureSample, -300, 0)
+        _s.set_editor_property("texture", _tex)
+        _s.set_editor_property("sampler_type",
+                               getattr(_u.MaterialSamplerType, _stype))
+        _mel.connect_material_property(_s, "R",
+                                       _u.MaterialProperty.MP_ROUGHNESS)
+        _errs = [str(e) for e in (_mel.recompile_material(_m) or [])]
+        _got = bool(_errs)
+        _out["cases"].append({
+            "case": _label, "sampler": _stype,
+            "expected_errors": _expect_errors, "got_errors": _got,
+            "n": len(_errs), "first": _errs[0][:180] if _errs else None,
+            "as_expected": _got == _expect_errors})
+        _u.EditorAssetLibrary.delete_asset(_p)
+
+    _out["ok"] = all(c["as_expected"] for c in _out["cases"])
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL__" + _json.dumps(_out, default=str))

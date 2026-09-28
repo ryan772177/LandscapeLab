@@ -1,0 +1,33 @@
+# list_dirty — what has the Assemble left unsaved? READ ONLY.
+#
+# Ryan's Assemble reported success and wrote nothing to disk. The log shows
+# why: it built /Game/MetaHumans/Common/... and the packages went to
+# /Temp/Autosaves/, i.e. they exist in memory and are DIRTY.
+#
+# This lists them and saves nothing. An unreadable count is reported as
+# unreadable rather than as zero -- the same rule the quit-path check uses,
+# because "I could not look" is not "nothing is pending".
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "count": None, "packages": None, "hero": None,
+        "metahumans": None}
+try:
+    _dirty = _unreal.EditorLoadingAndSavingUtils.get_dirty_content_packages()
+    if _dirty is None:
+        _out["error"] = "get_dirty_content_packages returned None -- UNREADABLE"
+    else:
+        _names = sorted([str(_p.get_name()) for _p in _dirty])
+        _out["count"] = len(_names)
+        _out["packages"] = _names[:60]
+        _out["hero"] = [_n for _n in _names if "/Game/Hero" in _n]
+        # The interesting ones are whatever is NOT the shared Common library:
+        # that is where an assembled character would land.
+        _out["not_common"] = [_n for _n in _names
+                              if "/Game/MetaHumans/Common/" not in _n][:60]
+        _out["common_count"] = len([_n for _n in _names
+                                    if "/Game/MetaHumans/Common/" in _n])
+        _out["metahumans"] = None
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+print("__LL__" + _json.dumps(_out, default=str))

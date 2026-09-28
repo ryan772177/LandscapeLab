@@ -1,0 +1,279 @@
+import json as _json
+import math as _math
+import os as _os
+import traceback as _tb
+import unreal as _u
+
+# Author the town's REACHABLE REGION as versioned data.
+#
+# Measured against the BUILT navmesh, from the plaza, for the declared agent.
+# This is not a diagnostic: it is the authored answer to "which parts of this
+# town can be reached", in the same spirit as unit 8's ruling that the navigable
+# area is authored, versioned recipe data rather than an emergent accident.
+#
+# =====================================================================
+# !! REWRITTEN 2026-08-26 -- THE FIRST VERSION MEASURED THE QUERY, NOT THE WORLD
+# =====================================================================
+# It asked ONE `get_path_length` from the plaza per row. A path query has a
+# FINITE SEARCH BUDGET and returns FAIL when it exhausts it, which from a single
+# call is indistinguishable from ground you cannot walk to. It reported 653 of
+# 838 streets reachable; a relay through nearby rows recovered 136 of the 185
+# it called unreachable, and the three-leg control settled it:
+#
+#     plaza -> 520 m   FAIL        350 m -> 520 m  SUCCESS      plaza -> 350 m  SUCCESS
+#
+# The walk existed. The single query could not find it. Worse, the wrong answer
+# REPRODUCED perfectly across bearings, sampling intervals and two navmesh
+# builds -- because it was a property of the query.
+#
+# THE FIX IS TRANSITIVE CLOSURE. Reachability over a navmesh is transitive when
+# every leg is a real path, so the reachable set is grown by RELAY: seed with
+# the plaza, then repeatedly re-test the unresolved rows from the NEAREST row
+# already known reachable, until a full pass recovers nothing new. A row is
+# UNREACHABLE only once no member of the reachable set can path to it.
+#
+# ** THE FIXED POINT IS THE POINT. ** A single relay pass is just a longer
+# query; it is iterating to closure that turns "this query failed" into "no
+# reachable row can reach it".
+#
+# CONTROLS, both mandatory and both asserted below:
+#   POSITIVE  rows already reachable must stay reachable through the relay, or
+#             the relay is answering yes to everything.
+#   NEGATIVE  a point 50 km away must never join the set.
+#
+# WRITES A FILE. 838 rows cannot come back through the reply channel.
+
+PLAN = r"__PLAN__"
+OUT = r"__OUT__"
+EXTENT_CM = 500.0
+MAX_ROUNDS = 12
+
+_out = {"ok": False, "error": None}
+try:
+    _u.LandscapeLabTools.load_all_world_partition_regions()
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _actors = _eas.get_all_level_actors()
+
+    # IGNORE FOLIAGE **AND THE CITY'S OWN ACTORS** when tracing ground.
+    #
+    # !! A "ground" trace that does not exclude the things standing on the
+    # ground measures the ROOF. Measured: 17 streets traced 12.9 m above their
+    # planned height because the trace landed on a building over them, and
+    # projecting the navmesh from roof height found no reachable polygon -- so
+    # those 17 read as newly UNREACHABLE and looked like a regression in the
+    # relay method. It was the datum, not the method.
+    #
+    # city_verify_payload carries the same exclusion and says why: without it a
+    # building traces onto its neighbour's roof. Trees are excluded for the
+    # same reason -- they are query-collidable and a trace lands on canopy.
+    _CITY_TAG = "LandscapeLab.City"
+    _ign = []
+    for _a in _actors:
+        if isinstance(_a, _u.InstancedFoliageActor):
+            _ign.append(_a)
+            continue
+        try:
+            if _CITY_TAG in [str(_t) for _t in _a.tags]:
+                _ign.append(_a)
+        except Exception:
+            pass
+    _E = _u.Vector(EXTENT_CM, EXTENT_CM, EXTENT_CM)
+    _SUCCESS = _u.NavigationQueryResult.SUCCESS
+
+    _nav = [a for a in _actors if a.get_class().get_name() == "RecastNavMesh"]
+    if not _nav:
+        raise RuntimeError("no RecastNavMesh in the level -- COULD NOT LOOK")
+    _agent = {
+        "agent_max_slope": float(_nav[0].get_editor_property(
+            "agent_max_slope")),
+        "agent_radius": float(_nav[0].get_editor_property("agent_radius")),
+        "agent_height": float(_nav[0].get_editor_property("agent_height")),
+        "tile_size_uu": float(_nav[0].get_editor_property("tile_size_uu")),
+    }
+    _chunks = len([a for a in _actors
+                   if "NavigationDataChunkActor" in a.get_class().get_name()])
+
+    _ps = [a for a in _actors if a.get_class().get_name() == "PlayerStart"]
+    if len(_ps) != 1:
+        raise RuntimeError("expected exactly 1 PlayerStart, found %d -- UE "
+                           "picks among several unpredictably" % len(_ps))
+    _psl = _ps[0].get_actor_location()
+
+    with open(PLAN, "r", encoding="utf-8") as _fh:
+        _p = _json.load(_fh)
+
+    def _ground(x, y):
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(x, y, 90000.0), _u.Vector(x, y, -10000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+            _u.DrawDebugTrace.NONE, True)
+        return float(_h.to_tuple()[4].z) if _h else None
+
+    def _proj(x, y):
+        _g = _ground(x, y)
+        if _g is None:
+            return None
+        try:
+            _r = _u.NavigationSystemV1.project_point_to_navigation(
+                _w, _u.Vector(x, y, _g), None, None, _E)
+        except Exception:
+            return None
+        if _r is None or (abs(_r.x) < 1.0 and abs(_r.y) < 1.0):
+            return None
+        return _r
+
+    def _pathable(a, b):
+        try:
+            _res, _ln = _u.NavigationSystemV1.get_path_length(
+                _w, a, b, None, None)
+            return bool(_res == _SUCCESS)
+        except Exception:
+            return False
+
+    _anchor = _proj(_psl.x, _psl.y)
+    if _anchor is None:
+        raise RuntimeError("the PlayerStart does not project -- COULD NOT "
+                           "LOOK, not 'nothing is reachable'")
+
+    # ---- build the row list: streets (midpoints) and buildings (doorsteps) --
+    # A building's CENTRE projects into the solid the navmesh is carved around,
+    # so all 303 read unreachable. The doorstep is just outside the footprint.
+    _rows = []
+    for _k, _s in enumerate(_p.get("streets", [])):
+        _l = _s["loc_cm"]
+        _rows.append({"kind": "street", "idx": _k, "loc_cm": [_l[0], _l[1]]})
+    for _k, _b in enumerate(_p.get("buildings", [])):
+        _l = _b["loc_cm"]
+        _sz = _b.get("size_cm", [600.0, 600.0, 600.0])
+        _yaw = _math.radians(float(_b.get("yaw_deg", 0.0)))
+        _off = _sz[1] * 0.5 + 150.0
+        _rows.append({"kind": "building", "idx": _k,
+                      "loc_cm": [_l[0] - _off * _math.sin(_yaw),
+                                 _l[1] + _off * _math.cos(_yaw)]})
+
+    # ---- project every row once ------------------------------------------
+    _proj_pt = []
+    for _r in _rows:
+        _pt = _proj(_r["loc_cm"][0], _r["loc_cm"][1])
+        _r["projects"] = _pt is not None
+        _proj_pt.append(_pt)
+
+    # ---- round 0: direct from the anchor ---------------------------------
+    _reach = [False] * len(_rows)
+    for _i, _pt in enumerate(_proj_pt):
+        if _pt is not None and _pathable(_anchor, _pt):
+            _reach[_i] = True
+    _round_gain = [sum(1 for v in _reach if v)]
+
+    # ---- relay to a FIXED POINT ------------------------------------------
+    _rounds = 0
+    while _rounds < MAX_ROUNDS:
+        _rounds += 1
+        _gained = 0
+        _known = [_i for _i, v in enumerate(_reach) if v]
+        if not _known:
+            break
+        for _i, _pt in enumerate(_proj_pt):
+            if _reach[_i] or _pt is None:
+                continue
+            _x, _y = _rows[_i]["loc_cm"]
+            _best, _bd = None, None
+            for _j in _known:
+                _lx, _ly = _rows[_j]["loc_cm"]
+                _d = (_lx - _x) ** 2 + (_ly - _y) ** 2
+                if _bd is None or _d < _bd:
+                    _bd, _best = _d, _j
+            if _best is None:
+                continue
+            if _pathable(_proj_pt[_best], _pt):
+                _reach[_i] = True
+                _gained += 1
+        _round_gain.append(_gained)
+        if _gained == 0:
+            break
+    _out["rounds"] = _rounds
+    _out["gained_per_round"] = _round_gain
+    _out["converged"] = bool(_round_gain[-1] == 0)
+
+    # ---- CONTROLS ---------------------------------------------------------
+    _pos_fail = 0
+    _direct = [_i for _i, _pt in enumerate(_proj_pt)
+               if _pt is not None and _reach[_i]][:10]
+    for _i in _direct:
+        if not _pathable(_anchor, _proj_pt[_i]) and not any(
+                _pathable(_proj_pt[_j], _proj_pt[_i])
+                for _j in [k for k, v in enumerate(_reach) if v][:5]):
+            _pos_fail += 1
+    _out["control_positive_failures"] = _pos_fail
+
+    _far = _proj(_psl.x + 5000000.0, _psl.y)
+    _out["control_50km_projects"] = _far is not None
+    if _far is not None:
+        _out["control_50km_pathable"] = _pathable(_anchor, _far)
+
+    # ---- report -----------------------------------------------------------
+    def _tally(kind):
+        _idx = [_i for _i, _r in enumerate(_rows) if _r["kind"] == kind]
+        _t = len(_idx)
+        _pr = sum(1 for _i in _idx if _rows[_i]["projects"])
+        _rc = sum(1 for _i in _idx if _reach[_i])
+        return {"total": _t, "reachable": _rc, "unreachable": _t - _rc,
+                "failed_projection": _t - _pr}
+
+    _out["streets"] = _tally("street")
+    _out["buildings"] = _tally("building")
+    _out["agent"] = _agent
+
+    _doc = {
+        "_what": ("The town's reachable region, measured against the BUILT "
+                  "navmesh from the PlayerStart by TRANSITIVE CLOSURE. "
+                  "Authored, versioned data -- not a diagnostic."),
+        "_method": ("Seeded with direct queries from the PlayerStart, then "
+                    "grown by RELAY from the nearest already-reachable row "
+                    "until a full pass recovers nothing. A single query is NOT "
+                    "sufficient: get_path_length has a finite search budget and "
+                    "returns FAIL when it exhausts it, which is not the same as "
+                    "'no path exists'. The first version of this file made that "
+                    "error and understated street reachability by 136 rows."),
+        "_a_reachability_claim_is_true_for_ONE_navmesh_build": (
+            "If the agent, the bounds volumes or the terrain change, this file "
+            "is stale and must be re-measured. It records the agent, the "
+            "resident navmesh chunk count, the PlayerStart and the query "
+            "extent it was measured with; the reachability module enforces the "
+            "agent and (when the caller can supply it) the chunk count."),
+        "_produced_by": "scripts/city_reachable_region_payload.txt",
+        "_recipe": "recipes/city.json",
+        "_bound_to": {
+            "city_plan": _os.path.basename(PLAN),
+            "navmesh_agent": _agent,
+            "nav_chunk_actors_resident": _chunks,
+            "player_start_cm": [_psl.x, _psl.y, _psl.z],
+            "query_extent_cm": EXTENT_CM,
+            "method": "transitive closure by relay",
+            "rounds_to_converge": _rounds,
+            "converged": bool(_round_gain[-1] == 0),
+        },
+        "streets": _out["streets"],
+        "buildings": _out["buildings"],
+        "street_rows": [
+            {"loc_cm": _rows[_i]["loc_cm"], "reachable": _reach[_i],
+             "projects": _rows[_i]["projects"]}
+            for _i in range(len(_rows)) if _rows[_i]["kind"] == "street"],
+        "building_rows": [
+            {"loc_cm": _rows[_i]["loc_cm"], "reachable": _reach[_i],
+             "projects": _rows[_i]["projects"]}
+            for _i in range(len(_rows)) if _rows[_i]["kind"] == "building"],
+    }
+
+    if not _os.path.isabs(OUT):
+        raise RuntimeError("OUT must be absolute")
+    _os.makedirs(_os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as _fh:
+        _json.dump(_doc, _fh, indent=1)
+    _out["out_bytes"] = _os.path.getsize(OUT)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

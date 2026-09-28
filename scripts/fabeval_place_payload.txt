@@ -1,0 +1,131 @@
+import json as _json
+import math as _math
+import traceback as _tb
+import unreal as _u
+
+# Stand the evaluation buildings on real plaza pads, in place of the Cubes.
+#
+# ISOLATION: THESE ACTORS ARE NEVER SAVED. /Game/Alpine8K is World Partition,
+# which does not take classic streaming sublevels -- Data Layers are its
+# mechanism -- and for a look test "spawn and never save" is STRONGER than
+# either: nothing reaches disk, so no city package can be dirtied even by
+# accident. The eval actors carry their own tag so they can be found and removed
+# without touching anything else.
+#
+# THE CUBES ARE HIDDEN, NOT DELETED OR MOVED.
+# SetIsTemporarilyHiddenInEditor is editor-only transient state: it does not
+# mark the owning package dirty, so the committed city external actors stay
+# byte-unchanged. Deleting them would dirty 8 packages and require a restore.
+#
+# GROUND COMES FROM THE CUBE'S OWN TRANSFORM, not from a fresh trace. The Cube
+# is centre-pivoted and its height is scale.z*100, so ground = loc.z - h/2. The
+# eval meshes are BASE-centre pivoted, so they are placed at that ground
+# directly. Using the city's own numbers means the comparison is like-for-like:
+# if the stand-in sits wrong, it is the mesh and not a different trace.
+
+EVAL_TAG = "LandscapeLab.FabEval"
+CITY_TAG = "LandscapeLab.City"
+CX, CY = -210800.0, 278800.0
+MESHES = __MESHES__          # [[asset_path, label], ...]
+
+_out = {"ok": False, "error": None, "placed": [], "hidden": 0}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    # ---- clear any previous eval run -------------------------------------
+    _prev = 0
+    for _a in list(_all):
+        try:
+            if EVAL_TAG in [str(t) for t in _a.tags]:
+                _eas.destroy_actor(_a)
+                _prev += 1
+        except Exception:
+            pass
+    _out["previous_eval_actors_removed"] = _prev
+    _all = _eas.get_all_level_actors()
+
+    # ---- the plaza's nearest buildings -----------------------------------
+    _blds = []
+    for _a in _all:
+        try:
+            if CITY_TAG not in [str(t) for t in _a.tags]:
+                continue
+        except Exception:
+            continue
+        _lbl = _a.get_actor_label()
+        if not _lbl.startswith("City_Bldg_"):
+            continue
+        _l = _a.get_actor_location()
+        _blds.append((_math.hypot(_l.x - CX, _l.y - CY), _a))
+    _blds.sort(key=lambda r: r[0])
+    _chosen = _blds[:len(MESHES)]
+    _out["candidates_found"] = len(_blds)
+
+    if len(_chosen) < len(MESHES):
+        raise RuntimeError("only %d plaza buildings found for %d meshes"
+                           % (len(_chosen), len(MESHES)))
+
+    # ---- hide the Cubes and their roofs ----------------------------------
+    _hidden = []
+    for _d, _a in _chosen:
+        _l = _a.get_actor_location()
+        for _b in _all:
+            try:
+                if CITY_TAG not in [str(t) for t in _b.tags]:
+                    continue
+            except Exception:
+                continue
+            _lb = _b.get_actor_label()
+            if not (_lb.startswith("City_Bldg_") or _lb.startswith("City_Roof_")):
+                continue
+            _m = _b.get_actor_location()
+            if _math.hypot(_m.x - _l.x, _m.y - _l.y) < 1.0:
+                _b.set_is_temporarily_hidden_in_editor(True)
+                _hidden.append(_lb)
+    _out["hidden"] = len(_hidden)
+    _out["hidden_labels"] = sorted(set(_hidden))
+
+    # ---- stand the eval meshes on those pads -----------------------------
+    for _i, ((_d, _a), (_path, _label)) in enumerate(zip(_chosen, MESHES)):
+        _mesh = _u.EditorAssetLibrary.load_asset(_path)
+        if not isinstance(_mesh, _u.StaticMesh):
+            raise RuntimeError("not a StaticMesh: %s" % _path)
+        _l = _a.get_actor_location()
+        _s = _a.get_actor_scale3d()
+        _cube_h = float(_s.z) * 100.0
+        _ground = float(_l.z) - _cube_h * 0.5
+
+        _new = _eas.spawn_actor_from_class(
+            _u.StaticMeshActor, _u.Vector(_l.x, _l.y, _ground),
+            _u.Rotator(0.0, 0.0, float(_a.get_actor_rotation().yaw)))
+        _sc = _new.static_mesh_component
+        _sc.set_editor_property("static_mesh", _mesh)
+        _new.set_actor_label(_label)
+        _new.tags = [EVAL_TAG]
+
+        _b = _mesh.get_bounds()
+        _out["placed"].append({
+            "label": _label, "asset": _path,
+            "stood_on": _a.get_actor_label(),
+            "loc_cm": [round(_l.x, 1), round(_l.y, 1), round(_ground, 1)],
+            "cube_height_cm": round(_cube_h, 1),
+            "mesh_height_cm": round(float(_b.box_extent.z) * 2.0, 1),
+            "dist_from_plaza_m": round(_d / 100.0, 1)})
+
+    # counted from the world, by re-enumerating the tag
+    _n = 0
+    for _a in _eas.get_all_level_actors():
+        try:
+            if EVAL_TAG in [str(t) for t in _a.tags]:
+                _n += 1
+        except Exception:
+            pass
+    _out["counted_in_world_by_tag"] = _n
+    _out["dirty_packages"] = len(
+        _u.EditorLoadingAndSavingUtils.get_dirty_content_packages())
+    _out["ok"] = (_n == len(MESHES))
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

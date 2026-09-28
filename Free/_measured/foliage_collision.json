@@ -1,0 +1,264 @@
+{
+ "ok": true,
+ "error": null,
+ "level": "/Game/Alpine8K.Alpine8K",
+ "types": [
+  {
+   "path": "/Game/Foliage/FT_Boulder.FT_Boulder",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001.Medium_Boulder_001",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_CliffFace.FT_CliffFace",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01.SM_Cliff01",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_CliffOutcrop.FT_CliffOutcrop",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed.SM_MountainRock_Closed",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_CliffOutcropB.FT_CliffOutcropB",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock.SM_MountainRock",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_Conifer.FT_Conifer",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A.SM_PVE_Norway_Spruce_01_A",
+   "collision_enabled": "<CollisionEnabled.QUERY_ONLY: 1>",
+   "collision_profile_name": "FoliageBlockQueryOnly",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 1
+  },
+  {
+   "path": "/Game/Foliage/FT_ConiferPine.FT_ConiferPine",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01.ScotsPineTall_01",
+   "collision_enabled": "<CollisionEnabled.QUERY_ONLY: 1>",
+   "collision_profile_name": "FoliageBlockQueryOnly",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 2,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 2
+  },
+  {
+   "path": "/Game/Foliage/FT_Scrub.FT_Scrub",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Engine/BasicShapes/Sphere.Sphere",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 1,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 1
+  },
+  {
+   "path": "/Game/Foliage/FT_SpruceSapling.FT_SpruceSapling",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05.spruce_small_05",
+   "collision_enabled": "<CollisionEnabled.QUERY_ONLY: 1>",
+   "collision_profile_name": "FoliageBlockQueryOnly",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 1
+  },
+  {
+   "path": "/Game/Foliage/FT_SpruceSub.FT_SpruceSub",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01.spruce_half_01",
+   "collision_enabled": "<CollisionEnabled.QUERY_ONLY: 1>",
+   "collision_profile_name": "FoliageBlockQueryOnly",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 1
+  },
+  {
+   "path": "/Game/Foliage/FT_TalusChannel.FT_TalusChannel",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend.SM_Scree002_Bend",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_TalusField.FT_TalusField",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001.Scree_001",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_TalusFieldB.FT_TalusFieldB",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a.SM_Scree002a",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 4,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 4
+  },
+  {
+   "path": "/Game/Foliage/FT_TalusFieldC.FT_TalusFieldC",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B.Scree_001_B",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 2,
+    "sphere_elems": 0,
+    "sphyl_elems": 0,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 2
+  },
+  {
+   "path": "/Game/Foliage/FT_TreeStump.FT_TreeStump",
+   "class": "FoliageType_InstancedStaticMesh",
+   "mesh": "/Game/KiteDemo/Environments/Trees/Tree_Stump_01/Tree_Stump_01.Tree_Stump_01",
+   "collision_enabled": "<CollisionEnabled.NO_COLLISION: 0>",
+   "collision_profile_name": "NoCollision",
+   "custom_navigable_geometry": "<HasCustomNavigableGeometry.YES: 1>",
+   "collision_with_world": "False",
+   "mesh_prim_counts": {
+    "box_elems": 0,
+    "convex_elems": 0,
+    "sphere_elems": 0,
+    "sphyl_elems": 1,
+    "tapered_capsule_elems": 0
+   },
+   "mesh_simple_prims": 1
+  }
+ ],
+ "skipped": [
+  {
+   "path": "/Game/Foliage/GT_alpine_8k_Blueberry.GT_alpine_8k_Blueberry",
+   "why": "not a FoliageType: LandscapeGrassType"
+  },
+  {
+   "path": "/Game/Foliage/GT_alpine_8k_Meadow.GT_alpine_8k_Meadow",
+   "why": "not a FoliageType: LandscapeGrassType"
+  },
+  {
+   "path": "/Game/Foliage/GT_alpine_GroundClutter.GT_alpine_GroundClutter",
+   "why": "not a FoliageType: LandscapeGrassType"
+  },
+  {
+   "path": "/Game/Foliage/GT_alpine_Meadow.GT_alpine_Meadow",
+   "why": "not a FoliageType: LandscapeGrassType"
+  }
+ ],
+ "_note": "A foliage type's BodyInstance is what the component gets (InstancedFoliage.cpp:1822); the mesh's own BodySetup profile is NOT the runtime value. Profile 'Custom' means the declared profile was not found."
+}

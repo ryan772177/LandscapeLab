@@ -1,0 +1,65 @@
+# brief7 L0 cloud inspection. READ-ONLY. What does the cloud "coverage" field
+# actually drive? Reports MI_AlpineClouds parent material + every parameter
+# (scalar/vector/texture, overridden and available), the parent's full scalar
+# parameter name list, and the VolumetricCloud component's bound material.
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+MI = "/Game/Bench/MI_AlpineClouds"
+_out = {"error": None, "mi": MI, "parent": None,
+        "scalar_overrides": {}, "vector_overrides": {}, "texture_overrides": {},
+        "parent_scalar_names": [], "parent_scalar_values": {},
+        "component_material": None}
+try:
+    _mi = _u.load_asset(MI)
+    if _mi is None:
+        raise RuntimeError("could not load " + MI)
+
+    # parent material
+    try:
+        _par = _mi.get_editor_property("parent")
+        _out["parent"] = str(_par.get_path_name()) if _par else None
+    except Exception as _e:
+        _out["parent"] = "<err %s>" % str(_e)[:60]
+
+    # overridden params on the instance
+    for _p, _key in (("scalar_parameter_values", "scalar_overrides"),
+                     ("vector_parameter_values", "vector_overrides"),
+                     ("texture_parameter_values", "texture_overrides")):
+        try:
+            for _v in _mi.get_editor_property(_p):
+                _nm = str(_v.get_editor_property("parameter_info").get_editor_property("name"))
+                _val = _v.get_editor_property("parameter_value")
+                _out[_key][_nm] = str(_val)
+        except Exception as _e:
+            _out[_key] = "<err %s>" % str(_e)[:60]
+
+    # every scalar parameter the material exposes (name + current value on the MI)
+    try:
+        _names = _u.MaterialEditingLibrary.get_scalar_parameter_names(_mi)
+        _out["parent_scalar_names"] = [str(n) for n in _names]
+        for _n in _names:
+            try:
+                _out["parent_scalar_values"][str(_n)] = float(
+                    _u.MaterialEditingLibrary.get_material_instance_scalar_parameter_value(_mi, _n))
+            except Exception:
+                _out["parent_scalar_values"][str(_n)] = None
+    except Exception as _e:
+        _out["parent_scalar_names"] = "<err %s>" % str(_e)[:80]
+
+    # what material is actually bound on the VolumetricCloud component?
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        if isinstance(_a, _u.VolumetricCloud):
+            _c = _a.get_component_by_class(_u.VolumetricCloudComponent)
+            try:
+                _m = _c.get_editor_property("material")
+                _out["component_material"] = str(_m.get_path_name()) if _m else None
+            except Exception as _e:
+                _out["component_material"] = "<err %s>" % str(_e)[:60]
+            break
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:300]
+
+print("__LL_CLOUD__" + _json.dumps(_out, default=str))

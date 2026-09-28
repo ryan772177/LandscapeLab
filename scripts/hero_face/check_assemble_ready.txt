@@ -1,0 +1,63 @@
+# check_assemble_ready — is the character fit to Assemble, before Ryan clicks?
+#
+# Three things decide it, and all three have bitten this project already:
+#   can_build_meta_human   false means "not rigged" and the click just fails
+#   preview head rise      0.5 cm means the character itself is damaged and
+#                          Assemble would faithfully build a broken hero
+#   registration           a character left added-for-edit makes the Content
+#                          Browser refuse to open it and claim it "may be
+#                          corrupted"
+#
+# Read only apart from releasing the edit registration, which is what hands
+# the asset back to the UI so the click can happen at all.
+import json as _json
+import unreal as _unreal
+
+_out = {"error": None, "unreadable": [], "can_build": None,
+        "preview_head_rise_cm": None, "released": None,
+        "assembled_on_disk": None}
+_actor = None
+try:
+    _ss = _unreal.get_editor_subsystem(_unreal.MetaHumanCharacterEditorSubsystem)
+    _ch = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+    if _ch is None:
+        raise RuntimeError("MHC_AlpineHero did not load")
+    if not (_ss.is_object_added_for_editing(_ch) or _ss.try_add_object_to_edit(_ch)):
+        raise RuntimeError("try_add_object_to_edit returned False")
+
+    _out["can_build"] = bool(_ss.can_build_meta_human(_ch, True))
+
+    # Is the character itself healthy? Assemble builds what it is given.
+    _ss.assemble_for_preview(_ch)
+    _actor = _ss.spawn_meta_human_actor(_ch, True)
+    for _c in _actor.get_components_by_class(_unreal.SkinnedMeshComponent):
+        if _c.get_name() != "Face":
+            continue
+        _r = _c.get_socket_location("root")
+        _h = _c.get_socket_location("head")
+        _out["preview_head_rise_cm"] = round(float(_h.z) - float(_r.z), 1)
+
+    _reg = _unreal.AssetRegistryHelpers.get_asset_registry()
+    _out["assembled_on_disk"] = len(
+        _reg.get_assets_by_path("/Game/MetaHumans/MHC_AlpineHero", True))
+except Exception as _e:
+    _out["error"] = type(_e).__name__ + ": " + str(_e)
+finally:
+    try:
+        if _actor is not None:
+            _unreal.EditorLevelLibrary.destroy_actor(_actor)
+    except Exception:
+        pass
+    # HAND IT BACK. Leaving it registered is what produced
+    # "Failed to open MHC_AlpineHero ... The asset may be corrupted".
+    try:
+        _ch2 = _unreal.EditorAssetLibrary.load_asset("/Game/Hero/MHC_AlpineHero")
+        if _ch2 is not None:
+            _ss2 = _unreal.get_editor_subsystem(
+                _unreal.MetaHumanCharacterEditorSubsystem)
+            if _ss2.is_object_added_for_editing(_ch2):
+                _ss2.remove_object_to_edit(_ch2)
+            _out["released"] = not bool(_ss2.is_object_added_for_editing(_ch2))
+    except Exception as _e:
+        _out["unreadable"].append("release: " + str(_e)[:110])
+print("__LL__" + _json.dumps(_out, default=str))

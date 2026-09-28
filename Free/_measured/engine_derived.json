@@ -1,0 +1,173 @@
+{
+  "_comment": "Engine-derived meshes registered for landscape_spec's EARLY pivot gate. This is a cheap pre-check, not the proof: place_foliage re-reads get_bounds() on the live mesh at point of use and enforces the same limits there. Rows are measured, and a row that fails the contract is written with ok=false rather than omitted, so a refusal is visible.",
+  "_contract": {
+    "max_pivot_offset_xy_m": 1.0,
+    "max_base_offset_z_m": 0.25
+  },
+  "megaplants_pve_exports": {
+    "objects": [
+      {
+        "object": "SM_PVE_Norway_Spruce_01_A",
+        "ok": true,
+        "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+        "pivot_offset_xy_m": 0.2872,
+        "base_offset_z_m": -0.007,
+        "height_m": 29.313,
+        "provenance": "engine-exported from the Procedural Vegetation editor as a Static Mesh; never went through scripts/blender/normalize_asset.py because there is no FBX. Pivot and base measured on the LIVE asset by scripts/measure_tree_packs.py.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pve_spruce.json"
+      },
+      {
+        "object": "SM_PVE_Norway_Spruce_01_B",
+        "ok": true,
+        "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_B",
+        "pivot_offset_xy_m": 0.2031,
+        "base_offset_z_m": -0.0053,
+        "height_m": 23.643,
+        "provenance": "engine-exported from the Procedural Vegetation editor as a Static Mesh; never went through scripts/blender/normalize_asset.py because there is no FBX. Pivot and base measured on the LIVE asset by scripts/measure_tree_packs.py.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pve_spruce.json"
+      },
+      {
+        "object": "SM_PVE_Norway_Spruce_01_C",
+        "ok": true,
+        "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_C",
+        "pivot_offset_xy_m": 0.2223,
+        "base_offset_z_m": -0.0043,
+        "height_m": 18.093,
+        "provenance": "engine-exported from the Procedural Vegetation editor as a Static Mesh; never went through scripts/blender/normalize_asset.py because there is no FBX. Pivot and base measured on the LIVE asset by scripts/measure_tree_packs.py.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pve_spruce.json"
+      },
+      {
+        "object": "SM_PVE_Norway_Spruce_01_D",
+        "ok": true,
+        "asset": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_D",
+        "pivot_offset_xy_m": 0.1566,
+        "base_offset_z_m": -0.0057,
+        "height_m": 8.018,
+        "provenance": "engine-exported from the Procedural Vegetation editor as a Static Mesh; never went through scripts/blender/normalize_asset.py because there is no FBX. Pivot and base measured on the LIVE asset by scripts/measure_tree_packs.py.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pve_spruce.json"
+      }
+    ]
+  },
+  "pn_interactive_spruce_forest": {
+    "objects": [
+      {
+        "object": "spruce_half_01",
+        "ok": true,
+        "asset": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+        "pivot_offset_xy_m": 0.0645,
+        "base_offset_z_m": -0.0024,
+        "height_m": 16.725,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Pivot, base and height measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_spruce_forest.json"
+      },
+      {
+        "object": "spruce_small_05",
+        "ok": true,
+        "asset": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+        "pivot_offset_xy_m": 0.2307,
+        "base_offset_z_m": -0.0002,
+        "height_m": 4.529,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Pivot, base and height measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_spruce_forest.json"
+      }
+    ]
+  },
+  "pn_wild_berries_blueberry": {
+    "objects": [
+      {
+        "object": "Blueberry_01",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_01",
+        "pivot_offset_xy_m": 0.0243,
+        "base_offset_z_m": -0.0188,
+        "height_m": 0.27,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_02",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_02",
+        "pivot_offset_xy_m": 0.0287,
+        "base_offset_z_m": -0.0078,
+        "height_m": 0.34,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_03",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03",
+        "pivot_offset_xy_m": 0.0108,
+        "base_offset_z_m": -0.0049,
+        "height_m": 0.407,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_04",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_04",
+        "pivot_offset_xy_m": 0.0201,
+        "base_offset_z_m": -0.0038,
+        "height_m": 0.291,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_05",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_05",
+        "pivot_offset_xy_m": 0.0436,
+        "base_offset_z_m": -0.0188,
+        "height_m": 0.432,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_06",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_06",
+        "pivot_offset_xy_m": 0.0204,
+        "base_offset_z_m": -0.0016,
+        "height_m": 0.212,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_07",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_07",
+        "pivot_offset_xy_m": 0.0396,
+        "base_offset_z_m": -0.0093,
+        "height_m": 0.235,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      },
+      {
+        "object": "Blueberry_08",
+        "ok": true,
+        "asset": "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_08",
+        "pivot_offset_xy_m": 0.0468,
+        "base_offset_z_m": -0.0093,
+        "height_m": 0.235,
+        "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py because there is no FBX and the pack is gitignored with 0 tracked files, so it must not be rewritten. Measured on the LIVE asset by scripts/measure_tree_packs.py on 2026-08-15. Placed by the GRASS system, which applies NO pivot correction -- so this row is read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+        "measured_by": "scripts/measure_tree_packs.py",
+        "source_measurement": "Free/_measured/pn_blueberry.json"
+      }
+    ]
+  }
+}

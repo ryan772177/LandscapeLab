@@ -1,0 +1,65 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# How far is each eval module off the ground?
+#
+# The row was placed from ONE ground trace taken at the row's midpoint and
+# 56 m of terrain does not oblige by being flat. This turns "they look like
+# they are floating" into a number per module -- non-negotiable 16, measure the
+# artefact rather than looking harder.
+#
+# Foliage and the eval actors themselves are IGNORED by the trace: a trace that
+# excludes only foliage measures the ROOF of whatever else is there, and this
+# project has traced 17 streets onto building tops that way.
+
+KIT_TAG = "LandscapeLab.KitEval"
+_out = {"ok": False, "error": None, "rows": []}
+try:
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _w = _u.EditorLevelLibrary.get_editor_world()
+
+    _ignore = []
+    for _a in _eas.get_all_level_actors():
+        try:
+            _t = [str(x) for x in _a.tags]
+            if KIT_TAG in _t:
+                _ignore.append(_a)
+            elif _a.get_class().get_name() in ("InstancedFoliageActor",):
+                _ignore.append(_a)
+        except Exception:
+            pass
+
+    for _a in _eas.get_all_level_actors():
+        try:
+            if KIT_TAG not in [str(t) for t in _a.tags]:
+                continue
+        except Exception:
+            continue
+        _l = _a.get_actor_location()
+        _h = _u.SystemLibrary.line_trace_single(
+            _w, _u.Vector(_l.x, _l.y, _l.z + 20000.0),
+            _u.Vector(_l.x, _l.y, _l.z - 20000.0),
+            _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ignore,
+            _u.DrawDebugTrace.NONE, True)
+        _g = float(_h.to_tuple()[4].z) if _h else None
+        _out["rows"].append({
+            "label": _a.get_actor_label(),
+            "placed_z": round(float(_l.z), 1),
+            "ground_z": round(_g, 1) if _g is not None else None,
+            "gap_cm": round(float(_l.z) - _g, 1) if _g is not None else None,
+        })
+
+    _g = [r["gap_cm"] for r in _out["rows"] if r["gap_cm"] is not None]
+    if _g:
+        _s = sorted(_g)
+        _out["gap_min_cm"] = _s[0]
+        _out["gap_max_cm"] = _s[-1]
+        _out["gap_p50_cm"] = _s[len(_s) // 2]
+        _out["n_traced"] = len(_g)
+        _out["n_missed"] = len(_out["rows"]) - len(_g)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

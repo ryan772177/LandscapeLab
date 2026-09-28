@@ -1,0 +1,57 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# READ-ONLY. What would a save-on-quit write?
+#
+# WHY THIS RUNS BEFORE EVERY CLOSE. Building a groom binding DUPLICATES the
+# source groom, and DuplicateObject does not deep-copy the cards/helmet static
+# meshes, so PostEditChangeProperty rebuilds them IN THE VENDOR PACKAGE. Those
+# packages live under /MetaHumanCharacter/, which is inside the engine install
+# in Program Files -- outside both project roots. A Save All or a save-on-quit
+# would edit vendor content and break standing rule 1 in one click, while the
+# files are still clean on disk.
+#
+# So the question at close time is not "is anything dirty" but "is anything
+# dirty that we OWN". An UNREADABLE count is treated as a refusal, never as a
+# zero: the modal that a dirty package raises blocks the game thread, which is
+# the same thread serving this query.
+
+_out = {"ok": False, "error": None}
+try:
+    # THE NAME, NOT THE REPR. str() on a Package gives
+    #   <Object '/Game/Hero/Grooms/iter_028_ue' (0x...) Class 'Package'>
+    # which starts with "<Object", so EVERY prefix test below failed and every
+    # package fell into "other". Harmless for a /Game/ asset and NOT harmless
+    # for a vendor one: vendor_count would have read 0 with vendor packages
+    # dirty, and this exists to answer exactly that question. get_path_name()
+    # returns the bare path.
+    _pkgs = []
+    for _p in _u.EditorLoadingAndSavingUtils.get_dirty_content_packages():
+        try:
+            _pkgs.append(str(_p.get_path_name()))
+        except Exception:
+            _pkgs.append(str(_p))
+    _ours, _vendor, _other = [], [], []
+    for _p in _pkgs:
+        if _p.startswith("/Game/"):
+            _ours.append(_p)
+        elif _p.startswith("/MetaHumanCharacter") or _p.startswith("/Engine"):
+            _vendor.append(_p)
+        else:
+            _other.append(_p)
+    _out.update({
+        "dirty_total": len(_pkgs),
+        "ours_slash_game": _ours,
+        "vendor_outside_the_roots": _vendor[:12],
+        "vendor_count": len(_vendor),
+        "other": _other,
+        "_verdict": ("FORCE-KILL IS THE CORRECT CLOSE if vendor_count > 0 and "
+                     "ours is empty: it writes nothing, where a save-on-quit "
+                     "would edit content in Program Files."),
+    })
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,19 @@
+{
+  "name": "landscapelab-governance",
+  "displayName": "LandscapeLab Governance",
+  "version": "1.0.0",
+  "description": "The UE5 landscape pipeline constitution as enforcement: deny hooks proven in three directions, domain skills sourced from RECIPES, review subagents, and session rituals. CLAUDE.md/RECIPES.md/LESSONS.md remain canonical; this layer enforces and loads them.",
+  "author": {
+    "name": "ryanb"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "unreal-engine",
+    "governance",
+    "hooks",
+    "landscape"
+  ],
+  "skills": "./.claude/skills/",
+  "agents": "./.claude/agents/",
+  "hooks": "./.claude/settings.json"
+}
