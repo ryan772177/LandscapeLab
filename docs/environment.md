@@ -72,6 +72,11 @@ untracked `LandscapeLab 5.8` duplicate flagged in CURRENT STATE.
   `_verify/bench`. **Never push local `main` or a tag to GitHub** — one world
   save (~1,000 LFS objects, ~260 MB) refills the quota. Share work with
   `python scripts/github_lite_snapshot.py --push`.
+- First push LANDED 2026-09-27 21:05 (GitHub main 12e97eec) through
+  `scripts/push_staged_tree.sh`: GitHub answers HTTP 500 to a git pack over
+  ~2 GB per push, and the snapshot's root commit held 3.8 GB of plain blobs
+  (R-GITHUB-LITE -> FIRST PUSH; LESSONS 2026-09-27b). Account billing: card on
+  file + a $5 product-level Git LFS budget with "stop usage" unchecked.
 - There is no second copy of the world history: no external drive. The
   world is pipeline output (rule 3); the recipe on GitHub rebuilds it.
 

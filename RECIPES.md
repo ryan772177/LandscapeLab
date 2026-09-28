@@ -21834,7 +21834,8 @@ species loops, like every other block already did.
 
 ## R-GITHUB-LITE — GITHUB HOLDS THE RECIPE, THIS MACHINE HOLDS THE WORLD (RULED 2026-09-27)
 
-**Status: RULED (Ryan, option 2) and built; proven when the first push lands.**
+**Status: RULED (Ryan, option 2), built, PROVEN 2026-09-27 21:05 -- the first push landed
+(GitHub main 12e97eec, tree == github-main) via the staged tree push below.**
 
 GitHub Free: 10 GiB Git LFS storage per account, every object version ever
 pushed counts, and only deleting the repository frees it. This repo's history
@@ -21847,9 +21848,9 @@ and push a SNAPSHOT branch without the world.
 
     local  main          FULL repo: world packages, fence tags, git-as-undo. Never pushed.
     local  github-main   DERIVED: HEAD tree minus the EXCLUDE list, one commit per snapshot.
-    GitHub main          = github-main.  ~5.07 GB LFS at first push (410 objects).
+    GitHub main          = github-main.  6.05 GB LFS at first push (419 objects).
     EXCLUDE              LandscapeLab/Content/__ExternalActors__, __ExternalObjects__,
-                         Content/Hero, characters/AlpineHero, hero/dna, _verify/bench
+                         _verify/bench   (hero binaries KEPT since 4459becc: no second copy)
 
     python scripts/github_lite_snapshot.py --push     # after every commit worth sharing
 
@@ -21865,7 +21866,34 @@ script (it refuses off `main`; extend `--source` when needed) or push a
 docs/scripts-only branch, which carries no LFS. Tags stay local; name them in
 STATE.md instead of expecting them on GitHub.
 
+### FIRST PUSH TO AN EMPTY REPO (PROVEN 2026-09-27; LESSONS 2026-09-27b)
+
+1. Account billing (GitHub Free): Settings -> Billing and plans -> Payment information -> add a
+   card; Budgets and alerts -> New budget -> **Product level** -> Git LFS -> $5, **"Stop usage when
+   budget limit is reached" UNCHECKED**. Until a card is on file the push answers "This repository
+   exceeded its LFS budget" even on an empty repo while the deleted repo's objects still count.
+2. Measure the pack BEFORE pushing (bytes, not commits):
+       git rev-list --objects github-main | cut -d' ' -f1 | git cat-file --batch-check='%(objecttype) %(objectsize)'
+   The 2026-09-27 snapshot: 3,889 plain blobs = 3,804 MB in the root commit. GitHub accepts ~2 GB
+   of pack per push and answers `RPC failed; HTTP 500` above it, AFTER the LFS objects are up.
+3. Over 2 GB in one commit -> `bash scripts/push_staged_tree.sh github-main origin research hero _verify`
+   (re-roots the snapshot on a chain whose trees grow one directory per commit, pushes each step to
+   main, replays the snapshot commits on top, re-points github-main). Steps landed at 0.43 / 1.46 /
+   0.69 / 1.22 GB. Over 2 GB across MANY commits -> `scripts/push_chunked.py` (2026-09-20).
+4. Verify: `git ls-remote --heads origin main` == `git rev-parse github-main`; the script checks the
+   tree equality itself. Later snapshots are text-sized and go through `github_lite_snapshot.py --push`.
+
 ### REJECTED
+
+**ORPHAN "SEED" BRANCHES TO PRE-LOAD BLOBS** (push `commit-tree <subtree>` as seed-* refs, then push
+the real branch) -> the seeds land, the real push still sends every blob and 500s: pack-objects omits
+only objects reachable from ANCESTORS of the pushed commit that the remote has. Verified with
+`git rev-list --objects github-main ^<seed>`: all 810 hero/ blobs still listed. Also leaves the first
+seed as GitHub's DEFAULT branch, which it refuses to delete until the default is switched.
+**`http.postBuffer=1048576000` FOR THE 500** -> same HTTP 500 after the same 22 min; the limit is
+server-side pack size, not client buffering.
+**`push_chunked.py` ON A ONE-COMMIT BRANCH** -> halves to span 1 and its own rule says "oversized
+blob, stop"; the diagnosis is wrong when no blob exceeds 100 MB (largest 98.5 MB) and the PACK does.
 
 **PUSHING LOCAL `main` OR A TAG TO THE NEW REPO** → the push uploads every
 world package the commit's tree references; the quota is gone again within
@@ -21880,3 +21908,5 @@ copy of a 64 GB `.git` on a disk with 13 GB free.
 After the GitHub repo is deleted, this laptop's `.git` (64 GB, LFS 43,447
 objects) is the ONLY copy of the world history. An external-drive copy of
 `.git` before the delete is the mitigation; the disk itself is at 99 %.
+Since 2026-09-27 21:05 GitHub holds the lite copy (everything except the
+world packages and `_verify/bench`); the world packages remain single-copy.

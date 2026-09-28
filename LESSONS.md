@@ -38127,3 +38127,47 @@ OPERATIONAL: standing rule 2's no-force-delete hook blocks the agent even under 
 authorised cache deletion (32 GB of DDC / Intermediate / ShaderDebugInfo / Autosaves / Profiling /
 Screenshots / old logs / old _trash) ships as scripts/disk_cleanup_20260927.ps1 for the operator's own
 prompt (`! powershell -File ...`). The hook is doing its job; the human runs the delete.
+
+
+2026-09-27b | GITHUB PACK LIMIT -- the lite snapshot's first push failed AFTER the LFS phase, and the
+2026-09-20 chunked-push convention could not have saved it (rule e: the lesson existed and did not fire).
+
+What happened: with the LFS budget in place (payment method + a $5 product-level Git LFS budget), the
+push of `github-main` uploaded all 419 LFS objects (6.0 GB, ~4.4 MB/s, 22 min) and then died on the git
+pack: `error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500` /
+`send-pack: unexpected disconnect while reading sideband packet`. Measured: the snapshot's root commit
+holds 3,889 plain (non-LFS) blobs = 3,804 MB in ONE commit -- research/brief7 964 MB, hero/groomloop
+659 MB, _verify/perf 562 MB, research/audit 279 MB, then a long tail of PNG stills and CSVs. GitHub
+accepts a pack of about 2 GB per push; three seed pushes of 1.46 / 0.69 / 1.22 GB all landed, the
+3.8 GB pack failed three times (plain, with http.postBuffer=1 GB, and after the seeds).
+
+Two wrong fixes, both measured before the right one:
+  1. `scripts/push_chunked.py` (the 2026-09-20 convention) halves the COMMIT span. The failing span here
+     is ONE commit, and the convention says "if a single commit fails at span 1 that is an oversized-blob
+     problem -- log the blob and stop". Wrong diagnosis for this shape: no blob is over 100 MB (largest
+     98.5 MB); the PACK is over the limit. The convention was written from a 1,500-commit push and
+     encoded "chunk = commits"; the limit is BYTES PER PUSH.
+  2. Orphan seed branches (push `commit-tree <subtree>` of research/, hero/, _verify/ as seed-* refs,
+     then push github-main). The seeds landed, the main push still sent all 3.8 GB and 500'd. Root
+     cause at the git level: `git rev-list --objects A ^B` (what pack-objects uses for the thin pack)
+     omits only objects reachable from ANCESTORS of A that the remote has; refs the remote holds that
+     are not ancestors of A do not reduce the pack. Verified locally: `git rev-list --objects
+     github-main ^<seed-hero>` still listed all 810 hero/ blobs.
+
+What worked: `scripts/push_staged_tree.sh github-main origin research hero _verify` -- re-root the
+snapshot on a four-commit chain whose trees grow one big directory at a time (0.43 -> +1.46 -> +0.69
+-> +1.22 GB), push each step to `main` in turn (fast-forwards, each pack under 1.5 GB), then replay the
+four snapshot commits on top (same trees, same messages) and push the tip. Landed 21:05: GitHub main =
+12e97eec, tree == github-main's tree (checked in the script). The staged-upload chain is now the root of
+GitHub's history; `github_lite_snapshot.py` chains on `github-main` as before.
+
+RULE: GitHub's push limit is ~2 GB of PACK per push, independent of commit count. A single commit over
+that needs its TREE staged (this script); a long history over that needs its COMMITS staged
+(push_chunked.py). Diagnose by measuring the pack, not the commit count:
+  git rev-list --objects <tip> ^<remote-tip> | cut -d' ' -f1 | git cat-file --batch-check='%(objecttype) %(objectsize)'
+RULE: a remote ref that is not an ancestor of what you push does not shrink the pack. Seeding a server
+with unrelated commits is a no-op for pack size.
+
+Leftover: GitHub made `seed-research` the default branch (first ref ever pushed) and refuses to delete
+it; `seed-hero` and `seed-_verify` are gone. Ryan switches the default to `main` in Settings, then
+`git push origin --delete seed-research`.
