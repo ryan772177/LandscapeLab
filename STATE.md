@@ -12,8 +12,9 @@
 > after all 419 LFS objects were up, because the root commit held 3.8 GB of plain blobs and GitHub takes
 > ~2 GB of pack per push. Fixed with `scripts/push_staged_tree.sh` (tree staged in 4 commits at the
 > root; github-main re-pointed to the replayed tip 12e97eec). LESSONS 2026-09-27b; R-GITHUB-LITE →
-> FIRST PUSH. NEVER push local main or tags. **LEFTOVER for Ryan: `seed-research` is GitHub's default
-> branch (first ref pushed) — switch the default to `main` in Settings, then it gets deleted.**
+> FIRST PUSH. NEVER push local main or tags. Seed branches deleted after Ryan switched the default branch
+> to `main` (GitHub needs the red "I understand" confirm, the first switch did not save); GitHub holds
+> exactly one branch, `main`.
 > - Disk: `scripts/disk_cleanup_20260927.ps1` (Ryan-authorised ~32 GB of regenerable caches + old
 >   `_trash`) runs from the operator prompt (`! powershell -File scripts/disk_cleanup_20260927.ps1`);
 >   the no-force-delete hook blocks the agent by design. RUN by Ryan 2026-09-27: 12.6 → 42.6 GB free.
