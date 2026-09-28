@@ -1,0 +1,68 @@
+{
+  "artifact": "DiffLocks raw groom v2 for AlpineHero",
+  "adopted_utc": "2026-08-24T00:00:00Z",
+  "_adoption_note": "Adopted from the operator's Desktop file hero_manual_style_v1.blend. THE FILENAME IS WRONG AND WAS FLAGGED BY THE OPERATOR: it says manual_style_v1 and contains the v2 AI generation. Renamed to hero_v2_generated.blend at intake; the Desktop original is unmodified and hash-equal to the banked copy.",
+  "source_blend": {
+    "desktop_path": "C:\\Users\\Admin\\Desktop\\hero_manual_style_v1.blend",
+    "banked_path": "hero/groomloop/difflocks_v2/hero_v2_generated.blend",
+    "bytes": 47627573,
+    "sha256": "01b3f7ad723813f0d926753c43a7701dd4ec5d791b6f139dab42b7a5c5873db2",
+    "_hash_equal_at_adoption": true,
+    "object": "AI Hair",
+    "_object_name_note": "The brief called it 'AI Hair Data'. The object is named 'AI Hair'. Names come from the asset, not from the brief."
+  },
+  "payload": {
+    "strands": 40281,
+    "points_per_strand": 32,
+    "_optimization": "operator ran 40% strands / 32 points in the AI panel",
+    "identity_transform": true,
+    "_transform_note": "VERIFIED IDENTITY before seating. The operator flagged that they may have nudged transforms while learning the UI; they did not. Nothing was baked out, so placement remains owned entirely by the registration.",
+    "frame": "raw DiffLocks, Y-up, metres -- the same convention as v1",
+    "_frame_conversion": "THE IN-BLEND CLOUD WAS ALREADY AXIS-SWAPPED BY THE ADDON. land_difflocks.py applies swap(p)=[x,-z,y] to whatever npz it is given, so banking the blend coordinates directly would swap TWICE -- a 90 degree rotation, which is a symptom this hero has already shown once. extract_strands.py applies the inverse raw=[bx,bz,-by] and ASSERTS the round trip (max err 0.0). Measured evidence for the swap: v1 raw Y [0.169,0.442] lines up with v2 blend Z [0.169,0.432], and v1 raw Z [-0.151,0.127] with v2 blend -Y.",
+    "raw_bounds_min": [
+      -0.1166,
+      0.1686,
+      -0.1523
+    ],
+    "raw_bounds_max": [
+      0.1181,
+      0.4319,
+      0.1244
+    ],
+    "_bounds_corroboration": "v1 raw was X [-0.110,0.116] Y [0.169,0.442] Z [-0.151,0.127]. Near-identical, which is what a second generation of the same head should look like.",
+    "strand_length_m_BEFORE_ANY_SCALING": {
+      "mean": 0.08447,
+      "p10": 0.0577,
+      "p50": 0.08662,
+      "p90": 0.10566,
+      "max": 0.16466
+    },
+    "_v1_comparison": "v1 raw mean 0.0815 m at 256 pts; v2 is slightly longer"
+  },
+  "lineage": {
+    "_the_caution": "The operator's log records a generate_hair() run AFTER the first optimization, so the in-file cloud could have been a different diffusion sample than the server-side outputs.",
+    "_how_it_was_settled": "ENUMERATED, NOT ASSUMED. The AI panel's server deletes its output directories on shutdown: runtime/outputs/ holds only .aihair_session.json, which reads {'dirs': []}, and a filesystem-wide search found NO .npz, .ply or hair payload written outside this repo on 2026-08-23. There are no server-side outputs to compare against or to archive.",
+    "_candidates_in_file": 1,
+    "_candidate_detail": "The blend holds exactly ONE new CURVES object ('AI Hair', 40281x32). The only other CURVES object is AlpineHero_DiffLocks_v1 (100943x28), which carries groom_root_uv and radius and is the already-seated v1 groom, not a candidate.",
+    "_conclusion": "One candidate exists anywhere on this machine, so the 'pick whichever the optimized object descends from' question has a single answer by enumeration. NOTHING WAS ARCHIVED AS THE OTHER SAMPLE, because no other sample survives -- stated as an absence found by looking, not as an assumption.",
+    "_descends_from": "The file itself descends from hero/groomloop/Blender_Test/SOURCE_untouched.blend: it still contains that blend's AlpineHero_DiffLocks_v1 curves, the hero face mesh, the armature, and the HeadCam added by scripts/frame_blend_view.py earlier the same day.",
+    "_irreproducible": "A generation is a diffusion sample. Re-running the same prompt on the same image yields DIFFERENT strands, so this payload cannot be regenerated and the banked npz is canonical."
+  },
+  "source_image": {
+    "desktop_path": "C:\\Users\\Admin\\Desktop\\Ahero.jpg",
+    "banked_path": "characters/AlpineHero/grooms/difflocks_raw_v2/appearance_front_v2.jpg",
+    "registered_as": "appearance_front_v2"
+  },
+  "files": [
+    {
+      "path": "appearance_front_v2.jpg",
+      "bytes": 745907,
+      "sha256": "1db4f859f8a95c74b8f249a1e55aa45b24391e094f59f81fe9fe6a533fc19d54"
+    },
+    {
+      "path": "hair_output_strands.npz",
+      "bytes": 14138542,
+      "sha256": "10f44f3b9d1ed8a2c89bdeea66992651b58605fee84b125e3c6df099a6f9abd1"
+    }
+  ]
+}

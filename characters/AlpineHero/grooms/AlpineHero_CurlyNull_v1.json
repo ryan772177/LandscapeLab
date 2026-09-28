@@ -1,0 +1,33 @@
+{
+  "_what": "Provenance for a groom .abc exported from Blender. The .abc itself is gitignored: 81 MB and exactly re-derivable from the producer recorded here, which is the standard this project holds for derived assets.",
+  "asset": "AlpineHero_CurlyNull_v1",
+  "abc_path": "hero/grooms/AlpineHero_CurlyNull_v1.abc",
+  "abc_sha256": "4f08b43e270b8855291d502a95a968b17e6ca93a42dc9d4b0b0ad7c407f00f36",
+  "abc_bytes": 81420036,
+  "purpose": "STAGE A NULL EXPORT. The groom is UNMODIFIED demo content; this exists to prove the round trip, not to be a hero hair. Likeness is explicitly not the test.",
+  "producer": {
+    "blender": "5.2.0 LTS",
+    "blender_exe": "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe",
+    "source_blend": "C:/Users/Admin/Documents/Groom_Test_26_06_28_vfull_52.blend",
+    "source_blend_sha256": "7e91fb5ba8c06a8a9b9281c7ee1296ea0763a3d78484f8e53807fefa3a3a8512",
+    "_source_is_vendor": "Author's own demo file. NEVER written by this pipeline; the export script contains no save call.",
+    "script": "scripts/blender/export_groom_abc.py",
+    "addon": "GroomExporter 0.2.0 (bl_info blender min 5.1.0)",
+    "node_group": "Curly hair",
+    "node_call": "Export Information",
+    "groom_scale": 1.0,
+    "groom_width_scale": true,
+    "groom_radius_to_diameter": true,
+    "groom_animation": false,
+    "node_execution": true,
+    "_node_execution_note": "MUST be True. AlembicGroomExporter.execute gates export_preparation() on it, and export_preparation is what selects the node group's objects. With False the exporter sees an empty selection and dies on curvesObjects[0].",
+    "_no_factory_startup": "The add-on is installed via user Preferences, so --factory-startup would silently unregister it."
+  },
+  "expected_content": {
+    "source_object": "Metahuman Curly Hair",
+    "evaluated_curves": 31570,
+    "evaluated_points": 1410651,
+    "_excluded": "Ponytail, Ponytail_braids, buns_braids, curly_ear, curly_strands_top_bun and every *_guides object. Exclusion is by NODE GROUP: 'Curly hair' authors one Curve Selector, so the filter is the .blend's own authoring and cannot drift from a list kept here.",
+    "_verify_by": "curve count on import in UE, against evaluated_curves above -- not against the exporter's own report"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "asset": "/Game/Hero/Grooms/AlpineHero_LStraight_v1",
+  "character": "AlpineHero",
+  "slot": "Hair",
+  "style": "LStraight",
+  "version": 1,
+  "ingested_utc": "20260820T051756Z",
+  "source": {
+    "kind": "duplicated_asset",
+    "path": "/MetaHumanCharacter/Optional/Grooms/GroomAssets/Hair/Hair_L_Straight/Hair_L_Straight",
+    "sha256": null,
+    "_note": "Vendor asset duplicated; vendor original untouched."
+  },
+  "binding": {
+    "path": "/Game/Hero/Grooms/Bindings/BND_AlpineHero_LStraight_v1",
+    "target_mesh": "SKM_MHC_AlpineHero_FaceMesh",
+    "num_interpolation_points": 100,
+    "source_skeletal_mesh_for_transfer": null,
+    "_why_null": "The WORKING assembled binding has this null; passing the authoring head was tried and changed nothing. See RECIPES R-GROOMBIND REJECTED."
+  },
+  "colour": {
+    "melanin": 0.92,
+    "redness": 0.28,
+    "whiteness": 0.0,
+    "material_instance": "/Game/Hero/Grooms/Materials/MI_AlpineHero_Hair",
+    "written": [
+      "hairMelanin",
+      "hairRedness"
+    ]
+  },
+  "measured": {
+    "num_curves": 26197,
+    "num_guides": 981,
+    "timings_s": {
+      "acquire": 8.24,
+      "bind": 4.6,
+      "assign": 0.39,
+      "total": 13.23
+    }
+  },
+  "_verified_by": "Assignment read-back only. PIXELS are verified separately by groom_presence.py at the framing the result will be judged at -- a binding that assigns and does not draw reports perfectly here."
+}

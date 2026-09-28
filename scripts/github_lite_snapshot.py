@@ -45,11 +45,13 @@ LITE_BRANCH = "github-main"
 EXCLUDE = [
     "LandscapeLab/Content/__ExternalActors__",
     "LandscapeLab/Content/__ExternalObjects__",
-    "LandscapeLab/Content/Hero",
-    "characters/AlpineHero",
-    "hero/dna",
     "_verify/bench",
 ]
+# 2026-09-27: Content/Hero, characters/AlpineHero and hero/dna STAY in the
+# snapshot (~1 GB). No external drive exists, so after the GitHub delete this
+# machine is the only copy of everything not on GitHub; the hero binaries are
+# outputs of a parked pipeline and not cheaply regenerable, while the world
+# packages ARE regenerable from the recipes. Snapshot ~6.1 GB of LFS.
 
 
 def git(*args, check=True, text=True):

@@ -1,0 +1,95 @@
+{
+  "artifact": "DiffLocks raw groom for AlpineHero",
+  "generated_utc": "2026-08-22T23:48:03.822077Z",
+  "source_image": {
+    "path": "hero/reference/hero_example_pic.jpg",
+    "sha256": "f62b53ff9e228f3119eb075fc695b63475e73533d874e591b6dd09a252a806b2",
+    "bytes": 629648
+  },
+  "generation_params": {
+    "output_name": "hero_hair_v1",
+    "cfg_val": 1.0,
+    "nr_iters_denoise": 100
+  },
+  "natten_build": {
+    "version": "0.21.7",
+    "reason_not_0_17_5": "natten 0.17.5 setup.py asserts cuda arch < 100; 12.0 -> 120 fails. Its bundled CUTLASS also caps at sm90, so patching the assert would yield no sm_120 kernels.",
+    "built_from": "PyPI sdist natten-0.21.7.tar.gz",
+    "sdist_sha256": "8417236b74db079b2d23899ec8f77514fb2dc73d4bbd6b346a45b6967fc05ffb",
+    "NATTEN_CUDA_ARCH": "12.0",
+    "nvcc_arch_flag": "--generate-code=arch=compute_120,code=[sm_120]",
+    "local_patch": "csrc/CMakeLists.txt: guarded GCC-only -Wconversion / -fno-strict-aliasing / -Wall / -ldl behind NOT NATTEN_IS_WINDOWS; MSVC cl rejects /Wconversion with D8021.",
+    "api_shim": "engine/k_diffusion/models/modules.py: natten.has_fused_na removed in 0.21.x; shimmed to return True so the module stays on functional.na2d (na2d_qk/na2d_av no longer exist).",
+    "backend_selected": "cutlass-fna (sm120 predates neither sm90 nor sm100 kernel sets)"
+  },
+  "toolchain": {
+    "visual_studio": "Build Tools 2022, cl 19.44.35228 (x64)",
+    "vs_rejected": "VS 18 Community cl 19.51.36256 - CUDA 12.8 host_config.h refuses _MSC_VER >= 1950",
+    "cuda": "12.8.61 (V12.8.r12.8)",
+    "torch": "2.7.0+cu128",
+    "device": "NVIDIA GeForce RTX 5080 Laptop GPU",
+    "compute_capability": [
+      12,
+      0
+    ]
+  },
+  "files": [
+    {
+      "path": "hair.json",
+      "bytes": 221,
+      "sha256": "822037e6865f53652595605c276b2eb1b1dc00717c9193040b392aa66c492f15"
+    },
+    {
+      "path": "hair_output_strands.npz",
+      "bytes": 310097168,
+      "sha256": "97db04626fb84f3cf03c8542855f8d6657a6cc307f7156c94bd024ae87f96d2c"
+    },
+    {
+      "path": "rgb.png",
+      "bytes": 476711,
+      "sha256": "4d209792cfeb21d4fbb3aeb8fc518ca33b09ef6261cc78e690cf0d6664effe38"
+    },
+    {
+      "path": "scalp_texture.npz",
+      "bytes": 17039640,
+      "sha256": "1babec011e55f98852c0c931914b7625073e7b4891339d98a146e9c21b44ecf5"
+    }
+  ],
+  "output_format": {
+    "hair_output_strands.npz": {
+      "arrays": {
+        "positions": {
+          "shape": [
+            100943,
+            256,
+            3
+          ],
+          "dtype": "float32",
+          "min": -0.15066787600517273,
+          "max": 0.44226160645484924
+        }
+      },
+      "reading": "positions[strand, point, xyz] -- 100943 strands x 256 points per strand x XYZ float32. Uniform point count per strand (no per-strand length array is present), so strands are a dense rectangular array, not a ragged one."
+    },
+    "scalp_texture.npz": {
+      "arrays": {
+        "scalp_texture": {
+          "shape": [
+            1,
+            65,
+            256,
+            256
+          ],
+          "dtype": "float32",
+          "min": -1.999457836151123,
+          "max": 1.8015471696853638
+        }
+      },
+      "reading": "NCHW: 1 batch x 65 channels x 256 x 256 scalp UV map."
+    },
+    "rgb.png": "476711 bytes -- the conditioning/preview RGB render.",
+    "hair.json": "scalar hair material params (melanin, redness, root darkness curve).",
+    "strand_count": 100943
+  },
+  "generation_runtime_seconds": 29.6
+}

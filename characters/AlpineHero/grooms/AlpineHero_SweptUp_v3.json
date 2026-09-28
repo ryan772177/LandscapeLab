@@ -1,0 +1,42 @@
+{
+  "asset": "/Game/Hero/Grooms/AlpineHero_SweptUp_v3",
+  "character": "AlpineHero",
+  "slot": "Hair",
+  "style": "SweptUp",
+  "version": 3,
+  "ingested_utc": "20260820T051316Z",
+  "source": {
+    "kind": "duplicated_asset",
+    "path": "/MetaHumanCharacter/Optional/Grooms/GroomAssets/Hair/Hair_S_SweptUp/Hair_S_SweptUp",
+    "sha256": null,
+    "_note": "Vendor asset duplicated; vendor original untouched."
+  },
+  "binding": {
+    "path": "/Game/Hero/Grooms/Bindings/BND_AlpineHero_SweptUp_v3",
+    "target_mesh": "SKM_MHC_AlpineHero_FaceMesh",
+    "num_interpolation_points": 100,
+    "source_skeletal_mesh_for_transfer": null,
+    "_why_null": "The WORKING assembled binding has this null; passing the authoring head was tried and changed nothing. See RECIPES R-GROOMBIND REJECTED."
+  },
+  "colour": {
+    "melanin": 0.92,
+    "redness": 0.28,
+    "whiteness": 0.0,
+    "material_instance": "/Game/Hero/Grooms/Materials/MI_AlpineHero_Hair",
+    "written": [
+      "hairMelanin",
+      "hairRedness"
+    ]
+  },
+  "measured": {
+    "num_curves": 81184,
+    "num_guides": 1668,
+    "timings_s": {
+      "acquire": 0.35,
+      "bind": 0.21,
+      "assign": 0.4,
+      "total": 0.97
+    }
+  },
+  "_verified_by": "Assignment read-back only. PIXELS are verified separately by groom_presence.py at the framing the result will be judged at -- a binding that assigns and does not draw reports perfectly here."
+}
