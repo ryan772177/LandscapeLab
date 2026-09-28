@@ -1,0 +1,39 @@
+{
+ "_what": "Brief 5 HLOD GPU-share pass. FINAL v3 2026-09-20. Verdict INCONCLUSIVE for the GPU number, but the proxy COMPOSITION and geometry are now measured (Task 2d/4c).",
+ "verdict": "INCONCLUSIVE",
+ "_verdict_reason": "The HLOD proxy GPU SHARE (a millisecond number) could not be measured inside the fence. -game path: the positive control FAILED -- as-is vs `wp.Runtime.HLOD 0` runs are byte-identical on every render-side counter (GPUSceneInstanceCount, SceneCulling/NumStaticInstances, ActorCount/WorldPartitionHLOD, GPUTime), because the startup -ExecCmds one-shot fires before the far cells stream and cannot re-fire post-settle without an ini/asset/Python change (see hlod_task2_gamepath.md; wp.Runtime.HLOD is a command, HLODRuntimeSubsystem.cpp:149). editor path: at full editor residency the proxies are NOT drawn (real cells render), so the v2 actor-hide gave a null 0.015 ms delta -- that null IS the positive-control failure (audit A2), not a measured zero. Forcing proxy render needs region-unloading (high-risk, and still editor!=-game). So the exact share stays open (item-8 -game MRQ territory).",
+ "_what_IS_measured_task2d_4c": {
+  "_note": "Even without a GPU number, the proxy composition and where it renders are now read back -- which is what the share question was really asking.",
+  "hlod_layers": {
+   "Alpine8K_HLODLayer_Instanced": {
+    "layer_type": "INSTANCING (EHLODLayerType 0)",
+    "meaning": "replaces source meshes with ISMs at their LOWEST LOD (5.8 doc + verified). So the near-HLOD band renders each species as its lowest-LOD instance: ScotsPineTall billboard (32 tris, LOD3 ss 0.168), spruce_half imposter (6 tris, LOD4 ss 0.17), sapling lowest LOD (326 tris), and the Nanite Norway Spruce as its Nanite FALLBACK (2335 tris), NOT its full Nanite mesh.",
+    "cell_size_cm_readback": 25600,
+    "loading_range_cm_readback_DEPRECATED_5_7": 76800,
+    "parent_layer": "Alpine8K_HLODLayer_Merged"
+   },
+   "Alpine8K_HLODLayer_Merged": {
+    "layer_type": "MESH_APPROXIMATE (EHLODLayerType 3)",
+    "meaning": "a single APPROXIMATED mesh per cell (with Generate-Nanite-Enabled-Mesh option) for the far band -- NOT 'merged Nanite proxies of the trees' as v2 said. This is the parent (far) layer.",
+    "cell_size_cm_readback": 25600,
+    "loading_range_cm_readback_DEPRECATED_5_7": 51200,
+    "parent_layer": null
+   },
+   "_caveat": "cell_size/loading_range are the HLODLayer asset's own fields, DEPRECATED in 5.7 (authoritative runtime grid/loading now live in the WP partition settings). Read back for the record; do not treat as the runtime streaming ranges (recipe declares main 512 m, merged 1.024 km, instanced 2 km)."
+  },
+  "hlod_cells_total": 2267,
+  "hlod_cells_by_layer_level": {"Merged_L0": 786, "Merged_L1": 256, "Instanced_L0": 221, "Instanced_L1": 748, "Instanced_L2": 256},
+  "answer_512m_to_2km": "Between the 512 m main streaming range and the ~2 km instanced-HLOD range, each tree is rendered as its Instanced-HLOD proxy = its LOWEST-LOD instance (billboard / imposter / lowest LOD / Nanite fallback), then beyond that as part of a single MESH_APPROXIMATE merged proxy per cell. The Nanite spruce is NOT instanced as its full Nanite mesh in the HLOD; the INSTANCING layer uses the lowest LOD (the 2335-tri fallback).",
+  "_composition_implication": "The far forest is cards + a 2335-tri fallback + approximate merged meshes, covering few screen pixels beyond 512 m. Cheap by construction; consistent with (but not a substitute for) a measured GPU share."
+ },
+ "task2d_distances_fixed": {
+  "_what": "Audit A1 fix: HLOD cell distances derived from the grid index in each actor label (centre=(idx+0.5)*cellsize, cellsize(L)=25600*2^L cm), NOT get_actor_location/bounds (degenerate for Instanced HLOD -> the identical-distance artefact). Distances now differ per station and per cell.",
+  "nearest_cell_centre_m": {"treeline": 105.9, "plaza": 120.9, "vista": 192.4, "forest_floor": 0.0},
+  "_nearest_note": "Nearest CELL CENTRE (256 m cells); cells within the 512 m streaming range have their real source loaded so their proxy is hidden. RENDERED proxies begin beyond the streaming range. Per-layer-level p10/p50/p90 distributions in editor_census_v3.json hlod_cell_distance_m.",
+  "treeline_merged_L0_distribution_m": {"min": 105.9, "p10": 1327.1, "p50": 3449.9, "p90": 5928.0, "max": 7688.6},
+  "artefact_refuted": "The v2 'same three distances (2238.6/3500.3/2381.5) for every actor' is refuted: distances now vary across cells and stations."
+ },
+ "_detail_files": ["research/brief5/input/hlod_task2_gamepath.md",
+                   "research/brief5/input/editor_census_v3.json",
+                   "research/brief5/input/levers_verified.md"]
+}

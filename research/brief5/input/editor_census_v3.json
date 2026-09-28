@@ -1,0 +1,297 @@
+{
+ "ok": true,
+ "hlod_layers": {
+  "/Game/Alpine8K_HLODLayer_Instanced": {
+   "path": "/Game/Alpine8K_HLODLayer_Instanced",
+   "exists": true,
+   "layer_type": "<HLODLayerType.INSTANCING: 0>",
+   "cell_size_cm_DEPRECATED_5_7": "25600",
+   "loading_range_cm_DEPRECATED_5_7": "76800.0",
+   "parent_layer": "/Game/Alpine8K_HLODLayer_Merged.Alpine8K_HLODLayer_Merged"
+  },
+  "/Game/Alpine8K_HLODLayer_Merged": {
+   "path": "/Game/Alpine8K_HLODLayer_Merged",
+   "exists": true,
+   "layer_type": "<HLODLayerType.MESH_APPROXIMATE: 3>",
+   "cell_size_cm_DEPRECATED_5_7": "25600",
+   "loading_range_cm_DEPRECATED_5_7": "51200.0",
+   "parent_layer": null
+  }
+ },
+ "hlod_cells_total": 2267,
+ "hlod_labels_parsed": 2267,
+ "hlod_labels_unparsed": 0,
+ "hlod_cells_by_layer_level": {
+  "Merged_L0": 786,
+  "Merged_L1": 256,
+  "Instanced_L1": 748,
+  "Instanced_L2": 256,
+  "Instanced_L0": 221
+ },
+ "hlod_cell_distance_m": {
+  "treeline": {
+   "Merged_L0": {
+    "n": 786,
+    "min": 105.9,
+    "p10": 1327.1,
+    "p50": 3449.9,
+    "p90": 5928.0,
+    "max": 7688.6
+   },
+   "Merged_L1": {
+    "n": 256,
+    "min": 255.9,
+    "p10": 1445.3,
+    "p50": 3553.3,
+    "p90": 5789.6,
+    "max": 7508.2
+   },
+   "Instanced_L1": {
+    "n": 748,
+    "min": 300.1,
+    "p10": 2863.0,
+    "p50": 6768.9,
+    "p90": 10057.1,
+    "max": 13289.1
+   },
+   "Instanced_L2": {
+    "n": 256,
+    "min": 608.8,
+    "p10": 2881.8,
+    "p50": 6611.7,
+    "p90": 9903.8,
+    "max": 12927.4
+   },
+   "Instanced_L0": {
+    "n": 221,
+    "min": 257.9,
+    "p10": 3093.7,
+    "p50": 5729.6,
+    "p90": 9258.6,
+    "max": 12215.1
+   },
+   "_nearest_any_m": 105.9
+  },
+  "plaza": {
+   "Merged_L0": {
+    "n": 786,
+    "min": 120.9,
+    "p10": 1272.5,
+    "p50": 4539.2,
+    "p90": 7141.0,
+    "max": 9086.3
+   },
+   "Merged_L1": {
+    "n": 256,
+    "min": 198.0,
+    "p10": 1482.7,
+    "p50": 4564.0,
+    "p90": 6866.2,
+    "max": 8905.6
+   },
+   "Instanced_L1": {
+    "n": 748,
+    "min": 198.0,
+    "p10": 2586.4,
+    "p50": 6936.4,
+    "p90": 11236.1,
+    "max": 14693.1
+   },
+   "Instanced_L2": {
+    "n": 256,
+    "min": 506.2,
+    "p10": 2890.3,
+    "p50": 6773.0,
+    "p90": 10780.6,
+    "max": 14331.2
+   },
+   "Instanced_L0": {
+    "n": 221,
+    "min": 843.2,
+    "p10": 2523.4,
+    "p50": 5650.4,
+    "p90": 10554.4,
+    "max": 13615.2
+   },
+   "_nearest_any_m": 120.9
+  },
+  "vista": {
+   "Merged_L0": {
+    "n": 786,
+    "min": 244.0,
+    "p10": 1301.5,
+    "p50": 3482.0,
+    "p90": 6083.4,
+    "max": 7668.0
+   },
+   "Merged_L1": {
+    "n": 256,
+    "min": 192.4,
+    "p10": 1453.9,
+    "p50": 3589.6,
+    "p90": 6005.1,
+    "max": 7488.8
+   },
+   "Instanced_L1": {
+    "n": 748,
+    "min": 192.4,
+    "p10": 2937.9,
+    "p50": 6795.0,
+    "p90": 10110.9,
+    "max": 13247.2
+   },
+   "Instanced_L2": {
+    "n": 256,
+    "min": 415.0,
+    "p10": 2943.2,
+    "p50": 6537.0,
+    "p90": 9991.2,
+    "max": 12886.4
+   },
+   "Instanced_L0": {
+    "n": 221,
+    "min": 350.8,
+    "p10": 3094.6,
+    "p50": 5852.6,
+    "p90": 9168.4,
+    "max": 12346.8
+   },
+   "_nearest_any_m": 192.4
+  },
+  "forest_floor": {
+   "Merged_L0": {
+    "n": 786,
+    "min": 0.0,
+    "p10": 1280.0,
+    "p50": 3792.8,
+    "p90": 6234.0,
+    "max": 8147.9
+   },
+   "Merged_L1": {
+    "n": 256,
+    "min": 181.0,
+    "p10": 1459.4,
+    "p50": 3852.7,
+    "p90": 6006.5,
+    "max": 7966.9
+   },
+   "Instanced_L1": {
+    "n": 748,
+    "min": 181.0,
+    "p10": 2691.0,
+    "p50": 6785.2,
+    "p90": 10496.3,
+    "max": 13758.7
+   },
+   "Instanced_L2": {
+    "n": 256,
+    "min": 404.8,
+    "p10": 2946.7,
+    "p50": 6509.1,
+    "p90": 10054.3,
+    "max": 13396.7
+   },
+   "Instanced_L0": {
+    "n": 221,
+    "min": 362.0,
+    "p10": 2827.6,
+    "p50": 5614.5,
+    "p90": 9801.8,
+    "max": 12676.5
+   },
+   "_nearest_any_m": 0.0
+  }
+ },
+ "_forest_floor_load_error": null,
+ "_2d_method": "cell centre = (grid_index + 0.5) * cellsize, cellsize(L)=25600*2^L cm; distance is 2D horizontal from station to cell centre. Grid index parsed from the actor label (get_actor_bounds is degenerate for Instanced HLOD).",
+ "foliage_types": {
+  "Conifer": {
+   "path": "/Game/Foliage/FT_Conifer",
+   "exists": true,
+   "enable_density_scaling": false,
+   "enable_cull_distance_scaling": false,
+   "cast_shadow": true,
+   "world_position_offset_disable_distance": 0,
+   "affect_distance_field_lighting": false,
+   "cull_distance_min": 38400,
+   "cull_distance_max": 51200
+  },
+  "ConiferPine": {
+   "path": "/Game/Foliage/FT_ConiferPine",
+   "exists": true,
+   "enable_density_scaling": false,
+   "enable_cull_distance_scaling": false,
+   "cast_shadow": true,
+   "world_position_offset_disable_distance": 0,
+   "affect_distance_field_lighting": false,
+   "cull_distance_min": 38400,
+   "cull_distance_max": 51200
+  },
+  "SpruceSub": {
+   "path": "/Game/Foliage/FT_SpruceSub",
+   "exists": true,
+   "enable_density_scaling": false,
+   "enable_cull_distance_scaling": false,
+   "cast_shadow": true,
+   "world_position_offset_disable_distance": 0,
+   "affect_distance_field_lighting": false,
+   "cull_distance_min": 38400,
+   "cull_distance_max": 51200
+  },
+  "SpruceSapling": {
+   "path": "/Game/Foliage/FT_SpruceSapling",
+   "exists": true,
+   "enable_density_scaling": false,
+   "enable_cull_distance_scaling": false,
+   "cast_shadow": true,
+   "world_position_offset_disable_distance": 0,
+   "affect_distance_field_lighting": false,
+   "cull_distance_min": 17870,
+   "cull_distance_max": 23827
+  }
+ },
+ "per_mesh_nanite": {
+  "Conifer": {
+   "enabled": true,
+   "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+   "fallback_percent_triangles": "1.0",
+   "fallback_relative_error": "1.0",
+   "keep_percent_triangles": "1.0",
+   "trim_relative_error": "0.0",
+   "position_precision": "-2147483648",
+   "displacement_uv_channel": "0"
+  },
+  "ConiferPine": {
+   "enabled": false,
+   "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+   "fallback_percent_triangles": "1.0",
+   "fallback_relative_error": "1.0",
+   "keep_percent_triangles": "1.0",
+   "trim_relative_error": "0.0",
+   "position_precision": "-2147483648",
+   "displacement_uv_channel": "0"
+  },
+  "SpruceSub": {
+   "enabled": false,
+   "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+   "fallback_percent_triangles": "1.0",
+   "fallback_relative_error": "1.0",
+   "keep_percent_triangles": "1.0",
+   "trim_relative_error": "0.0",
+   "position_precision": "-2147483648",
+   "displacement_uv_channel": "0"
+  },
+  "SpruceSapling": {
+   "enabled": false,
+   "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+   "fallback_percent_triangles": "1.0",
+   "fallback_relative_error": "1.0",
+   "keep_percent_triangles": "1.0",
+   "trim_relative_error": "0.0",
+   "position_precision": "-2147483648",
+   "displacement_uv_channel": "0"
+  }
+ },
+ "project_nanite_foliage_enabled": "UNKNOWN: module 'unreal' has no attribute 'RendererSettings'",
+ "tree_lod_probe_v3": "_verify/bench/2026-09-20/tree_lod_probe_v3.json"
+}

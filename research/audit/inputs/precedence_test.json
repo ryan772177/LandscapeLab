@@ -1,0 +1,570 @@
+{
+ "_what": "audit item 3 -- GameOverride cinematic_quality_settings vs the bench's sg.* cvars, measured on two dev-profile captures that differ in that flag alone",
+ "_instruments": {
+  "1": "MRQ's own apply log, MoviePipelineConsoleVariableSetting.cpp:253 -- PreviousValue orders the two settings",
+  "2": "sg.* / Scalability echoed from inside the render via Start and End console commands"
+ },
+ "capture_A_cinematic_true": {
+  "label": "cinematic_quality_settings=True",
+  "n_lines": 913,
+  "applied": {
+   "sg.ShadowQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.AntiAliasingQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.PostProcessQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.FoliageQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.ViewDistanceQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.TextureQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.EffectsQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.ShadingQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.GlobalIlluminationQuality": {
+    "previous": 3.0,
+    "new": 3.0
+   },
+   "sg.ReflectionQuality": {
+    "previous": 3.0,
+    "new": 3.0
+   },
+   "r.ScreenPercentage": {
+    "previous": 100.0,
+    "new": 100.0
+   }
+  },
+  "restored": {
+   "sg.ShadowQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.AntiAliasingQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.PostProcessQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.FoliageQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.ViewDistanceQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.TextureQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.EffectsQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.ShadingQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.GlobalIlluminationQuality": {
+    "from": 3.0,
+    "to": 3.0
+   },
+   "sg.ReflectionQuality": {
+    "from": 3.0,
+    "to": 3.0
+   },
+   "r.ScreenPercentage": {
+    "from": 100.0,
+    "to": 100.0
+   }
+  },
+  "echoed": [
+   [
+    "ResolutionQuality@start",
+    "(custom)"
+   ],
+   [
+    "ViewDistanceQuality@start",
+    "(custom)"
+   ],
+   [
+    "AntiAliasingQuality@start",
+    "1"
+   ],
+   [
+    "ShadowQuality@start",
+    "(custom)"
+   ],
+   [
+    "GlobalIlluminationQuality@start",
+    "3"
+   ],
+   [
+    "ReflectionQuality@start",
+    "3"
+   ],
+   [
+    "PostProcessQuality@start",
+    "1"
+   ],
+   [
+    "TextureQuality@start",
+    "1"
+   ],
+   [
+    "EffectsQuality@start",
+    "1"
+   ],
+   [
+    "FoliageQuality@start",
+    "(custom)"
+   ],
+   [
+    "ShadingQuality@start",
+    "1"
+   ],
+   [
+    "ResolutionQuality@end",
+    "(custom)"
+   ],
+   [
+    "ViewDistanceQuality@end",
+    "(custom)"
+   ],
+   [
+    "AntiAliasingQuality@end",
+    "1"
+   ],
+   [
+    "ShadowQuality@end",
+    "(custom)"
+   ],
+   [
+    "GlobalIlluminationQuality@end",
+    "3"
+   ],
+   [
+    "ReflectionQuality@end",
+    "3"
+   ],
+   [
+    "PostProcessQuality@end",
+    "1"
+   ],
+   [
+    "TextureQuality@end",
+    "1"
+   ],
+   [
+    "EffectsQuality@end",
+    "1"
+   ],
+   [
+    "FoliageQuality@end",
+    "(custom)"
+   ],
+   [
+    "ShadingQuality@end",
+    "1"
+   ]
+  ],
+  "executed_commands": [
+   [
+    "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+    "before"
+   ],
+   [
+    "wp.Runtime.MaxLoadingStreamingCells 512",
+    "before"
+   ],
+   [
+    "Scalability",
+    "before"
+   ],
+   [
+    "sg.ShadowQuality",
+    "before"
+   ],
+   [
+    "sg.FoliageQuality",
+    "before"
+   ],
+   [
+    "sg.ViewDistanceQuality",
+    "before"
+   ],
+   [
+    "sg.TextureQuality",
+    "before"
+   ],
+   [
+    "sg.GlobalIlluminationQuality",
+    "before"
+   ],
+   [
+    "sg.EffectsQuality",
+    "before"
+   ],
+   [
+    "Scalability",
+    "after"
+   ],
+   [
+    "sg.ShadowQuality",
+    "after"
+   ],
+   [
+    "sg.FoliageQuality",
+    "after"
+   ],
+   [
+    "sg.ViewDistanceQuality",
+    "after"
+   ],
+   [
+    "sg.TextureQuality",
+    "after"
+   ],
+   [
+    "sg.GlobalIlluminationQuality",
+    "after"
+   ],
+   [
+    "sg.EffectsQuality",
+    "after"
+   ]
+  ],
+  "scalability_blocks": [
+   {
+    "ResolutionQuality": "(custom)",
+    "ViewDistanceQuality": "(custom)",
+    "AntiAliasingQuality": "1",
+    "ShadowQuality": "(custom)",
+    "GlobalIlluminationQuality": "3",
+    "ReflectionQuality": "3",
+    "PostProcessQuality": "1",
+    "TextureQuality": "1",
+    "EffectsQuality": "1",
+    "FoliageQuality": "(custom)",
+    "ShadingQuality": "1"
+   },
+   {
+    "ResolutionQuality": "(custom)",
+    "ViewDistanceQuality": "(custom)",
+    "AntiAliasingQuality": "1",
+    "ShadowQuality": "(custom)",
+    "GlobalIlluminationQuality": "3",
+    "ReflectionQuality": "3",
+    "PostProcessQuality": "1",
+    "TextureQuality": "1",
+    "EffectsQuality": "1",
+    "FoliageQuality": "(custom)",
+    "ShadingQuality": "1"
+   }
+  ]
+ },
+ "capture_B_cinematic_false": {
+  "label": "cinematic_quality_settings=False",
+  "n_lines": 664,
+  "applied": {
+   "sg.ShadowQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.AntiAliasingQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.PostProcessQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.FoliageQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.ViewDistanceQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.TextureQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.EffectsQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.ShadingQuality": {
+    "previous": 1.0,
+    "new": 1.0
+   },
+   "sg.GlobalIlluminationQuality": {
+    "previous": 3.0,
+    "new": 3.0
+   },
+   "sg.ReflectionQuality": {
+    "previous": 3.0,
+    "new": 3.0
+   },
+   "r.ScreenPercentage": {
+    "previous": 100.0,
+    "new": 100.0
+   }
+  },
+  "restored": {
+   "sg.ShadowQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.AntiAliasingQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.PostProcessQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.FoliageQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.ViewDistanceQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.TextureQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.EffectsQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.ShadingQuality": {
+    "from": 1.0,
+    "to": 1.0
+   },
+   "sg.GlobalIlluminationQuality": {
+    "from": 3.0,
+    "to": 3.0
+   },
+   "sg.ReflectionQuality": {
+    "from": 3.0,
+    "to": 3.0
+   },
+   "r.ScreenPercentage": {
+    "from": 100.0,
+    "to": 100.0
+   }
+  },
+  "echoed": [
+   [
+    "ResolutionQuality@start",
+    "(custom)"
+   ],
+   [
+    "ViewDistanceQuality@start",
+    "(custom)"
+   ],
+   [
+    "AntiAliasingQuality@start",
+    "1"
+   ],
+   [
+    "ShadowQuality@start",
+    "(custom)"
+   ],
+   [
+    "GlobalIlluminationQuality@start",
+    "3"
+   ],
+   [
+    "ReflectionQuality@start",
+    "3"
+   ],
+   [
+    "PostProcessQuality@start",
+    "1"
+   ],
+   [
+    "TextureQuality@start",
+    "1"
+   ],
+   [
+    "EffectsQuality@start",
+    "1"
+   ],
+   [
+    "FoliageQuality@start",
+    "(custom)"
+   ],
+   [
+    "ShadingQuality@start",
+    "1"
+   ],
+   [
+    "ResolutionQuality@end",
+    "(custom)"
+   ],
+   [
+    "ViewDistanceQuality@end",
+    "(custom)"
+   ],
+   [
+    "AntiAliasingQuality@end",
+    "1"
+   ],
+   [
+    "ShadowQuality@end",
+    "(custom)"
+   ],
+   [
+    "GlobalIlluminationQuality@end",
+    "3"
+   ],
+   [
+    "ReflectionQuality@end",
+    "3"
+   ],
+   [
+    "PostProcessQuality@end",
+    "1"
+   ],
+   [
+    "TextureQuality@end",
+    "1"
+   ],
+   [
+    "EffectsQuality@end",
+    "1"
+   ],
+   [
+    "FoliageQuality@end",
+    "(custom)"
+   ],
+   [
+    "ShadingQuality@end",
+    "1"
+   ]
+  ],
+  "executed_commands": [
+   [
+    "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+    "before"
+   ],
+   [
+    "wp.Runtime.MaxLoadingStreamingCells 512",
+    "before"
+   ],
+   [
+    "Scalability",
+    "before"
+   ],
+   [
+    "sg.ShadowQuality",
+    "before"
+   ],
+   [
+    "sg.FoliageQuality",
+    "before"
+   ],
+   [
+    "sg.ViewDistanceQuality",
+    "before"
+   ],
+   [
+    "sg.TextureQuality",
+    "before"
+   ],
+   [
+    "sg.GlobalIlluminationQuality",
+    "before"
+   ],
+   [
+    "sg.EffectsQuality",
+    "before"
+   ],
+   [
+    "Scalability",
+    "after"
+   ],
+   [
+    "sg.ShadowQuality",
+    "after"
+   ],
+   [
+    "sg.FoliageQuality",
+    "after"
+   ],
+   [
+    "sg.ViewDistanceQuality",
+    "after"
+   ],
+   [
+    "sg.TextureQuality",
+    "after"
+   ],
+   [
+    "sg.GlobalIlluminationQuality",
+    "after"
+   ],
+   [
+    "sg.EffectsQuality",
+    "after"
+   ]
+  ],
+  "scalability_blocks": [
+   {
+    "ResolutionQuality": "(custom)",
+    "ViewDistanceQuality": "(custom)",
+    "AntiAliasingQuality": "1",
+    "ShadowQuality": "(custom)",
+    "GlobalIlluminationQuality": "3",
+    "ReflectionQuality": "3",
+    "PostProcessQuality": "1",
+    "TextureQuality": "1",
+    "EffectsQuality": "1",
+    "FoliageQuality": "(custom)",
+    "ShadingQuality": "1"
+   },
+   {
+    "ResolutionQuality": "(custom)",
+    "ViewDistanceQuality": "(custom)",
+    "AntiAliasingQuality": "1",
+    "ShadowQuality": "(custom)",
+    "GlobalIlluminationQuality": "3",
+    "ReflectionQuality": "3",
+    "PostProcessQuality": "1",
+    "TextureQuality": "1",
+    "EffectsQuality": "1",
+    "FoliageQuality": "(custom)",
+    "ShadingQuality": "1"
+   }
+  ]
+ },
+ "previous_value_differences": {},
+ "echoed_value_differences": {},
+ "verdict": "THE CVARS WIN: no sg.* PreviousValue and no echoed sg.* value differs between the two runs, so raising the flag changed nothing the frames were rendered with."
+}

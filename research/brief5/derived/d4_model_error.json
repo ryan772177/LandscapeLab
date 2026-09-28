@@ -1,0 +1,274 @@
+{
+ "_what": "Brief 5 D4 Task 1 -- density cost-model error, per station.",
+ "_window_frames": 1500,
+ "_passes": [
+  "Basepass",
+  "ShadowDepths",
+  "LumenReflections",
+  "Prepass",
+  "NaniteVisBuffer"
+ ],
+ "_predicted_source": "zone_map.json projected_ms_per_station (DENSITY_PLAN projection)",
+ "stations": {
+  "forest_floor": {
+   "predicted_ms": 12.9,
+   "measured_p90_ms": 15.342,
+   "delta_ms": 2.442,
+   "min_detectable_ms": 0.016,
+   "_min_det_src": "BASELINE v3 forest 0.016",
+   "delta_over_min_det": 152.6,
+   "over_ruled_line": true,
+   "per_pass": {
+    "Basepass": {
+     "dense_ms": 1.4782,
+     "v3_ms": 0.3089,
+     "delta_ms": 1.1693
+    },
+    "ShadowDepths": {
+     "dense_ms": 3.1944,
+     "v3_ms": 1.4133,
+     "delta_ms": 1.7811
+    },
+    "LumenReflections": {
+     "dense_ms": 1.3028,
+     "v3_ms": 1.067,
+     "delta_ms": 0.2358
+    },
+    "Prepass": {
+     "dense_ms": 0.0743,
+     "v3_ms": 0.0688,
+     "delta_ms": 0.0055
+    },
+    "NaniteVisBuffer": {
+     "dense_ms": 2.1997,
+     "v3_ms": 2.013,
+     "delta_ms": 0.1867
+    }
+   },
+   "_v3_per_pass_available": true,
+   "_v3_per_pass_note": "same-instrument v3 baseline (GPU/<pass> median)",
+   "visible_trees": {
+    "v3_m1": 1844,
+    "dense": 4702,
+    "delta": 2858
+   },
+   "ms_per_1000_added_trees_total": 0.8544,
+   "ms_per_1000_added_trees_per_pass": {
+    "Basepass": 0.4091,
+    "ShadowDepths": 0.6232,
+    "LumenReflections": 0.0825,
+    "Prepass": 0.0019,
+    "NaniteVisBuffer": 0.0653
+   },
+   "_csv_rows_used": 1500
+  },
+  "open_max": {
+   "predicted_ms": null,
+   "measured_p90_ms": 14.151,
+   "delta_ms": null,
+   "min_detectable_ms": 0.016,
+   "_min_det_src": "forest-class proxy 0.016 (no own measurement)",
+   "delta_over_min_det": null,
+   "over_ruled_line": true,
+   "per_pass": {
+    "Basepass": {
+     "dense_ms": 1.7169,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "ShadowDepths": {
+     "dense_ms": 1.9993,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "LumenReflections": {
+     "dense_ms": 0.8329,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "Prepass": {
+     "dense_ms": 0.0493,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "NaniteVisBuffer": {
+     "dense_ms": 1.818,
+     "v3_ms": null,
+     "delta_ms": null
+    }
+   },
+   "_v3_per_pass_available": false,
+   "_v3_per_pass_note": "NO same-instrument v3 baseline at this station (open_max is new; vista not in item1)",
+   "visible_trees": {
+    "v3_m1": null,
+    "dense": 4943,
+    "delta": null
+   },
+   "ms_per_1000_added_trees_total": null,
+   "ms_per_1000_added_trees_per_pass": {
+    "Basepass": null,
+    "ShadowDepths": null,
+    "LumenReflections": null,
+    "Prepass": null,
+    "NaniteVisBuffer": null
+   },
+   "_csv_rows_used": 1500
+  },
+  "treeline": {
+   "predicted_ms": 7.5132,
+   "measured_p90_ms": 7.261,
+   "delta_ms": -0.252,
+   "min_detectable_ms": 0.06,
+   "_min_det_src": "noise_floor.json 0.06",
+   "delta_over_min_det": -4.2,
+   "over_ruled_line": false,
+   "per_pass": {
+    "Basepass": {
+     "dense_ms": 0.0895,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "ShadowDepths": {
+     "dense_ms": 0.6669,
+     "v3_ms": 0.628,
+     "delta_ms": 0.0389
+    },
+    "LumenReflections": {
+     "dense_ms": 0.3037,
+     "v3_ms": 0.306,
+     "delta_ms": -0.0023
+    },
+    "Prepass": {
+     "dense_ms": 0.0153,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "NaniteVisBuffer": {
+     "dense_ms": 0.7931,
+     "v3_ms": 0.77,
+     "delta_ms": 0.0231
+    }
+   },
+   "_v3_per_pass_available": true,
+   "_v3_per_pass_note": "same-instrument v3 baseline (GPU/<pass> median)",
+   "visible_trees": {
+    "v3_m1": 0,
+    "dense": 4,
+    "delta": 4
+   },
+   "ms_per_1000_added_trees_total": -63.0,
+   "ms_per_1000_added_trees_per_pass": {
+    "Basepass": null,
+    "ShadowDepths": 9.725,
+    "LumenReflections": -0.575,
+    "Prepass": null,
+    "NaniteVisBuffer": 5.775
+   },
+   "_csv_rows_used": 1500
+  },
+  "plaza": {
+   "predicted_ms": 9.8818,
+   "measured_p90_ms": 12.939,
+   "delta_ms": 3.057,
+   "min_detectable_ms": 0.04,
+   "_min_det_src": "noise_floor.json 0.04",
+   "delta_over_min_det": 76.4,
+   "over_ruled_line": true,
+   "per_pass": {
+    "Basepass": {
+     "dense_ms": 1.2532,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "ShadowDepths": {
+     "dense_ms": 1.63,
+     "v3_ms": 0.865,
+     "delta_ms": 0.765
+    },
+    "LumenReflections": {
+     "dense_ms": 1.0153,
+     "v3_ms": 0.623,
+     "delta_ms": 0.3923
+    },
+    "Prepass": {
+     "dense_ms": 0.0866,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "NaniteVisBuffer": {
+     "dense_ms": 1.8488,
+     "v3_ms": 1.708,
+     "delta_ms": 0.1408
+    }
+   },
+   "_v3_per_pass_available": true,
+   "_v3_per_pass_note": "same-instrument v3 baseline (GPU/<pass> median)",
+   "visible_trees": {
+    "v3_m1": 903,
+    "dense": 4023,
+    "delta": 3120
+   },
+   "ms_per_1000_added_trees_total": 0.9798,
+   "ms_per_1000_added_trees_per_pass": {
+    "Basepass": null,
+    "ShadowDepths": 0.2452,
+    "LumenReflections": 0.1257,
+    "Prepass": null,
+    "NaniteVisBuffer": 0.0451
+   },
+   "_csv_rows_used": 1500
+  },
+  "vista": {
+   "predicted_ms": null,
+   "measured_p90_ms": 8.235,
+   "delta_ms": null,
+   "min_detectable_ms": 0.06,
+   "_min_det_src": "treeline-class proxy 0.06 (no own measurement)",
+   "delta_over_min_det": null,
+   "over_ruled_line": false,
+   "per_pass": {
+    "Basepass": {
+     "dense_ms": 0.1088,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "ShadowDepths": {
+     "dense_ms": 0.6675,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "LumenReflections": {
+     "dense_ms": 0.3345,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "Prepass": {
+     "dense_ms": 0.016,
+     "v3_ms": null,
+     "delta_ms": null
+    },
+    "NaniteVisBuffer": {
+     "dense_ms": 1.4581,
+     "v3_ms": null,
+     "delta_ms": null
+    }
+   },
+   "_v3_per_pass_available": false,
+   "_v3_per_pass_note": "NO same-instrument v3 baseline at this station (open_max is new; vista not in item1)",
+   "visible_trees": {
+    "v3_m1": 34,
+    "dense": 189,
+    "delta": 155
+   },
+   "ms_per_1000_added_trees_total": null,
+   "ms_per_1000_added_trees_per_pass": {
+    "Basepass": null,
+    "ShadowDepths": null,
+    "LumenReflections": null,
+    "Prepass": null,
+    "NaniteVisBuffer": null
+   },
+   "_csv_rows_used": 1500
+  }
+ }
+}

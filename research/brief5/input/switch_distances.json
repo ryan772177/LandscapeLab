@@ -1,0 +1,187 @@
+{
+ "_what": "Brief 5 v3 Task 4a/4b: LOD/billboard/imposter switch distances (header-verified formula) and recipe-vs-asset LOD comparison.",
+ "_probe": "research\\brief5\\input\\tree_lod_probe_t3.json",
+ "_formula": "D_switch_cm = R_cm / (tan(vFOV/2) * ScreenSize); ScreenMultiple = 0.5/tan(vFOV/2) (P11 dominates at 16:9); all LOD/view distance scales = 1.0. SceneManagement.cpp:980 (ComputeBoundsDrawDistance).",
+ "judge_camera": {
+  "res": [
+   3840,
+   2160
+  ],
+  "fov_h_deg": 90.0,
+  "vfov_deg": 58.7155
+ },
+ "detail_threshold_px": 40.0,
+ "species": [
+  {
+   "species": "Conifer",
+   "nanite": true,
+   "bounding_sphere_radius_cm": 1546.6148681640625,
+   "height_m": 29.31,
+   "cull_distance_m_recipe": 730.0,
+   "lod_switches": [
+    {
+     "lod_index": 0,
+     "screen_size": 2.0,
+     "engage_distance_m": 13.7,
+     "tree_px_height_at_engage": 4093.8,
+     "triangles": 2335,
+     "above_detail_threshold": true
+    }
+   ],
+   "lowest_lod_engage_m": 13.7,
+   "recipe_vs_asset_lod": null
+  },
+  {
+   "species": "ConiferPine",
+   "nanite": false,
+   "bounding_sphere_radius_cm": 1209.6593765645273,
+   "height_m": 22.11,
+   "cull_distance_m_recipe": 730.0,
+   "lod_switches": [
+    {
+     "lod_index": 0,
+     "screen_size": 1.50451,
+     "engage_distance_m": 14.3,
+     "tree_px_height_at_engage": 2969.5,
+     "triangles": 27824,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 1,
+     "screen_size": 0.33642,
+     "engage_distance_m": 63.9,
+     "tree_px_height_at_engage": 664.0,
+     "triangles": 11062,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 2,
+     "screen_size": 0.23788,
+     "engage_distance_m": 90.4,
+     "tree_px_height_at_engage": 469.5,
+     "triangles": 5777,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 3,
+     "screen_size": 0.03818,
+     "engage_distance_m": 563.3,
+     "tree_px_height_at_engage": 75.4,
+     "triangles": 32,
+     "above_detail_threshold": true
+    }
+   ],
+   "lowest_lod_engage_m": 563.3,
+   "recipe_vs_asset_lod": {
+    "recipe_lod_screen_sizes": [
+     0.5,
+     0.21,
+     0.088
+    ],
+    "asset_lod_screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "recipe_lod_count": 3,
+    "asset_lod_count": 4,
+    "differ": true
+   }
+  },
+  {
+   "species": "SpruceSub",
+   "nanite": false,
+   "bounding_sphere_radius_cm": 836.8856811523438,
+   "height_m": 16.72,
+   "cull_distance_m_recipe": 730.0,
+   "lod_switches": [
+    {
+     "lod_index": 0,
+     "screen_size": 1.0,
+     "engage_distance_m": 14.9,
+     "tree_px_height_at_engage": 2158.3,
+     "triangles": 20695,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 1,
+     "screen_size": 0.99,
+     "engage_distance_m": 15.0,
+     "tree_px_height_at_engage": 2136.7,
+     "triangles": 10347,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 2,
+     "screen_size": 0.6,
+     "engage_distance_m": 24.8,
+     "tree_px_height_at_engage": 1295.0,
+     "triangles": 5174,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 3,
+     "screen_size": 0.35,
+     "engage_distance_m": 42.5,
+     "tree_px_height_at_engage": 755.4,
+     "triangles": 2587,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 4,
+     "screen_size": 0.02642,
+     "engage_distance_m": 563.1,
+     "tree_px_height_at_engage": 57.0,
+     "triangles": 6,
+     "above_detail_threshold": true
+    }
+   ],
+   "lowest_lod_engage_m": 563.1,
+   "recipe_vs_asset_lod": null
+  },
+  {
+   "species": "SpruceSapling",
+   "nanite": false,
+   "bounding_sphere_radius_cm": 276.3599853515625,
+   "height_m": 4.53,
+   "cull_distance_m_recipe": 180.0,
+   "lod_switches": [
+    {
+     "lod_index": 0,
+     "screen_size": 1.0,
+     "engage_distance_m": 4.9,
+     "tree_px_height_at_engage": 1770.0,
+     "triangles": 2604,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 1,
+     "screen_size": 0.6,
+     "engage_distance_m": 8.2,
+     "tree_px_height_at_engage": 1062.0,
+     "triangles": 1301,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 2,
+     "screen_size": 0.2,
+     "engage_distance_m": 24.6,
+     "tree_px_height_at_engage": 354.0,
+     "triangles": 650,
+     "above_detail_threshold": true
+    },
+    {
+     "lod_index": 3,
+     "screen_size": 0.1,
+     "engage_distance_m": 49.1,
+     "tree_px_height_at_engage": 177.0,
+     "triangles": 326,
+     "above_detail_threshold": true
+    }
+   ],
+   "lowest_lod_engage_m": 49.1,
+   "recipe_vs_asset_lod": null
+  }
+ ]
+}

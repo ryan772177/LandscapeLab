@@ -1,0 +1,37 @@
+{
+ "ok": true,
+ "target": 4096,
+ "_policy": "HLODTextureSizePolicy deliberately NOT written; it is already SPECIFIC_SIZE on all 257 (read 2026-09-13) and is the only policy under which HLODTextureSize is read",
+ "n_landscape_actors": 257,
+ "n_by_class": {
+  "Landscape": 1,
+  "LandscapeStreamingProxy": 256
+ },
+ "preflight": {
+  "n_unreadable": 0,
+  "n_wrong_policy": 0,
+  "unreadable": [],
+  "wrong_policy": []
+ },
+ "n_changed": 1,
+ "n_already_at_target": 256,
+ "n_failed": 0,
+ "failed": [],
+ "dirty_before_save": 257,
+ "save_dirty_packages_returned": true,
+ "dirty_after_save": 0,
+ "still_dirty_sample": [],
+ "readback_distribution": {
+  "4096": 257
+ },
+ "readback_raised": 0,
+ "readback_ok": 257,
+ "outliers": [],
+ "n_outliers": 0,
+ "all_at_target": true,
+ "policy_after": {
+  "<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>": 257
+ },
+ "n_hlod_actors_in_editor_world": 1042,
+ "_hlod_count_caveat": "This counts HLOD actors LOADED in the editor world right now, which is not the same as every HLOD cell on disk -- World Partition streams them. The on-disk figure is 2,267 (the -SetupHLODs manifest, 2026-09-13)."
+}

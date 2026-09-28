@@ -1,0 +1,98 @@
+{
+ "instrument": "ppi0",
+ "bins": [
+  {
+   "bin_m": [
+    0.0,
+    100.0
+   ],
+   "pixels": 2310743,
+   "representative_m": 50.0,
+   "predicted_T": 0.9934,
+   "luma_std": 0.077524,
+   "median_luma": 0.054411,
+   "p10_luma": 0.030747,
+   "contrast_ratio": 1.0,
+   "contrast_vs_predicted": 0.0066,
+   "within_30pc": true
+  },
+  {
+   "bin_m": [
+    100.0,
+    300.0
+   ],
+   "pixels": 797569,
+   "representative_m": 200.0,
+   "predicted_T": 0.97385,
+   "luma_std": 0.115443,
+   "median_luma": 0.176877,
+   "p10_luma": 0.051082,
+   "contrast_ratio": 1.48913,
+   "contrast_vs_predicted": 0.5291,
+   "within_30pc": false
+  },
+  {
+   "bin_m": [
+    300.0,
+    1000.0
+   ],
+   "pixels": 161481,
+   "representative_m": 650.0,
+   "predicted_T": 0.91748,
+   "luma_std": 0.090043,
+   "median_luma": 0.133216,
+   "p10_luma": 0.059924,
+   "contrast_ratio": 1.16149,
+   "contrast_vs_predicted": 0.266,
+   "within_30pc": true
+  },
+  {
+   "bin_m": [
+    1000.0,
+    3000.0
+   ],
+   "pixels": 195579,
+   "representative_m": 2000.0,
+   "predicted_T": 0.76721,
+   "luma_std": 0.127193,
+   "median_luma": 0.110005,
+   "p10_luma": 0.053724,
+   "contrast_ratio": 1.64069,
+   "contrast_vs_predicted": 1.1385,
+   "within_30pc": false
+  },
+  {
+   "bin_m": [
+    3000.0,
+    8000.0
+   ],
+   "pixels": 0,
+   "representative_m": 5500.0,
+   "predicted_T": 0.48252
+  }
+ ],
+ "populated_bins": 4,
+ "target_bin_300_1000": {
+  "pixels": 161481,
+  "representative_m": 650.0,
+  "predicted_T": 0.91748,
+  "contrast_ratio": 1.16149,
+  "contrast_vs_predicted": 0.266,
+  "base_bin_m": [
+   0.0,
+   100.0
+  ]
+ },
+ "verdict": "PASS",
+ "acceptance": "300-1000 m contrast ratio within +/-30% of predicted T",
+ "exr": "_verify/bench/2026-09-15/target_b1_vista/vista.exr",
+ "depth": "_verify/bench/2026-09-15/target_b1_vista/vistaFinalImageSceneDepth.png",
+ "station": "vista",
+ "cam_z_m": 767.3,
+ "fog_used": {
+  "density": 0.00416,
+  "falloff": 0.019324,
+  "half_height_m": 517.49,
+  "datum_m": 186.74
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "ok": true,
+ "force_lod": -1,
+ "out_name": "c1_auto_deep",
+ "deep_offset_m": 300.0,
+ "station": "ring_station_v1",
+ "camera_cm": [
+  -176621.6,
+  215116.5,
+  17232.5,
+  -5.0,
+  250.0
+ ],
+ "level": "Alpine8K",
+ "camera_readback": [
+  -176621.6,
+  215116.5,
+  17232.5,
+  -5.0,
+  250.0
+ ],
+ "game_view": true,
+ "readback": {
+  "r.ForceLOD": -1,
+  "foliage.ForceLOD": -1,
+  "viewport_fov_deg": "err: get_level_viewport_fov() required argument 'viewport_config_key' (pos 1) not found",
+  "r.ViewDistanceScale": 1.0,
+  "r.StaticMeshLODDistanceScale": 1.0,
+  "foliage.LODDistanceScale": 1.0,
+  "r.ScreenPercentage": 100.0
+ },
+ "force_lod_ok": true,
+ "shot_scheduled": "c1_auto_deep"
+}

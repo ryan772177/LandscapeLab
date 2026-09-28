@@ -1,0 +1,293 @@
+{
+ "_what": "The fixed measuring rig every brief scores against. Nothing in here is a quality opinion; it pins WHERE and HOW frames are taken so two renders a week apart differ only in what changed. Claude Code: stations 1-3 are placed as CameraActors labelled Bench_<name> in /Game/Alpine8K (find-or-create by label, is_spatially_loaded=false), the dolly is a Level Sequence, captures go through Movie Render Queue.",
+ "level": "/Game/Alpine8K",
+ "declared_camera": {
+  "fov_h_deg": 90.0,
+  "res": [
+   3840,
+   2160
+  ],
+  "floor_res": [
+   2560,
+   1440
+  ],
+  "_note": "RULED 2026-09-05: derive at 4K, verify at 1440p; 8K only for inspection crops"
+ },
+ "stations": [
+  {
+   "name": "near_ground",
+   "source": "THE PLAZA PERF STATION. CORRECTION: this file said 'the 2026-09-05 rear render (FINAL_alpine_rear.png)'. No such render exists -- FINAL_alpine_rear.png is 2026-08-23, and the only 2026-09-05 renders are the four perf stations. Using plaza: the one station of four an actual render rated USABLE, already on the ratified spline, and the dolly origin.",
+   "location_cm": [
+    -210800.0,
+    278800.0,
+    18849.1
+   ],
+   "rotation_deg": [
+    -2.0,
+    -12.8,
+    0.0
+   ],
+   "purpose": "detail band: grass, saplings, forest floor, shadows, terrain micro-relief",
+   "_rotation_order": "pitch, yaw, roll",
+   "eye_height_cm": 175.0,
+   "_z_is_traced": "location_cm[2] here is HEIGHTMAP-DERIVED and is a placement aid only. Ground is TRACED IN-EDITOR per station (perf_budgets.json says so, for cause: this project shipped a render/collide divergence of p90 30.98 m once). Measured gap at near_ground today: 2.3 cm. Take X/Y/yaw/pitch from here; take Z from a trace.",
+   "measured_framing": {
+    "pct_frame_per_depth_band": {
+     "near_lt_100m": 99.25,
+     "mid_100m_1km": 0.0,
+     "far_gt_1km": 0.0,
+     "sky": 0.75
+    },
+    "pct_sky": 0.75,
+    "pct_near_any_lt100m": 99.25,
+    "ridge_columns": "0/320",
+    "_evidence": "_verify/bench/2026-09-05/bench_stations_derived.json",
+    "shape_band": {
+     "distance_band_m": [
+      1148.6,
+      7657.5
+     ],
+     "pct_canopy_in_band": 0.0,
+     "canopy_share_of_band": null
+    }
+   }
+  },
+  {
+   "name": "mid_slope",
+   "source": "RE-DERIVED 2026-09-05 by traced occlusion (operator ruling). The treeline perf station this file named frames a near-vertical rock face at ~85% of frame and cannot show the shape band. Chosen for CONTINUOUS canopy 300 m - 3 km with a clear near field.",
+   "location_cm": [
+    -190000.0,
+    100000.0,
+    63450.4
+   ],
+   "rotation_deg": [
+    -2.0,
+    105.0,
+    0.0
+   ],
+   "purpose": "shape band: LOD2/3, imposters, canopy coverage 300 m - 1.5 km",
+   "_rotation_order": "pitch, yaw, roll",
+   "eye_height_cm": 175.0,
+   "_z_is_traced": "location_cm[2] here is HEIGHTMAP-DERIVED and is a placement aid only. Ground is TRACED IN-EDITOR per station (perf_budgets.json says so, for cause: this project shipped a render/collide divergence of p90 30.98 m once). Measured gap at near_ground today: 2.3 cm. Take X/Y/yaw/pitch from here; take Z from a trace.",
+   "measured_framing": {
+    "pct_frame_per_depth_band": {
+     "near_lt_100m": 0.0,
+     "mid_100m_1km": 17.82,
+     "far_gt_1km": 25.78,
+     "sky": 56.39
+    },
+    "pct_sky": 56.39,
+    "pct_near_any_lt100m": 0.0,
+    "ridge_columns": "0/320",
+    "_evidence": "_verify/bench/2026-09-05/bench_stations_derived.json",
+    "shape_band": {
+     "distance_band_m": [
+      1148.6,
+      7657.5
+     ],
+     "pct_canopy_in_band": 14.67,
+     "canopy_share_of_band": 82.8
+    }
+   }
+  },
+  {
+   "name": "vista",
+   "source": "RE-DERIVED 2026-09-05 by traced occlusion (operator ruling). The vista perf station this file named shows neither the town nor the peak. Chosen for the 1-3 km band plus a ridge silhouette; the town was tested and traded away for the ridge -- see bench_stations_derived.json town_clause.",
+   "location_cm": [
+    -216400.0,
+    63600.0,
+    76558.0
+   ],
+   "rotation_deg": [
+    -4.0,
+    60.0,
+    0.0
+   ],
+   "purpose": "blob band: HLOD, aerial perspective, ridge silhouettes, sky",
+   "_rotation_order": "pitch, yaw, roll",
+   "eye_height_cm": 175.0,
+   "_z_is_traced": "location_cm[2] here is HEIGHTMAP-DERIVED and is a placement aid only. Ground is TRACED IN-EDITOR per station (perf_budgets.json says so, for cause: this project shipped a render/collide divergence of p90 30.98 m once). Measured gap at near_ground today: 2.3 cm. Take X/Y/yaw/pitch from here; take Z from a trace.",
+   "measured_framing": {
+    "pct_frame_per_depth_band": {
+     "near_lt_100m": 20.77,
+     "mid_100m_1km": 16.45,
+     "far_gt_1km": 16.33,
+     "sky": 46.46
+    },
+    "pct_sky": 46.46,
+    "pct_near_any_lt100m": 20.77,
+    "ridge_columns": "104/320",
+    "_evidence": "_verify/bench/2026-09-05/bench_stations_derived.json",
+    "shape_band": {
+     "distance_band_m": [
+      1148.6,
+      7657.5
+     ],
+     "pct_canopy_in_band": 6.95,
+     "canopy_share_of_band": 42.6
+    }
+   }
+  }
+ ],
+ "dolly": {
+  "from_station": "near_ground",
+  "speed_m_s": 1.4,
+  "seconds": 6.0,
+  "fps": 30,
+  "heading": "along the station's forward vector",
+  "_why": "walking pace; 180 frames is enough for temporal_stability.py to separate pops from motion"
+ },
+ "lighting": "recipe lighting block, unchanged; exposure PINNED via the profile cvars r.DefaultFeature.AutoExposure=0 and r.EyeAdaptationQuality=0 (see profiles._exposure). The bare words 'exposure manual' used to live here and enforced nothing.",
+ "profiles": {
+  "dev": {
+   "_note": "the current DefaultEngine.ini sg.* values; the iGPU profile Output 2560x1440 (the floor).",
+   "sg.ShadowQuality": 1,
+   "sg.AntiAliasingQuality": 1,
+   "sg.PostProcessQuality": 1,
+   "sg.FoliageQuality": 1,
+   "sg.ViewDistanceQuality": 1,
+   "sg.TextureQuality": 1,
+   "sg.EffectsQuality": 1,
+   "sg.ShadingQuality": 1,
+   "sg.GlobalIlluminationQuality": 3,
+   "sg.ReflectionQuality": 3,
+   "r.ScreenPercentage": 100,
+   "_exposure": "Exposure is owned by the level PostProcessVolume (AEM_MANUAL, bias from recipes/alpine_8k.json lighting.exposure). r.DefaultFeature.AutoExposure=0 was REMOVED 2026-09-09: SceneView.cpp:2060-2069 pins AutoExposureMin/MaxBrightness on FinalPostProcessSettings AFTER the volume blend, so it overrides the volume and blew every station 4-5 stops. r.EyeAdaptationQuality=0 went with it as inert (PostProcessEyeAdaptation.cpp:359-373 only clamps non-Manual at quality==1). See R-BENCH REJECTED; verify with scripts/payloads/exposure_probe.py."
+  },
+  "target": {
+   "_note": "the quality the world is judged at; applied per MRQ job via console variables, never written to the ini Output 3840x2160.",
+   "sg.ShadowQuality": 4,
+   "sg.AntiAliasingQuality": 4,
+   "sg.PostProcessQuality": 4,
+   "sg.FoliageQuality": 4,
+   "sg.ViewDistanceQuality": 4,
+   "sg.TextureQuality": 4,
+   "sg.EffectsQuality": 4,
+   "sg.ShadingQuality": 4,
+   "sg.GlobalIlluminationQuality": 4,
+   "sg.ReflectionQuality": 4,
+   "r.ScreenPercentage": 100,
+   "r.Nanite.MaxPixelsPerEdge": 1,
+   "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5,
+   "mrq.temporal_samples": 8,
+   "_exposure": "Exposure is owned by the level PostProcessVolume (AEM_MANUAL, bias from recipes/alpine_8k.json lighting.exposure). r.DefaultFeature.AutoExposure=0 was REMOVED 2026-09-09: SceneView.cpp:2060-2069 pins AutoExposureMin/MaxBrightness on FinalPostProcessSettings AFTER the volume blend, so it overrides the volume and blew every station 4-5 stops. r.EyeAdaptationQuality=0 went with it as inert (PostProcessEyeAdaptation.cpp:359-373 only clamps non-Manual at quality==1). See R-BENCH REJECTED; verify with scripts/payloads/exposure_probe.py."
+  },
+  "_exposure": "MEASURED 2026-09-06: the first dolly capture darkened monotonically from mean luma 0.349 to 0.275 over its 8.4 m walk, and consecutive frames differed far more than a 4.7 cm step can explain. That is AUTO-EXPOSURE ADAPTING, and it swamps temporal_stability.py -- the tool Weber-normalises to LOCAL luminance, but a global exposure ramp still moves the whole frame, so the score measures the exposure curve rather than LOD pops. This file said 'exposure manual' in its `lighting` field from the day it was written and NOTHING APPLIED OR READ IT BACK: a parameter that reads like a setting and polices nothing, the same class as the FOV that was declared nowhere and the residency that was never checked. Now expressed as console variables so it travels the path that already has an engine-log read-back. r.DefaultFeature.AutoExposure (SceneView.cpp:183) makes new views default to manual; r.EyeAdaptationQuality (PostProcessEyeAdaptation.cpp:361) disables the adaptation pass. APPLIED BUT NOT YET VERIFIED -- the dolly must be re-captured and the luma drift re-measured before any score from it is a baseline."
+ },
+ "outputs": {
+  "stills": "_verify/bench/<date>/<profile>/<station>.png (PNG 16-bit or EXR; sRGB-encoded PNG is acceptable for the perceptual tools)",
+  "dolly": "_verify/bench/<date>/<profile>/dolly/frame_%04d.png",
+  "sidecar": "_verify/bench/<date>/bench_run.json — commit sha, recipe sha, profile, cvars read BACK from the engine (not the ones requested), FOV read back, resolution read back"
+ },
+ "scores": {
+  "temporal": "scripts/temporal_stability.py dolly/*.png -> score, spikes",
+  "lod": "scripts/lod_silhouette_check.py per species at the switch sizes from angular_budget.py",
+  "future_briefs": "palette/haze/grade (Brief 2), tiling autocorrelation (Brief 3), FLIP/LPIPS against concept references (Brief 4)",
+  "sky_colour_band": {
+   "_what": "Splits featureless pixels into SKY-COLOURED and NON-SKY. Sky is legitimately featureless; a flat non-sky region is a void, an untextured surface, or a blow-out. featureless_fraction alone cannot tell them apart, which is why mid_slope read 93.8% before HLOD and 56.4% of that was correctly sky.",
+   "rule": "blue_dominant",
+   "min_blue_minus_red": 0.06,
+   "require_monotonic_bgr": true,
+   "_rule": "A tile is sky if mean B - mean R >= min_blue_minus_red AND B >= G >= R. CHROMATIC, not absolute-RGB: measured sky brightness runs 0.50-0.90 across these three stations because of atmosphere, so a tight RGB box would fail on haze. The blue-minus-red GAP is stable.",
+   "_measured_2026_09_09": {
+    "near_ground": {
+     "sky_rgb": [
+      0.496,
+      0.628,
+      0.752
+     ],
+     "b_minus_r": 0.256,
+     "non_sky_rgb": [
+      0.588,
+      0.528,
+      0.477
+     ],
+     "non_sky_b_minus_r": -0.111
+    },
+    "mid_slope": {
+     "sky_rgb": [
+      0.763,
+      0.831,
+      0.896
+     ],
+     "b_minus_r": 0.133,
+     "non_sky_rgb": [
+      0.903,
+      0.892,
+      0.893
+     ],
+     "non_sky_b_minus_r": -0.01
+    },
+    "vista": {
+     "sky_rgb": [
+      0.691,
+      0.785,
+      0.868
+     ],
+     "b_minus_r": 0.177,
+     "non_sky_rgb": [
+      0.887,
+      0.873,
+      0.871
+     ],
+     "non_sky_b_minus_r": -0.016
+    }
+   },
+   "_threshold_choice": "0.06 sits between the largest non-sky gap (-0.010) and the smallest sky gap (+0.133), with room on both sides. Measured on frames whose exposure was independently verified good, NOT sampled from the frame under test.",
+   "_why_not_per_frame": "A reference sampled from the frame under test would call a BLOWN WHITE frame all-sky and excuse the exact defect this gate exists to catch: on 2026-09-05 mid_slope was a white void and resolution, cvars, file size and mean luma all passed. Pure white has B - R = 0 and is therefore NON-SKY under this band, which is the required behaviour."
+  }
+ },
+ "_stations_status": "DERIVED OFFLINE 2026-09-05, NOT YET CONFIRMED IN THE EDITOR. No station is locked until a real render at that camera confirms the framing (non-negotiable 8). See RECIPES R-BENCHSTATION.",
+ "_corrections_to_this_file": [
+  "near_ground's stated source did not exist (see its source field).",
+  "mid_slope and vista named perf stations that this project had already measured as framing something other than what they claim (_verify/20260905_stations/STATIONS_READ.md, 2026-09-05).",
+  "The dolly's 'along the station's forward vector' is retained; the path was checked offline -- 8.4 m, 0.5 m of ground change, 1.7 cm max per-frame step, and a ConiferPine trunk 1.90 m from the path END which will dominate the last frames."
+ ],
+ "residency": {
+  "_what": "WHAT MUST BE TRUE FOR A FRAME TO COUNT. On 2026-09-05 a capture reported OK over a mid_slope still that was 93.8% blank because World Partition cells 2 km from the town never streamed in. Resolution, console variables, byte count and mean luma were all correct; none of them is about whether the world was there. This block is, and bench_capture REFUSES (exit 6) rather than reporting a number of unknown class -- the same refusal measure_frame_cost has carried since 2026-08-12 (R-FRAMECOST, THE RESIDENCY GATE).",
+  "expect_landscape_components": 1024,
+  "_expect_landscape_components": "The 8129^2 landscape is 32x32 = 1024 components. Same figure as recipes/perf_budgets.json expect_components, and it must stay the same figure: two tools disagreeing about how big the world is would be worse than neither checking.",
+  "engine_warm_up_frames": 300,
+  "_engine_warm_up_history": "180 -> 300 on 2026-09-10 with the 768 m range (Brief 3 Task 0): at 180 the vista shot left 12 InstancedFoliageActors in flight -- the same sparse low-priority tail class measured 2026-09-09, now over 3x the cells. 300 is DERIVED, not tuned: truth runs stream the ENTIRE 8 km world to missing 0 in 300 warm-up frames (measured repeatedly), so 300 bounds any subset of it.",
+  "_engine_warm_up_frames": "UMoviePipelineAntiAliasingSetting::EngineWarmUpCount. The engine's own docstring names this exact use: 'pre-warming systems (such as particle systems, or level loading) which need time to run before you want to start capturing frames'. Ticks the game thread WITHOUT rendering, so it is the cheap way to let streaming catch up. Requires bUseCameraCutForWarmUp = false, which bench_capture sets explicitly rather than relying on a default.",
+  "require_probe": true,
+  "_require_probe": "scripts/payloads/bench_residency_probe.py runs INSIDE PIE via the MRQ console setting's end_console_commands ('py <path>'), because remote exec cannot reach the game thread while MRQ owns it. Without a probe line for a shot the verdict is NO VERDICT, never PASS: 'I could not look' is not 'it was there'.",
+  "truth": {
+   "_what": "TRUTH FRAME. Not a benchmark frame -- a reference render with streaming and distance culling taken out of the picture, so a later HLOD or imposter result has something to be measured AGAINST. Slow and deliberately unrepresentative of play.",
+   "loading_range_cm": 1200000.0,
+   "_loading_range_cm": "12 km against an 8.129 km world, so every cell is inside the range from anywhere in it. Applied with the console COMMAND wp.Runtime.OverrideRuntimeLoadingRange -grid=<name> -range=<cm> (WorldPartitionSubsystem.cpp:219-224; a command with args, NOT a cvar, so add_or_update_console_variable cannot set it and it goes in start_console_commands). Non-shipping builds only.",
+   "grid": "MainPartition",
+   "_grid": "CORRECTED 2026-09-09. Was 'MainGrid', a SpatialHash grid name discovered 2026-09-06 on the assumption that this world uses UWorldPartitionRuntimeSpatialHash. IT DOES NOT: the hash is UWorldPartitionRuntimeHashSet, read back live, and WorldPartitionRuntimeHashSet.cpp:269 names the default partition 'MainPartition' -- the same source the derived block cites. wp.Runtime.OverrideRuntimeLoadingRange is an EXACT FName lookup with no wildcard (WorldPartitionSubsystem.cpp:563-571), so -grid=MainGrid matched nothing and THE TRUTH OVERRIDE HAS ALWAYS BEEN A NO-OP. That is why the 2026-09-06 experiments concluded PIE could not be force-loaded: the lever was never connected to anything. If a custom grid is ever added, re-read it.",
+   "view_distance_scale": 100,
+   "_view_distance_scale": "UMoviePipelineGameOverrideSetting::ViewDistanceScale with bOverrideViewDistanceScale, so per-object cull distances stop hiding things. FOR_CLAUDE_CODE Task 7 asks for exactly this control render.",
+   "max_loading_streaming_cells": 512,
+   "_max_loading_streaming_cells": "wp.Runtime.MaxLoadingStreamingCells caps concurrent cell loads (WorldPartitionSubsystem.cpp:204). Raised so a truth frame finishes streaming in reasonable wall-clock."
+  },
+  "truth_warm_up_frames": 300,
+  "_truth_warm_up_frames": "Force-loading 8 km of cells needs more ticks than a normal shot. Used by bench_capture --truth in place of engine_warm_up_frames.",
+  "near_field": {
+   "_what": "The precondition for a NEAR-FIELD shot, measured AROUND THE CAMERA instead of over the whole world. MEASURED 2026-09-06: PIE streams about 4 landscape proxies (16 of 1024 components) around the camera and nothing beyond, and NEITHER the editor region loader NOR wp.Runtime.OverrideRuntimeLoadingRange changed that -- three levers, all measured, none moved the number. So expecting all 1024 is right for a truth frame and wrong for a dolly through the town: a gate that refuses correct work is a gate that gets switched off.",
+   "radius_m": 600.0,
+   "_radius_m": "The detail band. Task 1 measured the Conifer's 40 px detail boundary at 1149 m and Meadow's silhouette boundary at 124 m; 600 m covers everything a walking-pace dolly can bring into or out of the detail band over 8.4 m of travel, without demanding cells the engine will not stream.",
+   "expect_components_within_radius": 16,
+   "_expect_components_within_radius": "4 proxies x 4 components, which is what PIE actually holds around a camera on this world. This is a FLOOR read off the engine, not an aspiration: it says 'the ground under and immediately around the camera is present', which is the whole claim a near-field frame makes. It does NOT license any statement about the 1-3 km bands.",
+   "_does_not_license": "A near-field PASS says nothing about mid_slope or vista, whose entire purpose is content beyond the streaming range. Those stay UNCONFIRMED until HLOD exists (Task 7) or force-load is solved."
+  },
+  "derived": {
+   "_what": "DERIVED residency for the PLAYER instrument, ruled 2026-09-09. The old expectations were TYPED: 1024 components for the whole world, then 16 within 600 m. Both were wrong in the same direction -- they demanded content from OUTSIDE the loading range, which is why every bench run this project has ever taken failed the gate.",
+   "grid": "MainPartition",
+   "_grid": "The runtime partition NAME, not a SpatialHash grid name. This world's hash is UWorldPartitionRuntimeHashSet (read back live). WorldPartitionRuntimeHashSet.cpp:269 sets RuntimePartitionDesc.Name = TEXT(\"MainPartition\") for the default partition, and HLOD grids are \"%s:%s\" of main and HLOD names (...HLODGeneration.cpp:471) -- which matches the MainPartition:HLODLayer_Merged carried by 1,042 actors in this world. FRuntimePartitionStreamingData::GetLoadingRange (WorldPartitionRuntimeHashSet.cpp:125-135) consults UWorldPartitionSubsystem::GetOverrideLoadingRange(Name, ...), so the override IS honoured on a HashSet world, keyed on this name.",
+   "loading_range_cm": 51200,
+   "_loading_range_history": "25600 -> 76800 -> 51200 on 2026-09-10 (Brief 3 Task 0, R-RANGE): 768 m RED'd the perf gate at treeline (GPU p90 7.86 vs 7.0, 12% over vs 10% tolerance) and the pre-committed fallback is 512 m. This declared value follows the WORLD so the bench override matches it rather than masking it. NOTE the '_declared because unreadable' premise below is now PARTLY OBSOLETE: the partition objects ARE readable by exact-case property name via find_object (runtime_partition_probe payload, 2026-09-10); rewiring this block to read live is future work, and until then the number here is verified against that probe.",
+   "_loading_range_cm": "256 m. This is the ENGINE's own default: URuntimePartition::SetDefaultValues sets LoadingRange = 25600 (RuntimePartition.cpp:27), and URuntimePartitionLHGrid then takes CellSize = LoadingRange / 2 with bIs2D = true (RuntimePartitionLHGrid.cpp:178-179). It is DECLARED here rather than read from the world because UWorldPartitionRuntimeHashSet.RuntimePartitions is declared `private:` without AllowPrivateAccess (WorldPartitionRuntimeHashSet.h:256,262-263) and is therefore invisible to Python -- so it is APPLIED with the console override and its effect is READ BACK through the expected/resident sets, per standing rule 12.",
+   "expected_from": "scripts/payloads/bench_expected_set.py",
+   "_expected_from": "The ENGINE answers what is in range: WorldPartitionBlueprintLibrary.get_intersecting_actor_descs, a reflected UFUNCTION. Filters: is_spatially_loaded (a non-spatial actor is always loaded and proves nothing about streaming), runtime_grid empty (HLOD proxies stream on their OWN range), and bounds-vs-SPHERE in XY (the query takes a BOX; the range is a RADIUS).",
+   "verdict": "expected_minus_resident_is_empty",
+   "_verdict": "SUBSET, not equality. The ruling said loaded == expected; strict equality fails every correct run, because always-loaded actors are resident and absent from expected by construction, and cells leaving range stay resident until streamed out. The gate is that nothing EXPECTED is missing.",
+   "_pending": "NOT CHECKED, and not silently: UWorldPartitionSubsystem::IsAllStreamingCompleted is a UFUNCTION but the subsystem is a UWorldSubsystem with no Python accessor (get_editor_subsystem refuses it, unreal.SubsystemBlueprintLibrary does not exist, World has no get_subsystem). An empty missing-set is the substitute: if everything in range has arrived, nothing in range is pending.",
+   "max_loading_streaming_cells": 512,
+   "_max_loading_streaming_cells": "wp.Runtime.MaxLoadingStreamingCells caps CONCURRENT cell loads and defaults to 4 (WorldPartitionSubsystem.cpp:202-206). At the default, the sparse low-priority tail of a station's cells can still be in flight when the shot ends: measured 2026-09-09, 7 foliage actors were missing across 3 stations, all in range and all non-empty (3-117 instances). Raised for STILL captures so the 180 warm-up frames can actually settle. NOT to be raised for the dolly, which represents motion a player makes."
+  }
+ },
+ "_residency_note": "residency is a PRECONDITION, not a quality setting. It is declared here, applied by bench_capture, and READ BACK from inside PIE. All three, or the frame does not count."
+}

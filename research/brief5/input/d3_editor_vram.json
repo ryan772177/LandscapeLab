@@ -1,0 +1,8 @@
+{
+ "_what": "Brief 5 D3 live-regen editor-peak VRAM, recorded as an artefact (Brief 7 P0a). This number lived only in the STATE narrative; a measured value needs a file on disk.",
+ "_source": "STATE.md D3 block + research/brief5/derived/d3_verdict.json (now tracked)",
+ "editor_peak_mib": 5211,
+ "ceiling_mib": 13312,
+ "_ceiling_note": "DEVICE_HUNG ceiling; the 4.4x density upgrade fit VRAM well under it (editor peak 5211; -game forest_floor 4972 / open_max 4940 / plaza 4993). D3 was later REVERTED for busting the GPU FRAME budget, not VRAM.",
+ "status": "M"
+}

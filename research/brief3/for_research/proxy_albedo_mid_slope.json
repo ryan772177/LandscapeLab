@@ -1,0 +1,62 @@
+{
+ "bin_m": [
+  300.0,
+  1000.0
+ ],
+ "pixels": 1496784,
+ "overall": {
+  "real_median": 0.38875,
+  "proxy_median": 0.38876,
+  "delta_pct": 0.003,
+  "within_15pc": true
+ },
+ "layers": [
+  {
+   "label": "dark (scree/gravel-like)",
+   "pixels": 385523,
+   "real_median_albedo": 0.04109,
+   "proxy_median_albedo": 0.04109,
+   "delta_pct": -0.001,
+   "within_15pc": true
+  },
+  {
+   "label": "dark (scree/gravel-like)",
+   "pixels": 137173,
+   "real_median_albedo": 0.11746,
+   "proxy_median_albedo": 0.11746,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 150550,
+   "real_median_albedo": 0.32823,
+   "proxy_median_albedo": 0.32823,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 480870,
+   "real_median_albedo": 0.41969,
+   "proxy_median_albedo": 0.41969,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 342668,
+   "real_median_albedo": 0.48334,
+   "proxy_median_albedo": 0.48334,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  }
+ ],
+ "verdict": "PASS",
+ "acceptance": "proxy median albedo within +/-15% of real, overall and per real-albedo cluster (>= 2000 px)",
+ "station": "mid_slope",
+ "comp_ev": -14.2571,
+ "proxy_exr": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\bench\\2026-09-15\\target_b1_mid_slope\\mid_slope.exr",
+ "real_exr": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\bench\\2026-09-15\\target_b1_mid_slope_real\\mid_slope.exr",
+ "instrument": "basecolor: proxy=player HLOD, real=truth LOD0"
+}

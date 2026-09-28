@@ -1,0 +1,222 @@
+{
+ "_what": "Brief 5 D2 dry-run: trees per species per zone, before(m=1) vs after(zone map).",
+ "_before_dir": "foliage",
+ "_after_dir": "research/brief7/p3/dryrun",
+ "_zone_map": "research\\brief7\\p3\\zone_map.json",
+ "_zone_rule": "disc containment (512 m); lowest-cap disc wins overlap; outside all = open. Same discs as zone_map.py.",
+ "caps": {
+  "forest_floor": 1.0,
+  "plaza": 2.157,
+  "treeline": 5.48
+ },
+ "per_species": {
+  "Conifer": {
+   "forest_floor": {
+    "before": 1435,
+    "after": 1754,
+    "ratio": 1.222
+   },
+   "plaza": {
+    "before": 1299,
+    "after": 3152,
+    "ratio": 2.426
+   },
+   "treeline": {
+    "before": 131,
+    "after": 778,
+    "ratio": 5.939
+   },
+   "open": {
+    "before": 51734,
+    "after": 225006,
+    "ratio": 4.349
+   },
+   "ALL": {
+    "before": 54599,
+    "after": 230690,
+    "ratio": 4.225
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief7/p3/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 43.2,
+    "grid_density_per_ha": 236.73600000000005,
+    "port_xcheck_max_err": 3.698702389609565e-05,
+    "ceiling": {
+     "density_ceiling": "research/brief5/derived/density_ceiling.json",
+     "D_max": 1691.042,
+     "D_max_bin": [
+      -7,
+      8
+     ],
+     "ff_cap": 2.3784,
+     "projected_total_ceiled": 807182.0
+    }
+   }
+  },
+  "ConiferPine": {
+   "forest_floor": {
+    "before": 1038,
+    "after": 1342,
+    "ratio": 1.293
+   },
+   "plaza": {
+    "before": 928,
+    "after": 2206,
+    "ratio": 2.377
+   },
+   "treeline": {
+    "before": 102,
+    "after": 578,
+    "ratio": 5.667
+   },
+   "open": {
+    "before": 38258,
+    "after": 168506,
+    "ratio": 4.404
+   },
+   "ALL": {
+    "before": 40326,
+    "after": 172632,
+    "ratio": 4.281
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief7/p3/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 31.05,
+    "grid_density_per_ha": 170.15400000000002,
+    "port_xcheck_max_err": 3.698702389609565e-05,
+    "ceiling": {
+     "density_ceiling": "research/brief5/derived/density_ceiling.json",
+     "D_max": 1691.042,
+     "D_max_bin": [
+      -7,
+      8
+     ],
+     "ff_cap": 2.3784,
+     "projected_total_ceiled": 807182.0
+    }
+   }
+  },
+  "SpruceSub": {
+   "forest_floor": {
+    "before": 1172,
+    "after": 1403,
+    "ratio": 1.197
+   },
+   "plaza": {
+    "before": 1087,
+    "after": 2526,
+    "ratio": 2.324
+   },
+   "treeline": {
+    "before": 117,
+    "after": 707,
+    "ratio": 6.043
+   },
+   "open": {
+    "before": 44465,
+    "after": 197011,
+    "ratio": 4.431
+   },
+   "ALL": {
+    "before": 46841,
+    "after": 201647,
+    "ratio": 4.305
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief7/p3/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 33.75,
+    "grid_density_per_ha": 184.95000000000002,
+    "port_xcheck_max_err": 3.698702389609565e-05,
+    "ceiling": {
+     "density_ceiling": "research/brief5/derived/density_ceiling.json",
+     "D_max": 1691.042,
+     "D_max_bin": [
+      -7,
+      8
+     ],
+     "ff_cap": 2.3784,
+     "projected_total_ceiled": 807182.0
+    }
+   }
+  },
+  "SpruceSapling": {
+   "forest_floor": {
+    "before": 963,
+    "after": 1175,
+    "ratio": 1.22
+   },
+   "plaza": {
+    "before": 839,
+    "after": 2073,
+    "ratio": 2.471
+   },
+   "treeline": {
+    "before": 141,
+    "after": 791,
+    "ratio": 5.61
+   },
+   "open": {
+    "before": 41676,
+    "after": 188492,
+    "ratio": 4.523
+   },
+   "ALL": {
+    "before": 43619,
+    "after": 192531,
+    "ratio": 4.414
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief7/p3/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 27.0,
+    "grid_density_per_ha": 147.96,
+    "port_xcheck_max_err": 3.698702389609565e-05,
+    "ceiling": {
+     "density_ceiling": "research/brief5/derived/density_ceiling.json",
+     "D_max": 1691.042,
+     "D_max_bin": [
+      -7,
+      8
+     ],
+     "ff_cap": 2.3784,
+     "projected_total_ceiled": 807182.0
+    }
+   }
+  }
+ },
+ "per_zone_total": {
+  "forest_floor": {
+   "before": 4608,
+   "after": 5674,
+   "ratio": 1.231,
+   "cap": 1.0
+  },
+  "plaza": {
+   "before": 4153,
+   "after": 9957,
+   "ratio": 2.398,
+   "cap": 2.157
+  },
+  "treeline": {
+   "before": 491,
+   "after": 2854,
+   "ratio": 5.813,
+   "cap": 5.48
+  },
+  "open": {
+   "before": 176133,
+   "after": 779015,
+   "ratio": 4.423,
+   "cap": null
+  },
+  "ALL": {
+   "before": 185385,
+   "after": 797500,
+   "ratio": 4.302
+  }
+ },
+ "MAX_INSTANCES_note": "place_foliage MAX_INSTANCES = 250,000; the AFTER total below is the count the density upgrade implies."
+}

@@ -1,0 +1,343 @@
+{
+ "ok": true,
+ "_what": "Brief 5 R4 imposter override diff (read-only).",
+ "recipe_override_materials": [
+  "/Game/Materials/PN_NoWind/MI_spruce_half_01_trunk_nowind",
+  "/Game/Materials/PN_NoWind/MI_spruce_half_01_branch_nowind",
+  "/Game/Materials/PN_NoWind/MI_spruce_half_01_leaf_nowind",
+  "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind"
+ ],
+ "override_imposter_path": "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind",
+ "vendor_imposter": {
+  "path": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter",
+  "exists": true,
+  "class": "MaterialInstanceConstant",
+  "base_material": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter",
+  "scalars": {
+   "Roughness": 5.0,
+   "ImposterRoundingOffsetX": 0.375,
+   "ImposterRoundingOffsetY": 1.0,
+   "ZRot": 1.0,
+   "NORMAL ROTATE AMT": 0.0,
+   "Normal Strength": 0.2,
+   "Brightness": 1.8,
+   "Saturation": 0.8,
+   "Specular": 0.2,
+   "Z": -10.0,
+   "Scale": 841.0,
+   "Snow Brightness": 1.0,
+   "Snow Saturation": 0.0,
+   "ColorVariation": 0.01,
+   "SnowBlending": 1.0,
+   "Motion Dampening": 1.0,
+   "Trail Strength": 0.9,
+   "Bending Radius 1": 110.0,
+   "Bending Strength 1": 0.25,
+   "Bending Radius 2": 100.0,
+   "Bending Strength 2": 0.25,
+   "Bending Radius 3": 80.0,
+   "Bending Strength 3": 0.2,
+   "Wobble Radius": 100.0,
+   "Player Wobble Frequenz": 3.4,
+   "Player Wobble Strength": 1.0,
+   "Bending Height": 100.0,
+   "Wobble Frequenz 1": 3.0,
+   "Wobble Strength 1": 0.3,
+   "Wobble Frequenz 2": 5.0,
+   "Wobble Strength 2": 0.3,
+   "Wobble Frequenz 3": 8.0,
+   "Wobble Strength 3": 0.5,
+   "SS Strength": 1.0,
+   "SS ColorVariation": 0.005
+  },
+  "vectors": {
+   "FWD": [
+    0.0,
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "UP": [
+    0.0,
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "RIGHT": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Snow Tint": [
+    0.849,
+    0.9536,
+    1.0,
+    0.0
+   ],
+   "Tint": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "textures": {
+   "Albedo": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_A",
+   "Normal": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_N",
+   "Masks": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_O",
+   "WindTurbulenceVectorAndGustMagnitude": "/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/WindTurblenceVectorAndGustMagnitude",
+   "X-Vector And X-Extent Texture": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_VEC",
+   "Position and Index Texture": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_PIV"
+  },
+  "switches": {
+   "Snow": false,
+   "Level 1 Bending": true,
+   "Level 2 Bending": false,
+   "Level 3 Bending": false,
+   "Level 1 Wind": true,
+   "Level 2 Wind": false,
+   "Level 3 Wind": false,
+   "Plant or Tree": false
+  },
+  "counts": {
+   "scalars": {
+    "names": 35,
+    "read": 35
+   },
+   "vectors": {
+    "names": 5,
+    "read": 5
+   },
+   "textures": {
+    "names": 6,
+    "read": 6
+   },
+   "switches": {
+    "names": 8,
+    "read": 8
+   }
+  },
+  "enumerate_errors": {}
+ },
+ "override_imposter": {
+  "path": "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind",
+  "exists": true,
+  "class": "MaterialInstanceConstant",
+  "base_material": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter",
+  "scalars": {
+   "Roughness": 5.0,
+   "ImposterRoundingOffsetX": 0.375,
+   "ImposterRoundingOffsetY": 1.0,
+   "ZRot": 1.0,
+   "NORMAL ROTATE AMT": 0.0,
+   "Normal Strength": 0.2,
+   "Brightness": 1.8,
+   "Saturation": 0.8,
+   "Specular": 0.2,
+   "Z": -10.0,
+   "Scale": 841.0,
+   "Snow Brightness": 1.0,
+   "Snow Saturation": 0.0,
+   "ColorVariation": 0.01,
+   "SnowBlending": 1.0,
+   "Motion Dampening": 1.0,
+   "Trail Strength": 0.9,
+   "Bending Radius 1": 110.0,
+   "Bending Strength 1": 0.25,
+   "Bending Radius 2": 100.0,
+   "Bending Strength 2": 0.25,
+   "Bending Radius 3": 80.0,
+   "Bending Strength 3": 0.2,
+   "Wobble Radius": 100.0,
+   "Player Wobble Frequenz": 3.4,
+   "Player Wobble Strength": 1.0,
+   "Bending Height": 100.0,
+   "Wobble Frequenz 1": 3.0,
+   "Wobble Strength 1": 0.3,
+   "Wobble Frequenz 2": 5.0,
+   "Wobble Strength 2": 0.3,
+   "Wobble Frequenz 3": 8.0,
+   "Wobble Strength 3": 0.5,
+   "SS Strength": 1.0,
+   "SS ColorVariation": 0.005
+  },
+  "vectors": {
+   "FWD": [
+    0.0,
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "UP": [
+    0.0,
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "RIGHT": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Snow Tint": [
+    0.849,
+    0.9536,
+    1.0,
+    0.0
+   ],
+   "Tint": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "textures": {
+   "Albedo": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_A",
+   "Normal": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_N",
+   "Masks": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_O",
+   "WindTurbulenceVectorAndGustMagnitude": "/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/WindTurblenceVectorAndGustMagnitude",
+   "X-Vector And X-Extent Texture": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_VEC",
+   "Position and Index Texture": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_PIV"
+  },
+  "switches": {
+   "Snow": false,
+   "Level 1 Bending": false,
+   "Level 2 Bending": false,
+   "Level 3 Bending": false,
+   "Level 1 Wind": false,
+   "Level 2 Wind": false,
+   "Level 3 Wind": false,
+   "Plant or Tree": false
+  },
+  "counts": {
+   "scalars": {
+    "names": 35,
+    "read": 35
+   },
+   "vectors": {
+    "names": 5,
+    "read": 5
+   },
+   "textures": {
+    "names": 6,
+    "read": 6
+   },
+   "switches": {
+    "names": 8,
+    "read": 8
+   }
+  },
+  "enumerate_errors": {}
+ },
+ "diff": {
+  "base_material_match": true,
+  "vendor_base": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter",
+  "override_base": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter",
+  "vendor_counts": {
+   "scalars": {
+    "names": 35,
+    "read": 35
+   },
+   "vectors": {
+    "names": 5,
+    "read": 5
+   },
+   "textures": {
+    "names": 6,
+    "read": 6
+   },
+   "switches": {
+    "names": 8,
+    "read": 8
+   }
+  },
+  "override_counts": {
+   "scalars": {
+    "names": 35,
+    "read": 35
+   },
+   "vectors": {
+    "names": 5,
+    "read": 5
+   },
+   "textures": {
+    "names": 6,
+    "read": 6
+   },
+   "switches": {
+    "names": 8,
+    "read": 8
+   }
+  },
+  "reliability": {
+   "scalars": {
+    "reliable": true,
+    "why": "ok"
+   },
+   "vectors": {
+    "reliable": true,
+    "why": "ok"
+   },
+   "textures": {
+    "reliable": true,
+    "why": "ok"
+   },
+   "switches": {
+    "reliable": true,
+    "why": "ok"
+   }
+  },
+  "scalars": {},
+  "vectors": {},
+  "textures": {},
+  "switches": {
+   "Level 1 Bending": {
+    "vendor": true,
+    "override": false
+   },
+   "Level 1 Wind": {
+    "vendor": true,
+    "override": false
+   }
+  },
+  "vendor_only_params": [],
+  "override_missing_vendor_params": false,
+  "all_kinds_reliable": true
+ },
+ "level": "Alpine8K",
+ "placed_spruce_hism": {
+  "components_found": 990,
+  "override_material_slots": [
+   {
+    "slot": 0,
+    "material": "/Game/Materials/PN_NoWind/MI_spruce_half_01_trunk_nowind"
+   },
+   {
+    "slot": 1,
+    "material": "/Game/Materials/PN_NoWind/MI_spruce_half_01_branch_nowind"
+   },
+   {
+    "slot": 2,
+    "material": "/Game/Materials/PN_NoWind/MI_spruce_half_01_leaf_nowind"
+   },
+   {
+    "slot": 3,
+    "material": "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind"
+   }
+  ],
+  "sample": [
+   "InstancedFoliageActor_-16_-16_1",
+   "InstancedFoliageActor_-16_-15_1"
+  ],
+  "num_custom_data_floats": 0
+ },
+ "hlod_proxy": {
+  "_note": "Instancing-layer HLOD ISM components are often not registered in the editor session (find_instanced_cell_by_grid.py); reported honestly if unreachable.",
+  "spruce_hlod_ism_components": 0,
+  "override_materials": null,
+  "reachable": false
+ }
+}

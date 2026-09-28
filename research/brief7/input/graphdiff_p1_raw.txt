@@ -1,0 +1,240 @@
+  - 16DFFD454F151FAE43C3D09451864515 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+  "error": null,
+  "tag": "p1",
+  "material": "/Game/Materials/M_Alpine8K",
+  "texture_samples": [
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Textures/T_Alpine_8k_Weights.T_Alpine_8k_Weights",
+      "texture_name": "T_Alpine_8k_Weights",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR: 6>",
+      "sampler_source": "<SamplerSourceMode.SSM_CLAMP_WORLD_GROUP_SETTINGS: 2>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_WildGrass_C.T_WildGrass_C",
+      "texture_name": "T_WildGrass_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_WildGrass_C.T_WildGrass_C",
+      "texture_name": "T_WildGrass_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_WildGrass_R.T_WildGrass_R",
+      "texture_name": "T_WildGrass_R",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_MASKS: 4>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_WildGrass_N.T_WildGrass_N",
+      "texture_name": "T_WildGrass_N",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_NORMAL: 3>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_forest_floor_C.T_forest_floor_C",
+      "texture_name": "T_forest_floor_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_forest_floor_R.T_forest_floor_R",
+      "texture_name": "T_forest_floor_R",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_MASKS: 4>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_forest_floor_N.T_forest_floor_N",
+      "texture_name": "T_forest_floor_N",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_NORMAL: 3>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_rocks_ground_04_C.T_rocks_ground_04_C",
+      "texture_name": "T_rocks_ground_04_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_rocks_ground_04_R.T_rocks_ground_04_R",
+      "texture_name": "T_rocks_ground_04_R",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_MASKS: 4>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_rocks_ground_04_N.T_rocks_ground_04_N",
+      "texture_name": "T_rocks_ground_04_N",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_NORMAL: 3>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_C.T_gray_rocks_C",
+      "texture_name": "T_gray_rocks_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_C.T_gray_rocks_C",
+      "texture_name": "T_gray_rocks_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_C.T_gray_rocks_C",
+      "texture_name": "T_gray_rocks_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_C.T_gray_rocks_C",
+      "texture_name": "T_gray_rocks_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_R.T_gray_rocks_R",
+      "texture_name": "T_gray_rocks_R",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_MASKS: 4>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_gray_rocks_N.T_gray_rocks_N",
+      "texture_name": "T_gray_rocks_N",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_NORMAL: 3>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_Snow007A_C.T_Snow007A_C",
+      "texture_name": "T_Snow007A_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_Snow007A_C.T_Snow007A_C",
+      "texture_name": "T_Snow007A_C",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_COLOR: 0>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_Snow007A_R.T_Snow007A_R",
+      "texture_name": "T_Snow007A_R",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_MASKS: 4>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Surfaces/T_Snow007A_N.T_Snow007A_N",
+      "texture_name": "T_Snow007A_N",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_NORMAL: 3>",
+      "sampler_source": "<SamplerSourceMode.SSM_WRAP_WORLD_GROUP_SETTINGS: 1>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    },
+    {
+      "uv_source_class": "<err MaterialExpressionTextureSample: Propert>",
+      "texture": "/Game/Textures/T_Alpine_8k_Macro.T_Alpine_8k_Macro",
+      "texture_name": "T_Alpine_8k_Macro",
+      "sampler_type": "<MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR: 6>",
+      "sampler_source": "<SamplerSourceMode.SSM_CLAMP_WORLD_GROUP_SETTINGS: 2>",
+      "mip_value_mode": "<TextureMipValueMode.TMVM_NONE: 0>",
+      "const_coordinate": "0"
+    }
+  ],
+  "weightmap_textures": {
+    "T_Alpine_8k_Weights": {
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "never_stream": "False",
+      "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+      "srgb": "False",
+      "compression_settings": "<TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP: 5>",
+      "size": "8129x8129"
+    }
+  },
+  "layer_coords": [],
+  "normalish_nodes": [
+    "MaterialExpressionVertexNormalWS"
+  ],
+  "class_histogram": {
+    "MaterialExpressionVertexNormalWS": 1,
+    "MaterialExpressionComponentMask": 7,
+    "MaterialExpressionWorldPosition": 1,
+    "MaterialExpressionSubtract": 4,
+    "MaterialExpressionConstant": 41,
+    "MaterialExpressionDivide": 23,
+    "MaterialExpressionSaturate": 2,
+    "MaterialExpressionAbs": 1,
+    "MaterialExpressionMultiply": 23,
+    "MaterialExpressionAdd": 11,
+    "MaterialExpressionConstant2Vector": 1,
+    "MaterialExpressionTextureSample": 22,
+    "MaterialExpressionConstant3Vector": 2,
+    "MaterialExpressionLinearInterpolate": 15,
+    "MaterialExpressionLandscapeGrassOutput": 1
+  },
+  "texture_sample_count": 22
+}
+(40.1 s)

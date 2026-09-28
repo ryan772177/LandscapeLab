@@ -1,0 +1,25 @@
+--- resource guard: foliage placement (foliage regen) ---
+  RAM: 19.7 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 34148)
+  placement field: textures/alpine_8k_planting_planting.png  (planting field -- canopy-free, feedback loop cut)
+density zone map: research/brief7/p3/zone_map.json  target(m_max)=5.4800  port xcheck max err 3.70e-05 over 726 bins
+
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+map       : 8129 x 8129 cells, 8128 m span = 6606 hectares
+flow map  : LOADED (normalised log-accumulation, not raw flow)
+
+--- density gate ---
+  zone map active: grid densified by m_max=5.4800 (recipe 135/ha -> grid 740/ha)
+  740/ha over 6606 ha = 4,887,443 instances before masking
+  ceiling 860,000 for the whole recipe
+
+--- planned instances ---
+  species        candidates     placed    accept    per ha
+  Conifer         1,562,500    297,893    19.1%      45.1
+  ConiferPine     1,123,600    221,808    19.7%      33.6
+  SpruceSub       1,221,025    256,806    21.0%      38.9
+  SpruceSapling     976,144    240,589    24.6%      36.4
+  TOTAL                      1,017,096
+
+REFUSE: 1,017,096 instances exceeds the ceiling of 860,000.
+  Nothing was written. Lower density_per_hectare or a weight_share; do not raise the ceiling to silence this without a capture showing the editor still runs.

@@ -1,0 +1,107 @@
+{
+ "_title": "Brief 5 item 4 — ground-cover coverage of reference imagery (colour-heuristic ESTIMATE)",
+ "_generated": "2026-09-19",
+ "_tool_state": {
+  "measure_concept_look": "scripts/measure_concept_look.py measures sky/skyline/water/palette/haze/grade only; it does NOT produce a grass/rock/litter/bare ground-cover fraction (see its docstring lines 10-28 and measure_* functions). Its argparse (lines 341-345) accepts only `image` and `--out` — there is NO --selftest and NO selftest function. `python scripts/measure_concept_look.py --selftest` prints usage and errors 'the following arguments are required: image'. So its selftest state is: NONE / not present.",
+  "chosen_path": "Task option (ii): a separate, self-tested colour-heuristic estimator (scratchpad/estimate_groundcover.py, not committed). Its --selftest PASSES on a synthetic 40/20/20/20 grass/rock/litter/bare swatch (exact hit within 0.02)."
+ },
+ "_method": {
+  "instrument": "colour-heuristic ESTIMATE, NOT semantic segmentation and NOT a metric distance band. sRGB [0,1] per-pixel, deterministic, mutually-exclusive bins summing to 1.0 over the stated crop.",
+  "rules_in_order": [
+   "grass  = vegetation/ground-cover: g >= 0.90*r AND (g-b) > 0.03 AND value > 0.10 (captures green and yellow-green dry heath)",
+   "litter = dark clutter/deep shadow: value < 0.16 (evaluated only on non-grass pixels)",
+   "rock   = neutral/grey mid-bright: saturation < 0.20 (non-grass, non-dark)",
+   "bare   = warm brown/tan remainder: everything else (bare soil AND brown leaf-litter land here)"
+  ],
+  "selftest": "PASS — synthetic 40% green / 20% grey / 20% dark / 20% tan returns grass 0.40, rock 0.20, litter 0.20, bare 0.20 (n=10000).",
+  "band_handling": "No image carries camera intrinsics or a depth pass, so the 1-30 m band cannot be isolated by distance. For ground-level shots the band is APPROXIMATED by the bottom 45% of the frame (nearest ground for a downward/level camera); band_established is false for every image. Aerial vistas have no near ground in frame at all -> band_m recorded null."
+ },
+ "_limitations": [
+  "BIOME MISMATCH — the desk MUST NOT read alpine-meadow targets off the ElectricDreams or CitySample rows. Only refs/alpine_village_01/02 are the project's alpine target. ElectricDreams PCG shots are temperate FOREST floor/canopy (different biome); CitySample is URBAN hardscape (near-zero grass, included only as a contrast anchor).",
+  "GRASS UNDERCOUNT IN BRIGHT/GOLDEN LIGHT — concept_01's sunlit hazy meadow largely fails the g>=0.90*r knife-edge: golden dry grass leaks into `bare`, and bright low-saturation backlit grass leaks into `rock`. Sensitivity on the concept_01 meadow rect: grass = 0.402 at g>=0.90*r, 0.487 at 0.85, ~0.50 at 0.80 (plateau). True vegetated ground-cover there is bounded roughly [0.40 (reported grass) .. ~0.90 (grass+bare+rock minus true stone)]; the split is unreliable in this lighting. Treat concept_01 grass as a LOWER BOUND.",
+  "LITTER vs BARE not separable by colour — brown LEAF-LITTER is warm and lands in `bare`, not `litter`. The `litter` bin here == dark/shadowed clutter and is conflated with cast shadow. For a 'non-vegetated ground' figure, combine bare+litter.",
+  "ROCK vs BARE is neutrality-vs-warmth only — grey-brown dirt or warm sandstone crosses the line (e.g. ED mid_distance's tan rock face reads as `bare`, not `rock`).",
+  "CROP CONTAMINATION — the bottom-45% crop of the concepts includes buildings, woodpiles and tree trunks (not ground); these read mostly as bare/rock and inflate those bins. The concept_01 meadow rect avoids the village and is the cleaner alpine-meadow read.",
+  "ANGULAR SCALE UNKNOWN for every image (no intrinsics); all crops are spatial proxies, never metric distance bands."
+ ],
+ "records": [
+  {
+   "path": "refs/alpine_village_01.jpg",
+   "crop": "bottom 45% of frame, full width (n_px 475756)",
+   "angular_scale_note": "angular scale UNKNOWN (concept painting, no camera); bottom-45% is a spatial proxy for near ground, NOT a metric 1-30 m band",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.3225, "rock": 0.186, "litter": 0.0562, "bare": 0.4354},
+   "method": "colour-heuristic ESTIMATE (see _method). grass is a LOWER BOUND: golden sunlit meadow leaks into bare/rock.",
+   "source": "refs/alpine_village_01.jpg — project concept art, PRIMARY alpine-meadow look target (refs/MANIFEST.md)",
+   "biome": "alpine meadow (TARGET)"
+  },
+  {
+   "path": "refs/alpine_village_01.jpg",
+   "crop": "rect x[0.00,0.45] y[0.60,1.00] — lower-left pure meadow, excludes the village (n_px 189980)",
+   "angular_scale_note": "angular scale UNKNOWN; rect isolates the sunlit foreground meadow as the cleanest alpine ground-cover read",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.4019, "rock": 0.252, "litter": 0.0524, "bare": 0.2937},
+   "method": "colour-heuristic ESTIMATE. In this bright/hazy backlit meadow grass leaks into rock (sat<0.20) AND bare (warm); vegetated ground-cover bounded ~[0.40, 0.90]. Preferred alpine-meadow reference row.",
+   "source": "refs/alpine_village_01.jpg lower-left meadow — PRIMARY alpine-meadow look target",
+   "biome": "alpine meadow (TARGET, cleanest crop)"
+  },
+  {
+   "path": "refs/alpine_village_02.jpg",
+   "crop": "bottom 45% of frame, full width (n_px 475756)",
+   "angular_scale_note": "angular scale UNKNOWN (concept painting); bottom-45% proxy. Foreground is a mixed village-edge ground: dirt/cobble track + grass tufts + wildflowers + river stones.",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.3127, "rock": 0.1666, "litter": 0.1559, "bare": 0.3648},
+   "method": "colour-heuristic ESTIMATE. Mixed ground; `rock` here = river stones + stone walls, `bare` = dirt track + timber. Wildflowers not separable from grass.",
+   "source": "refs/alpine_village_02.jpg — project concept art, alpine village street ground",
+   "biome": "alpine village edge (TARGET, mixed)"
+  },
+  {
+   "path": "research/census/shots/ElectricDreams/PCG__ground_closeup.png",
+   "crop": "bottom 45% of frame, full width (n_px 933120)",
+   "angular_scale_note": "angular scale UNKNOWN (Epic ED_PCG capture, no intrinsics recorded in census). Verified genuine forest-floor closeup (SURVEY_STATUS.md). bottom-45% proxy.",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.5237, "rock": 0.0741, "litter": 0.0832, "bare": 0.319},
+   "method": "colour-heuristic ESTIMATE. `bare` includes abundant brown leaf-litter (not separable from soil).",
+   "source": "research/census/shots/ElectricDreams/PCG__ground_closeup.png — Epic Electric Dreams PCG showcase (reference for PCG ground-cover DENSITY, NOT alpine biome)",
+   "biome": "temperate forest floor (REFERENCE ONLY, biome differs)"
+  },
+  {
+   "path": "research/census/shots/ElectricDreams/PCG__mid_distance.png",
+   "crop": "bottom 45% of frame, full width (n_px 933120)",
+   "angular_scale_note": "angular scale UNKNOWN; forested rocky ravine, mid-to-far. bottom-45% is NOT near ground here (subject is 20-200 m). Treat as canopy/rock composition, not a 1-30 m ground read.",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.6859, "rock": 0.0113, "litter": 0.2407, "bare": 0.0621},
+   "method": "colour-heuristic ESTIMATE. `grass` = tree canopy (not ground-cover); the tan rock face reads as `bare`/`litter` (shadow), NOT `rock`. Low confidence for ground-cover purposes.",
+   "source": "research/census/shots/ElectricDreams/PCG__mid_distance.png — Epic ED PCG (biome differs; canopy-dominated)",
+   "biome": "temperate forest slope (REFERENCE ONLY, biome differs)"
+  },
+  {
+   "path": "research/census/shots/ElectricDreams/PCG__wide_vista.png",
+   "crop": "whole frame minus blue+bright sky/haze mask (b=max, b-r>0.03, v>0.30) (n_px 1450397 of 2073600)",
+   "angular_scale_note": "angular scale UNKNOWN; AERIAL vista, no near ground in frame. 1-30 m band physically absent -> band_m null.",
+   "band_m": null,
+   "band_established": false,
+   "band_null_reason": "aerial vista: the nearest terrain is hundreds of metres away; no 1-30 m ground band exists in this frame (rule 13: recorded null, not silently passed).",
+   "fractions": {"grass": 0.6757, "rock": 0.1225, "litter": 0.0416, "bare": 0.1602},
+   "method": "colour-heuristic ESTIMATE over non-sky pixels; `grass` = distant canopy over rock. Included to show far-field canopy/rock ratio only.",
+   "source": "research/census/shots/ElectricDreams/PCG__wide_vista.png — Epic ED PCG aerial",
+   "biome": "temperate forest aerial (REFERENCE ONLY, not a ground-cover band)"
+  },
+  {
+   "path": "research/census/shots/CitySample/Small_City_LVL__ground_closeup.png",
+   "crop": "bottom 45% of frame, full width (n_px 933120)",
+   "angular_scale_note": "angular scale UNKNOWN; wet urban plaza at eye level (per shots/CitySample/README.md all 5 frames are one plaza viewpoint). bottom-45% proxy.",
+   "band_m": [1, 30],
+   "band_established": false,
+   "fractions": {"grass": 0.006, "rock": 0.7214, "litter": 0.1501, "bare": 0.1225},
+   "method": "colour-heuristic ESTIMATE. `rock` = wet grey/tan paving; `litter`/`bare` = dark reflections and brown paver. Near-zero grass, as expected for hardscape.",
+   "source": "research/census/shots/CitySample/Small_City_LVL__ground_closeup.png — Epic City Sample (URBAN contrast anchor, NOT a vegetation target)",
+   "biome": "urban hardscape (CONTRAST ANCHOR)"
+  }
+ ]
+}

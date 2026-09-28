@@ -1,0 +1,67 @@
+{
+ "ok": true,
+ "level": "Showroom",
+ "placements": [
+  {
+   "actor": "InstancedFoliageActor",
+   "comp_class": "FoliageInstancedStaticMeshComponent",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "num_lods": 5,
+   "material_slots": [
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_trunk",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_branch",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_leaf",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter"
+   ],
+   "cpd_error": "'CustomPrimitiveData' object has no attribute 'data'",
+   "instance_count": 7
+  },
+  {
+   "actor": "InstancedFoliageActor",
+   "comp_class": "FoliageInstancedStaticMeshComponent",
+   "mesh": "/Game/PN_interactiveSpruceForest/ExampleContent/Winter/Meshes/half/high/winter_spruce_half_01",
+   "num_lods": 5,
+   "material_slots": [
+    "/Game/PN_interactiveSpruceForest/ExampleContent/Winter/Materials/half/high/spruce_half_01_trunk",
+    "/Game/PN_interactiveSpruceForest/ExampleContent/Winter/Materials/half/high/spruce_half_01_branch",
+    "/Game/PN_interactiveSpruceForest/ExampleContent/Winter/Materials/half/high/spruce_half_01_leaf",
+    "/Game/PN_interactiveSpruceForest/ExampleContent/Winter/Materials/imposter/high/half_01_imposter"
+   ],
+   "cpd_error": "'CustomPrimitiveData' object has no attribute 'data'",
+   "instance_count": 2
+  },
+  {
+   "actor": "spruce_half_01",
+   "comp_class": "StaticMeshComponent",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "num_lods": 5,
+   "material_slots": [
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_trunk",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_branch",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_leaf",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter"
+   ],
+   "cpd_error": "'CustomPrimitiveData' object has no attribute 'data'"
+  },
+  {
+   "actor": "half_01_low",
+   "comp_class": "StaticMeshComponent",
+   "mesh": "/Game/PN_interactiveSpruceForest/Meshes/half/low/spruce_half_01_low",
+   "num_lods": 5,
+   "material_slots": [
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/low/spruce_half_01_low_trunk",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/low/spruce_half_01_low_branch",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/low/spruce_half_01_low_leaf",
+    "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/low/half_01_imposter"
+   ],
+   "cpd_error": "'CustomPrimitiveData' object has no attribute 'data'"
+  }
+ ],
+ "n_placements": 4,
+ "n_locations_sampled": 11,
+ "target_cm": [
+  -3145.1,
+  -591.7,
+  100.0
+ ]
+}

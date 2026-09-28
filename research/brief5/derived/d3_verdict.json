@@ -1,0 +1,57 @@
+{
+ "phases": {
+  "place": 0,
+  "save": 0
+ },
+ "vram": {
+  "editor_after_place": {
+   "peak_mib": 5211,
+   "samples_ok": 6,
+   "reason": ""
+  },
+  "game_forest_floor": {
+   "rc": 0,
+   "peak_mib": 4972,
+   "over_ceiling": false,
+   "vram_line": "VRAM peak across stations: 4972 MiB vs 13312 abort (+8340 headroom)"
+  },
+  "game_open_max": {
+   "rc": 0,
+   "peak_mib": 4940,
+   "over_ceiling": false,
+   "vram_line": "VRAM peak across stations: 4940 MiB vs 13312 abort (+8372 headroom)"
+  },
+  "game_plaza": {
+   "rc": 0,
+   "peak_mib": 4993,
+   "over_ceiling": false,
+   "vram_line": "VRAM peak across stations: 4993 MiB vs 13312 abort (+8319 headroom)"
+  }
+ },
+ "aborted": false,
+ "reason": null,
+ "ruled_count": 812258,
+ "vram_ceiling_mib": 13312,
+ "pre_shas": {
+  "foliage/alpine_8k_Conifer.json": "59f3d41bb3c338aa1b143ec2b692e226ea80bbe2",
+  "foliage/alpine_8k_ConiferPine.json": "4da9c560c7ee8b804d951c83aff7841c2c8fbbe8",
+  "foliage/alpine_8k_SpruceSub.json": "d276766e4754869570d26d55806bfa8010305f60",
+  "foliage/alpine_8k_SpruceSapling.json": "d4ba8229f9a130c41fc039e6fd65bbbfb9d177c5",
+  "LandscapeLab/Content/Alpine8K.umap": "1f7eb6d284fad3b4eec1e265f7196bfe4a250a10",
+  "LandscapeLab/Content/__ExternalActors__/Alpine8K": "tree:3860-index-entries",
+  "LandscapeLab/Content/__ExternalObjects__/Alpine8K": "tree:3-index-entries",
+  "LandscapeLab/Content/Foliage": "tree:27-index-entries"
+ },
+ "package_restore_present_after_close": true,
+ "stations_vram_measured": "3/3",
+ "post_shas": {
+  "foliage/alpine_8k_Conifer.json": "0bfce17591b20e8120cdab7d7a934b5fade627f5",
+  "foliage/alpine_8k_ConiferPine.json": "e8710a867f56a899999e8f3c4c0467192b1683e6",
+  "foliage/alpine_8k_SpruceSub.json": "be3e42f628d9802dfa917eab8077c3d372da17ee",
+  "foliage/alpine_8k_SpruceSapling.json": "af9d36844e1a5912ec909a437aa5a62c7b7cc1f4",
+  "LandscapeLab/Content/Alpine8K.umap": "1f7eb6d284fad3b4eec1e265f7196bfe4a250a10",
+  "LandscapeLab/Content/__ExternalActors__/Alpine8K": "tree:3860-index-entries",
+  "LandscapeLab/Content/__ExternalObjects__/Alpine8K": "tree:3-index-entries",
+  "LandscapeLab/Content/Foliage": "tree:27-index-entries"
+ }
+}

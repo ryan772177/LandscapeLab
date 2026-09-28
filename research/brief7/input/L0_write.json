@@ -1,0 +1,32 @@
+{
+  "error": null,
+  "before": {
+    "HeroStage_Key.hidden_in_game": false,
+    "HeroStage_Fill.hidden_in_game": false,
+    "HeroStage_Rim.hidden_in_game": false,
+    "ppv_look.white_temp": 6200.0,
+    "Lighting_alpine_8k_Clouds.hidden_in_game": false,
+    "Lighting_alpine_8k_Clouds.component_visible": true
+  },
+  "applied": {
+    "HeroStage_Key.hidden_in_game": true,
+    "HeroStage_Fill.hidden_in_game": true,
+    "HeroStage_Rim.hidden_in_game": true,
+    "sun.hidden_in_game": false,
+    "ppv_look.white_temp": 5800.0,
+    "Lighting_alpine_8k_Clouds.hidden_in_game": true,
+    "Lighting_alpine_8k_Clouds.component_visible": false
+  },
+  "saved": {
+    "level_call": true,
+    "dirty_map_count": 0,
+    "dirty_content_count": 1,
+    "dirty_map": [],
+    "dirty_content": [
+      "<Object '/Game/Bench/MI_AlpineClouds' (0x000001CF0043ED00) Class 'Package'>"
+    ]
+  },
+  "notes": [
+    "POST-SAVE DIRTY map=0 content=1 -- cold read-back is definitive"
+  ]
+}

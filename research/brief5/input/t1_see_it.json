@@ -1,0 +1,38 @@
+{
+ "_what": "Brief 5 T1 stills coverage + SSIM. arm A = ForceLOD 4 (cards), arm B = ForceLOD 2 (geometry), ring_station.",
+ "_band_mask": "NON-SKY (no depth export; r.ForceLOD is global so the whole forest is under test, not only 128-512 m).",
+ "canopy_coverage": {
+  "arm_A_cards": 0.0539,
+  "arm_B_geometry": 0.1008,
+  "ratio_B_over_A": 1.8688
+ },
+ "ssim": {
+  "full_frame": 0.4529,
+  "non_sky": 0.4596
+ },
+ "mean_brightness": {
+  "arm_A": 46.23,
+  "arm_B": 38.74
+ },
+ "crops": [
+  {
+   "crop": 1,
+   "x0": 387,
+   "y0": 824
+  },
+  {
+   "crop": 2,
+   "x0": 1024,
+   "y0": 824
+  },
+  {
+   "crop": 3,
+   "x0": 3328,
+   "y0": 824
+  }
+ ],
+ "decision_rule": "coverage ratio outside 0.90-1.10 OR band SSIM < 0.90 -> CONFIRMED",
+ "coverage_outside_band": true,
+ "ssim_below_0_90": true,
+ "verdict": "CONFIRMED"
+}

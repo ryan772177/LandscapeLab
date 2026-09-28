@@ -1,0 +1,2845 @@
+{
+ "_what": "Audit Pass 5 rulings: verdict per unapplied finding (APPLY/OBSOLETE/WRONG). APPLY carries a concrete action; the ledger 'applied' flag is set only when an APPLY is actually implemented.",
+ "n_ruled": 405,
+ "counts": {
+  "OBSOLETE": 381,
+  "APPLY": 24
+ },
+ "rulings": {
+  "ADVISOR_LOG.md:229": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom binding finding; hero is PARKED (CLAUDE.md HERO). Captured in hero/ADVISOR_LOG.md.",
+   "apply_action": null,
+   "dated": "2026-08-20",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:1000": {
+   "verdict": "OBSOLETE",
+   "reason": "Defect self-documented and remediated in the same paragraph (reseated, 0.0 cm read-back). Frame kept with defect stated.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:1102": {
+   "verdict": "OBSOLETE",
+   "reason": "Manifest verified on disk; record captured in the intake register; nothing downstream must change.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:1176": {
+   "verdict": "OBSOLETE",
+   "reason": "Stand-in root/tip colours declared as such, gated pending operator swatches. Wait-state recorded; no live gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:192": {
+   "verdict": "APPLY",
+   "reason": "Rock051 retirement DONE in recipe (alpine_8k.json:1302,1306 tiling_m 1.8, surface gray_rocks). Ledger missed it.",
+   "apply_action": "already implemented at recipes/alpine_8k.json:1302,1306 — record applied_where, no new code.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:54": {
+   "verdict": "OBSOLETE",
+   "reason": "16-bit height gate stated at intake, R-LAYERS mushy fraction cited as evidence. Record in place.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:626": {
+   "verdict": "OBSOLETE",
+   "reason": "Artefact pn_spruce_forest.json verified on disk. Intake record captured with full-table pointer.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:678": {
+   "verdict": "OBSOLETE",
+   "reason": "Artefact skeletons.json verified on disk. Probe record captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:710": {
+   "verdict": "OBSOLETE",
+   "reason": "Note defers the row to migration time; nothing migrated. Contingent to-do recorded; no current gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:911": {
+   "verdict": "OBSOLETE",
+   "reason": "Closure computation (106 pkgs, 0 dangling) completed; manifest exists on disk. Record complete.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "ASSETS.md:936": {
+   "verdict": "OBSOLETE",
+   "reason": "Hash manifest verified on disk; NN20 dual-tool spot-check recorded. Nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:1029": {
+   "verdict": "APPLY",
+   "reason": "B-APPEND-GUARD built: guard.py:221 rule_lessons_append_only (registered :509), H5 in GOVERNANCE_MIGRATION.md. Missed.",
+   "apply_action": "already implemented at .claude/hooks/guard.py:221 (registered :509) — record applied_where; annotate BACKLOG.md:1029 as implemented.",
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:1223": {
+   "verdict": "OBSOLETE",
+   "reason": "Ratification record of Ryan's 2026-08-08 ruling; captured where rulings live. No unimplemented value.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:1523": {
+   "verdict": "OBSOLETE",
+   "reason": "Koschmieder check completed (fog defensible); open start_distance_m scrutiny is a backlog item where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:1875": {
+   "verdict": "OBSOLETE",
+   "reason": "Silhouette-instrument gap is a sized (M) backlog item parked; caveat stated in the entry.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:600": {
+   "verdict": "OBSOLETE",
+   "reason": "Marked RESOLVED 2026-08-05, 1.4% not a defect; self-closing record with caveat.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:607": {
+   "verdict": "OBSOLETE",
+   "reason": "Marked SUPERSEDED 2026-08-05; lod_near/lod_far already removed. Historical record.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:661": {
+   "verdict": "OBSOLETE",
+   "reason": "Marked DONE; crash fixed (RECIPES R17 REJECTED), sweep 19/19 twice. Remaining unknown left deliberately.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "BACKLOG.md:839": {
+   "verdict": "OBSOLETE",
+   "reason": "Ruling-honoured record: 0.41%/0.43% rejection, same verdict both instruments, denominator stated.",
+   "apply_action": null,
+   "dated": "2026-09-11",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:11156": {
+   "verdict": "OBSOLETE",
+   "reason": "FLOATING TREES CLOSED; gate later encoded (trace_grounding.py:187). History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:11241": {
+   "verdict": "OBSOLETE",
+   "reason": "GPU cost measurement closed its BACKLOG item; dated measurement in append-only narrative.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:11360": {
+   "verdict": "APPLY",
+   "reason": "Prose-only adjudication defect closed: epsilon 0.45 m in trace_grounding.py:187. Ledger listed unapplied.",
+   "apply_action": "already implemented at scripts/trace_grounding.py:187 (epsilon 0.45 m, derivation :178) — record applied_where, no new code.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:11459": {
+   "verdict": "OBSOLETE",
+   "reason": "Narrative OF the applied fix; epsilon 0.45 m in trace_grounding.py:178,187. Nothing left.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:11584": {
+   "verdict": "APPLY",
+   "reason": "schema.md:832-833 still states the unreproducible 0.089-0.367 band and >=0.05 bar as normative; LESSONS 11629-11654 proved bar never enforced. Seed uncorrected.",
+   "apply_action": "Annotate recipes/schema.md:831-833: band hand-measured once over eight placements, unreproducible; measure_falloff_contours reads 0.033-0.152 over nine; bar is a ranking baseline, not enforced — cite LESSONS.md 2026-08-06.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:12131": {
+   "verdict": "OBSOLETE",
+   "reason": "Restoration verified by diff; append-only guard now exists (guard.py:221). Completed repair record.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:13116": {
+   "verdict": "OBSOLETE",
+   "reason": "Near-miss narrative — wrong-question measurement cancelled before build. Lesson captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:14618": {
+   "verdict": "OBSOLETE",
+   "reason": "External-standards doc adjudicated: wrong rules logged so nobody adopts them. Historical ruling.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:15132": {
+   "verdict": "OBSOLETE",
+   "reason": "Near-retraction later corrected within the same lesson. Diagnostic history.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:15443": {
+   "verdict": "APPLY",
+   "reason": "Re-solved compensation_ev -1.867 applied at alpinelab_8129.json:216, artefact exists. Ledger missed it.",
+   "apply_action": "already implemented at recipes/alpinelab_8129.json:216 (compensation_ev -1.867) — record applied_where, no new code.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:1574": {
+   "verdict": "OBSOLETE",
+   "reason": "Lesson 14.3 (wall-clock vs suspend) captured narrative; general rule in the lesson.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:16145": {
+   "verdict": "OBSOLETE",
+   "reason": "Instrument-invalid-but-reading-right narrative; correction stood. History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:16414": {
+   "verdict": "OBSOLETE",
+   "reason": "Budget reasoning record (~220k under 250k ceiling); derivation beside the decision; no gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:16911": {
+   "verdict": "OBSOLETE",
+   "reason": "Record of a guard WORKING (save_level allow-list refused wrong-world, exit 7). Nothing to add.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:17061": {
+   "verdict": "OBSOLETE",
+   "reason": "VSM measurement (11%) with conclusion no work should target them. Measurement narrative.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:17307": {
+   "verdict": "OBSOLETE",
+   "reason": "Deliverable record: probe_skeleton.py and skeletons.json verified on disk; brief delivered.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:1734": {
+   "verdict": "APPLY",
+   "reason": "hit_actor (break-node pin, not FHitResult property; HitResult.h:126-131) absent from ue58-api-protocol.md casualty list (:61-67).",
+   "apply_action": "Add to docs/ue58-api-protocol.md casualty list: hit_actor is a break-node pin name, not a property — FHitResult carries HitObjectHandle/Component (HitResult.h:126-131); cite LESSONS.md:1754.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:17344": {
+   "verdict": "APPLY",
+   "reason": "PHASE2_PLAN.md:81 (and :26) still says ~110 animations; measured 102 assets/42.6 MB, artefact animations.json exists. Seed uncorrected (rule 9).",
+   "apply_action": "Annotate PHASE2_PLAN.md:81 (and :26): measured 102 animation assets, 42.6 MB — cite Free/_measured/animations.json and plans/characters_brief.md.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:17606": {
+   "verdict": "OBSOLETE",
+   "reason": "Calibration record (0.6 cm agreement) establishing trust in a completed analysis. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:1794": {
+   "verdict": "OBSOLETE",
+   "reason": "Defect fixed per the entry: keeper_set_incomplete refusal added before mutation. Narrative of applied fix.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:1878": {
+   "verdict": "APPLY",
+   "reason": "ReadRenderTargetRawPixelArea min_x/max_x behave as X,Y,WIDTH,HEIGHT (KismetRenderingLibrary.cpp:454,:326); absent from casualty list.",
+   "apply_action": "Add to docs/ue58-api-protocol.md casualty list: ReadRenderTargetRawPixelArea min_x/min_y/max_x/max_y forward into X,Y,WIDTH,HEIGHT (KismetRenderingLibrary.cpp:454,:326); cite LESSONS.md:1898.",
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:19888": {
+   "verdict": "OBSOLETE",
+   "reason": "Silent-fallback lesson with measured ~0.0104; entry documents the general rule. Narrative captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:20500": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom ruling; hero PARKED. Values locked in R-HEROGROOM (RECIPES.md:149,187).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:2177": {
+   "verdict": "OBSOLETE",
+   "reason": "Quintic-fade wrong-turn narrative (measured 2.552, worse). Rejected approach documented.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:22102": {
+   "verdict": "OBSOLETE",
+   "reason": "Metric redefinition validated (responds to every input); completed instrument-repair record.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:22446": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero hairline measurement; hero PARKED. Narrative history.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:22508": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom before/after table; hero PARKED. Measurement history.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:23283": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom Alembic exporter root-cause; hero PARKED. Diagnosis captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:23978": {
+   "verdict": "OBSOLETE",
+   "reason": "Slope-metric misapplication superseded: town shipped 838 streets on the 6.25-deg basin. Corrected downstream.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:25172": {
+   "verdict": "OBSOLETE",
+   "reason": "Spawn-consequence measurement with verdict nothing got worse; town-on-spawn is shipped. Narrative.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:25658": {
+   "verdict": "OBSOLETE",
+   "reason": "Two-representation agreement (p50 9.2 vs 10.9) validating a made fix. Measurement history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_000.json"
+  },
+  "LESSONS.md:26015": {
+   "verdict": "OBSOLETE",
+   "reason": "Measurement narrative behind adopted storey_m 2.0 (city.json:72, REJECTED note :75). Nothing downstream.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:26075": {
+   "verdict": "OBSOLETE",
+   "reason": "Dated look-test (kit float 27 m) root-caused in-narrative; kit dims in Free/_measured. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:26170": {
+   "verdict": "OBSOLETE",
+   "reason": "Principle captured at perf_budgets.json:4 (_order_is_deliberate); schema.md:1223 marks key PROVISIONAL.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:26816": {
+   "verdict": "OBSOLETE",
+   "reason": "Verification record — ruled church numbers hit exactly. Dated history; STATE.md tracks town/church.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:27547": {
+   "verdict": "OBSOLETE",
+   "reason": "Records a fix already made (stamp range, pass 615.8 m); forge dist since moved to _trash. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:27760": {
+   "verdict": "OBSOLETE",
+   "reason": "Run record with artefact cited (angular_budget SUMMARY). Captured where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:2779": {
+   "verdict": "OBSOLETE",
+   "reason": "Dated editor measurement (-1=follow quality level); narrative context, no live gate/value.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:27842": {
+   "verdict": "APPLY",
+   "reason": "Cull-ladder rule implemented: alpine_8k.json:3383-3386 cull_threshold=detail, ruled 09-09/09-11. Missed.",
+   "apply_action": "already implemented at recipes/alpine_8k.json:3383-3386 (perception.cull_threshold) — record applied_where, no new code",
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:27854": {
+   "verdict": "APPLY",
+   "reason": "'Stop deleting imposters' implemented: derived culls clamp, imposter/HLOD band occupied, alpine_8k.json:3361-3387.",
+   "apply_action": "already implemented at recipes/alpine_8k.json:3361-3387 (perception block, derived culls) — record applied_where, no new code",
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:28127": {
+   "verdict": "APPLY",
+   "reason": "Null-resolution gap closed: declared_camera res/floor_res alpine_8k.json:3363-3373; bench viewport_res_readback; budgets re-passed 9a561d07.",
+   "apply_action": "already implemented at recipes/alpine_8k.json:3363-3373 + bench viewport_res_readback — record applied_where, no new code",
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:28265": {
+   "verdict": "OBSOLETE",
+   "reason": "Station superseded: treeline re-derived (bench_stations_derived.json); all four zones PASS 9a561d07.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:28634": {
+   "verdict": "OBSOLETE",
+   "reason": "Narrative rule on estimating large ops; dated history, no named gate/recipe key unimplemented.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:28673": {
+   "verdict": "OBSOLETE",
+   "reason": "Misattribution post-mortem, corrected in the same entry. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:28955": {
+   "verdict": "OBSOLETE",
+   "reason": "Rule in law: ue58-api-protocol.md ('reflected surface is the contract'). Narrative seed of a promoted rule.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:30185": {
+   "verdict": "OBSOLETE",
+   "reason": "Question answered in the same entry (2 oids not in duplicate); recovery recorded. Closed.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:30193": {
+   "verdict": "APPLY",
+   "reason": "Ryan's KEEP ruling lives only in append-only narrative; near-deletion happened because reference scans found nothing. ASSETS.md is the register scans consult.",
+   "apply_action": "add ASSETS.md note: VaultCache/AncientGame_5.7 = Epic Valley of the Ancient sample, KEEP per Ryan (LESSONS.md:30229) — edit ASSETS.md only",
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:30221": {
+   "verdict": "OBSOLETE",
+   "reason": "State gone: C:/UnrealDDC cleared by Ryan (60 GB free); rule 1 forbids us clearing machine-global caches.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:3105": {
+   "verdict": "OBSOLETE",
+   "reason": "Value implemented: 44.765 at character.json:26 (and alpine_8k.json). Captured, nothing downstream.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:31548": {
+   "verdict": "OBSOLETE",
+   "reason": "E4 closed; ruled heading live at dolly_sunlit_yaw-67.5.json:73 with source chain. Nothing unimplemented.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:31554": {
+   "verdict": "OBSOLETE",
+   "reason": "Comparison table for closed E4; numbers in dolly_sunlit_yaw-67.5.json. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:31557": {
+   "verdict": "OBSOLETE",
+   "reason": "Floor 0.5961 belongs to the same closed E4 record. Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:31616": {
+   "verdict": "OBSOLETE",
+   "reason": "Settle-window caveat implemented as the artefact's _drift field (±0.03). Captured where it acts.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:31714": {
+   "verdict": "OBSOLETE",
+   "reason": "Counterfactual note; converter fixed, values since replaced. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:32229": {
+   "verdict": "OBSOLETE",
+   "reason": "3550 K superseded: RECIPES.md:17964 SUPERSEDED-BY B3.13 (3481.9), then A-6 (3438.6 K).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:32372": {
+   "verdict": "OBSOLETE",
+   "reason": "Derived-camera measurement complete (5/5 bins), cited RECIPES.md:18258. Closed.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:32453": {
+   "verdict": "APPLY",
+   "reason": "Ignored OPEN caveat since acted on: R-GREYCARD re-solved on PPI0, comp_ev -13.5898, RECIPES.md:19877. Missed closure.",
+   "apply_action": "already implemented at RECIPES.md:19877 (R-GREYCARD PPI0 re-solve, comp_ev -13.5898) — record applied_where, no new code",
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:32622": {
+   "verdict": "OBSOLETE",
+   "reason": "Superseded: card 3550 K on a compressed instrument; re-locked 3481.9 then 3438.6 K (A-6).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33010": {
+   "verdict": "OBSOLETE",
+   "reason": "Dated g4b capture header; station search closed in the same narrative. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33034": {
+   "verdict": "OBSOLETE",
+   "reason": "Search evidence for a closed station decision (101,764 views). Complete where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33725": {
+   "verdict": "OBSOLETE",
+   "reason": "Caveat on 1.1243 baseline; baseline since re-solved (R-WB2x2 A-6). Superseded.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33761": {
+   "verdict": "OBSOLETE",
+   "reason": "WB corroboration at old grade; white point moved to 3438.6 K. Superseded.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33767": {
+   "verdict": "OBSOLETE",
+   "reason": "FAIL at old band/WP; R-SHADEBAND re-derived 2.065-2.998 @ 3438.6 K, 2.1896 PASSES. Superseded.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:33844": {
+   "verdict": "OBSOLETE",
+   "reason": "'Sky cannot close deficit' — deficit from superseded band; re-derived band passes without sky change. Moot.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:34157": {
+   "verdict": "OBSOLETE",
+   "reason": "Settle defect fixed in-session; later solves use warm-up 40 and were re-taken. Re-taken.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:34493": {
+   "verdict": "OBSOLETE",
+   "reason": "Pivot-contrast measurement feeding B3.13 revision. Captured in superseded-instruments block.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:34523": {
+   "verdict": "OBSOLETE",
+   "reason": "-13.5898 recorded in locked RECIPES.md:19877 (R-GREYCARD) + STATE instruments. Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:34535": {
+   "verdict": "OBSOLETE",
+   "reason": "2.2598 PASS vs band 2.184-2.940, superseded by R-SHADEBAND D6000 (2.065-2.998). History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:3603": {
+   "verdict": "OBSOLETE",
+   "reason": "Supersession note re docs/lessons.md §14.7 — that doc no longer exists; consolidated into LESSONS.md. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:3671": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K make_layer_weightmap v1 discussion; pre-8K world is HISTORY, superseded by M_Alpine8K.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:3751": {
+   "verdict": "OBSOLETE",
+   "reason": "Analogy citing docs/lessons.md (gone); rule is standing rule 9 / operating-loop (a). In law.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:3844": {
+   "verdict": "OBSOLETE",
+   "reason": "Cost-of-autonomy narrative; the lessons loop it names is the live process. No unimplemented gate/value.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:4036": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K slope-mask defect fixed then; 8K uses M_Alpine8K. State gone.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:4166": {
+   "verdict": "OBSOLETE",
+   "reason": "MCP dialog-discovery from manual-import era; 8K import recipe-driven. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:4232": {
+   "verdict": "OBSOLETE",
+   "reason": "Verified live: banner at verify_landscape.py:796 (line drift only). True, nothing downstream.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:4398": {
+   "verdict": "OBSOLETE",
+   "reason": "Unsaved-level state gone — editors relaunched since; /Game/Alpine is pre-8K legacy. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5071": {
+   "verdict": "OBSOLETE",
+   "reason": "2026-08-02 pre-8K LOD session (fir_tree_01_c); superseded by 8K + perception culls. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5097": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K import-path hazard, pipeline retired. UNVERIFIED (rule 10): whether current kit intake gates multi-object FBX; not load-bearing.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5128": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K session ledger (schema v1.10, docs/next-step.md gone); superseded world. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5182": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K procedural-terrain session (2017² world); superseded by heightmap 8K. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5276": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K capture/fog session; one-change-per-cycle rule since promoted. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_001.json"
+  },
+  "LESSONS.md:5456": {
+   "verdict": "OBSOLETE",
+   "reason": "Dated narrative; docs/lessons.md absent (consolidated). Throttle lever worked (RECIPES.md); capture locked R-CITYSHOT.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:5492": {
+   "verdict": "OBSOLETE",
+   "reason": "Same paragraph as :5456 — pointer to consolidated docs/lessons.md (absent); no live gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:5591": {
+   "verdict": "OBSOLETE",
+   "reason": "2026-08-01 pre-8K record; textures milestone delivered — M_Alpine8K shipped. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:5619": {
+   "verdict": "OBSOLETE",
+   "reason": "2026-08-01 pre-8K /Game/Alpine era; superseded by 8K world/material. Dated narrative.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:5832": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-ref to consolidated docs/lessons.md §23; file absent, content in LESSONS divisions. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:5868": {
+   "verdict": "OBSOLETE",
+   "reason": "cull_distance_m implemented (alpine_8k.json:1438-1658), superseded by derived culls (:3362). Record says Applied.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6032": {
+   "verdict": "OBSOLETE",
+   "reason": "Trap at spec altitude: RECIPES.md:2611-2614 (R11 REJECTED). Two-altitude satisfied.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6035": {
+   "verdict": "OBSOLETE",
+   "reason": "Same paragraph as :6032; hazard locked into RECIPES.md:2611-2614 (R11). Nothing owed.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6185": {
+   "verdict": "OBSOLETE",
+   "reason": "Record of gate 3 verified live both directions; captured narrative, nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6195": {
+   "verdict": "OBSOLETE",
+   "reason": "Known hole recorded-not-fixed; mitigated by gates 3/4 measuring get_bounds() at point of use. Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6255": {
+   "verdict": "OBSOLETE",
+   "reason": "Defect (--resolution) FIXED in same session, verified. Fog re-tune is Ryan's recorded call, captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6283": {
+   "verdict": "APPLY",
+   "reason": "Positive on-disk existence check IS implemented: save_level.py:80 ('checked ON DISK'), :558-594 os.path.isfile per package.",
+   "apply_action": "already implemented at scripts/save_level.py:80,:558-594 — record applied_where, no new code",
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6339": {
+   "verdict": "OBSOLETE",
+   "reason": "Process statement re docs/lessons.md (consolidated); superseded by audit/hook governance. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:6358": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-ref to consolidated docs/lessons.md §23 / decisions.md; absorbed into LESSONS divisions. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:664": {
+   "verdict": "OBSOLETE",
+   "reason": "Consolidation mapping row; docs/lessons.md absent, content in LESSONS division 1. Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:667": {
+   "verdict": "OBSOLETE",
+   "reason": "Divisions table; docs/changelog.md consolidated into LESSONS division 4. Mapping record.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:7063": {
+   "verdict": "OBSOLETE",
+   "reason": "Rotator-order defect fixed; 28,302 run superseded by verified 219,659-instance scatter. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:794": {
+   "verdict": "OBSOLETE",
+   "reason": "General lesson 1.10 (report derived as derived); captured narrative, no live gate/value.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:8841": {
+   "verdict": "OBSOLETE",
+   "reason": "Measurement (modelled vs measured LOD sizes); ReductionSettings already doctrine (ue58 casualty list). History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:9221": {
+   "verdict": "OBSOLETE",
+   "reason": "Exposure re-solve applied (alpine.json:793/816) then superseded by 8K solve (comp_ev -13.5898). History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:9408": {
+   "verdict": "OBSOLETE",
+   "reason": "Narrative of a plan's four failures; concluded in-entry (straddle cameras). History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:9533": {
+   "verdict": "OBSOLETE",
+   "reason": "Justification for 46.3 m straddle test; measurement completed, recorded. Nothing downstream.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "LESSONS.md:9542": {
+   "verdict": "OBSOLETE",
+   "reason": "Recorded confound (0.883 vs 0.570) with stated scope limit; caveat captured. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "MORNING_REPORT.md:113": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom/eye-colour UNSOLVED — hero PARKED; report archived with banner (Q2).",
+   "apply_action": null,
+   "dated": "2026-08-18",
+   "batch": "batch_002.json"
+  },
+  "MORNING_REPORT.md:40": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero body UNDIAGNOSED — hero PARKED, archived report. Resume via hero/ docs.",
+   "apply_action": null,
+   "dated": "2026-08-18",
+   "batch": "batch_002.json"
+  },
+  "MORNING_REPORT_20260901.md:245": {
+   "verdict": "OBSOLETE",
+   "reason": "Forge run record (+0.028 EV); runs ledgered in FORGE_LOG; report archived. History.",
+   "apply_action": null,
+   "dated": "2026-09-03",
+   "batch": "batch_002.json"
+  },
+  "MORNING_REPORT_20260901.md:35": {
+   "verdict": "OBSOLETE",
+   "reason": "Named v1 fix made (game-view wrapper :84; polish closed to +0.028 EV :245). Archived history.",
+   "apply_action": null,
+   "dated": "2026-09-03",
+   "batch": "batch_002.json"
+  },
+  "MORNING_REPORT_20260901.md:84": {
+   "verdict": "OBSOLETE",
+   "reason": "Game-view fix applied+measured (0.825->0.626); bias closed (+0.028 EV). No live to-do. Archived.",
+   "apply_action": null,
+   "dated": "2026-09-03",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:118": {
+   "verdict": "OBSOLETE",
+   "reason": "Unit 1 premise (no game-class frame) superseded: standalone -game PASS four zones (STATE.md:33-36, 9a561d07).",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:169": {
+   "verdict": "APPLY",
+   "reason": "Unit 9 acceptance implemented+executed: plan_encounters.py, verify ADOPTED 317/317 0 unreachable (RECIPES.md:13386-13387), encounters/alpine_8k_verified.json.",
+   "apply_action": "already implemented at scripts/plan_encounters.py + RECIPES.md:13386-13387 + encounters/alpine_8k_verified.json — record applied_where, no new code",
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:201": {
+   "verdict": "OBSOLETE",
+   "reason": "Measurement record with cited artefact; baseline consumed by §6 budgets (R-PERFBUDGET). Correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:207": {
+   "verdict": "OBSOLETE",
+   "reason": "Live plan budget table; null rows are deliberate no-design declarations. Perf now under R-PERFBUDGET.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:227": {
+   "verdict": "OBSOLETE",
+   "reason": "'Never produced PIE frame' premise superseded — -game frames measured, four zones PASS (9a561d07).",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:248": {
+   "verdict": "APPLY",
+   "reason": "Q1 was RULED MULTI-REGION 2x2 by Ryan 2026-08-15 (CLAUDE.md spec; WORLD_VISION.md:174,:191; WORLD_ARCHITECTURE RATIFIED); banner omits it, :248 still reads 'unmade tripwire'.",
+   "apply_action": "add a row to the PHASE2_PLAN.md:11-18 banner: §7 Q1 RULED multi-region 2x2 by Ryan 2026-08-15, cite WORLD_VISION.md:174,:191 and WORLD_ARCHITECTURE.md; doc edit only",
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:276": {
+   "verdict": "OBSOLETE",
+   "reason": "Camera-system gap in the live plan's not-covered list; character work has its brief. Nothing bounded owed.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:48": {
+   "verdict": "OBSOLETE",
+   "reason": "15,235 MB ceiling live and consumed (HLOD batching, DEVICE_HUNG reasoning, STATE.md:388,425). Captured ruling.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "PHASE2_PLAN.md:61": {
+   "verdict": "APPLY",
+   "reason": "Ruling 20 gradient implemented: encounters.json:23-26 (reference_elevation_m 187.0, per_100m 1.8), locked RECIPES.md:13336; 317 verified.",
+   "apply_action": "already implemented at recipes/encounters.json:23-26 (+RECIPES.md:13336) — record applied_where, no new code",
+   "dated": "2026-08-15",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:10135": {
+   "verdict": "OBSOLETE",
+   "reason": "MetaHuman face-import gate — hero PARKED; locked recipe sited for resumption.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:10371": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom presence-gate anti-spec — hero PARKED; locked REJECTED entries sited for resumption.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:10507": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom measurement (stability-masked px) — hero PARKED; captured in the locked recipe.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:10781": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom outward-bias anti-spec — hero PARKED; locked REJECTED with symptom+correction.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:1194": {
+   "verdict": "OBSOLETE",
+   "reason": "Self-marked SUPERSEDED-BY Task 3 09-13 (open items moot in 8K material). Superseded by own banner.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:12153": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom strand-grading record — hero PARKED; locked recipe value.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:12790": {
+   "verdict": "OBSOLETE",
+   "reason": "Model-scope caveat (91.5% PROJECTS/48.9% REACHABLE), instrument named (calibrate_walk_model.py present). Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:12794": {
+   "verdict": "OBSOLETE",
+   "reason": "calibrate_walk_model.py exists (glob); record names its live instrument. Nothing owed.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:12831": {
+   "verdict": "OBSOLETE",
+   "reason": "Locked anti-spec of the lattice method; city_reachable_lattice_payload.txt present. Captured with correction.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:13272": {
+   "verdict": "OBSOLETE",
+   "reason": "Locked parameter table; values implemented in encounters.json:23-26 (187.0 verified). Nothing missing.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:13434": {
+   "verdict": "OBSOLETE",
+   "reason": "Instrument limitation recorded (Rock/Grass 0.0124 inside noise); caveat + chroma path stated. Captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:13903": {
+   "verdict": "OBSOLETE",
+   "reason": "Locked REJECTED (empty ignore list defect) with symptom+correction+cross-ref. Anti-spec sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:14630": {
+   "verdict": "OBSOLETE",
+   "reason": "Forge woodstack import record, frames cited; ledgered per FORGE_LOG/ASSETS. History.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_002.json"
+  },
+  "RECIPES.md:1478": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec REJECTED entry (pin suite to shipped value tests the recipe, not the code) doing its job; its backing LESSONS 12.4 exists (LESSONS.md:1352).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:1491": {
+   "verdict": "OBSOLETE",
+   "reason": "Same REJECTED block as :1478 — the property-7 independent-reference rule is correctly-captured anti-spec, backed by LESSONS 12.4 (LESSONS.md:1352).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:15288": {
+   "verdict": "OBSOLETE",
+   "reason": "Live rule correctly sited: Z is traced in-editor, never from the heightmap (RECIPES.md:15352, backed by perf_budgets.json and the recorded p90 30.98 m divergence). Nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:15427": {
+   "verdict": "OBSOLETE",
+   "reason": "The 1.88 vs 3.69 Mpx budget caveat deferred to re-measurement/re-ratification; that was overtaken when budgets were re-based to the standalone class and R-PERFBUDGET was delivered with all four zones PASS (STATE.md:33-36, commit 9a561d07; RECIPES.md:18897 retires editor-class budgets).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:1590": {
+   "verdict": "OBSOLETE",
+   "reason": "REJECTED entry with measured engine citations (DataDrivenPlatformInfo.ini:136 MaxSamplers=32, HLSLMaterialTranslator.cpp:7362-7396) doing its anti-spec job at RECIPES.md:1652.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:15975": {
+   "verdict": "APPLY",
+   "reason": "The R-HLOD PENDING claim 'Nothing in this project has ever successfully built a WorldPartitionHLOD actor. Zero exist' (RECIPES.md:16037-16042) is factually overtaken: builds ran and are recorded downstream (RECIPES.md:16918 shard runs; STATE.md 09-14a §0 2,267-cell build, 09-15 256/256 landscape cells at 4096, commit 4eba24e3). The featureless_fraction acceptance itself remains un-run (STATE.md B-1: bench force-loads real cells).",
+   "apply_action": "Add a dated STATUS/overtaken note to the R-HLOD PENDING section at RECIPES.md:16035-16042: build half DONE (see RECIPES.md:16918 and STATE.md 09-14/09-15, 4eba24e3); the mid_slope featureless_fraction acceptance remains OPEN per B-1 (bench force-loads real cells, proxies never render in bench frames).",
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:16293": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured extrapolation record (2,267 actors, RECIPES.md:16361) — dated measurement narrative correctly sited in the HLOD recipe.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:16345": {
+   "verdict": "OBSOLETE",
+   "reason": "Live procedure line applying the risky-op checkpoint rule to the ~2,267-package bulk write (RECIPES.md:16413) — correctly sited instruction, no gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:1644": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-reference footer verified: LESSONS §23.1 (LESSONS.md:2363), §23.2 (:2401), §23.5 (:2467), §23.11 (:2571) all exist; the note also correctly records R3's supersession-in-scope by R-ASSET.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:16670": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured record of the -SetupHLODs run (12 sections, 2,267 cells, 0 packages changed, RECIPES.md:16738) — dated measurement doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:16850": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec entry on shard budgeting (16 min predicted vs 61-75 actual, cause named: Instancing cells + shadermap compile, RECIPES.md:16918) — correctly captured, marked provisional as required.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:17875": {
+   "verdict": "OBSOLETE",
+   "reason": "Derivation record for the white-balance steps (Planck slope 9454 K, anchored on the measured 8800-on-7800 case, RECIPES.md:17967) — applied+saved+measured narrative, correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:17968": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec on .py filenames in recipe prose with the engine citation (PythonScriptPlugin.cpp:813-898) and the containment named (_guard_payload at the compose point, RECIPES.md:18061); LESSONS 12.10 exists (LESSONS.md:1509).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18051": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured three-strand snow verification record (RECIPES.md:18144) with its open edges explicitly declared (NN0 shared frame, shaded-only strand 3) — measurement narrative doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18063": {
+   "verdict": "OBSOLETE",
+   "reason": "Same strand table as :18051 (RECIPES.md:18156); the 0.3389/0.0050 figures are recorded measurements with their limitation stated.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18088": {
+   "verdict": "OBSOLETE",
+   "reason": "Live snow/mask spec table (RECIPES.md:18181); wet_shore/dirt_path DECLARED ZERO with the gating dependency (Brief 4 water level) explicitly named — a correctly-declared open dependency, not an unrecorded gap.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18152": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec record of the non-probative 9 km top-down and the derived-camera replacement (RECIPES.md:18245), with artefacts kept at _verify/bench/2026-09-11/topdown/ — correctly captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18158": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec on reading top-down brightness as albedo (RECIPES.md:18251), including the R-GREYCARD 0.9-stop caveat — narrative doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:1851": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-reference footer verified: LESSONS §23.1 (LESSONS.md:2363), §23.4 (:2452), §23.12 (:2605) all exist.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18592": {
+   "verdict": "OBSOLETE",
+   "reason": "Tonemap under-delivery measured three times in two domains and explicitly carried as guidance ('Budget steps, do not expect one', RECIPES.md:18689); exposure._solve_caveat correctly marked it OPEN — the caveat is doing its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18599": {
+   "verdict": "OBSOLETE",
+   "reason": "Arithmetic record of the ruled-formula vs efficiency-corrected steps (RECIPES.md:18696) — derivation lines belonging to the entry above them.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18744": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec on the ad-hoc card reading vs greycard --measure (RECIPES.md:18843), with the corrected value (-1.5943 EV) and LESSONS 2026-09-11e reference — correctly captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18757": {
+   "verdict": "OBSOLETE",
+   "reason": "Third-recurrence record of LESSONS 12.10 with the real containment named (_guard_payload caught it) and the prose fix applied in exposure._card_rederivation (RECIPES.md:18856) — closed and recorded.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:18798": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec retiring editor-derived budgets (EditorEngine.cpp:2523-2566 clamp; standalone ~3.9 ms, RECIPES.md:18897); consistent with the live state — standalone R-PERFBUDGET delivered (STATE.md:33-36).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:1913": {
+   "verdict": "OBSOLETE",
+   "reason": "Conifer VERIFICATION record (tilt 3.95° max, measured over all instances, RECIPES.md:1975) — verified 2026-08-04 by a second instrument per non-negotiable 8; record doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:19427": {
+   "verdict": "OBSOLETE",
+   "reason": "Entry carries 'STATUS: HISTORY — anti-spec' explicitly (RECIPES.md:19527) and records both warm-up mechanisms per AUDIT P1-2; nothing left to do.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2003": {
+   "verdict": "OBSOLETE",
+   "reason": "REJECTED entry on the RENDER_DATA vs SOURCE_MODEL height bound (RECIPES.md:2065); its cited artefact Free/_measured/pve_spruce.json exists on disk — anti-spec correctly captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2007": {
+   "verdict": "OBSOLETE",
+   "reason": "Same REJECTED block as :2003 (RECIPES.md:2069): the 7.3%-long symptom and the 27.317 m SOURCE_MODEL correction are recorded anti-spec.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2285": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-reference footer verified: LESSONS §23.12 (LESSONS.md:2605) and §23.13 (:2650) exist.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2561": {
+   "verdict": "OBSOLETE",
+   "reason": "R11 grass REJECTED entries with engine-source citations (LandscapeGrass.cpp:3387/1542/2040/181, InstancedFoliage.cpp:669) and a measured null result (RECIPES.md:2623) — anti-spec doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2638": {
+   "verdict": "OBSOLETE",
+   "reason": "The one locked R-STAMP placement with its tunables and refusal semantics (1331.19 m headroom refused, never wrapped, RECIPES.md:2700) — locked spec correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:2981": {
+   "verdict": "OBSOLETE",
+   "reason": "R-STAMP REJECTED table (uint16 wrap refused at exit 4 with headroom printed; column-is-X read from place_foliage.py:192-236; RECIPES.md:3043) — anti-spec correctly captured.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:3363": {
+   "verdict": "OBSOLETE",
+   "reason": "Package-contract heading for build 002 measured at intake (RECIPES.md:3425) — intake measurement record doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:3528": {
+   "verdict": "OBSOLETE",
+   "reason": "Post-resize measurement record on 002/UE5_Ready (RECIPES.md:3590) — same intake register as :3363.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:4331": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured sun-bearing record (recipe azimuth 285, measured forward vector, bearing 105, RECIPES.md:4393) — measurement narrative correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:5168": {
+   "verdict": "OBSOLETE",
+   "reason": "Live capture procedure (RECIPES.md:5230): foreground requirement backed by LESSONS 14.7, which exists (LESSONS.md:1724); open_level.py is correctly mandated per the operating loop.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:5435": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured statistics table (contour 0.033-0.152 against the 0.089-0.367 band, RECIPES.md:5497) — measurement record doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:5825": {
+   "verdict": "OBSOLETE",
+   "reason": "Source-trace diagnosis of the edit-layer collision path (LandscapeEditInterface.cpp:438-440 → collision = pre-stamp, p90 170.2 m, RECIPES.md:5887); the episode was closed by the v1 finding at RECIPES.md:6069 (render and collision AGREE, both v1) — history doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:6006": {
+   "verdict": "OBSOLETE",
+   "reason": "Hypothesis-refutation record (RECIPES.md:6069): collision measured against v1 at p50 0.017/p90 0.097 on a different instrument; no render/collision split — closed diagnostic narrative.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:6533": {
+   "verdict": "APPLY",
+   "reason": "Ledger false-negative: RECIPES.md:6602 still asserts 'measure_frame_cost.py has NO residency gate. Until it does...' but the gate exists and refuses — exit 6 for undeclared residency (measure_frame_cost.py:48, :506 'Refusing to measure a world whose residency is unknown', :602-615 expect_components check), and the same recipe already mandates --expect-components at RECIPES.md:6647-6650. The sentence contradicts the tool and the recipe's own procedure.",
+   "apply_action": "Already implemented — record applied_where: scripts/measure_frame_cost.py:48,506-615 and RECIPES.md:6647-6650; add a one-line '(since fixed — residency gate is live, see --expect-components below)' note to the REJECTED entry at RECIPES.md:6602-6604.",
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:6765": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured resource record (page file, commit limit, 189 GB peak, RECIPES.md:6828) — dated measurement correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:6787": {
+   "verdict": "OBSOLETE",
+   "reason": "Heading explicitly superseding the 9.3-hour figure with measured costs (RECIPES.md:6850) — the supersession is already recorded in place.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:7470": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured-run heading for tag pie002, the categories-ON diagnostic (RECIPES.md:7534) — measurement record doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:771": {
+   "verdict": "OBSOLETE",
+   "reason": "Cross-reference footer verified: LESSONS §2.1 (LESSONS.md:825), §6.2 (:1012), §7.2 (:1074) exist, and §14 is evidenced by 14.7 (:1724); the D4 --expect-change ruling is named. Reference doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:7731": {
+   "verdict": "OBSOLETE",
+   "reason": "PROVEN status line with all three references verified on disk: scripts/probe_skeleton.py, Free/_measured/skeletons.json, plans/characters_brief.md all exist.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:7839": {
+   "verdict": "OBSOLETE",
+   "reason": "Live declared-once/derived-twice design (Ruling 19) with the engine citation (acos(0.71), CharacterMovementComponent.cpp:682) and a verifier refusal on angle/slope keys (RECIPES.md:7903) — correctly sited spec.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:8019": {
+   "verdict": "OBSOLETE",
+   "reason": "Post-migration measurement heading; its artefact Free/_measured/skeletons_template.json exists on disk (RECIPES.md:8083).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:8413": {
+   "verdict": "OBSOLETE",
+   "reason": "TRELLIS/WSL anti-spec entry (Ubuntu 26.04 Python floor, correct -d Ubuntu-24.04, measured by apt-cache policy, RECIPES.md:8477) — parked-pipeline anti-spec doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:8415": {
+   "verdict": "OBSOLETE",
+   "reason": "Same paragraph as :8413 (RECIPES.md:8479): the false-assumption note (NVIDIA does publish ubuntu2604 CUDA) is recorded exactly so it is not re-derived — doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:8600": {
+   "verdict": "OBSOLETE",
+   "reason": "MetaHuman wrong/symptom/correct table (RECIPES.md:8664) — hero work is PARKED by Ryan's ruling and this anti-spec table is the record that protects its resumption; correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_003.json"
+  },
+  "RECIPES.md:8611": {
+   "verdict": "OBSOLETE",
+   "reason": "Recipe fact doing its job where it sits: the MetaHuman ordering-constraint block (RECIPES.md:8675-8681) records the measured can_build_meta_human read-back with its evidence in-paragraph. Hero work is PARKED, not dead; nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_004.json"
+  },
+  "RECIPES.md:8721": {
+   "verdict": "OBSOLETE",
+   "reason": "The cited artefact exists on disk — _verify/20260816_pie_unit1_unit6_collision_on.md verified by glob — and the PROVEN status block (RECIPES.md:8783-8791) correctly lists its tools and artefacts. Live table correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_004.json"
+  },
+  "RECIPES.md:9331": {
+   "verdict": "OBSOLETE",
+   "reason": "Correctly-captured rule in a recipe: gitignored derived MetaHuman content needs an on-disk timestamped copy, the rule the 2026-08-16 hero regression bought (RECIPES.md:9397-9400). Hero is PARKED per Ryan; the record is doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_004.json"
+  },
+  "RECIPES.md:9488": {
+   "verdict": "OBSOLETE",
+   "reason": "Same class as RECIPES.md:9331 — recipe narrative recording why the on-disk copy, not a git tag, is the restore for gitignored Content/Hero and Content/MetaHumans (RECIPES.md:9554-9558), with the compare_face_state verification named. Nothing live to fix.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_004.json"
+  },
+  "RECIPES.md:9704": {
+   "verdict": "OBSOLETE",
+   "reason": "A REJECTED-class entry doing its job: judging an arm against another session's IPD floor (0.01114 vs 0.00835/0.00758) is recorded with the rule 're-measure per session, R13's calibration class' (RECIPES.md:9771-9775). Hero PARKED; narrative correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_004.json"
+  },
+  "WORLD_ARCHITECTURE.md:108": {
+   "verdict": "OBSOLETE",
+   "reason": "The unmeasured-headroom risk was closed by the step the paragraph itself names (§5 step 1): _verify/20260815_pie_unit1_pie001.md is 'the first PIE measurement this project has taken' on /Game/Alpine8K, with pie002 beside it. The gap the finding flags no longer exists.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_004.json"
+  },
+  "WORLD_ARCHITECTURE.md:206": {
+   "verdict": "APPLY",
+   "reason": "The live ratified doc still asserts 'VRAM has never been measured on the 5080', but STATE.md:171/250/418-421 and _verify/hlod/* (2026-09-14) carry measured 5080 VRAM peaks (10.0-14.7 GB, forge/HLOD class). A live doc a session must load for streaming budgets now contains a false 'never' — rule 9 seed-contamination class.",
+   "apply_action": "Annotate WORLD_ARCHITECTURE.md:206: 5080 VRAM figures now exist (STATE.md:171, 250, 418-421; _verify/hlod/ 2026-09-14) in the forge/HLOD calibration class; note that world-runtime PIE VRAM specifically remains unmeasured (pie001/pie002 record no VRAM — verified by grep).",
+   "dated": "2026-08-15",
+   "batch": "batch_004.json"
+  },
+  "WORLD_VISION.md:110": {
+   "verdict": "OBSOLETE",
+   "reason": "This is the CORRECTION block itself doing its job — it names the 0.00% figure as a broken measurement and cites LESSONS 'THE 0.00% MEASUREMENT WAS THE DEFECT' (WORLD_VISION.md:108-114). The defect is already captured, not live.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_004.json"
+  },
+  "WORLD_VISION.md:207": {
+   "verdict": "OBSOLETE",
+   "reason": "Ruling record matching current law: multi-region 2x2 atlas RULED by Ryan 2026-08-15 per CLAUDE.md spec (WORLD_VISION.md:174/:191 cited there), and the five terrain/regions/ files exist per the index. Tripwire-lifted text is correct history in a live doc.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_004.json"
+  },
+  "WORLD_VISION.md:69": {
+   "verdict": "OBSOLETE",
+   "reason": "The citation line resolves: LESSONS.md:2363 (§23.1), :2718 (§23.15), :2773 (§23.17) all exist as headings — verified by grep. Valid evidence pointer, nothing to fix.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_004.json"
+  },
+  "commits/adopt_pve_spruce.txt:46": {
+   "verdict": "OBSOLETE",
+   "reason": "Archived commit message recording measured pivots (0.157-0.287 m against a 1.0 m limit) at adoption time. Historical narrative correctly sited in commits/; the measurements live in Free/_measured.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/adopt_pve_spruce.txt:56": {
+   "verdict": "OBSOLETE",
+   "reason": "The debt was named honestly at commit time and was overtaken: PIE frame cost was measured 2026-08-15 (_verify/20260815_pie_unit1_pie001.md, pie002) and R-FRAMECOST (RECIPES.md:6560-6680) carries the frame-cost discipline. Commit text is history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/backlog_remote_closed.txt:10": {
+   "verdict": "OBSOLETE",
+   "reason": "A verification-record line (LESSONS.md 12,112 lines at commit 58bd8252, checked at the time per its own paragraph) in an archived commit message. Pure history doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/bakeoff.txt:49": {
+   "verdict": "OBSOLETE",
+   "reason": "Honest not-installed/not-measured statement from the bakeoff record; Hunyuan3D 2.1 was never adopted and the bakeoff evidence lives in _verify/20260830_bakeoff/BAKEOFF.md. Commit narrative, nothing live.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/build_006.txt:73": {
+   "verdict": "OBSOLETE",
+   "reason": "Region-evaluation progress note (Gaea import next step, R-GAEA step 4 cited in-paragraph) from the region lane. Commit history; the region programme is ruled and its runbook lives in terrain/regions/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/c0_stage.txt:51": {
+   "verdict": "OBSOLETE",
+   "reason": "Kit-staging completion record (textures repaired 5/5, unit scale confirmed against the 2 m module) with its verification named in-paragraph. Archived commit narrative doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/city_placed.txt:30": {
+   "verdict": "OBSOLETE",
+   "reason": "Root-caused and fixed within the same commit: ignoring 1,093 foliage actors took plan-vs-trace from max 2139 cm to max 38.32 cm, matching the measured 0.431 m heightfield quantization. Defect narrative, closed at source.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/city_placed.txt:45": {
+   "verdict": "OBSOLETE",
+   "reason": "A correctly-recorded 5.8 reflected-surface finding (no add_component_by_class/K2_AddComponent in the stub) with the unblock route named (LandscapeLabEditor UFUNCTION, same as R-CREATE/R-GROOMBIND3). The town shipped as per-volume packages; history doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/close2.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Append-only line-count verification (LESSONS 14,432 -> 14,532) in an archived close-out commit message. Pure history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/close3.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Same class as close2.txt:3 — append-only line-count verification (LESSONS 14,532 -> 14,653) in an archived close-out message. Nothing actionable.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/concept_build.txt:13": {
+   "verdict": "OBSOLETE",
+   "reason": "Defect narrative (spire at 2.15x from a midpoint-placement error) that was overtaken by the roofline rebuild — commits/msg_city_roofs_world.txt:1 records the spire at the measured tower top, and the live spec carries the spire. History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/crown_locks.txt:17": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom tuning narrative (crown lock measured against its own absence, target 88.44). Hero is PARKED per Ryan's 'revisit later'; archived commit record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/d2_intake.txt:49": {
+   "verdict": "OBSOLETE",
+   "reason": "Rule-10 honesty record at intake time: MA_Imposter not compiled, no look claims supported. Intake history in commits/; the D2 lane concluded and current foliage is the shipped 219,659-instance set per the CLAUDE.md spec.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/d3_groundwork.txt:39": {
+   "verdict": "OBSOLETE",
+   "reason": "Completed-work record: GrassVariety.override_materials (PythonStub :121628) added, fail-closed, overrides re-read off the SAVED asset per lesson 9.1, eight wind-off MIs verified. Nothing open.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/difflocks_align.txt:33": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom alignment measurement record (root centroid -0.0382 vs midpoint -0.0200 naming the facing). Hero PARKED; archived commit narrative doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/difflocks_align.txt:55": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured strand-length property (mean 8.20 cm) recorded with the explicit note that lengthening is the operator's judgement at the three-panel. Hero PARKED; correctly-captured record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/exposure_under_lumen.txt:1": {
+   "verdict": "OBSOLETE",
+   "reason": "Commit title recording a resolved measurement (-1.897 EV, measured not patched). Closed work, archived narrative.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/gaea_rulings.txt:41": {
+   "verdict": "OBSOLETE",
+   "reason": "Record of a control-backed measurement (flow-mask registration 37.7 vs random control 50.1) from the Gaea evaluation lane. Correct methodology narrative, history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/gate_e.txt:39": {
+   "verdict": "OBSOLETE",
+   "reason": "A passed cross-check record: plaza trace 18671.8 cm matched PlayerStart ground measured independently. Verification history doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/groomloop_20260822.txt:27": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero groom-loop mechanism narrative (114 cm stray clamp ordering lesson included). Hero PARKED; archived commit record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/hero_authored.txt:19": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero mask-origin measurement narrative (centroid z 174.14 vs fitted sphere centre 169.24), defect found and fixed in the same work. Hero PARKED; history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/kit_render.txt:23": {
+   "verdict": "OBSOLETE",
+   "reason": "Defect narrative (2717.7-2815.4 cm float from a single-point trace with an empty ignore list) whose lesson was applied downstream — commits/city_placed.txt:30 traces ignore foliage actors. History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/lock_colour.txt:39": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero hair-colour ceiling recorded as a measured plateau (+10.6 vs target -7) with the grade/master alternative explicitly left as a scope decision. Hero PARKED per Ryan; nothing to act on now.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/lock_colour.txt:43": {
+   "verdict": "OBSOLETE",
+   "reason": "Pure-insertion verification record (LESSONS 23161 -> 23233, RECIPES 11713 -> 11831, none removed). Archived commit bookkeeping.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/lod_chain_section_collapse.txt:66": {
+   "verdict": "OBSOLETE",
+   "reason": "The gate ('no scatter happens before it') was honoured historically and the scatter has since shipped — the live spec carries 219,659 instances on Alpine8K — with PIE-class frame measurement taken 2026-08-15 (_verify/20260815_pie_unit1_pie001.md). Commit debt note is history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/loop_v0.txt:35": {
+   "verdict": "OBSOLETE",
+   "reason": "Concept-loop iteration record; the church-scale ambiguity was explicitly gated to the morning report rather than silently picked, and MORNING_REPORT* are archived. History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/measure_pass5_clutter.txt:48": {
+   "verdict": "OBSOLETE",
+   "reason": "The offset was 'recorded now, before any placement consumes it' and the record exists — vegetation_debris appears in Free/_measured/rock_pivots.json and palette_live.json (verified by grep). Measurement register doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/measured_brow.txt:10": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero face-zone measurement record (brow 170.925 -> 167.241, measured socket-recess). Hero PARKED; archived commit narrative.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/migrate_msg.txt:25": {
+   "verdict": "OBSOLETE",
+   "reason": "The re-check was owed against the mesh being adopted; the character path was subsequently taken by MetaHuman (plans/characters_brief.md banner: skeleton ruling partly superseded), so the SKM_Manny LOD re-check is moot. History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg2.txt:6": {
+   "verdict": "OBSOLETE",
+   "reason": "Same per-session IPD-floor narrative already locked in RECIPES (the commit's own citation R-HEROGEOM REJECTED:9187, and the R13 calibration-class rule at RECIPES.md:9771-9775 ruled OBSOLETE above). Duplicate record in an archived commit message; hero PARKED.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_2species.txt:19": {
+   "verdict": "OBSOLETE",
+   "reason": "Honest wrong-prediction record (pine 8.98% vs fir 23.56% opacity proxy refuted by the render) — narrative of a closed investigation, correctly sited in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_2species.txt:30": {
+   "verdict": "OBSOLETE",
+   "reason": "The lesson half of the same closed investigation (one-term proxy trusted against its own written caveat, fir re-measured at exactly 23.56% as positive control). Correctly-captured narrative, history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_8k_derived.txt:18": {
+   "verdict": "OBSOLETE",
+   "reason": "Flow-map derivation history: the sparse first map was caught and re-derived at scaled droplet count, and the corrected map shipped with the 8K world. Closed work.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_assemble_landed.txt:49": {
+   "verdict": "OBSOLETE",
+   "reason": "Gitignore rationale record (631 MB derived from tracked 145 MB MHC_AlpineHero.uasset, regeneration and dirty-until-saved trap noted in the .gitignore entry). Hero PARKED; record doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_binding_logging.txt:10": {
+   "verdict": "OBSOLETE",
+   "reason": "A completed independent re-measurement record (1141 rows, zero flipped) confirming coverage-is-not-connectivity from a second direction. Measurement narrative, history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_city_connectivity.txt:37": {
+   "verdict": "OBSOLETE",
+   "reason": "The metric misapplication was repaired and the repair shipped: the dual gate (grade <=8 deg AND chord deviation <=1.8 m) yielded largest component 838 (msg_city_connectivity.txt:60-61), and the live spec in CLAUDE.md records the town at exactly 838 streets. Overtaken.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_city_in_world.txt:55": {
+   "verdict": "OBSOLETE",
+   "reason": "A passed cross-representation verification record (1,142 traces p50 -0.32 cm against the heightmap plan; verifier max 0.0 cm). Closed verification, archived commit narrative.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_city_roofs_world.txt:1": {
+   "verdict": "OBSOLETE",
+   "reason": "Commit title recording delivered work (roofline in world, spire at the measured tower top), consistent with the live spec's roofs/landmark/spire rows. History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_current_state.txt:24": {
+   "verdict": "OBSOLETE",
+   "reason": "A state-summary bullet (basin rim sealed on 24 bearings, denominator lesson 35.71 vs 51.34 deg) in an archived commit message; the live state is STATE.md. History correctly sited.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_debt_sweep.txt:46": {
+   "verdict": "APPLY",
+   "reason": "The ruling request is still live and untracked: recipes/city.json:150 still carries _THRESHOLD_NEEDS_A_RULING ('0.05 is provisional... Operator ruling needed'), and grep finds no corresponding item in OPEN.md or BACKLOG.md — so the one place session-start pulls from never surfaces it.",
+   "apply_action": "Add a BACKLOG.md item: 'Ruling needed (Ryan): plan_city off-network building threshold — 0.05 provisional vs 0.0 vs report-only, see recipes/city.json:150 _THRESHOLD_NEEDS_A_RULING and commits/msg_debt_sweep.txt:46', so the parked ruling is pullable at session start.",
+   "dated": "",
+   "batch": "batch_004.json"
+  },
+  "commits/msg_encounters_placed.txt:20": {
+   "verdict": "OBSOLETE",
+   "reason": "Commit-archive record of a detected save defect doing its job as history; the live spec carries encounters 317 VERIFIED on disk (CLAUDE.md spec row, encounters/alpine_8k_verified.json), so the nothing-on-disk state was resolved.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_exposure.txt:28": {
+   "verdict": "OBSOLETE",
+   "reason": "Three-way exposure verification history; exposure has since been re-solved repeatedly (STATE.md A-6 joint WB solve 98c980ac, B3.13 revisions), so these pixel numbers are superseded record, correctly sited in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_face_final.txt:14": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero-face commit bookkeeping (LESSONS +183 append-only, R-HEROFACE); hero is PARKED by Ryan's 'revisit later' and the record sits correctly in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_fc8k2.txt:1": {
+   "verdict": "OBSOLETE",
+   "reason": "Vegetation frame-cost measurement history; perf was since delivered and all four zones PASS R-PERFBUDGET (STATE.md:33-36, commit 9a561d07). Archive narrative doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_handoff.txt:23": {
+   "verdict": "OBSOLETE",
+   "reason": "Kit fit statistics against the one measured house; the town-vs-kit gap is the acknowledged biggest gap in the CLAUDE.md spec ('303 buildings ... ENGINE PRIMITIVES, this is the biggest gap'), so the debt is tracked live and this is its history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_kit_blocked.txt:49": {
+   "verdict": "OBSOLETE",
+   "reason": "The 932 overlapping pairs are captured at the narrative altitude in LESSONS.md:25823 and the fix is parked with the kit re-plan that will re-emit the network (commits/msg_street_seat.txt:85); nothing new to record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_level_8k.txt:34": {
+   "verdict": "OBSOLETE",
+   "reason": "Two-derivation Z-span cross-check history; the measured 0-1552.5 m span is carried live in the CLAUDE.md spec ('Two figures are MEASUREMENTS ... 0-1552.5 m'). Correctly-sited commit narrative.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_light8k.txt:34": {
+   "verdict": "OBSOLETE",
+   "reason": "Exposure re-derivation narrative for the 8K light pass; the bias has since moved through later solves (-13.8820 in commits/ruling_20260912b.txt:17, then STATE.md A-6/B3.13), so the 0.026 EV agreement is superseded history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_light8k.txt:35": {
+   "verdict": "OBSOLETE",
+   "reason": "Same paragraph as :34 - the -1.897 re-derivation is history overtaken by later exposure solves (commits/ruling_20260912b.txt:17, STATE.md A-6); the re-derive-not-port lesson is the commit's own point, correctly archived.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_nav_east_built.txt:40": {
+   "verdict": "OBSOLETE",
+   "reason": "Encounter-denominator measurement history (113/4356 cells, density NOT tuned); nav and encounters have since been rebuilt and verified (CLAUDE.md spec: navmesh 72 bounds volumes, 317 verified). Archive record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_nav_east_declared.txt:20": {
+   "verdict": "OBSOLETE",
+   "reason": "Z-trace measurement history for the east nav volume (625 traces, zero misses); the volume was built and the denominator confirmed in commits/msg_nav_east_built.txt. History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_nav_town_declared.txt:28": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured-Z declaration history for the town nav volume; superseded by the built-and-verified navmesh (CLAUDE.md spec) and the method lesson lives in R-NAVBUILD. Archive record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_planz.txt:8": {
+   "verdict": "OBSOLETE",
+   "reason": "The two-path Z cross-check (0.00..1552.48 vs 0.0..1552.5) is the same measurement pair carried live in CLAUDE.md's spec; the commit is its history, correctly sited.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_reachability_reauthor.txt:23": {
+   "verdict": "OBSOLETE",
+   "reason": "The 789-corroboration is intermediate reachability history; the live figure is the 2026-08-27 BFS measurement, 36.53 km2 reachable, carried in the CLAUDE.md spec. Overtaken record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_retraction_logging.txt:14": {
+   "verdict": "OBSOLETE",
+   "reason": "Calibration narrative (91.5% PROJECTS vs 48.9% REACHABLE, model labelled a PREFILTER) - a correctly-captured retraction record in commits/; the reachability question was since settled by BFS (CLAUDE.md spec).",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_sculpt_gated.txt:40": {
+   "verdict": "OBSOLETE",
+   "reason": "The control-cage retirement is a recorded retraction on hero-face work, PARKED by Ryan; the retraction itself states it was written into LESSONS and R-HEROFACE. History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_sculpt_gated.txt:45": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured caveat (residual stalls at 0.557 cm, sculpt partial) on hero-face work that is PARKED per Ryan's 'revisit later'; correctly-sited commit record for resumption.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_sculpt_in_game.txt:38": {
+   "verdict": "OBSOLETE",
+   "reason": "Same retraction as msg_sculpt_gated.txt:40 - the 222 cm/unit conclusion was retired loudly and the retraction recorded; hero PARKED. Archive narrative.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_spawn_in_town.txt:44": {
+   "verdict": "OBSOLETE",
+   "reason": "The query-extent lesson is recorded in R-NAVBUILD per the paragraph's own citation ('the same class R-NAVBUILD already records') and the acceptance test was amended in that commit. Captured at both altitudes.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_split_clusters.txt:19": {
+   "verdict": "OBSOLETE",
+   "reason": "Derived-scale narrative (x34.569 from measured 0.3182 units -> 11.0 m) for cluster splitting - method history correctly sited in commits/; no debt named.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_state8k.txt:9": {
+   "verdict": "OBSOLETE",
+   "reason": "Same-mountain correlation measurement (0.999824) validating the 8K terrain against the pre-8K heightmap; the 8K world shipped and is the live level (CLAUDE.md spec). History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_street_seat.txt:58": {
+   "verdict": "OBSOLETE",
+   "reason": "The 1,447 orphaned packages were identified by name and deleted 2026-08-27 (docs/archive/current_state_history.md:1289-1331: '1,447 PACKAGES WERE ABOUT TO DOUBLE THE TOWN ... named all 1,447'; :1428 'out with the 1,447 deletions'). Debt closed.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_street_seat.txt:85": {
+   "verdict": "OBSOLETE",
+   "reason": "The 932 overlapping street pairs are recorded in LESSONS.md:25823 and explicitly parked with the kit re-plan that will re-emit the network - the town gap the CLAUDE.md spec names as the biggest. Recorded-not-chased is the ruling this paragraph itself states.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_unit11.txt:29": {
+   "verdict": "OBSOLETE",
+   "reason": "Positive/negative control narrative for the Unit 11 weightmap bake (20000/20000 agree, one-row shift 9.86% disagree); the bake was verified and closed. Method history correctly sited.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_unit11_verified.txt:16": {
+   "verdict": "OBSOLETE",
+   "reason": "The Rock-vs-Grass non-separation caveat is recorded in the tool, the recipe, the artefact and CURRENT STATE per the paragraph's own statement ('the tool DELIBERATELY DOES NOT ASSERT THAT PAIR ... all say so'). Captured where it binds.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_unit11_verified.txt:42": {
+   "verdict": "OBSOLETE",
+   "reason": "The editor-never-hung lesson (6.04 CPU-s per wall-second; discriminate on CPU not responsiveness) is commit narrative of a resolved episode; no open debt named.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/msg_walk_lessons.txt:24": {
+   "verdict": "OBSOLETE",
+   "reason": "Conservative stall-predictor narrative (22 vs 27.3, 42 vs 57.5) - a tool-calibration record whose direction argument is the content; history correctly sited in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/nanite_ruling.txt:64": {
+   "verdict": "OBSOLETE",
+   "reason": "Near-miss narrative about a well-designed measurement of the wrong question; the Nanite ruling it belongs to was made and the record sits correctly in commits/. No live gap.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/phase0_disk.txt:6": {
+   "verdict": "OBSOLETE",
+   "reason": "The 26.5 GB-free measurement is overtaken: disk has been actively managed since, most recently C:\\UnrealDDC cleared by Ryan for 60 GB free (STATE.md:135) and B-2 struck by ruling (STATE.md:121-122). Point-in-time record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/phase3.txt:36": {
+   "verdict": "APPLY",
+   "reason": "Still live: PHASE2_PLAN.md:142 (Unit 6 body) still prescribes 'CustomNavigableGeometry = No' with no in-place mark, and the banner row at PHASE2_PLAN.md:15 itself says the prescription 'survives unmarked in unit 6's body' and that the body line is what a builder reads. The banner exists; the in-place mark the finding asks for does not.",
+   "apply_action": "Add an in-place [OVERRULED - see banner row 'Unit 6' at top; 'No' still exports default collision, ERemoteRole-style 'dont_export' is what excludes] mark to the CustomNavigableGeometry clause at PHASE2_PLAN.md:142, mirroring the self-marks rulings 15/16 already carry.",
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/reboot_handoff.txt:17": {
+   "verdict": "OBSOLETE",
+   "reason": "The 196608 MB fixed pagefile recommendation was applied: STATE.md:197 measures 'pagefile fixed at 192 GB (not auto-managed)' - 196608 MB = 192 GB. Handoff consumed, recommendation confirmed live.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/region_bands_fixed.txt:45": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom band-tuning correction narrative (scalp watch 3.21% measured vs my ~0.5% brief, shipped flat at 3.22); hero/groom work is PARKED per Ryan. Correctly-sited history for resumption.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/restart_handoff.txt:26": {
+   "verdict": "OBSOLETE",
+   "reason": "A written-down caveat (MSVC v143 as insurance for VS Community 2026) in a restart handoff - insurance that was consumed; no subsequent record shows UBT refusing the toolchain, and the caveat sits correctly as history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ridge_wide_lessons_commit_msg.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Pre-8K /Game/Alpine capture-diff bookkeeping (captures/alpine/, 2026-08-08); the pre-8K world is HISTORY per CLAUDE.md and this commit record is correctly archived.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/round1.txt:28": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom scoring re-anchoring narrative (chin/shoulder 532 and 689 exact vs face_w wobble); hero PARKED. Method history correctly sited in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/round1.txt:48": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom composition coupling measurements (sides delta, hem_tuck vs jaw coverage); hero PARKED per Ryan's 'revisit later'. Archive record for resumption.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/round2_done.txt:4": {
+   "verdict": "OBSOLETE",
+   "reason": "Groom best-score record (tex_08, 0.0936 from 0.4005) with its UE verification artefact in _verify/; hero PARKED. History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_1_and_grade.txt:16": {
+   "verdict": "OBSOLETE",
+   "reason": "The spire height-class corroboration (2.24-2.61x) was ruled by the operator in that session and belongs to the concept-schema record; correctly-sited ruling history in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_1_and_grade.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Ruling headline for schema 1.1-concept parts[] - the concept-recipe contract lives in recipes/scene_grammar.md and recipes/concepts/ per the CLAUDE.md index; the commit is its history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260912b.txt:17": {
+   "verdict": "OBSOLETE",
+   "reason": "The 'confirming capture has not run' debt on bias -13.8820 was overtaken: Q12 CLOSED 2026-09-13 with the root cause found (tone curve off, contrast 0.95 effective 0.9025 - commits/ruling_20260913c_q12_closed.txt:1-34), and exposure was re-based again in STATE.md A-6/B3.13.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260912b.txt:56": {
+   "verdict": "OBSOLETE",
+   "reason": "Every item in this ALSO block landed or is recorded: the inverted city_clear_foliage plaza gate is captured in LESSONS.md:34149-34158 (no caller, inert at the shipped 6.0 m), the surface lookup was re-baked in the same commit, and check_weightmap_fresh firing was the gate working as designed.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260913_meter_grade.txt:58": {
+   "verdict": "OBSOLETE",
+   "reason": "In-band tint solve measurement (R/G 1.0221, B/G 1.0091) overtaken by the A-6 joint 2x2 WB solve ADOPTED at 3438.6 K / tint -0.0248 (STATE.md:68-69, commit 98c980ac). Superseded measurement history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260913_rock_task3.txt:9": {
+   "verdict": "OBSOLETE",
+   "reason": "The Rock051 -> gray_rocks replacement closed in this very commit ('ASSETS row 37 closed REPLACED / source unrecorded') with albedo continuity measured 0.1795 vs 0.1805; nothing remains open.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260913b_q12_located.txt:100": {
+   "verdict": "OBSOLETE",
+   "reason": "The luma-upper-bound caveat is 'STATED IN THE TOOL' per the paragraph itself, the band applies to MEADOW ONLY as ruled, and Q12 was closed the next day (commits/ruling_20260913c_q12_closed.txt). Captured where it binds.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/ruling_20260913c_q12_closed.txt:64": {
+   "verdict": "OBSOLETE",
+   "reason": "The wrong-domain shade band 2.184-2.940 was since superseded twice: STATE.md OPEN flagged its stale white point, then R-SHADEBAND was re-derived and amended to the D6000 low-sun floor, band 2.065-2.998 @ 3438.6 K, with A-7's 2.1896 PASSING (STATE.md:70-72, :111-113).",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/save_level_resultfile.txt:12": {
+   "verdict": "OBSOLETE",
+   "reason": "The 418 KB deserialisation defect was fixed by this same commit's change - the result handed over through a FILE, keeping the full-owned-list mtime gate intact (commits/save_level_resultfile.txt:1, :24-30) - and save_level has been in routine use since.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/session_close.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Append-only bookkeeping (LESSONS 14,303 -> 14,432, RECIPES + R-CREATE/R-FRAMECOST, previous state demoted not deleted) - session-close protocol evidence, correctly archived.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/surveyor.txt:24": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero-face landmark measurement (measured brow 167.24, fraction-based 3.68 cm high); hero PARKED per Ryan. Measurement history correctly sited in commits/.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/terrain_look_findings.txt:11": {
+   "verdict": "OBSOLETE",
+   "reason": "Lumen OFF exposure reading (0.3012, -5.9% vs the R13 0.3201 target) is input history to exposure work that has since been re-solved repeatedly (Q12 closure, STATE.md A-6/B3.13). Superseded measurement record.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/terrain_look_findings.txt:12": {
+   "verdict": "OBSOLETE",
+   "reason": "Same table as :11 - the Lumen ON 0.3730/+16.5% reading is superseded exposure input; later solves and the Q12 tone-curve finding (commits/ruling_20260913c_q12_closed.txt) overtook it.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_005.json"
+  },
+  "commits/terrain_resolution.txt:24": {
+   "verdict": "OBSOLETE",
+   "reason": "Archived commit narrative; route (c) was since acted on — the live spec carries M_Alpine8K displacement 0.4 m on the RTX 5080 machine (CLAUDE.md CURRENT SPEC 'displacement 0.4 m, triplanar Rock'; docs/environment.md:18). History doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/trellis_church.txt:18": {
+   "verdict": "OBSOLETE",
+   "reason": "The planning constraint is captured live: FORGE_LOG.md:28-29 logs per-run VRAM peaks and headroom (175 MiB on wood stack), and FORGE_LOG.md:52-57 rules that a run's cost cannot be predicted from inputs and the next asset must be treated as not fitting until measured. The commit message is history doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/trellis_wsl_up.txt:16": {
+   "verdict": "OBSOLETE",
+   "reason": "The distro switch is locked in RECIPES.md R-TRELLIS (line 8453 'WSL2 Ubuntu 24.04 NOT 26.04 -- see REJECTED') and R-TRELLIS REJECTED (8480-8485), and recorded in plans/trellis_setup.md:84-97. Commit is history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/trellis_wsl_up.txt:18": {
+   "verdict": "OBSOLETE",
+   "reason": "Same measured ground (26.04 ships Python 3.14.3, no python3.11/3.12 package) is captured at plans/trellis_setup.md:86-89 and RECIPES.md:8480-8485 including the note that the ubuntu2604 CUDA repo was never the problem. Nothing left to carry forward.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/two_altitude_logging.txt:3": {
+   "verdict": "OBSOLETE",
+   "reason": "Diff-stat narrative of a pure-append LESSONS/RECIPES commit; the appended content lives in those files and the stats have no forward duty. Archived commit message doing its job.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/ue_seated.txt:33": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero-pipeline tolerance re-derivation (1e-9 -> 1e-3 cm identity bar) in an archived commit; hero/groom work is PARKED per Ryan ('revisit later') and the pipeline record lives under hero/. History.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/unit4_msg.txt:43": {
+   "verdict": "OBSOLETE",
+   "reason": "The ~110-vs-102 discrepancy the commit measured is already corrected in the live plan: PHASE2_PLAN.md:82 now reads '102 animations (measured; ~110 was an estimate, Pass 5 2026-09-16)'. Gap closed by an earlier Pass-5 application.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/unit6_close_out.txt:33": {
+   "verdict": "OBSOLETE",
+   "reason": "Append-proof narrative (197/194 lines, 0 deletions) about a commit's own hygiene; the appended entries live in LESSONS/RECIPES. Archived commit message, nothing actionable.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/unit6_collision_schema.txt:72": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured capsule-vs-trunk narrative; the measured collision records live in Free/_measured (foliage_collision.json and mesh_collision.json exist on disk) and the recipe carries collision blocks (recipes/alpine_8k.json:1562-1566). Commit history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/unit8_navmesh_built.txt:30": {
+   "verdict": "OBSOLETE",
+   "reason": "Projection measurement with its negative control, in an archived commit; the navmesh shipped (72 navmesh bounds volumes in the CLAUDE.md CURRENT SPEC). Correctly-captured history.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "commits/v2_chain.txt:65": {
+   "verdict": "OBSOLETE",
+   "reason": "A hero-groom comparison confound, disclosed at the time; hero work is PARKED per Ryan and the record sits in an archived commit message where it belongs.",
+   "apply_action": null,
+   "dated": "",
+   "batch": "batch_006.json"
+  },
+  "docs/_consolidation_inventory.md:169": {
+   "verdict": "OBSOLETE",
+   "reason": "Live inventory row correctly stating the partly-superseded skeleton ruling and the still-current 102-anim inventory; it agrees with the CLAUDE.md index banner for plans/characters_brief.md and with PHASE2_PLAN.md:82. Live table correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-29",
+   "batch": "batch_006.json"
+  },
+  "docs/environment.md:18": {
+   "verdict": "OBSOLETE",
+   "reason": "Live measured hardware row (31.4 GB RAM, dated 2026-09-13) with the superseded OmniBook figures explicitly labelled HISTORICAL; the doc is doing exactly its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_006.json"
+  },
+  "docs/environment.md:19": {
+   "verdict": "OBSOLETE",
+   "reason": "Same live paragraph as environment.md:18 — the 're-derives from 31.4' instruction is correct, current law in a live doc; nothing to fix.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_006.json"
+  },
+  "docs/ue58-api-protocol.md:33": {
+   "verdict": "OBSOLETE",
+   "reason": "A live-law bullet ('state the maturity tier of any 5.8 feature') correctly sited in docs/ue58-api-protocol.md, which the CLAUDE.md index lists as LIVE LAW; observed honoured in the tier table at plans/phase2_lanes/07_result.md:51.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:11": {
+   "verdict": "OBSOLETE",
+   "reason": "Correction 2 at the draft's own head; the missing control belongs to the superseded pre-D4 two-species plan, overtaken by the D4 rescatter that shipped 219,659 (CLAUDE.md spec). The correction note does its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:141": {
+   "verdict": "OBSOLETE",
+   "reason": "Anti-spec capture: the 111,079 under-plan was replaced by 135/ha -> 219,659 shipped (plans/RECIPES_draft_closure.md:77, CLAUDE.md spec), and the CORRECT line ('re-derive density against the ramp') is the recurrence guard. Nothing un-tracked remains.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:23": {
+   "verdict": "OBSOLETE",
+   "reason": "Record of the D4 ruling (closure gradient, ~220,000), which was executed — 219,659 placed and counted (draft :25, CLAUDE.md spec 'foliage 219,659 instances'). Correctly-captured ruling.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:25": {
+   "verdict": "OBSOLETE",
+   "reason": "'Never replayed cold' is the programme-wide debt tracked live at REPLAY_BURNDOWN.md:3 ('cold replay is a Brief 5 acceptance — the 13 UNPROVEN recipes remain real'); the status line is honest disclosure where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:5": {
+   "verdict": "OBSOLETE",
+   "reason": "A self-retraction at the head of the doc, with the corrected arithmetic (152.1/ha -> 247,599 vs 134.7/ha -> 218,934) used consistently below (:77, :90). The retraction is doing its job.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:77": {
+   "verdict": "OBSOLETE",
+   "reason": "Arithmetic table consistent with the head retraction and with the shipped world (135/ha -> 219,659, matching the CLAUDE.md spec). Correctly-captured record in a staged draft.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:84": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured retention record (24.78% vs 34.31% -> 0.7222), explicitly caveated at :97 as non-transferable. Measurement narrative doing its job in the draft.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:90": {
+   "verdict": "OBSOLETE",
+   "reason": "The corrected two-path arithmetic (measured 134.7/ha -> 218,934 vs uniform-premise 152.1/ha -> 247,599), consistent with retraction 0 at :5. Nothing actionable; the shipped figure is 219,659.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_closure.md:97": {
+   "verdict": "OBSOLETE",
+   "reason": "The non-transferability caveat itself, stated rather than buried — exactly the disclosure discipline the drafts exist for. Correct where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_pn_trees.md:156": {
+   "verdict": "OBSOLETE",
+   "reason": "Backed by Free/_measured/pn_nowind_overrides.json (exists on disk), and the positional-ordering fact is honoured live in scripts/place_foliage.py:1326 ('override_materials is POSITIONAL, in the mesh's OWN slot order'). Captured and consumed.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_pn_trees.md:206": {
+   "verdict": "OBSOLETE",
+   "reason": "The lod_triangles citation matches an existing measured file (Free/_measured/pn_spruce_forest.json), and the paragraph's live debt — wind-off MIs unreachable from the instanced path — was overtaken: recipes/alpine_8k.json:1593-1634 now declares species-level override_materials (SpruceSub, SpruceSapling) and place_foliage.py:1136-1425 consumes them with a read-back at :1417-1425.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_pn_trees.md:41": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured-source declaration; the cited artefact Free/_measured/pn_spruce_forest.json exists on disk and scripts/measure_tree_packs.py is the named instrument (also cited at plans/RECIPES_draft_understory.md:30). Correctly-captured provenance.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:124": {
+   "verdict": "OBSOLETE",
+   "reason": "The 'leave it' ruling on the MI_MI_ doubled prefix is still load-bearing: recipes/alpine_8k.json:1669 references /Game/Materials/PN_NoWind/MI_MI_Blueberry_01_nowind. Correctly-captured ruling doing its job.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:207": {
+   "verdict": "OBSOLETE",
+   "reason": "A disclosed, quantified limitation ('harmless today, worst engine-derived row 0.071%') on a gate the same draft records as applied (landscape_spec.py:442-444 per the :241 paragraph); a caveat correctly sited in the draft, not a live defect.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:241": {
+   "verdict": "OBSOLETE",
+   "reason": "Root-cause narrative of a fix the draft records as applied (provenance tagged at landscape_spec.py:226, check run on engine-derived rows at :442-444) with its second-instrument proof (scripts/read_grass_type.py, corroborated live at RECIPES.md:17387-17399). Captured history of a closed hole.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:30": {
+   "verdict": "OBSOLETE",
+   "reason": "Free/_measured/engine_derived.json exists on disk, exactly as the draft states, and the pivot gate reading it is the correct refusal path. Correctly-captured record.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:64": {
+   "verdict": "OBSOLETE",
+   "reason": "Free/_measured/pn_blueberry.json exists on disk; the sizes/pivots sourcing statement is correct measured provenance in a staged draft. Nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/RECIPES_draft_understory.md:8": {
+   "verdict": "OBSOLETE",
+   "reason": "The named defect is already closed and recorded in the same paragraph: 'FIXED 2026-09-15 (closure A-9 / AUDIT F-4): _verify/20260815_d3_blueberry_understory.md:56 now reads 195.' The ledger already knows.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/characters_brief.md:96": {
+   "verdict": "OBSOLETE",
+   "reason": "The 102-asset / 42.6 MB inventory is current per the CLAUDE.md index banner ('its 102-animation inventory is current') and docs/_consolidation_inventory.md:169, and PHASE2_PLAN.md:82 was corrected to match. Live figure correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/01_result.md:22": {
+   "verdict": "OBSOLETE",
+   "reason": "Lane output — the inputs behind PHASE2_PLAN per the CLAUDE.md index ('auditing how one reached its conclusion'); the navmesh work it prescribed was since built (commits/unit8_navmesh_built.txt; 72 navmesh bounds volumes in the live spec). Evidence class, cite never obey.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/01_result.md:9": {
+   "verdict": "OBSOLETE",
+   "reason": "The towns-blocked tripwire was discharged: Ryan ruled multi-region 2026-08-15 (CLAUDE.md spec 'RULED BY RYAN 2026-08-15') and the town is placed (303 buildings, 838 streets in the CURRENT SPEC). Overtaken by the ruling it waited on.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/02_result.md:15": {
+   "verdict": "OBSOLETE",
+   "reason": "A dated (2026-08-15) measured baseline block in a lane output; current measurement discipline lives in _verify/ artefacts and RECIPES. Archived-class evidence doing its job.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/02_result.md:26": {
+   "verdict": "OBSOLETE",
+   "reason": "Lane budget table whose RAM figure (31.44 GB) agrees with the live docs/environment.md:18 measured 31.4 GB; the VRAM ceiling is labelled measured-vs-nameplate correctly. Historical lane record, consistent with live docs.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/02_result.md:7": {
+   "verdict": "OBSOLETE",
+   "reason": "Baseline header naming the correct level and count (/Game/Alpine8K, 219,659 — matches the CLAUDE.md spec). Lane record, nothing actionable.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/03_result.md:39": {
+   "verdict": "OBSOLETE",
+   "reason": "A derive-from-one-declaration critique of a quest-schema draft; quests are phase 6 with nothing built (plans/phase2_lanes/01_result.md: 'Quests are phase 6 with nothing yet to reference'), and the guidance sits in the lane record future quest work will load. No live artefact carries the duplication.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/05_result.md:101": {
+   "verdict": "OBSOLETE",
+   "reason": "Headroom arithmetic against the ruled 11 ms abort bar, itself cited to _verify/20260815_d4_rescatter_220k.md:7 in the same doc (:97). Correct lane record.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/05_result.md:114": {
+   "verdict": "OBSOLETE",
+   "reason": "The GASP acquisition question was overtaken — characters went engine-template anims plus MetaHuman (docs/_consolidation_inventory.md:169; PHASE2_PLAN.md:82) — and the Fab licence debt beside it is tracked live in CREDITS.md ('Licence NOT RECORDED... Owed: a licence row for each'). Lane input, gap tracked elsewhere.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/05_result.md:96": {
+   "verdict": "OBSOLETE",
+   "reason": "A verification bullet whose figures (219,659, 7.92 ms, species split) cite _verify/20260815_d4_rescatter_220k.md:15 and agree with the live spec. Correct lane record.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/05_result.md:97": {
+   "verdict": "OBSOLETE",
+   "reason": "Correctly re-anchors the frame budget to the project's own 11 ms abort bar with its _verify citation; a lane correction doing its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/07_result.md:102": {
+   "verdict": "OBSOLETE",
+   "reason": "An engine-source-cited rejection (CharacterMovementComponent.cpp:264-266 help text) recorded in the physics lane behind PHASE2_PLAN; the rejection list at :270 repeats it. Correctly-captured ruling, nothing to apply.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/07_result.md:270": {
+   "verdict": "OBSOLETE",
+   "reason": "Item 7 of a do-not-enable list in the physics lane output; ChaosCaching remains a rejected Experimental plugin with no RPG payoff, and the ruling is recorded where future physics work will load it. History/inputs class.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/07_result.md:34": {
+   "verdict": "OBSOLETE",
+   "reason": "A budget row honestly labelled DERIVED from engine defaults, in a table that labels its UNMEASURED rows as such — the disclosure discipline the non-negotiables require, sited in a lane record. Not a defect.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/07_result.md:51": {
+   "verdict": "OBSOLETE",
+   "reason": "A conditional recommendation ('the only non-default plugin I recommend enabling, and only later') with its tier evidence, recorded in the lane behind PHASE2_PLAN; no live gap — 'later' is by design and the record sits where the decision will be made.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/phase2_lanes/09_result.md:41": {
+   "verdict": "OBSOLETE",
+   "reason": "Budget arithmetic quoting the RECIPES.md:5889 calibration-class caveat (no PIE/packaged frame exists); a lane allocation record consistent with the live shipping-class-gap doctrine. Nothing actionable.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/region_authoring/02_result.md:32": {
+   "verdict": "OBSOLETE",
+   "reason": "Parameter-provenance table (Erosion2.ErosionScale 1413.2517 -> 340.0, MEASURED) — the inputs behind terrain/regions/ per the CLAUDE.md index, which files plans/region_authoring/ under 'auditing how one reached its conclusion'. Evidence class, correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_006.json"
+  },
+  "plans/region_authoring/02_result.md:37": {
+   "verdict": "OBSOLETE",
+   "reason": "Lane-output provenance row for the SnowLine inversion; the inversion is carried live in terrain/regions/badlands.md:86 and R-GAEA Sec.2 (RECIPES.md:3399). Evidence-class input doing its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_authoring/02_result.md:60": {
+   "verdict": "OBSOLETE",
+   "reason": "Build-order recommendation consumed by the actual region authoring: all five .terrain files plus per-region notes exist under terrain/regions/ (plateau/badlands/volcanic/foothills/coastal). Lane input, cite-never-obey.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_authoring/03_result.md:39": {
+   "verdict": "OBSOLETE",
+   "reason": "Deliberately-unchanged rationale (only SnowLine's mechanism measured, other enums unread per NN23) is correct restraint recorded in an evidence-class lane output; the live carrier is terrain/regions/badlands.md:86 and R-GAEA.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/00_result.md:24": {
+   "verdict": "OBSOLETE",
+   "reason": "Open item recorded WITH its closing condition (only if the JSON path measures too slow); the condition has not triggered and multi-region is RULED 2026-08-15 (CLAUDE.md spec). Null-register doing its job.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/04_result.md:120": {
+   "verdict": "OBSOLETE",
+   "reason": "ZoneGraph two-tier observation cited to engine source (ZoneGraphData.h:31), supporting evidence for the ratified multi-region ruling. Evidence-class lane output, correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/04_result.md:202": {
+   "verdict": "OBSOLETE",
+   "reason": "Navmesh third-representation risk statement supporting the 2026-08-15 Option A ruling; the risk narrative is the lane's evidence, and the ruled architecture (separate WP worlds) is the mitigation it argued for. No new action owed from this line.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/04_result.md:5": {
+   "verdict": "OBSOLETE",
+   "reason": "Tile-ceiling arithmetic (1,982,907 vs 1<<20) is the confirming evidence for Option A, which Ryan RULED 2026-08-15 (CLAUDE.md spec, WORLD_VISION.md:174,:191). Ruling made; evidence stands where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/06_result.md:157": {
+   "verdict": "OBSOLETE",
+   "reason": "Standing-rule-10 honesty statement (which quantities were measured vs read from source) inside an evidence-class lane output; exactly the disclosure the rule requires, recorded once, in place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/06_result.md:55": {
+   "verdict": "OBSOLETE",
+   "reason": "Contingent decision flagged as Ryan's (per-region git/LFS of external actors), moot until a second region exists in-engine; only Alpine8K is built. Parked contingent decision recorded in its lane output; no current gap.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/07_result.md:135": {
+   "verdict": "OBSOLETE",
+   "reason": "Level-Instance embed-vs-streaming analysis with source citations, evidence for the ruled do-not-compose-as-Level-Instances recommendation; the unmeasured caveat is restated in the same file's null table (07_result.md:180). In place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/region_lanes/07_result.md:180": {
+   "verdict": "OBSOLETE",
+   "reason": "Null-register row: unmeasured quantity recorded with what closes it (first attended region-two travel), which has not occurred. The register is doing its job in an evidence-class doc.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "plans/trellis_setup.md:84": {
+   "verdict": "OBSOLETE",
+   "reason": "Heading recording the measured 26.04->24.04 distro switch in the TRELLIS rebuild doc, which the index holds live precisely to preserve such decisions for a rebuild. History correctly captured.",
+   "apply_action": null,
+   "dated": "2026-08-16",
+   "batch": "batch_007.json"
+  },
+  "recipes/scene_grammar.md:116": {
+   "verdict": "OBSOLETE",
+   "reason": "WHY-THIS-EXISTS narrative (church 1.5x vs 2x contradiction, measured 2.24-2.61x) motivating the live contract's rule; contract doc doing its job.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "recipes/schema.md:1092": {
+   "verdict": "OBSOLETE",
+   "reason": "Nanite fallback-proxy trap documented in the live schema, consistent with the independent REGISTER measurement (brief1/REGISTER.md:274, +7.3%). Live contract carrying a measured trap; nothing owed.",
+   "apply_action": null,
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "recipes/schema.md:586": {
+   "verdict": "OBSOLETE",
+   "reason": "Vendor side-by-side pivot displacement (12.406 m measured) documented in the live schema as the reason for the pivot rule; measured evidence correctly sited in the contract.",
+   "apply_action": null,
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "refs/MANIFEST.md:38": {
+   "verdict": "OBSOLETE",
+   "reason": "Live reference constant (chalet silhouette 738.0 cm MEASURED) in the manifest's scale table beside its provenance; live table correctly sited per the brief's OBSOLETE definition.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "refs/MANIFEST.md:51": {
+   "verdict": "OBSOLETE",
+   "reason": "Frontier row: chalet material gap (kit_crossed_material_wrong) held in the unserved-entity frontier, whose job is to hold exactly this until a forge slot or the Medieval Village kit serves it (CLAUDE.md spec: town is the biggest gap, kit on disk). Live table correctly sited.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "refs/MANIFEST.md:66": {
+   "verdict": "OBSOLETE",
+   "reason": "Water-as-system row carries its own ruling ('takes no forge slot (ruled)') and sits in the frontier register as a roadmap item; ruling recorded, no forge-slot gap.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "research/UNRESOLVED_2026-09-12.md:140": {
+   "verdict": "OBSOLETE",
+   "reason": "Q3's ruling conflict (effective-illuminant WB vs source-tracking band) was dissolved by R-SHADEBAND replacing the 1.10-1.60 band with the card-pair method (RECIPES.md:18013), whose lit-card normalisation removes the WB dependence; band domain pinned in AUDIT.md S-6. Overtaken by ruling.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "research/UNRESOLVED_2026-09-12.md:286": {
+   "verdict": "OBSOLETE",
+   "reason": "Stale-weightmap defect recorded with its remediation (reimported 09-12) in the same bullet; the contaminated shade-band acceptances were superseded when the instrument and grade were re-solved post-reimport (R-SHADEBAND RECIPES.md:18013; AUDIT.md S-3/S-6). Overtaken.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "research/UNRESOLVED_2026-09-12.md:50": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured sky-slope record (0.3057 B/unit) eliminating a hypothesis, part of the send-to-desk register; measurement narrative doing its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "research/UNRESOLVED_2026-09-12.md:84": {
+   "verdict": "OBSOLETE",
+   "reason": "Corroboration record (measured 2.3522 vs Planck 2.4525, 4.09% disagreement) supporting the white-point diagnosis; measurement record in the register, consumed by the R-SHADEBAND line (RECIPES.md:18013).",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "research/UNRESOLVED_2026-09-12.md:90": {
+   "verdict": "OBSOLETE",
+   "reason": "Band-vs-measured record consistent with AUDIT.md S-6's ruling that the band's domain is PPI0 card-normalised and the 1.10-1.60 row is the struck band; the audit already carries the fix. Record in place.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "research/brief/BRIEF.md:72": {
+   "verdict": "OBSOLETE",
+   "reason": "Desk recommendation (evaluate Nanite Foliage on the benchmark before any decision) held in a brief that is input-not-law; no migration occurred on the docs' promise, which is the caution obeyed by default. No live gap.",
+   "apply_action": null,
+   "dated": "2026-09-05",
+   "batch": "batch_007.json"
+  },
+  "research/brief/brief1_distance_as_angle/brief1/FOR_CLAUDE_CODE.md:82": {
+   "verdict": "OBSOLETE",
+   "reason": "Imposter cull task overtaken by the Q4 ruling that HLOD moves AHEAD of imposters (brief1/REGISTER.md:381), and the HLOD precondition has since been delivered (STATE.md: L2 cells 256/256 at 4096). Brief input superseded by sequencing ruling.",
+   "apply_action": null,
+   "dated": "2026-09-05",
+   "batch": "batch_007.json"
+  },
+  "research/brief/brief1_distance_as_angle/brief1/REGISTER.md:274": {
+   "verdict": "OBSOLETE",
+   "reason": "Register measurement (spruce 27.317 m SOURCE_MODEL vs 29.313 m fallback proxy) confirming B1.2 with the corrected constant; the proxy trap it exposed is carried live in recipes/schema.md:1092-1099. Record complete.",
+   "apply_action": null,
+   "dated": "2026-09-07",
+   "batch": "batch_007.json"
+  },
+  "research/brief/brief1_distance_as_angle/brief1/REGISTER.md:289": {
+   "verdict": "OBSOLETE",
+   "reason": "Register finding (two species already ship imposters/billboards) feeds Task 7, which Q4 sequenced behind HLOD (same REGISTER.md:381); the task and its evidence are tracked in their designated register. No untracked gap.",
+   "apply_action": null,
+   "dated": "2026-09-07",
+   "batch": "batch_007.json"
+  },
+  "research/brief/brief1_distance_as_angle/brief1/REGISTER.md:381": {
+   "verdict": "OBSOLETE",
+   "reason": "Q4/Q5 rulings recorded with their measured grounds (no built HLOD actors then; viewport 1.88 Mpx vs declared 3.69); budgets carry basis_invalidated and HLOD has since been built (STATE.md 4096 L2 256/256). Ruling record doing its job.",
+   "apply_action": null,
+   "dated": "2026-09-07",
+   "batch": "batch_007.json"
+  },
+  "research/brief2/for_research/NOTES.md:30": {
+   "verdict": "OBSOLETE",
+   "reason": "Task 6 execution record: both acceptance clauses PASS with sample-bearing numbers (masks agree 1.0000, dolly ratio 0.9997); completed-work narrative in the desk notes, nothing owed.",
+   "apply_action": null,
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "research/brief2/for_research/NOTES.md:85": {
+   "verdict": "APPLY",
+   "reason": "The escalation was consumed: Ryan REJECTED the 8800 K rule 2026-09-10 (RECIPES.md:18036-18043, 'white_temp = sun temperature... REJECTED BY RYAN'), Brief 2b is REGISTERED (RECIPES.md:17958, BACKLOG.md:2939) and was measured at sun 5200 K (RECIPES.md:18012-18026). The ledger does not know the decision landed.",
+   "apply_action": "already implemented — record applied_where: RECIPES.md:18036-18043 (8800 K REJECTED BY RYAN 2026-09-10) + RECIPES.md:17958 / BACKLOG.md:2939 (Brief 2b registered).",
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "research/brief3/BRIEF.md:25": {
+   "verdict": "OBSOLETE",
+   "reason": "Texel-density derivation (2445/d px/m, Nyquist) is brief theory feeding texel_budget.py's rule in Task 3 (FOR_CLAUDE_CODE.md:24-28); input doc correctly sited.",
+   "apply_action": null,
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "research/brief3/BRIEF.md:97": {
+   "verdict": "OBSOLETE",
+   "reason": "Roadmap step 3 (scanned surfaces at derived tiles) was executed and recorded in research/brief3/for_research/TASK3_RECORD.md (incl. the stochastic-tiling ruling at :170-174); brief line consumed by its task record.",
+   "apply_action": null,
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "research/brief3/FOR_CLAUDE_CODE.md:27": {
+   "verdict": "APPLY",
+   "reason": "The VERIFY was performed and locked: RECIPES.md:18306 records stochastic tiling as VERIFIED against the running 5.8 engine (TextureBomb_SingleSample at :18315), and TASK3_RECORD.md:174 records that 5.8 ships no hex-tiling function, enumerated live. Ledger false-negative.",
+   "apply_action": "already implemented — record applied_where: RECIPES.md:18306-18315 (stochastic path verified in 5.8) + research/brief3/for_research/TASK3_RECORD.md:170-174 (no hex-tiling function, enumerated).",
+   "dated": "2026-09-10",
+   "batch": "batch_007.json"
+  },
+  "research/brief3/for_research/TASK3_RECORD.md:68": {
+   "verdict": "OBSOLETE",
+   "reason": "Tone-curve 2.3x warning is recorded where the measurement lives and its consequence is already ruled in the audit (AUDIT.md S-4: FinalImage acceptances move to 16-bit EXR; V-6 READ-BACK-OWED on the EXR construction). Carried by the audit's own fix line.",
+   "apply_action": null,
+   "dated": "2026-09-13",
+   "batch": "batch_007.json"
+  },
+  "scripts/city_export_streets_payload.txt:22": {
+   "verdict": "OBSOLETE",
+   "reason": "Transport-truncation defect (JSONDecodeError at char 7994, measured 2026-08-25) is the documented DESIGN REASON the tool writes a file instead of replying inline; the fix is embodied in the working tool. Two-altitude narrative in place.",
+   "apply_action": null,
+   "dated": "2026-08-25",
+   "batch": "batch_007.json"
+  },
+  "scripts/city_reachable_region_payload.txt:61": {
+   "verdict": "OBSOLETE",
+   "reason": "Roof-trace datum defect (17 streets 12.9 m high) is documented as the reason for the exclusion list the code below it implements (_CITY_TAG + InstancedFoliageActor ignore). Fix embodied in the tool.",
+   "apply_action": null,
+   "dated": "2026-08-27",
+   "batch": "batch_007.json"
+  },
+  "scripts/concept_build_payload.txt:260": {
+   "verdict": "OBSOLETE",
+   "reason": "Fourth-pivot-error lesson documented beside the half-height offset the code applies (_shaft + _spire_len * 0.5); the general rule (pivot is a measurement, not a class property) is captured where the next editor will read it. Fix embodied.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "scripts/forge_scale_payload.txt:135": {
+   "verdict": "OBSOLETE",
+   "reason": "The get_num_uv_channels resolution (lives on StaticMeshEditorSubsystem, takes (static_mesh, lod_index)) is documented AND correctly implemented two lines below (_smes.get_num_uv_channels(_mesh, 0)), per docs/ue58-api-protocol.md. Fix embodied.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "scripts/forge_scale_payload.txt:196": {
+   "verdict": "OBSOLETE",
+   "reason": "The wrong-axis-perfect-score incident is the documented rationale for the orientation gate the code implements (shape-ratio comparison of export vs import bounds). Defect narrative and its gate live together in the working tool.",
+   "apply_action": null,
+   "dated": "2026-08-30",
+   "batch": "batch_007.json"
+  },
+  "scripts/hero_face/likeness/export_mesh_fbx.txt:9": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero-face tooling; hero is PARKED by Ryan ('revisit later', CLAUDE.md HERO section). The measured exporter enumeration (26 subclasses, no groom/Alembic, commit 1089b87a) is correctly captured for resumption.",
+   "apply_action": null,
+   "dated": "2026-08-23",
+   "batch": "batch_007.json"
+  },
+  "scripts/hero_face/likeness/save_hero_actor.txt:57": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero PARKED (CLAUDE.md HERO). The measured facts (Package.is_dirty not reflected in 5.8; save return value not evidence) are correctly documented in the parked tool for resumption.",
+   "apply_action": null,
+   "dated": "2026-08-23",
+   "batch": "batch_007.json"
+  },
+  "scripts/hero_face/render_preview_actor.txt:10": {
+   "verdict": "OBSOLETE",
+   "reason": "Hero PARKED (CLAUDE.md HERO). Bounds-vs-socket disagreement and the two-whites failure are captured as the tool's design rationale; nothing live consumes it until hero resumes.",
+   "apply_action": null,
+   "dated": "2026-08-16",
+   "batch": "batch_007.json"
+  },
+  "scripts/kit_reseat_payload.txt:9": {
+   "verdict": "OBSOLETE",
+   "reason": "Canopy-trace defect (15 modules 27.2-28.2 m in the air) documented with both fixes the payload implements (per-module trace with exclusions; plaza placement), explicitly linked to the 2026-08-27 same-class lesson. Fix embodied.",
+   "apply_action": null,
+   "dated": "2026-08-29",
+   "batch": "batch_007.json"
+  },
+  "scripts/street_edge_grounding_payload.txt:52": {
+   "verdict": "OBSOLETE",
+   "reason": "Same roof/canopy exclusion lesson (17 streets, 12.9 m) documented beside the ignore-list code that implements it. Fix embodied in the working tool.",
+   "apply_action": null,
+   "dated": "2026-08-27",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/README.md:430": {
+   "verdict": "OBSOLETE",
+   "reason": "Claim verified against source: scripts/resize_gaea_build.py imports verify_build (:58), scripts/verify_build.py defines check_registration (:152, called :406) and exits 4 on hard size expectations (:37, multi-size check :378). Live runbook, accurate; nothing owed.",
+   "apply_action": null,
+   "dated": "2026-08-29",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/badlands.md:116": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured fact (ErosionScale is a length in Terrain.Width units, 1413.2517/5000 = 0.28265) with correct arithmetic, in LIVE authoring notes doing their job for the unbuilt badlands region.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/badlands.md:86": {
+   "verdict": "OBSOLETE",
+   "reason": "SnowLine inversion row with full provenance (R-GAEA Sec.2 at RECIPES.md:3399 + autosave corroboration 0.68-0.78 vs 0.056); this IS the live carrier of the inversion for region authoring. Correct and in place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/foothills.md:163": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured baseline (Build 006 at SnowLine 0.056) anchoring the foothills target in LIVE authoring notes; provenance to AlpineLab_v1\\006 stated. Record in place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/foothills.md:255": {
+   "verdict": "OBSOLETE",
+   "reason": "Measured Alpine normalization cited to its artefact (AlpineLab_v1\\006\\height_normalization.json) in live authoring notes; measurement with its file pointer, in place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/plateau.md:230": {
+   "verdict": "OBSOLETE",
+   "reason": "Plateau's one MEASURED change (1413.2517 -> 2297.4 = x1.6256 import-stretch correction, consistent with 02_result.md:37's stretch factor) in live authoring notes for an unbuilt region. Correct provenance, in place.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_007.json"
+  },
+  "terrain/regions/plateau.md:317": {
+   "verdict": "OBSOLETE",
+   "reason": "The comparison row is a correctly-sited measured reference in a live authoring note for an unbuilt region: occupancy 0.37035172045471887 / span 925.8793 / z_scale 180.8358 all match the measured record at recipes/alpinelab_8129.json:30-31 (build 006 height_normalization.json provenance), and plateau.md:320-335 already fences the adjacent estimate with DO-NOT-TYPE and report-UNKNOWN. Verified arithmetic: 0.37035172 x 2500 = 925.879, /512*100 = 180.8358. Nothing to act on.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_008.json"
+  },
+  "terrain/regions/volcanic.md:251": {
+   "verdict": "OBSOLETE",
+   "reason": "The line sits inside the CORRECTED 2026-08-15 banner (volcanic.md:249-255) that withdraws the fabricated z_scale_cm 244.14; the withdrawn number and its three failure reasons are preserved as record in section 4c (volcanic.md:306-331) and the live section 4a reports span/z_scale UNKNOWN. This is correction narrative doing its job where it sits.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_008.json"
+  },
+  "terrain/regions/volcanic.md:269": {
+   "verdict": "OBSOLETE",
+   "reason": "The statement is correct and self-resolving: no build has run from volcanic.terrain (region not yet built), so occupancy is unmeasured and volcanic.md:271-280 reports span_m/z_scale_cm UNKNOWN, explicitly matching R-GAEA's own REJECTED entry ('report UNKNOWN' rather than default). The doc itself says at line 274 this is not a gap in the document but R-GAEA behaving as specified; the only closure is a future build, which is engine-side and out of fence.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_008.json"
+  },
+  "terrain/regions/volcanic.md:298": {
+   "verdict": "OBSOLETE",
+   "reason": "The identity line is arithmetically correct and corroborated: 0.37035172045471887 x 488.28125 = 180.8358, exactly the recorded ue_z_scale at recipes/alpinelab_8129.json:30 with measured provenance from build 006's height_normalization.json (line 31), and 2500/512*100 = 488.28125 as claimed. Correct live content, nothing to fix.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_008.json"
+  },
+  "terrain/regions/volcanic.md:356": {
+   "verdict": "OBSOLETE",
+   "reason": "The paragraph (volcanic.md:347-357) is a rule-10 self-disclosure doing its job: it flags the St Helens/Fuji relief figures as uncited general knowledge, scopes them (section 4d checks only the choice of Mountain.Height, nothing downstream), and states the argument turns only on the two measured figures — 8128 m extent and the 925.9 m alpine span, which matches the measured 925.8793 m in recipes/alpinelab_8129.json:31. No decision or number consumes the uncited figures, and section 4d explicitly refuses to license a number from them.",
+   "apply_action": null,
+   "dated": "2026-08-15",
+   "batch": "batch_008.json"
+  }
+ }
+}

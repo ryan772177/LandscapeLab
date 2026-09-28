@@ -1,0 +1,86 @@
+{
+ "_what": "Brief 5 T1 -game A/B: GPU delta + positive control. Stills coverage/SSIM added by the editor pass.",
+ "_min_detectable_ms": 0.016,
+ "stations": {
+  "ff": {
+   "arm_A_asis_dithered0": {
+    "runs": 3,
+    "gpu_p90_ms": [
+     11.089,
+     11.116,
+     11.387
+    ],
+    "gpu_p90_mean": 11.197,
+    "gpu_p90_sd": 0.1648,
+    "RHI_PrimitivesDrawn": 516004,
+    "RHI_DrawCalls": 419,
+    "lod_lever_readback": {
+     "foliage.DitheredLOD": "0",
+     "_honoured": true
+    }
+   },
+   "arm_B_forcelod2_dithered0": {
+    "runs": 3,
+    "gpu_p90_ms": [
+     14.095,
+     14.089,
+     14.106
+    ],
+    "gpu_p90_mean": 14.097,
+    "gpu_p90_sd": 0.0086,
+    "RHI_PrimitivesDrawn": 532142,
+    "RHI_DrawCalls": 465,
+    "lod_lever_readback": {
+     "foliage.ForceLOD": "2",
+     "foliage.DitheredLOD": "0",
+     "_honoured": true
+    }
+   },
+   "gpu_delta_ms_B_minus_A": 2.9,
+   "gpu_delta_x_min_detectable": 181.2,
+   "positive_control_primitives_rose_A_to_B": true,
+   "_primitives_A": 516004,
+   "_primitives_B": 532142
+  },
+  "rg": {
+   "arm_A_asis_dithered0": {
+    "runs": 3,
+    "gpu_p90_ms": [
+     11.314,
+     11.312,
+     11.218
+    ],
+    "gpu_p90_mean": 11.281,
+    "gpu_p90_sd": 0.0549,
+    "RHI_PrimitivesDrawn": 569463,
+    "RHI_DrawCalls": 414,
+    "lod_lever_readback": {
+     "foliage.DitheredLOD": "0",
+     "_honoured": true
+    }
+   },
+   "arm_B_forcelod2_dithered0": {
+    "runs": 3,
+    "gpu_p90_ms": [
+     14.823,
+     14.803,
+     14.857
+    ],
+    "gpu_p90_mean": 14.828,
+    "gpu_p90_sd": 0.0273,
+    "RHI_PrimitivesDrawn": 538437,
+    "RHI_DrawCalls": 466,
+    "lod_lever_readback": {
+     "foliage.ForceLOD": "2",
+     "foliage.DitheredLOD": "0",
+     "_honoured": true
+    }
+   },
+   "gpu_delta_ms_B_minus_A": 3.547,
+   "gpu_delta_x_min_detectable": 221.7,
+   "positive_control_primitives_rose_A_to_B": false,
+   "_primitives_A": 569463,
+   "_primitives_B": 538437
+  }
+ }
+}

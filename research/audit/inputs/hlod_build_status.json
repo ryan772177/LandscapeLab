@@ -1,0 +1,271 @@
+{
+ "_what": "HLOD build status from the run logs on disk",
+ "runs": [
+  {
+   "dir": "20260906",
+   "logs": 0,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "20260907",
+   "logs": 0,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "20260908",
+   "logs": 14,
+   "decisions": {
+    "ApproveRebuild": 2916,
+    "RejectRebuild": 6
+   },
+   "policies": {
+    "HLODRebuildPolicyHashCompare->ApproveRebuild": 2916,
+    "HLODRebuildPolicyHashCompare->RejectRebuild": 6
+   },
+   "by_cell_layer": {
+    "Alpine8K_MainPartition:ApproveRebuild": 1678,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 1238,
+    "Alpine8K_MainPartition:RejectRebuild": 5,
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 1
+   },
+   "by_folder_layer": {
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 1678,
+    "Alpine8K_HLODLayer_Merged:ApproveRebuild": 1238,
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 5,
+    "Alpine8K_HLODLayer_Merged:RejectRebuild": 1
+   },
+   "cells_seen": 2923,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": [
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-8_Y9",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y9",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y21",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-8_Y10"
+   ]
+  },
+  {
+   "dir": "20260909_batched",
+   "logs": 18,
+   "decisions": {
+    "RejectRebuild": 191,
+    "ApproveRebuild": 2477
+   },
+   "policies": {
+    "HLODRebuildPolicyHashCompare->RejectRebuild": 191,
+    "HLODRebuildPolicyHashCompare->ApproveRebuild": 2477
+   },
+   "by_cell_layer": {
+    "Alpine8K_MainPartition:RejectRebuild": 104,
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 87,
+    "Alpine8K_MainPartition:ApproveRebuild": 1343,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 1134
+   },
+   "by_folder_layer": {
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 104,
+    "Alpine8K_HLODLayer_Merged:RejectRebuild": 87,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 1343,
+    "Alpine8K_HLODLayer_Merged:ApproveRebuild": 1134
+   },
+   "cells_seen": 2668,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": [
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-8_Y9",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y9",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-25_Y-1",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-26_Y-2"
+   ]
+  },
+  {
+   "dir": "20260913",
+   "logs": 0,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "layers_20260913_203538",
+   "logs": 21,
+   "decisions": {
+    "RejectRebuild": 43,
+    "ApproveRebuild": 46
+   },
+   "policies": {
+    "HLODRebuildPolicyHashCompare->RejectRebuild": 43,
+    "HLODRebuildPolicyHashCompare->ApproveRebuild": 46
+   },
+   "by_cell_layer": {
+    "Alpine8K_MainPartition:RejectRebuild": 42,
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 1,
+    "Alpine8K_MainPartition:ApproveRebuild": 27,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 19
+   },
+   "by_folder_layer": {
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 42,
+    "Alpine8K_HLODLayer_Merged:RejectRebuild": 1,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 27,
+    "Alpine8K_HLODLayer_Merged:ApproveRebuild": 19
+   },
+   "cells_seen": 89,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": [
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-8_Y10",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y10",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-20_Y22",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-10_Y11",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-10_Y11",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-9_Y11",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-9_Y11",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-9_Y12"
+   ]
+  },
+  {
+   "dir": "run_20260913_195451",
+   "logs": 2,
+   "decisions": {
+    "ApproveRebuild": 6
+   },
+   "policies": {
+    "HLODRebuildPolicyHashCompare->ApproveRebuild": 6
+   },
+   "by_cell_layer": {
+    "Alpine8K_MainPartition:ApproveRebuild": 5,
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 1
+   },
+   "by_folder_layer": {
+    "Alpine8K_HLODLayer_Instanced:ApproveRebuild": 5,
+    "Alpine8K_HLODLayer_Merged:ApproveRebuild": 1
+   },
+   "cells_seen": 6,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": [
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-16_Y19",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L0_X-15_Y18",
+    "Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L1_X-8_Y9",
+    "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L0_X-8_Y9"
+   ]
+  },
+  {
+   "dir": "setup_20260913_203305",
+   "logs": 0,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "setup_20260913_203325",
+   "logs": 1,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "setup_20260914_audit",
+   "logs": 1,
+   "decisions": {},
+   "policies": {},
+   "by_cell_layer": {},
+   "by_folder_layer": {},
+   "cells_seen": 0,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  },
+  {
+   "dir": "stale_20260913_203429",
+   "logs": 2,
+   "decisions": {
+    "RejectRebuild": 6
+   },
+   "policies": {
+    "HLODRebuildPolicyHashCompare->RejectRebuild": 6
+   },
+   "by_cell_layer": {
+    "Alpine8K_MainPartition:RejectRebuild": 5,
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 1
+   },
+   "by_folder_layer": {
+    "Alpine8K_HLODLayer_Instanced:RejectRebuild": 5,
+    "Alpine8K_HLODLayer_Merged:RejectRebuild": 1
+   },
+   "cells_seen": 6,
+   "decisions_without_a_cell": 0,
+   "approved_cells_sample": []
+  }
+ ],
+ "n_external_actor_packages": 5564,
+ "newest_10_external_actor_writes": [
+  {
+   "mtime_epoch": 1789369445.7361693,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\5\\4X\\DV6PV2LU1FELT4YN2EY40X.uasset"
+  },
+  {
+   "mtime_epoch": 1789369446.3728535,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\1\\ND\\2IQS6M128V9YDKFB0WU0F8.uasset"
+  },
+  {
+   "mtime_epoch": 1789369447.0447376,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\D\\H6\\QX5TP0G35QS0UICZEO9E52.uasset"
+  },
+  {
+   "mtime_epoch": 1789369447.7112484,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\0\\22\\9OJ1LT3Y7ITZIUK86HJM1P.uasset"
+  },
+  {
+   "mtime_epoch": 1789369448.3904295,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\D\\VC\\95OV33O8RPO67PLA0HD46K.uasset"
+  },
+  {
+   "mtime_epoch": 1789369449.0088475,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\0\\7D\\E1PQ39ZK9RTZB5WJ41UA7Y.uasset"
+  },
+  {
+   "mtime_epoch": 1789369449.6170273,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\4\\R8\\M7NNRWG88EV8PHBACM4TDV.uasset"
+  },
+  {
+   "mtime_epoch": 1789369450.2898707,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\C\\7B\\G8PB3R2DWPZ8P4FO69IB0Z.uasset"
+  },
+  {
+   "mtime_epoch": 1789369450.918077,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\E\\Y5\\5K3Y96OB4BAEJH9JATII41.uasset"
+  },
+  {
+   "mtime_epoch": 1789369451.529878,
+   "path": "LandscapeLab\\Content\\__ExternalActors__\\Alpine8K\\3\\B7\\AV1V7KKZSN7AA7NUKUWOZN.uasset"
+  }
+ ]
+}

@@ -1,0 +1,382 @@
+{
+ "ok": true,
+ "meshes": [
+  {
+   "species": "Conifer",
+   "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+   "lod_count": 1,
+   "num_material_slots": 3,
+   "auto_compute_lod_screen_size": "UNKNOWN('StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size')",
+   "last_lod_triangles": 2335,
+   "last_lod_slots": [
+    0,
+    1,
+    2
+   ],
+   "materials": [
+    {
+     "slot": 0,
+     "material": "/Game/Megaplant_Library/Tree_Norway_Spruce/Materials/MI_Norway_Spruce_Bark_01.MI_Norway_Spruce_Bark_01",
+     "dithered_lod_transition": true,
+     "used_textures": [
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Bark_01_NAH.T_Norway_Spruce_Bark_01_NAH",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Bark_01_C.T_Norway_Spruce_Bark_01_C",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "crossed_billboard"
+    },
+    {
+     "slot": 1,
+     "material": "/Game/Megaplant_Library/Tree_Norway_Spruce/Materials/MI_Norway_Spruce_Foliage_01.MI_Norway_Spruce_Foliage_01",
+     "dithered_lod_transition": true,
+     "used_textures": [
+      {
+       "path": "/Engine/MaterialTemplates/Textures/T_Noise01.T_Noise01",
+       "resident_dims": [
+        256,
+        256
+       ]
+      },
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Foliage_01_NT.T_Norway_Spruce_Foliage_01_NT",
+       "resident_dims": [
+        1024,
+        1024
+       ]
+      },
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Foliage_01_CA.T_Norway_Spruce_Foliage_01_CA",
+       "resident_dims": [
+        1024,
+        1024
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "crossed_billboard"
+    },
+    {
+     "slot": 2,
+     "material": "/Game/Megaplant_Library/Tree_Norway_Spruce/Materials/MI_Norway_Spruce_Decorations_01.MI_Norway_Spruce_Decorations_01",
+     "dithered_lod_transition": true,
+     "used_textures": [
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Decorations_01_NAH.T_Norway_Spruce_Decorations_01_NAH",
+       "resident_dims": [
+        2048,
+        2048
+       ]
+      },
+      {
+       "path": "/Game/Megaplant_Library/Tree_Norway_Spruce/Textures/T_Norway_Spruce_Decorations_01_C.T_Norway_Spruce_Decorations_01_C",
+       "resident_dims": [
+        2048,
+        2048
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "crossed_billboard"
+    }
+   ],
+   "bounds_extent_cm": [
+    518.4675903320312,
+    517.9763793945312,
+    1465.6336669921875
+   ],
+   "crown_radius_xy_cm": 518.2219848632812,
+   "height_cm": 2931.267333984375,
+   "bounding_sphere_radius_cm": 1546.6148681640625
+  },
+  {
+   "species": "ConiferPine",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+   "lod_count": 4,
+   "num_material_slots": 5,
+   "auto_compute_lod_screen_size": "UNKNOWN('StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size')",
+   "last_lod_triangles": 32,
+   "last_lod_slots": [
+    4
+   ],
+   "materials": [
+    {
+     "slot": 0,
+     "material": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Branches_Mat.ScotsPine_01_Branches_Mat",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 1,
+     "material": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Branches_2_Mat.ScotsPine_01_Branches_2_Mat",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 2,
+     "material": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Leaves_Mat.ScotsPine_01_Leaves_Mat",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 3,
+     "material": "/Game/KiteDemo/Environments/Trees/ScotsPine_01/ScotsPine_01_Fronds_Mat.ScotsPine_01_Fronds_Mat",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 4,
+     "material": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Billboard_Mat.ScotsPineTall_01_Billboard_Mat",
+     "dithered_lod_transition": false,
+     "used_textures": [
+      {
+       "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Atlas_Billboards_Normal_Tex.ScotsPineTall_01_Atlas_Billboards_Normal_Tex",
+       "resident_dims": [
+        2048,
+        2048
+       ]
+      },
+      {
+       "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_Atlas_Billboards_Tex.ScotsPineTall_01_Atlas_Billboards_Tex",
+       "resident_dims": [
+        2048,
+        2048
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "crossed_billboard"
+    }
+   ],
+   "bounds_extent_cm": [
+    486.74578857421875,
+    491.46861267089844,
+    1105.3604736328125
+   ],
+   "crown_radius_xy_cm": 489.1072006225586,
+   "height_cm": 2210.720947265625,
+   "bounding_sphere_radius_cm": 1209.6593765645273
+  },
+  {
+   "species": "SpruceSub",
+   "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "lod_count": 5,
+   "num_material_slots": 4,
+   "auto_compute_lod_screen_size": "UNKNOWN('StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size')",
+   "last_lod_triangles": 6,
+   "last_lod_slots": [
+    3
+   ],
+   "materials": [
+    {
+     "slot": 0,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_trunk.spruce_half_01_trunk",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 1,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_branch.spruce_half_01_branch",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 2,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/half/high/spruce_half_01_leaf.spruce_half_01_leaf",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 3,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter.half_01_imposter",
+     "dithered_lod_transition": true,
+     "used_textures": [
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_N.half_01_imposter_N",
+       "resident_dims": [
+        4064,
+        4064
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_A.half_01_imposter_A",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/Imposter/half_01_imposter_O.half_01_imposter_O",
+       "resident_dims": [
+        4064,
+        4064
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_PIV.Imposter_PIV",
+       "resident_dims": [
+        1,
+        1
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/imposter/Imposter_VEC.Imposter_VEC",
+       "resident_dims": [
+        1,
+        1
+       ]
+      },
+      {
+       "path": "/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/WindTurblenceVectorAndGustMagnitude.WindTurblenceVectorAndGustMagnitude",
+       "resident_dims": [
+        64,
+        64
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "octahedral_imposter"
+    }
+   ],
+   "bounds_extent_cm": [
+    200.59283447265625,
+    183.5990447998047,
+    836.2306518554688
+   ],
+   "crown_radius_xy_cm": 192.09593963623047,
+   "height_cm": 1672.4613037109375,
+   "bounding_sphere_radius_cm": 836.8856811523438
+  },
+  {
+   "species": "SpruceSapling",
+   "path": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+   "lod_count": 4,
+   "num_material_slots": 3,
+   "auto_compute_lod_screen_size": "UNKNOWN('StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size')",
+   "last_lod_triangles": 326,
+   "last_lod_slots": [
+    0
+   ],
+   "materials": [
+    {
+     "slot": 0,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/small/spruce_small_05_trunk.spruce_small_05_trunk",
+     "dithered_lod_transition": false,
+     "used_textures": [
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/ModelTextures/Bark_N.Bark_N",
+       "resident_dims": [
+        8192,
+        8192
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/CoverTextures/Moss_N.Moss_N",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/ModelTextures/Bark_AOSH.Bark_AOSH",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Engine/MapTemplates/TilingNoise05.TilingNoise05",
+       "resident_dims": [
+        2048,
+        2048
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/ModelTextures/Bark_A_.Bark_A_",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/CoverTextures/Moss_A.Moss_A",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/MasterTextures/CoverTextures/Moss_AOSH.Moss_AOSH",
+       "resident_dims": [
+        4096,
+        4096
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/small/small_05_PIV.small_05_PIV",
+       "resident_dims": [
+        77,
+        3
+       ]
+      },
+      {
+       "path": "/Game/PN_interactiveSpruceForest/Textures/PivotPainterTextures/small/small_05_VEC.small_05_VEC",
+       "resident_dims": [
+        77,
+        3
+       ]
+      },
+      {
+       "path": "/Engine/Functions/Engine_MaterialFunctions02/ExampleContent/Textures/WindTurblenceVectorAndGustMagnitude.WindTurblenceVectorAndGustMagnitude",
+       "resident_dims": [
+        64,
+        64
+       ]
+      }
+     ],
+     "is_card": true,
+     "view_dependent_guess": "crossed_billboard"
+    },
+    {
+     "slot": 1,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/small/spruce_small_05_leaf.spruce_small_05_leaf",
+     "dithered_lod_transition": false
+    },
+    {
+     "slot": 2,
+     "material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/small/spruce_small_05_branch.spruce_small_05_branch",
+     "dithered_lod_transition": false
+    }
+   ],
+   "bounds_extent_cm": [
+    191.36514282226562,
+    213.52926635742188,
+    226.4646453857422
+   ],
+   "crown_radius_xy_cm": 202.44720458984375,
+   "height_cm": 452.9292907714844,
+   "bounding_sphere_radius_cm": 276.3599853515625
+  }
+ ],
+ "all_tree_material_dithered": {
+  "Conifer[0]": true,
+  "Conifer[1]": true,
+  "Conifer[2]": true,
+  "ConiferPine[0]": false,
+  "ConiferPine[1]": false,
+  "ConiferPine[2]": false,
+  "ConiferPine[3]": false,
+  "ConiferPine[4]": false,
+  "SpruceSub[0]": false,
+  "SpruceSub[1]": false,
+  "SpruceSub[2]": false,
+  "SpruceSub[3]": true,
+  "SpruceSapling[0]": false,
+  "SpruceSapling[1]": false,
+  "SpruceSapling[2]": false
+ }
+}

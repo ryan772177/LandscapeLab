@@ -1,0 +1,321 @@
+{
+ "_what": "Brief 5 overnight item 7 -- cold-replay ACCEPTANCE PRE-CHECK (inventory only, NO replay). For each of the 13 UNPROVEN conforming recipes: declared source inputs + on-disk existence, the producer script, and its OFFLINE selftest state. READ-ONLY; no editor contacted; no tags flipped. The 13 = R0-R11 plus R-ASSET, the 'conforming recipes' enumerated across BACKLOG.md's three replay batches (batch1 R0/R2/R3/R11 [BACKLOG.md:47], batch2 R1/R4/R5/R6 [BACKLOG.md:60], batch3 R7/R8/R9/R-ASSET [BACKLOG.md:64], with R10 the 12th numbered recipe). REPLAY_BURNDOWN.md names the count ('13 conforming recipes', line 7) and a traffic-ordered subset (R0,R3,R2,R11) but does not enumerate all 13; the enumeration above is the primary-source-grounded reconstruction. NOTE ON AMBIGUITY (rule 10): the count '13' is a 2026-08-03 snapshot; RECIPES.md now carries 17 numbered recipes (R0-R16) all tagged UNPROVEN plus R-STAMP/R-ASSET, and REPLAY_BURNDOWN staging step 2 names R12 as the first live-run candidate -- R12/R13/R14/R15/R16/R-STAMP post-date the count of 13 and are EXCLUDED here. Only place_foliage.py (R4) and the shared module texture_16bit.py (used by R3) carry offline selftests; both PASS. Editor-touching producers have no selftest (recorded 'none', not 'requires-editor-not-run', since no selftest exists to refuse running).",
+ "_date": "2026-09-19",
+ "recipes": [
+  {
+   "id": "R0",
+   "title": "Foundation: fresh machine to identical editor",
+   "recipes_md_lines": "625-852",
+   "producer_script": "scripts/recover_state.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "LandscapeLab/LandscapeLab.uproject",
+     "exists": true
+    },
+    {
+     "path": "LandscapeLab/Config/DefaultEngine.ini",
+     "exists": true
+    },
+    {
+     "path": "LandscapeLab/Config/DefaultEditorPerProjectUserSettings.ini",
+     "exists": true
+    },
+    {
+     "path": ".claude-plugin/plugin.json",
+     "exists": true
+    },
+    {
+     "path": ".claude/settings.json",
+     "exists": true
+    },
+    {
+     "path": "PROJECT_STATE.json",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R1",
+   "title": "Terrain generation and push",
+   "recipes_md_lines": "854-1012",
+   "producer_script": "scripts/make_alpine_terrain.py (then make_layer_weightmap.py, push_heightmap.py, verify_landscape.py)",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    },
+    {
+     "path": "terrain/alpine_heightmap.png",
+     "exists": true
+    },
+    {
+     "path": "terrain/external_heightmaps/catalogue.json",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R2",
+   "title": "Landscape material",
+   "recipes_md_lines": "1014-1337",
+   "producer_script": "scripts/make_landscape_material.py (with import_layer_textures.py)",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    },
+    {
+     "path": "textures/alpine_weights.png",
+     "exists": true
+    },
+    {
+     "path": "Free/Snow006_4K-PNG",
+     "exists": true
+    },
+    {
+     "path": "Free/Rock051_4K-PNG",
+     "exists": true
+    },
+    {
+     "path": "Free/Ground037_4K-PNG",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null,
+   "_note": "R2's CPU height-blend model is proven offline by scripts/prove_gates.py (a separate gate, not the producer's own --selftest)."
+  },
+  {
+   "id": "R3",
+   "title": "External asset import",
+   "recipes_md_lines": "1752-1957",
+   "producer_script": "scripts/make_asset_manifest.py + scripts/blender/normalize_asset.py + import_surface_set.py + import_static_mesh.py + make_foliage_material.py (shared conv: texture_16bit.py)",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "Free/fir_tree_01_4k.fbx",
+     "exists": true
+    },
+    {
+     "path": "Free/_normalized",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null,
+   "_note": "The shared 16-bit conversion module scripts/texture_16bit.py (called by every importer) HAS an offline selftest and PASSES: `python scripts/texture_16bit.py` exit 0, SELFTEST PASSED. The import producers themselves have no selftest and require the editor/Blender."
+  },
+  {
+   "id": "R4",
+   "title": "Foliage placement",
+   "recipes_md_lines": "1959-2132",
+   "producer_script": "scripts/place_foliage.py (then save_level.py)",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    },
+    {
+     "path": "textures/alpine_weights.png",
+     "exists": true
+    },
+    {
+     "path": "Free/fir_tree_01_4k.fbx",
+     "exists": true
+    },
+    {
+     "path": "Free/_measured",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": true,
+   "selftest_result": "pass (exit 0)",
+   "selftest_cmd": "python scripts/place_foliage.py --selftest",
+   "_note": "place_foliage --selftest is explicitly offline (no editor, no heavy op, no lock; gated before any editor import). Exercises floor gate F-1 and slot-count gate F-3, 3 directions each. R4's plan output foliage/alpine_Conifer.json (pre-8K) is NOT on disk, but it is a PRODUCED plan (output), not a source input; the live 8K plans are foliage/alpine_8k_Conifer.json etc."
+  },
+  {
+   "id": "R5",
+   "title": "Static-mesh LODs",
+   "recipes_md_lines": "2136-2216",
+   "producer_script": "scripts/make_mesh_lods.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    },
+    {
+     "path": "Free/fir_tree_01_4k.fbx",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R6",
+   "title": "Lighting, capture, save",
+   "recipes_md_lines": "2219-2287",
+   "producer_script": "scripts/apply_lighting.py + capture.py + save_level.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R7",
+   "title": "Low-spec hardware profile",
+   "recipes_md_lines": "2290-2390",
+   "producer_script": "scripts/recover_state.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "LandscapeLab/Config/DefaultEngine.ini",
+     "exists": true
+    },
+    {
+     "path": "LandscapeLab/Config/DefaultEditorPerProjectUserSettings.ini",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R8",
+   "title": "Editor lifecycle and crash recovery",
+   "recipes_md_lines": "2393-2483",
+   "producer_script": "scripts/bootstrap.py + verify_landscape.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "LandscapeLab/LandscapeLab.uproject",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R9",
+   "title": "Autosave restore prompt: DECLINE",
+   "recipes_md_lines": "2486-2515",
+   "producer_script": null,
+   "producer_requires_editor": false,
+   "inputs": [
+    {
+     "path": "LandscapeLab/Content/__ExternalActors__",
+     "exists": true
+    },
+    {
+     "path": "LandscapeLab/Saved/Autosaves",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null,
+   "_note": "Manual decision procedure (compare two timestamps); no producer script."
+  },
+  {
+   "id": "R10",
+   "title": "Resource guard",
+   "recipes_md_lines": "2518-2548",
+   "producer_script": "scripts/resource_guard.py",
+   "producer_requires_editor": false,
+   "inputs": [],
+   "all_inputs_present": true,
+   "has_selftest": true,
+   "selftest_result": "pass",
+   "selftest_cmd": "python scripts/resource_guard.py selftest",
+   "_note": "resource_guard.py is offline (reports RAM + lock state) but exposes no --selftest flag; its recipe step IS its execution.",
+   "_selftest_added": "2026-09-20 overnight Q11c: memory verdicts + liveness + lock acquire/release/refuse/reclaim, temp lock path"
+  },
+  {
+   "id": "R11",
+   "title": "Landscape grass",
+   "recipes_md_lines": "2551-2679",
+   "producer_script": "scripts/make_landscape_material.py (--assign writes GrassType) + capture.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "recipes/alpine.json",
+     "exists": true
+    },
+    {
+     "path": "Free/grass_medium_01_4k.fbx",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null
+  },
+  {
+   "id": "R-ASSET",
+   "title": "Asset intake",
+   "recipes_md_lines": "3104-3424",
+   "producer_script": "R3 chain (make_asset_manifest.py, blender/normalize_asset.py, import_surface_set.py, import_static_mesh.py, make_foliage_material.py) + R5 (make_mesh_lods.py); helpers check_fab_boundary.py, unpack_orm.py",
+   "producer_requires_editor": true,
+   "inputs": [
+    {
+     "path": "ASSETS.md",
+     "exists": true
+    },
+    {
+     "path": "WORLD_VISION.md",
+     "exists": true
+    },
+    {
+     "path": "Free",
+     "exists": true
+    }
+   ],
+   "all_inputs_present": true,
+   "has_selftest": false,
+   "selftest_result": "none",
+   "selftest_cmd": null,
+   "_note": "Governing recipe that invokes R3+R5. Skeletal/retarget half UNVERIFIED (never executed). Offline helpers check_fab_boundary.py and unpack_orm.py have no --selftest flag."
+  }
+ ],
+ "summary": {
+  "n_recipes": 13,
+  "n_all_inputs_present": 13,
+  "n_selftest_pass": 2,
+  "n_selftest_fail": 0,
+  "n_no_selftest": 11,
+  "_q11c_note": "R10 (resource_guard.py) gained an offline selftest 2026-09-20; now 2 of 13 recipes have one."
+ }
+}

@@ -1,0 +1,670 @@
+{
+ "_what": "Brief 5 Task 0 item 1: per-species instance census by Brief-1 band, and the visible count at each ratified perf station.",
+ "_read_back_source": {
+  "instances": "foliage/alpine_8k_<species>.json (committed placement plans; the SAME rows every downstream consumer reads)",
+  "mesh_height_m": "each plan's cull_derivation.mesh_height_m (measured from mesh geometry, Brief 1)",
+  "cull_cm": "each plan's cull_cm (place_foliage derived, clamped to streaming.main_loading_range_cm = 512 m)",
+  "station_cameras": "recipes/perf_budgets.json spline + the measured camera in _verify/perf/standalone_2026-09-19",
+  "thresholds_px": "recipes/alpine_8k.json perception.thresholds_px",
+  "declared_camera": "recipes/alpine_8k.json perception.declared_camera (fov_h_deg, res)"
+ },
+ "_frustum_caveat": "Bands and frustum are at the DECLARED camera (fov_h 90.0, vfov 58.7155, res 2160v). The -game cost process does NOT apply this FOV (rule 12), so these are the DECLARED-frustum counts, not a read-back of the -game frustum.",
+ "_point_vs_segment_note": "in_frustum_in_cull tests the BASE point (v1's 'visible'). in_frustum_in_cull_segment tests the base->top vertical extent against the vertical half-angle, so a tree whose base is below frame but whose crown is on screen is counted (the treeline 'elevation' exclusions are mostly this). Azimuth is still a base-point test in both.",
+ "_occlusion_note": "NO occlusion in either count. A tree behind terrain or behind a nearer tree still counts as in-frustum. Occlusion is out of scope for this census; the counts are an upper bound on what draws.",
+ "thresholds_px": {
+  "detail": 40.0,
+  "silhouette": 6.0,
+  "vanish": 1.5
+ },
+ "eye_height_cm": 175.0,
+ "vfov_deg": 58.71550708558254,
+ "species_totals": {
+  "Conifer": 54599,
+  "ConiferPine": 40326,
+  "SpruceSub": 46841,
+  "SpruceSapling": 43619
+ },
+ "total_tree_instances": 185385,
+ "band_ring_radii_m": {
+  "Conifer": {
+   "detail_m": 1148.6,
+   "silhouette_m": 7657.6,
+   "vanish_m": 30630.4,
+   "cull_m": 512.0,
+   "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+  },
+  "ConiferPine": {
+   "detail_m": 875.0,
+   "silhouette_m": 5833.6,
+   "vanish_m": 23334.4,
+   "cull_m": 512.0,
+   "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+  },
+  "SpruceSub": {
+   "detail_m": 743.5,
+   "silhouette_m": 4956.8,
+   "vanish_m": 19827.2,
+   "cull_m": 512.0,
+   "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+  },
+  "SpruceSapling": {
+   "detail_m": 238.3,
+   "silhouette_m": 1588.5,
+   "vanish_m": 6353.9,
+   "cull_m": 238.27,
+   "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+  }
+ },
+ "stations": {
+  "plaza": {
+   "camera": {
+    "x_cm": -210800.0,
+    "y_cm": 278800.0,
+    "z_cm": 18847.159914549484,
+    "pitch_deg": -2.0,
+    "yaw_deg": -12.8
+   },
+   "per_species": {
+    "Conifer": {
+     "count_total": 54599,
+     "cull_m": 512.0,
+     "in_cull_radius": 1322,
+     "in_frustum": 28917,
+     "in_frustum_in_cull": 336,
+     "in_frustum_in_cull_segment": 336,
+     "in_frustum_in_cull_by_band": {
+      "detail": 336,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1322,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 986,
+      "elevation": 0
+     }
+    },
+    "ConiferPine": {
+     "count_total": 40326,
+     "cull_m": 512.0,
+     "in_cull_radius": 949,
+     "in_frustum": 21290,
+     "in_frustum_in_cull": 241,
+     "in_frustum_in_cull_segment": 241,
+     "in_frustum_in_cull_by_band": {
+      "detail": 241,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 949,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 708,
+      "elevation": 0
+     }
+    },
+    "SpruceSub": {
+     "count_total": 46841,
+     "cull_m": 512.0,
+     "in_cull_radius": 1106,
+     "in_frustum": 24511,
+     "in_frustum_in_cull": 283,
+     "in_frustum_in_cull_segment": 283,
+     "in_frustum_in_cull_by_band": {
+      "detail": 283,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1106,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 823,
+      "elevation": 0
+     }
+    },
+    "SpruceSapling": {
+     "count_total": 43619,
+     "cull_m": 238.27,
+     "in_cull_radius": 176,
+     "in_frustum": 22480,
+     "in_frustum_in_cull": 43,
+     "in_frustum_in_cull_segment": 43,
+     "in_frustum_in_cull_by_band": {
+      "detail": 26,
+      "shape": 17,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 127,
+      "shape": 49,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 133,
+      "elevation": 0
+     }
+    }
+   },
+   "band_totals_visible": {},
+   "band_totals_all_in_cull": {
+    "detail": 3504,
+    "shape": 49,
+    "blob": 0,
+    "gone": 0
+   },
+   "band_totals_in_frustum_in_cull": {
+    "detail": 886,
+    "shape": 17,
+    "blob": 0,
+    "gone": 0
+   },
+   "in_frustum_in_cull_total": 903,
+   "in_frustum_in_cull_segment_total": 903
+  },
+  "main_street": {
+   "camera": {
+    "x_cm": -204847.3,
+    "y_cm": 278048.0,
+    "z_cm": 18870.59777218281,
+    "pitch_deg": -2.0,
+    "yaw_deg": -12.9
+   },
+   "per_species": {
+    "Conifer": {
+     "count_total": 54599,
+     "cull_m": 512.0,
+     "in_cull_radius": 1361,
+     "in_frustum": 28478,
+     "in_frustum_in_cull": 352,
+     "in_frustum_in_cull_segment": 352,
+     "in_frustum_in_cull_by_band": {
+      "detail": 352,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1361,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 1009,
+      "elevation": 0
+     }
+    },
+    "ConiferPine": {
+     "count_total": 40326,
+     "cull_m": 512.0,
+     "in_cull_radius": 965,
+     "in_frustum": 20982,
+     "in_frustum_in_cull": 238,
+     "in_frustum_in_cull_segment": 238,
+     "in_frustum_in_cull_by_band": {
+      "detail": 238,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 965,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 727,
+      "elevation": 0
+     }
+    },
+    "SpruceSub": {
+     "count_total": 46841,
+     "cull_m": 512.0,
+     "in_cull_radius": 1134,
+     "in_frustum": 24135,
+     "in_frustum_in_cull": 285,
+     "in_frustum_in_cull_segment": 285,
+     "in_frustum_in_cull_by_band": {
+      "detail": 285,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1134,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 849,
+      "elevation": 0
+     }
+    },
+    "SpruceSapling": {
+     "count_total": 43619,
+     "cull_m": 238.27,
+     "in_cull_radius": 158,
+     "in_frustum": 22182,
+     "in_frustum_in_cull": 44,
+     "in_frustum_in_cull_segment": 44,
+     "in_frustum_in_cull_by_band": {
+      "detail": 34,
+      "shape": 10,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 122,
+      "shape": 36,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 114,
+      "elevation": 0
+     }
+    }
+   },
+   "band_totals_visible": {},
+   "band_totals_all_in_cull": {
+    "detail": 3582,
+    "shape": 36,
+    "blob": 0,
+    "gone": 0
+   },
+   "band_totals_in_frustum_in_cull": {
+    "detail": 909,
+    "shape": 10,
+    "blob": 0,
+    "gone": 0
+   },
+   "in_frustum_in_cull_total": 919,
+   "in_frustum_in_cull_segment_total": 919
+  },
+  "treeline": {
+   "camera": {
+    "x_cm": -190000.0,
+    "y_cm": 100000.0,
+    "z_cm": 63367.37048905165,
+    "pitch_deg": -2.0,
+    "yaw_deg": 105.0
+   },
+   "per_species": {
+    "Conifer": {
+     "count_total": 54599,
+     "cull_m": 512.0,
+     "in_cull_radius": 76,
+     "in_frustum": 14186,
+     "in_frustum_in_cull": 0,
+     "in_frustum_in_cull_segment": 1,
+     "in_frustum_in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 76,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 56,
+      "elevation": 20
+     }
+    },
+    "ConiferPine": {
+     "count_total": 40326,
+     "cull_m": 512.0,
+     "in_cull_radius": 64,
+     "in_frustum": 10333,
+     "in_frustum_in_cull": 0,
+     "in_frustum_in_cull_segment": 0,
+     "in_frustum_in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 64,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 40,
+      "elevation": 24
+     }
+    },
+    "SpruceSub": {
+     "count_total": 46841,
+     "cull_m": 512.0,
+     "in_cull_radius": 69,
+     "in_frustum": 11796,
+     "in_frustum_in_cull": 0,
+     "in_frustum_in_cull_segment": 1,
+     "in_frustum_in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 69,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 53,
+      "elevation": 16
+     }
+    },
+    "SpruceSapling": {
+     "count_total": 43619,
+     "cull_m": 238.27,
+     "in_cull_radius": 15,
+     "in_frustum": 10337,
+     "in_frustum_in_cull": 0,
+     "in_frustum_in_cull_segment": 0,
+     "in_frustum_in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 12,
+      "shape": 3,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 14,
+      "elevation": 1
+     }
+    }
+   },
+   "band_totals_visible": {},
+   "band_totals_all_in_cull": {
+    "detail": 221,
+    "shape": 3,
+    "blob": 0,
+    "gone": 0
+   },
+   "band_totals_in_frustum_in_cull": {
+    "detail": 0,
+    "shape": 0,
+    "blob": 0,
+    "gone": 0
+   },
+   "in_frustum_in_cull_total": 0,
+   "in_frustum_in_cull_segment_total": 2
+  },
+  "vista": {
+   "camera": {
+    "x_cm": -216400.0,
+    "y_cm": 63600.0,
+    "z_cm": 76426.16350041961,
+    "pitch_deg": -4.0,
+    "yaw_deg": 60.0
+   },
+   "per_species": {
+    "Conifer": {
+     "count_total": 54599,
+     "cull_m": 512.0,
+     "in_cull_radius": 20,
+     "in_frustum": 15264,
+     "in_frustum_in_cull": 10,
+     "in_frustum_in_cull_segment": 10,
+     "in_frustum_in_cull_by_band": {
+      "detail": 10,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 20,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 10,
+      "elevation": 0
+     }
+    },
+    "ConiferPine": {
+     "count_total": 40326,
+     "cull_m": 512.0,
+     "in_cull_radius": 17,
+     "in_frustum": 11137,
+     "in_frustum_in_cull": 12,
+     "in_frustum_in_cull_segment": 12,
+     "in_frustum_in_cull_by_band": {
+      "detail": 12,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 17,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 5,
+      "elevation": 0
+     }
+    },
+    "SpruceSub": {
+     "count_total": 46841,
+     "cull_m": 512.0,
+     "in_cull_radius": 23,
+     "in_frustum": 12647,
+     "in_frustum_in_cull": 12,
+     "in_frustum_in_cull_segment": 12,
+     "in_frustum_in_cull_by_band": {
+      "detail": 12,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 23,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 11,
+      "elevation": 0
+     }
+    },
+    "SpruceSapling": {
+     "count_total": 43619,
+     "cull_m": 238.27,
+     "in_cull_radius": 0,
+     "in_frustum": 10965,
+     "in_frustum_in_cull": 0,
+     "in_frustum_in_cull_segment": 0,
+     "in_frustum_in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 0,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 0,
+      "elevation": 0
+     }
+    }
+   },
+   "band_totals_visible": {},
+   "band_totals_all_in_cull": {
+    "detail": 60,
+    "shape": 0,
+    "blob": 0,
+    "gone": 0
+   },
+   "band_totals_in_frustum_in_cull": {
+    "detail": 34,
+    "shape": 0,
+    "blob": 0,
+    "gone": 0
+   },
+   "in_frustum_in_cull_total": 34,
+   "in_frustum_in_cull_segment_total": 34
+  },
+  "forest_floor": {
+   "camera": {
+    "x_cm": -166400.0,
+    "y_cm": 192000.0,
+    "z_cm": 19819.8,
+    "pitch_deg": -5.0,
+    "yaw_deg": 100.0
+   },
+   "per_species": {
+    "Conifer": {
+     "count_total": 54599,
+     "cull_m": 512.0,
+     "in_cull_radius": 1424,
+     "in_frustum": 9804,
+     "in_frustum_in_cull": 688,
+     "in_frustum_in_cull_segment": 688,
+     "in_frustum_in_cull_by_band": {
+      "detail": 688,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1424,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 736,
+      "elevation": 0
+     }
+    },
+    "ConiferPine": {
+     "count_total": 40326,
+     "cull_m": 512.0,
+     "in_cull_radius": 1027,
+     "in_frustum": 7112,
+     "in_frustum_in_cull": 500,
+     "in_frustum_in_cull_segment": 500,
+     "in_frustum_in_cull_by_band": {
+      "detail": 500,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1027,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 527,
+      "elevation": 0
+     }
+    },
+    "SpruceSub": {
+     "count_total": 46841,
+     "cull_m": 512.0,
+     "in_cull_radius": 1160,
+     "in_frustum": 8037,
+     "in_frustum_in_cull": 553,
+     "in_frustum_in_cull_segment": 553,
+     "in_frustum_in_cull_by_band": {
+      "detail": 553,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 1160,
+      "shape": 0,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 607,
+      "elevation": 0
+     }
+    },
+    "SpruceSapling": {
+     "count_total": 43619,
+     "cull_m": 238.27,
+     "in_cull_radius": 314,
+     "in_frustum": 6898,
+     "in_frustum_in_cull": 103,
+     "in_frustum_in_cull_segment": 103,
+     "in_frustum_in_cull_by_band": {
+      "detail": 84,
+      "shape": 19,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_by_band": {
+      "detail": 250,
+      "shape": 64,
+      "blob": 0,
+      "gone": 0
+     },
+     "in_cull_not_visible_excluded_by": {
+      "azimuth": 211,
+      "elevation": 0
+     }
+    }
+   },
+   "band_totals_visible": {},
+   "band_totals_all_in_cull": {
+    "detail": 3861,
+    "shape": 64,
+    "blob": 0,
+    "gone": 0
+   },
+   "band_totals_in_frustum_in_cull": {
+    "detail": 1825,
+    "shape": 19,
+    "blob": 0,
+    "gone": 0
+   },
+   "in_frustum_in_cull_total": 1844,
+   "in_frustum_in_cull_segment_total": 1844
+  }
+ }
+}

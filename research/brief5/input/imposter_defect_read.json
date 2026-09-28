@@ -1,0 +1,91 @@
+{
+ "ok": true,
+ "imposter_mi": {
+  "path": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter",
+  "exists": true,
+  "class": "MaterialInstanceConstant",
+  "base_material": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter.MA_Imposter",
+  "scalars": {
+   "Roughness": 5.0,
+   "ImposterRoundingOffsetX": 0.375,
+   "ImposterRoundingOffsetY": 1.0,
+   "ZRot": 1.0,
+   "NORMAL ROTATE AMT": 0.0,
+   "Normal Strength": 0.20000000298023224,
+   "Brightness": 1.7999999523162842,
+   "Saturation": 0.800000011920929,
+   "Specular": 0.20000000298023224,
+   "Z": -10.0,
+   "Scale": 841.0,
+   "Snow Brightness": 1.0,
+   "Snow Saturation": 0.0,
+   "ColorVariation": 0.009999999776482582,
+   "SnowBlending": 1.0,
+   "Motion Dampening": 1.0,
+   "Trail Strength": 0.8999999761581421,
+   "Bending Radius 1": 110.0,
+   "Bending Strength 1": 0.25,
+   "Bending Radius 2": 100.0,
+   "Bending Strength 2": 0.25,
+   "Bending Radius 3": 80.0,
+   "Bending Strength 3": 0.20000000298023224,
+   "Wobble Radius": 100.0,
+   "Player Wobble Frequenz": 3.4000000953674316,
+   "Player Wobble Strength": 1.0,
+   "Bending Height": 100.0,
+   "Wobble Frequenz 1": 3.0,
+   "Wobble Strength 1": 0.30000001192092896,
+   "Wobble Frequenz 2": 5.0,
+   "Wobble Strength 2": 0.30000001192092896,
+   "Wobble Frequenz 3": 8.0,
+   "Wobble Strength 3": 0.5,
+   "SS Strength": 1.0,
+   "SS ColorVariation": 0.004999999888241291
+  },
+  "vectors": {
+   "FWD": [
+    0.0,
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "UP": [
+    0.0,
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "RIGHT": [
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Snow Tint": [
+    0.849,
+    0.954,
+    1.0,
+    0.0
+   ],
+   "Tint": [
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "nowind_mi": {
+  "path": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/MI_half_01_imposter_nowind",
+  "exists": false
+ },
+ "frame_grid_candidates": {
+  "ImposterRoundingOffsetX": 0.375,
+  "ImposterRoundingOffsetY": 1.0
+ },
+ "material_functions": [],
+ "candidate_demo_maps": [
+  "/Game/PN_interactiveSpruceForest/Map/Interaction_Showroom.Interaction_Showroom",
+  "/Game/PN_interactiveSpruceForest/Map/Showroom.Showroom"
+ ]
+}

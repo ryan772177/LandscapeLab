@@ -1,0 +1,138 @@
+{
+ "_what": "Brief 5 v3 Task 3: forest foliage GPU cost at the derived forest_floor station (3 as-is + 3 hidden -game runs, --csv-gpu-stats).",
+ "station": {
+  "x_cm": -166400.0,
+  "y_cm": 192000.0,
+  "z_cm": 19819.8,
+  "pitch_deg": -5.0,
+  "yaw_deg": 100.0
+ },
+ "in_frustum_in_cull_trees": 1844,
+ "in_frustum_in_cull_meets_5000_target": false,
+ "_target_note": "If below 5000: the forest at the declared 90 deg hFOV / 512 m cull does not put 5000 live trees in one frustum anywhere (density ~0.005 trees/m2); this is the MAX achievable and is reported as such, not padded.",
+ "gpu_p90_ms": {
+  "as_is": {
+   "n": 3,
+   "values": [
+    11.052,
+    11.039,
+    11.054
+   ],
+   "mean": 11.048,
+   "sd": 0.0081
+  },
+  "hidden": {
+   "n": 3,
+   "values": [
+    10.841,
+    10.857,
+    10.891
+   ],
+   "mean": 10.863,
+   "sd": 0.0255
+  },
+  "foliage_delta_ms": 0.185
+ },
+ "forest_min_detectable_ms": 0.0162,
+ "_forest_min_detectable_def": "2 x sd(as-is GPU p90) at this station (its own noise floor; Task 1 measured only treeline/plaza).",
+ "foliage_delta_x_min_detectable": 11.4,
+ "foliage_delta_distinguishable": true,
+ "gpuscene": {
+  "as_is": 103162,
+  "hidden": 61714,
+  "removed_by_hide": 41448,
+  "_note": "removed = trees in the 512 m streaming disc (all directions) + landscape grass, NOT just the in-frustum trees. Deterministic across runs (sd 0 -- same as Task 1)."
+ },
+ "per_pass_delta_ms": {
+  "_method": "as-is median - hidden median per GPU/<pass>, median over the last 1500 frames of each run, averaged over 3 runs. Positive = the pass got cheaper when foliage was hidden (i.e. that is where the trees cost).",
+  "table": [
+   {
+    "pass": "LumenReflections",
+    "delta_ms": 0.3243,
+    "as_is_ms": 1.067,
+    "hidden_ms": 0.7427
+   },
+   {
+    "pass": "RenderDeferredLighting",
+    "delta_ms": -0.1575,
+    "as_is_ms": 0.2788,
+    "hidden_ms": 0.4362
+   },
+   {
+    "pass": "ShadowProjection",
+    "delta_ms": 0.1053,
+    "as_is_ms": 0.8906,
+    "hidden_ms": 0.7852
+   },
+   {
+    "pass": "Basepass",
+    "delta_ms": 0.0857,
+    "as_is_ms": 0.3089,
+    "hidden_ms": 0.2232
+   },
+   {
+    "pass": "NaniteBasePass",
+    "delta_ms": -0.0466,
+    "as_is_ms": 0.4498,
+    "hidden_ms": 0.4964
+   },
+   {
+    "pass": "Prepass",
+    "delta_ms": 0.0461,
+    "as_is_ms": 0.0688,
+    "hidden_ms": 0.0227
+   },
+   {
+    "pass": "SubsurfaceScattering",
+    "delta_ms": -0.0118,
+    "as_is_ms": 0.1815,
+    "hidden_ms": 0.1933
+   },
+   {
+    "pass": "LumenSceneUpdate",
+    "delta_ms": 0.0117,
+    "as_is_ms": 0.2037,
+    "hidden_ms": 0.192
+   },
+   {
+    "pass": "ShadowDepths",
+    "delta_ms": -0.0107,
+    "as_is_ms": 1.4133,
+    "hidden_ms": 1.424
+   },
+   {
+    "pass": "DistanceFieldShadows",
+    "delta_ms": 0.0105,
+    "as_is_ms": 0.0719,
+    "hidden_ms": 0.0614
+   },
+   {
+    "pass": "NaniteVisBuffer",
+    "delta_ms": -0.0084,
+    "as_is_ms": 2.013,
+    "hidden_ms": 2.0214
+   },
+   {
+    "pass": "Lights",
+    "delta_ms": -0.0066,
+    "as_is_ms": 0.095,
+    "hidden_ms": 0.1016
+   },
+   {
+    "pass": "BeginOcclusionTests",
+    "delta_ms": 0.0055,
+    "as_is_ms": 0.0185,
+    "hidden_ms": 0.013
+   },
+   {
+    "pass": "HZB",
+    "delta_ms": -0.0052,
+    "as_is_ms": 0.0148,
+    "hidden_ms": 0.02
+   }
+  ]
+ },
+ "ms_per_1000_in_frustum_in_cull_trees": 0.1003,
+ "_ms_per_1000_note": "delta / (in_frustum_in_cull/1000). ATTRIBUTES the whole foliage delta (which also removed grass and off-frustum in-cull trees) to the 1844 in-frustum trees, so it is an UPPER BOUND on per-visible-tree cost. Replaces the withdrawn off-frustum ms/10k. Carries x11.4 min_detectable.",
+ "per_species_hide_3c": "NOT AVAILABLE in -game. foliage.DensityScale 0 / ShowFlag.Foliage 0 hide ALL foliage; there is no process-local per-FoliageType console lever to isolate the Nanite spruce from the card-LOD species. Per the queue: stated, not invented. A per-species split needs an editor actor-level hide (Task 4 reads per-species representation instead)."
+}

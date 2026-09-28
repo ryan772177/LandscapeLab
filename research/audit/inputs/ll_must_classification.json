@@ -1,0 +1,266 @@
+{
+ "_what": "the 94 verdict-consuming sites are a list to LOOK at, not a list of defects; this separates sites that already handle the failure from sites that do not",
+ "n_live": 40,
+ "tally": {
+  "GUARDED+": 15,
+  "BARE": 8,
+  "GUARDED": 17
+ },
+ "by_api": {
+  "does_asset_exist": {
+   "GUARDED+": 11,
+   "GUARDED": 10
+  },
+  "save_asset": {
+   "BARE": 4,
+   "GUARDED": 2,
+   "GUARDED+": 4
+  },
+  "connect_material_expressions": {
+   "BARE": 4,
+   "GUARDED": 5
+  }
+ },
+ "rows": [
+  {
+   "site": "scripts/apply_nanite.py:88",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/bake_hero_face_textures.py:123",
+   "api": "save_asset",
+   "verdict": "BARE",
+   "line": "_unreal.EditorAssetLibrary.save_asset(_full, only_if_is_dirty=False)"
+  },
+  {
+   "site": "scripts/bake_skeletal_to_static.py:102",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_src):"
+  },
+  {
+   "site": "scripts/make_alpinelab_material.py:193",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "_missing = [_p for _p in _spec[\"all_textures\"] if not _eal.does_asset_exist(_p)]"
+  },
+  {
+   "site": "scripts/make_alpinelab_material.py:464",
+   "api": "save_asset",
+   "verdict": "BARE",
+   "line": "_eal.save_asset(_gtpath, False)"
+  },
+  {
+   "site": "scripts/make_alpinelab_material.py:556",
+   "api": "save_asset",
+   "verdict": "GUARDED",
+   "line": "_eal.save_asset(_path, False)"
+  },
+  {
+   "site": "scripts/make_foliage_material.py:432",
+   "api": "connect_material_expressions",
+   "verdict": "BARE",
+   "line": "(\"r->mk.A\", _mel.connect_material_expressions(_r, \"\", _mk, \"A\")),"
+  },
+  {
+   "site": "scripts/make_foliage_material.py:433",
+   "api": "connect_material_expressions",
+   "verdict": "GUARDED",
+   "line": "(\"gi->mk.B\", _mel.connect_material_expressions(_gi, \"\", _mk, \"B\")),"
+  },
+  {
+   "site": "scripts/make_foliage_material.py:434",
+   "api": "connect_material_expressions",
+   "verdict": "GUARDED",
+   "line": "(\"mk->mk2.A\", _mel.connect_material_expressions(_mk, \"\", _mk2, \"A\")),"
+  },
+  {
+   "site": "scripts/make_foliage_material.py:435",
+   "api": "connect_material_expressions",
+   "verdict": "GUARDED",
+   "line": "(\"b->mk2.B\", _mel.connect_material_expressions(_b, \"\", _mk2, \"B\")),"
+  },
+  {
+   "site": "scripts/make_landscape_material.py:3242",
+   "api": "save_asset",
+   "verdict": "BARE",
+   "line": "_unreal.EditorAssetLibrary.save_asset(_asset_path,"
+  },
+  {
+   "site": "scripts/make_layer_debug_material.py:91",
+   "api": "connect_material_expressions",
+   "verdict": "BARE",
+   "line": "/ connect_material_expressions / connect_material_property"
+  },
+  {
+   "site": "scripts/make_layer_debug_material.py:455",
+   "api": "save_asset",
+   "verdict": "BARE",
+   "line": "_unreal.EditorAssetLibrary.save_asset(_asset_path, only_if_is_dirty=False)"
+  },
+  {
+   "site": "scripts/make_metahuman_character.py:82",
+   "api": "save_asset",
+   "verdict": "GUARDED+",
+   "line": "_unreal.EditorAssetLibrary.save_asset(_full, False)"
+  },
+  {
+   "site": "scripts/make_nowind_material_instances.py:106",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _eal.does_asset_exist(_mp):"
+  },
+  {
+   "site": "scripts/make_nowind_material_instances.py:176",
+   "api": "save_asset",
+   "verdict": "GUARDED+",
+   "line": "_eal.save_asset(_new_path)"
+  },
+  {
+   "site": "scripts/material_graph.py:136",
+   "api": "connect_material_expressions",
+   "verdict": "GUARDED",
+   "line": "if not _mel.connect_material_expressions(_from, _from_pin, _to,"
+  },
+  {
+   "site": "scripts/measure_lod_materials.py:57",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/measure_rock_meshes.py:79",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/measure_tree_packs.py:117",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/measure_tree_packs.py:154",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/payloads/apply_landscape_hlod_settings.py:77",
+   "api": "save_asset",
+   "verdict": "GUARDED+",
+   "line": "_eal.save_asset(LAYER, only_if_is_dirty=False)"
+  },
+  {
+   "site": "scripts/payloads/hlod_census_readback.py:65",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if not _eal.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/payloads/lod_capture_scene.py:68",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if _eal.does_asset_exist(KEY_MAT):"
+  },
+  {
+   "site": "scripts/payloads/make_depth_material.py:90",
+   "api": "connect_material_expressions",
+   "verdict": "BARE",
+   "line": "_mel.connect_material_expressions(_st, \"Color\", _mx, \"A\")])"
+  },
+  {
+   "site": "scripts/payloads/make_depth_material.py:92",
+   "api": "connect_material_expressions",
+   "verdict": "BARE",
+   "line": "_mel.connect_material_expressions(_mx, \"\", _lg, \"\")])"
+  },
+  {
+   "site": "scripts/payloads/make_depth_material.py:94",
+   "api": "connect_material_expressions",
+   "verdict": "GUARDED",
+   "line": "_mel.connect_material_expressions(_lg, \"\", _dv, \"A\")])"
+  },
+  {
+   "site": "scripts/payloads/make_ppi0_passthrough.py:110",
+   "api": "save_asset",
+   "verdict": "GUARDED+",
+   "line": "_eal.save_asset(FULL)"
+  },
+  {
+   "site": "scripts/payloads/material_param_probe.py:28",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "_rec = {\"path\": _p, \"exists\": _eal.does_asset_exist(_p)}"
+  },
+  {
+   "site": "scripts/payloads/read_layer_tiling.py:46",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if not _eal.does_asset_exist(MAT):"
+  },
+  {
+   "site": "scripts/payloads/read_shadow_state.py:64",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if not _eal.does_asset_exist(p):"
+  },
+  {
+   "site": "scripts/payloads/shade_pair_place.py:77",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if not _eal.does_asset_exist(_MAT_PATH):"
+  },
+  {
+   "site": "scripts/payloads/tree_lod_probe.py:52",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "_m = _eal.load_asset(_path) if _eal.does_asset_exist(_path) else None"
+  },
+  {
+   "site": "scripts/probe_material.py:80",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/probe_material.py:156",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/push_heightmap.py:1907",
+   "api": "save_asset",
+   "verdict": "GUARDED",
+   "line": "_unreal.EditorAssetLibrary.save_asset(_mat_path, only_if_is_dirty=False)"
+  },
+  {
+   "site": "scripts/read_grass_type.py:46",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):"
+  },
+  {
+   "site": "scripts/scratch_tree_scene.py:65",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "_exists = _unreal.EditorAssetLibrary.does_asset_exist(_level)"
+  },
+  {
+   "site": "scripts/ue5_import_alpinelab.py:358",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED",
+   "line": "if skip_existing and unreal.EditorAssetLibrary.does_asset_exist("
+  },
+  {
+   "site": "scripts/update_foliage_culls.py:50",
+   "api": "does_asset_exist",
+   "verdict": "GUARDED+",
+   "line": "if _u.EditorAssetLibrary.does_asset_exist(_p) else None)"
+  }
+ ]
+}

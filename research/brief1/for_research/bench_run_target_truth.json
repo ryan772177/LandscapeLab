@@ -1,0 +1,41 @@
+{
+ "_what": "TRUTH-instrument capture: editor, all regions force-loaded, HighResShot via shoot.py. NOT a play-representative frame.",
+ "date": "2026-09-07",
+ "profile": "target",
+ "tag": null,
+ "instrument": "truth",
+ "git_sha": "d06480b1bfaf1b32827faeaec220fe1395cd9897-dirty",
+ "recipe_sha256": "dfb04b613661e881d2edd3788920b367df1f7ec0d556ea0dc9270ae9176828a5",
+ "benchmark_json_sha256": "7195b08b7e50011a66fbe7435795f8b14f4e1a2446859e3c506cdd92654bbf3a",
+ "resolution_requested": [
+  3840,
+  2160
+ ],
+ "elapsed_s": 933.2,
+ "residency_declared": {
+  "expect_landscape_components": 1024
+ },
+ "editor_census_after_load_all_regions": {
+  "landscape_actors": 1,
+  "proxies": 256,
+  "components": 1024,
+  "components_unreadable": 0,
+  "foliage_actors": 1093,
+  "foliage_instances": 217102
+ },
+ "stills": {
+  "near_ground": {
+   "exists": true,
+   "path": "_verify/bench/2026-09-07/target/near_ground.png",
+   "bytes": 16248112,
+   "png_size_from_file": [
+    3840,
+    2160
+   ],
+   "mean_luma": 0.363436,
+   "featureless_fraction": 0.1786,
+   "shoot_exit": 0
+  }
+ },
+ "_residency_provenance": "Editor census from LandscapeLabTools.load_all_world_partition_regions then get_components_by_class. PIE is not used: three levers to force-load PIE were measured on 2026-09-06 and none moved residency off 16/1024, while the editor loader reaches 1024/1024."
+}

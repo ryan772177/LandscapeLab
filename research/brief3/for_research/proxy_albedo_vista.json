@@ -1,0 +1,62 @@
+{
+ "bin_m": [
+  300.0,
+  1000.0
+ ],
+ "pixels": 161481,
+ "overall": {
+  "real_median": 0.45932,
+  "proxy_median": 0.45932,
+  "delta_pct": 0.0,
+  "within_15pc": true
+ },
+ "layers": [
+  {
+   "label": "dark (scree/gravel-like)",
+   "pixels": 5575,
+   "real_median_albedo": 0.09964,
+   "proxy_median_albedo": 0.09964,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 32231,
+   "real_median_albedo": 0.38659,
+   "proxy_median_albedo": 0.38659,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 78483,
+   "real_median_albedo": 0.45683,
+   "proxy_median_albedo": 0.45683,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "bright ground (meadow/forest-floor-like)",
+   "pixels": 31487,
+   "real_median_albedo": 0.53647,
+   "proxy_median_albedo": 0.53647,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  },
+  {
+   "label": "snow-like (anchor Snow007A 0.836)",
+   "pixels": 13705,
+   "real_median_albedo": 0.78031,
+   "proxy_median_albedo": 0.78031,
+   "delta_pct": 0.0,
+   "within_15pc": true
+  }
+ ],
+ "verdict": "PASS",
+ "acceptance": "proxy median albedo within +/-15% of real, overall and per real-albedo cluster (>= 2000 px)",
+ "station": "vista",
+ "comp_ev": -14.2571,
+ "proxy_exr": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\bench\\2026-09-15\\target_b1_vista\\vista.exr",
+ "real_exr": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\bench\\2026-09-15\\target_b1_vista_real\\vista.exr",
+ "instrument": "basecolor: proxy=player HLOD, real=truth LOD0"
+}

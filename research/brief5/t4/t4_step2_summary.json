@@ -1,0 +1,19 @@
+{
+ "_what": "Brief 5 T4 step 2 (shadow/cull cvar ladder, Ryan option 2): do runtime cvar levers recover forest_floor headroom? Measured at forest_floor vs the as-is baseline, world at pre-density-daylight (185k trees).",
+ "baseline": {"gpu_p90_median_ms": 12.621, "AA_min_detectable_ms": 0.0737, "min_det_note": "3-run A/A; the v3 reference 0.016 did NOT hold on this build (~4.6x higher). All verdicts use 0.0737."},
+ "arms": {
+  "A_r.Shadow.RadiusThreshold": {"verdict": "DROP/INCONCLUSIVE", "best_gain_ms": -0.067, "why": "ShadowDepths never moved (<1x floor); forest_floor trees have large screen radius, so a 0.03-0.10 threshold culls none. A threshold high enough to cull them is a visible-shadow loss."},
+  "B_r.Shadow.DistanceScale": {"verdict": "KEEP", "best_gain_ms": 0.128, "at": "0.25", "target_delta": "ShadowDepths -0.221 (3.0x floor)", "why": "Only the 0.25 rung pays (0.75/0.5 negligible). Quarter shadow distance = large visible-shadow trade for 0.128 ms."},
+  "D_r.Lumen.Reflections.MaxRoughnessToTrace": {"verdict": "DROP", "best_gain_ms": 0.050, "why": "LumenReflections moved -0.22..-0.26 (3x floor) but the frame-p90 gain is only 0.05 ms (<0.10) -- the reflection saving does not surface at p90."},
+  "E_r.Nanite.MaxPixelsPerEdge": {"verdict": "INCONCLUSIVE", "best_gain_ms": 0.009, "why": "NaniteVisBuffer never dropped >=3x floor (worse at 8). Nanite raster here is not tri-edge-bound at these distances."},
+  "F_foliage.CullDistanceScale": {"verdict": "SKIPPED (inert)", "why": "Cvar requires per-type opt-in; all live FoliageTypes have enable_cull_distance_scaling=false (density_baseline.json:1115+). Enabling it is a FoliageType asset write, out of this step's fence. Foliage.MinimumScreenSize is not a 5.8 cvar (absent from the Foliage module)."}
+ },
+ "stack": {"kept_arms": ["B"], "stack_gain_ms": 0.128, "vs_rule_1.0": "0.128 << 1.0 -> per Ryan's rule, run arm F (inert, skipped) and report; NOT ASK #3 (no visual trade worth presenting for 0.128 ms)."},
+ "conclusion": "The runtime cvar levers do NOT recover meaningful forest_floor headroom. Best case arm B = 0.128 ms (1.7x floor) with a heavy shadow-distance visual trade, against the ~2.7 ms deficit the density upgrade needs. The forest_floor GPU cost (~12.6 ms at m=1) is structural: ShadowDepths, NaniteVisBuffer and LumenReflections are each ~1-2 ms and none is cheaply reducible by a runtime cvar without a visual trade or an asset opt-in. Neither T4 rungs (step 1: bounded, mostly untouchable) nor cvar levers (step 2: <=0.13 ms) unlock the density upgrade at forest_floor.",
+ "options_for_ryan": [
+  "Accept the shipped m=1 forest at forest_floor; pursue density only where there is headroom (plaza recalibrated cap 2.157, treeline/vista under budget).",
+  "Raise the forest_floor GPU budget (currently 13.0) -- a budget re-rule, not a lever.",
+  "An asset-write path (FoliageType cull opt-in, or per-type shadow flags) -- a new tier with the persist protocol, beyond this cvar-only step.",
+  "Accept a visible trade: arm B shadow distance 0.25 (0.128 ms) or arm E/D at higher settings with stills -- small gains, real visual cost."
+ ]
+}

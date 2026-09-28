@@ -1,0 +1,157 @@
+{
+ "_what": "every _verify artefact produced by a truth capture, split by WHICH truth instrument",
+ "_two_instruments": {
+  "A": "--instrument truth: editor + HighResShot, force-loaded. No MoviePipeline, therefore NO GameOverride. Cannot carry the LOD0/HLOD-off/view-distance contamination.",
+  "B": "--truth: MRQ with MoviePipelineGameOverrideSetting, which installs use_lod_zero, disable_hlods, override_view_distance_scale=True + view_distance_scale, texture_streaming DISABLED, flush_grass_streaming, flush_streaming_managers, use_high_quality_shadows."
+ },
+ "_flag_meaning": "subjects_mentioned lists which of lod / hlod / cull / draw_distance the sidecar's own text mentions. It is a TRIAGE SIGNAL, not a verdict: a mention is not proof the acceptance measured that subject, and a silent sidecar is not proof it did not. Each row still needs reading.",
+ "n_truth_artefacts": 9,
+ "n_mechanism_B": 8,
+ "n_mechanism_B_mentioning_a_contaminable_subject": 8,
+ "rows": [
+  {
+   "sidecar": "_verify/bench/2026-09-06/bench_run_dev_diag.json",
+   "acceptance": "diag",
+   "date": "2026-09-06",
+   "profile": "dev",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod"
+   ],
+   "git_sha": "e810ba3c016a974e5940a844e9b1ad22b4e0610d-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-06/bench_run_dev_truth.json",
+   "acceptance": "truth",
+   "date": "2026-09-06",
+   "profile": "dev",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod"
+   ],
+   "git_sha": "e810ba3c016a974e5940a844e9b1ad22b4e0610d-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-07/bench_run_target_truth.json",
+   "acceptance": "TRUTH-instrument capture: editor, all regions force-loaded, HighResShot via shoot.py. NOT a play-representative frame.",
+   "date": "2026-09-07",
+   "profile": "target",
+   "instrument": "truth",
+   "truth_mechanisms": [
+    "A:editor+HighResShot (no GameOverride)"
+   ],
+   "subjects_mentioned": [],
+   "git_sha": "d06480b1bfaf1b32827faeaec220fe1395cd9897-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-09/bench_run_target_mrqtruth.json",
+   "acceptance": "mrqtruth",
+   "date": "2026-09-09",
+   "profile": "target",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod",
+    "lod"
+   ],
+   "git_sha": "8e48937446a4d22a05a8c7a2615c39f6a820ecc9-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-09/bench_run_target_mrqtruth2.json",
+   "acceptance": "mrqtruth2",
+   "date": "2026-09-09",
+   "profile": "target",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod",
+    "lod"
+   ],
+   "git_sha": "8e48937446a4d22a05a8c7a2615c39f6a820ecc9-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-09/bench_run_target_truth_task5.json",
+   "acceptance": "truth_task5",
+   "date": "2026-09-09",
+   "profile": "target",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod",
+    "lod"
+   ],
+   "git_sha": "c8406e609943a1c9ffcba029d85c231b364899b0-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-10/bench_run_target_truth_t5r.json",
+   "acceptance": "truth_t5r",
+   "date": "2026-09-10",
+   "profile": "target",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod",
+    "lod"
+   ],
+   "git_sha": "1277b2a798848135036f3cc75ece61c2a1a938af-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-13/bench_run_dev_precedence_cinematic_false.json",
+   "acceptance": "precedence_cinematic_false",
+   "date": "2026-09-13",
+   "profile": "dev",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod"
+   ],
+   "git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+  },
+  {
+   "sidecar": "_verify/bench/2026-09-13/bench_run_dev_precedence_cinematic_true.json",
+   "acceptance": "precedence_cinematic_true",
+   "date": "2026-09-13",
+   "profile": "dev",
+   "instrument": null,
+   "truth_mechanisms": [
+    "B:MRQ --truth (GameOverride READ BACK)"
+   ],
+   "subjects_mentioned": [
+    "cull",
+    "draw_distance",
+    "hlod"
+   ],
+   "git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+  }
+ ]
+}

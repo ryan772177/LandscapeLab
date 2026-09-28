@@ -1,0 +1,11 @@
+{
+  "_what": "Crop boxes in FULL-RES pixels (3840x2160) chosen on the settled Look-profile baseline camA_base_d42.png / camB_base_d42.png. [x0,y0,x1,y1] or [x0,y0,x1,y1,lum_hi]. Distances are visual estimates (line traces ignore foliage): camA near = the large foreground spruce cluster (~40 m), mid = upper right-side cluster (~150-300 m), far = the small tree line top-left on the snow slope (~700-900 m, ~80 px trees at 2742 px focal). camB far = the ~1140 m dark cluster the A2 stills measured at sat 0.05.",
+  "camA": {
+    "near": [1008, 720, 1872, 1920],
+    "mid":  [3096, 600, 3840, 1344],
+    "far":  [544, 420, 864, 684, 140]
+  },
+  "camB": {
+    "far":  [1224, 1368, 2040, 1656, 140]
+  }
+}

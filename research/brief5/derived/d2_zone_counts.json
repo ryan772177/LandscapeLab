@@ -1,0 +1,182 @@
+{
+ "_what": "Brief 5 D2 dry-run: trees per species per zone, before(m=1) vs after(zone map).",
+ "_before_dir": "foliage",
+ "_after_dir": "research/brief5/derived/d2_dryrun",
+ "_zone_map": "research\\brief5\\derived\\zone_map.json",
+ "_zone_rule": "disc containment (512 m); lowest-cap disc wins overlap; outside all = open. Same discs as zone_map.py.",
+ "caps": {
+  "forest_floor": 2.3784,
+  "plaza": 5.48,
+  "treeline": 5.48
+ },
+ "per_species": {
+  "Conifer": {
+   "forest_floor": {
+    "before": 1435,
+    "after": 3733,
+    "ratio": 2.601
+   },
+   "plaza": {
+    "before": 1299,
+    "after": 7139,
+    "ratio": 5.496
+   },
+   "treeline": {
+    "before": 131,
+    "after": 782,
+    "ratio": 5.969
+   },
+   "open": {
+    "before": 51734,
+    "after": 282851,
+    "ratio": 5.467
+   },
+   "ALL": {
+    "before": 54599,
+    "after": 294505,
+    "ratio": 5.394
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief5/derived/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 43.2,
+    "grid_density_per_ha": 236.73600000000005,
+    "port_xcheck_max_err": 2.312197330400778e-05
+   }
+  },
+  "ConiferPine": {
+   "forest_floor": {
+    "before": 1038,
+    "after": 2654,
+    "ratio": 2.557
+   },
+   "plaza": {
+    "before": 928,
+    "after": 5204,
+    "ratio": 5.608
+   },
+   "treeline": {
+    "before": 102,
+    "after": 622,
+    "ratio": 6.098
+   },
+   "open": {
+    "before": 38258,
+    "after": 210572,
+    "ratio": 5.504
+   },
+   "ALL": {
+    "before": 40326,
+    "after": 219052,
+    "ratio": 5.432
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief5/derived/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 31.05,
+    "grid_density_per_ha": 170.15400000000002,
+    "port_xcheck_max_err": 2.312197330400778e-05
+   }
+  },
+  "SpruceSub": {
+   "forest_floor": {
+    "before": 1172,
+    "after": 2992,
+    "ratio": 2.553
+   },
+   "plaza": {
+    "before": 1087,
+    "after": 5734,
+    "ratio": 5.275
+   },
+   "treeline": {
+    "before": 117,
+    "after": 700,
+    "ratio": 5.983
+   },
+   "open": {
+    "before": 44465,
+    "after": 243621,
+    "ratio": 5.479
+   },
+   "ALL": {
+    "before": 46841,
+    "after": 253047,
+    "ratio": 5.402
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief5/derived/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 33.75,
+    "grid_density_per_ha": 184.95000000000002,
+    "port_xcheck_max_err": 2.312197330400778e-05
+   }
+  },
+  "SpruceSapling": {
+   "forest_floor": {
+    "before": 963,
+    "after": 2554,
+    "ratio": 2.652
+   },
+   "plaza": {
+    "before": 839,
+    "after": 4795,
+    "ratio": 5.715
+   },
+   "treeline": {
+    "before": 141,
+    "after": 814,
+    "ratio": 5.773
+   },
+   "open": {
+    "before": 41676,
+    "after": 229540,
+    "ratio": 5.508
+   },
+   "ALL": {
+    "before": 43619,
+    "after": 237703,
+    "ratio": 5.45
+   },
+   "_density_zone_declared": {
+    "zone_map": "research/brief5/derived/zone_map.json",
+    "m_max": 5.48,
+    "base_density_per_ha": 27.0,
+    "grid_density_per_ha": 147.96,
+    "port_xcheck_max_err": 2.312197330400778e-05
+   }
+  }
+ },
+ "per_zone_total": {
+  "forest_floor": {
+   "before": 4608,
+   "after": 11933,
+   "ratio": 2.59,
+   "cap": 2.3784
+  },
+  "plaza": {
+   "before": 4153,
+   "after": 22872,
+   "ratio": 5.507,
+   "cap": 5.48
+  },
+  "treeline": {
+   "before": 491,
+   "after": 2918,
+   "ratio": 5.943,
+   "cap": 5.48
+  },
+  "open": {
+   "before": 176133,
+   "after": 966584,
+   "ratio": 5.488,
+   "cap": null
+  },
+  "ALL": {
+   "before": 185385,
+   "after": 1004307,
+   "ratio": 5.417
+  }
+ },
+ "MAX_INSTANCES_note": "place_foliage MAX_INSTANCES = 250,000; the AFTER total below is the count the density upgrade implies."
+}

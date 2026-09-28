@@ -1,0 +1,94 @@
+{
+ "_what": "Brief 5 v3 Task 1: run-to-run noise floor at treeline and plaza from 5 as-is -game runs each (same build, settle 60 s, window 25 s).",
+ "_method": "GPU p90 = each run's stats_ms.GPUTime.p90. GPUSceneInstanceCount = mean over the last 1500 frames of each run's CSV. min_detectable_ms = 2 x sd(GPU p90 across runs).",
+ "_sample_provenance": "2 on-disk as-is runs (D1 asis + item-1 gpustats) + 3 fresh as-is runs (brief5_noise/*_r1..r3). D2/D4 excluded (grass.DensityScale confound).",
+ "window_frames": 1500,
+ "zones": {
+  "treeline": {
+   "gpu_p90_ms": {
+    "n": 5,
+    "values": [
+     7.229,
+     7.169,
+     7.149,
+     7.194,
+     7.189
+    ],
+    "mean": 7.186,
+    "sd": 0.03,
+    "min": 7.149,
+    "max": 7.229,
+    "range": 0.08
+   },
+   "gpuscene_instance_count": {
+    "n": 5,
+    "values": [
+     57876,
+     57876,
+     57876,
+     57876,
+     57876
+    ],
+    "mean": 57876,
+    "sd": 0.0,
+    "min": 57876,
+    "max": 57876,
+    "range": 0
+   },
+   "min_detectable_ms": 0.06,
+   "_min_detectable_def": "2 x sd(GPU p90). A delta below this is NOT distinguishable from run-to-run noise.",
+   "gpuscene_sd_pct_of_mean": null,
+   "gpuscene_sd_exceeds_5pct": false,
+   "sample_sidecars": [
+    "_verify/perf/brief5_ab/treeline_asis/standalone_2026-09-19/perf_standalone.json",
+    "_verify/perf/brief5_ab/treeline_gpustats/standalone_2026-09-20/perf_standalone_gpustats.json",
+    "_verify/perf/brief5_noise/treeline_r1/standalone_2026-09-20/perf_standalone.json",
+    "_verify/perf/brief5_noise/treeline_r2/standalone_2026-09-20/perf_standalone.json",
+    "_verify/perf/brief5_noise/treeline_r3/standalone_2026-09-20/perf_standalone.json"
+   ]
+  },
+  "plaza": {
+   "gpu_p90_ms": {
+    "n": 5,
+    "values": [
+     9.441,
+     9.476,
+     9.438,
+     9.467,
+     9.48
+    ],
+    "mean": 9.46,
+    "sd": 0.02,
+    "min": 9.438,
+    "max": 9.48,
+    "range": 0.042
+   },
+   "gpuscene_instance_count": {
+    "n": 5,
+    "values": [
+     196553,
+     196553,
+     196553,
+     196553,
+     196553
+    ],
+    "mean": 196553,
+    "sd": 0.0,
+    "min": 196553,
+    "max": 196553,
+    "range": 0
+   },
+   "min_detectable_ms": 0.04,
+   "_min_detectable_def": "2 x sd(GPU p90). A delta below this is NOT distinguishable from run-to-run noise.",
+   "gpuscene_sd_pct_of_mean": null,
+   "gpuscene_sd_exceeds_5pct": false,
+   "sample_sidecars": [
+    "_verify/perf/brief5_ab/plaza_asis/standalone_2026-09-19/perf_standalone.json",
+    "_verify/perf/brief5_ab/plaza_gpustats/standalone_2026-09-20/perf_standalone_gpustats.json",
+    "_verify/perf/brief5_noise/plaza_r1/standalone_2026-09-20/perf_standalone.json",
+    "_verify/perf/brief5_noise/plaza_r2/standalone_2026-09-20/perf_standalone.json",
+    "_verify/perf/brief5_noise/plaza_r3/standalone_2026-09-20/perf_standalone.json"
+   ]
+  }
+ }
+}

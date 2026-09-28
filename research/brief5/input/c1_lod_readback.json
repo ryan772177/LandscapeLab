@@ -1,0 +1,362 @@
+{
+ "_what": "Brief 5 C1 direct runtime LOD readback (Mesh LOD Coloration).",
+ "fov_h_deg_engine": 90.0,
+ "fov_source": "c2_shot_c2_showroom_150_card.json (editor-default perspective FOV, level-independent)",
+ "legend": {
+  "source": "on-screen Mesh LOD Coloration legend bar, sampled per swatch; validated vs BaseEngine.ini:273-280",
+  "read_swatches": {
+   "0": [
+    255,
+    255,
+    255
+   ],
+   "1": [
+    255,
+    0,
+    0
+   ],
+   "2": [
+    0,
+    255,
+    0
+   ],
+   "3": [
+    0,
+    0,
+    255
+   ],
+   "4": [
+    255,
+    255,
+    0
+   ],
+   "5": [
+    255,
+    0,
+    255
+   ],
+   "6": [
+    0,
+    255,
+    255
+   ],
+   "7": [
+    187,
+    0,
+    187
+   ]
+  },
+  "ini_palette": {
+   "0": [
+    255,
+    255,
+    255
+   ],
+   "1": [
+    255,
+    0,
+    0
+   ],
+   "2": [
+    0,
+    255,
+    0
+   ],
+   "3": [
+    0,
+    0,
+    255
+   ],
+   "4": [
+    255,
+    255,
+    0
+   ],
+   "5": [
+    255,
+    0,
+    255
+   ],
+   "6": [
+    0,
+    255,
+    255
+   ],
+   "7": [
+    128,
+    0,
+    128
+   ]
+  },
+  "names": {
+   "0": "white",
+   "1": "red",
+   "2": "green",
+   "3": "blue",
+   "4": "yellow",
+   "5": "magenta",
+   "6": "cyan",
+   "7": "purple"
+  },
+  "card_lod_index": {
+   "ConiferPine": 3,
+   "SpruceSub": 4
+  },
+  "validation": {
+   "0_white": {
+    "read": [
+     255,
+     255,
+     255
+    ],
+    "ini": [
+     255,
+     255,
+     255
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": true
+   },
+   "1_red": {
+    "read": [
+     255,
+     0,
+     0
+    ],
+    "ini": [
+     255,
+     0,
+     0
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": true
+   },
+   "2_green": {
+    "read": [
+     0,
+     255,
+     0
+    ],
+    "ini": [
+     0,
+     255,
+     0
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": true
+   },
+   "3_blue": {
+    "read": [
+     0,
+     0,
+     255
+    ],
+    "ini": [
+     0,
+     0,
+     255
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": true
+   },
+   "4_yellow": {
+    "read": [
+     255,
+     255,
+     0
+    ],
+    "ini": [
+     255,
+     255,
+     0
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": true
+   },
+   "5_magenta": {
+    "read": [
+     255,
+     0,
+     255
+    ],
+    "ini": [
+     255,
+     0,
+     255
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": false
+   },
+   "6_cyan": {
+    "read": [
+     0,
+     255,
+     255
+    ],
+    "ini": [
+     0,
+     255,
+     255
+    ],
+    "dist": 0.0,
+    "ok": true,
+    "gates": false
+   },
+   "7_purple": {
+    "read": [
+     187,
+     0,
+     187
+    ],
+    "ini": [
+     128,
+     0,
+     128
+    ],
+    "dist": 83.4,
+    "ok": false,
+    "gates": false
+   }
+  },
+  "validated_ok": true
+ },
+ "band_boxes": {
+  "ring": 920,
+  "deep": 272
+ },
+ "ring": {
+  "ConiferPine": {
+   "verdict": "INCONCLUSIVE",
+   "geom_pct": 19.8,
+   "card_boxes": 158,
+   "geom_boxes": 39,
+   "classified": 197,
+   "unclassified": 240,
+   "lod_hist": {
+    "4": 158,
+    "1": 29,
+    "2": 10
+   },
+   "card_lod_index": 3
+  },
+  "SpruceSub": {
+   "verdict": "INCONCLUSIVE",
+   "geom_pct": 19.0,
+   "card_boxes": 166,
+   "geom_boxes": 39,
+   "classified": 205,
+   "unclassified": 278,
+   "lod_hist": {
+    "1": 28,
+    "4": 166,
+    "2": 11
+   },
+   "card_lod_index": 4
+  }
+ },
+ "deep": {
+  "ConiferPine": {
+   "verdict": "INCONCLUSIVE",
+   "geom_pct": 15.4,
+   "card_boxes": 11,
+   "geom_boxes": 2,
+   "classified": 13,
+   "unclassified": 117,
+   "lod_hist": {
+    "4": 11,
+    "2": 2
+   },
+   "card_lod_index": 3
+  },
+  "SpruceSub": {
+   "verdict": "REFUSE (only 9 classified boxes)",
+   "card_boxes": 8,
+   "geom_boxes": 1,
+   "unclassified": 133,
+   "lod_hist": {
+    "4": 8,
+    "2": 1
+   }
+  }
+ },
+ "combined": {
+  "ConiferPine": {
+   "verdict": "INCONCLUSIVE",
+   "geom_pct": 19.5,
+   "card_boxes": 169,
+   "geom_boxes": 41,
+   "classified": 210,
+   "unclassified": 357,
+   "lod_hist": {
+    "4": 169,
+    "1": 29,
+    "2": 12
+   },
+   "card_lod_index": 3
+  },
+  "SpruceSub": {
+   "verdict": "INCONCLUSIVE",
+   "geom_pct": 18.7,
+   "card_boxes": 174,
+   "geom_boxes": 40,
+   "classified": 214,
+   "unclassified": 411,
+   "lod_hist": {
+    "1": 28,
+    "4": 174,
+    "2": 12
+   },
+   "card_lod_index": 4
+  }
+ },
+ "_verdict": "PER-SPECIES: {\"ConiferPine\": \"INCONCLUSIVE\", \"SpruceSub\": \"INCONCLUSIVE\"}",
+ "renderdata_corroboration": {
+  "ConiferPine": {
+   "present_in_level": true,
+   "n_components": 970,
+   "n_instances": 40326,
+   "num_lods": 4,
+   "screen_sizes": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.16821
+   ],
+   "t3_hold_target": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.03818
+   ],
+   "matches_t3_hold": false
+  },
+  "SpruceSub": {
+   "present_in_level": true,
+   "n_components": 990,
+   "n_instances": 46841,
+   "num_lods": 5,
+   "screen_sizes": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.17
+   ],
+   "t3_hold_target": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.02642
+   ],
+   "matches_t3_hold": false
+  }
+ },
+ "_c1_verdict": "NO-OP AT RUNTIME. Render-data card ScreenSize is UNCHANGED from pre-hold (matches_t3_hold=false for the card species) -- the runtime still selects the card at the original screen size. The colour readback corroborates directionally: the 128-512 m band is ~80% card, whereas a hold that took would render ~0% card in this band (card pushed past 512 m)."
+}

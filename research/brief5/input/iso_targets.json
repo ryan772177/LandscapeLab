@@ -1,0 +1,159 @@
+{
+ "_what": "isolated ConiferPine + SpruceSub camera stations for an uncontaminated single-box LOD read (R2 follow-up).",
+ "fov_h_deg": 90.0,
+ "res": [
+  3840,
+  2160
+ ],
+ "cull_cm": 51200.0,
+ "targets": {
+  "ConiferPine": [
+   {
+    "instance_index_in_species": 395,
+    "world_cm": [
+     -263125.2,
+     123562.2,
+     50829.4
+    ],
+    "top_cm": 2057.5,
+    "nn_other_m": 82.8,
+    "camera": {
+     "x_cm": -233125.2,
+     "y_cm": 123562.2,
+     "z_cm": 54386.9,
+     "pitch_deg": -4.818,
+     "yaw_deg": 180.0
+    },
+    "range_m": 302.1,
+    "expected_box": [
+     1887.1,
+     1014.4,
+     1952.9,
+     1145.2
+    ]
+   },
+   {
+    "instance_index_in_species": 4109,
+    "world_cm": [
+     -4057.2,
+     246596.3,
+     34856.1
+    ],
+    "top_cm": 1622.1,
+    "nn_other_m": 77.6,
+    "camera": {
+     "x_cm": 25942.8,
+     "y_cm": 246596.3,
+     "z_cm": 37978.2,
+     "pitch_deg": -4.405,
+     "yaw_deg": 180.0
+    },
+    "range_m": 301.6,
+    "expected_box": [
+     1894.0,
+     1028.3,
+     1946.0,
+     1131.5
+    ]
+   },
+   {
+    "instance_index_in_species": 356,
+    "world_cm": [
+     -309162.4,
+     118327.4,
+     52272.5
+    ],
+    "top_cm": 1920.5,
+    "nn_other_m": 66.6,
+    "camera": {
+     "x_cm": -279162.4,
+     "y_cm": 118327.4,
+     "z_cm": 55693.0,
+     "pitch_deg": -4.688,
+     "yaw_deg": 180.0
+    },
+    "range_m": 301.9,
+    "expected_box": [
+     1889.3,
+     1018.8,
+     1950.7,
+     1140.9
+    ]
+   }
+  ],
+  "SpruceSub": [
+   {
+    "instance_index_in_species": 809,
+    "world_cm": [
+     4185.4,
+     143425.1,
+     60132.1
+    ],
+    "top_cm": 1711.0,
+    "nn_other_m": 97.7,
+    "camera": {
+     "x_cm": 34185.4,
+     "y_cm": 143425.1,
+     "z_cm": 63343.1,
+     "pitch_deg": -4.489,
+     "yaw_deg": 180.0
+    },
+    "range_m": 301.7,
+    "expected_box": [
+     1892.6,
+     1025.5,
+     1947.4,
+     1134.3
+    ]
+   },
+   {
+    "instance_index_in_species": 127,
+    "world_cm": [
+     -179568.3,
+     76543.2,
+     59206.5
+    ],
+    "top_cm": 1831.4,
+    "nn_other_m": 80.0,
+    "camera": {
+     "x_cm": -149568.3,
+     "y_cm": 76543.2,
+     "z_cm": 62537.9,
+     "pitch_deg": -4.604,
+     "yaw_deg": 180.0
+    },
+    "range_m": 301.8,
+    "expected_box": [
+     1890.7,
+     1021.6,
+     1949.3,
+     1138.1
+    ]
+   },
+   {
+    "instance_index_in_species": 1925,
+    "world_cm": [
+     -116168.2,
+     187503.2,
+     34671.1
+    ],
+    "top_cm": 1455.1,
+    "nn_other_m": 77.8,
+    "camera": {
+     "x_cm": -86168.2,
+     "y_cm": 187503.2,
+     "z_cm": 37626.2,
+     "pitch_deg": -4.246,
+     "yaw_deg": 180.0
+    },
+    "range_m": 301.5,
+    "expected_box": [
+     1896.7,
+     1033.6,
+     1943.3,
+     1126.2
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "_what": "Brief 2b tint table, near_ground. TARGET class unless marked; residency at target class reads missing 1 (near_ground) / 2 (mid_slope) in EVERY row era, so rows are class-comparable. One attempt at 5200 K, no tuning, per the ruling.",
+ "acceptance": {
+  "shadow_tint_B": "1.3-1.7",
+  "highlight_tint_R_B": "0.85-1.15"
+ },
+ "rows": [
+  {
+   "era": "task3/4",
+   "sun_K": 7800,
+   "wb_K": 6500,
+   "_wb_note": "engine default; 1300 K BELOW the sun (blue-amplifying)",
+   "shadow_tint_B": 1.4456,
+   "highlight_R": 1.3005,
+   "highlight_B": 0.2431,
+   "verdict": "shadow PASS"
+  },
+  {
+   "era": "task5",
+   "sun_K": 7800,
+   "wb_K": 8800,
+   "shadow_tint_B": 0.9829,
+   "highlight_R": 1.3748,
+   "highlight_B": 0.1895,
+   "verdict": "shadow FAIL, highlight FAIL"
+  },
+  {
+   "era": "post-ruling (TRUTH class, no target row exists)",
+   "sun_K": 7800,
+   "wb_K": 7800,
+   "shadow_tint_B": 1.258,
+   "highlight_R": 1.3457,
+   "highlight_B": 0.2127,
+   "verdict": "shadow FAIL by 0.042 (truth class)"
+  },
+  {
+   "era": "brief2b",
+   "sun_K": 5200,
+   "wb_K": 5200,
+   "shadow_tint_B": 1.1243,
+   "highlight_R": 1.3817,
+   "highlight_B": 0.2653,
+   "verdict": "shadow FAIL, highlight FAIL"
+  }
+ ],
+ "findings": [
+  "shadow_tint_B: the only PASS row had WB 1300 K BELOW the sun. Under the ruled neutral WB (= sun), 5200/5200 reads 1.1243 and 7800/7800 (truth) 1.258: the 1.3-1.7 band may be unreachable from temperature alone once WB is neutral. The remaining lever is the SKY LIGHT side (its capture/colour feeds shadows), not WB.",
+  "highlight_tint: B moved toward neutral (0.19->0.27), R did not (1.38). Confirms LESSONS 2026-09-09e: the metric measures the sunlit meadow ALBEDO (green grass under a low sun); no white balance reaches 0.85-1.15 at this station. An acceptance about the grade needs a neutral reference surface or a different station.",
+  "Sun 5200 K applied and read back from the engine (sun_state probe: temperature_k 5200.0, use_temperature true); white_temp 5200.0 read back from the volume."
+ ]
+}

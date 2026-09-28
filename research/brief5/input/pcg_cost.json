@@ -1,0 +1,36 @@
+{
+ "_what": "Brief 5 Part C P3 result. HONEST STATE: PCG graph authoring PROVEN; the game-thread clutter-cost MEASUREMENT was NOT captured this session (infrastructure). GPU render cost was never in scope for this pass (owed: -game MRQ).",
+ "acceptance_arms_met": false,
+ "_acceptance_note": "The night's acceptance ('pcg_cost.json has >=3 arms with GPU and game-thread ms per 1000 by class') is NOT met. Stated plainly per rule 10. What blocked it is recorded below; the harness, not the approach, defeated the measurement.",
+
+ "pcg_graph_feasibility": {
+  "proven": true,
+  "artifact": "LandscapeLab/Content/Scratch/PCG/PCG_ClutterSpike.uasset (64,732 bytes, saved from Python, gitignored under Content/Scratch)",
+  "what_it_proves": "A real PCG graph -- SurfaceSampler(points_per_squared_meter) -> TransformPoints -> StaticMeshSpawner(PCGMeshSelectorWeighted, descriptor.static_mesh set) -- was created and SAVED entirely from the Python reflected API (add_node_of_type / add_edge / set_mesh_selector_type / PCGRuntimeGenerationRadii.radius400). PCG authoring from Python is FEASIBLE. This is the queue's core feasibility question, answered YES.",
+  "known_gaps": "Edges into/out of the Input/Output nodes use pin labels the design-review flagged as non-'In'/'Out' (PCGInputOutputSettings.cpp) and AddEdge is non-raising, so those two edges may have silently no-op'd; the middle sampler->transform->spawner edges use 'Out'/'In' correctly. Runtime generation was NOT executed/scheduled this pass."
+ },
+
+ "measurement": {
+  "captured": false,
+  "metric_intended": "game-thread wall-clock of InstancedFoliageActor.add_instances (the foliage/PCG spawn stage) per 1000 instances, by class, at 3 counts. Proven idiom (place_foliage.py).",
+  "why_not_captured": [
+   "This harness REAPS background commands (>120s auto-background) at turn boundaries. The measurement payload's Python CLIENT was killed twice mid-run.",
+   "The editor was launched detached (not reaped) and kept executing the payload after the client died, so the arm-result JSON printed to a dead remote-exec channel and was lost.",
+   "The big payload (up to 20,000 instances x 18 arms + per-class collect_garbage in an 18 GB editor) then held the editor's single Python thread, blocking remote-exec for ~25 min; the editor was force-killed (disk-safe: PCG graph already saved, level never saved).",
+   "A fast measurement-only payload (base 1000, no GC) was prepared to run <120s foreground, but the editor never freed to accept it."
+  ],
+  "retry_recipe_for_a_supervised_session": "With an editor already loaded on /Game/Alpine8K and remote-exec responsive, run scratchpad/pcg_measure_fast.py (base 1000, no per-class GC) via ue_exec in the FOREGROUND (completes <120s, so no background reap). It reports arms[].add_ms_per_1000 by class. For GPU render cost, save the FoliageType instances into a scratch level and run an item8-class -game MRQ pass."
+ },
+
+ "owed": [
+  "game-thread clutter add/generation cost per 1000 by class (the fast payload above; ~minutes supervised)",
+  "steady-state GPU render cost per 1000 by class (a -game MRQ pass on a saved scratch level)"
+ ],
+
+ "byte_identical_proof": {
+  "shipped_umap": "LandscapeLab/Content/Alpine8K.umap git-tracked, no diff vs HEAD, mtime 17:57 predates the session -> never rewritten",
+  "content_tracked_changes": "none (git diff --stat HEAD -- LandscapeLab/Content empty; no __ExternalActors__ changes)",
+  "recipes_foliage": "unchanged",
+  "scratch": "LandscapeLab/Content/Scratch/PCG/PCG_ClutterSpike.uasset only (gitignored)"
+ }
+}

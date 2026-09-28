@@ -1,0 +1,332 @@
+{
+ "_what": "Brief 2 send-back addendum, 2026-09-10: rulings executed, world restored and SAVED, depth sky mask, Task 6 clouds. Supersedes the ruling-pending statements in the 2026-09-09 package; the 09-09 measurement tables remain valid.",
+ "rulings": {
+  "white_balance": "white_temp = the sun temperature (neutral), never above. Recipe 8800 -> 7800 K; 8800 REJECTED (R-GRADE). Sun 7800 K itself registered suspect for a low alpine sun -> Brief 2b, one variable, one capture, later.",
+  "persistence": "apply_lighting now saves + commits its own actor packages after read-back (R-LIGHTSAVE). The crash had reverted every Brief-2 value while all artefacts carried them.",
+  "sky_mask": "colour SKY_BAND replaced by far-plane depth in featureless/dE (haze was depth-born). R-DEPTHBIN.",
+  "clouds": "Task 6 run as specified. R-CLOUDS locked."
+ },
+ "post_restore_tints_truth_class": {
+  "frame": "_verify/bench/2026-09-10/target_truth_t5r/near_ground.png",
+  "shadow_median_linear": [
+   0.00802,
+   0.01298,
+   0.01521
+  ],
+  "lit_median_linear": [
+   0.4452,
+   0.32314,
+   0.07036
+  ],
+  "shadow_luma": 0.01209,
+  "lit_luma": 0.33084,
+  "shadow_tint_R": 0.6637,
+  "shadow_tint_G": 1.0739,
+  "shadow_tint_B": 1.258,
+  "highlight_tint_R": 1.3457,
+  "highlight_tint_G": 0.9767,
+  "highlight_tint_B": 0.2127,
+  "acceptance": "shadow_tint_B in 1.3-1.7",
+  "verdict": "FAIL"
+ },
+ "tint_context": "shadow_tint_B 1.0866 (8800K truth) -> 1.2580 (7800K truth): +0.17 toward Task 3 band, 0.042 BELOW the 1.3 floor. highlight_tint toward neutral but 0.9-1.1 remains unreachable at near_ground (green grass; 2026-09-09e). Truth vs target frames are different calibration classes (same-day task5: 0.9829 target vs 1.0866 truth); Task 3 1.4456 PASS is target-class.",
+ "sky_rejudge_depth_mask": {
+  "_what": "rejudge_sky_depth.py \u2014 re-judge Brief 2's frames with the DEPTH sky mask.",
+  "_ruled": "2026-09-10",
+  "checks": {
+   "two_depth_captures_mid_slope": {
+    "tile_agreement": 1.0,
+    "sky_frac_a": 0.76858,
+    "sky_frac_b": 0.76858,
+    "_note": "two independent captures of one geometry; disagreement is edge tiles + residency, not the mask"
+   },
+   "refuses_mismatched_grid": true,
+   "colour_valid_era_agreement": [
+    {
+     "station": "near_ground",
+     "sky_colour": 0.172,
+     "sky_depth": 0.1248,
+     "residual": -0.0472
+    },
+    {
+     "station": "mid_slope",
+     "sky_colour": 0.2549,
+     "sky_depth": 0.7444,
+     "residual": 0.4895
+    },
+    {
+     "station": "vista",
+     "sky_colour": 0.3997,
+     "sky_depth": 0.4342,
+     "residual": 0.0345
+    }
+   ]
+  },
+  "rows": [
+   {
+    "task": "task1",
+    "station": "near_ground",
+    "colour": {
+     "featureless": 0.1762,
+     "sky": 0.1695,
+     "non_sky": 0.0067
+    },
+    "depth_mask": {
+     "featureless": 0.1762,
+     "sky": 0.1229,
+     "non_sky": 0.0532
+    }
+   },
+   {
+    "task": "task1",
+    "station": "mid_slope",
+    "colour": {
+     "featureless": 0.7433,
+     "sky": 0.346,
+     "non_sky": 0.3973
+    },
+    "depth_mask": {
+     "featureless": 0.7433,
+     "sky": 0.7281,
+     "non_sky": 0.0152
+    },
+    "dE_colour": 0.6465,
+    "dE_depth": 0.6555
+   },
+   {
+    "task": "task1",
+    "station": "vista",
+    "colour": {
+     "featureless": 0.5818,
+     "sky": 0.4209,
+     "non_sky": 0.1609
+    },
+    "depth_mask": {
+     "featureless": 0.5818,
+     "sky": 0.4354,
+     "non_sky": 0.1464
+    },
+    "dE_colour": 0.5493,
+    "dE_depth": 0.22373
+   },
+   {
+    "task": "task2",
+    "station": "near_ground",
+    "colour": {
+     "featureless": 0.1781,
+     "sky": 0.172,
+     "non_sky": 0.0062
+    },
+    "depth_mask": {
+     "featureless": 0.1781,
+     "sky": 0.1248,
+     "non_sky": 0.0534
+    }
+   },
+   {
+    "task": "task2",
+    "station": "mid_slope",
+    "colour": {
+     "featureless": 0.7608,
+     "sky": 0.2549,
+     "non_sky": 0.5059
+    },
+    "depth_mask": {
+     "featureless": 0.7608,
+     "sky": 0.7444,
+     "non_sky": 0.0164
+    },
+    "dE_colour": 0.64559,
+    "dE_depth": 0.61505
+   },
+   {
+    "task": "task2",
+    "station": "vista",
+    "colour": {
+     "featureless": 0.5742,
+     "sky": 0.3997,
+     "non_sky": 0.1744
+    },
+    "depth_mask": {
+     "featureless": 0.5742,
+     "sky": 0.4342,
+     "non_sky": 0.14
+    },
+    "dE_colour": 0.55943,
+    "dE_depth": 0.35302
+   },
+   {
+    "task": "task3",
+    "station": "near_ground",
+    "colour": {
+     "featureless": 0.1793,
+     "sky": 0.1651,
+     "non_sky": 0.0142
+    },
+    "depth_mask": {
+     "featureless": 0.1793,
+     "sky": 0.1248,
+     "non_sky": 0.0545
+    }
+   },
+   {
+    "task": "task3",
+    "station": "mid_slope",
+    "colour": {
+     "featureless": 0.7675,
+     "sky": 0.2529,
+     "non_sky": 0.5146
+    },
+    "depth_mask": {
+     "featureless": 0.7675,
+     "sky": 0.7443,
+     "non_sky": 0.0231
+    },
+    "dE_colour": 0.7495,
+    "dE_depth": 0.59546
+   },
+   {
+    "task": "task3",
+    "station": "vista",
+    "colour": {
+     "featureless": 0.5735,
+     "sky": 0.3994,
+     "non_sky": 0.1742
+    },
+    "depth_mask": {
+     "featureless": 0.5735,
+     "sky": 0.4341,
+     "non_sky": 0.1394
+    },
+    "dE_colour": 0.70121,
+    "dE_depth": 0.35132
+   },
+   {
+    "task": "task4",
+    "station": "near_ground",
+    "colour": {
+     "featureless": 0.1792,
+     "sky": 0.1671,
+     "non_sky": 0.0121
+    },
+    "depth_mask": {
+     "featureless": 0.1792,
+     "sky": 0.1248,
+     "non_sky": 0.0545
+    }
+   },
+   {
+    "task": "task4",
+    "station": "mid_slope",
+    "colour": {
+     "featureless": 0.7747,
+     "sky": 0.1676,
+     "non_sky": 0.6071
+    },
+    "depth_mask": {
+     "featureless": 0.7747,
+     "sky": 0.7475,
+     "non_sky": 0.0272
+    },
+    "dE_colour": 0.46741,
+    "dE_depth": 0.53552
+   },
+   {
+    "task": "task4",
+    "station": "vista",
+    "colour": {
+     "featureless": 0.5735,
+     "sky": 0.366,
+     "non_sky": 0.2074
+    },
+    "depth_mask": {
+     "featureless": 0.5735,
+     "sky": 0.4336,
+     "non_sky": 0.1398
+    },
+    "dE_colour": 0.70642,
+    "dE_depth": 0.33268
+   },
+   {
+    "task": "task5",
+    "station": "near_ground",
+    "colour": {
+     "featureless": 0.1824,
+     "sky": 0.1543,
+     "non_sky": 0.0281
+    },
+    "depth_mask": {
+     "featureless": 0.1824,
+     "sky": 0.1307,
+     "non_sky": 0.0517
+    }
+   },
+   {
+    "task": "task5",
+    "station": "mid_slope",
+    "colour": {
+     "featureless": 0.7907,
+     "sky": 0.0,
+     "non_sky": 0.7907
+    },
+    "depth_mask": {
+     "featureless": 0.7907,
+     "sky": 0.7582,
+     "non_sky": 0.0325
+    },
+    "dE_colour": null,
+    "dE_depth": 0.44575
+   },
+   {
+    "task": "task5",
+    "station": "vista",
+    "colour": {
+     "featureless": 0.5843,
+     "sky": 0.2468,
+     "non_sky": 0.3375
+    },
+    "depth_mask": {
+     "featureless": 0.5843,
+     "sky": 0.4424,
+     "non_sky": 0.1419
+    },
+    "dE_colour": 0.64517,
+    "dE_depth": 0.1945
+   }
+  ]
+ },
+ "clouds_acceptance": {
+  "depth_mask_agreement_pre_vs_post": 1.0,
+  "geometric_sky_pre": 0.46077160493827163,
+  "geometric_sky_post": 0.46077160493827163,
+  "pre": {
+   "featureless": 0.147,
+   "sky_depth": 0.1441,
+   "non_sky_depth": 0.0029,
+   "sky_colour": 0.0184,
+   "non_sky_colour": 0.1286,
+   "dE_depth": 0.24557
+  },
+  "post": {
+   "featureless": 0.3692,
+   "sky_depth": 0.366,
+   "non_sky_depth": 0.0032,
+   "sky_colour": 0.009,
+   "non_sky_colour": 0.3602,
+   "dE_depth": 0.27324
+  }
+ },
+ "dolly": {
+  "score_precloud": 0.65369,
+  "score_postcloud": 0.65351,
+  "ratio": 0.9997,
+  "limit": 1.1,
+  "spikes": 0,
+  "walk_lit_floor": 0.6105
+ },
+ "stills_sent": [
+  "near_ground_truth_7800K (truth, residency 0 missing)",
+  "vista_precloud_7800K (truth-mode)",
+  "vista_postcloud_clouds (truth-mode)"
+ ]
+}

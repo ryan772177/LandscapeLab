@@ -1,0 +1,92 @@
+{
+ "instrument": "ppi0",
+ "bins": [
+  {
+   "bin_m": [
+    0.0,
+    100.0
+   ],
+   "pixels": 22684,
+   "representative_m": 50.0,
+   "predicted_T": 0.99214,
+   "luma_std": 0.00108,
+   "median_luma": 0.13135,
+   "p10_luma": 0.129991,
+   "contrast_ratio": 1.0,
+   "contrast_vs_predicted": 0.0079,
+   "within_30pc": true
+  },
+  {
+   "bin_m": [
+    100.0,
+    300.0
+   ],
+   "pixels": 0,
+   "representative_m": 200.0,
+   "predicted_T": 0.96891
+  },
+  {
+   "bin_m": [
+    300.0,
+    1000.0
+   ],
+   "pixels": 1496784,
+   "representative_m": 650.0,
+   "predicted_T": 0.90245,
+   "luma_std": 0.054974,
+   "median_luma": 0.100329,
+   "p10_luma": 0.072455,
+   "contrast_ratio": 50.90185,
+   "contrast_vs_predicted": 55.4041,
+   "within_30pc": false
+  },
+  {
+   "bin_m": [
+    1000.0,
+    3000.0
+   ],
+   "pixels": 1560767,
+   "representative_m": 2000.0,
+   "predicted_T": 0.72919,
+   "luma_std": 0.070156,
+   "median_luma": 0.139142,
+   "p10_luma": 0.096012,
+   "contrast_ratio": 64.95926,
+   "contrast_vs_predicted": 88.0841,
+   "within_30pc": false
+  },
+  {
+   "bin_m": [
+    3000.0,
+    8000.0
+   ],
+   "pixels": 0,
+   "representative_m": 5500.0,
+   "predicted_T": 0.41958
+  }
+ ],
+ "populated_bins": 3,
+ "target_bin_300_1000": {
+  "pixels": 1496784,
+  "representative_m": 650.0,
+  "predicted_T": 0.90245,
+  "contrast_ratio": 50.90185,
+  "contrast_vs_predicted": 55.4041,
+  "base_bin_m": [
+   0.0,
+   100.0
+  ]
+ },
+ "verdict": "FAIL",
+ "acceptance": "300-1000 m contrast ratio within +/-30% of predicted T",
+ "exr": "_verify/bench/2026-09-15/target_b1_mid_slope/mid_slope.exr",
+ "depth": "_verify/bench/2026-09-15/target_b1_mid_slope/mid_slopeFinalImageSceneDepth.png",
+ "station": "mid_slope",
+ "cam_z_m": 636.3,
+ "fog_used": {
+  "density": 0.00416,
+  "falloff": 0.019324,
+  "half_height_m": 517.49,
+  "datum_m": 186.74
+ }
+}

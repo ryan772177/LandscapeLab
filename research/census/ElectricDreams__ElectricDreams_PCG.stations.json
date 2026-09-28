@@ -1,0 +1,79 @@
+{
+ "ok": false,
+ "errors": [],
+ "map": "",
+ "bounds": {
+  "x0": -83180.0,
+  "x1": 247020.0,
+  "y0": -165100.0,
+  "y1": 165100.0,
+  "ground_z": 1176.3671875,
+  "actors_kept": 370,
+  "actors_skipped_oversize": 18
+ },
+ "stations": [
+  {
+   "name": "wide_vista",
+   "loc": [
+    -66670.0,
+    -148590.0,
+    93632.36718750001
+   ],
+   "pitch": -20.0,
+   "yaw": 45.0
+  },
+  {
+   "name": "mid_distance",
+   "loc": [
+    29088.0,
+    -52832.0,
+    20988.3671875
+   ],
+   "pitch": -9.0,
+   "yaw": 45.0
+  },
+  {
+   "name": "ground_closeup",
+   "loc": [
+    72014.0,
+    -9906.0,
+    1351.3671875
+   ],
+   "pitch": -3.0,
+   "yaw": 45.0
+  },
+  {
+   "name": "against_sky",
+   "loc": [
+    101732.0,
+    19812.0,
+    1426.3671875
+   ],
+   "pitch": 14.0,
+   "yaw": -135.0
+  },
+  {
+   "name": "overview_high",
+   "loc": [
+    81920.0,
+    0.0,
+    182786.36718750003
+   ],
+   "pitch": -55.0,
+   "yaw": 20.0
+  }
+ ],
+ "current_world": "/Game/Levels/PCG/ElectricDreams_PCG.ElectricDreams_PCG",
+ "_ground_trace_correction": {
+  "why": "Stations were derived from ONE global ground_z -- the median actor base across a 3.3 km world. shoot.py refused two as underground (24.0 m and 67.3 m below), which was correct.",
+  "traced_per_station_cm": {
+   "ground_closeup": 3753.6,
+   "against_sky": 8153.7
+  },
+  "complex_vs_simple": "against_sky traced 6917.5 with bTraceComplex=False and 8153.7 with True -- a 12.4 m difference. Simple collision sat below the visible surface and shoot.py refused the station again. bench_make_cameras.py passes True for this reason.",
+  "final_camera_z_cm": {
+   "ground_closeup": 3928.6,
+   "against_sky": 8403.7
+  }
+ }
+}

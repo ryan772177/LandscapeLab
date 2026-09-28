@@ -1,0 +1,129 @@
+{
+ "ok": true,
+ "_note": "get_lod_screen_sizes returns the RENDER-DATA ScreenSize array (StaticMeshEditorSubsystem.cpp:1003-1008) -- what the runtime reads; compared to t3_hold.json targets. Mismatch = stale render-data/DDC; match under a NO-OP colour verdict = not staleness.",
+ "level": "Alpine8K",
+ "card_species": {
+  "ConiferPine": {
+   "present_in_level": true,
+   "n_components": 970,
+   "n_instances": 40326,
+   "num_lods": 4,
+   "screen_sizes": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.03818
+   ],
+   "t3_hold_target": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.03818
+   ],
+   "matches_t3_hold": true
+  },
+  "SpruceSub": {
+   "present_in_level": true,
+   "n_components": 990,
+   "n_instances": 46841,
+   "num_lods": 5,
+   "screen_sizes": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.02642
+   ],
+   "t3_hold_target": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.02642
+   ],
+   "matches_t3_hold": true
+  }
+ },
+ "all_ism_meshes": {
+  "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A": {
+   "n_components": 982,
+   "n_instances": 54599,
+   "num_lods": 1
+  },
+  "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01": {
+   "n_components": 970,
+   "n_instances": 40326,
+   "num_lods": 4
+  },
+  "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01": {
+   "n_components": 990,
+   "n_instances": 46841,
+   "num_lods": 5
+  },
+  "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05": {
+   "n_components": 993,
+   "n_instances": 43619,
+   "num_lods": 4
+  },
+  "/Game/Meshes/grass_medium_01_tiny_a_LOD0": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 1
+  },
+  "/Game/Meshes/grass_medium_01_tall_a_LOD0": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 1
+  },
+  "/Game/Meshes/grass_medium_01_small_a_LOD0": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 1
+  },
+  "/Game/Meshes/grass_medium_01_mid_b_LOD0": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 1
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_01": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_02": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_03": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_04": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_05": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_06": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_07": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  },
+  "/Game/PN_WildBerries/Meshes/Blueberry/Blueberry_08": {
+   "n_components": 2,
+   "n_instances": 0,
+   "num_lods": 4
+  }
+ }
+}

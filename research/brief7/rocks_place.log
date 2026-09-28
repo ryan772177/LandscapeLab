@@ -1,0 +1,67 @@
+--- resource guard: foliage placement (foliage regen) ---
+  RAM: 5.1 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 27120)
+--- committed plans (no generator constructed) ---
+  Conifer           54,599 instances  foliage\alpine_8k_Conifer.json
+  ConiferPine       40,326 instances  foliage\alpine_8k_ConiferPine.json
+  SpruceSub         46,841 instances  foliage\alpine_8k_SpruceSub.json
+  SpruceSapling     43,619 instances  foliage\alpine_8k_SpruceSapling.json
+  Boulder              724 instances  foliage\alpine_8k_Boulder.json
+  TreeStump          1,060 instances  foliage\alpine_8k_TreeStump.json
+  CliffOutcrop       3,955 instances  foliage\alpine_8k_CliffOutcrop.json
+  CliffOutcropB      5,517 instances  foliage\alpine_8k_CliffOutcropB.json
+  CliffFace            141 instances  foliage\alpine_8k_CliffFace.json
+  TalusField           915 instances  foliage\alpine_8k_TalusField.json
+  TalusFieldB          722 instances  foliage\alpine_8k_TalusFieldB.json
+  TalusFieldC          539 instances  foliage\alpine_8k_TalusFieldC.json
+  TalusChannel         310 instances  foliage\alpine_8k_TalusChannel.json
+  TOTAL            199,268 instances across 13 species
+
+--- editor identity gate (conduct rule 7) ---
+  - 72B7D6724F8C7430B92B28837D65888B (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  VERIFIED: 72B7D6724F8C7430B92B28837D65888B (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab)
+
+--- level gate (recipe landscape.level_path) ---
+  level /Game/Alpine8K
+
+--- placing ---
+  orphans cleared: FT_Scrub
+    (foliage types with no species in the recipe; their instances would otherwise survive every run)
+  Conifer        requested   54,599   mesh bound True
+                 pivot 0.2872 m horizontal, base -0.007 m (limits 1.0 / 0.25)   bounds [10.3694, 10.3595, 29.3127] m
+  ConiferPine    requested   40,326   mesh bound True
+                 pivot 0.0472 m horizontal, base -0.0847 m (limits 1.0 / 0.25)   bounds [9.7349, 9.8294, 22.1072] m
+  SpruceSub      requested   46,841   mesh bound True
+                 pivot 0.0645 m horizontal, base -0.0024 m (limits 1.0 / 0.25)   bounds [4.0119, 3.672, 16.7246] m
+                 slots: PASS: 4 override(s) match 4 material slot(s).
+  SpruceSapling  requested   43,619   mesh bound True
+                 pivot 0.2307 m horizontal, base -0.0002 m (limits 1.0 / 0.25)   bounds [3.8273, 4.2706, 4.5293] m
+                 slots: PASS: 3 override(s) match 3 material slot(s).
+  Boulder        requested      724   mesh bound True
+                 pivot 0.1234 m horizontal, base -0.6279 m (limits 1.0 / 0.25)   bounds [1.5398, 1.7958, 1.3312] m
+  TreeStump      requested    1,060   mesh bound True
+                 pivot 0.0456 m horizontal, base -0.1273 m (limits 1.0 / 0.25)   bounds [0.7904, 0.6722, 2.33] m
+  CliffOutcrop   requested    3,955   mesh bound True
+                 pivot 0.5579 m horizontal, base -0.7136 m (limits 1.0 / 0.25)   bounds [4.1098, 3.7838, 3.8598] m
+  CliffOutcropB  requested    5,517   mesh bound True
+                 pivot 0.3475 m horizontal, base -0.2593 m (limits 1.0 / 0.25)   bounds [2.4025, 3.8265, 2.9029] m
+  CliffFace      requested      141   mesh bound True
+                 pivot 0.1013 m horizontal, base -1.426 m (limits 1.0 / 0.25)   bounds [22.2491, 7.2984, 15.6244] m
+  TalusField     requested      915   mesh bound True
+                 pivot 0.1637 m horizontal, base -0.173 m (limits 1.0 / 0.25)   bounds [5.6824, 3.369, 0.4775] m
+  TalusFieldB    requested      722   mesh bound True
+                 pivot 0.1345 m horizontal, base -0.2359 m (limits 1.0 / 0.25)   bounds [4.2367, 4.3965, 0.543] m
+  TalusFieldC    requested      539   mesh bound True
+                 pivot 0.1945 m horizontal, base -0.2218 m (limits 1.0 / 0.25)   bounds [3.4356, 3.1549, 0.5238] m
+  TalusChannel   requested      310   mesh bound True
+                 pivot 0.0255 m horizontal, base -0.2049 m (limits 1.0 / 0.25)   bounds [5.6595, 6.6415, 0.7179] m
+
+--- verification ---
+  planned          199,268
+  counted in world 199,268
+
+======================================================================
+PLACED 199,268 instances across 13 species, counted in the world.
+======================================================================
+
+Pipeline rule 4: run the capture script (a LESSONS.md note is suggested, not required). NOT SAVED — foliage persists only after save_level.

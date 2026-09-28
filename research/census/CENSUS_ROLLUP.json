@@ -1,0 +1,343 @@
+{
+  "_what": "Consolidated census values. Every number carries a STATUS -- a bare count cannot distinguish a real zero from a lookup that asked the wrong place, and this census produced both.",
+  "_status_meanings": {
+    "MEASURED": "counted, lookup verified to have reached the right place",
+    "MEASURED_ZERO": "none exist; the lookup reached where they live",
+    "UNVERIFIED": "value came from a lookup later found broken, and the source project has been deleted, so it cannot be re-run",
+    "NOT_CAPTURED": "the accessor failed; no value exists",
+    "ZERO_UNAUDITED": "zero, with no trace proving the lookup landed",
+    "BLOCKED": "the project could not be opened"
+  },
+  "brief_targets": {
+    "ElectricDreams": [
+      "pcg_graphs (close-range and far-range maps)"
+    ],
+    "CitySample": [
+      "hlod_layers",
+      "world_partition"
+    ],
+    "ValleyOfTheAncient": [
+      "landscape_materials",
+      "lighting"
+    ],
+    "DarkRuins": [
+      "tessellation/displacement",
+      "post-process"
+    ]
+  },
+  "maps": {
+    "CitySample__Small_City_LVL": {
+      "world": "/Game/Map/Small_City_LVL.Small_City_LVL",
+      "artefact": "research/census/CitySample__Small_City_LVL.json",
+      "asset_lookup_trace_present": false,
+      "values": {
+        "project": {
+          "count": 3,
+          "status": "MEASURED"
+        },
+        "hlod_layers": {
+          "count": 16,
+          "status": "MEASURED"
+        },
+        "world_partition": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "foliage_types": {
+          "count": 0,
+          "status": "UNVERIFIED"
+        },
+        "impostors": {
+          "count": 94,
+          "status": "MEASURED"
+        },
+        "pcg_graphs": {
+          "count": 0,
+          "status": "UNVERIFIED"
+        },
+        "landscape_materials": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "lighting": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "water": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        }
+      },
+      "world_partition_detail": {
+        "world_partition_path": "/Game/Map/Small_City_LVL.Small_City_LVL:PersistentLevel.WorldSettings.WorldPartition_1",
+        "default_hlod_layer": "/Game/Map/HLOD/CitySample_HLOD0.CitySample_HLOD0",
+        "runtime_hash_class": "WorldPartitionRuntimeHashSet",
+        "runtime_hash_route": "find_object(WorldPartitionRuntimeHashSet_0)"
+      }
+    },
+    "CitySample__Startup": {
+      "world": "/Game/Map/Startup/Startup.Startup",
+      "artefact": "research/census/CitySample__Startup.json",
+      "asset_lookup_trace_present": false,
+      "values": {
+        "project": {
+          "count": 3,
+          "status": "MEASURED"
+        },
+        "hlod_layers": {
+          "count": 16,
+          "status": "MEASURED"
+        },
+        "world_partition": {
+          "count": 1,
+          "status": "NOT_CAPTURED"
+        },
+        "foliage_types": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "impostors": {
+          "count": 94,
+          "status": "MEASURED"
+        },
+        "pcg_graphs": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "landscape_materials": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "lighting": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "water": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        }
+      }
+    },
+    "DarkRuins__Main": {
+      "world": "/Game/Main.Main",
+      "artefact": "research/census/DarkRuins__Main.json",
+      "asset_lookup_trace_present": true,
+      "values": {
+        "project": {
+          "count": 3,
+          "status": "MEASURED"
+        },
+        "hlod_layers": {
+          "count": 11,
+          "status": "MEASURED"
+        },
+        "world_partition": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "foliage_types": {
+          "count": 0,
+          "status": "MEASURED_ZERO"
+        },
+        "impostors": {
+          "count": 16,
+          "status": "MEASURED"
+        },
+        "pcg_graphs": {
+          "count": 54,
+          "status": "MEASURED"
+        },
+        "landscape_materials": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "lighting": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "water": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        }
+      },
+      "world_partition_detail": {
+        "world_partition_path": "/Game/Main.Main:PersistentLevel.WorldSettings_1.WorldPartition_0",
+        "default_hlod_layer": "/Game/Main_HLODLayer_Instanced.Main_HLODLayer_Instanced",
+        "runtime_hash_class": "WorldPartitionRuntimeHashSet",
+        "runtime_hash_route": "find_object(WorldPartitionRuntimeHashSet_0)"
+      }
+    },
+    "ElectricDreams__ElectricDreams_PCG": {
+      "world": "/Game/Levels/PCG/ElectricDreams_PCG.ElectricDreams_PCG",
+      "artefact": "research/census/ElectricDreams__ElectricDreams_PCG.json",
+      "asset_lookup_trace_present": true,
+      "values": {
+        "project": {
+          "count": 3,
+          "status": "MEASURED"
+        },
+        "hlod_layers": {
+          "count": 9,
+          "status": "MEASURED"
+        },
+        "world_partition": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "foliage_types": {
+          "count": 62,
+          "status": "MEASURED"
+        },
+        "impostors": {
+          "count": 9,
+          "status": "MEASURED"
+        },
+        "pcg_graphs": {
+          "count": 72,
+          "status": "MEASURED"
+        },
+        "landscape_materials": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "lighting": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "water": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        }
+      },
+      "world_partition_detail": {
+        "world_partition_path": "/Game/Levels/PCG/ElectricDreams_PCG.ElectricDreams_PCG:PersistentLevel.WorldSettings.WorldPartition_0",
+        "default_hlod_layer": null,
+        "runtime_hash_class": "WorldPartitionRuntimeSpatialHash",
+        "runtime_hash_route": "find_object(WorldPartitionRuntimeSpatialHash_0)"
+      },
+      "landscape_material_detail": {
+        "material": "/Game/Landscape/MI_BGLandscape_Auto_01.MI_BGLandscape_Auto_01",
+        "distinct_expression_types": 21,
+        "top_expressions": {
+          "MaterialExpressionScalarParameter": 36,
+          "MaterialExpressionLinearInterpolate": 13,
+          "MaterialExpressionMultiply": 12,
+          "MaterialExpressionSaturate": 11,
+          "MaterialExpressionTextureSample": 10,
+          "MaterialExpressionAdd": 8
+        }
+      }
+    },
+    "ElectricDreams__ElectricDreams_PCGCloseRange": {
+      "world": "/Game/Levels/PCG/ElectricDreams_PCGCloseRange.ElectricDreams_PCGCloseRange",
+      "artefact": "research/census/ElectricDreams__ElectricDreams_PCGCloseRange.json",
+      "asset_lookup_trace_present": true,
+      "values": {
+        "project": {
+          "count": 3,
+          "status": "MEASURED"
+        },
+        "hlod_layers": {
+          "count": 9,
+          "status": "MEASURED"
+        },
+        "world_partition": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "foliage_types": {
+          "count": 62,
+          "status": "MEASURED"
+        },
+        "impostors": {
+          "count": 9,
+          "status": "MEASURED"
+        },
+        "pcg_graphs": {
+          "count": 72,
+          "status": "MEASURED"
+        },
+        "landscape_materials": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        },
+        "lighting": {
+          "count": 1,
+          "status": "MEASURED"
+        },
+        "water": {
+          "count": 0,
+          "status": "ZERO_UNAUDITED"
+        }
+      },
+      "world_partition_detail": {
+        "world_partition_path": "/Game/Levels/PCG/ElectricDreams_PCGCloseRange.ElectricDreams_PCGCloseRange:PersistentLevel.WorldSettings.WorldPartition_0",
+        "default_hlod_layer": null,
+        "runtime_hash_class": "WorldPartitionRuntimeSpatialHash",
+        "runtime_hash_route": "find_object(WorldPartitionRuntimeSpatialHash_0)"
+      }
+    }
+  },
+  "projects_not_censused": {
+    "ValleyOfTheAncient": {
+      "status": "BLOCKED_ON_SOURCE_PORT",
+      "why": "C++ modules compiled for 5.7; a 5.8 editor logs 'Still incompatible or missing module' for AncientGame, InstanceLevelCollision, Crossfader, Uproar, Underscore and HoverDrone, then exits. Rebuild in progress.",
+      "targets_unmet": [
+        "landscape_materials",
+        "lighting"
+      ],
+      "rebuild_attempt": {
+        "progress": "91 of 112 files compiled in 46 s. The toolchain, the VS registration and the V7 build-settings fix all WORKED -- this attempt reached the compiler, which the previous three never did.",
+        "gates_cleared_in_order": [
+          "no registered VS instance -- fixed by Ryan repairing Visual Studio (the VS package cache had been deleted during a disk crisis, taking _Instances with it)",
+          "TargetBuildEnvironment.Unique -- IMPOSSIBLE on an installed engine: 'Targets with a unique build environment cannot be built with an installed engine.' This was the edit I originally asked Ryan to authorise, and it was the wrong one.",
+          "DefaultBuildSettings V6 -> V7 -- ACCEPTED, kept the shared environment",
+          "Live Coding active -- my own editor was open; closed it"
+        ],
+        "real_blocker": "5.7 -> 5.8 SOURCE INCOMPATIBILITY. Not build configuration.",
+        "errors": {
+          "C4002": "AncientGamePlayerController.h:24 -- FUNC_DECLARE_EVENT(AAncientGamePlayerController, FOnRecievedPlayerEvent, void, UPlayer*) : 'too many arguments for function-like macro'. The macro's signature changed between 5.7 and 5.8.",
+          "C2070": "DelegateSignatureImpl.inl:1089 -- 'ill-formed sizeof operand', cascading from the malformed macro expansion",
+          "C2039": "AncientGamePlayerController.cpp:10 -- 'Broadcast' is not a member, same cascade",
+          "C2338": "FormatStringSanErrors.inl:40 -- 'missing format specifier'. 5.8 added stricter UE_LOG format-string validation and the 5.7 code does not satisfy it."
+        },
+        "what_it_would_take": "A code port of the AncientGame module: update the delegate declaration to 5.8's FUNC_DECLARE_EVENT signature and fix the UE_LOG format strings. That is source work on an Epic sample, not census work, and well beyond 'one bounded attempt'.",
+        "state_left_behind": "AncientGameEditor.Target.cs is left at DefaultBuildSettings V7 (backed up to research/census/config_backups/, revert with scripts/patch_sample_target.py --revert). UBT wrote build intermediates into the vault copy. No .uproject, .uasset or .umap was touched.",
+        "xge_noise": "The build log also carries 'License not activated' and an antivirus warning (Trellix). Those are XGE warnings, NOT the cause -- the four C-errors above are."
+      }
+    }
+  },
+  "known_limits": [
+    "world_partition cell size and loading range are UNREACHABLE: UWorldPartitionRuntimeHashSet declares RuntimePartitions private, so it is not reflected to Python. Same wall as bench_grid_derive.py:139.",
+    "CitySample foliage_types and pcg_graphs are UNVERIFIED: produced by the broken /Script/Engine lookup, and the 106 GB vault copy was deleted during a disk crisis, so they cannot be re-run.",
+    "DarkRuins landscape_materials is 0 and that map has no Landscape actor at all, so the brief's tessellation/displacement target is UNANSWERED rather than answered negatively.",
+    "Screenshots are one viewpoint per project, not multi-angle surveys. See the READMEs under research/census/shots/.",
+    "ValleyOfTheAncient needs a C++ SOURCE PORT for 5.8 (FUNC_DECLARE_EVENT signature change plus stricter UE_LOG format validation). The toolchain and build settings are resolved; 91 of 112 files compile."
+  ],
+  "survey_shots": {
+    "_see": "research/census/shots/SURVEY_STATUS.md",
+    "ElectricDreams__PCG_far_range": "5 of 5, VERIFIED BY EYE -- remote exec + shoot.py",
+    "ElectricDreams__PCGCloseRange": "0 of 5 -- editor wedged after one HighResShot; log silent 20+ min",
+    "DarkRuins__Main": "0 of 5 -- HighResShot issued twice, NO frame ever written; not wedged",
+    "CitySample__Small_City_LVL": "5 frames but ONE VIEWPOINT (-ExecCmds); kept with a README",
+    "ValleyOfTheAncient": "none -- editor cannot open",
+    "_proven": "-ExecCmds cannot move the camera before the shot lands: 4 attempts, delay 8 -> 900 -> 1200 frames plus ghost no-clip. The delay fixed the CAPTURE (0 -> 1 -> 5 filed) and never the CAMERA. Remote execution + shoot.py DOES work -- it waits host-side so the editor keeps ticking.",
+    "_unexplained": "Two projects ran the same tooling against a fresh editor and produced nothing, in TWO DIFFERENT failure shapes (one wedged, one kept accepting commands but wrote no frame). No cause claimed; the candidates are untested."
+  },
+  "sample_projects_restored": {
+    "_ruling": "Ryan: revert the sample projects to as-found.",
+    "ElectricDreams": "bRemoteExecution REMOVED, config restored from backup",
+    "DarkRuins": "bRemoteExecution REMOVED, config restored from backup",
+    "ValleyOfTheAncient": {
+      "config": "never had bRemoteExecution added -- its editor cannot open, so there was nothing to connect to",
+      "Target.cs": "REVERTED to DefaultBuildSettings V6, no BuildEnvironment line",
+      "Intermediate/Build": "DELETED -- all 221 files were dated today 17:35-21:15, i.e. produced by my build attempts; 2.5 GB reclaimed"
+    },
+    "NOT_RESTORED_two_changes_I_cannot_undo": {
+      "UnrealEditor-AncientGame.pdb": "GONE. It was present at session start (Binaries/Win64 held 4 files) and my build removed it. No backup was taken -- I backed up the Target.cs and the ini before editing them, and did not anticipate the build touching shipped binaries.",
+      "AncientGameEditor.target": "OVERWRITTEN by UBT's partial receipt at 20:47. The original shipped file is not recoverable from here.",
+      "_impact": "Both are BUILD OUTPUTS, regenerable by a successful build, and neither is needed to RUN the editor -- UnrealEditor-AncientGame.dll and UnrealEditor.modules survive untouched with their 9/6 timestamps. Valley's editor could not open before this session and still cannot, for the same module-version reason. So the project is functionally as found, with two altered artefacts.",
+      "_lesson": "I backed up what I INTENDED to edit and not what the TOOL might touch. A build writes wherever its target directory points."
+    }
+  }
+}

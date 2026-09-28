@@ -1,0 +1,42 @@
+{
+ "what": "F2 argmax-flip: bake_surface_lookup raw-argmax vs the height-reweighted shader dominant, walkable area only",
+ "ruling": "<=2% accept (record); >2% model the reweight in bake_surface_lookup before Phase 1 world run (Ryan 2026-09-23)",
+ "k": 4.0,
+ "eps": 0.02,
+ "eps_norm": 1.5999999999999998e-14,
+ "stride": 4,
+ "grid": [
+  2033,
+  2033
+ ],
+ "walk_deg": 44.765,
+ "water": "npz key 'mask' shape (2033, 2033)",
+ "layers_order": [
+  "Snow",
+  "Rock",
+  "Scree",
+  "ForestFloor",
+  "Grass"
+ ],
+ "stored": [
+  "Snow",
+  "Rock",
+  "Scree",
+  "ForestFloor"
+ ],
+ "tiling_m": {
+  "Snow": 5.03,
+  "Rock": 1.8,
+  "Scree": 2.0,
+  "ForestFloor": 2.14,
+  "Grass": 5.03
+ },
+ "n_sampled": 4133089,
+ "n_walkable": 3381792,
+ "flips_walkable": 105546,
+ "frac_flip_walkable": 0.03121008033610583,
+ "frac_flip_all_terrain": 0.026657785496513625,
+ "flip_margin_p50": 0.3529411764705882,
+ "flip_margin_p90": 0.7490196078431373,
+ "verdict": "MODEL"
+}

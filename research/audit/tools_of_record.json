@@ -1,0 +1,5293 @@
+{
+ "_what": "tools named as of-record vs scripts that exist and are called",
+ "n": 540,
+ "tools": [
+  {
+   "tool": "abc_api_probe",
+   "status": "listed-but-unused",
+   "paths": [
+    "hero/groomloop/scripts/abc_api_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "abc_diff_classify",
+   "status": "listed-but-unused",
+   "paths": [
+    "hero/groomloop/scripts/abc_diff_classify.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "abc_schema_dump",
+   "status": "listed-but-unused",
+   "paths": [
+    "hero/groomloop/scripts/abc_schema_dump.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "adopt_verified_encounters",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/adopt_verified_encounters.py",
+    "dist/forge-0.4.0/scripts/adopt_verified_encounters.py",
+    "scripts/adopt_verified_encounters.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "advisory",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/advisory.py"
+   ],
+   "referenced_by_n_scripts": 10,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ai_input_guard",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/ai_input_guard.py",
+    "dist/forge-0.4.0/scripts/ai_input_guard.py",
+    "scripts/ai_input_guard.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "angular_budget",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief1_distance_as_angle/brief1/scripts/angular_budget.py",
+    "scripts/angular_budget.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "apply_character_recipe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_character_recipe.py",
+    "dist/forge-0.4.0/scripts/apply_character_recipe.py",
+    "scripts/apply_character_recipe.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_foliage_collision",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_foliage_collision.py",
+    "dist/forge-0.4.0/scripts/apply_foliage_collision.py",
+    "scripts/apply_foliage_collision.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_grooms",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/likeness/apply_grooms.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_landscape_transform",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_landscape_transform.py",
+    "dist/forge-0.4.0/scripts/apply_landscape_transform.py",
+    "scripts/apply_landscape_transform.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_lighting",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_lighting.py",
+    "dist/forge-0.4.0/scripts/apply_lighting.py",
+    "scripts/apply_lighting.py"
+   ],
+   "referenced_by_n_scripts": 27,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_navigation_config",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_navigation_config.py",
+    "dist/forge-0.4.0/scripts/apply_navigation_config.py",
+    "scripts/apply_navigation_config.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "atmosphere_solve",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/atmosphere_solve.py",
+    "dist/forge-0.4.0/scripts/atmosphere_solve.py",
+    "scripts/atmosphere_solve.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "attention",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "audit_material_connectivity",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/audit_material_connectivity.py",
+    "dist/forge-0.4.0/scripts/audit_material_connectivity.py",
+    "scripts/audit_material_connectivity.py"
+   ],
+   "referenced_by_n_scripts": 4,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "audit_material_samplers",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/audit_material_samplers.py",
+    "dist/forge-0.4.0/scripts/audit_material_samplers.py",
+    "scripts/audit_material_samplers.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "audit_step_height",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/audit_step_height.py",
+    "dist/forge-0.4.0/scripts/audit_step_height.py",
+    "scripts/audit_step_height.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "author_hero_hair",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/author_hero_hair.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bake_skeletal_to_static",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/bake_skeletal_to_static.py",
+    "dist/forge-0.4.0/scripts/bake_skeletal_to_static.py",
+    "scripts/bake_skeletal_to_static.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bake_surface_lookup",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/bake_surface_lookup.py",
+    "dist/forge-0.4.0/scripts/bake_surface_lookup.py",
+    "scripts/bake_surface_lookup.py"
+   ],
+   "referenced_by_n_scripts": 9,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_capture",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/bench_capture.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_grid_probe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/bench_grid_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_make_cameras",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/bench_make_cameras.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_make_dolly",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/bench_make_dolly.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_make_stills",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/bench_make_stills.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_render",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/bench_render.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_render_poll",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/bench_render_poll.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_residency_probe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/bench_residency_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_station_derive",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/bench_station_derive.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "body_silhouette",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_body/body_silhouette.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bootstrap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/bootstrap.py",
+    "dist/forge-0.4.0/scripts/bootstrap.py",
+    "scripts/bootstrap.py"
+   ],
+   "referenced_by_n_scripts": 320,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "brief_author",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/brief_author.py",
+    "dist/forge-0.4.0/forge_tool/brief_author.py",
+    "forge_tool/brief_author.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "brief_loop",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/brief_loop.py",
+    "dist/forge-0.4.0/scripts/brief_loop.py",
+    "scripts/brief_loop.py"
+   ],
+   "referenced_by_n_scripts": 13,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "build_capture_stage",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/build_capture_stage.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "build_guide_stack",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/blender/build_guide_stack.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "build_hero_assets",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/build_hero_assets.py",
+    "dist/forge-0.4.0/scripts/build_hero_assets.py",
+    "scripts/build_hero_assets.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "build_navmesh_chunk",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/build_navmesh_chunk.py",
+    "dist/forge-0.4.0/scripts/build_navmesh_chunk.py",
+    "scripts/build_navmesh_chunk.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "calibrate_walk_model",
+   "status": "listed-but-unused",
+   "paths": [
+    "dist/forge-0.1.1/scripts/calibrate_walk_model.py",
+    "dist/forge-0.4.0/scripts/calibrate_walk_model.py",
+    "scripts/calibrate_walk_model.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "capture",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/capture.py",
+    "dist/forge-0.4.0/scripts/capture.py",
+    "scripts/capture.py"
+   ],
+   "referenced_by_n_scripts": 161,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "capture_shot",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/capture_shot.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "catalogue_heightmaps",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/catalogue_heightmaps.py",
+    "dist/forge-0.4.0/scripts/catalogue_heightmaps.py",
+    "scripts/catalogue_heightmaps.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "catalogue_run",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/catalogue_run.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "census_project",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/census_project.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_ai_restrictions",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_ai_restrictions.py",
+    "dist/forge-0.4.0/scripts/check_ai_restrictions.py",
+    "scripts/check_ai_restrictions.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_collision_truth",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_collision_truth.py",
+    "dist/forge-0.4.0/scripts/check_collision_truth.py",
+    "scripts/check_collision_truth.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_derived_culls",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/check_derived_culls.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_docs",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_docs.py",
+    "dist/forge-0.4.0/scripts/check_docs.py",
+    "scripts/check_docs.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_dolly_sunlit",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/check_dolly_sunlit.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_fab_boundary",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_fab_boundary.py",
+    "dist/forge-0.4.0/scripts/check_fab_boundary.py",
+    "scripts/check_fab_boundary.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_generation_input",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_generation_input.py",
+    "dist/forge-0.4.0/scripts/check_generation_input.py",
+    "scripts/check_generation_input.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_perf",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_perf.py",
+    "dist/forge-0.4.0/scripts/check_perf.py",
+    "scripts/check_perf.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_plan_freshness",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_plan_freshness.py",
+    "dist/forge-0.4.0/scripts/check_plan_freshness.py",
+    "scripts/check_plan_freshness.py"
+   ],
+   "referenced_by_n_scripts": 23,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_prose_keys",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_prose_keys.py",
+    "dist/forge-0.4.0/scripts/check_prose_keys.py",
+    "scripts/check_prose_keys.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_weightmap_fresh",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/check_weightmap_fresh.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "city_shot_payload",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "compare_images",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/compare_images.py",
+    "dist/forge-0.4.0/scripts/compare_images.py",
+    "scripts/compare_images.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "compare_sculpt_passes",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/compare_sculpt_passes.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "composite_stamps",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/composite_stamps.py",
+    "dist/forge-0.4.0/scripts/composite_stamps.py",
+    "scripts/composite_stamps.py"
+   ],
+   "referenced_by_n_scripts": 21,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "concept_loop",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/concept_loop.py",
+    "dist/forge-0.4.0/scripts/concept_loop.py",
+    "scripts/concept_loop.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "corrupt_for_gate_test",
+   "status": "listed-but-unused",
+   "paths": [
+    "hero/groomloop/scripts/corrupt_for_gate_test.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "create_landscape_from_build",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/create_landscape_from_build.py",
+    "dist/forge-0.4.0/scripts/create_landscape_from_build.py",
+    "scripts/create_landscape_from_build.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "crop_and_decimate_head",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/trellis/crop_and_decimate_head.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cycle",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/cycle.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "decimate_head",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/trellis/decimate_head.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "delete_stray_landscape",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/delete_stray_landscape.py",
+    "dist/forge-0.4.0/scripts/delete_stray_landscape.py",
+    "scripts/delete_stray_landscape.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "derive_aux_maps",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/derive_aux_maps.py",
+    "dist/forge-0.4.0/scripts/derive_aux_maps.py",
+    "scripts/derive_aux_maps.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "derive_layer_weights",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/derive_layer_weights.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "derive_material_maps",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/derive_material_maps.py",
+    "dist/forge-0.4.0/scripts/derive_material_maps.py",
+    "scripts/derive_material_maps.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "diagnose_face_hair",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/diagnose_face_hair.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "doctor",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.4.0/forge_tool/doctor.py",
+    "forge_tool/doctor.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "draw_city_plan",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/draw_city_plan.py",
+    "dist/forge-0.4.0/scripts/draw_city_plan.py",
+    "scripts/draw_city_plan.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "edit_dna_geometry",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/edit_dna_geometry.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "enable_landscape_nanite",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/enable_landscape_nanite.py",
+    "dist/forge-0.4.0/scripts/enable_landscape_nanite.py",
+    "scripts/enable_landscape_nanite.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "enable_sample_remote_exec",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/enable_sample_remote_exec.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_groom_object",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/blender/export_groom_object.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_hero_groom",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "hero/groomloop/scripts/export_hero_groom.py"
+   ],
+   "referenced_by_n_scripts": 4,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "exposure_probe",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/exposure_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "exr_card",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/exr_card.py"
+   ],
+   "referenced_by_n_scripts": 9,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "face_coeffs",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/likeness/face_coeffs.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fetch_surface",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/fetch_surface.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_city_site",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/find_city_site.py",
+    "dist/forge-0.4.0/scripts/find_city_site.py",
+    "scripts/find_city_site.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_clear_heading",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/find_clear_heading.py",
+    "dist/forge-0.4.0/scripts/find_clear_heading.py",
+    "scripts/find_clear_heading.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_head_crop",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/likeness/find_head_crop.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_hero_spawn",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/find_hero_spawn.py",
+    "dist/forge-0.4.0/scripts/find_hero_spawn.py",
+    "scripts/find_hero_spawn.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_walk_heading",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/find_walk_heading.py",
+    "dist/forge-0.4.0/scripts/find_walk_heading.py",
+    "scripts/find_walk_heading.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fit_face",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/likeness/fit_face.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fix_camera_z",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/fix_camera_z.py",
+    "dist/forge-0.4.0/scripts/fix_camera_z.py",
+    "scripts/fix_camera_z.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fog_budget",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief2_atmosphere/brief2/scripts/fog_budget.py",
+    "scripts/fog_budget.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "forge",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/forge.py",
+    "dist/forge-0.4.0/scripts/forge.py",
+    "scripts/forge.py"
+   ],
+   "referenced_by_n_scripts": 58,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "forge_record_stage10",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/forge_record_stage10.py",
+    "dist/forge-0.4.0/scripts/forge_record_stage10.py",
+    "scripts/forge_record_stage10.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "frame_cameras",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/frame_cameras.py",
+    "dist/forge-0.4.0/scripts/frame_cameras.py",
+    "scripts/frame_cameras.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "gen_doc_tocs",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/gen_doc_tocs.py",
+    "dist/forge-0.4.0/scripts/gen_doc_tocs.py",
+    "scripts/gen_doc_tocs.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "grade_probe",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/grade_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "greycard",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/greycard.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "groom_color",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/groom_color.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "groom_pointer_audit",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "hero/groomloop/scripts/groom_pointer_audit.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "groom_presence",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/groom_presence.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ground_station_map",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/ground_station_map.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "guard",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/guard.py"
+   ],
+   "referenced_by_n_scripts": 108,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "haze_metrics",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/haze_metrics.py"
+   ],
+   "referenced_by_n_scripts": 13,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "heightmap_orientation_check",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/heightmap_orientation_check.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "highres_shot",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/highres_shot.py",
+    "dist/forge-0.4.0/scripts/highres_shot.py",
+    "scripts/highres_shot.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hillshade_snow_check",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hillshade_snow_check.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_build_batched",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hlod_build_batched.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_gitignore",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hlod_gitignore.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_hash_by_name",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_hash_by_name.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_label_grid",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_label_grid.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_probe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/hlod_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_probe_approx_fields",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/hlod_probe_approx_fields.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_report_census",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hlod_report_census.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_route_discovery",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/hlod_route_discovery.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_save_world_default",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_save_world_default.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_set_approx_accuracy",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_set_approx_accuracy.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_set_proxy_budget",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/hlod_set_proxy_budget.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_setup_layers",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_setup_layers.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_verify_built",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/hlod_verify_built.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hydro_derive",
+   "status": "listed-but-unused",
+   "paths": [
+    "research/brief4/scripts/hydro_derive.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "import_alpinelab_masks",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/import_alpinelab_masks.py",
+    "dist/forge-0.4.0/scripts/import_alpinelab_masks.py",
+    "scripts/import_alpinelab_masks.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "import_heightmap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/import_heightmap.py",
+    "dist/forge-0.4.0/scripts/import_heightmap.py",
+    "scripts/import_heightmap.py"
+   ],
+   "referenced_by_n_scripts": 47,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "import_layer_textures",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/import_layer_textures.py",
+    "dist/forge-0.4.0/scripts/import_layer_textures.py",
+    "scripts/import_layer_textures.py"
+   ],
+   "referenced_by_n_scripts": 25,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "import_layout",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.4.0/forge_tool/import_layout.py",
+    "forge_tool/import_layout.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "import_static_mesh",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/import_static_mesh.py",
+    "dist/forge-0.4.0/scripts/import_static_mesh.py",
+    "scripts/import_static_mesh.py"
+   ],
+   "referenced_by_n_scripts": 23,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "import_surface_set",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/import_surface_set.py",
+    "dist/forge-0.4.0/scripts/import_surface_set.py",
+    "scripts/import_surface_set.py"
+   ],
+   "referenced_by_n_scripts": 17,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ingest_groom",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/ingest_groom.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "inspect_fbx",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/inspect_fbx.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "intake_kit_closure",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/intake_kit_closure.py",
+    "dist/forge-0.4.0/scripts/intake_kit_closure.py",
+    "scripts/intake_kit_closure.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kaolin_check_tensor_shim",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/trellis/kaolin_check_tensor_shim.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "land_difflocks",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "hero/groomloop/scripts/land_difflocks.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_inventory",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/landscape_inventory.py",
+    "dist/forge-0.4.0/scripts/landscape_inventory.py",
+    "scripts/landscape_inventory.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_nanite_build",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/landscape_nanite_build.py",
+    "dist/forge-0.4.0/scripts/landscape_nanite_build.py",
+    "scripts/landscape_nanite_build.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_spec",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/landscape_spec.py",
+    "dist/forge-0.4.0/scripts/landscape_spec.py",
+    "scripts/landscape_spec.py"
+   ],
+   "referenced_by_n_scripts": 87,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "lod_capture_scene",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/lod_capture_scene.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "lod_silhouette_capture",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/lod_silhouette_capture.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "lod_silhouette_check",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief1_distance_as_angle/brief1/scripts/lod_silhouette_check.py",
+    "scripts/lod_silhouette_check.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "make_alpine_terrain",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_alpine_terrain.py",
+    "dist/forge-0.4.0/scripts/make_alpine_terrain.py",
+    "scripts/make_alpine_terrain.py"
+   ],
+   "referenced_by_n_scripts": 33,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_alpinelab_material",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_alpinelab_material.py",
+    "dist/forge-0.4.0/scripts/make_alpinelab_material.py",
+    "scripts/make_alpinelab_material.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_asset_manifest",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_asset_manifest.py",
+    "dist/forge-0.4.0/scripts/make_asset_manifest.py",
+    "scripts/make_asset_manifest.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_foliage_material",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_foliage_material.py",
+    "dist/forge-0.4.0/scripts/make_foliage_material.py",
+    "scripts/make_foliage_material.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_landscape_material",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_landscape_material.py",
+    "dist/forge-0.4.0/scripts/make_landscape_material.py",
+    "scripts/make_landscape_material.py"
+   ],
+   "referenced_by_n_scripts": 65,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_layer_debug_material",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_layer_debug_material.py",
+    "dist/forge-0.4.0/scripts/make_layer_debug_material.py",
+    "scripts/make_layer_debug_material.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_layer_textures",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_layer_textures.py",
+    "dist/forge-0.4.0/scripts/make_layer_textures.py",
+    "scripts/make_layer_textures.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_layer_weightmap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_layer_weightmap.py",
+    "dist/forge-0.4.0/scripts/make_layer_weightmap.py",
+    "scripts/make_layer_weightmap.py"
+   ],
+   "referenced_by_n_scripts": 30,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_mesh_lods",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_mesh_lods.py",
+    "dist/forge-0.4.0/scripts/make_mesh_lods.py",
+    "scripts/make_mesh_lods.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_nowind_material_instances",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_nowind_material_instances.py",
+    "dist/forge-0.4.0/scripts/make_nowind_material_instances.py",
+    "scripts/make_nowind_material_instances.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_ppi0_passthrough",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/make_ppi0_passthrough.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_test_heightmap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_test_heightmap.py",
+    "dist/forge-0.4.0/scripts/make_test_heightmap.py",
+    "scripts/make_test_heightmap.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_variant_map",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_variant_map.py",
+    "dist/forge-0.4.0/scripts/make_variant_map.py",
+    "scripts/make_variant_map.py"
+   ],
+   "referenced_by_n_scripts": 10,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "material_param_probe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/material_param_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_city_connectivity",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_city_connectivity.py",
+    "dist/forge-0.4.0/scripts/measure_city_connectivity.py",
+    "scripts/measure_city_connectivity.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_concept_look",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief2_atmosphere/brief2/scripts/measure_concept_look.py",
+    "scripts/measure_concept_look.py"
+   ],
+   "referenced_by_n_scripts": 4,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "measure_falloff_contours",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_falloff_contours.py",
+    "dist/forge-0.4.0/scripts/measure_falloff_contours.py",
+    "scripts/measure_falloff_contours.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_foliage_collision",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_foliage_collision.py",
+    "dist/forge-0.4.0/scripts/measure_foliage_collision.py",
+    "scripts/measure_foliage_collision.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_frame_cost",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_frame_cost.py",
+    "dist/forge-0.4.0/scripts/measure_frame_cost.py",
+    "scripts/measure_frame_cost.py"
+   ],
+   "referenced_by_n_scripts": 13,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_lod_materials",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_lod_materials.py",
+    "dist/forge-0.4.0/scripts/measure_lod_materials.py",
+    "scripts/measure_lod_materials.py"
+   ],
+   "referenced_by_n_scripts": 4,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_mesh_collision",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_mesh_collision.py",
+    "dist/forge-0.4.0/scripts/measure_mesh_collision.py",
+    "scripts/measure_mesh_collision.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_palette_live",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_palette_live.py",
+    "dist/forge-0.4.0/scripts/measure_palette_live.py",
+    "scripts/measure_palette_live.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_pie_cost",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_pie_cost.py",
+    "dist/forge-0.4.0/scripts/measure_pie_cost.py",
+    "scripts/measure_pie_cost.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_rock_meshes",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_rock_meshes.py",
+    "dist/forge-0.4.0/scripts/measure_rock_meshes.py",
+    "scripts/measure_rock_meshes.py"
+   ],
+   "referenced_by_n_scripts": 17,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_walkable_extent",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_walkable_extent.py",
+    "dist/forge-0.4.0/scripts/measure_walkable_extent.py",
+    "scripts/measure_walkable_extent.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "mrq_stages_probe",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/payloads/mrq_stages_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "nanite_batch_build",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/nanite_batch_build.py",
+    "dist/forge-0.4.0/scripts/nanite_batch_build.py",
+    "scripts/nanite_batch_build.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "normalize_asset",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/normalize_asset.py"
+   ],
+   "referenced_by_n_scripts": 13,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "open_level",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/open_level.py",
+    "dist/forge-0.4.0/scripts/open_level.py",
+    "scripts/open_level.py"
+   ],
+   "referenced_by_n_scripts": 17,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "package",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/package.py",
+    "dist/forge-0.4.0/forge_tool/package.py",
+    "forge_tool/package.py"
+   ],
+   "referenced_by_n_scripts": 150,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "park_viewport",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/park_viewport.py",
+    "dist/forge-0.4.0/scripts/park_viewport.py",
+    "scripts/park_viewport.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "patch_sample_target",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/patch_sample_target.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "per_family_calibration",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/per_family_calibration.py",
+    "dist/forge-0.4.0/scripts/per_family_calibration.py",
+    "scripts/per_family_calibration.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "perf_flythrough",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/perf_flythrough.py",
+    "dist/forge-0.4.0/scripts/perf_flythrough.py",
+    "scripts/perf_flythrough.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "perf_standalone",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/perf_standalone.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "pick_sunlit_heading",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/pick_sunlit_heading.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "place_foliage",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/place_foliage.py",
+    "dist/forge-0.4.0/scripts/place_foliage.py",
+    "scripts/place_foliage.py"
+   ],
+   "referenced_by_n_scripts": 64,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "place_hero_in_world",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/place_hero_in_world.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "place_player_start",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/place_player_start.py",
+    "dist/forge-0.4.0/scripts/place_player_start.py",
+    "scripts/place_player_start.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "placement_priors",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/placement_priors.py",
+    "dist/forge-0.4.0/scripts/placement_priors.py",
+    "scripts/placement_priors.py"
+   ],
+   "referenced_by_n_scripts": 15,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_city",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/plan_city.py",
+    "dist/forge-0.4.0/scripts/plan_city.py",
+    "scripts/plan_city.py"
+   ],
+   "referenced_by_n_scripts": 53,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_encounters",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/plan_encounters.py",
+    "dist/forge-0.4.0/scripts/plan_encounters.py",
+    "scripts/plan_encounters.py"
+   ],
+   "referenced_by_n_scripts": 30,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_face_sculpt",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/plan_face_sculpt.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_lateral_correction",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/plan_lateral_correction.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_navmesh_tiles",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/plan_navmesh_tiles.py",
+    "dist/forge-0.4.0/scripts/plan_navmesh_tiles.py",
+    "scripts/plan_navmesh_tiles.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plan_stamp",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/plan_stamp.py",
+    "dist/forge-0.4.0/scripts/plan_stamp.py",
+    "scripts/plan_stamp.py"
+   ],
+   "referenced_by_n_scripts": 21,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "preview_hair",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/preview_hair.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_pie",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/probe_pie.py",
+    "dist/forge-0.4.0/scripts/probe_pie.py",
+    "scripts/probe_pie.py"
+   ],
+   "referenced_by_n_scripts": 9,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_skeleton",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/probe_skeleton.py",
+    "dist/forge-0.4.0/scripts/probe_skeleton.py",
+    "scripts/probe_skeleton.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_texture_api",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/probe_texture_api.py",
+    "dist/forge-0.4.0/scripts/probe_texture_api.py",
+    "scripts/probe_texture_api.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_city_gates",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prove_city_gates.py",
+    "dist/forge-0.4.0/scripts/prove_city_gates.py",
+    "scripts/prove_city_gates.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_encounter_plan",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prove_encounter_plan.py",
+    "dist/forge-0.4.0/scripts/prove_encounter_plan.py",
+    "scripts/prove_encounter_plan.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_gates",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prove_gates.py",
+    "dist/forge-0.4.0/scripts/prove_gates.py",
+    "scripts/prove_gates.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_hooks",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/prove_hooks.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_rebuild_terrain",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prove_rebuild_terrain.py",
+    "dist/forge-0.4.0/scripts/prove_rebuild_terrain.py",
+    "scripts/prove_rebuild_terrain.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "push_heightmap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/push_heightmap.py",
+    "dist/forge-0.4.0/scripts/push_heightmap.py",
+    "scripts/push_heightmap.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "reachability",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/reachability.py",
+    "dist/forge-0.4.0/scripts/reachability.py",
+    "scripts/reachability.py"
+   ],
+   "referenced_by_n_scripts": 27,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_cloud_state",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_cloud_state.py",
+    "dist/forge-0.4.0/scripts/read_cloud_state.py",
+    "scripts/read_cloud_state.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_grass_type",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_grass_type.py",
+    "dist/forge-0.4.0/scripts/read_grass_type.py",
+    "scripts/read_grass_type.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_instance_transforms",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_instance_transforms.py",
+    "dist/forge-0.4.0/scripts/read_instance_transforms.py",
+    "scripts/read_instance_transforms.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_nanite_state",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_nanite_state.py",
+    "dist/forge-0.4.0/scripts/read_nanite_state.py",
+    "scripts/read_nanite_state.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rear_metrics",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/likeness/rear_metrics.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rebuild_terrain",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/rebuild_terrain.py",
+    "dist/forge-0.4.0/scripts/rebuild_terrain.py",
+    "scripts/rebuild_terrain.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "recover_state",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/recover_state.py",
+    "dist/forge-0.4.0/scripts/recover_state.py",
+    "scripts/recover_state.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_condition",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/render_condition.py",
+    "dist/forge-0.4.0/scripts/render_condition.py",
+    "scripts/render_condition.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_face_mesh_offline",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/render_face_mesh_offline.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "repair_tileable",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/repair_tileable.py",
+    "dist/forge-0.4.0/scripts/repair_tileable.py",
+    "scripts/repair_tileable.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "resample_heightmap",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/resample_heightmap.py",
+    "dist/forge-0.4.0/scripts/resample_heightmap.py",
+    "scripts/resample_heightmap.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "resize_gaea_build",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/resize_gaea_build.py",
+    "dist/forge-0.4.0/scripts/resize_gaea_build.py",
+    "scripts/resize_gaea_build.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "resource_guard",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/resource_guard.py",
+    "dist/forge-0.4.0/scripts/resource_guard.py",
+    "scripts/resource_guard.py"
+   ],
+   "referenced_by_n_scripts": 48,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rock_scatter",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/rock_scatter.py",
+    "dist/forge-0.4.0/scripts/rock_scatter.py",
+    "scripts/rock_scatter.py"
+   ],
+   "referenced_by_n_scripts": 36,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "run_offline_suite",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/run_offline_suite.py",
+    "dist/forge-0.4.0/scripts/run_offline_suite.py",
+    "scripts/run_offline_suite.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sample_census",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/census/sample_census.py",
+    "scripts/payloads/sample_census.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "sanctioned_import",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/sanctioned_import.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_dirty",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/save_dirty.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_foliage_actors",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/save_foliage_actors.py",
+    "dist/forge-0.4.0/scripts/save_foliage_actors.py",
+    "scripts/save_foliage_actors.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_level",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/save_level.py",
+    "dist/forge-0.4.0/scripts/save_level.py",
+    "scripts/save_level.py"
+   ],
+   "referenced_by_n_scripts": 39,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_tagged_actors",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/save_tagged_actors.py",
+    "dist/forge-0.4.0/scripts/save_tagged_actors.py",
+    "scripts/save_tagged_actors.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scale_strand_length",
+   "status": "listed-but-unused",
+   "paths": [
+    "hero/groomloop/scripts/scale_strand_length.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scan_surface_stats",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/scan_surface_stats.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scratch_tree_scene",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/scratch_tree_scene.py",
+    "dist/forge-0.4.0/scripts/scratch_tree_scene.py",
+    "scripts/scratch_tree_scene.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "server",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "session_context",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/session_context.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "set_landscape_scale",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/set_landscape_scale.py",
+    "dist/forge-0.4.0/scripts/set_landscape_scale.py",
+    "scripts/set_landscape_scale.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "setup",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shade_card_pair",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/shade_card_pair.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shade_over_sun",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/shade_over_sun.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shade_reference",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief3/scripts/shade_reference.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "shadow_tint",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/shadow_tint.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shoot",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/shoot.py",
+    "dist/forge-0.4.0/scripts/shoot.py",
+    "scripts/shoot.py"
+   ],
+   "referenced_by_n_scripts": 38,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "solo_gate",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/solo_gate.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "stamp_plan",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/stamp_plan.py",
+    "dist/forge-0.4.0/scripts/stamp_plan.py",
+    "scripts/stamp_plan.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "start_mcp_server",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/start_mcp_server.py",
+    "dist/forge-0.4.0/scripts/start_mcp_server.py",
+    "scripts/start_mcp_server.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "stop_dirty_tree",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/stop_dirty_tree.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "subagent_output",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    ".claude/hooks/subagent_output.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sun_exposure",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/sun_exposure.py",
+    "dist/forge-0.4.0/scripts/sun_exposure.py",
+    "scripts/sun_exposure.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "surface_coherence",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/surface_coherence.py",
+    "dist/forge-0.4.0/scripts/surface_coherence.py",
+    "scripts/surface_coherence.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "surface_query",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/surface_query.py",
+    "dist/forge-0.4.0/scripts/surface_query.py",
+    "scripts/surface_query.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "surface_report",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/surface_report.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "survey_shots",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/survey_shots.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sweep_cameras",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/sweep_cameras.py",
+    "dist/forge-0.4.0/scripts/sweep_cameras.py",
+    "scripts/sweep_cameras.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task3_layer_tables",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/task3_layer_tables.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task3_weight_period",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/task3_weight_period.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task4_bin_tables",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/task4_bin_tables.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task4_meadow_albedo",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/task4_meadow_albedo.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task4_reference_bins",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/task4_reference_bins.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "temporal_stability",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief1_distance_as_angle/brief1/scripts/temporal_stability.py",
+    "scripts/temporal_stability.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "terrain_erosion",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/terrain_erosion.py",
+    "dist/forge-0.4.0/scripts/terrain_erosion.py",
+    "scripts/terrain_erosion.py"
+   ],
+   "referenced_by_n_scripts": 42,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "test_open_level_scrub",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/test_open_level_scrub.py",
+    "dist/forge-0.4.0/scripts/test_open_level_scrub.py",
+    "scripts/test_open_level_scrub.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "texel_budget",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief3/scripts/texel_budget.py",
+    "scripts/texel_budget.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "texture_16bit",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/texture_16bit.py",
+    "dist/forge-0.4.0/scripts/texture_16bit.py",
+    "scripts/texture_16bit.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "tiling_score",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief3/scripts/tiling_score.py",
+    "scripts/tiling_score.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "town_exclusion",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/town_exclusion.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "trace_grounding",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/trace_grounding.py",
+    "dist/forge-0.4.0/scripts/trace_grounding.py",
+    "scripts/trace_grounding.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "tree_lod_probe",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/payloads/tree_lod_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ue5_import_alpinelab",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/ue5_import_alpinelab.py",
+    "dist/forge-0.4.0/scripts/ue5_import_alpinelab.py",
+    "scripts/ue5_import_alpinelab.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ue_exec",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/ue_exec.py",
+    "dist/forge-0.4.0/scripts/ue_exec.py",
+    "scripts/ue_exec.py"
+   ],
+   "referenced_by_n_scripts": 138,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "unpack_orm",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/unpack_orm.py",
+    "dist/forge-0.4.0/scripts/unpack_orm.py",
+    "scripts/unpack_orm.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "unreal",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "use_preview_mesh",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/use_preview_mesh.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "validate_groom_export",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/blender/validate_groom_export.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_build",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_build.py",
+    "dist/forge-0.4.0/scripts/verify_build.py",
+    "scripts/verify_build.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_cold_boot",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_cold_boot.py",
+    "dist/forge-0.4.0/scripts/verify_cold_boot.py",
+    "scripts/verify_cold_boot.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_export_bounds",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "hero/groomloop/scripts/verify_export_bounds.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_frames",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_frames.py",
+    "dist/forge-0.4.0/scripts/verify_frames.py",
+    "scripts/verify_frames.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_gameplay_plugin",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_gameplay_plugin.py",
+    "dist/forge-0.4.0/scripts/verify_gameplay_plugin.py",
+    "scripts/verify_gameplay_plugin.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_grooms_on_disk",
+   "status": "listed-but-unused",
+   "paths": [
+    "scripts/hero_face/verify_grooms_on_disk.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_grounding",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_grounding.py",
+    "dist/forge-0.4.0/scripts/verify_grounding.py",
+    "scripts/verify_grounding.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_kit_closure",
+   "status": "listed-but-unused",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_kit_closure.py",
+    "dist/forge-0.4.0/scripts/verify_kit_closure.py",
+    "scripts/verify_kit_closure.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_landscape",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_landscape.py",
+    "dist/forge-0.4.0/scripts/verify_landscape.py",
+    "scripts/verify_landscape.py"
+   ],
+   "referenced_by_n_scripts": 230,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_surface_against_render",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_surface_against_render.py",
+    "dist/forge-0.4.0/scripts/verify_surface_against_render.py",
+    "scripts/verify_surface_against_render.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_tileable",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_tileable.py",
+    "dist/forge-0.4.0/scripts/verify_tileable.py",
+    "scripts/verify_tileable.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_tree_collision",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_tree_collision.py",
+    "dist/forge-0.4.0/scripts/verify_tree_collision.py",
+    "scripts/verify_tree_collision.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_walkable_profile",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_walkable_profile.py",
+    "dist/forge-0.4.0/scripts/verify_walkable_profile.py",
+    "scripts/verify_walkable_profile.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "visual_diff",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/visual_diff.py",
+    "dist/forge-0.4.0/scripts/visual_diff.py",
+    "scripts/visual_diff.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "void_mask",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "research/brief/brief2_atmosphere/brief2/scripts/void_mask.py",
+    "scripts/void_mask.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": true
+  },
+  {
+   "tool": "walk_character",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "dist/forge-0.1.1/scripts/walk_character.py",
+    "dist/forge-0.4.0/scripts/walk_character.py",
+    "scripts/walk_character.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "win_amd64",
+   "status": "listed-but-missing",
+   "paths": [],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "world_shot",
+   "status": "listed-and-exists-and-used",
+   "paths": [
+    "scripts/hero_face/likeness/world_shot.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "20260807_cv_bar_recovery",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "_verify/20260807_cv_bar_recovery.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "__init__",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/__init__.py",
+    "dist/forge-0.4.0/forge_tool/__init__.py",
+    "forge_tool/__init__.py"
+   ],
+   "referenced_by_n_scripts": 43,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "_church_multi_body",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/trellis/_church_multi_body.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "_compose_iter",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/_compose_iter.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "_forge_generate_body",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/trellis/_forge_generate_body.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "_fringe_score",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/_fringe_score.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "_tex_mkparam",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/_tex_mkparam.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "abc_widths",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/abc_widths.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "add_groom_gn_stack",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/add_groom_gn_stack.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "add_rest_geometry",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/add_rest_geometry.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "alpinelab_source",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/alpinelab_source.py",
+    "dist/forge-0.4.0/scripts/alpinelab_source.py",
+    "scripts/alpinelab_source.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "analyse_concept",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/analyse_concept.py",
+    "dist/forge-0.4.0/scripts/analyse_concept.py",
+    "scripts/analyse_concept.py"
+   ],
+   "referenced_by_n_scripts": 15,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "analyse_landmarks",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/analyse_landmarks.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_landscape_hlod_settings",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/apply_landscape_hlod_settings.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_nanite",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/apply_nanite.py",
+    "dist/forge-0.4.0/scripts/apply_nanite.py",
+    "scripts/apply_nanite.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "apply_streaming_range",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/apply_streaming_range.py",
+    "scripts/payloads/apply_streaming_range.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "assemble_recipe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/assemble_recipe.py",
+    "dist/forge-0.4.0/forge_tool/assemble_recipe.py",
+    "forge_tool/assemble_recipe.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "assert_instances_unchanged",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/assert_instances_unchanged.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "assign_church_materials",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/assign_church_materials.py",
+    "dist/forge-0.4.0/scripts/assign_church_materials.py",
+    "scripts/assign_church_materials.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "attr_diff",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/attr_diff.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "attribute_brow",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/attribute_brow.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "audit_fab_pack",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/audit_fab_pack.py",
+    "dist/forge-0.4.0/scripts/audit_fab_pack.py",
+    "scripts/audit_fab_pack.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "audit_fab_registry",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/audit_fab_registry.py",
+    "dist/forge-0.4.0/scripts/audit_fab_registry.py",
+    "scripts/audit_fab_registry.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "axis_test",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/axis_test.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bake_hero_body_textures",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/bake_hero_body_textures.py",
+    "dist/forge-0.4.0/scripts/bake_hero_body_textures.py",
+    "scripts/bake_hero_body_textures.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bake_hero_face_textures",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/bake_hero_face_textures.py",
+    "dist/forge-0.4.0/scripts/bake_hero_face_textures.py",
+    "scripts/bake_hero_face_textures.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_dump_wp",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_dump_wp.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_expected_set",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_expected_set.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_grid_derive",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_grid_derive.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_ground_place",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_ground_place.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_load_regions",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_load_regions.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "bench_tonecurve_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/bench_tonecurve_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "benchmarks",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/benchmarks.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "build_stamp_catalogue",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/build_stamp_catalogue.py",
+    "dist/forge-0.4.0/forge_tool/build_stamp_catalogue.py",
+    "forge_tool/build_stamp_catalogue.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "c0_build_materials",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/c0_build_materials.py",
+    "dist/forge-0.4.0/scripts/c0_build_materials.py",
+    "scripts/c0_build_materials.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "c0_intake_textures",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/c0_intake_textures.py",
+    "dist/forge-0.4.0/scripts/c0_intake_textures.py",
+    "scripts/c0_intake_textures.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "c0_run_stage",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/c0_run_stage.py",
+    "dist/forge-0.4.0/scripts/c0_run_stage.py",
+    "scripts/c0_run_stage.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "capture_hero_pie",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/capture_hero_pie.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "capture_landmarks",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/capture_landmarks.py"
+   ],
+   "referenced_by_n_scripts": 4,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "census_and_shoot",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/census_and_shoot.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "census_rollup",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/census_rollup.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_brief",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/check_brief.py",
+    "dist/forge-0.4.0/forge_tool/check_brief.py",
+    "forge_tool/check_brief.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_gn_bakes",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/check_gn_bakes.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_layer_acceptance",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/check_layer_acceptance.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_recipe_payload_safe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/check_recipe_payload_safe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_repoint_sockets",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/check_repoint_sockets.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_scene_animation",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/check_scene_animation.py",
+    "dist/forge-0.4.0/scripts/check_scene_animation.py",
+    "scripts/check_scene_animation.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "check_sightline",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/check_sightline.py",
+    "dist/forge-0.4.0/forge_tool/check_sightline.py",
+    "forge_tool/check_sightline.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "church_normals",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/church_normals.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "church_profile",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/church_profile.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "church_split",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/church_split.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "clear_gn_bake",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/clear_gn_bake.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cli",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/cli.py",
+    "dist/forge-0.4.0/forge_tool/cli.py",
+    "forge_tool/cli.py"
+   ],
+   "referenced_by_n_scripts": 12,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cloud_mi_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/cloud_mi_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "compare_profiles",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/compare_profiles.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "compare_to_reference",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/compare_to_reference.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "concept2level",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/concept2level.py",
+    "dist/forge-0.4.0/scripts/concept2level.py",
+    "scripts/concept2level.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "concept_solve_camera",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/concept_solve_camera.py",
+    "dist/forge-0.4.0/scripts/concept_solve_camera.py",
+    "scripts/concept_solve_camera.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "console_api_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/console_api_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "contact_sheet",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/contact_sheet.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "create_landscape_from_recipe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/create_landscape_from_recipe.py",
+    "dist/forge-0.4.0/scripts/create_landscape_from_recipe.py",
+    "scripts/create_landscape_from_recipe.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cull_degenerate",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/cull_degenerate.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "curve_type_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/curve_type_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cvar_batch_read",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/cvar_batch_read.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cvar_exists_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/cvar_exists_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "cvar_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/cvar_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "degeneracy_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/degeneracy_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "depsgraph_pointer_test",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/depsgraph_pointer_test.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "derive_ground_station",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/derive_ground_station.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "design_pass",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/design_pass.py",
+    "dist/forge-0.4.0/scripts/design_pass.py",
+    "scripts/design_pass.py"
+   ],
+   "referenced_by_n_scripts": 14,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "diagnose_capture_world",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/diagnose_capture_world.py",
+    "dist/forge-0.4.0/scripts/diagnose_capture_world.py",
+    "scripts/diagnose_capture_world.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "dirty_actor_labels",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/dirty_actor_labels.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "dirty_census",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/dirty_census.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "dump_groom_attributes",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/dump_groom_attributes.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "edit_engine",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/edit_engine.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "emit_project",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/emit_project.py",
+    "dist/forge-0.4.0/forge_tool/emit_project.py",
+    "forge_tool/emit_project.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "engine_paths",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/engine_paths.py",
+    "dist/forge-0.4.0/scripts/engine_paths.py",
+    "scripts/engine_paths.py"
+   ],
+   "referenced_by_n_scripts": 12,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "enumerate_groom_blend",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/enumerate_groom_blend.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "env_check",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/env_check.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "erode_stamp_seeds",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "_verify/20260831_spike_photo2landscape/erode_stamp_seeds.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_abc",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/export_abc.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_digest",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.4.0/forge_tool/export_digest.py",
+    "forge_tool/export_digest.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_groom_abc",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/export_groom_abc.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_groom_source_head",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/export_groom_source_head.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_heightmap_for_desk",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "research/brief4/input/export_heightmap_for_desk.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "export_trace",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/export_trace.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "exporter_resolution_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/exporter_resolution_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "exposure_cvar_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/exposure_cvar_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "extract_strands",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/extract_strands.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "extract_workflow_results",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/extract_workflow_results.py",
+    "dist/forge-0.4.0/scripts/extract_workflow_results.py",
+    "scripts/extract_workflow_results.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "eye_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/eye_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "face_metrics",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/face_metrics.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "faces",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/faces.py"
+   ],
+   "referenced_by_n_scripts": 58,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "find_ground_station",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/find_ground_station.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fog_state",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/fog_state.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "fog_vs_sky",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/fog_vs_sky.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "foreign_light_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/foreign_light_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "forge_finish",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/forge_finish.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "frame_blend_view",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/frame_blend_view.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "frame_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/frame_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "frame_signal_floor",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/frame_signal_floor.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "front_metrics",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/front_metrics.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "gen_manifest",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/gen_manifest.py",
+    "dist/forge-0.4.0/scripts/gen_manifest.py",
+    "scripts/gen_manifest.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "grade_albedo",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/grade_albedo.py",
+    "dist/forge-0.4.0/scripts/grade_albedo.py",
+    "scripts/grade_albedo.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "greycard_place",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/greycard_place.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "groom_property_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/groom_property_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ground_crop",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/ground_crop.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ground_station_feasibility",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/ground_station_feasibility.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "ground_station_pick",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/ground_station_pick.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hair_color_measure",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/hair_color_measure.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hair_stage",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/hair_stage.py",
+    "dist/forge-0.4.0/scripts/hair_stage.py",
+    "scripts/hair_stage.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hair_variants",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/hair_variants.py",
+    "dist/forge-0.4.0/scripts/hair_variants.py",
+    "scripts/hair_variants.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "head_frame",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/head_frame.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hero_closeups",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/hero_closeups.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_census_readback",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_census_readback.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_clear_invalid",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_clear_invalid.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_default_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_default_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_overnight",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hlod_overnight.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_pick_cell",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_pick_cell.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_runtimehash_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_runtimehash_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_sample_cells",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_sample_cells.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "hlod_set_world_default",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/hlod_set_world_default.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "index_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/index_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "inject_lighting",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/inject_lighting.py",
+    "dist/forge-0.4.0/scripts/inject_lighting.py",
+    "scripts/inject_lighting.py"
+   ],
+   "referenced_by_n_scripts": 10,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "intake_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/intake_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "integrate",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/integrate.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "introspect_curves",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/introspect_curves.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "introspect_ops",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/introspect_ops.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "iterate",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/iterate.py"
+   ],
+   "referenced_by_n_scripts": 7,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "judge",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/judge.py"
+   ],
+   "referenced_by_n_scripts": 30,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kit_closure_delta",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/kit_closure_delta.py",
+    "dist/forge-0.4.0/scripts/kit_closure_delta.py",
+    "scripts/kit_closure_delta.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kit_closure_walk",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/kit_closure_walk.py",
+    "dist/forge-0.4.0/scripts/kit_closure_walk.py",
+    "scripts/kit_closure_walk.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kit_coverage_v2",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/kit_coverage_v2.py",
+    "dist/forge-0.4.0/scripts/kit_coverage_v2.py",
+    "scripts/kit_coverage_v2.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kit_measure_v2",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/kit_measure_v2.py",
+    "dist/forge-0.4.0/scripts/kit_measure_v2.py",
+    "scripts/kit_measure_v2.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "kit_seed_v2",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/kit_seed_v2.py",
+    "dist/forge-0.4.0/scripts/kit_seed_v2.py",
+    "scripts/kit_seed_v2.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_force_lod",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/landscape_force_lod.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_lod_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/landscape_lod_probe.py",
+    "dist/forge-0.4.0/scripts/landscape_lod_probe.py",
+    "scripts/landscape_lod_probe.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "landscape_material_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/landscape_material_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "local_exposure_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/local_exposure_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_alpine_palette",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_alpine_palette.py",
+    "dist/forge-0.4.0/scripts/make_alpine_palette.py",
+    "scripts/make_alpine_palette.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_comparison",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "_verify/20260901_overnight/make_comparison.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_copper_placeholder",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_copper_placeholder.py",
+    "dist/forge-0.4.0/scripts/make_copper_placeholder.py",
+    "scripts/make_copper_placeholder.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_depth_material",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/make_depth_material.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_groom_authoring_blend",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/make_groom_authoring_blend.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_head_base",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/make_head_base.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_macro_variation",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_macro_variation.py",
+    "dist/forge-0.4.0/scripts/make_macro_variation.py",
+    "scripts/make_macro_variation.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_metahuman_character",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/make_metahuman_character.py",
+    "dist/forge-0.4.0/scripts/make_metahuman_character.py",
+    "scripts/make_metahuman_character.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_scenetexture_passthrough",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/make_scenetexture_passthrough.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "make_test_groom",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/make_test_groom.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "material_graph",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/material_graph.py",
+    "dist/forge-0.4.0/scripts/material_graph.py",
+    "scripts/material_graph.py"
+   ],
+   "referenced_by_n_scripts": 11,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/measure.py"
+   ],
+   "referenced_by_n_scripts": 194,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_dna_offline",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "_verify/20260823_face/measure_dna_offline.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_edge_energy",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_edge_energy.py",
+    "dist/forge-0.4.0/scripts/measure_edge_energy.py",
+    "scripts/measure_edge_energy.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_gi_gain",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_gi_gain.py",
+    "dist/forge-0.4.0/scripts/measure_gi_gain.py",
+    "scripts/measure_gi_gain.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_reference_silhouette",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/measure_reference_silhouette.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_timber_colour",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_timber_colour.py",
+    "dist/forge-0.4.0/scripts/measure_timber_colour.py",
+    "scripts/measure_timber_colour.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "measure_tree_packs",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/measure_tree_packs.py",
+    "dist/forge-0.4.0/scripts/measure_tree_packs.py",
+    "scripts/measure_tree_packs.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "mediapipe_landmarks",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/mediapipe_landmarks.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "mesh_spans",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/mesh_spans.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "message_log_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/message_log_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "meter_warmup_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/meter_warmup_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "missing_ifa_distance",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/missing_ifa_distance.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "missing_ifa_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/missing_ifa_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "mkparam",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/mkparam.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "move_station_diagnostic",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/move_station_diagnostic.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "mrq_color_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/mrq_color_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "palette_evidence",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/palette_evidence.py",
+    "dist/forge-0.4.0/scripts/palette_evidence.py",
+    "scripts/palette_evidence.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "panel",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/panel.py"
+   ],
+   "referenced_by_n_scripts": 20,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "pick_curves",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/pick_curves.py"
+   ],
+   "referenced_by_n_scripts": 26,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "plot_landmarks",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/plot_landmarks.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "positive_control",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/positive_control.py",
+    "dist/forge-0.4.0/scripts/positive_control.py",
+    "scripts/positive_control.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prepare_hero_input",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prepare_hero_input.py",
+    "dist/forge-0.4.0/scripts/prepare_hero_input.py",
+    "scripts/prepare_hero_input.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_aihair_ops",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/probe_aihair_ops.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_geometry",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/probe_geometry.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_gltf",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/probe_gltf.py",
+    "dist/forge-0.4.0/scripts/probe_gltf.py",
+    "scripts/probe_gltf.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_groom_exporter",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/probe_groom_exporter.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_material",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/probe_material.py",
+    "dist/forge-0.4.0/scripts/probe_material.py",
+    "scripts/probe_material.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_modifier_api",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/probe_modifier_api.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "probe_walk_midpoints",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/probe_walk_midpoints.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "prove_gaea_reader",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/prove_gaea_reader.py",
+    "dist/forge-0.4.0/scripts/prove_gaea_reader.py",
+    "scripts/prove_gaea_reader.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "proxy_head",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/proxy_head.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_cvars",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/read_cvars.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_exposure",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_exposure.py",
+    "dist/forge-0.4.0/scripts/read_exposure.py",
+    "scripts/read_exposure.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_gaea_graph",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/read_gaea_graph.py",
+    "dist/forge-0.4.0/scripts/read_gaea_graph.py",
+    "scripts/read_gaea_graph.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_grass_card",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_grass_card.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_hlod_settings",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_hlod_settings.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_layer_tiling",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_layer_tiling.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_rvt_and_mipbias",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_rvt_and_mipbias.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_shadow_state",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_shadow_state.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "read_stochastic_binding",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/read_stochastic_binding.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rebuild_sample_modules",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/rebuild_sample_modules.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "recon",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/recon.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rederive_shadow_band",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/rederive_shadow_band.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rejudge_sky_depth",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/rejudge_sky_depth.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rename_landscape",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/rename_landscape.py",
+    "dist/forge-0.4.0/scripts/rename_landscape.py",
+    "scripts/rename_landscape.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_harness",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/render_harness.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_head_facing",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/render_head_facing.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_mesh_views",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/trellis/render_mesh_views.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "render_preview",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "_verify/20260831_coast_benchmark/render_preview.py",
+    "_verify/20260831_spike_photo2landscape/render_preview.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "repoint_demo_groom",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/repoint_demo_groom.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "resample_groom",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/resample_groom.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "resolve_frame",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/resolve_frame.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "restyle_p1",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/restyle_p1.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "restyle_p234",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/restyle_p234.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "roof_servability",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/roof_servability.py",
+    "dist/forge-0.4.0/scripts/roof_servability.py",
+    "scripts/roof_servability.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "root_uv_forensics",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/root_uv_forensics.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "root_uv_values",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/root_uv_values.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "rotate_groom",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/rotate_groom.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "run_pie_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/run_pie_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "runtime_partition_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/runtime_partition_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "runtime_partition_surface",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/runtime_partition_surface.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_cost_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/save_cost_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "save_dirty_actors",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/save_dirty_actors.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scalp_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/scalp_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scan_intake_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/scan_intake_probe.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scan_tile_derive",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/scan_tile_derive.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "scatter_alpinelab",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/scatter_alpinelab.py",
+    "dist/forge-0.4.0/scripts/scatter_alpinelab.py",
+    "scripts/scatter_alpinelab.py"
+   ],
+   "referenced_by_n_scripts": 8,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "score_sides",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/score_sides.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "serve",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.4.0/forge_tool/serve.py",
+    "forge_tool/serve.py"
+   ],
+   "referenced_by_n_scripts": 26,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "set_color_gamma",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/set_color_gamma.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "set_preexposure",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/set_preexposure.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "set_surface",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/set_surface.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shade_pair_place",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/shade_pair_place.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sheet",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/sheet.py"
+   ],
+   "referenced_by_n_scripts": 29,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "shoot_sequence",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/shoot_sequence.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "show_recon",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/show_recon.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sides_profile",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/sides_profile.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "site_ground_cameras",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/site_ground_cameras.py",
+    "dist/forge-0.4.0/scripts/site_ground_cameras.py",
+    "scripts/site_ground_cameras.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "skull_standoff",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/skull_standoff.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sky_ground_albedo",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/sky_ground_albedo.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sky_saturation",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/sky_saturation.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "skyline_iou",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/skyline_iou.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "snap_curves_to_surface",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/snap_curves_to_surface.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "solo_shots",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/solo_shots.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "split_scene_clusters",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/split_scene_clusters.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "station_cameras",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/station_cameras.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "stub_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/stub_probe.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "summary_sides",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/summary_sides.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "surface_tables",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/surface_tables.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "survey_clay",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/survey_clay.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "survey_head",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/survey_head.py"
+   ],
+   "referenced_by_n_scripts": 6,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "sweep_b4b6",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/sweep_b4b6.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "symmetry",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/survey/symmetry.py"
+   ],
+   "referenced_by_n_scripts": 18,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "tail_probe",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/tail_probe.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "task4_shadow_lever",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/task4_shadow_lever.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "test_push_heightmap",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/test_push_heightmap.py",
+    "dist/forge-0.4.0/scripts/test_push_heightmap.py",
+    "scripts/test_push_heightmap.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "three_panel",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/three_panel.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "tonemap_transfer",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/tonemap_transfer.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "topdown_flank_check",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/topdown_flank_check.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "trace_station_ground",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/trace_station_ground.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "update_foliage_culls",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/update_foliage_culls.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "uv_density",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/blender/uv_density.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_abc",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "hero/groomloop/scripts/verify_abc.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_dna_edit",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/hero_face/likeness/verify_dna_edit.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_doc_conservation",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_doc_conservation.py",
+    "dist/forge-0.4.0/scripts/verify_doc_conservation.py",
+    "scripts/verify_doc_conservation.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_ground_station",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/verify_ground_station.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_marker_streaming",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_marker_streaming.py",
+    "dist/forge-0.4.0/scripts/verify_marker_streaming.py",
+    "scripts/verify_marker_streaming.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_on_disk",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_on_disk.py",
+    "dist/forge-0.4.0/scripts/verify_on_disk.py",
+    "scripts/verify_on_disk.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_plugin_bindings",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_plugin_bindings.py",
+    "dist/forge-0.4.0/scripts/verify_plugin_bindings.py",
+    "scripts/verify_plugin_bindings.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_render",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/forge_tool/verify_render.py",
+    "dist/forge-0.4.0/forge_tool/verify_render.py",
+    "forge_tool/verify_render.py"
+   ],
+   "referenced_by_n_scripts": 5,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_saved_nanite",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_saved_nanite.py",
+    "dist/forge-0.4.0/scripts/verify_saved_nanite.py",
+    "scripts/verify_saved_nanite.py"
+   ],
+   "referenced_by_n_scripts": 3,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "verify_texture_source",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "dist/forge-0.1.1/scripts/verify_texture_source.py",
+    "dist/forge-0.4.0/scripts/verify_texture_source.py",
+    "scripts/verify_texture_source.py"
+   ],
+   "referenced_by_n_scripts": 2,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "vista_hlod_boundary",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/payloads/vista_hlod_boundary.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "void_differential",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/void_differential.py"
+   ],
+   "referenced_by_n_scripts": 0,
+   "is_desk_tool": false
+  },
+  {
+   "tool": "warmup_settle",
+   "status": "exists-but-unlisted",
+   "paths": [
+    "scripts/warmup_settle.py"
+   ],
+   "referenced_by_n_scripts": 1,
+   "is_desk_tool": false
+  }
+ ]
+}

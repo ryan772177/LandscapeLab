@@ -1,0 +1,62 @@
+{
+ "_what": "Brief 5 v3 Task 3 forest_floor station, DERIVED to maximise in-frustum-in-cull trees (target >= 5000).",
+ "_method": "Top-20 densest 256 m tree-bins as candidate camera positions; ground z = heightmap + 175 cm eye; yaw swept 0..350 step 10, pitch in {-5,0,5}; the (position,yaw,pitch) with the most in-frustum-in-cull (base-point) trees is chosen. Frustum geometry identical to density_census (numpy-vectorised).",
+ "_read_back_source": {
+  "instances": "foliage/alpine_8k_<species>.json",
+  "cull_cm": "each plan's cull_cm",
+  "ground_z": "perf_standalone.heightmap_z(recipe) + 175 cm eye",
+  "declared_camera": "recipes/alpine_8k.json perception.declared_camera"
+ },
+ "chosen_bin": {
+  "bin_size_cm": 25600.0,
+  "bin_xy_index": [
+   -7,
+   7
+  ],
+  "densest_bin_xy_index": [
+   -7,
+   8
+  ],
+  "densest_bin_trees": 711,
+  "searched_topk_bins": 20,
+  "bin_center_cm": [
+   -166400.0,
+   192000.0
+  ]
+ },
+ "camera": {
+  "x_cm": -166400.0,
+  "y_cm": 192000.0,
+  "z_cm": 19819.8,
+  "pitch_deg": -5.0,
+  "yaw_deg": 100.0
+ },
+ "fov_h_deg": 90.0,
+ "vfov_deg": 58.71550708558254,
+ "res": [
+  3840,
+  2160
+ ],
+ "in_frustum_in_cull_total": 1844,
+ "in_frustum_in_cull_segment_total": 1844,
+ "per_species": {
+  "Conifer": {
+   "in_frustum_in_cull": 688,
+   "in_frustum_in_cull_segment": 688
+  },
+  "ConiferPine": {
+   "in_frustum_in_cull": 500,
+   "in_frustum_in_cull_segment": 500
+  },
+  "SpruceSub": {
+   "in_frustum_in_cull": 553,
+   "in_frustum_in_cull_segment": 553
+  },
+  "SpruceSapling": {
+   "in_frustum_in_cull": 103,
+   "in_frustum_in_cull_segment": 103
+  }
+ },
+ "meets_5000_target": false,
+ "_target_note": "If below 5000: the forest at the declared 90 deg hFOV / 512 m cull does not put 5000 live trees in one frustum anywhere (density ~0.005 trees/m2); this is the MAX achievable and is reported as such, not padded."
+}

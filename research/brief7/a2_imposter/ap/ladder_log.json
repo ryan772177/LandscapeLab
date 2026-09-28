@@ -1,0 +1,444 @@
+[
+  {
+    "cell": {
+      "name": "m010_r033",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.01,
+      "rayleigh": 0.0331
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.009999999776482582,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.03310000151395798
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m010_r033.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m010_r033.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "m005_r033",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.005,
+      "rayleigh": 0.0331
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.004999999888241291,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.03310000151395798
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m005_r033.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m005_r033.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "m0025_r033",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.0025,
+      "rayleigh": 0.0331
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.0024999999441206455,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.03310000151395798
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m0025_r033.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m0025_r033.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "m010_r050",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.01,
+      "rayleigh": 0.05
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.009999999776482582,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.05000000074505806
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m010_r050.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m010_r050.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "m005_r050",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.005,
+      "rayleigh": 0.05
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.004999999888241291,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.05000000074505806
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m005_r050.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m005_r050.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "m0025_r050",
+      "density": 0.0015,
+      "start": 15000,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.0025,
+      "rayleigh": 0.05
+    },
+    "readback": {
+      "fog_density": 0.001500000013038516,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 15000.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.0024999999441206455,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.05000000074505806
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {
+      "camA": {
+        "file": "camA_m0025_r050.png",
+        "cam_loc": [
+          -201186.0,
+          219000.0,
+          21722.0
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -9.0,
+          270.0
+        ]
+      },
+      "camB": {
+        "file": "camB_m0025_r050.png",
+        "cam_loc": [
+          -190000.0,
+          100000.0,
+          63366.2
+        ],
+        "cam_rot_rpy": [
+          0.0,
+          -2.0,
+          105.0
+        ]
+      }
+    }
+  },
+  {
+    "cell": {
+      "name": "restore_baseline",
+      "density": 0.00416,
+      "start": 0.0,
+      "albedo": "255,255,255",
+      "ap": 1.0,
+      "mie": 0.01,
+      "rayleigh": 0.0331
+    },
+    "readback": {
+      "fog_density": 0.0041600000113248825,
+      "fog_height_falloff": 0.01932404562830925,
+      "start_distance": 0.0,
+      "enable_volumetric_fog": true,
+      "volumetric_fog_albedo": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "volumetric_fog_extinction_scale": 1.0,
+      "volumetric_fog_scattering_distribution": 0.20000000298023224,
+      "fog_inscattering_luminance": "<Struct 'LinearColor' (0x0000023BF4221AB4) {r: 0.000000, g: 0.000000, b: 0.000000, a: 1.000000}>",
+      "sky_atmosphere_ambient_contribution_color_scale": "<Struct 'LinearColor' (0x0000023BF4221AC4) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+      "ap_scale": 1.0,
+      "height_fog_contribution": 1.0,
+      "mie_scattering_scale": 0.009999999776482582,
+      "mie_absorption_scale": 0.0004440000047907233,
+      "mie_anisotropy": 0.800000011920929,
+      "rayleigh_scattering_scale": 0.03310000151395798
+    },
+    "cvars": {
+      "r.VolumetricFog": 1,
+      "r.SupportExpFogMatchesVolumetricFog": 0,
+      "Slate.bAllowThrottling": 0,
+      "r.SkyAtmosphere.AerialPerspectiveLUT.Depth": 96.0
+    },
+    "shots": {}
+  }
+]

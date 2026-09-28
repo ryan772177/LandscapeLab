@@ -1,0 +1,282 @@
+[
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/apply_nanite.py:88",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _m = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/bake_hero_face_textures.py:123",
+  "line": "_unreal.EditorAssetLibrary.save_asset(_full, only_if_is_dirty=False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# READ BACK off the asset, not off the setter.             _rec[\"srgb\"] = bool(_tex.get_editor_property(\"srgb\"))             _rec[\"compressi"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/bake_skeletal_to_static.py:102",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_src):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"source asset does not exist\"     else:         _skm = _unreal.EditorAssetLibrary.load_asset(_src)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/make_alpinelab_material.py:193",
+  "line": "_missing = [_p for _p in _spec[\"all_textures\"] if not _eal.does_asset_exist(_p)]",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "if _missing:     _out[\"error\"] = \"textures missing: \" + \", \".join(_missing)     print(\"{marker}\" + _json.dumps(_out))"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_alpinelab_material.py:464",
+  "line": "_eal.save_asset(_gtpath, False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# READ BACK. A density that did not land is a field that reads like     # a setting (non-negotiable 17), and PerPlatformFloat is exactly the"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_alpinelab_material.py:556",
+  "line": "_eal.save_asset(_path, False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "_a = _ll_assert_graph(_mel, _mat, _spec[\"all_textures\"]) _out[\"assert\"] = _a"
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/make_foliage_material.py:432",
+  "line": "(\"r->mk.A\", _mel.connect_material_expressions(_r, \"\", _mk, \"A\")),",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "(\"gi->mk.B\", _mel.connect_material_expressions(_gi, \"\", _mk, \"B\")),                 (\"mk->mk2.A\", _mel.connect_material_expressions(_mk, \"\","
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/make_foliage_material.py:433",
+  "line": "(\"gi->mk.B\", _mel.connect_material_expressions(_gi, \"\", _mk, \"B\")),",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "(\"mk->mk2.A\", _mel.connect_material_expressions(_mk, \"\", _mk2, \"A\")),                 (\"b->mk2.B\", _mel.connect_material_expressions(_b, \"\","
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/make_foliage_material.py:434",
+  "line": "(\"mk->mk2.A\", _mel.connect_material_expressions(_mk, \"\", _mk2, \"A\")),",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "(\"b->mk2.B\", _mel.connect_material_expressions(_b, \"\", _mk2, \"B\")),             ]             _out[\"normal_wires\"] = {{_k: bool(_v) for _k, "
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/make_foliage_material.py:435",
+  "line": "(\"b->mk2.B\", _mel.connect_material_expressions(_b, \"\", _mk2, \"B\")),",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "]             _out[\"normal_wires\"] = {{_k: bool(_v) for _k, _v in _wires}}             _out[\"normal_wire_failures\"] = [_k for _k, _v in _wir"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_landscape_material.py:3242",
+  "line": "_unreal.EditorAssetLibrary.save_asset(_asset_path,",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "only_if_is_dirty=False)      if _assign:"
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/make_layer_debug_material.py:91",
+  "line": "/ connect_material_expressions / connect_material_property",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "/ recompile_material / layout_material_expressions       (5.8 note: recompile_material RETURNS the compile-error array,       TArray<FString"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_layer_debug_material.py:455",
+  "line": "_unreal.EditorAssetLibrary.save_asset(_asset_path, only_if_is_dirty=False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "if _assign:         _world = _unreal.get_editor_subsystem("
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_metahuman_character.py:82",
+  "line": "_unreal.EditorAssetLibrary.save_asset(_full, False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# Read back off a FRESH load, not off the object just made --                 # this proves it is on disk, not merely in memory.            "
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/make_nowind_material_instances.py:106",
+  "line": "if not _eal.does_asset_exist(_mp):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_row[\"error\"] = \"mesh does not exist\"             _out[\"meshes\"].append(_row)             continue"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/make_nowind_material_instances.py:176",
+  "line": "_eal.save_asset(_new_path)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# READ BACK from the saved asset, reloaded, not from the object             # we just wrote to."
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/material_graph.py:136",
+  "line": "if not _mel.connect_material_expressions(_from, _from_pin, _to,",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "_to_pin):         raise RuntimeError(             \"connect FAILED: {0}.{1!r} -> {2}.{3!r}. The pin name did \""
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/measure_lod_materials.py:57",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _m = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/measure_rock_meshes.py:79",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _m = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/measure_tree_packs.py:117",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _a = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/measure_tree_packs.py:154",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _t = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/payloads/apply_landscape_hlod_settings.py:77",
+  "line": "_eal.save_asset(LAYER, only_if_is_dirty=False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# ---- RE-READ FROM THE SAVED ASSET, not from the objects above ----     _re = _eal.load_asset(LAYER)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/hlod_census_readback.py:65",
+  "line": "if not _eal.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_res[_p] = {\"_error\": \"asset does not exist\"}             continue         _L = _eal.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/lod_capture_scene.py:68",
+  "line": "if _eal.does_asset_exist(KEY_MAT):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_eal.delete_asset(KEY_MAT)             _out[\"key_material_deleted\"] = not _eal.does_asset_exist(KEY_MAT)         except Exception as _e:"
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/payloads/make_depth_material.py:90",
+  "line": "_mel.connect_material_expressions(_st, \"Color\", _mx, \"A\")])",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "_steps.append([\"Max -> Log2\",                    _mel.connect_material_expressions(_mx, \"\", _lg, \"\")])     _steps.append([\"Log2 -> Divide.A\""
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/payloads/make_depth_material.py:92",
+  "line": "_mel.connect_material_expressions(_mx, \"\", _lg, \"\")])",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "_steps.append([\"Log2 -> Divide.A\",                    _mel.connect_material_expressions(_lg, \"\", _dv, \"A\")])     _steps.append([\"Divide -> E"
+ },
+ {
+  "api": "connect_material_expressions",
+  "site": "scripts/payloads/make_depth_material.py:94",
+  "line": "_mel.connect_material_expressions(_lg, \"\", _dv, \"A\")])",
+  "why_silent": "returns false on a failed connect and carries on (MaterialEditingLibrary.cpp:928-943); 93/30/10 unchecked calls were found across three builders",
+  "consumed_by": "_steps.append([\"Divide -> EmissiveColor\",                    _mel.connect_material_property(                        _dv, \"\", _u.MaterialProp"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/payloads/make_ppi0_passthrough.py:110",
+  "line": "_eal.save_asset(FULL)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "# ---- READ BACK from the saved asset, not from what was written ----     _re = _eal.load_asset(FULL)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/material_param_probe.py:28",
+  "line": "_rec = {\"path\": _p, \"exists\": _eal.does_asset_exist(_p)}",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "if not _rec[\"exists\"]:             _out[\"materials\"].append(_rec)             continue"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/read_layer_tiling.py:46",
+  "line": "if not _eal.does_asset_exist(MAT):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "# NN6: \"I looked and it is absent\" is not \"I could not look\".         _cands = [p for p in _eal.list_assets(\"/Game/Materials\", False, False)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/read_shadow_state.py:64",
+  "line": "if not _eal.does_asset_exist(p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "gt[p] = {\"_error\": \"asset does not exist\"}             continue         a = _eal.load_asset(p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/shade_pair_place.py:77",
+  "line": "if not _eal.does_asset_exist(_MAT_PATH):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "raise RuntimeError(             \"%s does not exist -- place the lit grey card first; the pair \"             \"must share one material\" % _MAT"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/payloads/tree_lod_probe.py:52",
+  "line": "_m = _eal.load_asset(_path) if _eal.does_asset_exist(_path) else None",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "if _m is None:             _rec[\"error\"] = \"asset not found\"             _out[\"meshes\"].append(_rec)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/probe_material.py:80",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _a = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/probe_material.py:156",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"function does not exist\"     else:         _f = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "save_asset",
+  "site": "scripts/push_heightmap.py:1907",
+  "line": "_unreal.EditorAssetLibrary.save_asset(_mat_path, only_if_is_dirty=False)",
+  "why_silent": "neither raises nor returns anything the caller reads when the path is bad; 'saved after the verdict' was printed while the asset on disk stayed five weeks stale",
+  "consumed_by": "if _out[\"compile_errors\"]:         return _refuse(\"material\", \"push material failed to compile\")"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/read_grass_type.py:46",
+  "line": "if not _unreal.EditorAssetLibrary.does_asset_exist(_p):",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "_out[\"error\"] = \"asset does not exist\"     else:         _gt = _unreal.EditorAssetLibrary.load_asset(_p)"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/scratch_tree_scene.py:65",
+  "line": "_exists = _unreal.EditorAssetLibrary.does_asset_exist(_level)",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "if _exists and not {replace}:         _out[\"error\"] = \"level already exists; pass --replace to rebuild it\"     else:"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/ue5_import_alpinelab.py:358",
+  "line": "if skip_existing and unreal.EditorAssetLibrary.does_asset_exist(",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "obj_path):             tex = unreal.EditorAssetLibrary.load_asset(obj_path)             # Report what is ALREADY there rather than asserting"
+ },
+ {
+  "api": "does_asset_exist",
+  "site": "scripts/update_foliage_culls.py:50",
+  "line": "if _u.EditorAssetLibrary.does_asset_exist(_p) else None)",
+  "why_silent": "returns False for a missing asset AND for a malformed path, so a typo reads as 'the asset is absent'",
+  "consumed_by": "if _ft is None:             _row[\"error\"] = \"asset not found\"             _out[\"rows\"].append(_row)"
+ }
+]

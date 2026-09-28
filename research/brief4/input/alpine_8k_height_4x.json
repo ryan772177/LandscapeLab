@@ -1,0 +1,178 @@
+{
+ "_what": "Alpine8K heightmap downsampled 4x, with the frame needed to put a pixel back in the world.",
+ "_generated_by": "research/brief4/input/export_heightmap_for_desk.py",
+ "source": {
+  "path": "terrain/alpine_8k.png",
+  "resolution": [
+   8129,
+   8129
+  ],
+  "mode": "I;16",
+  "sha256": "cac37b86893d7ae60a812d15a07ac5bce393961e5730a63c7600a8d0b81779ac"
+ },
+ "image": {
+  "path": "alpine_8k_height_4x_2033.png",
+  "resolution": [
+   2033,
+   2033
+  ],
+  "mode": "I;16",
+  "downsample_factor": 4,
+  "method": "area average over a CENTRED 5x5 window; output vertex i is exactly input vertex 4*i, so there is NO half-pixel shift against the coordinates below",
+  "metres_per_pixel": 4.0,
+  "_vertex_grid": "8129 vertices span 8128 intervals; 4x gives 2032 intervals = 2033 vertices",
+  "edge_caveat": "The FIRST and LAST row and column are slightly biased inward: a centred window cannot stay symmetric at a boundary, so those vertices average replicate-padded samples. On a unit ramp the bias is 0.6 of one input sample. The interior is exact -- a linear field reproduces to 1e-9. Treat the 1-px border as soft."
+ },
+ "z_mapping": {
+  "metres_per_16bit_unit": 0.039063096,
+  "height_m_of_unit_0": 0.0,
+  "formula": "height_m = height_m_of_unit_0 + unit * metres_per_16bit_unit",
+  "encodable_span_m": [
+   0.0,
+   2560.0
+  ],
+  "measured_units": [
+   0,
+   39743
+  ],
+  "measured_span_m": [
+   0.0,
+   1552.485
+  ],
+  "_encodable_is_not_measured": "the ENCODABLE span is what 16 bits can address at this z_scale; the MEASURED span is what this terrain actually uses. Use the measured one for anything about this landscape.",
+  "z_scale_cm": 256000.0,
+  "landscape_location_cm": [
+   -406400.0,
+   -406400.0,
+   128000.0
+  ],
+  "world_z_cm": "height_m * 100",
+  "⛔_do_not_add_landscape_location_z": "world_z_cm = height_m * 100. The landscape actor's location z is NOT added -- it is already spent. UE stores landscape height as a SIGNED 16-bit value about midpoint 32768, and this landscape's location z (128000.0 cm) is EXACTLY 32768 * (z_scale_cm / 65536) = 128000.00 cm, i.e. the midpoint offset itself. Adding it again double-counts. Measured, not argued: on world_z = height_m*100 all four station cameras sit +1.66 to +2.17 m above the terrain at the pixel this sidecar names (eye height, four independent stations); on the additive formula every one of them sits 1278 m UNDERGROUND.",
+  "_divisor_note": "metres_per_16bit_unit above is z_scale_cm/65535/100. The engine's own divisor is 65536 -- which is what makes the midpoint land on 128000.00 cm EXACTLY rather than 128001.95 cm -- giving 0.0390625 m/unit. The two differ by 0.0237 m over the measured span, below anything downstream resolves, so the shipped value is left as-is to stay in step with hydro.json, which was derived from it."
+ },
+ "orientation": {
+  "mapping": "ours (row->+Y, col->+X)",
+  "world_x_cm": "origin_cm[0] + col * metres_per_pixel * 100",
+  "world_y_cm": "origin_cm[1] + row * metres_per_pixel * 100",
+  "established_by": "scripts/heightmap_orientation_check.py",
+  "evidence": "_verify/bench/2026-09-11/orientation_vista.json",
+  "iou_by_mapping": {
+   "ours (row->+Y, col->+X)": 0.7727,
+   "row flipped": 0.4473,
+   "col flipped": 0.1105,
+   "transposed": 0.0
+  },
+  "margin": 0.3254,
+  "required_margin": 0.2057,
+  "verdict": "PASS",
+  "_tested_against": "an ENGINE depth pass at station vista, not against another derivation of the same heightmap"
+ },
+ "world_origin": {
+  "landscape_location_cm": [
+   -406400.0,
+   -406400.0,
+   128000.0
+  ],
+  "scale_xy_cm_per_vertex": 100.0,
+  "_pixel_0_0_is": "the landscape's minimum-X, minimum-Y corner vertex, at world (-406400.0, -406400.0) cm"
+ },
+ "town_footprint": {
+  "from_city_plan": "city/alpine_basin_town_plan.json",
+  "oriented_rectangles": 1142,
+  "bounding_box_col_row": {
+   "min_col_row": [
+    386.539,
+    1595.504
+   ],
+   "max_col_row": [
+    593.254,
+    1829.863
+   ]
+  },
+  "plaza": {
+   "centre_col_row": [
+    489.0,
+    1713.0
+   ],
+   "radius_px": 7.0,
+   "radius_m": 28.0
+  },
+  "margins_m": {
+   "building": 3.0,
+   "street": 2.0,
+   "plaza": 6.0
+  },
+  "_margins_are_included": "the rectangles already carry the foliage-clearing margins from recipes/city.json"
+ },
+ "stations": {
+  "ground": {
+   "loc_cm": [
+    373600.0,
+    269600.0,
+    77987.6
+   ],
+   "col_row": [
+    7800.0,
+    6760.0
+   ],
+   "forward_pitch_yaw_deg": [
+    -20.0,
+    180.0
+   ],
+   "fov_deg": 90.0,
+   "_restationed_T7_2026-09-19": "Brief-4 T7: the old ground station (loc [265600.0, -94400.0, 6541.2] col_row [1680,780], z 65.4 m) is ~115 m UNDER Lake A (level 180 m). Re-derived by scripts/derive_ground_station.py --exclude-water (RULED 2026-09-11: standing height, ~20deg down, concave rising ground, 30 m AND 300 m both in frame, no canopy lower half). bands [354.0, 246.0] clear the 160-row floor; forward rise 112.1 m, curvature 0.529, meadow 0.745, NOT submerged. NOTE: A's 180 m shore CANNOT host it -- a lakeshore is a basin rim where ground FALLS to water, failing the concavity gate (best A-shore candidate within 800 m: forward rise 21.4 m, bands below the 160 floor -- verified with the audit-fixed world-cm filter (the earlier 30/12 was a cm/m-buggy-filter artefact, corrected)). The surface-metrics ruling wins over the wet_shore-in-frame goal (X-6); at 778 m elevation snow/forest_floor layers now appear in the surface frame instead. Every Bench_ground-keyed series ENDS at the carve."
+  },
+  "near_ground": {
+   "loc_cm": [
+    -210800.0,
+    278800.0,
+    18846.809
+   ],
+   "col_row": [
+    489.0,
+    1713.0
+   ],
+   "forward": [
+    0.974555,
+    -0.221414,
+    -0.034899
+   ],
+   "fov_deg": 90.0
+  },
+  "mid_slope": {
+   "loc_cm": [
+    -190000.0,
+    100000.0,
+    63366.214
+   ],
+   "col_row": [
+    541.0,
+    1266.0
+   ],
+   "forward": [
+    -0.258661,
+    0.965337,
+    -0.034899
+   ],
+   "fov_deg": 90.0
+  },
+  "vista": {
+   "loc_cm": [
+    -216400.0,
+    63600.0,
+    76424.856
+   ],
+   "col_row": [
+    475.0,
+    1175.0
+   ],
+   "forward": [
+    0.498782,
+    0.863916,
+    -0.069756
+   ],
+   "fov_deg": 90.0
+  }
+ },
+ "_station_note": "Bench_ground is the surface-metrics station and is deliberately NOT in the ratified near_ground/mid_slope/vista comparison set."
+}

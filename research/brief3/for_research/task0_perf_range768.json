@@ -1,0 +1,141 @@
+{
+ "_what": "check_perf-conforming view of the 768 m-range standalone measurement. DERIVED, stats verbatim from _verify/perf/standalone_2026-09-10_range768/standalone_2026-09-07/perf_standalone.json (rule 9; NN0: one measurement).",
+ "_measurement_class": "STANDALONE -game process, 4K, FOV 90, BugItGo at the ratified cameras; RUNTIME GRID 768 m / instanced HLOD 2 km (Brief 3 Task 0)",
+ "_source": "_verify/perf/standalone_2026-09-10_range768/standalone_2026-09-07/perf_standalone.json",
+ "stations": [
+  {
+   "zone": "plaza",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2375,
+     "mean": 10.737,
+     "p50": 10.722,
+     "p90": 11.855,
+     "max": 36.998
+    },
+    "GameThreadTime": {
+     "n": 2374,
+     "mean": 3.62,
+     "p50": 3.652,
+     "p90": 4.36,
+     "max": 36.868
+    },
+    "RenderThreadTime": {
+     "n": 2374,
+     "mean": 10.716,
+     "p50": 10.667,
+     "p90": 11.438,
+     "max": 13.65
+    },
+    "GPUTime": {
+     "n": 2374,
+     "mean": 9.444,
+     "p50": 9.362,
+     "p90": 9.802,
+     "max": 11.82
+    }
+   }
+  },
+  {
+   "zone": "main_street",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 3284,
+     "mean": 7.694,
+     "p50": 7.676,
+     "p90": 8.224,
+     "max": 9.597
+    },
+    "GameThreadTime": {
+     "n": 3283,
+     "mean": 2.603,
+     "p50": 2.483,
+     "p90": 3.151,
+     "max": 4.224
+    },
+    "RenderThreadTime": {
+     "n": 3283,
+     "mean": 7.684,
+     "p50": 7.669,
+     "p90": 8.188,
+     "max": 9.6
+    },
+    "GPUTime": {
+     "n": 3283,
+     "mean": 6.547,
+     "p50": 6.498,
+     "p90": 6.877,
+     "max": 7.388
+    }
+   }
+  },
+  {
+   "zone": "treeline",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2904,
+     "mean": 8.701,
+     "p50": 8.673,
+     "p90": 9.637,
+     "max": 11.938
+    },
+    "GameThreadTime": {
+     "n": 2904,
+     "mean": 3.05,
+     "p50": 2.811,
+     "p90": 4.005,
+     "max": 5.431
+    },
+    "RenderThreadTime": {
+     "n": 2904,
+     "mean": 8.693,
+     "p50": 8.663,
+     "p90": 9.196,
+     "max": 11.898
+    },
+    "GPUTime": {
+     "n": 2904,
+     "mean": 7.491,
+     "p50": 7.426,
+     "p90": 7.86,
+     "max": 8.447
+    }
+   }
+  },
+  {
+   "zone": "vista",
+   "stats_ms": {
+    "FrameTime": {
+     "n": 2553,
+     "mean": 9.82,
+     "p50": 9.807,
+     "p90": 10.894,
+     "max": 34.807
+    },
+    "GameThreadTime": {
+     "n": 2552,
+     "mean": 3.577,
+     "p50": 3.614,
+     "p90": 4.265,
+     "max": 35.995
+    },
+    "RenderThreadTime": {
+     "n": 2552,
+     "mean": 9.803,
+     "p50": 9.767,
+     "p90": 10.494,
+     "max": 13.246
+    },
+    "GPUTime": {
+     "n": 2552,
+     "mean": 8.538,
+     "p50": 8.436,
+     "p90": 8.856,
+     "max": 9.367
+    }
+   }
+  }
+ ],
+ "declared_loading_range_cm": 76800,
+ "_declared_loading_range_cm": "declared_loading_range_cm added 2026-09-11 (RULED): the range this measurement was taken at, previously stated only inside _measurement_class. check_perf selects the artefact whose range matches the world's instead of the newest by mtime. No stat changed."
+}

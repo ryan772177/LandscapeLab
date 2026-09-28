@@ -1,0 +1,23 @@
+[D3] pre-D3 world shas: {"foliage/alpine_8k_Conifer.json": "c9bcbca2ddbd7aade0a7e2fff077ab5ea55c65ba", "foliage/alpine_8k_ConiferPine.json": "b159267ed64b509e3302783997885e48c935a74a", "foliage/alpine_8k_SpruceSub.json": "f52e86710550e9169c3eddedfb9716dac664905f", "foliage/alpine_8k_SpruceSapling.json": "fe7fd2a31e9e88a9914da2494ae4650b942843bb", "LandscapeLab/Content/Alpine8K.umap": "e8e490cac18985e7fc04edc899146dfed1ca8553", "LandscapeLab/Content/__ExternalActors__/Alpine8K": "tree:3861-index-entries", "LandscapeLab/Content/__ExternalObjects__/Alpine8K": "tree:3-index-entries", "LandscapeLab/Content/Foliage": "tree:28-index-entries"}
+[D3] pre-flight: worktree world == pre-p3-density-20260927, clean
+[D3] resource_guard rc 0 REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+lock file : C:\Users\Admin\UE5LandscapePipeline\.heavy-op.lock
+memory    : 20.1 GB free of 31.4 GB
+held by   : nobody
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : OFFSCREEN (no main window; end on R-EDITOR-CLOSE's kill path)
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[D3] launched PIDs [23272]; waiting for ready
+[D3] editor ready after 44s
+[D3] run(place): --place --timeout 25 --ruled-count 830074
+[D3]   rc 0 (290.1s) ======================================== PLACED 797,500 instances across 4 species, counted in the world. ======================================================================  Pipeline rule 4: run the capture script (a LESSONS.md note is suggested, not required). NOT SAVED â€” foliage persists only after save_level. 
+[D3] editor VRAM after place: 5605 MiB (6 samples, ceiling 13312) 
+[D3] run(save): C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\save_level.py --recipe C:\Users\Admin\UE5LandscapePipeline\recipes\alpine_8k.json --save
+[D3]   rc 3 (6.3s) ine_8k_Rock     /Game/Textures/T_Alpine_8k_Scree     /Game/Textures/T_Alpine_8k_Snow     /Game/Textures/T_Alpine_8k_Weights     /Game/__ExternalActors__/Alpine8K/*     /Game/__ExternalObjects__/Alpine8K/*  --- editor identity gate (conduct rule 7) --- REFUSE (rule 7): no editor nodes answered discovery. Not executing. 
+[D3] killed PID 23272
+[D3] ABORT: save_level --save rc=3
+[D3]   moved 0 untracked additions -> (none)
+[D3]   git checkout pre-p3-density-20260927 rc 0 
+[D3]   restoration proven (diff==tag & clean): True  {'diff_vs_tag_rc': 0, 'porcelain': ''}
+[D3] verdict -> research\brief7\p3\d3_verdict.json

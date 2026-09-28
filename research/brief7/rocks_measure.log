@@ -1,0 +1,21 @@
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+measuring : 13 mesh(es), one load per remote call
+excluded  : SM_GroundRevealRock001, SM_GroundRevealRock002  (palette HAZARD — 8K texture, 4608 MB encode)
+
+  - 4A7222F34B459765E9D634B018D7AAEF (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  boulder_medium_01          pivot  0.12 m  base  -0.63 m  nanite True  slots 1   tris 1796/1186/892/596            free 15.3GB
+  boulder_medium_02          pivot  0.09 m  base  -0.68 m  nanite False slots 1   tris 2712/946/756/620             free 15.3GB
+  boulder_small              pivot  0.10 m  base  -0.07 m  nanite False slots 1   tris 2572/1284/992/504            free 15.2GB
+  cliff_face_01              pivot  0.10 m  base  -1.43 m  nanite True  slots 1   tris 6230/7288/1821/1457          free 15.1GB
+  mountain_rock              pivot  0.35 m  base  -0.26 m  nanite True  slots 1   tris 3073/2272/567/454            free 15.1GB
+  mountain_rock_closed       pivot  0.56 m  base  -0.71 m  nanite True  slots 1   tris 5242/3842/936/560            free 15.1GB
+  hero_boulder_large         pivot  0.00 m  base  -1.36 m  nanite False slots 1   tris 13998/2814/840/536           free 15.1GB
+  scree_bend                 pivot  0.03 m  base  -0.20 m  nanite True  slots 1   tris 6107/6837/1708               free 14.6GB
+  scree_slab_001             pivot  0.16 m  base  -0.17 m  nanite True  slots 1   tris 9195/8405/2325/829           free 14.6GB
+  scree_slab_001a            pivot  0.20 m  base  -0.24 m  nanite False slots 1   tris 15566/7756/1509/372          free 14.5GB
+  scree_slab_001b            pivot  0.19 m  base  -0.22 m  nanite True  slots 1   tris 8227/10078/1984/585          free 14.2GB
+  scree_slab_002a            pivot  0.13 m  base  -0.24 m  nanite True  slots 1   tris 6084/3855/963/770            free 14.2GB
+  scree_slab_002b            pivot  0.11 m  base  -0.26 m  nanite False slots 1   tris 11947/2985/745/597           free 14.0GB
+
+wrote Free\_measured\rock_pivots.json (22 mesh(es) total)
+exit 0

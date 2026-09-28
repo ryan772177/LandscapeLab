@@ -1,0 +1,355 @@
+{
+ "_what": "Brief 5 desk derivation: tree representation ladder",
+ "judge_camera": {
+  "res": [
+   3840,
+   2160
+  ],
+  "fov_h_deg": 90.0,
+  "k_screen": 1.7778,
+  "focal_px": 1920.0
+ },
+ "px_floor": 40.0,
+ "lod_distance_scale": 1.0,
+ "species": [
+  {
+   "species": "Conifer",
+   "nanite": true,
+   "R_cm": 1546.6,
+   "H_m": 29.31,
+   "cull_m": 512.0,
+   "px_tall_at_cull": 109.9,
+   "px_floor_distance_m": 1407.0,
+   "verdict": "SINGLE-REPRESENTATION (Nanite): no ladder to derive; no action."
+  },
+  {
+   "species": "ConiferPine",
+   "nanite": false,
+   "R_cm": 1209.7,
+   "H_m": 22.11,
+   "cull_m": 512.0,
+   "px_tall_at_cull": 82.9,
+   "px_floor_distance_m": 1061.1,
+   "current": [
+    {
+     "lod": 0,
+     "tris": 27824,
+     "screen_size": 1.50451,
+     "engage_m": 0.0,
+     "px_tall_at_engage": null,
+     "live": true
+    },
+    {
+     "lod": 1,
+     "tris": 11062,
+     "screen_size": 0.33642,
+     "engage_m": 63.9,
+     "px_tall_at_engage": 664.0,
+     "live": true
+    },
+    {
+     "lod": 2,
+     "tris": 5777,
+     "screen_size": 0.23788,
+     "engage_m": 90.4,
+     "px_tall_at_engage": 469.5,
+     "live": true
+    },
+    {
+     "lod": 3,
+     "tris": 32,
+     "screen_size": 0.16821,
+     "engage_m": 127.8,
+     "px_tall_at_engage": 332.0,
+     "live": true
+    }
+   ],
+   "last_lod_is_card": true,
+   "card_defect": {
+    "engages_m": 127.8,
+    "px_tall_there": 332.0,
+    "px_floor": 40.0,
+    "x_over_floor": 8.3,
+    "fraction_of_live_range_shown_as_card": 0.938,
+    "_fraction_note": "area fraction of the in-cull disc beyond the card engage distance = share of live instances drawn as the card under uniform density."
+   },
+   "anchor": {
+    "lod": 2,
+    "tris": 5777,
+    "engage_m": 90.4,
+    "_rule": "required_tris(D) = tris_G * (D_G / D)^2  (constant on-screen triangle density, anchored where the asset author engaged LOD G)"
+   },
+   "new_rungs": [
+    {
+     "engage_m": 180.8,
+     "target_tris": 1444,
+     "percent_of_lod2": 25.0,
+     "screen_size": 0.11894,
+     "px_tall_at_engage": 234.8
+    },
+    {
+     "engage_m": 361.6,
+     "target_tris": 361,
+     "percent_of_lod2": 6.25,
+     "screen_size": 0.05947,
+     "px_tall_at_engage": 117.4
+    }
+   ],
+   "proposed": {
+    "screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.11894,
+     0.05947,
+     0.03818
+    ],
+    "tris": [
+     27824,
+     11062,
+     5777,
+     1444,
+     361,
+     32
+    ],
+    "_card_note": "last entry is the card: screen size set so it engages at 1.10 x cull_max -> never live; HLOD Instancing still uses it (lowest LOD) beyond the streaming range."
+   },
+   "fallback_hold": {
+    "screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "_what": "no new LODs: last geometric LOD held to the cull, card pushed past it."
+   },
+   "texel_gate": {
+    "frame_px": 512.0,
+    "card_allowed_beyond_m": 82.9,
+    "card_may_be_live": true,
+    "_rule": "a card is magnified (blurred) wherever tree_px > atlas frame px; allowed only beyond D = H * f_px / frame_px"
+   },
+   "station_tri_load": {
+    "n_in_frustum_in_cull": 500,
+    "current": 407893,
+    "fallback_hold": 3101537,
+    "proposed": 933860,
+    "_assumption": "uniform areal density inside the cull sector (ESTIMATE)"
+   }
+  },
+  {
+   "species": "SpruceSub",
+   "nanite": false,
+   "R_cm": 836.9,
+   "H_m": 16.72,
+   "cull_m": 512.0,
+   "px_tall_at_cull": 62.7,
+   "px_floor_distance_m": 802.8,
+   "current": [
+    {
+     "lod": 0,
+     "tris": 20695,
+     "screen_size": 1.0,
+     "engage_m": 0.0,
+     "px_tall_at_engage": null,
+     "live": true
+    },
+    {
+     "lod": 1,
+     "tris": 10347,
+     "screen_size": 0.99,
+     "engage_m": 15.0,
+     "px_tall_at_engage": 2136.7,
+     "live": true
+    },
+    {
+     "lod": 2,
+     "tris": 5174,
+     "screen_size": 0.6,
+     "engage_m": 24.8,
+     "px_tall_at_engage": 1295.0,
+     "live": true
+    },
+    {
+     "lod": 3,
+     "tris": 2587,
+     "screen_size": 0.35,
+     "engage_m": 42.5,
+     "px_tall_at_engage": 755.4,
+     "live": true
+    },
+    {
+     "lod": 4,
+     "tris": 6,
+     "screen_size": 0.17,
+     "engage_m": 87.5,
+     "px_tall_at_engage": 366.9,
+     "live": true
+    }
+   ],
+   "last_lod_is_card": true,
+   "card_defect": {
+    "engages_m": 87.5,
+    "px_tall_there": 366.9,
+    "px_floor": 40.0,
+    "x_over_floor": 9.2,
+    "fraction_of_live_range_shown_as_card": 0.971,
+    "_fraction_note": "area fraction of the in-cull disc beyond the card engage distance = share of live instances drawn as the card under uniform density."
+   },
+   "anchor": {
+    "lod": 3,
+    "tris": 2587,
+    "engage_m": 42.5,
+    "_rule": "required_tris(D) = tris_G * (D_G / D)^2  (constant on-screen triangle density, anchored where the asset author engaged LOD G)"
+   },
+   "new_rungs": [
+    {
+     "engage_m": 85.0,
+     "target_tris": 647,
+     "percent_of_lod3": 25.0,
+     "screen_size": 0.17503,
+     "px_tall_at_engage": 377.8
+    },
+    {
+     "engage_m": 170.0,
+     "target_tris": 162,
+     "percent_of_lod3": 6.25,
+     "screen_size": 0.08752,
+     "px_tall_at_engage": 188.9
+    }
+   ],
+   "proposed": {
+    "screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.17503,
+     0.08752,
+     0.02642
+    ],
+    "tris": [
+     20695,
+     10347,
+     5174,
+     2587,
+     647,
+     162,
+     6
+    ],
+    "_card_note": "last entry is the card: screen size set so it engages at 1.10 x cull_max -> never live; HLOD Instancing still uses it (lowest LOD) beyond the streaming range."
+   },
+   "fallback_hold": {
+    "screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "_what": "no new LODs: last geometric LOD held to the cull, card pushed past it."
+   },
+   "texel_gate": {
+    "frame_px": 256.0,
+    "card_allowed_beyond_m": 125.4,
+    "card_may_be_live": true,
+    "_rule": "a card is magnified (blurred) wherever tree_px > atlas frame px; allowed only beyond D = H * f_px / frame_px"
+   },
+   "station_tri_load": {
+    "n_in_frustum_in_cull": 553,
+    "current": 66485,
+    "fallback_hold": 1452113,
+    "proposed": 170226,
+    "_assumption": "uniform areal density inside the cull sector (ESTIMATE)"
+   }
+  },
+  {
+   "species": "SpruceSapling",
+   "nanite": false,
+   "R_cm": 276.4,
+   "H_m": 4.53,
+   "cull_m": 238.3,
+   "px_tall_at_cull": 36.5,
+   "px_floor_distance_m": 217.4,
+   "current": [
+    {
+     "lod": 0,
+     "tris": 2604,
+     "screen_size": 1.0,
+     "engage_m": 0.0,
+     "px_tall_at_engage": null,
+     "live": true
+    },
+    {
+     "lod": 1,
+     "tris": 1301,
+     "screen_size": 0.6,
+     "engage_m": 8.2,
+     "px_tall_at_engage": 1062.0,
+     "live": true
+    },
+    {
+     "lod": 2,
+     "tris": 650,
+     "screen_size": 0.2,
+     "engage_m": 24.6,
+     "px_tall_at_engage": 354.0,
+     "live": true
+    },
+    {
+     "lod": 3,
+     "tris": 326,
+     "screen_size": 0.1,
+     "engage_m": 49.1,
+     "px_tall_at_engage": 177.0,
+     "live": true
+    }
+   ],
+   "last_lod_is_card": false,
+   "verdict": "no card LOD; ladder is geometric to the cull. No card-rule action.",
+   "anchor": {
+    "lod": 3,
+    "tris": 326,
+    "engage_m": 49.1,
+    "_rule": "required_tris(D) = tris_G * (D_G / D)^2  (constant on-screen triangle density, anchored where the asset author engaged LOD G)"
+   },
+   "new_rungs": [],
+   "proposed": {
+    "screen_sizes": [
+     1.0,
+     0.6,
+     0.2,
+     0.1
+    ],
+    "tris": [
+     2604,
+     1301,
+     650,
+     326
+    ],
+    "_card_note": null
+   },
+   "fallback_hold": {
+    "screen_sizes": [
+     1.0,
+     0.6,
+     0.2,
+     0.1
+    ],
+    "_what": "no new LODs: last geometric LOD held to the cull, card pushed past it."
+   },
+   "station_tri_load": {
+    "n_in_frustum_in_cull": 103,
+    "current": 35869,
+    "fallback_hold": 35869,
+    "proposed": 35869,
+    "_assumption": "uniform areal density inside the cull sector (ESTIMATE)"
+   }
+  }
+ ],
+ "station_tri_load_total_non_nanite": {
+  "current": 510247,
+  "fallback_hold": 4589519,
+  "proposed": 1139955
+ }
+}

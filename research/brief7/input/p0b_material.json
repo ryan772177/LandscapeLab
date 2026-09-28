@@ -1,0 +1,45 @@
+{
+  "error": null,
+  "material": "/Game/Materials/M_Alpine8K",
+  "loaded": true,
+  "class_histogram": {
+    "MaterialExpressionVertexNormalWS": 1,
+    "MaterialExpressionComponentMask": 7,
+    "MaterialExpressionWorldPosition": 1,
+    "MaterialExpressionSubtract": 9,
+    "MaterialExpressionConstant": 52,
+    "MaterialExpressionDivide": 28,
+    "MaterialExpressionSaturate": 2,
+    "MaterialExpressionAbs": 1,
+    "MaterialExpressionMultiply": 23,
+    "MaterialExpressionAdd": 16,
+    "MaterialExpressionConstant2Vector": 1,
+    "MaterialExpressionTextureSample": 32,
+    "MaterialExpressionConstant3Vector": 2,
+    "MaterialExpressionLinearInterpolate": 20,
+    "MaterialExpressionMakeMaterialAttributes": 1,
+    "MaterialExpressionLandscapeGrassOutput": 1
+  },
+  "layer_coords": [],
+  "grass_outputs": [
+    {
+      "grass_types": [
+        {
+          "name": "Meadow",
+          "grass_type": "/Game/Foliage/GT_alpine_8k_Meadow.GT_alpine_8k_Meadow"
+        },
+        {
+          "name": "Blueberry",
+          "grass_type": "/Game/Foliage/GT_alpine_8k_Blueberry.GT_alpine_8k_Blueberry"
+        }
+      ]
+    }
+  ],
+  "layer_blends": [],
+  "displacement_scaling": {
+    "magnitude": "0.1599999964237213",
+    "center": "0.5"
+  },
+  "expr_count": 197,
+  "expr_access": "MaterialEditingLibrary.get_material_expressions"
+}

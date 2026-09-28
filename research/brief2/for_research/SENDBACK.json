@@ -1,0 +1,330 @@
+{
+ "_what": "Brief 2 send-back after Task 5. Player stills at 1920 wide plus the near_ground TRUTH frame, the four-column featureless table, the haze-by-depth table, and what changed in the recipe.",
+ "stills_sent": [
+  "near_ground",
+  "mid_slope",
+  "vista",
+  "near_ground_truth"
+ ],
+ "featureless_table": [
+  {
+   "station": "near_ground",
+   "featureless_total": 0.1824,
+   "featureless_sky": 0.1543,
+   "featureless_non_sky": 0.0281,
+   "fog_vs_sky_dE": null
+  },
+  {
+   "station": "mid_slope",
+   "featureless_total": 0.7907,
+   "featureless_sky": 0.0,
+   "featureless_non_sky": 0.7907,
+   "fog_vs_sky_dE": 0.46741
+  },
+  {
+   "station": "vista",
+   "featureless_total": 0.5843,
+   "featureless_sky": 0.2468,
+   "featureless_non_sky": 0.3375,
+   "fog_vs_sky_dE": 0.70642
+  }
+ ],
+ "haze_by_depth": {
+  "mid_slope_task4": {
+   "verdict": "PASS",
+   "blacks_rise": true,
+   "contrast_falls": true,
+   "matches_model": true,
+   "no_verdict_bins": [
+    "0-100",
+    "100-300",
+    "3000-8000"
+   ],
+   "bins": [
+    {
+     "bin_m": [
+      0.0,
+      100.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.99212,
+     "within_30pc": null
+    },
+    {
+     "bin_m": [
+      100.0,
+      300.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.96884,
+     "within_30pc": null
+    },
+    {
+     "bin_m": [
+      300.0,
+      1000.0
+     ],
+     "pixels": 1499714,
+     "p10_luma": 0.22518,
+     "luma_std": 0.15427,
+     "contrast_ratio": 1.0,
+     "predicted_T": 0.90223,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      1000.0,
+      3000.0
+     ],
+     "pixels": 419821,
+     "p10_luma": 0.4323,
+     "luma_std": 0.12533,
+     "contrast_ratio": 0.81241,
+     "predicted_T": 0.72864,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      3000.0,
+      8000.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.4187,
+     "within_30pc": null
+    }
+   ]
+  },
+  "mid_slope_task2": {
+   "verdict": "PASS",
+   "blacks_rise": true,
+   "contrast_falls": true,
+   "matches_model": true,
+   "no_verdict_bins": [
+    "0-100",
+    "100-300",
+    "3000-8000"
+   ],
+   "bins": [
+    {
+     "bin_m": [
+      0.0,
+      100.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.99212,
+     "within_30pc": null
+    },
+    {
+     "bin_m": [
+      100.0,
+      300.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.96884,
+     "within_30pc": null
+    },
+    {
+     "bin_m": [
+      300.0,
+      1000.0
+     ],
+     "pixels": 1499714,
+     "p10_luma": 0.20172,
+     "luma_std": 0.15926,
+     "contrast_ratio": 1.0,
+     "predicted_T": 0.90223,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      1000.0,
+      3000.0
+     ],
+     "pixels": 419821,
+     "p10_luma": 0.39982,
+     "luma_std": 0.13227,
+     "contrast_ratio": 0.83053,
+     "predicted_T": 0.72864,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      3000.0,
+      8000.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.4187,
+     "within_30pc": null
+    }
+   ]
+  },
+  "near_ground_task2": {
+   "verdict": "FAIL",
+   "blacks_rise": true,
+   "contrast_falls": false,
+   "matches_model": false,
+   "no_verdict_bins": [
+    "3000-8000"
+   ],
+   "bins": [
+    {
+     "bin_m": [
+      0.0,
+      100.0
+     ],
+     "pixels": 6756711,
+     "p10_luma": 0.00384,
+     "luma_std": 0.18564,
+     "contrast_ratio": 1.0,
+     "predicted_T": 0.98572,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      100.0,
+      300.0
+     ],
+     "pixels": 174830,
+     "p10_luma": 0.00546,
+     "luma_std": 0.14527,
+     "contrast_ratio": 0.78254,
+     "predicted_T": 0.94409,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      300.0,
+      1000.0
+     ],
+     "pixels": 13338,
+     "p10_luma": 0.03591,
+     "luma_std": 0.17545,
+     "contrast_ratio": 0.94511,
+     "predicted_T": 0.82945,
+     "within_30pc": true
+    },
+    {
+     "bin_m": [
+      1000.0,
+      3000.0
+     ],
+     "pixels": 8298,
+     "p10_luma": 0.33392,
+     "luma_std": 0.15514,
+     "contrast_ratio": 0.8357,
+     "predicted_T": 0.56251,
+     "within_30pc": false
+    },
+    {
+     "bin_m": [
+      3000.0,
+      8000.0
+     ],
+     "pixels": 0,
+     "p10_luma": null,
+     "luma_std": null,
+     "contrast_ratio": null,
+     "predicted_T": 0.20552,
+     "within_30pc": null
+    }
+   ]
+  }
+ },
+ "recipe_lighting_now": {
+  "sun": {
+   "elevation_deg": 12.0,
+   "azimuth_deg": 285.0,
+   "intensity_lux": 130000.0,
+   "temperature_kelvin": 7800.0,
+   "light_shaft_bloom": true
+  },
+  "sky": {
+   "type": "physical",
+   "intensity": 1.0,
+   "color": [
+    0.42,
+    0.6,
+    1.0
+   ],
+   "real_time_capture": true,
+   "lower_hemisphere_is_black": true,
+   "lower_hemisphere_color": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "_task3": "Brief 2 Task 3, 2026-09-09. intensity 1.8 -> 1.0, real-time capture on, lower hemisphere black -- both Epic physical-sun samples. 1.8 over-filled: shadow B/luma measured 1.75 against a natural 1.3-1.7. The sky.color field is INERT for a physical sky (the atmosphere owns the colour); reading it as authority would be a defect. Exposure NOT re-derived: no polish tool exists in this repo. Full reasoning in R13 and LESSONS.",
+   "mie_scattering_scale": 0.01,
+   "mie_anisotropy": 0.8,
+   "rayleigh_scattering_scale": 0.0331,
+   "_task4": "Brief 2 Task 4, 2026-09-09. Mie scattering scale 0.01, SOURCED to Electric Dreams, not fitted: atmosphere_solve has no fit mode against a measured sky gradient, so the brief's fallback branch applies. Live values before this were ENGINE DEFAULTS -- 0.003996 / 0.8 / 0.0331 read back from the world -- and nothing declared them, so anisotropy and Rayleigh are now DECLARED at the values they already held and only Mie moves. More Mie whitens the horizon and desaturates the sky light's capture, which is the lever for shadow tint once sky intensity is already at 1.0."
+  },
+  "fog": {
+   "enabled": true,
+   "density": 0.00416,
+   "start_distance_m": 0.0,
+   "volumetric": true,
+   "height_datum_m": 186.74,
+   "half_height_m": 517.49,
+   "inscattering_luminance": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "directional_inscattering_luminance": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "sky_atmosphere_ambient_contribution_scale": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "_task1": "Brief 2 Task 1, 2026-09-09. Fog colour comes from the SkyAtmosphere: inscattering black, directional black, ambient scale 1,1,1, start distance 0. r.SupportSkyAtmosphereAffectsHeightFog reads 1.0 already and is ECVF_ReadOnly. See R-FOG.",
+   "volumetric_extinction_scale": 1.0,
+   "volumetric_scattering_distribution": 0.4,
+   "_task2": "Brief 2 Task 2, 2026-09-09. density and half_height_m DERIVED by fog_budget, not tuned: T(1km)=0.75 target, world Z 0-1552.5 m, datum at the MEASURED valley floor. Falloff from a stated rule: halves every world-height/3 = 517.5 m. Model verified base-2 against the shader. Full derivation: R-FOG and _verify/bench/2026-09-09/fog_budget json."
+  },
+  "exposure": {
+   "method": "manual",
+   "compensation_ev": -1.923,
+   "_solve": "SOLVED FOR THIS SCENE 2026-08-14, not ported. Measured on diag_topdown (9 km, whole-map coverage) with the SKY MASKED OUT by local-variance: terrain-only linear luma 0.4135 against the solver target 0.3201 for sunlit terrain at albedo 0.2675, giving -1.786 - log2(0.4135/0.3201) = -1.923. THREE DENOMINATORS WERE TRIED AND THEY DISAGREE BY 0.13 EV, which is why the masking matters: whole-frame including sky gives 0.3470 -> -1.902 (the frame is ~57% sky at 9 km, so that is a sky-weighted average); a 4 km all-terrain probe gives 0.3805 -> -2.035 but samples only the central massif, which is snow-biased against a map that is 21.56% snow. Only the masked whole-map figure matches the area-weighted albedo the solver assumes. CROSS-CHECK: /Game/Alpine s Lumen-corrected -1.897 was derived independently for this same terrain, material and lighting, and agrees to 0.026 EV. That is confirmation by re-derivation, NOT a port -- and note the AlpineLab_8129 case where porting -1.897 would have been wrong, because that is a different mountain.",
+   "_solve_caveat": "THE SOLVE IS APPROXIMATE AND THE RESIDUAL IS NOT SMALL. Applying -1.923 moved the measured terrain-only linear from 0.4134 to 0.3909, where linear scaling predicted 0.3760 and the target is 0.3201. IT CANNOT CONVERGE BY CONSTRUCTION: the decoded PNG is POST-TONEMAP and the solver target 0.3201 is a PRE-TONEMAP scene value, and the filmic curve is compressive in this range -- a 0.137 EV step yielded -5.4% where linear arithmetic says -9.1%. This limitation applies to every exposure check this project has made by decoding a screenshot, including /Game/Alpine s 0.3169-vs-0.3201 agreement, which is closer than the method can actually resolve. The value is therefore anchored on TWO things that do not share this flaw: the measured brightness ORDERING (this scene reads brighter than the -1.786 reference) and agreement to 0.026 EV with alpine s independently-derived -1.897 for the same terrain, material and lighting. Frames at -1.923 read sRGB mean 0.610 with 0.000% blown. A proper solve needs the pre-tonemap value, which a screenshot cannot give. OPEN."
+  },
+  "grade": {
+   "white_temp_k": 8800.0,
+   "contrast": 0.95,
+   "bloom_intensity": 0.4,
+   "bloom_method": "FFT",
+   "grain": 0.0,
+   "vignette": 0.0,
+   "chromatic_aberration": 0.0,
+   "_rule": "white_temp = sun temperature + 1000 K. Sourced: Electric Dreams runs an uncorrected 6500 K sun against WB 5600; Dark Ruins runs WB 4800-5000 under a low warm sun. Both sit about 1000 K below their sun, meeting the scene halfway rather than neutralising it. THIS RECIPE'S SUN IS 7800 K, so the rule gives 8800 K -- OUTSIDE the 5500-6000 K the brief quotes, because the brief assumed a 4500-5000 K sun. The RULE is applied, not the brief's arithmetic; if 8800 K reads wrong the sun temperature is the thing to question, since 7800 K is itself high for a low alpine sun.",
+   "_quiet": "grain 0, vignette 0, chromatic aberration 0 -- the bench COMPARES frames and every grade element is noise in that comparison. Bloom is FFT at 0.4 on the engine's default kernel, a quieter version of the Epic grades."
+  }
+ },
+ "recipe_commits_today": []
+}

@@ -1,0 +1,4060 @@
+{
+ "ok": false,
+ "sections": {
+  "project": {
+   "engine": "5.8.1-56057345+++UE5+Release-5.8",
+   "project_dir": "../../../../../../ProgramData/Epic/EpicGamesLauncher/VaultCache/CitySample_5.8/data/",
+   "plugins_enabled": [
+    "AlembicHairImporter",
+    "HairStrands",
+    "PythonScriptPlugin",
+    "ControlRig",
+    "Takes",
+    "LiveLinkCurveDebugUI",
+    "ChaosVehiclesPlugin",
+    "RigLogic",
+    "GameplayInsights",
+    "TraceSourceFilters",
+    "ModelingToolsEditorMode",
+    "Traffic",
+    "CitySampleMassCrowd",
+    "StateTree",
+    "OnlineSubsystem",
+    "OnlineSubsystemUtils",
+    "MassAI",
+    "MassCrowd",
+    "MassGameplay",
+    "HoverDrone",
+    "EnhancedInput",
+    "LiveLinkControlRig",
+    "MotionWarping",
+    "Volumetrics",
+    "ContextualAnimation",
+    "ChaosCaching",
+    "FieldSystemPlugin",
+    "Paper2D",
+    "WinDualShock",
+    "ZoneGraph",
+    "AnimationWarping",
+    "ElectraPlayer",
+    "LiveLinkCamera",
+    "AudioModulation",
+    "Metasound",
+    "MovieRenderPipeline",
+    "Soundscape",
+    "FullBodyIK",
+    "RemoteControl",
+    "ImagePlate",
+    "GameFeatures",
+    "ModularGameplay",
+    "CitySampleSensorGrid",
+    "IKRig",
+    "ColorCorrectRegions",
+    "Gauntlet",
+    "CustomizableSequencerTracks",
+    "NetworkPrediction",
+    "NiagaraFluids",
+    "Text3D",
+    "GeometryMask",
+    "MotoSynth",
+    "EditorDataStorage",
+    "EditorDataStorageFeatures",
+    "AnimToTexture",
+    "SequencerScripting",
+    "GeometryCollectionPlugin",
+    "AutomatedPerfTesting",
+    "FastGeoStreaming"
+   ]
+  },
+  "hlod_layers": {
+   "/PCGBiomeSample/Maps/BiomeSampleLevel_HLOD0_Instancing": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/PCGBiomeSample/Maps/BiomeSampleLevel_HLOD0_Instancing.BiomeSampleLevel_HLOD0_Instancing:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/OpenWorldTemplate/HLOD/HLOD0_Instancing": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/OpenWorldTemplate/HLOD/HLOD0_Instancing.HLOD0_Instancing:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/ShapesFilter_HLODLayer_Instanced": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": "/Engine/WorldPartition/UnitTests/ShapesFilter_HLODLayer_Merged.ShapesFilter_HLODLayer_Merged",
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/ShapesFilter_HLODLayer_Instanced.ShapesFilter_HLODLayer_Instanced:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/ShapesFilter_HLODLayer_Merged": {
+    "layer_type": "<HLODLayerType.MESH_MERGE: 1>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/ShapesFilter_HLODLayer_Merged.ShapesFilter_HLODLayer_Merged:HLODBuilderMeshMergeSettings_1",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshMergeSettings",
+    "builder_settings": {
+     "mesh_merge_settings": {
+      "bake_vertex_data_to_mesh": false,
+      "computed_light_map_resolution": false,
+      "custom_pivot_location": "<Struct 'Vector' (0x0000022CAFB86DE8) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+      "generate_light_map_uv": false,
+      "include_imposters": true,
+      "lod_selection_type": "<MeshLODSelectionType.LOWEST_DETAIL_LOD: 3>",
+      "material_settings": {
+       "allow_two_sided_material": false,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D54) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D2C) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D04) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D3C) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 76800.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D1C) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D0C) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D4C) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D44) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D24) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D34) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86D14) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "merge_materials": true,
+      "merge_mesh_sockets": false,
+      "merge_physics_data": false,
+      "nanite_settings": {
+       "b_preserve_area": "<NaniteShapePreservation.NONE: 0>",
+       "bone_weight_precision": -1,
+       "displacement_uv_channel": 0,
+       "enabled": false,
+       "explicit_tangents": false,
+       "fallback_percent_triangles": 1.0,
+       "fallback_relative_error": 1.0,
+       "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+       "generate_fallback": "<NaniteGenerateFallback.PLATFORM_DEFAULT: 0>",
+       "keep_percent_triangles": 1.0,
+       "lerp_u_vs": true,
+       "max_edge_length_factor": 0.0,
+       "normal_precision": -1,
+       "num_rays": 64,
+       "position_precision": -2147483648,
+       "ray_back_up": 0.0,
+       "separable": false,
+       "shape_preservation": "<NaniteShapePreservation.NONE: 0>",
+       "tangent_precision": -1,
+       "trim_relative_error": 0.0,
+       "voxel_level": 0,
+       "voxel_ndf": true,
+       "voxel_opacity": false
+      },
+      "pivot_type": "<MeshMergePivotType.AUTOMATIC: 0>",
+      "specific_lod": 0,
+      "support_ray_tracing": true,
+      "target_light_map_resolution": 256,
+      "use_landscape_culling": false,
+      "use_texture_binning": false,
+      "use_vertex_data_for_baking_material": true
+     }
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/WPUnitTests_HLODLayer_Instanced": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": "/Engine/WorldPartition/UnitTests/WPUnitTests_HLODLayer_Merged.WPUnitTests_HLODLayer_Merged",
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/WPUnitTests_HLODLayer_Instanced.WPUnitTests_HLODLayer_Instanced:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/WPUnitTests_HLODLayer_Merged": {
+    "layer_type": "<HLODLayerType.MESH_MERGE: 1>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/WPUnitTests_HLODLayer_Merged.WPUnitTests_HLODLayer_Merged:HLODBuilderMeshMergeSettings_1",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshMergeSettings",
+    "builder_settings": {
+     "mesh_merge_settings": {
+      "bake_vertex_data_to_mesh": false,
+      "computed_light_map_resolution": false,
+      "custom_pivot_location": "<Struct 'Vector' (0x0000022CAFB86FA8) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+      "generate_light_map_uv": false,
+      "include_imposters": true,
+      "lod_selection_type": "<MeshLODSelectionType.LOWEST_DETAIL_LOD: 3>",
+      "material_settings": {
+       "allow_two_sided_material": false,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86F14) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EEC) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EC4) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EFC) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 76800.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EDC) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86ECC) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86F0C) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86F04) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EE4) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86EF4) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB86ED4) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "merge_materials": true,
+      "merge_mesh_sockets": false,
+      "merge_physics_data": false,
+      "nanite_settings": {
+       "b_preserve_area": "<NaniteShapePreservation.NONE: 0>",
+       "bone_weight_precision": -1,
+       "displacement_uv_channel": 0,
+       "enabled": false,
+       "explicit_tangents": false,
+       "fallback_percent_triangles": 1.0,
+       "fallback_relative_error": 1.0,
+       "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+       "generate_fallback": "<NaniteGenerateFallback.PLATFORM_DEFAULT: 0>",
+       "keep_percent_triangles": 1.0,
+       "lerp_u_vs": true,
+       "max_edge_length_factor": 0.0,
+       "normal_precision": -1,
+       "num_rays": 64,
+       "position_precision": -2147483648,
+       "ray_back_up": 0.0,
+       "separable": false,
+       "shape_preservation": "<NaniteShapePreservation.NONE: 0>",
+       "tangent_precision": -1,
+       "trim_relative_error": 0.0,
+       "voxel_level": 0,
+       "voxel_ndf": true,
+       "voxel_opacity": false
+      },
+      "pivot_type": "<MeshMergePivotType.AUTOMATIC: 0>",
+      "specific_lod": 0,
+      "support_ray_tracing": true,
+      "target_light_map_resolution": 256,
+      "use_landscape_culling": false,
+      "use_texture_binning": false,
+      "use_vertex_data_for_baking_material": true
+     }
+    }
+   },
+   "/Game/Map/HLOD/CitySample_HLOD0": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": "/Game/Map/HLOD/CitySample_HLOD1_HighQuality.CitySample_HLOD1_HighQuality",
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/HLOD/CitySample_HLOD0.CitySample_HLOD0:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Game/Map/HLOD/CitySample_HLOD0_Only": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/HLOD/CitySample_HLOD0_Only.CitySample_HLOD0_Only:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Game/Map/HLOD/CitySample_HLOD1_HighQuality": {
+    "layer_type": "<HLODLayerType.CUSTOM: 4>",
+    "cell_size": 204800,
+    "loading_range": 1638400.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/HLOD/CitySample_HLOD1_HighQuality.CitySample_HLOD1_HighQuality:HLODBuilderMeshApproximateSettings_1",
+    "hlod_builder_class": "/Script/CitySampleEditor.CitySampleHLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshApproximateSettings",
+    "builder_settings": {
+     "mesh_approximation_settings": {
+      "allow_distance_field": false,
+      "approximation_accuracy": 0.5,
+      "attempt_auto_thickening": true,
+      "base_capping": "<MeshApproximationBaseCappingType.NO_BASE_CAPPING: 0>",
+      "capture_field_of_view": 30.0,
+      "clamp_voxel_dimension": 1290,
+      "curvature_alignment": 1.0,
+      "emit_full_debug_mesh": false,
+      "enable_parallel_baking": true,
+      "enable_simplify_pre_pass": true,
+      "estimate_hard_normals": true,
+      "fill_gaps": true,
+      "gap_distance": 1.0,
+      "generate_nanite_enabled_mesh": true,
+      "geometric_deviation": 0.25,
+      "ground_clipping": "<MeshApproximationGroundPlaneClippingPolicy.DISCARD_WITH_Z_PLANE: 1>",
+      "ground_clipping_z_height": 0.0,
+      "hard_normal_angle": 60.0,
+      "ignore_tiny_parts": false,
+      "initial_patch_count": 250,
+      "material_settings": {
+       "allow_two_sided_material": true,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B23C) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B214) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B1EC) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B224) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 76800.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B204) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B1F4) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B234) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B22C) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B20C) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B21C) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B1FC) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "max_angle_deviation": 45.0,
+      "merging_threshold": 1.5,
+      "multi_sampling_aa": 4,
+      "nanite_fallback_percent_triangles": 0.009999999776482582,
+      "nanite_fallback_relative_error": 2.5,
+      "nanite_fallback_target": "<NaniteFallbackTarget.RELATIVE_ERROR: 2>",
+      "near_plane_dist": 1.0,
+      "occlude_from_bottom": true,
+      "occlusion_method": "<OccludedGeometryFilteringPolicy.NO_OCCLUSION_FILTERING: 0>",
+      "output_type": "<MeshApproximationType.MESH_AND_MATERIALS: 0>",
+      "print_debug_messages": false,
+      "render_capture_resolution": 4096,
+      "simplify_method": "<MeshApproximationSimplificationPolicy.GEOMETRIC_TOLERANCE: 2>",
+      "support_ray_tracing": true,
+      "target_min_thickness_multiplier": 2.0,
+      "target_tri_count": 2000,
+      "tiny_part_size_multiplier": 0.05000000074505806,
+      "triangles_per_m": 2.0,
+      "use_render_lod_meshes": false,
+      "uv_generation_method": "<MeshApproximationUVGenerationPolicy.PREFER_X_ATLAS: 1>",
+      "winding_threshold": 0.5
+     }
+    }
+   },
+   "/Game/Map/HLOD/CitySample_HLOD1_LowQuality": {
+    "layer_type": "<HLODLayerType.CUSTOM: 4>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/HLOD/CitySample_HLOD1_LowQuality.CitySample_HLOD1_LowQuality:HLODBuilderMeshApproximateSettings_2",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshApproximateSettings",
+    "builder_settings": {
+     "mesh_approximation_settings": {
+      "allow_distance_field": false,
+      "approximation_accuracy": 0.5,
+      "attempt_auto_thickening": true,
+      "base_capping": "<MeshApproximationBaseCappingType.NO_BASE_CAPPING: 0>",
+      "capture_field_of_view": 30.0,
+      "clamp_voxel_dimension": 768,
+      "curvature_alignment": 1.0,
+      "emit_full_debug_mesh": false,
+      "enable_parallel_baking": true,
+      "enable_simplify_pre_pass": true,
+      "estimate_hard_normals": true,
+      "fill_gaps": true,
+      "gap_distance": 1.0,
+      "generate_nanite_enabled_mesh": true,
+      "geometric_deviation": 0.25,
+      "ground_clipping": "<MeshApproximationGroundPlaneClippingPolicy.DISCARD_WITH_Z_PLANE: 1>",
+      "ground_clipping_z_height": 0.0,
+      "hard_normal_angle": 60.0,
+      "ignore_tiny_parts": false,
+      "initial_patch_count": 250,
+      "material_settings": {
+       "allow_two_sided_material": true,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B6BC) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B694) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B66C) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B6A4) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 128000.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B684) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B674) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B6B4) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B6AC) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B68C) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B69C) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B67C) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "max_angle_deviation": 45.0,
+      "merging_threshold": 1.5,
+      "multi_sampling_aa": 1,
+      "nanite_fallback_percent_triangles": 0.009999999776482582,
+      "nanite_fallback_relative_error": 2.5,
+      "nanite_fallback_target": "<NaniteFallbackTarget.RELATIVE_ERROR: 2>",
+      "near_plane_dist": 1.0,
+      "occlude_from_bottom": true,
+      "occlusion_method": "<OccludedGeometryFilteringPolicy.NO_OCCLUSION_FILTERING: 0>",
+      "output_type": "<MeshApproximationType.MESH_AND_MATERIALS: 0>",
+      "print_debug_messages": false,
+      "render_capture_resolution": 1024,
+      "simplify_method": "<MeshApproximationSimplificationPolicy.GEOMETRIC_TOLERANCE: 2>",
+      "support_ray_tracing": true,
+      "target_min_thickness_multiplier": 2.0,
+      "target_tri_count": 2000,
+      "tiny_part_size_multiplier": 0.05000000074505806,
+      "triangles_per_m": 2.0,
+      "use_render_lod_meshes": true,
+      "uv_generation_method": "<MeshApproximationUVGenerationPolicy.PREFER_X_ATLAS: 1>",
+      "winding_threshold": 0.5
+     }
+    }
+   },
+   "/Game/Map/HLOD/CitySample_HLOD1_MediumQuality": {
+    "layer_type": "<HLODLayerType.CUSTOM: 4>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/HLOD/CitySample_HLOD1_MediumQuality.CitySample_HLOD1_MediumQuality:HLODBuilderMeshApproximateSettings_2",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshApproximateSettings",
+    "builder_settings": {
+     "mesh_approximation_settings": {
+      "allow_distance_field": false,
+      "approximation_accuracy": 0.5,
+      "attempt_auto_thickening": true,
+      "base_capping": "<MeshApproximationBaseCappingType.NO_BASE_CAPPING: 0>",
+      "capture_field_of_view": 30.0,
+      "clamp_voxel_dimension": 1024,
+      "curvature_alignment": 1.0,
+      "emit_full_debug_mesh": false,
+      "enable_parallel_baking": true,
+      "enable_simplify_pre_pass": true,
+      "estimate_hard_normals": true,
+      "fill_gaps": true,
+      "gap_distance": 1.0,
+      "generate_nanite_enabled_mesh": true,
+      "geometric_deviation": 0.25,
+      "ground_clipping": "<MeshApproximationGroundPlaneClippingPolicy.DISCARD_WITH_Z_PLANE: 1>",
+      "ground_clipping_z_height": 0.0,
+      "hard_normal_angle": 60.0,
+      "ignore_tiny_parts": false,
+      "initial_patch_count": 250,
+      "material_settings": {
+       "allow_two_sided_material": true,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B9BC) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B994) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B96C) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B9A4) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 102400.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B984) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B974) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B9B4) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B9AC) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B98C) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B99C) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9B97C) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "max_angle_deviation": 45.0,
+      "merging_threshold": 1.5,
+      "multi_sampling_aa": 2,
+      "nanite_fallback_percent_triangles": 0.009999999776482582,
+      "nanite_fallback_relative_error": 2.5,
+      "nanite_fallback_target": "<NaniteFallbackTarget.RELATIVE_ERROR: 2>",
+      "near_plane_dist": 1.0,
+      "occlude_from_bottom": true,
+      "occlusion_method": "<OccludedGeometryFilteringPolicy.NO_OCCLUSION_FILTERING: 0>",
+      "output_type": "<MeshApproximationType.MESH_AND_MATERIALS: 0>",
+      "print_debug_messages": false,
+      "render_capture_resolution": 2048,
+      "simplify_method": "<MeshApproximationSimplificationPolicy.GEOMETRIC_TOLERANCE: 2>",
+      "support_ray_tracing": true,
+      "target_min_thickness_multiplier": 2.0,
+      "target_tri_count": 2000,
+      "tiny_part_size_multiplier": 0.05000000074505806,
+      "triangles_per_m": 2.0,
+      "use_render_lod_meshes": true,
+      "uv_generation_method": "<MeshApproximationUVGenerationPolicy.PREFER_X_ATLAS: 1>",
+      "winding_threshold": 0.5
+     }
+    }
+   },
+   "/Engine/Maps/Templates/HLODs/HLODLayer_Instanced": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": "/Engine/Maps/Templates/HLODs/HLODLayer_Merged.HLODLayer_Merged",
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/Maps/Templates/HLODs/HLODLayer_Instanced.HLODLayer_Instanced:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/Maps/Templates/HLODs/HLODLayer_Merged": {
+    "layer_type": "<HLODLayerType.MESH_MERGE: 1>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/Maps/Templates/HLODs/HLODLayer_Merged.HLODLayer_Merged:HLODBuilderMeshMergeSettings_1",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshMergeSettings",
+    "builder_settings": {
+     "mesh_merge_settings": {
+      "bake_vertex_data_to_mesh": false,
+      "computed_light_map_resolution": false,
+      "custom_pivot_location": "<Struct 'Vector' (0x0000022CAFB874E8) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+      "generate_light_map_uv": false,
+      "include_imposters": true,
+      "lod_selection_type": "<MeshLODSelectionType.LOWEST_DETAIL_LOD: 3>",
+      "material_settings": {
+       "allow_two_sided_material": false,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87454) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8742C) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87404) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8743C) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 76800.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8741C) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8740C) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8744C) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87444) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87424) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87434) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87414) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "merge_materials": true,
+      "merge_mesh_sockets": false,
+      "merge_physics_data": false,
+      "nanite_settings": {
+       "b_preserve_area": "<NaniteShapePreservation.NONE: 0>",
+       "bone_weight_precision": -1,
+       "displacement_uv_channel": 0,
+       "enabled": false,
+       "explicit_tangents": false,
+       "fallback_percent_triangles": 1.0,
+       "fallback_relative_error": 1.0,
+       "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+       "generate_fallback": "<NaniteGenerateFallback.PLATFORM_DEFAULT: 0>",
+       "keep_percent_triangles": 1.0,
+       "lerp_u_vs": true,
+       "max_edge_length_factor": 0.0,
+       "normal_precision": -1,
+       "num_rays": 64,
+       "position_precision": -2147483648,
+       "ray_back_up": 0.0,
+       "separable": false,
+       "shape_preservation": "<NaniteShapePreservation.NONE: 0>",
+       "tangent_precision": -1,
+       "trim_relative_error": 0.0,
+       "voxel_level": 0,
+       "voxel_ndf": true,
+       "voxel_opacity": false
+      },
+      "pivot_type": "<MeshMergePivotType.AUTOMATIC: 0>",
+      "specific_lod": 0,
+      "support_ray_tracing": true,
+      "target_light_map_resolution": 256,
+      "use_landscape_culling": false,
+      "use_texture_binning": false,
+      "use_vertex_data_for_baking_material": true
+     }
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/EditorPaths/EditorPaths_HLODLayer_Instanced": {
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size": 25600,
+    "loading_range": 76800.0,
+    "is_spatially_loaded": true,
+    "parent_layer": "/Engine/WorldPartition/UnitTests/EditorPaths/EditorPaths_HLODLayer_Merged.EditorPaths_HLODLayer_Merged",
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/EditorPaths/EditorPaths_HLODLayer_Instanced.EditorPaths_HLODLayer_Instanced:HLODBuilderInstancingSettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderInstancingSettings",
+    "builder_settings": {
+     "disallow_nanite": false,
+     "instance_filtering_type": "<InstanceFilteringType.FILTER_NONE: 0>",
+     "minimum_area": 0.0,
+     "minimum_extent": 0.0,
+     "minimum_volume": 0.0
+    }
+   },
+   "/Engine/WorldPartition/UnitTests/EditorPaths/EditorPaths_HLODLayer_Merged": {
+    "layer_type": "<HLODLayerType.MESH_MERGE: 1>",
+    "cell_size": 25600,
+    "loading_range": 51200.0,
+    "is_spatially_loaded": false,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Engine/WorldPartition/UnitTests/EditorPaths/EditorPaths_HLODLayer_Merged.EditorPaths_HLODLayer_Merged:HLODBuilderMeshMergeSettings_1",
+    "hlod_builder_class": "/Script/WorldPartitionHLODUtilities.HLODBuilderMeshApproximate",
+    "builder_settings_class": "HLODBuilderMeshMergeSettings",
+    "builder_settings": {
+     "mesh_merge_settings": {
+      "bake_vertex_data_to_mesh": false,
+      "computed_light_map_resolution": false,
+      "custom_pivot_location": "<Struct 'Vector' (0x0000022CAFB87A28) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+      "generate_light_map_uv": false,
+      "include_imposters": true,
+      "lod_selection_type": "<MeshLODSelectionType.LOWEST_DETAIL_LOD: 3>",
+      "material_settings": {
+       "allow_two_sided_material": false,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87994) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8796C) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87944) {x: 1024, y: 1024}>",
+       "emissive_map": true,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8797C) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 76800.0,
+       "metallic_constant": 0.0,
+       "metallic_map": true,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8795C) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8794C) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB8798C) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87984) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": true,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87964) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": true,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87974) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB87954) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_AUTOMATIC_FROM_MESH_DRAW_DISTANCE: 6>"
+      },
+      "merge_materials": true,
+      "merge_mesh_sockets": false,
+      "merge_physics_data": false,
+      "nanite_settings": {
+       "b_preserve_area": "<NaniteShapePreservation.NONE: 0>",
+       "bone_weight_precision": -1,
+       "displacement_uv_channel": 0,
+       "enabled": false,
+       "explicit_tangents": false,
+       "fallback_percent_triangles": 1.0,
+       "fallback_relative_error": 1.0,
+       "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+       "generate_fallback": "<NaniteGenerateFallback.PLATFORM_DEFAULT: 0>",
+       "keep_percent_triangles": 1.0,
+       "lerp_u_vs": true,
+       "max_edge_length_factor": 0.0,
+       "normal_precision": -1,
+       "num_rays": 64,
+       "position_precision": -2147483648,
+       "ray_back_up": 0.0,
+       "separable": false,
+       "shape_preservation": "<NaniteShapePreservation.NONE: 0>",
+       "tangent_precision": -1,
+       "trim_relative_error": 0.0,
+       "voxel_level": 0,
+       "voxel_ndf": true,
+       "voxel_opacity": false
+      },
+      "pivot_type": "<MeshMergePivotType.AUTOMATIC: 0>",
+      "specific_lod": 0,
+      "support_ray_tracing": true,
+      "target_light_map_resolution": 256,
+      "use_landscape_culling": false,
+      "use_texture_binning": false,
+      "use_vertex_data_for_baking_material": true
+     }
+    }
+   },
+   "/Game/Map/Environment/OW/Default_OW_Big_City_01_LODLayer": {
+    "layer_type": "<HLODLayerType.MESH_SIMPLIFY: 2>",
+    "cell_size": 25600,
+    "loading_range": 1024.0,
+    "is_spatially_loaded": true,
+    "parent_layer": null,
+    "force_ray_tracing_far_field": false,
+    "editor_loading_behavior": "<HLODLayerEditorLoadingBehavior.DEFAULT: 0>",
+    "hlod_builder_settings": "/Game/Map/Environment/OW/Default_OW_Big_City_01_LODLayer.Default_OW_Big_City_01_LODLayer:HLODBuilderMeshSimplifySettings_0",
+    "hlod_builder_class": null,
+    "builder_settings_class": "HLODBuilderMeshSimplifySettings",
+    "builder_settings": {
+     "mesh_simplify_settings": {
+      "allow_distance_field": false,
+      "allow_vertex_colors": false,
+      "calculate_correct_lod_model": false,
+      "compute_light_map_resolution": false,
+      "create_collision": true,
+      "generate_lightmap_u_vs": false,
+      "group_identical_meshes_for_baking": false,
+      "hard_angle_threshold": 130.0,
+      "landscape_culling_precision": "<LandscapeCullingPrecision.MEDIUM: 1>",
+      "light_map_resolution": 256,
+      "material_settings": {
+       "allow_two_sided_material": true,
+       "ambient_occlusion_constant": 1.0,
+       "ambient_occlusion_map": false,
+       "ambient_occlusion_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C24C) {x: 1024, y: 1024}>",
+       "anisotropy_constant": 0.0,
+       "anisotropy_map": false,
+       "anisotropy_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C224) {x: 1024, y: 1024}>",
+       "blend_mode": "<BlendMode.BLEND_OPAQUE: 0>",
+       "diffuse_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C1FC) {x: 1024, y: 1024}>",
+       "emissive_map": false,
+       "emissive_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C234) {x: 1024, y: 1024}>",
+       "gutter_space": 4.0,
+       "mesh_max_screen_size_percent": 0.5,
+       "mesh_min_draw_distance": 10000.0,
+       "metallic_constant": 0.0,
+       "metallic_map": false,
+       "metallic_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C214) {x: 1024, y: 1024}>",
+       "normal_map": true,
+       "normal_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C204) {x: 1024, y: 1024}>",
+       "opacity_constant": 1.0,
+       "opacity_map": false,
+       "opacity_mask_constant": 1.0,
+       "opacity_mask_map": false,
+       "opacity_mask_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C244) {x: 1024, y: 1024}>",
+       "opacity_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C23C) {x: 1024, y: 1024}>",
+       "roughness_constant": 0.5,
+       "roughness_map": false,
+       "roughness_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C21C) {x: 1024, y: 1024}>",
+       "specular_constant": 0.5,
+       "specular_map": false,
+       "specular_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C22C) {x: 1024, y: 1024}>",
+       "tangent_map": false,
+       "tangent_texture_size": "<Struct 'IntPoint' (0x0000022CAFB9C20C) {x: 1024, y: 1024}>",
+       "target_texel_density_per_meter": 5.0,
+       "texture_sizing_type": "<TextureSizingType.TEXTURE_SIZING_TYPE_USE_SINGLE_TEXTURE_SIZE: 0>"
+      },
+      "max_ray_cast_dist": 20.0,
+      "merge_distance": 0.0,
+      "nanite_settings": {
+       "b_preserve_area": "<NaniteShapePreservation.NONE: 0>",
+       "bone_weight_precision": -1,
+       "displacement_uv_channel": 0,
+       "enabled": false,
+       "explicit_tangents": false,
+       "fallback_percent_triangles": 1.0,
+       "fallback_relative_error": 1.0,
+       "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+       "generate_fallback": "<NaniteGenerateFallback.PLATFORM_DEFAULT: 0>",
+       "keep_percent_triangles": 1.0,
+       "lerp_u_vs": true,
+       "max_edge_length_factor": 0.0,
+       "normal_precision": -1,
+       "num_rays": 64,
+       "position_precision": -2147483648,
+       "ray_back_up": 0.0,
+       "separable": false,
+       "shape_preservation": "<NaniteShapePreservation.NONE: 0>",
+       "tangent_precision": -1,
+       "trim_relative_error": 0.0,
+       "voxel_level": 0,
+       "voxel_ndf": true,
+       "voxel_opacity": false
+      },
+      "normal_calculation_method": "<ProxyNormalComputationMethod.ANGLE_WEIGHTED: 0>",
+      "override_transfer_distance": false,
+      "override_voxel_size": false,
+      "recalculate_normals": true,
+      "reuse_mesh_lightmap_u_vs": true,
+      "screen_size": 300,
+      "support_ray_tracing": true,
+      "unresolved_geometry_color": "<Struct 'Color' (0x0000022CAFB9C26C) {b: 0, g: 0, r: 0, a: 255}>",
+      "use_hard_angle_threshold": false,
+      "use_landscape_culling": false,
+      "voxel_size": 3.0
+     }
+    }
+   }
+  },
+  "world_partition": {
+   "/Game/Map/Startup/Startup.Startup": {
+    "_error": "'World' object has no attribute 'get_world_partition'"
+   }
+  },
+  "foliage_types": {},
+  "impostors": {
+   "/SpeedTreeImporter/SpeedTree9/SpeedTreeBillboardMaster": {
+    "class": "Material"
+   },
+   "/Bridge/MSPresets/M_MS_Billboard_Material/M_MS_Billboard_Material": {
+    "class": "Material"
+   },
+   "/Fab/Materials/Standard/M_MS_Billboard": {
+    "class": "Material"
+   },
+   "/Fab/Materials/VT/M_MS_Billboard_VT": {
+    "class": "Material"
+   },
+   "/CitySamplePCG/MSPresets/MS_Foliage_Material/MasterMaterials/MA_Impostor_SimpleOffset_MS": {
+    "class": "Material"
+   },
+   "/Engine/ArtTools/RenderToTexture/Materials/Imposters/M_ImposterTest_01": {
+    "class": "Material"
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/MSPresets/MS_Foliage_Material/MasterMaterials/MA_Impostor_SimpleOffset_MS.MA_Impostor_SimpleOffset_MS",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Constant Specular"
+      },
+      "parameter_value": 0.10000000149011612
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Specular Branches"
+      },
+      "parameter_value": 0.019999999552965164
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Specular Leaves"
+      },
+      "parameter_value": 0.10000000149011612
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Constant Roughness"
+      },
+      "parameter_value": 0.6000000238418579
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Roughness Branches"
+      },
+      "parameter_value": 0.8500000238418579
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Roughness Leaves"
+      },
+      "parameter_value": 0.44999998807907104
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Field_01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1879.865478515625
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 12.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_BaseColor_Field_01_Winter.T_Impostor_BaseColor_Field_01_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_Normal_Field_01_Winter.T_Impostor_Normal_Field_01_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_BaseColor_Field_01_Summer.T_Impostor_BaseColor_Field_01_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_Normal_Field_01_Summer.T_Impostor_Normal_Field_01_Summer"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Field_02": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 2038.5169677734375
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 12.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_BaseColor_Field_02_Summer.T_Impostor_BaseColor_Field_02_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_BaseColor_Field_02_Winter.T_Impostor_BaseColor_Field_02_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_Normal_Field_02_Summer.T_Impostor_Normal_Field_02_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_Normal_Field_02_Winter.T_Impostor_Normal_Field_02_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Field_03": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1804.1595458984375
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_BaseColor_Field_03_Summer.T_Impostor_BaseColor_Field_03_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_BaseColor_Field_03_Winter.T_Impostor_BaseColor_Field_03_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_Normal_Field_03_Summer.T_Impostor_Normal_Field_03_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_Normal_Field_03_Winter.T_Impostor_Normal_Field_03_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Field_04": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1168.8568115234375
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.4000000059604645
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_BaseColor_Field_04_Summer.T_Impostor_BaseColor_Field_04_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_BaseColor_Field_04_Winter.T_Impostor_BaseColor_Field_04_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_Normal_Field_04_Summer.T_Impostor_Normal_Field_04_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_Normal_Field_04_Winter.T_Impostor_Normal_Field_04_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Field_05": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 927.8853149414062
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_BaseColor_Field_05_Summer.T_Impostor_BaseColor_Field_05_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_BaseColor_Field_05_Winter.T_Impostor_BaseColor_Field_05_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_Normal_Field_05_Summer.T_Impostor_Normal_Field_05_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_Normal_Field_05_Winter.T_Impostor_Normal_Field_05_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 2102.06494140625
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 12.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_BaseColor_Forest_01_Summer.T_Impostor_BaseColor_Forest_01_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_BaseColor_Forest_01_Winter.T_Impostor_BaseColor_Forest_01_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_Normal_Forest_01_Summer.T_Impostor_Normal_Forest_01_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_Normal_Forest_01_Winter.T_Impostor_Normal_Forest_01_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_02": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 2001.7823486328125
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 12.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_BaseColor_Forest_02_Summer.T_Impostor_BaseColor_Forest_02_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_BaseColor_Forest_02_Winter.T_Impostor_BaseColor_Forest_02_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_Normal_Forest_02_Summer.T_Impostor_Normal_Forest_02_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_Normal_Forest_02_Winter.T_Impostor_Normal_Forest_02_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_03": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1817.4383544921875
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_BaseColor_Forest_03_Summer.T_Impostor_BaseColor_Forest_03_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_BaseColor_Forest_03_Winter.T_Impostor_BaseColor_Forest_03_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_Normal_Forest_03_Summer.T_Impostor_Normal_Forest_03_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_Normal_Forest_03_Winter.T_Impostor_Normal_Forest_03_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_04": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1221.4727783203125
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_BaseColor_Forest_04_Summer.T_Impostor_BaseColor_Forest_04_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_BaseColor_Forest_04_Winter.T_Impostor_BaseColor_Forest_04_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_Normal_Forest_04_Summer.T_Impostor_Normal_Forest_04_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_Normal_Forest_04_Winter.T_Impostor_Normal_Forest_04_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_05": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 1177.18212890625
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 14.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_BaseColor_Forest_05_Summer.T_Impostor_BaseColor_Forest_05_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_BaseColor_Forest_05_Winter.T_Impostor_BaseColor_Forest_05_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_Normal_Forest_05_Summer.T_Impostor_Normal_Forest_05_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_Normal_Forest_05_Winter.T_Impostor_Normal_Forest_05_Winter"
+     }
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Materials/Impostor/MI_Impostor_Forest_06": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/CitySamplePCG/BlackAlder/Materials/Impostor/MAI_Impostor_BlackAlder.MAI_Impostor_BlackAlder",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Default Mesh Size"
+      },
+      "parameter_value": 926.3724365234375
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FramesXY"
+      },
+      "parameter_value": 12.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Season Brightness"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Albedo Winter"
+      },
+      "parameter_value": "/Engine/EngineResources/DefaultTexture.DefaultTexture"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_BaseColor_Forest_06_Summer.T_Impostor_BaseColor_Forest_06_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColor Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_BaseColor_Forest_06_Winter.T_Impostor_BaseColor_Forest_06_Winter"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_Normal_Forest_06_Summer.T_Impostor_Normal_Forest_06_Summer"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal Winter"
+      },
+      "parameter_value": "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_Normal_Forest_06_Winter.T_Impostor_Normal_Forest_06_Winter"
+     }
+    ]
+   },
+   "/Engine/ArtTools/RenderToTexture/Materials/Imposters/M_ImposterTest_01_Inst": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Engine/ArtTools/RenderToTexture/Materials/Imposters/M_ImposterTest_01.M_ImposterTest_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "ImposterRoundingOffsetX"
+      },
+      "parameter_value": -0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "ImposterRoundingOffsetY"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "R"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Size"
+      },
+      "parameter_value": 100.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "ZRot"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Engine/ArtTools/RenderToTexture/Materials/Imposters/M_ImposterTest_01_Inst_SingleAxis": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Engine/ArtTools/RenderToTexture/Materials/Imposters/M_ImposterTest_01_Inst.M_ImposterTest_01_Inst",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Size"
+      },
+      "parameter_value": 100.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Engine/ArtTools/RenderToTexture/Materials/Flipbooks/M_RenderMotionVectors_Applied_Imposter": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Engine/ArtTools/RenderToTexture/Materials/Flipbooks/M_RenderMotionVectors_Applied.M_RenderMotionVectors_Applied",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_AD_B01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Prop/Material/M_Prop_Sample.M_Prop_Sample",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A02_C.T_Billboard_Sign_A02_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_StandingSign/Texture/T_StandingSignAd_A02_M.T_StandingSignAd_A02_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Megascans/Surfaces/Worn_Green_Metal_00/Normal_8K_ucekbfgcw.Normal_8K_ucekbfgcw"
+     }
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Material/MaterialLayer/M_MatLayer_Prop_Master_01.M_MatLayer_Prop_Master_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.800000011920929
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 4,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_C.T_Grunge_Dust_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_N.T_Grunge_Dust_01_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_AORM.T_Grunge_Dust_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_A01_M.T_Billboard_A01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_A01_M.T_Billboard_A01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_A01_M.T_Billboard_A01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_A01_M.T_Billboard_A01_M"
+     }
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Material/MaterialLayer/M_MatLayer_Prop_Master_01.M_MatLayer_Prop_Master_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_C.T_Grunge_Dust_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_N.T_Grunge_Dust_01_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_AORM.T_Grunge_Dust_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     }
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Material/MaterialLayer/M_MatLayer_Prop_Master_01.M_MatLayer_Prop_Master_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 3.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 6.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.221411943435669
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "UV Tile"
+      },
+      "parameter_value": 5.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M.T_Billboard_Sign_C01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M.T_Billboard_Sign_C01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M.T_Billboard_Sign_C01_M"
+     }
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D01": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Material/MaterialLayer/M_MatLayer_Prop_Master_01.M_MatLayer_Prop_Master_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.221411943435669
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 6.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.30000001192092896
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "UV Tile"
+      },
+      "parameter_value": 5.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "U Tile"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "V Tile"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A01_C.T_Billboard_Sign_A01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A01_C.T_Billboard_Sign_A01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_C.T_Grunge_Dust_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_N.T_Grunge_Dust_01_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_StandingSign/Texture/T_StandingSignAd_A02_M.T_StandingSignAd_A02_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_AORM.T_Grunge_Dust_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_StandingSign/Texture/T_StandingSignAd_A02_M.T_StandingSignAd_A02_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M.T_Billboard_Sign_C01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 2,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_D01_M.T_Billboard_Sign_D01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_White_A01.T_White_A01"
+     }
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D02": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Material/MaterialLayer/M_MatLayer_Prop_Master_01.M_MatLayer_Prop_Master_01",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 6.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.221411943435669
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Roughness Amount"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 3,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask Multi"
+      },
+      "parameter_value": 0.30000001192092896
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "UV Tile"
+      },
+      "parameter_value": 2.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "UV Tile"
+      },
+      "parameter_value": 5.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "UV Tile"
+      },
+      "parameter_value": 1.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "U Tile"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "V Tile"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_C.T_Metal_Steel_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_C.T_Grunge_Dust_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A02_C.T_Billboard_Sign_A02_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Albedo"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_C.T_Metal_Galvanized_01_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_N.T_Grunge_Dust_01_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "Normal"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Surface_A_N.T_Metal_Surface_A_N"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 1,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Grunge_Dust_01_AORM.T_Grunge_Dust_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 2,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Steel_01_AORM.T_Metal_Steel_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 3,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Material/MaterialLayer/Textures/T_Metal_Galvanized_01_AORM.T_Metal_Galvanized_01_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.LAYER_PARAMETER: 0>",
+       "index": 0,
+       "name": "AORM"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_StandingSign/Texture/T_StandingSignAd_A02_M.T_StandingSignAd_A02_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 1,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M.T_Billboard_Sign_C01_M"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.BLEND_PARAMETER: 1>",
+       "index": 0,
+       "name": "Mask_Texture"
+      },
+      "parameter_value": "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_D01_M.T_Billboard_Sign_D01_M"
+     }
+    ]
+   },
+   "/CitySamplePCG/Megascans/Plants/Wild_Grass/Medium/Materials/MI_Grass_Billboard": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Fab/Materials/Standard/M_MS_Billboard.M_MS_Billboard",
+    "scalar_params": [],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "NormalTexture"
+      },
+      "parameter_value": "/CitySamplePCG/Megascans/Plants/Wild_Grass/Medium/Textures/T_Grass_2K_Billboard_N_T.T_Grass_2K_Billboard_N_T"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BaseColorTexture"
+      },
+      "parameter_value": "/CitySamplePCG/Megascans/Plants/Wild_Grass/Medium/Textures/T_Grass_2K_Billboard_B_0.T_Grass_2K_Billboard_B_0"
+     }
+    ]
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_01_0": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Building/NY/A/Kit_PROP_NYA/Material/M_bldg_base_prop.M_bldg_base_prop",
+    "scalar_params": [],
+    "texture_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Tex Color"
+      },
+      "parameter_value": "/Game/Building/NY/A/Kit_PROP_NYA/Texture/T_NYA_Prop_C.T_NYA_Prop_C"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Tex AORM Packed"
+      },
+      "parameter_value": "/Game/Building/NY/A/Kit_PROP_NYA/Texture/T_NYA_Prop_AORM.T_NYA_Prop_AORM"
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "Tex Normal"
+      },
+      "parameter_value": "/Game/Building/NY/A/Kit_PROP_NYA/Texture/T_NYA_Prop_N.T_NYA_Prop_N"
+     }
+    ]
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_02_0": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Building/NY/A/Kit_PROP_NYA/Material/M_bldg_prop_ThinRect.M_bldg_prop_ThinRect",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BrandColor_GradLineSelection"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BrandColor_MultVal"
+      },
+      "parameter_value": 0.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_03_0": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Building/NY/A/Kit_PROP_NYA/Material/M_bldg_prop_XLRect.M_bldg_prop_XLRect",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_GradLineSelection"
+      },
+      "parameter_value": 0.10000000149011612
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_MultVal"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_DesatFrac"
+      },
+      "parameter_value": 0.5
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_04_0": {
+    "class": "MaterialInstanceConstant",
+    "parent": "/Game/Building/NY/A/Kit_PROP_NYA/Material/M_bldg_prop_XLRect.M_bldg_prop_XLRect",
+    "scalar_params": [
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BrandColor_DesatFrac"
+      },
+      "parameter_value": -3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "BrandColor_MultVal"
+      },
+      "parameter_value": 0.05000000074505806
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_GradLineSelection"
+      },
+      "parameter_value": 0.10000000149011612
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_MultVal"
+      },
+      "parameter_value": 3.0
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "FabricColor_DesatFrac"
+      },
+      "parameter_value": 0.8500000238418579
+     },
+     {
+      "parameter_info": {
+       "association": "<MaterialParameterAssociation.GLOBAL_PARAMETER: 2>",
+       "index": -1,
+       "name": "RefractionDepthBias"
+      },
+      "parameter_value": 0.0
+     }
+    ],
+    "texture_params": []
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_A01_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_A01_N1.SM_Billboard_A01_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8002
+      },
+      {
+       "index": 1,
+       "triangles": 998
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.061494968831539154
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D01.MI_Billboard_Sign_D01",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_A02_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_A02_N1.SM_Billboard_A02_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8002
+      },
+      {
+       "index": 1,
+       "triangles": 998
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.061494968831539154
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D02.MI_Billboard_Sign_D02",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_B01_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_B01_N1.SM_Billboard_B01_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8138
+      },
+      {
+       "index": 1,
+       "triangles": 1018
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.06047700345516205
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D01.MI_Billboard_Sign_D01",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_B02_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_B02_N1.SM_Billboard_B02_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8138
+      },
+      {
+       "index": 1,
+       "triangles": 1018
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.06047700345516205
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D02.MI_Billboard_Sign_D02",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_C01_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_C01_N1.SM_Billboard_C01_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8228
+      },
+      {
+       "index": 1,
+       "triangles": 1028
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.06165742874145508
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D01.MI_Billboard_Sign_D01",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_C02_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_C02_N1.SM_Billboard_C02_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 8228
+      },
+      {
+       "index": 1,
+       "triangles": 1028
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.06165742874145508
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D02.MI_Billboard_Sign_D02",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_D01_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Prop/CITY/Kit_Billboard/Mesh/SM_Billboard_D01_N1.SM_Billboard_D01_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 7978
+      },
+      {
+       "index": 1,
+       "triangles": 998
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.06379377096891403
+     ],
+     "materials": [
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_A01.MI_Billboard_Sign_A01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_B01.MI_Billboard_Sign_B01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_C01.MI_Billboard_Sign_C01",
+       "has_per_instance_fade": null
+      },
+      {
+       "path": "/Game/Prop/CITY/Kit_Billboard/Material/MI_Billboard_Sign_D01.MI_Billboard_Sign_D01",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardDoor_01_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardDoor_01_N1.SM_PROP_NYA_A_BillboardDoor_01_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 668
+      },
+      {
+       "index": 1,
+       "triangles": 84
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.008500706404447556
+     ],
+     "materials": [
+      {
+       "path": "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_01_0.MI_PROP_NYA_A_Billboard_01_0",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardLrg_03_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardLrg_03_N1.SM_PROP_NYA_A_BillboardLrg_03_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 252
+      },
+      {
+       "index": 1,
+       "triangles": 64
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.07627661526203156
+     ],
+     "materials": [
+      {
+       "path": "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_03_0.MI_PROP_NYA_A_Billboard_03_0",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardMed_04_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_BillboardMed_04_N1.SM_PROP_NYA_A_BillboardMed_04_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 256
+      },
+      {
+       "index": 1,
+       "triangles": 64
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.05227189138531685
+     ],
+     "materials": [
+      {
+       "path": "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_04_0.MI_PROP_NYA_A_Billboard_04_0",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_Billboard_02_N1": {
+    "class": "StaticMesh",
+    "mesh": {
+     "path": "/Game/Building/NY/A/Kit_PROP_NYA/Mesh/SM_PROP_NYA_A_Billboard_02_N1.SM_PROP_NYA_A_Billboard_02_N1",
+     "nanite": true,
+     "lods": [
+      {
+       "index": 0,
+       "triangles": 256
+      },
+      {
+       "index": 1,
+       "triangles": 64
+      }
+     ],
+     "screen_sizes": [
+      2.0,
+      0.02948674187064171
+     ],
+     "materials": [
+      {
+       "path": "/Game/Building/NY/A/Kit_PROP_NYA/Material/MI/MI_PROP_NYA_A_Billboard_02_0.MI_PROP_NYA_A_Billboard_02_0",
+       "has_per_instance_fade": null
+      }
+     ]
+    }
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_Normal_Field_01_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_BaseColor_Field_01_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_BaseColor_Field_01_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_01/T_Impostor_Normal_Field_01_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_Normal_Field_02_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_BaseColor_Field_02_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_BaseColor_Field_02_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_02/T_Impostor_Normal_Field_02_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_BaseColor_Field_03_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_Normal_Field_03_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_BaseColor_Field_03_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_03/T_Impostor_Normal_Field_03_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_BaseColor_Field_04_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_BaseColor_Field_04_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_Normal_Field_04_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_04/T_Impostor_Normal_Field_04_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_Normal_Field_05_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_BaseColor_Field_05_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_Normal_Field_05_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Field/Field_05/T_Impostor_BaseColor_Field_05_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_BaseColor_Forest_01_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_BaseColor_Forest_01_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_Normal_Forest_01_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_01/T_Impostor_Normal_Forest_01_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_BaseColor_Forest_02_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_Normal_Forest_02_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_Normal_Forest_02_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_02/T_Impostor_BaseColor_Forest_02_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_Normal_Forest_03_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_BaseColor_Forest_03_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_Normal_Forest_03_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_03/T_Impostor_BaseColor_Forest_03_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_BaseColor_Forest_04_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_BaseColor_Forest_04_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_Normal_Forest_04_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_04/T_Impostor_Normal_Forest_04_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_Normal_Forest_05_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_Normal_Forest_05_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_BaseColor_Forest_05_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_05/T_Impostor_BaseColor_Forest_05_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_Normal_Forest_06_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_Normal_Forest_06_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_BaseColor_Forest_06_Winter": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/BlackAlder/Textures/Impostor/Forest/Forest_06/T_Impostor_BaseColor_Forest_06_Summer": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A02_C": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_A01_M": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_C01_M": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_D01_M": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/Game/Prop/CITY/Kit_Billboard/Texture/T_Billboard_Sign_A01_C": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/Megascans/Plants/Wild_Grass/Medium/Textures/T_Grass_2K_Billboard_B_0": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   },
+   "/CitySamplePCG/Megascans/Plants/Wild_Grass/Medium/Textures/T_Grass_2K_Billboard_N_T": {
+    "class": "Texture2D",
+    "size": [
+     32,
+     32
+    ]
+   }
+  },
+  "pcg_graphs": {},
+  "landscape_materials": {},
+  "lighting": {
+   "/Game/Map/Startup/Startup.Startup": {
+    "directional": [],
+    "skylight": [],
+    "sky_atmosphere": [],
+    "height_fog": [],
+    "volumetric_cloud": [],
+    "post_process": []
+   }
+  },
+  "water": []
+ },
+ "errors": [],
+ "maps_requested": [],
+ "current_world": [
+  "/Game/Map/Startup/Startup.Startup"
+ ]
+}

@@ -1,0 +1,27 @@
+== cell m010_r033
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.01000 rayleigh 0.03310
+   camA -> camA_m010_r033.png (107 s elapsed)
+   camB -> camB_m010_r033.png (189 s elapsed)
+== cell m005_r033
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.00500 rayleigh 0.03310
+   camA -> camA_m005_r033.png (296 s elapsed)
+   camB -> camB_m005_r033.png (378 s elapsed)
+== cell m0025_r033
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.00250 rayleigh 0.03310
+   camA -> camA_m0025_r033.png (485 s elapsed)
+   camB -> camB_m0025_r033.png (567 s elapsed)
+== cell m010_r050
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.01000 rayleigh 0.05000
+   camA -> camA_m010_r050.png (674 s elapsed)
+   camB -> camB_m010_r050.png (756 s elapsed)
+== cell m005_r050
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.00500 rayleigh 0.05000
+   camA -> camA_m005_r050.png (863 s elapsed)
+   camB -> camB_m005_r050.png (945 s elapsed)
+== cell m0025_r050
+   readback density 0.00150 start 15000 albedo [255, 255, 255, 255] ap 1.00 mie 0.00250 rayleigh 0.05000
+   camA -> camA_m0025_r050.png (1052 s elapsed)
+   camB -> camB_m0025_r050.png (1134 s elapsed)
+== cell restore_baseline
+   readback density 0.00416 start 0 albedo [255, 255, 255, 255] ap 1.00 mie 0.01000 rayleigh 0.03310
+DONE 7 cells in 1159 s

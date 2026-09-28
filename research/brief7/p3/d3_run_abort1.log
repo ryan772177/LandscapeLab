@@ -1,0 +1,21 @@
+[D3] pre-D3 world shas: {"foliage/alpine_8k_Conifer.json": "c9bcbca2ddbd7aade0a7e2fff077ab5ea55c65ba", "foliage/alpine_8k_ConiferPine.json": "b159267ed64b509e3302783997885e48c935a74a", "foliage/alpine_8k_SpruceSub.json": "f52e86710550e9169c3eddedfb9716dac664905f", "foliage/alpine_8k_SpruceSapling.json": "fe7fd2a31e9e88a9914da2494ae4650b942843bb", "LandscapeLab/Content/Alpine8K.umap": "e8e490cac18985e7fc04edc899146dfed1ca8553", "LandscapeLab/Content/__ExternalActors__/Alpine8K": "tree:3861-index-entries", "LandscapeLab/Content/__ExternalObjects__/Alpine8K": "tree:3-index-entries", "LandscapeLab/Content/Foliage": "tree:28-index-entries"}
+[D3] pre-flight: worktree world == pre-p3-density-20260927, clean
+[D3] resource_guard rc 0 REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+lock file : C:\Users\Admin\UE5LandscapePipeline\.heavy-op.lock
+memory    : 19.7 GB free of 31.4 GB
+held by   : nobody
+moved PackageRestoreData.json -> C:\Users\Admin\UE5LandscapePipeline\_trash\autosaves_launch_20260927172738 (no Restore modal)
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : OFFSCREEN (no main window; end on R-EDITOR-CLOSE's kill path)
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[D3] launched PIDs [32056]; waiting for ready
+[D3] editor ready after 44s
+[D3] run(place): --place --timeout 25 --ruled-count 830074
+[D3]   rc 2 (5.0s) G ***  foliage placement (foliage regen) is a heavy operation and only 3.3 GB is free.       Close the browser, or any second editor, before blaming the result. Proceeding anyway -- low memory is a risk, not a fault.   lock taken (pid 9528) REFUSE: foliage block invalid:   - unknown key in foliage: _density_2026_09_27 
+[D3] killed PID 32056
+[D3] ABORT: place_foliage --place rc=2
+[D3]   moved 0 untracked additions -> (none)
+[D3]   git checkout pre-p3-density-20260927 rc 0 
+[D3]   restoration proven (diff==tag & clean): True  {'diff_vs_tag_rc': 0, 'porcelain': ''}
+[D3] verdict -> research\brief7\p3\d3_verdict.json

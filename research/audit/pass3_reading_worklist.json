@@ -1,0 +1,1454 @@
+{
+ "_what": "Pass 3 reading half (Q6) worklist: threshold-bearing untested landscape scripts, keyed by file, sorted by refs desc. status: pending|done|na. Archived-since-scan files excluded and listed separately.",
+ "n_pending": 0,
+ "worklist": [
+  {
+   "file": "scripts/verify_landscape.py",
+   "refs": 230,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all doc-only, fixed (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/capture.py",
+   "refs": 161,
+   "n_thresholds": 8,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all fixed (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/ue_exec.py",
+   "refs": 138,
+   "n_thresholds": 0,
+   "n_marked": 2,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed (see PASS3 sec.6)"
+  },
+  {
+   "file": ".claude/hooks/guard.py",
+   "refs": 108,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "10 findings (9 CONFIRMED): 8 fixed + 17 prover fixtures (183/183), F9 gap recorded, F10 handled (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/landscape_spec.py",
+   "refs": 87,
+   "n_thresholds": 6,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all fixed; auditor PASS clean (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/make_landscape_material.py",
+   "refs": 65,
+   "n_thresholds": 3,
+   "n_marked": 12,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed; auditor PASS clean (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/place_foliage.py",
+   "refs": 64,
+   "n_thresholds": 0,
+   "n_marked": 5,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed; auditor FIX (exclude-only refusal exit code) applied (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/forge.py",
+   "refs": 58,
+   "n_thresholds": 2,
+   "n_marked": 4,
+   "status": "done",
+   "result": "6 findings CONFIRMED incl. a BLOCKER (the 1e archival broke the live TRELLIS chain), all fixed (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/plan_city.py",
+   "refs": 53,
+   "n_thresholds": 0,
+   "n_marked": 3,
+   "status": "done",
+   "result": "10 findings CONFIRMED; output-safe fixes landed, payload changes gated to the ruled regen (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/resource_guard.py",
+   "refs": 48,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all fixed (incl. 2 lock races); 11-check proof (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/import_heightmap.py",
+   "refs": 47,
+   "n_thresholds": 9,
+   "n_marked": 3,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed; auditor FIX (type-gate the F4 field scan) applied (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/terrain_erosion.py",
+   "refs": 42,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 findings CONFIRMED, both fixed (dead resolution param removed at 3 sites; cm/m comment) (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/shoot.py",
+   "refs": 38,
+   "n_thresholds": 3,
+   "n_marked": 2,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/rock_scatter.py",
+   "refs": 36,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 findings CONFIRMED, all fixed (2 correctness: cull-0 budget, small-n rotation skip) (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/make_alpine_terrain.py",
+   "refs": 33,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (F4: broken recipe shipped exit-0 ungated) (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/apply_lighting.py",
+   "refs": 27,
+   "n_thresholds": 0,
+   "n_marked": 5,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all fixed; auditor FIX-1 (fog-enabled mirror) applied (see PASS3 sec.6)"
+  },
+  {
+   "file": "scripts/check_plan_freshness.py",
+   "refs": 23,
+   "n_thresholds": 0,
+   "n_marked": 4,
+   "status": "done",
+   "result": "5 CONFIRMED (2 med,3 low), all doc/print-contract: reproduce() docstring said (verdict,detail) but completed path returns 3-tuple; \"All %d fresh\" counted DIVERGENT-BY-RULING plans it had just declared NOT-fresh; exit-0 doc omitted the divergent case; exit-1 (self-test fail) undocumented; \"TWO INSTRUMENTS\" header omitted STAMP+consumed-field (the primary on-disk instruments). Fixed all. compile+self-test PASS."
+  },
+  {
+   "file": "scripts/plan_stamp.py",
+   "refs": 21,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED: (med) :119 comment said all-skipped case refuses -> code returns {} (135-140), fixed comment; (low) :3 stale \"three consumers\" -> 8 importers, fixed; (low) verify() UNREADABLE docstring promised \"cannot be read\" but :233 sha256_file had no guard -> crash; added try/except OSError -> UNREADABLE. Functional test 3 states PASS."
+  },
+  {
+   "file": "scripts/measure_rock_meshes.py",
+   "refs": 17,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED (both low): comment (:89) cited place_foliage.py:568 for the get_bounds().origin/.box_extent form \u2014 actual is :1547-1548 (import_static_mesh:291-292 was correct); exit-2 doc said \"palette could not be read\" but that path crashes \u2014 exit 2 is rule-7 gate or no-admissible-entries. Both fixed. Rest clean (NN-cited pivot/nanite/lod discipline, HAZARD exclusion by name)."
+  },
+  {
+   "file": "scripts/alpinelab_source.py",
+   "refs": 14,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "1 CONFIRMED (low): refusal msg (:59) listed package_subdir as required; :68 defaults it to UE5_Ready. Fixed msg to mark it optional. Rest clean (docstring, NN24/NN19 citations, tuple contract, 4 refusal gates all match)."
+  },
+  {
+   "file": "scripts/atmosphere_solve.py",
+   "refs": 14,
+   "n_thresholds": 21,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED (1 med,1 low), citation drift: apply_lighting.py:260 -> setter is at :330 (260 is unrelated bAffectsWorld docstring); the DirectionalLightComponent transmittance excerpt quoted only the else branch (unconditional multiply) \u2014 engine :604-613 has a bPerPixelTransmittanceEnabled branch (default off = CPU multiply), excerpt+note corrected. Otherwise exceptionally clean (transmittance port, fog base-2, exposure math, cloud constants all verified vs engine)."
+  },
+  {
+   "file": "scripts/check_docs.py",
+   "refs": 14,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "4 CONFIRMED (1 med,3 low): LINK_EXEMPT continue (:197) skips check-5 self-supersede too, not just the stale-link scan the comment/docstring named -> docs corrected (both scans); docstring exemption list omitted _consolidation_inventory.md + commits/ -> added; check-4 docstring named only CLAUDE.md but code enforces STATE.md too -> added; self-test verdict was len(f)>0 (any failure counted as refused) -> now asserts the AIMED check via an expected substring per case (rule 13). self-test 5/5, real run NO FAILURES."
+  },
+  {
+   "file": "scripts/design_pass.py",
+   "refs": 14,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED (both med, one defect): slope_deg (:199-215) is DEAD (never called; quad_slope_deg is the live test at :224,:238) yet its docstring reads as the faithful Recast test AND uses np.gradient central-differences \u2014 the exact method quad_slope_deg case (2) condemns as smoothing sub-metre steps. Marked UNUSED/REJECTED with the correction; live gates (zero-sample fail-closed at 324/339/346) all clean."
+  },
+  {
+   "file": "scripts/push_heightmap.py",
+   "refs": 14,
+   "n_thresholds": 15,
+   "n_marked": 2,
+   "status": "done",
+   "result": "11 CONFIRMED (10 deputy + 1 found in verification), all comment/docstring/message (no logic): stale AUDIT-STATUS header declared BLOCKED/exit-6 though UNRESOLVED_BLOCKS=() (main never refuses) -> rewritten NOT BLOCKED; D3 resolution note + :1476 + :605 comments claimed byte-split/high-byte for flag-False, contradicting decode_export raw-R (R==G) -> corrected; D4 resolution note said --expect-change unreachable, but code classifies (:2705) before the gates (else branch) so it IS reachable -> marked superseded-by-code; operator messages/comments said R*65535/byte-split for the actual raw-R comparison (:2802,:2811,:2846,:3145) -> raw-R; five-blocks comments (:512,:2894) -> 3x3/nine; tolerance_units() dead (recipe-tighten not wired; no recipe sets the field) -> UNUSED banner. Stored D3/D4 finding text kept verbatim per conduct rule 8. py_compile OK. FOLLOW-UP: wire tolerance_units (safe no-op now) + schema.md still advertises the field as live."
+  },
+  {
+   "file": "scripts/verify_build.py",
+   "refs": 14,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED (4 med,1 low): exit-code doc omitted exit 6 (alias missing/not-byte-identical, :333/:340) and understated exit 4 (also dimension-disagreement :384 + failed registration :408) -> doc broadened; check_registration returns None for \"could not look\" but main only blocked on reg is False, silently ACCEPTing None -> now surfaces a NOT-registration-verified NOTE (NN6); \"dimension agreement: all len(SPEC) files\" printed before the missing-file refusal, overstating when files absent -> reports measured count; dead EXPECT_SIZE=(4096,4096) (never read; args.expect_size is live) -> removed. py_compile OK."
+  },
+  {
+   "file": "scripts/blender/normalize_asset.py",
+   "refs": 13,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "1 finding CONFIRMED-at-source, fixed: (low) final print said \"normalised {N} object(s)\" where N=len(report[\"objects\"]), but every refusal branch (:239 not-found, :261 rotation/scale, :297 in-memory miss, :337 exporter wrote nothing) appends a row before continue, so the count includes objects explicitly NOT exported. Changed to \"processed {N} ... (see per-row OK/FAIL below)\". Bake formula, pivot convention, TOL_M, re-read verify all check out."
+  },
+  {
+   "file": "scripts/haze_metrics.py",
+   "refs": 13,
+   "n_thresholds": 3,
+   "n_marked": 1,
+   "status": "done",
+   "result": "2 CONFIRMED (1 med,1 low): (med) measure() returns {error:...} on beauty/depth shape mismatch but main() never checked it \u2014 the table printed \"None -> None\" and returned 0, swallowing the failure; added an error guard (print + return 1). (low) rep=(lo+hi)/2 if lo>0 else hi/2 is a no-op ternary (lo==0 => (0+hi)/2 == hi/2 for all inputs); simplified. compile OK."
+  },
+  {
+   "file": "scripts/measure_frame_cost.py",
+   "refs": 13,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 CONFIRMED (1 high,2 med,1 low): (high) FOV comment claimed \"the host refuses the capture\" on readback disagreement but code only RECORDS fov_requested/readback, no compare/refuse (NN12) -> comment corrected + follow-up noted; (med) viewport comment claimed \"host compares it against the recipe expectation\" but no recipe is loaded -> clause dropped; (med) throttle \"Fail closed\" with _ps=None inside if _ps is None is a no-op, script proceeds -> corrected + dead line removed; (low) exit-6 doc omitted the count-could-not-be-taken path (:600) -> extended. py_compile OK; only code change is no-op->no-op."
+  },
+  {
+   "file": "scripts/hero_face/likeness/cycle.py",
+   "refs": 11,
+   "n_thresholds": 3,
+   "n_marked": 9,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 4 real (presence-gate rc now enforced; NN13 zero-echo; shot() None refused; colour c.get(ok) honoured; 3 doc)"
+  },
+  {
+   "file": "scripts/perf_flythrough.py",
+   "refs": 11,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "1 finding CONFIRMED-at-source, fixed: (low) the FOV banner at :164 (\"SET on the viewport and read back per station\") prints unconditionally BEFORE the --dry-run return at :188, but dry-run invokes no measure_frame_cost so FOV is never set/read back on that path. Reworded to \"at each CAPTURED station\" (vacuous on dry-run, exact on capture). All cross-file mfc claims \u2014 marker, ROW/CAL/VPS regexes, --camera= exit-2 rule, FOV read-back gate \u2014 verified accurate against measure_frame_cost.py."
+  },
+  {
+   "file": "scripts/rebuild_terrain.py",
+   "refs": 11,
+   "n_thresholds": 8,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 found; 2 fixed, 1 left: (med) next_build_dir docstring said \"Lowest unused 3-digit folder\" but code returns max(used)+1 (highest+1; skips gaps) -> docstring corrected. (low) read_project_height_m docstring cited a fixed path /Assets/$values[0]/Terrain/Height but the code walks the whole doc for any numeric Terrain/Height -> reworded. (low, LEFT) the dead \"no tiled token\" fallback at :524 (HEIGHT_OUTPUT always carries a tiled token) is harmless defensive code, not a misleading output claim -> noted, not removed."
+  },
+  {
+   "file": "scripts/resize_gaea_build.py",
+   "refs": 11,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "1 CONFIRMED (med): exit-code doc listed 0/2/4 but main returns 3 (:196) when an import alias is not byte-identical to its canonical. Added exit 3 to the doc. Rest clean (RESIZE-not-CROP, LANCZOS/BICUBIC role split, float-lift+clamp, disk re-read re-verify)."
+  },
+  {
+   "file": "scripts/ue5_import_alpinelab.py",
+   "refs": 11,
+   "n_thresholds": 9,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 findings CONFIRMED-at-source, both fixed: (med) import_masks docstring said \"Pass --reimport (or skip_existing=False) to force it\" but the module parses NO CLI args (imports only os+unreal; __main__ calls main() with reimport=False) \u2014 a \"--reimport\" flag is inert and force is only in-code via main(reimport=True)/import_masks(skip_existing=False). Docstring corrected. (low) :381 logged \"MISSING {src} \u2014 skipped\" but :382 appends to `failed` (reported as FAILED, flips verdict to PASS WITH FAILURES). Changed the log to \"FAILED (source file missing)\". The 9 thresholds (Z_SCALE etc.) all match their prints."
+  },
+  {
+   "file": "scripts/make_variant_map.py",
+   "refs": 10,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 findings CONFIRMED-at-source, all fixed: (med) exit-code doc listed \"weightmap missing\" as exit-2 but the weightmap is OPTIONAL (read only at :268-271 for the coverage report; missing -> \"WEIGHTMAP ABSENT\", exit 0) -> doc corrected. (low) exit-0 doc said \"written and verified by read-back\" but --dry-run also returns 0 writing nothing (:149) -> doc amended. (low) docstring cited place_foliage.py:176 weights[...,chan] but :176 is the NN6 DEGRADE gate; real access is place_foliage.py:665/:668 weights[...,idx] -> citation corrected. make_layer_weightmap.py:171 citation checks out."
+  },
+  {
+   "file": "scripts/check_generation_input.py",
+   "refs": 8,
+   "n_thresholds": 6,
+   "n_marked": 5,
+   "status": "done",
+   "result": "3 findings CONFIRMED-at-source, all fixed (self-test still DISCRIMINATES 5/5): (med) --set argparse help (:451-452) said \"plus a bbox-height consistency check\" but the GATE is the GROUND LINE (ground_bad=dg>GROUND_TOL :245); bbox height is non-gating (note only :260-270) \u2014 stale pre-2026-08-30 wording, corrected. (med) docstring (:28) cited _verify/20260830_bakeoff/CHURCH_VIEW_SPEC.md which does NOT exist on disk; the file is GENERATION_VIEW_SPEC.md (report print :299 had it right) \u2014 citation corrected. (low) _f_fill_hi message (:181) advised \"leave ~5% margin\" but FILL_HI=0.97 only refuses above 97% fill = ~3% margin \u2014 aligned to ~3%. Considered but NOT fixed: docstring \"measures ... BACKGROUND UNIFORMITY\" (no bg-uniformity metric is output, but the corner estimate arguably measures it) and the docstring-vs-report not-judged third item (background cleanliness vs silhouette occlusion) \u2014 both doc-vs-doc, left to avoid over-reach."
+  },
+  {
+   "file": "scripts/create_landscape_from_build.py",
+   "refs": 8,
+   "n_thresholds": 5,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 findings CONFIRMED-at-source, all fixed: (HIGH) :409 printed \"root sha256 X MATCHES sidecar output_sha256\" UNCONDITIONALLY, but the match only runs when want_sha is truthy (:326); a sidecar with no output_sha256 asserts a provenance match that never ran -> message now conditional on want_sha. (med) :45 docstring named --require-fresh-editor, which is NOT an argparse flag (only --build/--level/--sections/--quads/--scale-xy-cm/--grid-size/--actor/--material/--go exist); freshness runs unconditionally via PAYLOAD_FRESHNESS :452 -> reworded, flag name dropped. (med) :170-184 payload comment argued Vector(0,0,0) \"drops the landscape by 1280 m / 157,554 conifers in mid-air\", but the code deliberately substitutes __LOCZ__=0.0 (:476) because the Gaea build centres at Z 0 \u2014 contradiction inherited from the alpine.json path; added an in-place scoping note pointing to :472-476."
+  },
+  {
+   "file": "scripts/hero_face/likeness/groom_presence.py",
+   "refs": 8,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (--no-reproduce no longer claims reproduced verdict -> code 8; NN13 reproduce zero-grooms refuses+counts; d[shots] KeyError->clean refuse; 2 doc)"
+  },
+  {
+   "file": "scripts/make_alpinelab_material.py",
+   "refs": 8,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED-at-source, all fixed: (HIGH) :749-751 printed \"Full output follows -- it is NOT truncated ... NN14\" then :752 prints raw[-6000:] (IS truncated) -> message now states it is the LAST 6000 chars (the tail where a failure surfaces). (med) :50 DOES-NOT-DO list said \"no grass output\" but grass output IS built when the recipe has a `grass` block (LandscapeGrassType/GrassVariety/GrassOutput, :444-504) -> removed from the list, added a parenthetical. (med) :440 cited make_landscape_material.py:2150-2309 for grass construction; the actual grass code (INSTANCES PER 10 SQ M, PerPlatform refuse-plain-numbers) is at :3093-3181 (grep) -> citation corrected. (low) :264 said \"AutoSetSampleType asks the ENGINE\" but :268-269 sets SAMPLERTYPE_NORMAL directly (asserts, never calls AutoSetSampleType) -> reworded to describe the assertion (the VerifySamplerType note is correct and kept). (low) :40 docstring snow formula \"ramp(max(depth,hard))\" but code ramps each mask then maxes (:366/:372-374) = max(ramp(depth),ramp(hard)); ramps have different params so the two differ -> formula corrected."
+  },
+  {
+   "file": "scripts/make_foliage_material.py",
+   "refs": 8,
+   "n_thresholds": 0,
+   "n_marked": 7,
+   "status": "done",
+   "result": "3 findings CONFIRMED-at-source, all fixed (one HIGH gate fix): (HIGH) the compile-failure filter (:886) and FAIL message (:894) used args.name, which defaults to \"\" (:720); the material is built/saved under the COMPUTED name (:760/:920). With --name omitted, `\"\" in _ln` matched EVERY \"Failed to compile\" line in the 4KB log tail \u2014 attributing any material's failure to this build (false FAIL -> exit 4, not saved) and printing an empty identity. The code's OWN comment (:905-914) warned 'name, NOT args.name' and had fixed only the save path (:920); the filter and message now use `name` too. (low) exit-2 doc (:32) said 'manifest or an expected texture asset missing', but exit 2 is manifest/lookup failures \u2014 ValueError/KeyError from texture_map ambiguous roles (:749-751) and 'no colour map' (:756); a texture missing at editor LOAD is a build failure -> 4 (:852-854). Doc corrected. (low) the :906-907 comment cited the computed name at 'line ~745' but the assignment is at :760 (:745 is the try:). Corrected."
+  },
+  {
+   "file": "scripts/make_macro_variation.py",
+   "refs": 8,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "2 findings CONFIRMED-at-source, both fixed: (med) :187 comment cited make_landscape_material.py:924 for the macro_map_asset_path reference, but the call is at :1101 (verified by grep) -> citation corrected. (low) exit-0 doc :55 said \"written and verified by read-back\" but --dry-run (:179-182) also returns 0 writing nothing -> doc amended. Encoding formula (:47), printed formula (:219) and exit 2/4 all check out."
+  },
+  {
+   "file": "scripts/measure_tree_packs.py",
+   "refs": 8,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 findings CONFIRMED-at-source, both fixed (one is a small LOGIC fix, verified in isolation): (med) the applicability gate comment (:303) claimed it FAILS CLOSED, but the not-Masked reason was gated on `blend_mode is not None` (:309), so an UNKNOWN blend (material unreadable \u2014 the 'blend mode UNREADABLE' state main() anticipates at :425 \u2014 or none supplied) added no reason and coverage_applicable went True (:314): it failed OPEN. Added a blend_mode-is-None branch so it truly fails closed; verified with a 4-case isolation test (levels<=1, not-Masked, Masked+mask, None-blend) -> GATE OK, the None case now not-applicable. (low) :107 comment said 'Reads the EFFECTIVE blend mode' but the payload reads base_property_overrides.blend_mode (:127) \u2014 the override SLOT, effective only when override_blend_mode is True; that flag is captured as blend_mode_overridden (:129) but main() (:423) never consults it. Comment corrected to 'OVERRIDE-SLOT'."
+  },
+  {
+   "file": "scripts/scatter_alpinelab.py",
+   "refs": 8,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED-at-source, all doc-fixed (one FUNCTIONAL follow-up flagged, NOT changed): (HIGH) docstring :22-25 said \"one actor per species holding a HISM ... --clear destroys the actors by label\" but the code uses the FOLIAGE PATH \u2014 FoliageType_InstancedStaticMesh FT_AL_<name> + InstancedFoliageActor.add_instances (:264-296); rewritten to reality. (HIGH) --clear semantics misstated: a bare --clear only runs the label-prefix actor sweep (:232-236), which catches NONE of the placed rocks (foliage instances on the unlabeled InstancedFoliageActor); idempotency comes from remove_all_instances per FoliageType (:282) on --place. (med) :227-228 comment \"only actors this tool made, identified by label prefix\" corrected to a legacy-label-sweep note. (med) --clear help \"destroy this tool's actors\" corrected. (low) :84 \"Metres per texel is scale_xy\" but :89 uses scale_xy/100 \u2014 corrected. FUNCTIONAL FOLLOW-UP (out of scope for this docs pass): a bare --clear does NOT remove the foliage instances this tool places; only --place clears per FoliageType. Flagged in docstring + here; clear logic left unchanged (would need editor testing)."
+  },
+  {
+   "file": "scripts/trace_grounding.py",
+   "refs": 8,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH): (HIGH, rule 12) --park ran the PARK payload but discarded run_command's return, never parsed PARK_MARKER (:54, defined solely for this read-back), and printed 'parked ...' unconditionally then traced -- a failed park would go unnoticed and the trace would measure RESIDENCY not grounding (the docstring's own WHY-PARK hazard); now collects output, parses PARK_MARKER, REFUSES exit 4 if unconfirmed. (med doc) exit 1 also = payload self-checks (file ext / size ceiling); exit 2 also = grounding-convention refusal (no sink_depth_m); exit 4 now names the park path. (low) citation unreal:366015 for line_trace_multi renumbers on stub regen (:396838 today) -> re-cited by SYMBOL. Findings 5/6 (partial-run message wording; undocumented n<50 floor) noted, not carved. py_compile OK."
+  },
+  {
+   "file": "scripts/walk_character.py",
+   "refs": 8,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 findings CONFIRMED-at-source, both fixed: (HIGH) the exit-code table (:41-49) stopped at 7, but main() returns 8 twice (:513, :527) on the speed-verify REFUSE paths (component unreadable, or reads a value other than commanded). Added exit 8 to the table. (med) exit 6 doc/message asserted 'PIE started and did not end', but :583 `if c is None or c.get(\"in_play\")` also fires on c is None (confirm payload returned no marker = end UNKNOWN); NN6/NN13 class. Reworded the doc line and the :584 message to cover the could-not-confirm case. Recipe values (speed 600, 3 actions, walkable 70 deg) all match character.json."
+  },
+  {
+   "file": "scripts/blender/preview_hair.py",
+   "refs": 7,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "9 findings CONFIRMED, 2 real+report-honesty (precondition exit 2; NN13 scalp zero-sample; render existence check; height_gain/fringe None; zero-point curve skip; GATE contract doc; y_mid removed)"
+  },
+  {
+   "file": "scripts/check_perf.py",
+   "refs": 7,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (1 HIGH): (HIGH, NN13 fail-open) judge() seeds worst='PASS' and only downgrades inside the station loop, so an artefact with ZERO stations or all-invalidated stations reached main as verdict PASS over zero comparisons and printed 'PASS -- every zone within budget', exit 0 (the all-UNBUDGETED case was already NO BUDGET->3). Added a zero-comparison refusal in main: judged=sum(had_budget); if 0, print sample count+reason, return 5. (med doc) exit-5 was 'no data' only but 5 also = two selection refusals + the new zero-judged case -> broadened. (med doc) module docstring said 'Reads the newest *.json' but 2026-09-11 ruling replaced mtime with declared-range selection -> reworded. py_compile OK; --self-test 16/16."
+  },
+  {
+   "file": "scripts/greycard.py",
+   "refs": 7,
+   "n_thresholds": 6,
+   "n_marked": 2,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed (1 HIGH): (HIGH) the caller gated on the payload's aggregate d.get('ok'), but greycard_place sets ok=all(station ok) (:228), so one bad station (no camera actor / no rotation constructor) flipped ok False and 'not d.get(ok)' returned 4 BEFORE the per-station loop -- discarding good stations and skipping greycard_regions.json, the exact discard the AUDIT F2 comment (:138-140) forbids; the F2 'if not row.ok: continue' branch was unreachable. Failed CLOSED (no false success). Fixed to gate on HARD failure only (d None / d['error'] / missing 'stations'); partial runs now write the file and the :161 return still yields 4 when incomplete. (low) region_for docstring said 'absent file/station=no card' but except Exception also swallows a corrupt file -> docstring made honest. The 6 thresholds + 2 marked consts (INNER_FRAC 0.6, HALF_CM 50, HFOV 90, occlusion 0.10, band 0.85-1.15) all verified against their words/payload/recipe. py_compile OK."
+  },
+  {
+   "file": "scripts/make_layer_debug_material.py",
+   "refs": 6,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed: (med reporting gap) docstring promised a lit fallback 'is reported ... a lit frame is never silently read as unlit', but main() never surfaced the payload's _out['unlit']/['unlit_error'] -- a LIT capture WAS read as unlit; main now prints the shading model with a prominent WARNING on fallback. (med doc x2) feather widths quoted as '10 degrees'/'5%' but IMPORTED from make_landscape_material (SLOPE_FEATHER_MAX_DEG=12.0, HEIGHT_FEATHER_MAX_FRAC=0.06) precisely so they can't drift -- prose still had the superseded LOCAL values; restated by constant name (12/6%); math was already correct. (low) weightmap_uv_params extras described as one 'SELECTOR map' but they are variant_map+macro_map -> corrected. (low) exit 2 also covers non-positive emissive scale -> doc noted. No 'in line' compile-filter bug (uses recompile_material's array). py_compile OK."
+  },
+  {
+   "file": "scripts/palette_evidence.py",
+   "refs": 6,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH): (HIGH, NN6/NN25) evidence() hardcoded nanite='UNKNOWN -- registry tag absent' and never read rec.get('NaniteEnabled'), and main() printed unconditionally 'did not come back on any asset in any of the three packs' -- FALSE: verified against the registries it reads, DragonCave carries NaniteEnabled (and LODs) on all 115 StaticMeshes; KiteDemo(47)/Atlantis_Ruins(37) do not. Now reads the tag (json-out carries the value) and the summary prints the real count, verified live '115 of 199 rows carry NaniteEnabled; 84 lack it'. (med) '940 assets' -> actual 879 (272+333+274). (med) 'LODs/MinLOD also absent' -> present in DragonCave(115)+Atlantis_Ruins(37). (med) docstring claimed a 'spanning' shape class + 'refuses cross-class verdict' -- neither exists (only planar/blob; a boxy tree AABB enters the blob median); reworded to what the code enforces. (med logic) exit-2 'unreadable' only caught IOError, so a corrupt registry (json.JSONDecodeError) crashed to exit 1 -> now caught -> exit 2. py_compile OK; default run verified vs live registries."
+  },
+  {
+   "file": "scripts/apply_nanite.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 CONFIRMED, all fixed (1 HIGH): (HIGH, rule 12) save_loaded_asset's bool discarded + the 'read-back' reloads the same cached in-memory asset, so a save that returned False (no raise) was reported success (exit 0, 'ALL ... NANITE ENABLED, re-run after vendor re-download'); the nanite-triangle check verifies the BUILD not the SAVE. Fixed: capture the bool into _out['saved']; main refuses per-row BUILT-BUT-NOT-SAVED -> rc 5. (med) --timeout accepted but read nowhere (run_command takes no timeout) -> removed the prose param. (med x3) exit 2/4/5 doc understated (barred-all / memory-guard / empty-nanite-data + failed-save). (med) docstring '`build_nanite` is set' -- no such property; sets nanite_settings.enabled via set_nanite_settings. (low) rc last-failure-wins -> rc=max(rc,N). (low) exit 0 also = --dry-run. py_compile OK."
+  },
+  {
+   "file": "scripts/bake_skeletal_to_static.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 3 real (save_asset return read back into match; read-back-from-disk claim corrected; material-count tautology -> vs source; per-LOD/equal-count/early-stop doc)"
+  },
+  {
+   "file": "scripts/blender/head_frame.py",
+   "refs": 5,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (inverted empty-set guard crash; no min-point guard before lstsq; NN13 neck-cut zero-bin; sparse-column refusal msg; bounds-fraction doc)"
+  },
+  {
+   "file": "scripts/check_collision_truth.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed (doc-only). Core fail-closed doctrine is CORRECT (a zero/low-hit sample cannot reach the p90 compute -- hit_rate<min_hit_rate refuses exit 4 before diffs is read; chunk failure also refuses; NN13 honoured; disagreement FAILs exit 5). (med) exit 1 doc 'unexpected error' only, but 1 is also the pre-flight REFUSE on a chunk payload over the 8683-byte ceiling. (low) exit 4 said 'too few traces resolved' only but 4 also = a chunk COMMAND failure. Both broadened. p90<=0.30, reach 300/350 m, ceiling 8683 all match; trace_grounding.PROBE/MARKER/row format reuse verified. No logic change. py_compile OK."
+  },
+  {
+   "file": "scripts/gen_doc_tocs.py",
+   "refs": 5,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (1 real logic defect): (med) the '%d historic' print used toc.count('[historic]') which also matched the header LEGEND line's literal '[historic]', so the count was always historic_rows+1 (printed '1 historic' at zero); now counts table rows only. --check logic/TOC output untouched (suite check unaffected). (med) the append-only assert runs AFTER the write, so 'refusing to leave this state' was wrong (already on disk); reworded to a post-write sanity check. (low) docstring 'asserts on every run' but --check skips it -> 'on every WRITE run'. py_compile OK; --check re-run RECIPES 293 / LESSONS 637, exit 0."
+  },
+  {
+   "file": "scripts/gen_manifest.py",
+   "refs": 5,
+   "n_thresholds": 0,
+   "n_marked": 3,
+   "status": "done",
+   "result": "5 CONFIRMED (4 fixed, 1 noted); MANIFEST regenerated, --check green. (med content) hardcoded 'Four slots share one role' in a generator whose thesis forbids hardcoded counts -> derives maxshare (4). (med false coverage) 'normals+roughness derived for all %d roles' used len(mats)=7 but only ntiles=5 generated -> 'all 5 generated roles'. (med doc) forge_done 'AND placed' filters on neither -> reworded. (low rule 9) capsule 176.0 / step 45.0 printed as literals citing character.json -> now read agent_height_cm/max_step_height_cm (738.0 stays literal, a measured engine silhouette; byte-identical output). (low noted) 738.0 + '27% short' are non-derived narrative, left as measured facts. refs/MANIFEST.md +2 lines (the two counts). py_compile OK; --check current."
+  },
+  {
+   "file": "scripts/highres_shot.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (doc-only). (med) 'renders all 19 recipe stations' -> capture.cameras holds 21 (verified vs alpine_8k.json); reworded count-agnostic. (med) exit 2 doc 'editor gate refused, or below the memory floor' but 2 is also a bad --multiplier/--resolution combo and 'could not read available memory'; broadened. (low) 'prints that warning with every shot' -> prints once memory checks pass, incl. a run the rule-7 gate later refuses (no shot); reworded. Read-back discipline CLEAN: fires HighResShot and polls the dir, sets no FOV/exposure/resolution, makes no read-back/'verified' claim (rule 12 n/a). No logic change. py_compile OK."
+  },
+  {
+   "file": "scripts/import_alpinelab_masks.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (1 HIGH): (HIGH rule 12) 'every setting VERIFIED by read-back' but of 7 settings set, mip_gen was read back yet never checked and lod_group was never read back at all -> added lod_group read-back + checks for both (TMGS_NO_MIPMAPS, TEXTUREGROUP_WORLD). (med doc) exit 0 also = a --dry-run that imported nothing. (med doc) 'prints source and platform formats' but only source format + imported size are read (platform format settled from engine source, unreadable via reflection). py_compile OK (payload verified by reading; editor run blocked by O-5)."
+  },
+  {
+   "file": "scripts/kit_closure_walk.py",
+   "refs": 5,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH): (HIGH) PKG_RE matched /Game/ ONLY, so /Engine + /Script refs were never scanned and the 'counted separately rather than silently dropped' promise (:34-35) was dead (external count always 0). Broadened regex to /(?:Game|Engine|Script)/ -> those route to `external` as the walk already intends; /Game closure unchanged. (med NN13) main returned '0 if not dang' without requiring got non-empty -> an all-unresolved run prints 'closure 0 packages' exit 0; added empty-closure REFUSE. (low/med) self_test ok=not missing ignored dang -> now 'not missing and not dang'. (low) hardcoded '106 packages' header dropped (truthful count printed post-load). py_compile OK. Self-test needs the 22.6 GB vault (ABSENT here) so returns 4 as before (missing 106); fixes verified by reading+compile."
+  },
+  {
+   "file": "scripts/make_asset_manifest.py",
+   "refs": 5,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "2 CONFIRMED, all fixed (1 HIGH); Free/manifest.json regenerated. (HIGH fails-open vs its own docstring) _role fallback `return 'preview', 'unsuffixed thumbnail' if ext=='.png' else None` -- the else bound only to the NOTE, so EVERY unmatched file became 'preview' and the docstring-promised 'unclassified' report (:576-583) was dead code. Fixed: only unsuffixed .png is 'preview', else 'unclassified'. SURFACES 205 files hidden as preview (PolyHaven _diff_1k / Quixel _BaseColor conventions + .json sidecars) the ambientCG-suffix matcher doesn't handle. (med doc) stale footprint_source:'pending' -> Ruling 2 ABSENT + footprint_absent_reason + blocking. FOLLOW-UP: expand _role to classify non-ambientCG conventions (matcher feature, not a doc fix). py_compile OK; manifest +220/-212."
+  },
+  {
+   "file": "scripts/make_mesh_lods.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH): (HIGH, rule 12) payload discarded EditorAssetLibrary.save_asset's bool and set _row['saved']=True unconditionally -> a save that returned False (no raise) reported saved -> exit 0 -> 'built ... and saved'; also made the 'NOT SAVED' guard (:463-465) dead. Fixed to keep the real bool; _out['ok'] already gates on saved, so a failed save now -> per-row NOT SAVED -> exit 4. (med) exit-6 msg/doc said 'species' only, ignoring the lod_targets path (jobs=lod_target_jobs+lod_jobs); both corrected. (med) screen sizes read back but never COMPARED (only triangles verified) -> exit-0 doc narrowed to 'per-level triangle read-back (screen sizes read back but NOT compared)'. (low) exit-4 also = remote-exec fail / subsystem-unavailable / failed-save -> broadened. (low citation) SetNumSourceModels :398->:399, LOD-0 block :400-402->:401-403, verified vs UE_5.8 source. py_compile OK."
+  },
+  {
+   "file": "scripts/make_test_heightmap.py",
+   "refs": 5,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED (1 fixed, 1 noted). Exceptionally clean: 16-bit real (IHDR 16 + uint16 asserted), dimensions/format genuinely read back off disk, exit codes consistent, --relief math + schema.md citations verified, gates fail closed. (low fixed) exit-0 'written and verified' overstated -- read-back is IHDR only, not pixels; reworded doc + WARNING to 'dimensions/format read back off disk'. (low noted-not-carved) default --resolution 1009 != default recipe 2017 trips the MISMATCH banner, but alpine.json is the legacy pre-8K/dead recipe (CLAUDE.md) so it's drift on dead config; left the default to avoid breaking a caller. py_compile OK."
+  },
+  {
+   "file": "scripts/prove_encounter_plan.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 CONFIRMED, all fixed (2 real reporting defects): (med) settlement print hardcoded '0 of N rows inside' regardless of the `inside` list it computed -> now len(inside). (med) eligibility print asserted 'every row ... in range' unconditionally even when the loop appended problems -> gated on no problems added. (med x2) docstring 'RE-VERIFIES WITH A DIFFERENT INSTRUMENT (NN8)/code that did not place it' overclaims: reverify() imports city_shapes/inside_any/required_separation_cm FROM plan_encounters (same instrument, rule 0) and re-reads planner r['slope_deg']/['elevation_m'] not re-derived from terrain -> rewrote into 3 honest classes. (low) single-row plan left worst=None -> crash at worst[3]; added 'no pair to check' branch. (low) exit 1 undocumented. py_compile OK; success path exit 0, determinism byte-identical, negative control refuses+writes nothing."
+  },
+  {
+   "file": "scripts/prove_rebuild_terrain.py",
+   "refs": 5,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed. (med rule 13) the CONTRACT-DRIFT refusal test popped HEIGHT_OUTPUT from SPEC then ran full preflight asserting exit 2, but preflight has ~5 earlier exit-2 gates so an unrelated one could satisfy it without the SPEC check running. Added want_msg to refuses() -- captures stdout and requires the REFUSE line to NAME the gate ('verify_build.SPEC no longer declares'); output re-emitted. Verified live: preflight reaches+prints the SPEC message, test PASSES for the right reason. (low NN13) pixel check 'same_shape and not np.any(a-b)' passes on a 0-size array; added a.size>0. (low over-claim) 'sidecar recording the destroyed range' only checked isfile; now loads JSON and asserts source_min/source_max/occupancy present. py_compile OK; full run 12 passed 0 failed exit 0."
+  },
+  {
+   "file": "scripts/read_gaea_graph.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 CONFIRMED, all fixed (1 HIGH): (HIGH NN13) --against-build printed 'THE RULE REPRODUCES THIS BUILD EXACTLY' (rc 0) on 0 predicted vs 0 on disk -> added a nothing-to-compare REFUSE. (med NN13) --check-refs 'every $ref resolves' was vacuous over 0 refs -> 0-ref REFUSE. (med fail-open) malformed graph raised uncaught / 0-node graph exited 0 -> guarded terrain_of/nodes_of + 0-node REFUSE. (med claims) EXPORTS listed save-node BASE names reading as filenames -> added a {base}_{Port}.png note. (low) edges_of docstring 4-tuple -> 5 (is_valid). (low) 'every node with its parameters' excludes Modifiers -> 'top-level parameters'. py_compile OK; smoke-tested on badlands.terrain (6 nodes/3 exports, guards did not misfire)."
+  },
+  {
+   "file": "scripts/site_ground_cameras.py",
+   "refs": 5,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (doc-only). Clean on logic/read-back (writes only recipe JSON; the trace Z is read back and compared; MISS -> exit 4; NN13 count printed). (med) two contradictory accessor comment blocks -- first said break_hit_result IS the accessor used, second + the code (:119) use to_dict() and say break_hit_result does not exist; merged. (low) exit 1 'could not look' also = payload error / result-count mismatch. (low) pass boundary is literal 25.0 m (:314) but docstring/print said 'a few metres'/'hundreds' -> stated ~25 m. (low) 'second representation' overclaim -- heightmap+collision share the PNG ancestor (_axis_caveat), discriminates MAPPING not NN0-independent; qualified. py_compile OK."
+  },
+  {
+   "file": "scripts/surface_coherence.py",
+   "refs": 5,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH): (HIGH, doc vs LOCKED ruling) docstring framed an active verdict GATE (BINARY LANE CHECK, exit 0/2/4, prints VERDICT/HOLDOUT FAILED) and recommended 'More photoreal specimens per family' -- but RECIPES.md R16 (2026-08-05) RETIRED it as a gate ('descriptive instruments, not gates ... issue no verdicts') and R16 SS2 rejected that specimens path, ruling by PROVENANCE; verified R16 at source. Added SUPERSEDED banner, rewrote the 'fix' block to record R16's closure, marked exit codes HISTORICAL. (med NN13) zero-vote holdout (all trusted features NaN) fell through 'ph>len(votes)/2'=0>0.0=False -> 'VERDICT: STYLIZED (0/0)'; added an if-not-votes REFUSE guard. (low) exit 2 also = <2 specimens in a class. Noted-not-carved (descriptive-only): per-feature verdict omits n (margin already refuses n<2); title implies a per-surface CLI the tool lacks. py_compile OK."
+  },
+  {
+   "file": "scripts/hero_face/likeness/capture_landmarks.py",
+   "refs": 4,
+   "n_thresholds": 8,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 findings CONFIRMED, 3 real (landmark-count gate now before canonical() indexing -> exit 5 not 1; manifest/keys guarded -> exit 2; reference-only ignores metahuman; symmetry NN13 count)"
+  },
+  {
+   "file": "_verify/20260831_spike_photo2landscape/erode_stamp_seeds.py",
+   "refs": 3,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 1 real (norm01 flat-array NaN guard x3; dead /(1-floor) dropped; dead invert branch removed; provenance doc; n_spikes printed; save verified)"
+  },
+  {
+   "file": "scripts/_compose_iter.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed (doc-only). Exceptionally clean (pre-8K scratch authoring harness; no argparse/exit-code/adoption claim; citations 'nothing in scripts/ calls it' + 'stamps.output != heightmap.source' both TRUE). (low) docstring active voice 'it writes/runs/renders' but there is NO __main__/driver -- running bare only loads the catalogue; added the clarification. (low) output filenames bake '20260803' (a later run writes under that date); added a note it is a fixed authoring-run label and `tag` is the differentiator. py_compile OK."
+  },
+  {
+   "file": "scripts/blender/forge_finish.py",
+   "refs": 3,
+   "n_thresholds": 0,
+   "n_marked": 5,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed. (MED exit code) the pre-export refusal + all exceptions are caught into rep['error'] and main() returns -> Blender exits 0, so $? showed success on a refused/crashed run; added sys.exit(0 if ok else 1) after the marker. (low citation) 'genus 61' vs the docstring's established genus 59; corrected 61->59. (low overclaim) _genus_finding said 'the handles remain' even when genus is None (unmeasured); added a None branch (UNKNOWN). (low crash) os.makedirs(dirname(report)) raises on a bare filename (dirname==''); guarded with `if _rdir`. py_compile OK."
+  },
+  {
+   "file": "scripts/blender/uv_density.py",
+   "refs": 3,
+   "n_thresholds": 0,
+   "n_marked": 2,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 2 real+report-honesty (arg presence validated; roles on UV-less objs now samples:0 not omitted; material_index guarded; empty-vertex guard; __UVDENS__ surfaces n; read-only doc)"
+  },
+  {
+   "file": "scripts/c0_build_materials.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed. (MED citation, rule 9) comment cited ue_exec.py:155 for the pretty-print but :155 is the RAW dump on the decode-FAILURE branch (opposite); the success json.dumps is :339. Corrected + noted the failure-path braces caveat. (LOW double count) '%d imported' summed t['imported'] but bad_t is [error OR not imported], so a texture that loaded then failed a settings gate counted in BOTH tallies; now imported = imported AND not error. Verified clean: compile-failure detection uses recompile_material's list (no `\"\" in line`/args.name bug, no --name flag); sampler types set explicitly; BUILD OK not unconditional; source/tile_m gates fail closed. py_compile OK."
+  },
+  {
+   "file": "scripts/check_derived_culls.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "3 CONFIRMED (2 fixed, 1 noted); in the offline suite. (HIGH NN13 fail-open) an EMPTY foliage.species set skipped the loop and fell through to the PASS ('0 species ... No authored cull is standing in'), exit 0 -- green over zero comparisons. Added an empty-species REFUSE (-> fails -> exit 1) + safe local `species`. (low doc) conifer cull cited as 1148.6 m 'correct consequence' but the 2026-09-11 R-RANGE clamp makes the APPLIED value 512 m (1148.6 is pre-clamp); reworded. (low noted) REQUIRED_PERCEPTION checks declared_camera present but not its sub-keys, so an incomplete camera raises KeyError instead of the promised clean refuse (fail-closed). py_compile OK; run PASS 6 species exit 0; suite GREEN 29/29."
+  },
+  {
+   "file": "scripts/concept_loop.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 5,
+   "status": "done",
+   "result": "6 CONFIRMED + 1 adjacent, all fixed. (MED pipeline rule 2 / rule 9) nave_ratio/spire_ratio HARDCODED (1.5/2.5) but printed as '(recipe %.2fx)'; recipe stores them at placements.items[church].parts[*].height_ratio (verified). Added _part_ratio() reading them from the concept; output unchanged, now recipe-driven. (MED NN13 persisted) BUILD FAILED returned [] -- same as CONVERGED, written into loop_v0.json's deltas; now returns a ('build','FAILED') sentinel. (MED doc) 'Two iterations' -> three (iter2 auth 2026-08-30). (low doc) 'iter1 differs by iter0 deltas' -> re-derives FOV from terrain bearings. (low overstatement) scope 'N measured' static even on could-not-look -> 'dimensions this instrument CAN measure'. (low fail-hard) fov check had a dead `and` and crashed on empty bearings -> empty-bearings refusal delta. (adjacent) iter1 error dict would KeyError at r1['measured'] -> added guard. py_compile OK; --self-test PASS."
+  },
+  {
+   "file": "scripts/concept_solve_camera.py",
+   "refs": 3,
+   "n_thresholds": 2,
+   "n_marked": 1,
+   "status": "done",
+   "result": "1 CONFIRMED, fixed (doc-only). docstring said 'a 60 deg horizontal FOV gives +1.7 deg' but the code computes (0.5-0.45)*vertical_fov(60)=0.05*35.977=1.799 (~+1.8); reworded with the arithmetic. Noted-not-carved: solve() has no bounds/NaN guard on horizon_frac (a malformed recipe -> bogus pose), but the tool makes no fail-closed claim so it is not a claims-vs-behaviour defect. Recipe citations + constants (FOV 60, 16:9) verified. py_compile OK."
+  },
+  {
+   "file": "scripts/hero_face/likeness/place_hero_in_world.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 2 real (ground-clamp nan now exit 5; zero-groom count+warning; exit-0/exit-5 doc; could-not-look msg)"
+  },
+  {
+   "file": "scripts/kit_coverage_v2.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed; closes the two-lists defect. (MED dup fit rule) it carried its own TOL 0.20 + Roof/SM_House04 selection + (sx,sy)/(sy,sx) +-20% test, which roof_servability OWNS (both docstrings named this open). Routed through roof_servability.roof_spans()/servable_by() (imported as `roofsvc` -- `rs` is a row loop var in main()); dropped local TOL+loop. Output BYTE-IDENTICAL vs baseline (132/303=43.6%), exit 0. (LOW) empty roof set would crash at max(); added empty-roof REFUSE (exit 5). roof_servability docstring updated same commit (defect now closed). Citations (size_cm/303/pivot errors) verified. py_compile OK."
+  },
+  {
+   "file": "scripts/payloads/bench_render.py",
+   "refs": 3,
+   "n_thresholds": 0,
+   "n_marked": 3,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 MED). Exceptionally rule-12-aware (nearly every property read back; engine citations verified vs 5.8 headers). (MED rule-12) depth sidecar reported 'material'=CFG['depth_material'] (requested) while siblings + the extra-PP path read back via get_path_name; now reads the SceneDepth material back off the pass ('material'=readback, +'material_requested'). (low doc) 'START render, returns immediately' -- dump_only doesn't start; noted. (low doc) 'EXR has exactly two settings' -> three (Compression/bMultilayer/bMultipart); corrected. (low rule-12) override_anti_aliasing read back only dump_only; noted scope. (low doc) _GO_PROPS 'EVERY property' omits soft_game_mode_override (keeps deprecated game_mode_override); softened. py_compile OK."
+  },
+  {
+   "file": "scripts/prepare_hero_input.py",
+   "refs": 3,
+   "n_thresholds": 5,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 findings CONFIRMED, 3 real (all-four-corners control; skin NN13 nan-guard; unreadable-image REFUSE exit 2)"
+  },
+  {
+   "file": "scripts/roof_servability.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 CONFIRMED (3 fixed, 1 noted). (HIGH false ownership + dead code) the 'ONE DECLARATION' docstring said kit_coverage_v2 calls this module to audit, the whole point being neither carries its own +-20%/rotate rule -- but kit_coverage_v2 does NOT import it, it DUPLICATES the rule (kit_coverage_v2.py:29,56,82-83), the exact two-lists defect this module claims to prevent; audit() has no live caller. plan_city half is true. Rewrote to reality + named the fix. (low doc) roof_spans 'every roof mesh' also admits SM_House04 (whole house). (low doc) targets() 'middle of tolerance band' but the band is asymmetric ([0.833 sx,1.25 sx]) so the span sits BELOW the midpoint; corrected. (low noted) audit() returns 0.0 on empty rather than refusing (dead code). py_compile OK."
+  },
+  {
+   "file": "scripts/sun_exposure.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH): (HIGH) --plan defaulted to foliage/alpine_Conifer.json (does NOT exist) + --recipe to legacy alpine.json, so a bare run crashed FileNotFoundError; retargeted both to the shipped 8K world (alpine_8k.json + alpine_8k_Conifer.json; verified same sun az285/el12); bare run now 63,184 instances 55.1% lit exit 0. (med doc) exit 2 is the --pick no-lit REFUSE (valid run) not 'inputs missing' (those raise->exit 1). (med dead flag) --neighbours parsed, read nowhere (window hardcoded 40 m) -> removed. (low) 'N lit neighbours' counted self -> best_n-1 'other lit instances'. (low) 'aimed at trunk BASE' -> base+0.6 m. py_compile OK; default run exit 0."
+  },
+  {
+   "file": "scripts/verify_saved_nanite.py",
+   "refs": 3,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 CONFIRMED, all fixed (2 HIGH). (HIGH NN13) ok=(w_s==n_s-u_s) and (w_c==0) PASSES over an EMPTY saved set (0==0); the set comes from `git show HEAD` so a non-save commit verified nothing and could exit 0. Added n_s==0 REFUSE (exit 2); demonstrated live on the doc HEAD. (HIGH NN13 silent cap) control scan capped at 400 but verdict claimed 'absent from EVERY control'; now REFUSES when len(controls)>cap. (MED) unreadable saved pkgs silently subtracted; now u_s>0 REFUSES and pass requires w_s==n_s. (MED) tokens incl. bEnableNanite are NAME markers not the enabled VALUE; verdict reworded to 'Nanite MARKERS (token PRESENCE)'. (LOW/MED) control described 'foliage/rock' but is EVERY non-saved pkg -- run proved 52 of 400 carry the token (a 2nd landscape's proxies); header reworded so INCONCLUSIVE is reported honestly. (LOW) hardcoded '257' comment -> computed. py_compile OK; live exit 2 (correct refuse)."
+  },
+  {
+   "file": "scripts/verify_tileable.py",
+   "refs": 3,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed. (med doc-vs-behaviour) docstring described a 'half-offset seam test -- roll the image by half w/h' but seam_ratio() does NO roll, it differences the wrap edges directly (col 0 vs last, row 0 vs last); magnitude identical but the named mechanism was wrong (the roll belongs to the sister repair tool). Reworded. (low NN13) an image too small for a non-border interior -> inner_* nan -> worst nan -> 'nan > MAX' False -> passes; added a non-finite DEGENERATE refuse. (low doc) exit-4 is also the --self-test failure code; documented. The 3 constants (SEAM_RATIO_MAX 2.0, RAMP_MAX 0.25, RAMP_R2_MIN 0.25) all print consistently with what is compared. py_compile OK; --self-test 5/5."
+  },
+  {
+   "file": "scripts/apply_navigation_config.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "6 CONFIRMED, all fixed. Its CODE's ruling-19 comparand is CORRECT (agent vs PAWN, 2026-08-26 inline correction + RECIPES.md) -- reading this is what exposed verify_walkable_profile's stale comparand (O-6 retracted). (med doc) module docstring said 'world's primary movement mode' -> pawn. (med persisted doc) same stale claim written into the generated DefaultEngine.ini header -> pawn. (med logic) _filter_volumes raised SystemExit on a bad --volumes, uncaught by main's `except ValueError`, exiting 1 not the documented 2 -> raise ValueError. (med rule 12) NavMeshBoundsVolume placement read back but never COMPARED to the intended AABB (mis-placed still 'APPLIED') -> payload records intended min/max, main compares (10cm tol), bad++ on drift/unreadable. (med rule 12 doc) 'reach the CDO' covers RecastNavMesh (read back) not NavigationSystemV1 (written, not re-read) -> documented scope. (low doc) exit-5 also = no-result; exit-4 names the volume disagreement. py_compile OK."
+  },
+  {
+   "file": "scripts/assign_church_materials.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "3 findings CONFIRMED, 1 real (save_asset return now read back -> exit 3; three->four slots doc; exit-code doc)"
+  },
+  {
+   "file": "scripts/audit_step_height.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed (+1 edge). Arithmetic/thresholds/citations verified (UE_MAX_STEP_HEIGHT_CM 45.0 == character.json; trip_deg 24.23; NN13 handled). (MED doc) exit-2 'bad arguments' but return 2 also = data refusals (not uint16 :120 / resolution mismatch :126); broadened. (LOW/MED doc) 'no writes' contradicted by --out (makedirs+open w); qualified to 'no asset/world writes, --out aside'. (edge) --out bare filename crashed at makedirs(dirname=''); guarded. py_compile OK."
+  },
+  {
+   "file": "scripts/build_navmesh_chunk.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH). (HIGH safety bar self-silences) the commit abort bar tests sampler.peak_commit (seeded 0.0, updated only on a readable sample); if EVERY sample is unreadable it stays 0.0 and never fires, and `unreadable` was printed but never gated -- the build runs unguarded on commit while the docstring says the bar is ENFORCED. Added a refuse (exit 4) when peak_commit==0.0 & unreadable>0. (med NN13/overclaim) rc==0 returned 'built' regardless of packages produced (and snapshot counts all __ExternalActors__, not navmesh); rc==0 is the builder's real signal but zero disk change is ambiguous (up-to-date vs nothing) and no tile re-query -> honest NOTE on zero change, exit-0 doc softened. (med doc) exit-0 also = dry-run. (low doc) filename implies chunk but builds whole --map. py_compile OK."
+  },
+  {
+   "file": "scripts/c0_intake_textures.py",
+   "refs": 2,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (2 real logic). (MED fail-open) an unreadable image (size=None, mode='UNREADABLE') was still copied and counted 'every one hash-verified' -> added an unreadable REFUSE (exit 4). (MED silent mis-stage) MAGIC recognises bmp/tiff (pass the UNKNOWN gate) but the ext map only handles jpeg/png -> they landed as <role>.bin; added a shared STAGE_EXT + a recognised-but-unstageable REFUSE, copy loop uses STAGE_EXT. (low doc) the '16-bit source' lesson implied a depth check the script never does (format sniff only); scoped. (No conversion/thresholds/recipe in this copy/stage tool.) py_compile OK."
+  },
+  {
+   "file": "scripts/catalogue_heightmaps.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH). (HIGH NN13 clobber) a root that EXISTS but holds no PNGs (fresh checkout: PNGs gitignored, catalogue.json committed) wrote the catalogue with count:0, overwriting the committed one and exiting 0; added an empty-files REFUSE (skip write). (low doc) tag_source 'content-verified' tier never emitted (filename/visual/none); corrected. (low latent) ue_legal tested WIDTH only -> require w==h (all maps square, output unchanged). (F4 fixed by the guard). Verified: run with PNGs present catalogued 102 (all 4096 square) BYTE-IDENTICAL. py_compile OK."
+  },
+  {
+   "file": "scripts/check_scene_animation.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 2 real (2.4->4.4%% doc per source artefact; dead exit-3 removed; _shot returncode gate; 2 exit-code doc)"
+  },
+  {
+   "file": "scripts/delete_stray_landscape.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (doc/dead-code; SAFETY MECHANICS CLEAN). Rule-8 signature ID (scale~100 + derived res 2017 + label!=keeper, len!=1 aborts), real read-back after delete, rule-2 per-actor destroy verified. (MED dead code) keeper_set_incomplete (exit 5) is UNREACHABLE -- _derived_resolution reads the ref during identification and RAISES on failure, so an unreadable ref aborts to exit 7 not the exit-5 refusal; added a code note + corrected exit-5 doc. (MED/LOW doc) exit 7 omitted 'payload returned nothing / unexpected stage' (the real destination of an unreadable ref); documented. (LOW) destructive-by-default/dry-run-opt-in honestly disclosed, no change. py_compile OK."
+  },
+  {
+   "file": "scripts/derive_material_maps.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (2 real logic). (MED false count) a role whose DX self-check read non-DX was flagged `bad` but still SAVED and counted in 'wrote N'; now not written/not counted (continue). (MED fail-open) empty manifest printed 'wrote 0' exit 0; added refuse exit 5 (mirrors calibrate). (low citation) DX ruling :347-357 -> :340-345 (verified :342-343). (low doc) --out undocumented -> added. (low overclaim) 'PROVES it does' -> 'CHECKS ITS OWN SIGN' (shares the derivation's row-axis premise, NN0). py_compile OK."
+  },
+  {
+   "file": "scripts/find_clear_heading.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (1142->1446 count; capsule from character.json per rule 2; step-positive guard; ignore-streets under-count; step-invariant doc)"
+  },
+  {
+   "file": "scripts/find_hero_spawn.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (32768 datum now subtracted -> height off by 1280m fixed; species from recipe per rule 2; heightmap shape check; report read-back; plan-field validation)"
+  },
+  {
+   "file": "scripts/fix_camera_z.py",
+   "refs": 2,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 CONFIRMED, all fixed (doc/citation; rule 12 CLEAN -- Z written then re-read+compared, no-hit fails closed exit 4, sample count reported). (MED) docstring claimed heightmap-vs-trace 'printed side by side / axes transposed' -- the code never reads the PNG (that is site_ground_cameras); reworded. (MED) exit 5 documented 'no parseable result' but also = read-back DISAGREED after write (file already written) + hits-count mismatch; broadened. (LOW) exit 2 also = landscape declares no z_scale_cm/scale_z. (LOW) citation :170->:169 (scale_z; verified). (LOW) citation ground_* write :333->:224. py_compile OK."
+  },
+  {
+   "file": "scripts/forge_record_stage10.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings fixed, 5 real (missing measurement no longer recorded as verified; rep key guards; atomic+read-back writes to forge_report+ASSETS.md; cells[-2] trailing-pipe fix; extract doc)"
+  },
+  {
+   "file": "scripts/grade_albedo.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH). (HIGH NN13) a missing input was silently skipped; ALL-missing -> rows=[] -> empty manifest, exit 0 (success over zero graded). Added empty-rows + partial-rows (len<len(JOBS)) REFUSE -> exit 2. (MED rule-12) printed 'after' stats came from the in-memory float g, not the lossy JPEG (uint8+q95) written/consumed; now reads the .jpg back and stats THAT. (MED doc) 'detail preserved by construction'/'DETAIL untouched' -- the warmth-damp + clip perturb luma when R!=B; reworded to 'approximately preserved, checked empirically'. (LOW) 'DETAIL must not move' message had no gate; reworded advisory. py_compile OK."
+  },
+  {
+   "file": "scripts/hlod_gitignore.py",
+   "refs": 2,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 findings CONFIRMED, all doc/message (three->two gating conditions; non-HLOD wording; stat_errors; summary scope)"
+  },
+  {
+   "file": "scripts/make_copper_placeholder.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "2 minor fixed (manifest read-back; Image.open handle leak); numeric core verified sound (deputy stalled, audited directly)"
+  },
+  {
+   "file": "scripts/make_layer_textures.py",
+   "refs": 2,
+   "n_thresholds": 5,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (1 HIGH). Generates 8-bit RGB detail textures (bit-depth/channel/dim claims all match). (HIGH pipeline rule 3) per-layer seed offset used the ENUMERATE position in the requested subset, so `--layer rock` alone produced a DIFFERENT texture than rock in a full run; now keyed on sorted(LAYERS).index(name) (stable) -- full-run output verified BYTE-IDENTICAL, subset runs now match. (med) exit-3 'failed its mean assertion' -> 'one of its gates (mean/swing/directionality)'. (low) 'mean 0.5 EXACTLY' ignores clip+quantise -> noted pre-clip + re-checked within MEAN_TOL. (low) exit-0 'all textures' -> 'all SELECTED'. Gates fail closed; citations verified. py_compile OK; full run 3/3 pass."
+  },
+  {
+   "file": "scripts/measure_gi_gain.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "1 CONFIRMED, fixed (doc). Exceptionally clean: R13 citations (0.3201 / -1.786 EV), exposure math, and NN13 fail-closed sample gates (n>500 per side, gains.size==0 refuses, count printed beside verdict) all verified. (MED doc) exit 2 documented only 'the two sets do not pair up' but is also returned when they pair yet no camera has enough sunlit responding pixels; broadened. py_compile OK."
+  },
+  {
+   "file": "scripts/measure_pie_cost.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 leans HIGH). (MED->HIGH NN13 fail-open) a CSV with a header but 0 data rows (or lacking FrameTime) got stats={}, was appended to results, and the run wrote an artefact + returned 0 -- a zero-frame capture as a measurement. Added a FrameTime-n==0 skip (rc=max,4); no-station -> existing exit 1. (MED exit) exit 2 also = already-in-play editor refusal; documented. (LOW msg) 'category did not record' false for the 5 CORE thread/GPU columns -> CORE_COLUMNS branch. (LOW doc) exit 0 also dry-run; exit 1 also no-measurement. (LOW-MED rule 9) docstring + artefact + RECIPES.md:7494 cited RECIPES.md:5889 for the PIE calibration-class quote; it's at :6373 -- all three corrected. Rule-12 (pawn read-back, distinct drift instrument) verified. py_compile OK."
+  },
+  {
+   "file": "scripts/measure_timber_colour.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 4,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed (1 None-crash guard; VALUE-not-LIGHTNESS doc; n=px on verdict)"
+  },
+  {
+   "file": "scripts/measure_walkable_extent.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (no HIGH). Honest instrument -- correctly DISCLAIMS the BFS (the 36.53 km2 reachable is a different tool) and prints only 'walkable'; whole-region km2/datum/citations verified. (MED false comment) 'tiling anchored on the TOWN volume so it lines up' -- grid is anchored on the TERRAIN ORIGIN; TOWN_CM only feeds dist_from_town_m and (TOWN_CM-T.ox)/tile_cm is non-integer. Corrected. (LOW/MED provenance) 'agent bar %.3f deg from character.json' -- the 44.765 value is terrain_erosion.MOVEMENT_PROFILES['walk']; character.json gives only the profile NAME. Split. (LOW km2) tiled km2 used nominal tile_m**2 not (step*cell)**2; corrected. py_compile OK; run reproduces 66.06/49.27 km2, 0-1552.5 m."
+  },
+  {
+   "file": "scripts/payloads/greycard_place.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 1,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 6 real (NN13 zero-station verdict; save folded into ok; created-material save+readback; per-station try; label identity rule 8; scale doc)"
+  },
+  {
+   "file": "scripts/per_family_calibration.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH; family-level NN13 clean). (HIGH R16 governance, same class as surface_coherence) emitted TRUSTED/VERDICT/ACCEPTED + 0/4 pass-fail codes, but R16 retired it (with surface_coherence) as DESCRIPTIVE-only ('issues no verdicts'; R16 \u00c2\u00a72 measured GRASS n=4 all-overlap). Added SUPERSEDED banner, reframed docstring, relabelled VERDICT->descriptive classification + ACCEPTED/failed as historical. (MED) 'no verdict issued' printed after a VERDICT already emitted -> reworded. (MED doc) 'Conditioning is what makes it mean anything' contradicts R16 -> corrected. (low rule 13) per-feature line used pre-NaN n -> now prints post-drop n(pho/sty). (low robustness) empty-after-NaN side crashed a.min() -> skip-with-message guard. py_compile OK."
+  },
+  {
+   "file": "scripts/plan_navmesh_tiles.py",
+   "refs": 2,
+   "n_thresholds": 5,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed. (MED overstated coverage) 'tiles kept N (km2 of volume)' counted clipped edge tiles at full 1040m^2 -> summed actual footprint, 77.88->65.28 km2. (MED NN13 crash) zero-tile plan raised ValueError at max(xs) -> sys.exit REFUSE. (LOW cm->m) comment '9.6 m tall' -> 96 m. (LOW latent datum) Z was 0-based H*zs/65535, correct only because alpine_8k oz==zs/2; now uses the T.z_cm datum (oz+(h/65535-0.5)*zs) -- output UNCHANGED for alpine_8k (72 tiles, z span/budget identical). (LOW silent drop) a zero-sample tile was continue'd into no tally -> recorded in slivers with a defensive note. All 5 constants verified vs recipe. py_compile OK; diff vs baseline = the single km2 line only."
+  },
+  {
+   "file": "scripts/probe_skeleton.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5+1 findings CONFIRMED, 3 real (NN13 zero-probe now refuses; malformed-JSON crash->refuse; artefact read-back; exit-code doc; saves-nothing doc)"
+  },
+  {
+   "file": "scripts/resample_heightmap.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED (2 fixed, 1 noted). Core claims verified (_resample float32 lift/clamp/single-quantise, write_png16_grey real 16-bit, BICUBIC default, range+sha256 read-backs). (MED Windows crash) the 'inside terrain/' gate used os.path.commonpath which RAISES ValueError across drives -> uncaught traceback instead of the promised REFUSE; wrapped in try/except -> out-of-terrain refuse. (MED doc) exit-0 'resampled and written' but the default (no --go) returns 0 writing nothing -> amended 'OR a DRY RUN'. (LOW noted) 'wrote N x N' dims from out.shape not a read_png_header (sha256 IS read back; out.shape is what was written) -- rule-12 nicety only. py_compile OK."
+  },
+  {
+   "file": "scripts/scan_intake_probe.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 3 real (fail-open gate now exit 3; NN13 zero-items exit 2; TIFF accept-but-unreadable dropped; .jpeg dead branch; maps->roles; --only doc)"
+  },
+  {
+   "file": "scripts/set_landscape_scale.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed. Rule 12 verified (scale re-read + compared; engine citations exact; scale_z=z_scale/512). (MED exit overload) exit 4 also = payload->None (comms/parse). (MED exit overload + false cause) exit 6 documented solely 'PROXIES ARE TORN, fixup did not run' but also fires on an INCOMPLETE tear-check census (UNVERIFIED); split the two. (LOW default) DEFAULT_RECIPE was landscape_spec's pre-8K alpine.json (Landscape_Alpine, scale_xy 400) -- a no-arg scale MUTATION on the HISTORY world; retargeted to recipes/alpine_8k.json. py_compile OK."
+  },
+  {
+   "file": "scripts/sweep_cameras.py",
+   "refs": 2,
+   "n_thresholds": 24,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 CONFIRMED (6 fixed, 1 noted; 2 HIGH). All 24 constants verified vs recipes/BACKLOG. (HIGH) --resite help described the SUPERSEDED max-visible-distance algo; the code runs clearest-sight-line-to-subject; rewrote. (HIGH) the summit guard refused (exit 3) even in --resite (which doesn't use the summit), and the resite SUBJECT is unguarded (RESITE_SUBJECT_TOLERANCE_M unused); skip the summit refuse in resite + print the known gap. (MED) '--check' flag does not exist (summit guard runs unconditionally). (MED) 'skyline ... at N m' always '0 m' (_skyline_range_m hardcoded 0.0); dropped the token. (LOW) dead _resite_stations_by_visibility references undefined RESITE_SEARCH_RADIUS_M/RESITE_GRID_M (NameError if called); noted. (LOW) exit-1 'bad args' -> argparse uses 2. NOTED-not-carved: resite prints derived eye under 'recorded eye delta +0.00'. py_compile OK."
+  },
+  {
+   "file": "scripts/unpack_orm.py",
+   "refs": 2,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (channel mapping R->AO/G->rough correct; fail-closed verify genuine). (MED false 'written') docstring said B is 'written as zero and SAID SO' but B is NEVER written (only AO+roughness; B->provenance, prints 'NOT written as a role'); corrected. (MED exit contract) exit-2 'inputs missing or unreadable' but a corrupt image raised past the isfile guards to exit 1; wrapped ORM/albedo/height loads -> exit 2. (low doc) verify_mapping one-liner omitted HEIGHT (the PRIMARY discriminator); added. (low doc) 'larger than corr(G,height)' reads signed but the gate is abs; clarified. py_compile OK."
+  },
+  {
+   "file": "scripts/verify_frames.py",
+   "refs": 2,
+   "n_thresholds": 5,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 CONFIRMED, all fixed (1 HIGH). (HIGH NN13 empty-pass) 0 expected frames (recipe with no capture.cameras, or blank --expect) + --tag printed 'the instrument produced evidence' exit 0 -- the empty pass the module rails against; verified via --recipe city.json --tag x -> now REFUSES exit 2 (implements the documented-but-absent exit-2 'nothing matched the selector', fixing finding 3 too). (med) exit 4 (verdict withheld, no --tag) undocumented -> added. (low) exit-1 '/bad arguments' unreachable (argparse exits 2) -> dropped. (low) MIN_BYTES '100 KB' is 100 KiB. Thresholds + non-tag fail-closed path verified. py_compile OK; empty-selector exits 2."
+  },
+  {
+   "file": "scripts/verify_marker_streaming.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "3 CONFIRMED, all fixed (exit-code contract; NN13 handling sound -- empty log->1, obs<min->7, PASS only obs>=min & 0 offenders). (MED) BEGIN captured ue_exec's _c but never used it, so rule-7 surfaced as 'PIE DID NOT START' (6); added `if _c==3: return 3`. (doc) exit 7 (INCONCLUSIVE) returned but undocumented; added. (MED doc) exit 6 'did not start OR did not end' but the did-not-end case only PRINTS from a finally (never returns 6); narrowed to 'did not START' + noted the printed warning. py_compile OK."
+  },
+  {
+   "file": "scripts/verify_plugin_bindings.py",
+   "refs": 2,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 CONFIRMED, both fixed. Clean otherwise (exit codes match, thresholds 8129, NN17/NN2 citations verified, PASS is functional via A/B/C calls not dir()). (MED real logic) the cosmetic signature read `(__doc__ or '').splitlines()[0]` IndexErrors on an empty docstring -> caught and MIS-reported as exit 1 'could not look' over a present/functional binding; changed to next(iter(...), ''). (low doc) exit-2 claimed it distinguishes 'module did not load OR not reflected' but getattr can't tell them apart (module_loaded/exposed are diagnostics only); corrected. py_compile OK."
+  },
+  {
+   "file": "scripts/verify_tree_collision.py",
+   "refs": 2,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED, all fixed (no HIGH; no fail-open -- per-species zero samples correctly FAIL). (MED overclaim) PASS said 'hit on its own TRUNK MESH' but the differential only distinguishes foliage vs non-foliage (FHitResult component unreadable in 5.8; \u00c2\u00b1300cm probe can hit a neighbour) -> reworded to 'FOLIAGE collision ... identity not readable'. (MED label) 'DOES NOT COLLIDE' printed even when every trace was terrain-OCCLUDED -> now branches to 'COULD NOT LOOK ... UNVERIFIED' when misses==0 & terrain_or_other>0 (still fails closed exit 5). (LOW doc) exit-1 also = trace payload raised. (LOW logic) trace-stage rc==3 (rule 7) never checked -> added `if rc==3: return 3`. Citations/thresholds verified. py_compile OK."
+  },
+  {
+   "file": "scripts/verify_walkable_profile.py",
+   "refs": 2,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 CONFIRMED + 1 found-in-verify, all fixed; 1 ESCALATION. (found-in-verify, false verdict) the offline path printed 'VERDICT: declaration checks passed' UNCONDITIONALLY even at exit 5 (ruling 19 violated); now gates on rc. (MED doc) exit-2 doc said 'recipe malformed' but an UNPARSEABLE recipe -> exit 1; exit 2 is SEMANTIC; corrected. (MED doc stale) the asymmetry note used the OLD config (navmesh=mount35/player44.765); now nav agent='walk'44.765, player='climb'70. (MED logic) ruling-19 gate degraded to could-not-look (rc=max,1) on a missing input while check 1 REFUSES exit 2; now REFUSES exit 2 (the gate that bites). ESCALATION (HIGH, recipe data NOT code): run offline it EXITS 5 -- nav agent 'walk'(44.765) EXCEEDS world.primary_movement_mode 'mount'(35) in alpine_8k.json; either alpine_8k's primary is stale after the 2026-08-26 agent mount->walk change or ruling 19 needs revisiting. Gate works; data disagrees. Recorded in OPEN.md. py_compile OK."
+  },
+  {
+   "file": ".claude/hooks/prove_hooks.py",
+   "refs": 1,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "1 finding fixed (NN13 applied to itself: zero-check run now refuses); rest verified sound, suite 184/184"
+  },
+  {
+   "file": ".claude/hooks/session_context.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 fixed, 1 HIGH (read CURRENT STATE from CLAUDE.md prose instead of STATE.md since the 2026-09-13 move -> now reads STATE.md; truncation marker)"
+  },
+  {
+   "file": "_verify/20260823_face/measure_dna_offline.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 findings CONFIRMED, 7 real (cmd_baseline fail-open stop; chin-v/ratio read-back not hardcoded; taper NN13; zip->align-by-y0; verify empty-weighted guard; six->eight count; edited-file parse check)"
+  },
+  {
+   "file": "scripts/blender/diagnose_face_hair.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings, 5 fixed 2 real (empty-vertex + single-point-curve crashes before __DIAG__; PARAMS comment; height floor; save-verify)"
+  },
+  {
+   "file": "scripts/check_dolly_sunlit.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 findings, 4 fixed 3 real (NOT-SCORED doc vs composite; paired-arg refuse; baseline key validation; out read-back)"
+  },
+  {
+   "file": "scripts/check_layer_acceptance.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 findings CONFIRMED, all fixed 4 real (captured-frames claim never done; snow NN13 zero-octant; Snow IndexError; synthetic-heightmap claim; circular forest_floor doc; empty-footprint; dead code)"
+  },
+  {
+   "file": "scripts/fog_vs_sky.py",
+   "refs": 1,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed 1 real (fail-open acceptance now exits 1/3; shared-grid exclusion caveat; station-scope doc)"
+  },
+  {
+   "file": "scripts/hero_face/likeness/compare_to_reference.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings, 6 fixed 3 real (non-2048 fail-open now refuses; previous size check; registry JSON ValueError; save read-back; sha-claim + framing docs)"
+  },
+  {
+   "file": "scripts/hero_face/likeness/ingest_groom.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 5 real (empty-registry KeyError HIGH; float(None) draw gate; bind-target vendor-legacy refuse; colour read-back; rc gate; 2 exit-doc)"
+  },
+  {
+   "file": "scripts/hero_face/likeness/solo_gate.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 4 real (NN13 zero-stable HIGH; zero-floor fabricated denom; degenerate ROI; payload-shape crash; refused-vs-disagree headline)"
+  },
+  {
+   "file": "scripts/hlod_build_batched.py",
+   "refs": 1,
+   "n_thresholds": 10,
+   "n_marked": 1,
+   "status": "done",
+   "result": "7 findings, 5 fixed 1 deferred(O-7 HIGH whole-world did_nothing) 1 left (WORLD UNIFORM NN13; NOT-DONE exit; plan GUID refuse + --allow-partial; commit read-back; plan zero-sample)"
+  },
+  {
+   "file": "scripts/lod_silhouette_capture.py",
+   "refs": 1,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "~9 findings, 5 fixed 4 real (corner-spread refused-claim doc; by_species KeyError; lod_count>screens IndexError; fail-open exit; save read-back)"
+  },
+  {
+   "file": "scripts/payloads/bench_make_cameras.py",
+   "refs": 1,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 4 real (mutate-by-label rule 8; fail-open top-level ok; read-back drift check; spawn None; dead no-op line)"
+  },
+  {
+   "file": "scripts/payloads/bench_tonecurve_probe.py",
+   "refs": 1,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (NN13 zero-volume ok HIGH; per-read errors -> ok; save write marker; float gated on exists; doc)"
+  },
+  {
+   "file": "scripts/payloads/cvar_batch_read.py",
+   "refs": 1,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 findings CONFIRMED, 3 real (DOC_CONTROL now gates; NN13 empty batch refuse + n_read; negative-control error fail-open; positive-control message distinctions)"
+  },
+  {
+   "file": "scripts/payloads/hlod_set_world_default.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 fixed (consolidated ok verdict; readback exact-compare not startswith); rule-12 core sound (deputy stripped, audited directly)"
+  },
+  {
+   "file": "scripts/payloads/lod_capture_scene.py",
+   "refs": 1,
+   "n_thresholds": 7,
+   "n_marked": 0,
+   "status": "done",
+   "result": "10 findings, 9 fixed 6 real (setup+teardown fail-open ok; destroy-by-label signature; set_material read-back; spawn None; ForceLOD reset check; 3 doc; left if True)"
+  },
+  {
+   "file": "scripts/payloads/make_ppi0_passthrough.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 3,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 4 real (scene_texture_id + blendable_location read-back compares; save_asset return; saved-asset overclaim doc; delete return; dead read)"
+  },
+  {
+   "file": "scripts/payloads/shade_pair_place.py",
+   "refs": 1,
+   "n_thresholds": 2,
+   "n_marked": 3,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 5 real (NN13 zero-station + save fold; card material read-back; destroy-by-label signature; is_spatially_loaded + scale readback; material-graph None)"
+  },
+  {
+   "file": "scripts/perf_standalone.py",
+   "refs": 1,
+   "n_thresholds": 6,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 5 real (fail-open write gate now station_ok+SUSPECT+exit; dead camera-verify removed+doc; cross-station diff implemented; zero-measured exit; fov note; window-collapse NN13)"
+  },
+  {
+   "file": "scripts/pick_sunlit_heading.py",
+   "refs": 1,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings, 4 fixed 3 real (fail-open exit; NN13 count; near_ground IndexError; step validation)"
+  },
+  {
+   "file": "scripts/probe_walk_midpoints.py",
+   "refs": 1,
+   "n_thresholds": 4,
+   "n_marked": 0,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 3 real (FAILED-endpoint TypeError loses run; near_ground IndexError; fail-open exit; sentinel print; handles)"
+  },
+  {
+   "file": "scripts/shade_over_sun.py",
+   "refs": 1,
+   "n_thresholds": 0,
+   "n_marked": 4,
+   "status": "done",
+   "result": "4 fixed 3 real (silent greycard-exclusion drop; spread div-by-zero; zero-measured exit; NN13 count); deputy stripped, audited directly"
+  },
+  {
+   "file": "scripts/trellis/_church_multi_body.py",
+   "refs": 1,
+   "n_thresholds": 3,
+   "n_marked": 0,
+   "status": "done",
+   "result": "4 findings CONFIRMED, 3 real (NN13 watertight over zero faces HIGH; fail-open exit 0 on error; thin_over_long div-by-zero; sampler-params rule-12 note)"
+  },
+  {
+   "file": "scripts/update_foliage_culls.py",
+   "refs": 1,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "5 findings, 4 fixed 2 real (in-memory read-back doc; silent missing-plan skip; foliage.species KeyError; handles); git-delta persistence sound"
+  },
+  {
+   "file": "_verify/20260807_cv_bar_recovery.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "2 fixed 2 real (hardcoded ryanb absolute paths -> portable; NN13 min([]) crash); deputy stripped, audited directly"
+  },
+  {
+   "file": "scripts/apply_streaming_range.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "6 findings, 5 fixed 2 real (streaming-key KeyError; Alpine8K-only + in-memory-readback doc; driver-side layer re-check; handles); git-delta verdict sound"
+  },
+  {
+   "file": "scripts/blender/split_scene_clusters.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 5,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 5 real (ok ignores texture health; empty-clustering IndexError; image save read-back; NN13 inventory; --groups parse; anchor footprint; exit-doc)"
+  },
+  {
+   "file": "scripts/ground_station_map.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 3,
+   "status": "done",
+   "result": "4 fixed 4 real (empty-instances IndexError; w8b channel guard; py not clamped; save read-back); deputy partial, audited directly"
+  },
+  {
+   "file": "scripts/hero_face/likeness/apply_grooms.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 4 real (tautology read-back HIGH; fail-open exit HIGH; in-memory read-back doc; exit-code doc; dirty-not-saved; hair-path IndexError)"
+  },
+  {
+   "file": "scripts/hero_face/likeness/rear_metrics.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 3 real (largest-component fail-open on missing scipy; unreadable-image crash->exit2; nape_frac doc; comment; out read-back; exit-4 doc)"
+  },
+  {
+   "file": "scripts/patch_sample_target.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (revert read-back; hardcoded path -> --target-file; --dry-run; unbounded V6 replace -> count==1; backup-state wording; --mode conditional)"
+  },
+  {
+   "file": "scripts/payloads/apply_landscape_hlod_settings.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 4,
+   "status": "done",
+   "result": "4 findings, 3 fixed 2 real (save_asset return; saved-asset overclaim doc; load_asset None guards); struct-copy read-back sound"
+  },
+  {
+   "file": "scripts/payloads/bench_ground_place.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 6 real (fail-open ok HIGH; dirty swallowed HIGH; FOV/spatial fail-open; rule-8 label; persistence-deferred note; Rotator keyword)"
+  },
+  {
+   "file": "scripts/payloads/bench_make_dolly.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "9 findings CONFIRMED, 7 real (SECONDS import-crash contract; NN13 zero-keys; save return; rule-12 read-back doc; camera label collision; load None; end_frame zero; find-or-create doc)"
+  },
+  {
+   "file": "scripts/payloads/bench_make_stills.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 6 real (NN13 zero-stations HIGH; fail-open top-level HIGH; per-station try+isinstance; label collision; save return; read-back doc; 3-assets doc)"
+  },
+  {
+   "file": "scripts/payloads/exposure_cvar_probe.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "audited directly 3 real (positive-control fail-open on ERR; absent-vs-zero exists flag; float ERR type); n_read; doc"
+  },
+  {
+   "file": "scripts/payloads/hlod_census_readback.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 findings CONFIRMED, 2 real (NN13 ok over zero layers; None-nested ABSENT; per-name guard; nested-name doc; verbatim claim)"
+  },
+  {
+   "file": "scripts/payloads/hlod_label_grid.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "audited directly 2 real (Y index used X-derived cell; NN13 zero-HLOD ok)"
+  },
+  {
+   "file": "scripts/payloads/hlod_setup_layers.py",
+   "refs": 0,
+   "n_thresholds": 5,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 findings CONFIRMED, all fixed (F1 HIGH: pilot never saved so measured no save cost; +NN13/whole-world-refuse/dry-run/props-None/error-vs-skip/save-not-verified/in-mem-readback)"
+  },
+  {
+   "file": "scripts/payloads/landscape_force_lod.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 findings CONFIRMED, all fixed (F1 HIGH: one HOME cannot restore 2 landscapes -> refuse; +MODE validate/HOME-parse-in-try/readback-scope doc)"
+  },
+  {
+   "file": "scripts/payloads/local_exposure_probe.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 2,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (4 real: NN13 zero-volume, overridden-field=finding, UNKNOWN vs False, None settings; +provenance)"
+  },
+  {
+   "file": "scripts/payloads/make_depth_material.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (5 real: verification-theatre readback now compares domain/location/scene_texture_id; save+delete not verified; crash-on-None)"
+  },
+  {
+   "file": "scripts/payloads/make_scenetexture_passthrough.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 3,
+   "status": "done",
+   "result": "4 findings CONFIRMED, fixed (F1 HIGH: save-not-verified + in-mem readback reported ok over failed save; +None-guard/dead-diagnostic/exact-enum-compare)"
+  },
+  {
+   "file": "scripts/payloads/meter_warmup_probe.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "5 findings CONFIRMED, all fixed (NN13 ok over no metering source; 2x ABSENT-discipline except:pass drops; defaults-vs-applied doc; silent [:12] truncation)"
+  },
+  {
+   "file": "scripts/payloads/move_station_diagnostic.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 3,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (rule-8 move-by-label -> refuse on collision; rule-2 STATION param; METRES parse in try; div-by-zero guard; file-handle leak; redundant copy)"
+  },
+  {
+   "file": "scripts/payloads/read_grass_card.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "8 findings CONFIRMED, 7 fixed (F1/F2 HIGH: missing material -> load_asset None -> ok:true over 0 exprs; +sorted-on-None crash/texture-sentinel/base-color gate/ScalarParameter capture)"
+  },
+  {
+   "file": "scripts/payloads/read_hlod_settings.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "4 findings CONFIRMED, all fixed (deputy stripped, audited directly: NN13 ok over 0 HLODLayer assets; dead if-False load branch w/ latent NameError; runtime-hash doc drift; None-row cleanliness)"
+  },
+  {
+   "file": "scripts/payloads/read_layer_tiling.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "4 findings CONFIRMED, 3 fixed (F1 HIGH NN13 ok over 0 samples/divisors; accessor-error fail-open folded into ok; path-length reported per docstring; F4 hardcoded MAT note)"
+  },
+  {
+   "file": "scripts/payloads/read_rvt_and_mipbias.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 2,
+   "status": "done",
+   "result": "6 findings CONFIRMED, all fixed (F1/F2 HIGH: missing material None + NN13 ok over 0 samples; ground_uses_rvt absent-vs-False UNKNOWN; except:pass->ABSENT; dead disjunct)"
+  },
+  {
+   "file": "scripts/payloads/read_shadow_state.py",
+   "refs": 0,
+   "n_thresholds": 3,
+   "n_marked": 2,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 5 fixed (F1 HIGH NN13 ok over empty groups; get_material_expressions(None) crash; exact-class sun filter->component presence; two-class doc drift; grass_mesh ABSENT; F4 hardcoded paths note)"
+  },
+  {
+   "file": "scripts/payloads/read_stochastic_binding.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 1,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed (deputy stripped, audited directly: F1/F2 HIGH missing-material None + NN13 ok over 0 samples; scalar_inputs except:pass undercount)"
+  },
+  {
+   "file": "scripts/payloads/set_color_gamma.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 2,
+   "status": "done",
+   "result": "6 findings CONFIRMED, fixed (3 HIGH: NN13 ok over 0 volumes; product read back but never compared to G; save return not required. +modify errors captured; bulk/G<=0 doc)"
+  },
+  {
+   "file": "scripts/payloads/set_preexposure.py",
+   "refs": 0,
+   "n_thresholds": 0,
+   "n_marked": 1,
+   "status": "done",
+   "result": "3 findings CONFIRMED, all fixed (F3 refusal raised SystemExit(0)=success -> ok:false via normal print; %g->%.9g precision; why-16 doc). Rule-12 read-back confirmed correct."
+  },
+  {
+   "file": "scripts/payloads/task4_shadow_lever.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 4,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 4 fixed (F1 HIGH NN13 zero varieties ok:true; save-not-verified + in-mem readback doc; rule-8 sun label collision refuse; restore-value doc drift; F5/F6 note)"
+  },
+  {
+   "file": "scripts/prove_gaea_reader.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings CONFIRMED, fixed (F1 HIGH: negative controls counted ANY non-zero exit as a correct refusal -> now assert each gate's specific exit code, read from read_gaea_graph; +no-op/fixture-drift detection, with-blocks, clean SRC-missing refuse)"
+  },
+  {
+   "file": "scripts/survey_shots.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "6 findings CONFIRMED, 5 fixed (F1 HIGH NN13 len(filed)==len(stations) 0==0 success over 0 stations; KeyError on stations/ground_z; handle leaks; five-station doc)"
+  },
+  {
+   "file": "scripts/trellis/crop_and_decimate_head.py",
+   "refs": 0,
+   "n_thresholds": 2,
+   "n_marked": 0,
+   "status": "done",
+   "result": "9 findings CONFIRMED, fixed (3 HIGH: decimate result/write/target unverified -> guards+exit codes; empty-source refuse; extent 'CHECKED' doc; META from DST)"
+  },
+  {
+   "file": "scripts/trellis/decimate_head.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "9 findings CONFIRMED, fixed (6 HIGH: no guards/exit codes, wrote+reported OK over empty/unverified result; empty-source+target<=0+write round-trip now gated; silhouette-check doc; META from DST)"
+  },
+  {
+   "file": "scripts/verify_kit_closure.py",
+   "refs": 0,
+   "n_thresholds": 1,
+   "n_marked": 0,
+   "status": "done",
+   "result": "7 findings CONFIRMED, 6 fixed (F1 HIGH NN13 closure verdict over 0 scanned -> refuse exit 6; resolved-count arithmetic fixed & verified 936/938; .umap refs; handle leak; closure-scope doc). Ran clean on real intake."
+  }
+ ],
+ "archived_since_scan": [
+  "_verify/20260831_coast_benchmark/render_preview.py",
+  "_verify/20260831_spike_photo2landscape/render_preview.py",
+  "scripts/blender/church_profile.py",
+  "scripts/blender/church_split.py",
+  "scripts/blender/make_test_groom.py",
+  "scripts/ground_crop.py",
+  "scripts/hair_stage.py",
+  "scripts/hero_face/likeness/contact_sheet.py",
+  "scripts/hero_face/likeness/frame_signal_floor.py",
+  "scripts/hero_face/likeness/hair_color_measure.py",
+  "scripts/hero_face/likeness/hero_closeups.py",
+  "scripts/hero_face/likeness/shoot_sequence.py",
+  "scripts/hero_face/likeness/solo_shots.py",
+  "scripts/hero_face/likeness/three_panel.py",
+  "scripts/kit_measure_v2.py",
+  "scripts/payloads/hlod_clear_invalid.py",
+  "scripts/rebuild_sample_modules.py",
+  "scripts/rederive_shadow_band.py",
+  "scripts/rejudge_sky_depth.py",
+  "scripts/scan_tile_derive.py",
+  "scripts/trellis/_forge_generate_body.py",
+  "scripts/verify_doc_conservation.py"
+ ]
+}

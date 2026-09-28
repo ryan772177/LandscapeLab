@@ -1,0 +1,22 @@
+{
+ "_what": "Brief 5 V5a -- cost table rebuilt with V2 replacing the rejected +0.042 ms.",
+ "budget_R5_1_ms": 12.5,
+ "forest_floor": {
+  "pre_hold_v3": 11.048,
+  "post_hold_V2": 11.023,
+  "hold_delta_ms": -0.025,
+  "x_min_detectable": -1.6,
+  "per_pass_control": {
+   "Basepass": 0.001,
+   "ShadowDepths": 0.0067,
+   "Prepass": -0.0005,
+   "NaniteVisBuffer": 0.0068,
+   "LumenReflections": -0.0048
+  }
+ },
+ "arm_B_reference": "forcing LOD2 on ALL foliage was +2.9 ms (t1_game_ab) -- a blunt upper envelope, NOT the surgical hold; V2 shows the hold itself is ~0.",
+ "verdict_vs_budget": "forest_floor post-hold 11.023 ms << 12.5 ms budget (margin 1.48 ms). UNDER BUDGET.",
+ "T4_rungs": "NOT back on the list -- the hold is under budget with ~1.5 ms margin; the rung optimisation (target_tris ConiferPine 1444/361, SpruceSub 647/162 from derived_ladder) reduces station tris but is not needed for R5-1.",
+ "margin_for_density_ms": 1.477,
+ "_density_note": "~1.48 ms headroom at forest_floor before R5-1; density (item 8 / R5-2) has room, but the HLOD share (item 8) is still the gating unknown for a global density multiplier."
+}

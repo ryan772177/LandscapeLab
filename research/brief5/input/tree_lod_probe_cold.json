@@ -1,0 +1,29 @@
+{
+ "_what": "Brief 5 R1 COLD LOD probe -- get_lod_screen_sizes read in a FRESH editor process (PID 32556), distinct from the apply process (PID 21944). check_recipe_lods requires cold_readback=True.",
+ "cold_readback": true,
+ "distinct_from_apply": true,
+ "cold_editor_pid": 32556,
+ "apply_pid": 21944,
+ "nonce": "cold_1790043331_31936",
+ "meshes": [
+  {
+   "species": "ConiferPine",
+   "screen_sizes": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.03818
+   ]
+  },
+  {
+   "species": "SpruceSub",
+   "screen_sizes": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.02642
+   ]
+  }
+ ]
+}

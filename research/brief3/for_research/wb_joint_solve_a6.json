@@ -1,0 +1,33 @@
+{
+ "measured": {
+  "wb_R": 1.0,
+  "wb_B": 1.0332,
+  "white_temp_k": 3415.7,
+  "white_tint": -0.0113
+ },
+ "matrix": {
+  "dR_dK": 0.0003472000000000004,
+  "dB_dK": -0.0003677999999999999,
+  "dR_dtint": 0.5883333333333352,
+  "dB_dtint": 1.8300000000000003,
+  "source": "grade_resolve_2026-09-14.json rows"
+ },
+ "first_order": {
+  "white_temp_k": 3415.7,
+  "white_tint": -0.029442,
+  "predicted_after": {
+   "wb_R": 0.98933,
+   "wb_B": 1.0
+  },
+  "_note": "diagonal only; the coupling lands in the residual, which is what 09-14 measured"
+ },
+ "joint": {
+  "white_temp_k": 3438.6,
+  "white_tint": -0.024833,
+  "predicted_after": {
+   "wb_R": 1.0,
+   "wb_B": 1.0
+  },
+  "_note": "full 2x2; exact to first order by construction"
+ }
+}

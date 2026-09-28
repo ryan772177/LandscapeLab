@@ -1,0 +1,85 @@
+{
+ "ok": true,
+ "lights": [
+  {
+   "label": "Lighting_alpine_8k_SkyLight",
+   "class": "SkyLight",
+   "component_class": "SkyLightComponent",
+   "light_color": {
+    "repr": "<Struct 'Color' (0x000002C4E89E66B8) {b: 255, g: 255, r: 255, a: 255}>",
+    "r": 255,
+    "g": 255,
+    "b": 255,
+    "a": 255
+   },
+   "intensity": 1.0,
+   "get_light_color": "<Struct 'LinearColor' (0x000002C4D7AD0E20) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>"
+  },
+  {
+   "label": "HeroStage_Key",
+   "class": "DirectionalLight",
+   "component_class": "DirectionalLightComponent",
+   "light_color": {
+    "repr": "<Struct 'Color' (0x000002C4E8A692B8) {b: 255, g: 250, r: 244, a: 0}>",
+    "r": 244,
+    "g": 250,
+    "b": 255,
+    "a": 0
+   },
+   "intensity": 25000.0,
+   "temperature": 6500.0,
+   "use_temperature": false,
+   "get_light_color": "<Struct 'LinearColor' (0x000002C4D7AD0E20) {r: 0.904661, g: 0.955973, b: 1.000000, a: 0.000000}>"
+  },
+  {
+   "label": "Lighting_alpine_8k_Sun",
+   "class": "DirectionalLight",
+   "component_class": "DirectionalLightComponent",
+   "light_color": {
+    "repr": "<Struct 'Color' (0x000002C4E8A698B8) {b: 255, g: 255, r: 255, a: 255}>",
+    "r": 255,
+    "g": 255,
+    "b": 255,
+    "a": 255
+   },
+   "intensity": 130000.0,
+   "temperature": 5200.0,
+   "use_temperature": true,
+   "get_light_color": "<Struct 'LinearColor' (0x000002C4D7AD1260) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>"
+  },
+  {
+   "label": "HeroStage_Fill",
+   "class": "DirectionalLight",
+   "component_class": "DirectionalLightComponent",
+   "light_color": {
+    "repr": "<Struct 'Color' (0x000002C4E8A680B8) {b: 238, g: 243, r: 255, a: 0}>",
+    "r": 255,
+    "g": 243,
+    "b": 238,
+    "a": 0
+   },
+   "intensity": 7500.0,
+   "temperature": 6500.0,
+   "use_temperature": false,
+   "get_light_color": "<Struct 'LinearColor' (0x000002C4D7AD0E20) {r: 1.000000, g: 0.896269, b: 0.854993, a: 0.000000}>"
+  },
+  {
+   "label": "HeroStage_Rim",
+   "class": "DirectionalLight",
+   "component_class": "DirectionalLightComponent",
+   "light_color": {
+    "repr": "<Struct 'Color' (0x000002C4E8A69EB8) {b: 255, g: 255, r: 255, a: 0}>",
+    "r": 255,
+    "g": 255,
+    "b": 255,
+    "a": 0
+   },
+   "intensity": 11250.0,
+   "temperature": 6500.0,
+   "use_temperature": false,
+   "get_light_color": "<Struct 'LinearColor' (0x000002C4D7AD0E20) {r: 1.000000, g: 1.000000, b: 1.000000, a: 0.000000}>"
+  }
+ ],
+ "n_skylight": 1,
+ "n_directional": 4
+}

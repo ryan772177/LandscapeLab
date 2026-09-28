@@ -1,0 +1,76 @@
+seq	file	grep	tag	text
+1	LESSONS.md	## STATE, as of the end of the asset session	HISTORY	dated asset-session snapshot; live state is in STATE.md
+2	LESSONS.md	get promoted? **THE PREMISE	HISTORY	records that the promotion premise was false
+3	LESSONS.md	The resolution was already on file	HISTORY	narrative; the resolution was in a prior recipe
+4	LESSONS.md	I MEASURED THE DISPLACEMENT MAPS AS FLAT	HISTORY	self-correcting; the maps were not flat
+5	LESSONS.md	EVERY METRIC PICKED THE MOSS	HISTORY	narrative of a metric-selection failure
+6	LESSONS.md	The honest outcome	HISTORY	narrative outcome of the moss episode
+11	LESSONS.md	TRIPLANAR WAS BUILT, PROVEN CORRECT	HISTORY	records triplanar built then discarded
+12	LESSONS.md	TRIPLANAR IS WIRED, AND THIS TIME IT WAS MEASURED	HISTORY	records triplanar re-wired and measured
+14	LESSONS.md	I ASSERTED A CLAIM ABOUT PIXELS IN A GATE	HISTORY	records a false pixel claim in a gate
+15	LESSONS.md	I ASSERTED A LICENCE FROM MEMORY	HISTORY	records asserting a licence from memory
+18	LESSONS.md	The correction that matters most, because it inverts	HISTORY	self-correcting narrative inverting a prior cause
+19	LESSONS.md	The build ran, and made nothing	HISTORY	records the HLOD build produced nothing
+21	LESSONS.md	RESIDENCY EXPECTATION WAS 2D AGAINST A 3D SPHERE	HISTORY	records the 2D-vs-3D residency bug and its 3D fix
+22	LESSONS.md	AUDIT LOG 2026-09-10c	HISTORY	audit log; the WB figures were later re-opened
+23	LESSONS.md	THE SCENE-LINEAR PASS IS NOT LINEAR	HISTORY	records the power-law slope and exposure solve
+24	LESSONS.md	THE DISPLAY-REFERRED CARD WAS FLATTERING	HISTORY	records the 3550->3481.9 K re-derivation
+26	LESSONS.md	Q12 NARROWED BY READ-BACK	HISTORY	eliminates exposure causes for Q12
+27	LESSONS.md	A READER THAT CANNOT TELL ZERO FROM ABSENT	HISTORY	records the cvar zero-vs-absent reader fix
+28	LESSONS.md	THE RULED STATION FAILS ALL FOUR CHECKS	HISTORY	records the ruled station failing; instrument fault
+29	LESSONS.md	4b LANDS, AND A FRACTION MEASURED AGAINST THE WRONG POPU	HISTORY	records the tiling verdict and wrong-denominator defect
+30	LESSONS.md	measurement that accused six packs at once	HISTORY	records the DX/GL normal mis-verdict, corrected
+32	LESSONS.md	shadow_tint_B is largely a WHITE-BALANCE readout	HISTORY	the metric is WB-dominated; feeds R-SHADEBAND
+34	LESSONS.md	The re-derivation	HISTORY	band re-derived; the verdict reverses
+35	LESSONS.md	The whole series, one variable each	HISTORY	no lighting lever closes the deficit
+36	LESSONS.md	Why the band could not be re-derived against our own content	HISTORY	the band stays an external reference
+37	LESSONS.md	The defect, confirmed by two instruments that disagree	HISTORY	shadow_tint_B measures terrain albedo
+39	LESSONS.md	Q12: the compression survives every lever	HISTORY	Q12 resolved: grade/tonemap, not adaptation
+40	LESSONS.md	Two tile sizes broke a report that assumes one	HISTORY	surface_report NO-VERDICT on mixed tile sizes
+41	LESSONS.md	the composition is not a product	WRONG	WRONG 2026-09-13c: composition IS multiplicative; inverted the next day
+42	LESSONS.md	CONTRAST IS `xyz * w`	HISTORY	still-true shader finding; contrast written xyz=1, value in w
+45	LESSONS.md	THE PERIOD WAS THE WEIGHTMAP	HISTORY	no 1 m period; "1.07 m" was a search-window edge
+47	LESSONS.md	The shade acceptance moves to the linear instrument	HISTORY	shade acceptance on PPI0 (linear); current method
+48	LESSONS.md	The question the last two sessions could not ask	HISTORY	the weight component is broadband, no period
+49	LESSONS.md	Two estimators built, both REJECTED ON MEASUREMENT	HISTORY	both estimators rejected; autocorrelation works
+50	LESSONS.md	The instrument that needed no mask at all	HISTORY	grass albedo 0.2278 above band; Task 4 stopped
+51	LESSONS.md	The check nobody asked for	HISTORY	"5 of 6 pass" rested on a single capture
+52	RECIPES.md	R2 — Landscape material (LOCKED, UNPROVEN)	SUPERSEDED-BY Task 3 09-13	the shipped world is M_Alpine8K; R2 is legacy pre-8K material
+54	RECIPES.md	RULING: five surfaces, three channels, via SUB-SURFACES	SUPERSEDED-BY Task 3 09-13	the pre-8K sub-surface scheme was never built; the 8K material governs
+56	RECIPES.md	NOT resolved by this ruling — stated, not hidden	SUPERSEDED-BY Task 3 09-13	those open items are resolved or moot in the 8K material
+59	RECIPES.md	WHAT THE DETAIL GAIN ACTUALLY IS	SUPERSEDED-BY B3.15/16	the detail-gain figures were a search artefact; re-derived
+61	RECIPES.md	Choosing the layer, since the world may already	WRONG	WRONG (B3.21): recommends a layer the same doc's later measurement shows inert
+62	RECIPES.md	WHAT THIS WORLD REGISTERS, read back 2026-09-08	SUPERSEDED-BY B3.21	the registration snapshot preceded the B3.21 rework
+63	RECIPES.md	THE MEASUREMENT, single variable	SUPERSEDED-BY B3.21	the instanced-actors result is overtaken by B3.21
+64	RECIPES.md	LOCKED 2026-09-11b AT 3481.9 K	SUPERSEDED-BY A-6 R-WB2x2	the white point is now 3438.6 K; the lock reopened
+66	RECIPES.md	BRIEF 3 TASK 1 — THE CARD SETS THE WHITE POINT	SUPERSEDED-BY B3.13	"LOCKED AT 3550 K" is already superseded
+67	RECIPES.md	BRIEF 2b MEASURED (2026-09-10, sun 5200 K	SUPERSEDED-BY R-SHADEBAND	the 1.10-1.60 band is replaced by the card-pair method
+72	RECIPES.md	THE CHAIN IS NOT LINEAR, AND "EXPECT EXACT" DOES NOT HOLD	SUPERSEDED-BY B3.13	flags Q12 OPEN; B3.13 later closed it
+73	RECIPES.md	THE WHITE BALANCE HAD TO BE RE-OPENED	SUPERSEDED-BY A-6 R-WB2x2	lands 3481.9 K, since moved; WB reopened
+75	RECIPES.md	R-SHADE — THE CARD-PAIR ACCEPTANCE	SUPERSEDED-BY R-SHADEBAND	band "@ 3481.9 K"; the white point moved, re-derive
+79	RECIPES.md	## R-MEADOWALBEDO	SUPERSEDED-BY R-T4	"PROVEN" recipe; R-T4 governs; the albedo numbers are stale-candidates
+43	LESSONS.md	The residual is a GAMMA, and the pivot said so	HISTORY	the residual is an output-encoding gamma; still holds
+44	LESSONS.md	R-INSTRUMENTS â€” and the shade band was in the wrong domain	HISTORY	the shade band belongs in the linear domain; in force
+46	LESSONS.md	A number I reported was an artefact of the search	HISTORY	retracts the 1.07 m as a search-window artefact
+55	RECIPES.md	Measured displacement ranges (they differ	HISTORY	the per-surface displacement measurements are still valid
+65	RECIPES.md	THE VALUES (recipes/alpine_8k.json `lighting.grade`)	SUPERSEDED-BY B3.13	the white_temp 7800 / contrast block is stale
+68	RECIPES.md	the RULED FALLBACK -- 768 m	CURRENT	the 512 m fallback is the live lock
+69	RECIPES.md	THE PERF GATE AT 768 m	CURRENT	live evidence for the 512 m lock
+70	RECIPES.md	MEASURED (target class, missing 0 both stations at BOTH ranges)	CURRENT	the 512 m residency is current; only the 768 sub-part is historical
+71	RECIPES.md	A 2D EXPECTATION AGAINST A 3D SPHERE	HISTORY	anti-spec: the 2D-vs-3D residency errors, corrected
+74	RECIPES.md	SETTING A WARM-UP COUNT WITHOUT ITS ENABLING BOOL	HISTORY	anti-spec: the warm-up-bool / slope rejects
+76	RECIPES.md	shadow_tint_B`, AND ITS 1.10-1.60 BAND	HISTORY	anti-spec: the shadow_tint_B / plane-blocker rejects
+77	RECIPES.md	BL_BEFORE_TONEMAPPING`, WHICH	HISTORY	anti-spec: the nonexistent blend-location reject
+78	RECIPES.md	ONE PERIOD FOR A FRAME WITH SEVERAL TILE SIZES	HISTORY	anti-spec (R-TILE): the single-period reject
+80	RECIPES.md	A LIT-ONLY MASK OVER THE MEADOW, BY ANY ROUTE	HISTORY	anti-spec (R-MEADOWALBEDO): the lit-only-mask reject
+81	STATE.md	## 4 — INSTRUMENTS	SUPERSEDED-BY B3.13	the role-map is valid, but comp_ev -13.5898 / contrast are B3.13-revised
+7-10	LESSONS.md	AND IT HANDED ME THE CONTROL I HAD SKIPPED	HISTORY	narrative of the LOD experiment that never ran (cvar set silently failed); covers sub-parts 7-10 -- attempt/happened, the rule, and the same-settings control it handed back
+13	LESSONS.md	### TIER 2	HISTORY	2026-08-09 AAA feature-audit Tier 2 table; a dated read-only snapshot of project state
+16	LESSONS.md	### The assignment	HISTORY	narrative of the 2026-09-07 HLOD assignment run (all 2,796 cells at once)
+17	LESSONS.md	### What survives, and what the next attempt must do differently	HISTORY	narrative of what survived that HLOD assignment attempt and what the next must change
+20	LESSONS.md	## 2026-09-10 — APPLIED BUT NOT SAVED: EVERY MEASUREMENT OUTLIVED THE WORLD IT MEASURED	HISTORY	Brief-2 narrative: lighting applied but never saved, so the world read back pre-Brief-2; WHAT HAPPENED is honest record
+25	LESSONS.md	## 2026-09-11m — Q12: THE 0.731 POWER LAW, LEFT OPEN ON PURPOSE	HISTORY	Q12 left OPEN on purpose in 2026-09-11m; later narrowed and closed
+31,33	LESSONS.md	## 2026-09-12h — THE ACCEPTANCE AND THE GRADE ARE IN CONFLICT, AND THE BAND'S SPECIMEN NO LONGER EXISTS	HISTORY	2026-09-12h WB 3481.9 measurement and what-follows; both sub-parts (31, 33) are honest narrative, the band later re-derived
+38	LESSONS.md	### What it is not	HISTORY	2026-09-12k clarification of what the metric is not; narrative
+58	RECIPES.md	### R-COLLISION-REBUILD — THE FLUSH DOES NOT WORK	HISTORY	collision-rebuild investigation: the flush/force-update route recorded as anti-spec narrative
+60	RECIPES.md	### The procedure	SUPERSEDED-BY B3.21	the HLOD landscape-layer procedure example preceded the B3.21 rework

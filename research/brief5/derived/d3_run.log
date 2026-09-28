@@ -1,0 +1,30 @@
+[D3] pre-D3 world shas: {"foliage/alpine_8k_Conifer.json": "59f3d41bb3c338aa1b143ec2b692e226ea80bbe2", "foliage/alpine_8k_ConiferPine.json": "4da9c560c7ee8b804d951c83aff7841c2c8fbbe8", "foliage/alpine_8k_SpruceSub.json": "d276766e4754869570d26d55806bfa8010305f60", "foliage/alpine_8k_SpruceSapling.json": "d4ba8229f9a130c41fc039e6fd65bbbfb9d177c5", "LandscapeLab/Content/Alpine8K.umap": "1f7eb6d284fad3b4eec1e265f7196bfe4a250a10", "LandscapeLab/Content/__ExternalActors__/Alpine8K": "tree:3860-index-entries", "LandscapeLab/Content/__ExternalObjects__/Alpine8K": "tree:3-index-entries", "LandscapeLab/Content/Foliage": "tree:27-index-entries"}
+[D3] pre-flight: worktree world == pre-density-daylight, clean
+[D3] resource_guard rc 0 REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+lock file : C:\Users\Admin\UE5LandscapePipeline\.heavy-op.lock
+memory    : 17.9 GB free of 31.4 GB
+held by   : nobody
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : OFFSCREEN (no main window; end on R-EDITOR-CLOSE's kill path)
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[D3] launched PIDs [4116]; waiting for ready
+[D3] editor ready after 44s
+[D3] run(place): --place --timeout 25 --ruled-count 812258
+[D3]   rc 0 (312.6s) ========================================== PLACED 812,258 instances across 4 species, counted in the world. ======================================================================  Pipeline rule 4: run the capture script (a LESSONS.md note is suggested, not required). NOT SAVED — foliage persists only after save_level. 
+[D3] editor VRAM after place: 5211 MiB (6 samples, ceiling 13312) 
+[D3] run(save): C:\Users\Admin\AppData\Local\Programs\Python\Python312\python.exe C:\Users\Admin\UE5LandscapePipeline\scripts\save_level.py --recipe C:\Users\Admin\UE5LandscapePipeline\recipes\alpine_8k.json --save
+[D3]   rc 0 (16.2s) t part of the finding was always right. The on-disk check above is not silent: a deletion is verified as a MISSING FILE, and a package that was neither written nor deleted is a FAILURE rather than an absence of evidence.  Pipeline rule 4: run the capture script. (A one-line LESSONS.md note is suggested, not required.) 
+[D3] killed PID 4116
+[D3] editors after close: []; PackageRestoreData: True
+[D3] run(-game forest_floor): d3_forest_floor --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\forest_station.json --station-name forest_floor
+[D3]   rc 0 (108.9s)   forest_floor ok       window 25.0 s  GPU p90 15.316  Game p90 3.97  VRAM peak 4972 MiB VRAM peak across stations: 4972 MiB vs 13312 abort (+8340 headroom) wrote _verify\perf\standalone_2026-09-22\perf_standalone_d3_forest_floor.json 
+[D3]   forest_floor VRAM peak 4972 MiB over_ceiling=False
+[D3] run(-game open_max): d3_open_max --station-json C:\Users\Admin\UE5LandscapePipeline\research\brief5\input\open_max_station.json --station-name open_max
+[D3]   rc 0 (109.3s)   open_max     ok       window 25.0 s  GPU p90 14.145  Game p90 4.074  VRAM peak 4940 MiB VRAM peak across stations: 4940 MiB vs 13312 abort (+8372 headroom) wrote _verify\perf\standalone_2026-09-22\perf_standalone_d3_open_max.json 
+[D3]   open_max VRAM peak 4940 MiB over_ceiling=False
+[D3] run(-game plaza): --noxgecontroller --tag d3_plaza --only plaza
+[D3]   rc 0 (109.5s)   plaza        ok       window 25.0 s  GPU p90 13.008  Game p90 3.862  VRAM peak 4993 MiB VRAM peak across stations: 4993 MiB vs 13312 abort (+8319 headroom) wrote _verify\perf\standalone_2026-09-22\perf_standalone_d3_plaza.json 
+[D3]   plaza VRAM peak 4993 MiB over_ceiling=False
+[D3] D3 PASS: regen complete, editor VRAM 5211 MiB, -game under ceiling at 3/3 stations (0 unmeasured -- see verdict).
+[D3] verdict -> research/brief5/derived/d3_verdict.json

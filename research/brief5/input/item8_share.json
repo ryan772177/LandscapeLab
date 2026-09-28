@@ -1,0 +1,297 @@
+{
+ "_what": "Item-8 HLOD proxy GPU-share -- I5 synthesis.",
+ "_derived_proxy_fraction_vista": 0.05727,
+ "inputs": {
+  "perf": "item8_perf.json",
+  "pixels": "item8_pixels.json"
+ },
+ "stations": {
+  "vista": {
+   "verdict": "MEASURED-NEGLIGIBLE",
+   "hlod_share_ms": 0.4573,
+   "hlod_share_pct_of_A": 0.93,
+   "hlod_share_x_noise_floor": 0.7,
+   "noise_floor_ms_AA": 0.6738,
+   "gpu_p90_ms": {
+    "A1": 49.6164,
+    "A2": 48.9426,
+    "A_mean": 49.2795,
+    "B": 48.8222
+   },
+   "per_pass_delta_A_minus_B_ms": {
+    "Basepass": 0.058,
+    "ShadowDepths": 0.1675,
+    "Prepass": -0.0206,
+    "NaniteVisBuffer": 0.3,
+    "LumenReflections": 0.3952
+   },
+   "positive_control": {
+    "counter_state": "APPLIED",
+    "counter_verdict": "command APPLIED (a render counter dropped >= 1% in B)",
+    "pixel_applied": true,
+    "pixel_reason": "A/B diff 0.00203 = 2.9x the A/A floor",
+    "command_applied": true
+   },
+   "pixel_fraction": {
+    "differing_fraction": 0.00203,
+    "differing_x_aa_floor": 2.9,
+    "vs_derived_0_05727": 0.05727,
+    "_note": "differing_fraction vs 0.05727 is CORROBORATION, not equality: different framing (90/4K here vs bench FOV/1440p depth there) and a subset (proxies are part of the beyond-512 ground)."
+   },
+   "far_forest_crops_I4": [
+    {
+     "target_m": 560,
+     "label": "boundary_512_600m",
+     "approx_row_dist_m": 554.7,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      683,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 626,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9223,
+     "file": "research/brief5/derived/item8/crop_vista_boundary_512_600m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 700,
+     "label": "700m",
+     "approx_row_dist_m": 652.8,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      682,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 627,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9222,
+     "file": "research/brief5/derived/item8/crop_vista_700m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1000,
+     "label": "1000m",
+     "approx_row_dist_m": 1010.5,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      680,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 631,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9221,
+     "file": "research/brief5/derived/item8/crop_vista_1000m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1400,
+     "label": "1400m",
+     "approx_row_dist_m": 1391.8,
+     "target_beyond_flatground_horizon": true,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      679,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 632,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9221,
+     "file": "research/brief5/derived/item8/crop_vista_1400m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1800,
+     "label": "1800m",
+     "approx_row_dist_m": 1391.8,
+     "target_beyond_flatground_horizon": true,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      679,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 632,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9221,
+     "file": "research/brief5/derived/item8/crop_vista_1800m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 2200,
+     "label": "2200m",
+     "approx_row_dist_m": 1391.8,
+     "target_beyond_flatground_horizon": true,
+     "max_flatground_dist_m": 1391.8,
+     "crop_px": [
+      3246,
+      679,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 632,
+     "proxy_frac_in_crop": 0.0024,
+     "repetition_score": 0.9221,
+     "file": "research/brief5/derived/item8/crop_vista_2200m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    }
+   ]
+  },
+  "treeline": {
+   "verdict": "MEASURED",
+   "hlod_share_ms": 0.5764,
+   "hlod_share_pct_of_A": 1.17,
+   "hlod_share_x_noise_floor": 2.9,
+   "noise_floor_ms_AA": 0.1973,
+   "gpu_p90_ms": {
+    "A1": 49.5572,
+    "A2": 49.3599,
+    "A_mean": 49.4586,
+    "B": 48.8822
+   },
+   "per_pass_delta_A_minus_B_ms": {
+    "Basepass": 0.0804,
+    "ShadowDepths": 0.1636,
+    "Prepass": 0.0148,
+    "NaniteVisBuffer": 0.2252,
+    "LumenReflections": 0.0331
+   },
+   "positive_control": {
+    "counter_state": "APPLIED",
+    "counter_verdict": "command APPLIED (a render counter dropped >= 1% in B)",
+    "pixel_applied": true,
+    "pixel_reason": "A/B diff 0.00195 = 3.4x the A/A floor",
+    "command_applied": true
+   },
+   "pixel_fraction": {
+    "differing_fraction": 0.00195,
+    "differing_x_aa_floor": 3.4,
+    "vs_derived_0_05727": 0.05727,
+    "_note": "differing_fraction vs 0.05727 is CORROBORATION, not equality: different framing (90/4K here vs bench FOV/1440p depth there) and a subset (proxies are part of the beyond-512 ground)."
+   },
+   "far_forest_crops_I4": [
+    {
+     "target_m": 560,
+     "label": "boundary_512_600m",
+     "approx_row_dist_m": 521.3,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      757,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 240,
+     "proxy_frac_in_crop": 0.0009,
+     "repetition_score": 0.9412,
+     "file": "research/brief5/derived/item8/crop_treeline_boundary_512_600m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 700,
+     "label": "700m",
+     "approx_row_dist_m": 726.8,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      755,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 310,
+     "proxy_frac_in_crop": 0.0012,
+     "repetition_score": 0.9411,
+     "file": "research/brief5/derived/item8/crop_treeline_700m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1000,
+     "label": "1000m",
+     "approx_row_dist_m": 905.2,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      754,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 324,
+     "proxy_frac_in_crop": 0.0012,
+     "repetition_score": 0.9411,
+     "file": "research/brief5/derived/item8/crop_treeline_1000m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1400,
+     "label": "1400m",
+     "approx_row_dist_m": 1199.5,
+     "target_beyond_flatground_horizon": false,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      753,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 330,
+     "proxy_frac_in_crop": 0.0013,
+     "repetition_score": 0.941,
+     "file": "research/brief5/derived/item8/crop_treeline_1400m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 1800,
+     "label": "1800m",
+     "approx_row_dist_m": 1777.5,
+     "target_beyond_flatground_horizon": true,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      752,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 337,
+     "proxy_frac_in_crop": 0.0013,
+     "repetition_score": 0.9409,
+     "file": "research/brief5/derived/item8/crop_treeline_1800m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    },
+    {
+     "target_m": 2200,
+     "label": "2200m",
+     "approx_row_dist_m": 1777.5,
+     "target_beyond_flatground_horizon": true,
+     "max_flatground_dist_m": 1777.5,
+     "crop_px": [
+      3302,
+      752,
+      512,
+      512
+     ],
+     "proxy_px_in_crop": 337,
+     "proxy_frac_in_crop": 0.0013,
+     "repetition_score": 0.9409,
+     "file": "research/brief5/derived/item8/crop_treeline_2200m.png",
+     "_tiling": "REVIEW crop visually -- repetition_score is a hint, not a verdict"
+    }
+   ]
+  }
+ },
+ "verdict": "MEASURED"
+}

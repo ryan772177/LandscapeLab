@@ -1,0 +1,7602 @@
+{
+ "_source": "Brief 5 overnight item 5. READ-ONLY scan of C:/Users/Admin/UE5LandscapePipeline/_verify/bench by scripts (scratchpad) on 2026-09-19. No editor, no new captures.",
+ "_what": "Manifest of every dolly frame (PNG) already on disk for the desk's temporal (pop / temporal-CSF) tool. Covers the four E4 3 s sunlit dolly captures plus the one related non-E4 6 s ratified-dolly subset. 'index' is the integer frame number parsed from the frame_NNNN.png filename; 'consecutive_pairs' reference POSITIONS in the frames[] array (0-based).",
+ "ordering_key": "integer frame number in the filename 'frame_<N>.png' (N is zero-padded to 4 digits, MRQ file_name_format 'frame_{frame_number}'). Frames sorted ascending by N within each capture set.",
+ "consecutive_pairs_definition": "adjacent entries in frames[] that belong to the SAME capture set AND whose frame indices differ by exactly 1. Pairs are given as [i, j] positions into frames[]. The 2026-09-06 dev set is a stride-10 subset (indices 0,10,20,...) so it contributes NO consecutive pairs.",
+ "_camera_provenance": "NO per-frame camera sidecar exists on disk: the frame directories contain PNGs only, and the capture sidecars record the dolly at SET level, not per frame. Per-frame camera fields are therefore null (rule 9/13: not inferred). The dolly is a straight LINEAR move (no easing) at 1.4 m/s built by scripts/payloads/bench_make_dolly.py from the 'Bench_near_ground' station camera read-back; pitch/roll come from the actor, only yaw may be overridden. Set-level path facts that ARE recorded live in each set's sidecar (see per_set[].sidecar) and in bench_make_dolly.py's stdout (not persisted to disk). The near_ground station location is derived as [-210800.0, 278800.0, ~18849] cm in _verify/bench/2026-09-05/bench_stations_derived.json, but that file flags its Z as a derivation aid, NOT the camera Z -- so it is not used here as a camera transform.",
+ "_sun_provenance": "sun_elevation_deg is null per frame: no dolly sidecar records a sun elevation. The world sun is a STATIC directional light at elevation 12.0 deg (recipes/alpine_8k.json /lighting/sun/elevation_deg); because it does not move during a capture it applies to every frame, but it is recorded at world level, not as a per-frame capture field, so it is surfaced only as _world_sun_elevation_deg below and left null per frame.",
+ "_world_sun_elevation_deg": 12.0,
+ "_world_sun_elevation_source": "recipes/alpine_8k.json /lighting/sun/elevation_deg",
+ "sun_elevation_available_per_frame": false,
+ "camera_transform_available_per_frame": false,
+ "frame_count": 378,
+ "e4_frame_count": 360,
+ "per_set": [
+  {
+   "id": "2026-09-06_dev_dolly",
+   "dir": "_verify/bench/2026-09-06/dev_dolly/dolly",
+   "frame_count": 18,
+   "frame_index_first": 0,
+   "frame_index_last": 170,
+   "frames_are_temporally_consecutive": false,
+   "is_e4": false,
+   "role": "NOT-E4: ratified 6 s Bench_Dolly at DEV profile, heading=actor. Only a stride-10 subset of the 180-frame walk is on disk (frame_0000,0010,...,0170), so its frames are NOT temporally adjacent -- unusable as consecutive pop pairs.",
+   "heading": "actor read-back",
+   "seconds": 6.0,
+   "fps": 30,
+   "sidecar": "_verify/bench/2026-09-06/bench_run_dev_dolly.json",
+   "extra_sidecars": [
+    "_verify/bench/2026-09-06/dolly_stability_dev.json"
+   ],
+   "frames_array_range": [
+    0,
+    17
+   ]
+  },
+  {
+   "id": "2026-09-07_target",
+   "dir": "_verify/bench/2026-09-07/target/dolly",
+   "frame_count": 90,
+   "frame_index_first": 0,
+   "frame_index_last": 89,
+   "frames_are_temporally_consecutive": true,
+   "is_e4": true,
+   "role": "E4: 3 s sunlit dolly, heading=actor (the original walk INTO dappled canopy shadow; E4 shadow check FAILED, stayed_out_of_canopy_shadow=false).",
+   "heading": "actor read-back",
+   "seconds": 3.0,
+   "fps": 30,
+   "sidecar": "_verify/bench/2026-09-07/dolly_sunlit.json",
+   "extra_sidecars": [
+    "_verify/bench/2026-09-07/bench_run_target.json"
+   ],
+   "frames_array_range": [
+    18,
+    107
+   ]
+  },
+  {
+   "id": "2026-09-09_target_yaw-67.5",
+   "dir": "_verify/bench/2026-09-09/target/dolly",
+   "frame_count": 90,
+   "frame_index_first": 0,
+   "frame_index_last": 89,
+   "frames_are_temporally_consecutive": true,
+   "is_e4": true,
+   "role": "E4: 3 s sunlit dolly, heading yaw=-67.5 deg (the chosen sunlit heading; E4 shadow check PASSED, stayed_out_of_canopy_shadow=true).",
+   "heading": "override yaw=-67.5 deg",
+   "seconds": 3.0,
+   "fps": 30,
+   "sidecar": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json",
+   "extra_sidecars": [],
+   "frames_array_range": [
+    108,
+    197
+   ]
+  },
+  {
+   "id": "2026-09-10_target_precloud",
+   "dir": "_verify/bench/2026-09-10/target_precloud/dolly",
+   "frame_count": 90,
+   "frame_index_first": 0,
+   "frame_index_last": 89,
+   "frames_are_temporally_consecutive": true,
+   "is_e4": true,
+   "role": "E4: 3 s sunlit dolly, PRE-cloud (A of an A/B volumetric-cloud comparison). No dedicated dolly_sunlit sidecar for precloud.",
+   "heading": "override yaw=-67.5 deg (per the chosen sunlit heading; not re-stated in this set's sidecar)",
+   "seconds": 3.0,
+   "fps": 30,
+   "sidecar": "_verify/bench/2026-09-10/bench_run_target_precloud.json",
+   "extra_sidecars": [
+    "_verify/bench/2026-09-10/stability_precloud.json",
+    "_verify/bench/2026-09-10/capture_precloud_dolly.log"
+   ],
+   "frames_array_range": [
+    198,
+    287
+   ]
+  },
+  {
+   "id": "2026-09-10_target_postcloud",
+   "dir": "_verify/bench/2026-09-10/target_postcloud/dolly",
+   "frame_count": 90,
+   "frame_index_first": 0,
+   "frame_index_last": 89,
+   "frames_are_temporally_consecutive": true,
+   "is_e4": true,
+   "role": "E4: 3 s sunlit dolly, POST-cloud (B of the A/B volumetric-cloud comparison; E4 shadow check PASSED).",
+   "heading": "override yaw=-67.5 deg (per the chosen sunlit heading)",
+   "seconds": 3.0,
+   "fps": 30,
+   "sidecar": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json",
+   "extra_sidecars": [
+    "_verify/bench/2026-09-10/stability_postcloud.json",
+    "_verify/bench/2026-09-10/bench_run_target_postcloud.json",
+    "_verify/bench/2026-09-10/capture_postcloud_dolly.log"
+   ],
+   "frames_array_range": [
+    288,
+    377
+   ]
+  }
+ ],
+ "frames": [
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0000.png",
+   "index": 0,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0010.png",
+   "index": 10,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0020.png",
+   "index": 20,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0030.png",
+   "index": 30,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0040.png",
+   "index": 40,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0050.png",
+   "index": 50,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0060.png",
+   "index": 60,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0070.png",
+   "index": 70,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0080.png",
+   "index": 80,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0090.png",
+   "index": 90,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0100.png",
+   "index": 100,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0110.png",
+   "index": 110,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0120.png",
+   "index": 120,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0130.png",
+   "index": 130,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0140.png",
+   "index": 140,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0150.png",
+   "index": 150,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0160.png",
+   "index": 160,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-06/dev_dolly/dolly/frame_0170.png",
+   "index": 170,
+   "set": "2026-09-06_dev_dolly",
+   "is_e4": false,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-06/bench_run_dev_dolly.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0000.png",
+   "index": 0,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0001.png",
+   "index": 1,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0002.png",
+   "index": 2,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0003.png",
+   "index": 3,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0004.png",
+   "index": 4,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0005.png",
+   "index": 5,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0006.png",
+   "index": 6,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0007.png",
+   "index": 7,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0008.png",
+   "index": 8,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0009.png",
+   "index": 9,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0010.png",
+   "index": 10,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0011.png",
+   "index": 11,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0012.png",
+   "index": 12,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0013.png",
+   "index": 13,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0014.png",
+   "index": 14,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0015.png",
+   "index": 15,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0016.png",
+   "index": 16,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0017.png",
+   "index": 17,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0018.png",
+   "index": 18,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0019.png",
+   "index": 19,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0020.png",
+   "index": 20,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0021.png",
+   "index": 21,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0022.png",
+   "index": 22,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0023.png",
+   "index": 23,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0024.png",
+   "index": 24,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0025.png",
+   "index": 25,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0026.png",
+   "index": 26,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0027.png",
+   "index": 27,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0028.png",
+   "index": 28,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0029.png",
+   "index": 29,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0030.png",
+   "index": 30,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0031.png",
+   "index": 31,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0032.png",
+   "index": 32,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0033.png",
+   "index": 33,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0034.png",
+   "index": 34,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0035.png",
+   "index": 35,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0036.png",
+   "index": 36,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0037.png",
+   "index": 37,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0038.png",
+   "index": 38,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0039.png",
+   "index": 39,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0040.png",
+   "index": 40,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0041.png",
+   "index": 41,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0042.png",
+   "index": 42,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0043.png",
+   "index": 43,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0044.png",
+   "index": 44,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0045.png",
+   "index": 45,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0046.png",
+   "index": 46,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0047.png",
+   "index": 47,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0048.png",
+   "index": 48,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0049.png",
+   "index": 49,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0050.png",
+   "index": 50,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0051.png",
+   "index": 51,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0052.png",
+   "index": 52,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0053.png",
+   "index": 53,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0054.png",
+   "index": 54,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0055.png",
+   "index": 55,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0056.png",
+   "index": 56,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0057.png",
+   "index": 57,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0058.png",
+   "index": 58,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0059.png",
+   "index": 59,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0060.png",
+   "index": 60,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0061.png",
+   "index": 61,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0062.png",
+   "index": 62,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0063.png",
+   "index": 63,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0064.png",
+   "index": 64,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0065.png",
+   "index": 65,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0066.png",
+   "index": 66,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0067.png",
+   "index": 67,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0068.png",
+   "index": 68,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0069.png",
+   "index": 69,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0070.png",
+   "index": 70,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0071.png",
+   "index": 71,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0072.png",
+   "index": 72,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0073.png",
+   "index": 73,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0074.png",
+   "index": 74,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0075.png",
+   "index": 75,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0076.png",
+   "index": 76,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0077.png",
+   "index": 77,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0078.png",
+   "index": 78,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0079.png",
+   "index": 79,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0080.png",
+   "index": 80,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0081.png",
+   "index": 81,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0082.png",
+   "index": 82,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0083.png",
+   "index": 83,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0084.png",
+   "index": 84,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0085.png",
+   "index": 85,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0086.png",
+   "index": 86,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0087.png",
+   "index": 87,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0088.png",
+   "index": 88,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-07/target/dolly/frame_0089.png",
+   "index": 89,
+   "set": "2026-09-07_target",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-07/dolly_sunlit.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0000.png",
+   "index": 0,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0001.png",
+   "index": 1,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0002.png",
+   "index": 2,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0003.png",
+   "index": 3,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0004.png",
+   "index": 4,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0005.png",
+   "index": 5,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0006.png",
+   "index": 6,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0007.png",
+   "index": 7,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0008.png",
+   "index": 8,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0009.png",
+   "index": 9,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0010.png",
+   "index": 10,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0011.png",
+   "index": 11,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0012.png",
+   "index": 12,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0013.png",
+   "index": 13,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0014.png",
+   "index": 14,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0015.png",
+   "index": 15,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0016.png",
+   "index": 16,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0017.png",
+   "index": 17,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0018.png",
+   "index": 18,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0019.png",
+   "index": 19,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0020.png",
+   "index": 20,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0021.png",
+   "index": 21,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0022.png",
+   "index": 22,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0023.png",
+   "index": 23,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0024.png",
+   "index": 24,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0025.png",
+   "index": 25,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0026.png",
+   "index": 26,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0027.png",
+   "index": 27,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0028.png",
+   "index": 28,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0029.png",
+   "index": 29,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0030.png",
+   "index": 30,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0031.png",
+   "index": 31,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0032.png",
+   "index": 32,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0033.png",
+   "index": 33,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0034.png",
+   "index": 34,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0035.png",
+   "index": 35,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0036.png",
+   "index": 36,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0037.png",
+   "index": 37,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0038.png",
+   "index": 38,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0039.png",
+   "index": 39,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0040.png",
+   "index": 40,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0041.png",
+   "index": 41,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0042.png",
+   "index": 42,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0043.png",
+   "index": 43,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0044.png",
+   "index": 44,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0045.png",
+   "index": 45,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0046.png",
+   "index": 46,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0047.png",
+   "index": 47,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0048.png",
+   "index": 48,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0049.png",
+   "index": 49,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0050.png",
+   "index": 50,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0051.png",
+   "index": 51,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0052.png",
+   "index": 52,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0053.png",
+   "index": 53,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0054.png",
+   "index": 54,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0055.png",
+   "index": 55,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0056.png",
+   "index": 56,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0057.png",
+   "index": 57,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0058.png",
+   "index": 58,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0059.png",
+   "index": 59,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0060.png",
+   "index": 60,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0061.png",
+   "index": 61,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0062.png",
+   "index": 62,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0063.png",
+   "index": 63,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0064.png",
+   "index": 64,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0065.png",
+   "index": 65,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0066.png",
+   "index": 66,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0067.png",
+   "index": 67,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0068.png",
+   "index": 68,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0069.png",
+   "index": 69,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0070.png",
+   "index": 70,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0071.png",
+   "index": 71,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0072.png",
+   "index": 72,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0073.png",
+   "index": 73,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0074.png",
+   "index": 74,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0075.png",
+   "index": 75,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0076.png",
+   "index": 76,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0077.png",
+   "index": 77,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0078.png",
+   "index": 78,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0079.png",
+   "index": 79,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0080.png",
+   "index": 80,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0081.png",
+   "index": 81,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0082.png",
+   "index": 82,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0083.png",
+   "index": 83,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0084.png",
+   "index": 84,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0085.png",
+   "index": 85,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0086.png",
+   "index": 86,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0087.png",
+   "index": 87,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0088.png",
+   "index": 88,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-09/target/dolly/frame_0089.png",
+   "index": 89,
+   "set": "2026-09-09_target_yaw-67.5",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-09/dolly_sunlit_yaw-67.5.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0000.png",
+   "index": 0,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0001.png",
+   "index": 1,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0002.png",
+   "index": 2,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0003.png",
+   "index": 3,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0004.png",
+   "index": 4,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0005.png",
+   "index": 5,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0006.png",
+   "index": 6,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0007.png",
+   "index": 7,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0008.png",
+   "index": 8,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0009.png",
+   "index": 9,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0010.png",
+   "index": 10,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0011.png",
+   "index": 11,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0012.png",
+   "index": 12,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0013.png",
+   "index": 13,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0014.png",
+   "index": 14,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0015.png",
+   "index": 15,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0016.png",
+   "index": 16,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0017.png",
+   "index": 17,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0018.png",
+   "index": 18,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0019.png",
+   "index": 19,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0020.png",
+   "index": 20,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0021.png",
+   "index": 21,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0022.png",
+   "index": 22,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0023.png",
+   "index": 23,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0024.png",
+   "index": 24,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0025.png",
+   "index": 25,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0026.png",
+   "index": 26,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0027.png",
+   "index": 27,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0028.png",
+   "index": 28,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0029.png",
+   "index": 29,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0030.png",
+   "index": 30,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0031.png",
+   "index": 31,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0032.png",
+   "index": 32,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0033.png",
+   "index": 33,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0034.png",
+   "index": 34,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0035.png",
+   "index": 35,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0036.png",
+   "index": 36,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0037.png",
+   "index": 37,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0038.png",
+   "index": 38,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0039.png",
+   "index": 39,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0040.png",
+   "index": 40,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0041.png",
+   "index": 41,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0042.png",
+   "index": 42,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0043.png",
+   "index": 43,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0044.png",
+   "index": 44,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0045.png",
+   "index": 45,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0046.png",
+   "index": 46,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0047.png",
+   "index": 47,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0048.png",
+   "index": 48,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0049.png",
+   "index": 49,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0050.png",
+   "index": 50,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0051.png",
+   "index": 51,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0052.png",
+   "index": 52,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0053.png",
+   "index": 53,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0054.png",
+   "index": 54,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0055.png",
+   "index": 55,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0056.png",
+   "index": 56,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0057.png",
+   "index": 57,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0058.png",
+   "index": 58,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0059.png",
+   "index": 59,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0060.png",
+   "index": 60,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0061.png",
+   "index": 61,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0062.png",
+   "index": 62,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0063.png",
+   "index": 63,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0064.png",
+   "index": 64,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0065.png",
+   "index": 65,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0066.png",
+   "index": 66,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0067.png",
+   "index": 67,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0068.png",
+   "index": 68,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0069.png",
+   "index": 69,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0070.png",
+   "index": 70,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0071.png",
+   "index": 71,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0072.png",
+   "index": 72,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0073.png",
+   "index": 73,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0074.png",
+   "index": 74,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0075.png",
+   "index": 75,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0076.png",
+   "index": 76,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0077.png",
+   "index": 77,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0078.png",
+   "index": 78,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0079.png",
+   "index": 79,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0080.png",
+   "index": 80,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0081.png",
+   "index": 81,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0082.png",
+   "index": 82,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0083.png",
+   "index": 83,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0084.png",
+   "index": 84,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0085.png",
+   "index": 85,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0086.png",
+   "index": 86,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0087.png",
+   "index": 87,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0088.png",
+   "index": 88,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_precloud/dolly/frame_0089.png",
+   "index": 89,
+   "set": "2026-09-10_target_precloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/bench_run_target_precloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0000.png",
+   "index": 0,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0001.png",
+   "index": 1,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0002.png",
+   "index": 2,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0003.png",
+   "index": 3,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0004.png",
+   "index": 4,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0005.png",
+   "index": 5,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0006.png",
+   "index": 6,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0007.png",
+   "index": 7,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0008.png",
+   "index": 8,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0009.png",
+   "index": 9,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0010.png",
+   "index": 10,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0011.png",
+   "index": 11,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0012.png",
+   "index": 12,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0013.png",
+   "index": 13,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0014.png",
+   "index": 14,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0015.png",
+   "index": 15,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0016.png",
+   "index": 16,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0017.png",
+   "index": 17,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0018.png",
+   "index": 18,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0019.png",
+   "index": 19,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0020.png",
+   "index": 20,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0021.png",
+   "index": 21,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0022.png",
+   "index": 22,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0023.png",
+   "index": 23,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0024.png",
+   "index": 24,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0025.png",
+   "index": 25,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0026.png",
+   "index": 26,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0027.png",
+   "index": 27,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0028.png",
+   "index": 28,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0029.png",
+   "index": 29,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0030.png",
+   "index": 30,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0031.png",
+   "index": 31,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0032.png",
+   "index": 32,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0033.png",
+   "index": 33,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0034.png",
+   "index": 34,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0035.png",
+   "index": 35,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0036.png",
+   "index": 36,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0037.png",
+   "index": 37,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0038.png",
+   "index": 38,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0039.png",
+   "index": 39,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0040.png",
+   "index": 40,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0041.png",
+   "index": 41,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0042.png",
+   "index": 42,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0043.png",
+   "index": 43,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0044.png",
+   "index": 44,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0045.png",
+   "index": 45,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0046.png",
+   "index": 46,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0047.png",
+   "index": 47,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0048.png",
+   "index": 48,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0049.png",
+   "index": 49,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0050.png",
+   "index": 50,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0051.png",
+   "index": 51,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0052.png",
+   "index": 52,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0053.png",
+   "index": 53,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0054.png",
+   "index": 54,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0055.png",
+   "index": 55,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0056.png",
+   "index": 56,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0057.png",
+   "index": 57,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0058.png",
+   "index": 58,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0059.png",
+   "index": 59,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0060.png",
+   "index": 60,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0061.png",
+   "index": 61,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0062.png",
+   "index": 62,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0063.png",
+   "index": 63,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0064.png",
+   "index": 64,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0065.png",
+   "index": 65,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0066.png",
+   "index": 66,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0067.png",
+   "index": 67,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0068.png",
+   "index": 68,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0069.png",
+   "index": 69,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0070.png",
+   "index": 70,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0071.png",
+   "index": 71,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0072.png",
+   "index": 72,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0073.png",
+   "index": 73,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0074.png",
+   "index": 74,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0075.png",
+   "index": 75,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0076.png",
+   "index": 76,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0077.png",
+   "index": 77,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0078.png",
+   "index": 78,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0079.png",
+   "index": 79,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0080.png",
+   "index": 80,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0081.png",
+   "index": 81,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0082.png",
+   "index": 82,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0083.png",
+   "index": 83,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0084.png",
+   "index": 84,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0085.png",
+   "index": 85,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0086.png",
+   "index": 86,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0087.png",
+   "index": 87,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0088.png",
+   "index": 88,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  },
+  {
+   "path": "_verify/bench/2026-09-10/target_postcloud/dolly/frame_0089.png",
+   "index": 89,
+   "set": "2026-09-10_target_postcloud",
+   "is_e4": true,
+   "camera": {
+    "x_cm": null,
+    "y_cm": null,
+    "z_cm": null,
+    "pitch": null,
+    "yaw": null,
+    "roll": null
+   },
+   "sun_elevation_deg": null,
+   "sidecar_path": "_verify/bench/2026-09-10/dolly_sunlit_postcloud.json"
+  }
+ ],
+ "consecutive_pairs": [
+  [
+   18,
+   19
+  ],
+  [
+   19,
+   20
+  ],
+  [
+   20,
+   21
+  ],
+  [
+   21,
+   22
+  ],
+  [
+   22,
+   23
+  ],
+  [
+   23,
+   24
+  ],
+  [
+   24,
+   25
+  ],
+  [
+   25,
+   26
+  ],
+  [
+   26,
+   27
+  ],
+  [
+   27,
+   28
+  ],
+  [
+   28,
+   29
+  ],
+  [
+   29,
+   30
+  ],
+  [
+   30,
+   31
+  ],
+  [
+   31,
+   32
+  ],
+  [
+   32,
+   33
+  ],
+  [
+   33,
+   34
+  ],
+  [
+   34,
+   35
+  ],
+  [
+   35,
+   36
+  ],
+  [
+   36,
+   37
+  ],
+  [
+   37,
+   38
+  ],
+  [
+   38,
+   39
+  ],
+  [
+   39,
+   40
+  ],
+  [
+   40,
+   41
+  ],
+  [
+   41,
+   42
+  ],
+  [
+   42,
+   43
+  ],
+  [
+   43,
+   44
+  ],
+  [
+   44,
+   45
+  ],
+  [
+   45,
+   46
+  ],
+  [
+   46,
+   47
+  ],
+  [
+   47,
+   48
+  ],
+  [
+   48,
+   49
+  ],
+  [
+   49,
+   50
+  ],
+  [
+   50,
+   51
+  ],
+  [
+   51,
+   52
+  ],
+  [
+   52,
+   53
+  ],
+  [
+   53,
+   54
+  ],
+  [
+   54,
+   55
+  ],
+  [
+   55,
+   56
+  ],
+  [
+   56,
+   57
+  ],
+  [
+   57,
+   58
+  ],
+  [
+   58,
+   59
+  ],
+  [
+   59,
+   60
+  ],
+  [
+   60,
+   61
+  ],
+  [
+   61,
+   62
+  ],
+  [
+   62,
+   63
+  ],
+  [
+   63,
+   64
+  ],
+  [
+   64,
+   65
+  ],
+  [
+   65,
+   66
+  ],
+  [
+   66,
+   67
+  ],
+  [
+   67,
+   68
+  ],
+  [
+   68,
+   69
+  ],
+  [
+   69,
+   70
+  ],
+  [
+   70,
+   71
+  ],
+  [
+   71,
+   72
+  ],
+  [
+   72,
+   73
+  ],
+  [
+   73,
+   74
+  ],
+  [
+   74,
+   75
+  ],
+  [
+   75,
+   76
+  ],
+  [
+   76,
+   77
+  ],
+  [
+   77,
+   78
+  ],
+  [
+   78,
+   79
+  ],
+  [
+   79,
+   80
+  ],
+  [
+   80,
+   81
+  ],
+  [
+   81,
+   82
+  ],
+  [
+   82,
+   83
+  ],
+  [
+   83,
+   84
+  ],
+  [
+   84,
+   85
+  ],
+  [
+   85,
+   86
+  ],
+  [
+   86,
+   87
+  ],
+  [
+   87,
+   88
+  ],
+  [
+   88,
+   89
+  ],
+  [
+   89,
+   90
+  ],
+  [
+   90,
+   91
+  ],
+  [
+   91,
+   92
+  ],
+  [
+   92,
+   93
+  ],
+  [
+   93,
+   94
+  ],
+  [
+   94,
+   95
+  ],
+  [
+   95,
+   96
+  ],
+  [
+   96,
+   97
+  ],
+  [
+   97,
+   98
+  ],
+  [
+   98,
+   99
+  ],
+  [
+   99,
+   100
+  ],
+  [
+   100,
+   101
+  ],
+  [
+   101,
+   102
+  ],
+  [
+   102,
+   103
+  ],
+  [
+   103,
+   104
+  ],
+  [
+   104,
+   105
+  ],
+  [
+   105,
+   106
+  ],
+  [
+   106,
+   107
+  ],
+  [
+   108,
+   109
+  ],
+  [
+   109,
+   110
+  ],
+  [
+   110,
+   111
+  ],
+  [
+   111,
+   112
+  ],
+  [
+   112,
+   113
+  ],
+  [
+   113,
+   114
+  ],
+  [
+   114,
+   115
+  ],
+  [
+   115,
+   116
+  ],
+  [
+   116,
+   117
+  ],
+  [
+   117,
+   118
+  ],
+  [
+   118,
+   119
+  ],
+  [
+   119,
+   120
+  ],
+  [
+   120,
+   121
+  ],
+  [
+   121,
+   122
+  ],
+  [
+   122,
+   123
+  ],
+  [
+   123,
+   124
+  ],
+  [
+   124,
+   125
+  ],
+  [
+   125,
+   126
+  ],
+  [
+   126,
+   127
+  ],
+  [
+   127,
+   128
+  ],
+  [
+   128,
+   129
+  ],
+  [
+   129,
+   130
+  ],
+  [
+   130,
+   131
+  ],
+  [
+   131,
+   132
+  ],
+  [
+   132,
+   133
+  ],
+  [
+   133,
+   134
+  ],
+  [
+   134,
+   135
+  ],
+  [
+   135,
+   136
+  ],
+  [
+   136,
+   137
+  ],
+  [
+   137,
+   138
+  ],
+  [
+   138,
+   139
+  ],
+  [
+   139,
+   140
+  ],
+  [
+   140,
+   141
+  ],
+  [
+   141,
+   142
+  ],
+  [
+   142,
+   143
+  ],
+  [
+   143,
+   144
+  ],
+  [
+   144,
+   145
+  ],
+  [
+   145,
+   146
+  ],
+  [
+   146,
+   147
+  ],
+  [
+   147,
+   148
+  ],
+  [
+   148,
+   149
+  ],
+  [
+   149,
+   150
+  ],
+  [
+   150,
+   151
+  ],
+  [
+   151,
+   152
+  ],
+  [
+   152,
+   153
+  ],
+  [
+   153,
+   154
+  ],
+  [
+   154,
+   155
+  ],
+  [
+   155,
+   156
+  ],
+  [
+   156,
+   157
+  ],
+  [
+   157,
+   158
+  ],
+  [
+   158,
+   159
+  ],
+  [
+   159,
+   160
+  ],
+  [
+   160,
+   161
+  ],
+  [
+   161,
+   162
+  ],
+  [
+   162,
+   163
+  ],
+  [
+   163,
+   164
+  ],
+  [
+   164,
+   165
+  ],
+  [
+   165,
+   166
+  ],
+  [
+   166,
+   167
+  ],
+  [
+   167,
+   168
+  ],
+  [
+   168,
+   169
+  ],
+  [
+   169,
+   170
+  ],
+  [
+   170,
+   171
+  ],
+  [
+   171,
+   172
+  ],
+  [
+   172,
+   173
+  ],
+  [
+   173,
+   174
+  ],
+  [
+   174,
+   175
+  ],
+  [
+   175,
+   176
+  ],
+  [
+   176,
+   177
+  ],
+  [
+   177,
+   178
+  ],
+  [
+   178,
+   179
+  ],
+  [
+   179,
+   180
+  ],
+  [
+   180,
+   181
+  ],
+  [
+   181,
+   182
+  ],
+  [
+   182,
+   183
+  ],
+  [
+   183,
+   184
+  ],
+  [
+   184,
+   185
+  ],
+  [
+   185,
+   186
+  ],
+  [
+   186,
+   187
+  ],
+  [
+   187,
+   188
+  ],
+  [
+   188,
+   189
+  ],
+  [
+   189,
+   190
+  ],
+  [
+   190,
+   191
+  ],
+  [
+   191,
+   192
+  ],
+  [
+   192,
+   193
+  ],
+  [
+   193,
+   194
+  ],
+  [
+   194,
+   195
+  ],
+  [
+   195,
+   196
+  ],
+  [
+   196,
+   197
+  ],
+  [
+   198,
+   199
+  ],
+  [
+   199,
+   200
+  ],
+  [
+   200,
+   201
+  ],
+  [
+   201,
+   202
+  ],
+  [
+   202,
+   203
+  ],
+  [
+   203,
+   204
+  ],
+  [
+   204,
+   205
+  ],
+  [
+   205,
+   206
+  ],
+  [
+   206,
+   207
+  ],
+  [
+   207,
+   208
+  ],
+  [
+   208,
+   209
+  ],
+  [
+   209,
+   210
+  ],
+  [
+   210,
+   211
+  ],
+  [
+   211,
+   212
+  ],
+  [
+   212,
+   213
+  ],
+  [
+   213,
+   214
+  ],
+  [
+   214,
+   215
+  ],
+  [
+   215,
+   216
+  ],
+  [
+   216,
+   217
+  ],
+  [
+   217,
+   218
+  ],
+  [
+   218,
+   219
+  ],
+  [
+   219,
+   220
+  ],
+  [
+   220,
+   221
+  ],
+  [
+   221,
+   222
+  ],
+  [
+   222,
+   223
+  ],
+  [
+   223,
+   224
+  ],
+  [
+   224,
+   225
+  ],
+  [
+   225,
+   226
+  ],
+  [
+   226,
+   227
+  ],
+  [
+   227,
+   228
+  ],
+  [
+   228,
+   229
+  ],
+  [
+   229,
+   230
+  ],
+  [
+   230,
+   231
+  ],
+  [
+   231,
+   232
+  ],
+  [
+   232,
+   233
+  ],
+  [
+   233,
+   234
+  ],
+  [
+   234,
+   235
+  ],
+  [
+   235,
+   236
+  ],
+  [
+   236,
+   237
+  ],
+  [
+   237,
+   238
+  ],
+  [
+   238,
+   239
+  ],
+  [
+   239,
+   240
+  ],
+  [
+   240,
+   241
+  ],
+  [
+   241,
+   242
+  ],
+  [
+   242,
+   243
+  ],
+  [
+   243,
+   244
+  ],
+  [
+   244,
+   245
+  ],
+  [
+   245,
+   246
+  ],
+  [
+   246,
+   247
+  ],
+  [
+   247,
+   248
+  ],
+  [
+   248,
+   249
+  ],
+  [
+   249,
+   250
+  ],
+  [
+   250,
+   251
+  ],
+  [
+   251,
+   252
+  ],
+  [
+   252,
+   253
+  ],
+  [
+   253,
+   254
+  ],
+  [
+   254,
+   255
+  ],
+  [
+   255,
+   256
+  ],
+  [
+   256,
+   257
+  ],
+  [
+   257,
+   258
+  ],
+  [
+   258,
+   259
+  ],
+  [
+   259,
+   260
+  ],
+  [
+   260,
+   261
+  ],
+  [
+   261,
+   262
+  ],
+  [
+   262,
+   263
+  ],
+  [
+   263,
+   264
+  ],
+  [
+   264,
+   265
+  ],
+  [
+   265,
+   266
+  ],
+  [
+   266,
+   267
+  ],
+  [
+   267,
+   268
+  ],
+  [
+   268,
+   269
+  ],
+  [
+   269,
+   270
+  ],
+  [
+   270,
+   271
+  ],
+  [
+   271,
+   272
+  ],
+  [
+   272,
+   273
+  ],
+  [
+   273,
+   274
+  ],
+  [
+   274,
+   275
+  ],
+  [
+   275,
+   276
+  ],
+  [
+   276,
+   277
+  ],
+  [
+   277,
+   278
+  ],
+  [
+   278,
+   279
+  ],
+  [
+   279,
+   280
+  ],
+  [
+   280,
+   281
+  ],
+  [
+   281,
+   282
+  ],
+  [
+   282,
+   283
+  ],
+  [
+   283,
+   284
+  ],
+  [
+   284,
+   285
+  ],
+  [
+   285,
+   286
+  ],
+  [
+   286,
+   287
+  ],
+  [
+   288,
+   289
+  ],
+  [
+   289,
+   290
+  ],
+  [
+   290,
+   291
+  ],
+  [
+   291,
+   292
+  ],
+  [
+   292,
+   293
+  ],
+  [
+   293,
+   294
+  ],
+  [
+   294,
+   295
+  ],
+  [
+   295,
+   296
+  ],
+  [
+   296,
+   297
+  ],
+  [
+   297,
+   298
+  ],
+  [
+   298,
+   299
+  ],
+  [
+   299,
+   300
+  ],
+  [
+   300,
+   301
+  ],
+  [
+   301,
+   302
+  ],
+  [
+   302,
+   303
+  ],
+  [
+   303,
+   304
+  ],
+  [
+   304,
+   305
+  ],
+  [
+   305,
+   306
+  ],
+  [
+   306,
+   307
+  ],
+  [
+   307,
+   308
+  ],
+  [
+   308,
+   309
+  ],
+  [
+   309,
+   310
+  ],
+  [
+   310,
+   311
+  ],
+  [
+   311,
+   312
+  ],
+  [
+   312,
+   313
+  ],
+  [
+   313,
+   314
+  ],
+  [
+   314,
+   315
+  ],
+  [
+   315,
+   316
+  ],
+  [
+   316,
+   317
+  ],
+  [
+   317,
+   318
+  ],
+  [
+   318,
+   319
+  ],
+  [
+   319,
+   320
+  ],
+  [
+   320,
+   321
+  ],
+  [
+   321,
+   322
+  ],
+  [
+   322,
+   323
+  ],
+  [
+   323,
+   324
+  ],
+  [
+   324,
+   325
+  ],
+  [
+   325,
+   326
+  ],
+  [
+   326,
+   327
+  ],
+  [
+   327,
+   328
+  ],
+  [
+   328,
+   329
+  ],
+  [
+   329,
+   330
+  ],
+  [
+   330,
+   331
+  ],
+  [
+   331,
+   332
+  ],
+  [
+   332,
+   333
+  ],
+  [
+   333,
+   334
+  ],
+  [
+   334,
+   335
+  ],
+  [
+   335,
+   336
+  ],
+  [
+   336,
+   337
+  ],
+  [
+   337,
+   338
+  ],
+  [
+   338,
+   339
+  ],
+  [
+   339,
+   340
+  ],
+  [
+   340,
+   341
+  ],
+  [
+   341,
+   342
+  ],
+  [
+   342,
+   343
+  ],
+  [
+   343,
+   344
+  ],
+  [
+   344,
+   345
+  ],
+  [
+   345,
+   346
+  ],
+  [
+   346,
+   347
+  ],
+  [
+   347,
+   348
+  ],
+  [
+   348,
+   349
+  ],
+  [
+   349,
+   350
+  ],
+  [
+   350,
+   351
+  ],
+  [
+   351,
+   352
+  ],
+  [
+   352,
+   353
+  ],
+  [
+   353,
+   354
+  ],
+  [
+   354,
+   355
+  ],
+  [
+   355,
+   356
+  ],
+  [
+   356,
+   357
+  ],
+  [
+   357,
+   358
+  ],
+  [
+   358,
+   359
+  ],
+  [
+   359,
+   360
+  ],
+  [
+   360,
+   361
+  ],
+  [
+   361,
+   362
+  ],
+  [
+   362,
+   363
+  ],
+  [
+   363,
+   364
+  ],
+  [
+   364,
+   365
+  ],
+  [
+   365,
+   366
+  ],
+  [
+   366,
+   367
+  ],
+  [
+   367,
+   368
+  ],
+  [
+   368,
+   369
+  ],
+  [
+   369,
+   370
+  ],
+  [
+   370,
+   371
+  ],
+  [
+   371,
+   372
+  ],
+  [
+   372,
+   373
+  ],
+  [
+   373,
+   374
+  ],
+  [
+   374,
+   375
+  ],
+  [
+   375,
+   376
+  ],
+  [
+   376,
+   377
+  ]
+ ],
+ "_usable_pairs_note": "Audit C: the 2026-09-07 set is E4 actor-heading FAILED (stayed_out_of_canopy_shadow=false) yet contributes 89 of the 356 consecutive pairs. USABLE consecutive pairs from PASSED sets only (excluding 2026-09-07) = 267 (09-09 89 + 09-10 precloud 89 + 09-10 postcloud 89). The 09-06 dev set is a stride-10 subset and contributes 0 consecutive pairs.",
+ "consecutive_pairs_total": 356,
+ "consecutive_pairs_usable_excluding_failed_2026_09_07": 267,
+ "consecutive_pairs_from_failed_2026_09_07": 89
+}

@@ -1,0 +1,109 @@
+{
+  "error": null,
+  "level": "/Game/Alpine8K.Alpine8K",
+  "ppv": [
+    {
+      "label": "Lighting_alpine_8k_PostProcess",
+      "path": "/Game/Alpine8K.Alpine8K:PersistentLevel.PostProcessVolume_UAID_183D2D961742B8F702_1907576717",
+      "package": "/Game/__ExternalActors__/Alpine8K/D/4S/KH57KMNNPAXU2NNFWIGJ0C",
+      "priority": "0.0",
+      "unbound": "True",
+      "blend_weight": "1.0",
+      "blend_radius": "100.0",
+      "enabled": "True",
+      "settings": {
+        "override_auto_exposure_method": "True",
+        "auto_exposure_method": "<AutoExposureMethod.AEM_MANUAL: 2>",
+        "override_auto_exposure_bias": "True",
+        "auto_exposure_bias": "-14.257100105285645",
+        "override_auto_exposure_min_brightness": "True",
+        "auto_exposure_min_brightness": "1.0",
+        "override_auto_exposure_max_brightness": "True",
+        "auto_exposure_max_brightness": "1.0",
+        "override_auto_exposure_apply_physical_camera_exposure": "True",
+        "override_local_exposure_highlight_contrast_scale": "False",
+        "local_exposure_highlight_contrast_scale": "1.0",
+        "override_local_exposure_shadow_contrast_scale": "False",
+        "local_exposure_shadow_contrast_scale": "1.0",
+        "override_white_temp": "True",
+        "white_temp": "3438.60009765625",
+        "override_white_tint": "True",
+        "white_tint": "-0.024800000712275505",
+        "override_color_contrast": "True",
+        "color_contrast": "<Struct 'Vector4' (0x0000023DEEC3E530) {x: 1.000000, y: 1.000000, z: 1.000000, w: 0.950000}>",
+        "override_color_saturation": "False",
+        "color_saturation": "<Struct 'Vector4' (0x0000023DEEC3E510) {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}>",
+        "override_bloom_method": "True",
+        "bloom_method": "<BloomMethod.BM_FFT: 1>",
+        "override_bloom_intensity": "True",
+        "bloom_intensity": "0.4000000059604645",
+        "override_bloom_convolution_scatter_dispersion": "False",
+        "override_film_grain_intensity": "True",
+        "film_grain_intensity": "0.0",
+        "override_vignette_intensity": "True",
+        "vignette_intensity": "0.0"
+      }
+    }
+  ],
+  "skylight": [
+    {
+      "label": "Lighting_alpine_8k_SkyLight",
+      "component": {
+        "intensity": "1.0",
+        "light_color": "<Struct 'Color' (0x0000023DEEBC75B8) {b: 255, g: 255, r: 255, a: 255}>",
+        "source_type": "<SkyLightSourceType.SLS_CAPTURED_SCENE: 0>",
+        "cubemap": "None",
+        "sky_distance_threshold": "150000.0",
+        "lower_hemisphere_is_black": "True",
+        "real_time_capture": "True",
+        "affects_world": "True",
+        "visible": "True"
+      }
+    }
+  ],
+  "fog": [
+    {
+      "label": "Lighting_alpine_8k_Fog",
+      "component": {
+        "fog_density": "0.0041600000113248825",
+        "fog_height_falloff": "0.01932404562830925",
+        "start_distance": "0.0",
+        "fog_max_opacity": "1.0",
+        "fog_inscattering_color": "<unreadable: ExponentialHeightFogComponent: Failed to find property 'fog_>",
+        "directional_inscattering_color": "<unreadable: ExponentialHeightFogComponent: Failed to find property 'dire>",
+        "directional_inscattering_exponent": "4.0",
+        "directional_inscattering_start_distance": "10000.0",
+        "volumetric_fog": "<unreadable: ExponentialHeightFogComponent: Failed to find property 'volu>",
+        "volumetric_fog_scattering_distribution": "0.4000000059604645",
+        "volumetric_fog_extinction_scale": "1.0",
+        "volumetric_fog_distance": "6000.0",
+        "volumetric_fog_start_distance": "0.0",
+        "volumetric_fog_albedo": "<Struct 'Color' (0x0000023DEEB9C744) {b: 255, g: 255, r: 255, a: 255}>",
+        "volumetric_fog_emissive": "<Struct 'LinearColor' (0x0000023DEEB9C748) {r: 0.000000, g: 0.000000, b: 0.000000, a: 0.000000}>",
+        "visible": "True"
+      }
+    }
+  ],
+  "atmosphere": [
+    {
+      "label": "Lighting_alpine_8k_SkyAtmo",
+      "component": {
+        "mie_scattering_scale": "0.009999999776482582",
+        "mie_scattering_color": "<unreadable: SkyAtmosphereComponent: Failed to find property 'mie_scatter>",
+        "mie_absorption_scale": "0.0004440000047907233",
+        "mie_absorption": "<Struct 'LinearColor' (0x0000023DEEC23AD8) {r: 1.000000, g: 1.000000, b: 1.000000, a: 1.000000}>",
+        "mie_anisotropy": "0.800000011920929",
+        "mie_exponential_distribution": "1.2000000476837158",
+        "rayleigh_scattering_scale": "0.03310000151395798",
+        "rayleigh_scattering": "<Struct 'LinearColor' (0x0000023DEEC23AAC) {r: 0.175287, g: 0.409607, b: 1.000000, a: 30.211479}>",
+        "rayleigh_exponential_distribution": "8.0",
+        "multi_scattering_factor": "1.0",
+        "aerial_perspective_view_distance_scale": "<unreadable: SkyAtmosphereComponent: Failed to find property 'aerial_pers>",
+        "height_fog_contribution": "1.0"
+      }
+    }
+  ],
+  "cloud_material_scalars": {
+    "Cloud_GlobalCoverage": 0.30000001192092896
+  }
+}

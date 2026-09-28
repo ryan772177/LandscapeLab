@@ -1,0 +1,1564 @@
+{
+ "_what": "Brief 5 Task 0 -- density and cost baseline the desk derives Brief 5 from. Read-only against the world except the two perf A/B pairs (which mutate nothing and restore state by process exit).",
+ "_date": "2026-09-19",
+ "_world": "/Game/Alpine8K @ streaming.main_loading_range_cm 51200 (512 m)",
+ "_commit_base": "678570b8 (groundwork); fixes applied after audit FIX",
+ "item1_instance_census": {
+  "_source": "research/brief5/scripts/density_census.py -> research/brief5/input/_census_stations.json",
+  "total_tree_instances": 185385,
+  "species_totals": {
+   "Conifer": 54599,
+   "ConiferPine": 40326,
+   "SpruceSub": 46841,
+   "SpruceSapling": 43619
+  },
+  "band_ring_radii_m": {
+   "Conifer": {
+    "detail_m": 1148.6,
+    "silhouette_m": 7657.6,
+    "vanish_m": 30630.4,
+    "cull_m": 512.0,
+    "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+   },
+   "ConiferPine": {
+    "detail_m": 875.0,
+    "silhouette_m": 5833.6,
+    "vanish_m": 23334.4,
+    "cull_m": 512.0,
+    "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+   },
+   "SpruceSub": {
+    "detail_m": 743.5,
+    "silhouette_m": 4956.8,
+    "vanish_m": 19827.2,
+    "cull_m": 512.0,
+    "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+   },
+   "SpruceSapling": {
+    "detail_m": 238.3,
+    "silhouette_m": 1588.5,
+    "vanish_m": 6353.9,
+    "cull_m": 238.27,
+    "_note": "cull sits at the detail ring, clamped to the 512 m streaming range; the silhouette/vanish rings lie beyond the cull, so a live instance is removed before it reaches them -- those bands are carried by HLOD."
+   }
+  },
+  "per_station_visible": {
+   "plaza": {
+    "visible_total": 903,
+    "band_totals_visible": {
+     "detail": 886,
+     "shape": 17,
+     "blob": 0,
+     "gone": 0
+    },
+    "per_species": {
+     "Conifer": {
+      "count_total": 54599,
+      "cull_m": 512.0,
+      "in_cull_radius": 1322,
+      "in_frustum": 28917,
+      "visible": 336,
+      "visible_by_band": {
+       "detail": 336,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 1322,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 986,
+       "elevation": 0
+      }
+     },
+     "ConiferPine": {
+      "count_total": 40326,
+      "cull_m": 512.0,
+      "in_cull_radius": 949,
+      "in_frustum": 21290,
+      "visible": 241,
+      "visible_by_band": {
+       "detail": 241,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 949,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 708,
+       "elevation": 0
+      }
+     },
+     "SpruceSub": {
+      "count_total": 46841,
+      "cull_m": 512.0,
+      "in_cull_radius": 1106,
+      "in_frustum": 24511,
+      "visible": 283,
+      "visible_by_band": {
+       "detail": 283,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 1106,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 823,
+       "elevation": 0
+      }
+     },
+     "SpruceSapling": {
+      "count_total": 43619,
+      "cull_m": 238.27,
+      "in_cull_radius": 176,
+      "in_frustum": 22480,
+      "visible": 43,
+      "visible_by_band": {
+       "detail": 26,
+       "shape": 17,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 127,
+       "shape": 49,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 133,
+       "elevation": 0
+      }
+     }
+    }
+   },
+   "main_street": {
+    "visible_total": 919,
+    "band_totals_visible": {
+     "detail": 909,
+     "shape": 10,
+     "blob": 0,
+     "gone": 0
+    },
+    "per_species": {
+     "Conifer": {
+      "count_total": 54599,
+      "cull_m": 512.0,
+      "in_cull_radius": 1361,
+      "in_frustum": 28478,
+      "visible": 352,
+      "visible_by_band": {
+       "detail": 352,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 1361,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 1009,
+       "elevation": 0
+      }
+     },
+     "ConiferPine": {
+      "count_total": 40326,
+      "cull_m": 512.0,
+      "in_cull_radius": 965,
+      "in_frustum": 20982,
+      "visible": 238,
+      "visible_by_band": {
+       "detail": 238,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 965,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 727,
+       "elevation": 0
+      }
+     },
+     "SpruceSub": {
+      "count_total": 46841,
+      "cull_m": 512.0,
+      "in_cull_radius": 1134,
+      "in_frustum": 24135,
+      "visible": 285,
+      "visible_by_band": {
+       "detail": 285,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 1134,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 849,
+       "elevation": 0
+      }
+     },
+     "SpruceSapling": {
+      "count_total": 43619,
+      "cull_m": 238.27,
+      "in_cull_radius": 158,
+      "in_frustum": 22182,
+      "visible": 44,
+      "visible_by_band": {
+       "detail": 34,
+       "shape": 10,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 122,
+       "shape": 36,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 114,
+       "elevation": 0
+      }
+     }
+    }
+   },
+   "treeline": {
+    "visible_total": 0,
+    "band_totals_visible": {
+     "detail": 0,
+     "shape": 0,
+     "blob": 0,
+     "gone": 0
+    },
+    "per_species": {
+     "Conifer": {
+      "count_total": 54599,
+      "cull_m": 512.0,
+      "in_cull_radius": 76,
+      "in_frustum": 14186,
+      "visible": 0,
+      "visible_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 76,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 56,
+       "elevation": 20
+      }
+     },
+     "ConiferPine": {
+      "count_total": 40326,
+      "cull_m": 512.0,
+      "in_cull_radius": 64,
+      "in_frustum": 10333,
+      "visible": 0,
+      "visible_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 64,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 40,
+       "elevation": 24
+      }
+     },
+     "SpruceSub": {
+      "count_total": 46841,
+      "cull_m": 512.0,
+      "in_cull_radius": 69,
+      "in_frustum": 11796,
+      "visible": 0,
+      "visible_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 69,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 53,
+       "elevation": 16
+      }
+     },
+     "SpruceSapling": {
+      "count_total": 43619,
+      "cull_m": 238.27,
+      "in_cull_radius": 15,
+      "in_frustum": 10337,
+      "visible": 0,
+      "visible_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 12,
+       "shape": 3,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 14,
+       "elevation": 1
+      }
+     }
+    }
+   },
+   "vista": {
+    "visible_total": 34,
+    "band_totals_visible": {
+     "detail": 34,
+     "shape": 0,
+     "blob": 0,
+     "gone": 0
+    },
+    "per_species": {
+     "Conifer": {
+      "count_total": 54599,
+      "cull_m": 512.0,
+      "in_cull_radius": 20,
+      "in_frustum": 15264,
+      "visible": 10,
+      "visible_by_band": {
+       "detail": 10,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 20,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 10,
+       "elevation": 0
+      }
+     },
+     "ConiferPine": {
+      "count_total": 40326,
+      "cull_m": 512.0,
+      "in_cull_radius": 17,
+      "in_frustum": 11137,
+      "visible": 12,
+      "visible_by_band": {
+       "detail": 12,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 17,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 5,
+       "elevation": 0
+      }
+     },
+     "SpruceSub": {
+      "count_total": 46841,
+      "cull_m": 512.0,
+      "in_cull_radius": 23,
+      "in_frustum": 12647,
+      "visible": 12,
+      "visible_by_band": {
+       "detail": 12,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 23,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 11,
+       "elevation": 0
+      }
+     },
+     "SpruceSapling": {
+      "count_total": 43619,
+      "cull_m": 238.27,
+      "in_cull_radius": 0,
+      "in_frustum": 10965,
+      "visible": 0,
+      "visible_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_by_band": {
+       "detail": 0,
+       "shape": 0,
+       "blob": 0,
+       "gone": 0
+      },
+      "in_cull_not_visible_excluded_by": {
+       "azimuth": 0,
+       "elevation": 0
+      }
+     }
+    }
+   }
+  },
+  "_headline": "Every tree species is culled INSIDE its detail band (detail ring 238-1149 m vs the 512 m streaming-clamped cull), so a live instance is only ever seen at DETAIL; the shape and blob bands are carried entirely by HLOD. treeline shows 0 visible live instances in the declared frustum -- its 224 near in-cull trees are excluded by azimuth (163) or elevation (61); the forest it renders 300 m-3 km is HLOD proxy beyond the 512 m cull.",
+  "_frustum_caveat": "Bands and frustum are at the DECLARED camera (fov_h 90.0, vfov 58.7155, res 2160v). The -game cost process does NOT apply this FOV (rule 12), so the visible counts are the DECLARED-frustum counts, not a read-back of the -game frustum."
+ },
+ "item2_foliage_cost": {
+  "_method": "standalone -game 4K (3840x2160), -noxgecontroller, settle 60 s, 25 s steady-state p90 window. Two runs per zone: as-is and foliage-hidden (foliage.DensityScale 0 + grass.DensityScale 0 + grass.Enable 0 + ShowFlag.Foliage 0, cvars read back from the log). GPU p90 delta = the foliage's GPU cost. Static geometry (landscape, buildings, HLOD proxies) is present in BOTH runs and cancels in the delta.",
+  "_zone_choice": "treeline = the forest/tree case. plaza = the only tree-free ground-cover zone (trees are settlement-excluded there), used as the meadow / ground-cover isolation -- NO sub-conifer-band meadow exists on this world (land elevation min 95 m, p05 196 m; the lakes took the low ground), so a pure no-tree meadow camera is not derivable.",
+  "treeline": {
+   "as_is_gpu_p90_ms": 7.229,
+   "hidden_gpu_p90_ms": 7.113,
+   "foliage_gpu_cost_ms": 0.116,
+   "foliage_gpu_cost_pct": 1.6,
+   "as_is_frametime_p90_ms": 8.738,
+   "window_s": 25.0,
+   "frames_total_as_is": 10225,
+   "frames_total_hidden": 10655,
+   "gpuscene_instances_as_is": 57876,
+   "gpuscene_instances_hidden": 47016,
+   "gpuscene_instances_removed": 10860,
+   "vram_peak_as_is_mib": 4534,
+   "hide_readback": {
+    "foliage.DensityScale": "0",
+    "grass.DensityScale": null,
+    "grass.Enable": "0",
+    "ShowFlag.Foliage": "issued as ShowFlag.Foliage 0 (no getter; read-back is the GPU delta + no 'not recognized')",
+    "_parsed_n": "2/3",
+    "_honoured": true
+   },
+   "station_ok_both": true
+  },
+  "plaza_ground_cover": {
+   "as_is_gpu_p90_ms": 9.441,
+   "hidden_gpu_p90_ms": 9.155,
+   "foliage_gpu_cost_ms": 0.286,
+   "foliage_gpu_cost_pct": 3.0,
+   "as_is_frametime_p90_ms": 10.998,
+   "window_s": 25.0,
+   "frames_total_as_is": 8231,
+   "frames_total_hidden": 8643,
+   "gpuscene_instances_as_is": 196553,
+   "gpuscene_instances_hidden": 70167,
+   "gpuscene_instances_removed": 126386,
+   "vram_peak_as_is_mib": 4971,
+   "hide_readback": {
+    "foliage.DensityScale": "0",
+    "grass.DensityScale": null,
+    "grass.Enable": "0",
+    "ShowFlag.Foliage": "issued as ShowFlag.Foliage 0 (no getter; read-back is the GPU delta + no 'not recognized')",
+    "_parsed_n": "2/3",
+    "_honoured": true
+   },
+   "station_ok_both": true
+  },
+  "_headline": "Foliage GPU cost is small: treeline 0.116 ms (1.6%), plaza ground-cover 0.286 ms (3.0%). Removing 10,860 (treeline) / 126,386 (plaza) GPUScene instances barely moved GPU p90 -- live foliage instancing is near-free on this GPU. The forest's GPU weight lives in the HLOD proxies (beyond the 512 m cull, NOT touched by the hide levers) and the landscape, not in live instances.",
+  "_audit_A4_A5_note": "SUPERSEDED-IN-PART (v3). Audit A4: these deltas were measured where almost no trees are on screen (census visible live trees: treeline 0, plaza 903 of 185,385; plaza's 903 are mostly landscape grass, not trees). treeline 0.116 ms is the cost of OFF-frustum instances, not visible density. Audit A5: treeline 0.116 ms (one run per arm) is the same size as the D1/D2/D4 run-to-run spread (0.096 ms), so it is not distinguishable from noise; plaza 0.286 ms is ~3.6x the spread and survives. Task 3 re-measures forest cost at a forest_floor station (>=5000 in-frustum-in-cull trees) with a Task-1 noise floor beside it."
+ },
+ "item3_ground_clutter": {
+  "_source": "recipes/alpine_8k.json foliage.species (pipeline rule 2 source of truth); BACKLOG confirms rocks carry no instances in Alpine8K.",
+  "Meadow": {
+   "system": "grass (landscape grass)",
+   "cull_m": 50.0,
+   "density_per_10m2": 120.0,
+   "layer": "Grass",
+   "placed_by": "landscape grass type GT_alpine_Meadow (procedural; NOT enumerable from a plan)",
+   "instance_count": "procedural -- generated per-frame within cull; not a fixed count. See item 2 GPUScene deltas for the live resident count near a station."
+  },
+  "Blueberry": {
+   "system": "grass (landscape grass)",
+   "cull_m": 45.0,
+   "density_per_10m2": 12.0,
+   "layer": "Grass",
+   "placed_by": "landscape grass (procedural)",
+   "instance_count": "procedural"
+  },
+  "rocks_litter": "NONE placed in Alpine8K. rock_scatter in the recipe is a talus deposition FIELD (a shared physical fact read by the material scree mask), not placed meshes; the FT_* rock/talus types carry zero instances (BACKLOG 2026-08-16). No litter/deadfall species exists in the recipe."
+ },
+ "item4_pcg_readiness": {
+  "_source": "LandscapeLab/LandscapeLab.uproject Plugins; UE_5.8/Engine/Plugins (read-only, standing rule 1).",
+  "pcg_core_plugin": "PCG -- engine plugin, non-Experimental, enabled by default in 5.8 (Engine/Plugins/PCG/PCG.uplugin)",
+  "pcg_python_interop": "PCGPythonInterop ENABLED in the project",
+  "procedural_vegetation_editor": "ProceduralVegetationEditor ENABLED in the project (Experimental engine plugin)",
+  "biome_core": "PCGBiomeCore -- AVAILABLE in the engine (Engine/Plugins/Experimental/PCGBiomeCore), NOT enabled in the project",
+  "biome_sample": "PCGBiomeSample -- AVAILABLE in the engine (Experimental), NOT enabled in the project",
+  "pcg_world_actor": "NOT verified this session -- PROJECT_STATE.json is the stale pre-8K recovery (FT_Conifer only) and carries no PCG block; a live editor read is needed. Ryan's lever table records PCGWorldActor presence + partition grid as READ-BACK.",
+  "existing_graphs": "NONE authored for Alpine8K (no PCG graph asset in the foliage pipeline; foliage is placed by place_foliage + landscape grass, not PCG).",
+  "r_pcg_cvars": "LIST ONLY (Ryan's lever table); none set by the pipeline. Not captured this session (no editor)."
+ },
+ "item5_nanite_lod_imposter": {
+  "_source": "Free/_measured/{pve_spruce,pn_spruce_forest,pn_blueberry,fab_registry_KiteDemo}.json (measured); recipes/alpine_8k.json species LODs; scripts/read_nanite_state.py is the live read-back tool of record (Ryan's lever table = READ-BACK).",
+  "Conifer": {
+   "mesh": "SM_PVE_Norway_Spruce_01_A",
+   "nanite": true,
+   "lod0_triangles": "Nanite (no fixed LOD0; fallback proxy overstates, do not quote -- alpine_8k.json Conifer capsule note)",
+   "imposter": "Nanite auto-LOD; no billboard atlas"
+  },
+  "ConiferPine": {
+   "mesh": "ScotsPineTall_01",
+   "nanite": false,
+   "lod0_triangles": 27824,
+   "lods_screen_size": [
+    0.5,
+    0.21,
+    0.088
+   ],
+   "imposter": "billboard atlas (ScotsPineTall_01_Atlas_Billboards_Tex), switches at the last LOD screen_size 0.088"
+  },
+  "SpruceSub": {
+   "mesh": "spruce_half_01",
+   "nanite": false,
+   "imposter": "octahedral imposter (half_01_imposter, MI_half_01_imposter_nowind in override_materials); mesh-baked switch ScreenSize needs an editor read"
+  },
+  "SpruceSapling": {
+   "mesh": "spruce_small_05",
+   "nanite": false,
+   "cull_m": 238.27,
+   "imposter": "small-mesh LODs; switch ScreenSize needs an editor read"
+  },
+  "Blueberry": {
+   "mesh": "Blueberry_03 + 7 varieties",
+   "nanite": false,
+   "imposter": "grass cards, cull 45 m"
+  },
+  "Meadow": {
+   "mesh": "grass_medium_01 variants",
+   "nanite": false,
+   "imposter": "grass cards, cull 50 m"
+  },
+  "_note": "Only Conifer (Norway Spruce) is Nanite; the other three tree species are traditional LOD-chain meshes with billboard/imposter far-LODs. Exact per-mesh imposter ScreenSize and Conifer's Nanite fallback tris require a read_nanite_state.py editor pass (not run this session -- scope limits the editor to the two perf A/B pairs)."
+ },
+ "item6_hlod": {
+  "_source": "recipes/alpine_8k.json streaming; the perf CSV columns.",
+  "instanced_hlod_loading_range_cm": 200000,
+  "merged_hlod_loading_range_cm": 102400,
+  "main_streaming_range_cm": 51200,
+  "per_zone_gpu_share": "NOT ATTRIBUTABLE from the CSV -- there is no HLOD GPU-time column. The CSV carries GPUSceneInstanceCount, NaniteStreaming/* and SceneCulling/NumStaticInstances, but none isolates the HLOD proxy GPU cost. Stated as not attributable (item 6 fallback).",
+  "_inference": "The treeline A/B (foliage delta 0.116 ms while the rendered forest spans 300 m-3 km) implies most of the treeline forest GPU cost is HLOD proxy + landscape, since the hide levers remove live foliage/grass but not HLOD -- but this is an inference from the delta, not a measured HLOD share."
+ },
+ "_v2": "2026-09-20 overnight: items 1 (GPU passes), 2 (density sweep), 3 (editor read-backs + HLOD A/B inconclusive) folded in; deputy outputs 4-7 pointered. [SUPERSEDED-IN-PART v3 2026-09-20: HLOD verdict reverted to INCONCLUSIVE (desk audit A1/A2); the ms/10k figures withdrawn as off-frustum population (audit A4). Numbers annotated, not deleted. See _v3.]",
+ "item1_gpu_passes": {
+  "_source": "perf_standalone.py --csv-gpu-stats -> GPU/<pass> columns (FRealtimeGPUProfiler); median over the p90 window.",
+  "_method": "share = pass median / sum-of-passes (the profiler's own accounting incl. Unaccounted). Measured GPU p90 beside it.",
+  "treeline": {
+   "sum_of_passes_ms": 6.593,
+   "n_frames": 1500,
+   "top8": [
+    {
+     "pass": "VolumetricCloud",
+     "ms": 0.782,
+     "pct_of_frame": 11.9
+    },
+    {
+     "pass": "NaniteVisBuffer",
+     "ms": 0.77,
+     "pct_of_frame": 11.7
+    },
+    {
+     "pass": "ShadowDepths",
+     "ms": 0.628,
+     "pct_of_frame": 9.5
+    },
+    {
+     "pass": "Unaccounted",
+     "ms": 0.616,
+     "pct_of_frame": 9.3
+    },
+    {
+     "pass": "TemporalSuperResolution",
+     "ms": 0.555,
+     "pct_of_frame": 8.4
+    },
+    {
+     "pass": "Postprocessing",
+     "ms": 0.491,
+     "pct_of_frame": 7.4
+    },
+    {
+     "pass": "ShadowProjection",
+     "ms": 0.314,
+     "pct_of_frame": 4.8
+    },
+    {
+     "pass": "LumenReflections",
+     "ms": 0.306,
+     "pct_of_frame": 4.6
+    }
+   ],
+   "measured_gpu_p90_ms": 7.169
+  },
+  "plaza": {
+   "sum_of_passes_ms": 8.894,
+   "n_frames": 1500,
+   "top8": [
+    {
+     "pass": "NaniteVisBuffer",
+     "ms": 1.708,
+     "pct_of_frame": 19.2
+    },
+    {
+     "pass": "ShadowDepths",
+     "ms": 0.865,
+     "pct_of_frame": 9.7
+    },
+    {
+     "pass": "ShadowProjection",
+     "ms": 0.791,
+     "pct_of_frame": 8.9
+    },
+    {
+     "pass": "TemporalSuperResolution",
+     "ms": 0.662,
+     "pct_of_frame": 7.4
+    },
+    {
+     "pass": "VolumetricCloud",
+     "ms": 0.64,
+     "pct_of_frame": 7.2
+    },
+    {
+     "pass": "LumenReflections",
+     "ms": 0.623,
+     "pct_of_frame": 7.0
+    },
+    {
+     "pass": "NaniteBasePass",
+     "ms": 0.517,
+     "pct_of_frame": 5.8
+    },
+    {
+     "pass": "Unaccounted",
+     "ms": 0.491,
+     "pct_of_frame": 5.5
+    }
+   ],
+   "measured_gpu_p90_ms": 9.476
+  },
+  "_verdict": "treeline GPU is spent on atmosphere (VolumetricCloud), Nanite raster (NaniteVisBuffer), shadows, TSR and post -- the fixed frame cost -- NOT live foliage geometry (whose hide-delta was 0.116 ms). plaza is NaniteVisBuffer-dominated (buildings) plus shadows. Density is not where the frame goes."
+ },
+ "item2_density_sweep": {
+  "_source": "perf_standalone.py --density-scale {1,2,4}",
+  "treeline": {
+   "budget_ms": 7.0,
+   "budget_tol_ms": 7.7,
+   "rows": [
+    {
+     "D": 1,
+     "gpu_p90": 7.229,
+     "vram_peak_mib": 4534,
+     "gpuscene": 57876,
+     "honoured": "n/a(default)"
+    },
+    {
+     "D": 2,
+     "gpu_p90": 7.239,
+     "vram_peak_mib": 4501,
+     "gpuscene": 54619,
+     "foliage_densityscale_readback": "2",
+     "honoured": false
+    },
+    {
+     "D": 4,
+     "gpu_p90": 7.143,
+     "vram_peak_mib": 4595,
+     "gpuscene": 53127,
+     "foliage_densityscale_readback": "4",
+     "honoured": false
+    }
+   ]
+  },
+  "plaza": {
+   "budget_ms": 10.5,
+   "budget_tol_ms": 11.55,
+   "rows": [
+    {
+     "D": 1,
+     "gpu_p90": 9.441,
+     "vram_peak_mib": 4971,
+     "gpuscene": 196553,
+     "honoured": "n/a(default)"
+    },
+    {
+     "D": 2,
+     "gpu_p90": 9.52,
+     "vram_peak_mib": 4941,
+     "gpuscene": 167914,
+     "foliage_densityscale_readback": "2",
+     "honoured": false
+    },
+    {
+     "D": 4,
+     "gpu_p90": 9.467,
+     "vram_peak_mib": 4890,
+     "gpuscene": 155054,
+     "foliage_densityscale_readback": "4",
+     "honoured": false
+    }
+   ]
+  },
+  "_finding": "foliage.DensityScale read back at 2/4 (honoured on the foliage lever) but GPUScene instances did NOT rise -- placed HISM foliage is capped at its authored count, so DensityScale>1 is a NO-OP on trees; grass showed no measurable regen at these stations. NEITHER zone approaches budget at any scale. Per audit B3, this lever cannot TEST a denser forest at all (scalability down-lever, opt-in per FoliageType Enable Density Scaling); it is not evidence there is no budget crossing. grass.DensityScale bare-query echo could not be parsed (rule-13 tool gap; safe direction).",
+  "_audit_A5_note": "The 'instance-count wobble is streaming variance' claim is unquantified: plaza GPUScene swung 196553 -> 167914 -> 155054 (-21%) across nominally identical runs. If that is noise, 'removed 126,386' carries tens of thousands of uncertainty; if not, it is unexplained. Task 1 (noise floor) measures GPUScene sd per zone before any sub-0.2 ms delta is quoted.",
+  "_marginal_cost_from_down_direction_WITHDRAWN": {
+   "_WITHDRAWN": "audit A4: these are the GPU cost of instances that were OFF the declared frustum. Census visible live trees: treeline 0, plaza 903 (overwhelmingly landscape grass, not trees) of 185,385. The treeline hide removed 10,860 instances, none in the declared frustum. Different populations, not comparable, NOT a marginal cost of VISIBLE density. Superseded by Task 3 (forest_floor station, ms/1000 in-frustum-in-cull trees).",
+   "_computed_from_inputs_for_provenance_only": {
+    "_formula": "foliage_gpu_cost_ms / gpuscene_instances_removed * 10000 (COMPUTED here from item2_foliage_cost, not a literal -- audit B2)",
+    "treeline_ms_per_10k": 0.107,
+    "plaza_ms_per_10k": 0.023
+   }
+  }
+ },
+ "item3_editor_readbacks": {
+  "_source": "offscreen editor read-only pass (pcg_worldactor_probe.py, tree_lod_probe.py); closed per R-EDITOR-CLOSE.",
+  "_tree_lod_probe_date": "2026-09-07",
+  "_tree_lod_probe_age_note": "the per_mesh LOD/triangle read-backs below are from the 2026-09-07 tree_lod_probe.json (audit C: 13 days old at v3). Task 4a re-probes fresh at today's date.",
+  "pcg_worldactor_present": false,
+  "pcg_worldactor_count": 0,
+  "pcg_partition_grid_cm_cdo": 25600,
+  "per_mesh": [
+   {
+    "species": "Conifer",
+    "nanite": true,
+    "lod_count": 1,
+    "screen_sizes": [
+     2.0
+    ],
+    "triangles_per_lod": [
+     2335
+    ]
+   },
+   {
+    "species": "ConiferPine",
+    "nanite": false,
+    "lod_count": 4,
+    "screen_sizes": [
+     1.5045056343078613,
+     0.33641770482063293,
+     0.23788323998451233,
+     0.16820885241031647
+    ],
+    "triangles_per_lod": [
+     27824,
+     11062,
+     5777,
+     32
+    ]
+   },
+   {
+    "species": "SpruceSub",
+    "nanite": false,
+    "lod_count": 5,
+    "screen_sizes": [
+     1.0,
+     0.9900000095367432,
+     0.6000000238418579,
+     0.3499999940395355,
+     0.17000000178813934
+    ],
+    "triangles_per_lod": [
+     20695,
+     10347,
+     5174,
+     2587,
+     6
+    ]
+   },
+   {
+    "species": "SpruceSapling",
+    "nanite": false,
+    "lod_count": 4,
+    "screen_sizes": [
+     1.0,
+     0.6000000238418579,
+     0.20000000298023224,
+     0.10000000149011612
+    ],
+    "triangles_per_lod": [
+     2604,
+     1301,
+     650,
+     326
+    ]
+   }
+  ],
+  "conifer_nanite_fallback_tris": 2335,
+  "hlod_gpu_share": {
+   "_source": "READ from research/brief5/input/hlod_share.json (single source, audit B2). Task 2 overwrites that file with the positive-control re-measure.",
+   "verdict": "INCONCLUSIVE",
+   "detail_file": "research/brief5/input/hlod_share.json",
+   "reason": "The HLOD proxy GPU SHARE (a millisecond number) could not be measured inside the fence. -game path: the positive control FAILED -- as-is vs `wp.Runtime.HLOD 0` runs are byte-identical on every render-side counter (GPUSceneInstanceCount, SceneCulling/NumStaticInstances, ActorCount/WorldPartitionHLOD, GPUTime), because the startup -ExecCmds one-shot fires before the far cells stream and cannot re-fire post-settle without an ini/asset/Python change (see hlod_task2_gamepath.md; wp.Runtime.HLOD is a command, HLODRuntimeSubsystem.cpp:149). editor path: at full editor residency the proxies are NOT drawn (real cells render), so the v2 actor-hide gave a null 0.015 ms delta -- that null IS the positive-control failure (audit A2), not a measured zero. Forcing proxy render needs region-unloading (high-risk, and still editor!=-game). So the exact share stays open (item-8 -game MRQ territory).",
+   "composition_512m_to_2km": "Between the 512 m main streaming range and the ~2 km instanced-HLOD range, each tree is rendered as its Instanced-HLOD proxy = its LOWEST-LOD instance (billboard / imposter / lowest LOD / Nanite fallback), then beyond that as part of a single MESH_APPROXIMATE merged proxy per cell. The Nanite spruce is NOT instanced as its full Nanite mesh in the HLOD; the INSTANCING layer uses the lowest LOD (the 2335-tri fallback)."
+  }
+ },
+ "_deputy_outputs": {
+  "item4_reference_coverage": "research/brief5/input/reference_coverage.json",
+  "item5_dolly_manifest": "research/brief5/input/dolly_manifest.json",
+  "item6_pcg_notes": "research/brief5/PCG_NOTES.md",
+  "item7_replay_inventory": "research/brief5/input/replay_inventory.json"
+ },
+ "_v3": "2026-09-20 v3 re-measure session. Corrections folded by this assembler: (1) item3.hlod_gpu_share is now READ from hlod_share.json (was hand-edited after assembly -- audit B2), verdict INCONCLUSIVE; (2) item2 per-10k figures WITHDRAWN (audit A4) and, where shown, COMPUTED from item2_foliage_cost inputs, not literals (audit B2); (3) audit notes A4/A5 added to the item2 blocks. v3 COMPLETE: task1_noise_floor + task3_forest_cost + task4_editor_census folded; item3.hlod_gpu_share verdict INCONCLUSIVE (2c/2d: composition measured, GPU share still open); BASELINE.md rebuilt as v3.",
+ "task1_noise_floor": {
+  "_what": "Brief 5 v3 Task 1: run-to-run noise floor at treeline and plaza from 5 as-is -game runs each (same build, settle 60 s, window 25 s).",
+  "_method": "GPU p90 = each run's stats_ms.GPUTime.p90. GPUSceneInstanceCount = mean over the last 1500 frames of each run's CSV. min_detectable_ms = 2 x sd(GPU p90 across runs).",
+  "_sample_provenance": "2 on-disk as-is runs (D1 asis + item-1 gpustats) + 3 fresh as-is runs (brief5_noise/*_r1..r3). D2/D4 excluded (grass.DensityScale confound).",
+  "window_frames": 1500,
+  "zones": {
+   "treeline": {
+    "gpu_p90_ms": {
+     "n": 5,
+     "values": [
+      7.229,
+      7.169,
+      7.149,
+      7.194,
+      7.189
+     ],
+     "mean": 7.186,
+     "sd": 0.03,
+     "min": 7.149,
+     "max": 7.229,
+     "range": 0.08
+    },
+    "gpuscene_instance_count": {
+     "n": 5,
+     "values": [
+      57876,
+      57876,
+      57876,
+      57876,
+      57876
+     ],
+     "mean": 57876,
+     "sd": 0.0,
+     "min": 57876,
+     "max": 57876,
+     "range": 0
+    },
+    "min_detectable_ms": 0.06,
+    "_min_detectable_def": "2 x sd(GPU p90). A delta below this is NOT distinguishable from run-to-run noise.",
+    "gpuscene_sd_pct_of_mean": null,
+    "gpuscene_sd_exceeds_5pct": false,
+    "sample_sidecars": [
+     "_verify/perf/brief5_ab/treeline_asis/standalone_2026-09-19/perf_standalone.json",
+     "_verify/perf/brief5_ab/treeline_gpustats/standalone_2026-09-20/perf_standalone_gpustats.json",
+     "_verify/perf/brief5_noise/treeline_r1/standalone_2026-09-20/perf_standalone.json",
+     "_verify/perf/brief5_noise/treeline_r2/standalone_2026-09-20/perf_standalone.json",
+     "_verify/perf/brief5_noise/treeline_r3/standalone_2026-09-20/perf_standalone.json"
+    ]
+   },
+   "plaza": {
+    "gpu_p90_ms": {
+     "n": 5,
+     "values": [
+      9.441,
+      9.476,
+      9.438,
+      9.467,
+      9.48
+     ],
+     "mean": 9.46,
+     "sd": 0.02,
+     "min": 9.438,
+     "max": 9.48,
+     "range": 0.042
+    },
+    "gpuscene_instance_count": {
+     "n": 5,
+     "values": [
+      196553,
+      196553,
+      196553,
+      196553,
+      196553
+     ],
+     "mean": 196553,
+     "sd": 0.0,
+     "min": 196553,
+     "max": 196553,
+     "range": 0
+    },
+    "min_detectable_ms": 0.04,
+    "_min_detectable_def": "2 x sd(GPU p90). A delta below this is NOT distinguishable from run-to-run noise.",
+    "gpuscene_sd_pct_of_mean": null,
+    "gpuscene_sd_exceeds_5pct": false,
+    "sample_sidecars": [
+     "_verify/perf/brief5_ab/plaza_asis/standalone_2026-09-19/perf_standalone.json",
+     "_verify/perf/brief5_ab/plaza_gpustats/standalone_2026-09-20/perf_standalone_gpustats.json",
+     "_verify/perf/brief5_noise/plaza_r1/standalone_2026-09-20/perf_standalone.json",
+     "_verify/perf/brief5_noise/plaza_r2/standalone_2026-09-20/perf_standalone.json",
+     "_verify/perf/brief5_noise/plaza_r3/standalone_2026-09-20/perf_standalone.json"
+    ]
+   }
+  },
+  "_finding": "As-is GPUSceneInstanceCount is DETERMINISTIC across 5 runs per zone (sd 0.0; treeline 57876, plaza 196553). This REFUTES audit A5's reading of the D1/D2/D4 -21% GPUScene swing as 'streaming variance' -- as-is residency does not wobble; the swing was the D2/D4 grass.DensityScale lever regenerating landscape grass, not noise. GPU p90 min_detectable_ms: treeline 0.06, plaza 0.04. Every delta quoted in v3 carries 'x min_detectable' beside it; anything <1x is reported 'not distinguishable'."
+ },
+ "task3_forest_cost": {
+  "_what": "Brief 5 v3 Task 3: forest foliage GPU cost at the derived forest_floor station (3 as-is + 3 hidden -game runs, --csv-gpu-stats).",
+  "station": {
+   "x_cm": -166400.0,
+   "y_cm": 192000.0,
+   "z_cm": 19819.8,
+   "pitch_deg": -5.0,
+   "yaw_deg": 100.0
+  },
+  "in_frustum_in_cull_trees": 1844,
+  "in_frustum_in_cull_meets_5000_target": false,
+  "_target_note": "If below 5000: the forest at the declared 90 deg hFOV / 512 m cull does not put 5000 live trees in one frustum anywhere (density ~0.005 trees/m2); this is the MAX achievable and is reported as such, not padded.",
+  "gpu_p90_ms": {
+   "as_is": {
+    "n": 3,
+    "values": [
+     11.052,
+     11.039,
+     11.054
+    ],
+    "mean": 11.048,
+    "sd": 0.0081
+   },
+   "hidden": {
+    "n": 3,
+    "values": [
+     10.841,
+     10.857,
+     10.891
+    ],
+    "mean": 10.863,
+    "sd": 0.0255
+   },
+   "foliage_delta_ms": 0.185
+  },
+  "forest_min_detectable_ms": 0.0162,
+  "_forest_min_detectable_def": "2 x sd(as-is GPU p90) at this station (its own noise floor; Task 1 measured only treeline/plaza).",
+  "foliage_delta_x_min_detectable": 11.4,
+  "foliage_delta_distinguishable": true,
+  "gpuscene": {
+   "as_is": 103162,
+   "hidden": 61714,
+   "removed_by_hide": 41448,
+   "_note": "removed = trees in the 512 m streaming disc (all directions) + landscape grass, NOT just the in-frustum trees. Deterministic across runs (sd 0 -- same as Task 1)."
+  },
+  "per_pass_delta_ms": {
+   "_method": "as-is median - hidden median per GPU/<pass>, median over the last 1500 frames of each run, averaged over 3 runs. Positive = the pass got cheaper when foliage was hidden (i.e. that is where the trees cost).",
+   "table": [
+    {
+     "pass": "LumenReflections",
+     "delta_ms": 0.3243,
+     "as_is_ms": 1.067,
+     "hidden_ms": 0.7427
+    },
+    {
+     "pass": "RenderDeferredLighting",
+     "delta_ms": -0.1575,
+     "as_is_ms": 0.2788,
+     "hidden_ms": 0.4362
+    },
+    {
+     "pass": "ShadowProjection",
+     "delta_ms": 0.1053,
+     "as_is_ms": 0.8906,
+     "hidden_ms": 0.7852
+    },
+    {
+     "pass": "Basepass",
+     "delta_ms": 0.0857,
+     "as_is_ms": 0.3089,
+     "hidden_ms": 0.2232
+    },
+    {
+     "pass": "NaniteBasePass",
+     "delta_ms": -0.0466,
+     "as_is_ms": 0.4498,
+     "hidden_ms": 0.4964
+    },
+    {
+     "pass": "Prepass",
+     "delta_ms": 0.0461,
+     "as_is_ms": 0.0688,
+     "hidden_ms": 0.0227
+    },
+    {
+     "pass": "SubsurfaceScattering",
+     "delta_ms": -0.0118,
+     "as_is_ms": 0.1815,
+     "hidden_ms": 0.1933
+    },
+    {
+     "pass": "LumenSceneUpdate",
+     "delta_ms": 0.0117,
+     "as_is_ms": 0.2037,
+     "hidden_ms": 0.192
+    },
+    {
+     "pass": "ShadowDepths",
+     "delta_ms": -0.0107,
+     "as_is_ms": 1.4133,
+     "hidden_ms": 1.424
+    },
+    {
+     "pass": "DistanceFieldShadows",
+     "delta_ms": 0.0105,
+     "as_is_ms": 0.0719,
+     "hidden_ms": 0.0614
+    },
+    {
+     "pass": "NaniteVisBuffer",
+     "delta_ms": -0.0084,
+     "as_is_ms": 2.013,
+     "hidden_ms": 2.0214
+    },
+    {
+     "pass": "Lights",
+     "delta_ms": -0.0066,
+     "as_is_ms": 0.095,
+     "hidden_ms": 0.1016
+    },
+    {
+     "pass": "BeginOcclusionTests",
+     "delta_ms": 0.0055,
+     "as_is_ms": 0.0185,
+     "hidden_ms": 0.013
+    },
+    {
+     "pass": "HZB",
+     "delta_ms": -0.0052,
+     "as_is_ms": 0.0148,
+     "hidden_ms": 0.02
+    }
+   ]
+  },
+  "ms_per_1000_in_frustum_in_cull_trees": 0.1003,
+  "_ms_per_1000_note": "delta / (in_frustum_in_cull/1000). ATTRIBUTES the whole foliage delta (which also removed grass and off-frustum in-cull trees) to the 1844 in-frustum trees, so it is an UPPER BOUND on per-visible-tree cost. Replaces the withdrawn off-frustum ms/10k. Carries x11.4 min_detectable.",
+  "per_species_hide_3c": "NOT AVAILABLE in -game. foliage.DensityScale 0 / ShowFlag.Foliage 0 hide ALL foliage; there is no process-local per-FoliageType console lever to isolate the Nanite spruce from the card-LOD species. Per the queue: stated, not invented. A per-species split needs an editor actor-level hide (Task 4 reads per-species representation instead).",
+  "_station_derivation": "research/brief5/input/forest_station.json",
+  "_headline": "At a real forest station (1844 in-frustum-in-cull trees, the MAX achievable at 90 deg hFOV / 512 m cull -- 5000 is not reachable on this forest, False), foliage costs 0.185 ms GPU p90 (x11.4 min_detectable, distinguishable). It is spent mostly in LumenReflections + shadows + base pass, NOT NaniteVisBuffer. ms per 1000 in-frustum-in-cull trees = 0.1003 (upper bound; the delta also removed grass and off-frustum trees). This REPLACES the withdrawn off-frustum ms/10k."
+ },
+ "task4_editor_census": {
+  "_source": "brief5_editor_census.py (offscreen read-only, closed per R-EDITOR-CLOSE) + switch_distances.py (offline).",
+  "hlod_layers": {
+   "/Game/Alpine8K_HLODLayer_Instanced": {
+    "path": "/Game/Alpine8K_HLODLayer_Instanced",
+    "exists": true,
+    "layer_type": "<HLODLayerType.INSTANCING: 0>",
+    "cell_size_cm_DEPRECATED_5_7": "25600",
+    "loading_range_cm_DEPRECATED_5_7": "76800.0",
+    "parent_layer": "/Game/Alpine8K_HLODLayer_Merged.Alpine8K_HLODLayer_Merged"
+   },
+   "/Game/Alpine8K_HLODLayer_Merged": {
+    "path": "/Game/Alpine8K_HLODLayer_Merged",
+    "exists": true,
+    "layer_type": "<HLODLayerType.MESH_APPROXIMATE: 3>",
+    "cell_size_cm_DEPRECATED_5_7": "25600",
+    "loading_range_cm_DEPRECATED_5_7": "51200.0",
+    "parent_layer": null
+   }
+  },
+  "foliage_types": {
+   "Conifer": {
+    "path": "/Game/Foliage/FT_Conifer",
+    "exists": true,
+    "enable_density_scaling": false,
+    "enable_cull_distance_scaling": false,
+    "cast_shadow": true,
+    "world_position_offset_disable_distance": 0,
+    "affect_distance_field_lighting": false,
+    "cull_distance_min": 38400,
+    "cull_distance_max": 51200
+   },
+   "ConiferPine": {
+    "path": "/Game/Foliage/FT_ConiferPine",
+    "exists": true,
+    "enable_density_scaling": false,
+    "enable_cull_distance_scaling": false,
+    "cast_shadow": true,
+    "world_position_offset_disable_distance": 0,
+    "affect_distance_field_lighting": false,
+    "cull_distance_min": 38400,
+    "cull_distance_max": 51200
+   },
+   "SpruceSub": {
+    "path": "/Game/Foliage/FT_SpruceSub",
+    "exists": true,
+    "enable_density_scaling": false,
+    "enable_cull_distance_scaling": false,
+    "cast_shadow": true,
+    "world_position_offset_disable_distance": 0,
+    "affect_distance_field_lighting": false,
+    "cull_distance_min": 38400,
+    "cull_distance_max": 51200
+   },
+   "SpruceSapling": {
+    "path": "/Game/Foliage/FT_SpruceSapling",
+    "exists": true,
+    "enable_density_scaling": false,
+    "enable_cull_distance_scaling": false,
+    "cast_shadow": true,
+    "world_position_offset_disable_distance": 0,
+    "affect_distance_field_lighting": false,
+    "cull_distance_min": 17870,
+    "cull_distance_max": 23827
+   }
+  },
+  "per_mesh_nanite": {
+   "Conifer": {
+    "enabled": true,
+    "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+    "fallback_percent_triangles": "1.0",
+    "fallback_relative_error": "1.0",
+    "keep_percent_triangles": "1.0",
+    "trim_relative_error": "0.0",
+    "position_precision": "-2147483648",
+    "displacement_uv_channel": "0"
+   },
+   "ConiferPine": {
+    "enabled": false,
+    "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+    "fallback_percent_triangles": "1.0",
+    "fallback_relative_error": "1.0",
+    "keep_percent_triangles": "1.0",
+    "trim_relative_error": "0.0",
+    "position_precision": "-2147483648",
+    "displacement_uv_channel": "0"
+   },
+   "SpruceSub": {
+    "enabled": false,
+    "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+    "fallback_percent_triangles": "1.0",
+    "fallback_relative_error": "1.0",
+    "keep_percent_triangles": "1.0",
+    "trim_relative_error": "0.0",
+    "position_precision": "-2147483648",
+    "displacement_uv_channel": "0"
+   },
+   "SpruceSapling": {
+    "enabled": false,
+    "fallback_target": "<NaniteFallbackTarget.AUTO: 0>",
+    "fallback_percent_triangles": "1.0",
+    "fallback_relative_error": "1.0",
+    "keep_percent_triangles": "1.0",
+    "trim_relative_error": "0.0",
+    "position_precision": "-2147483648",
+    "displacement_uv_channel": "0"
+   }
+  },
+  "project_nanite_foliage_enabled": "True (r.Nanite.Foliage=True, DefaultEngine.ini:63; editor get_default_object read-back UNKNOWN -- class not exposed to Python, config is the instrument)",
+  "hlod_cell_distance_m": {
+   "treeline": {
+    "Merged_L0": {
+     "n": 786,
+     "min": 105.9,
+     "p10": 1327.1,
+     "p50": 3449.9,
+     "p90": 5928.0,
+     "max": 7688.6
+    },
+    "Merged_L1": {
+     "n": 256,
+     "min": 255.9,
+     "p10": 1445.3,
+     "p50": 3553.3,
+     "p90": 5789.6,
+     "max": 7508.2
+    },
+    "Instanced_L1": {
+     "n": 748,
+     "min": 300.1,
+     "p10": 2863.0,
+     "p50": 6768.9,
+     "p90": 10057.1,
+     "max": 13289.1
+    },
+    "Instanced_L2": {
+     "n": 256,
+     "min": 608.8,
+     "p10": 2881.8,
+     "p50": 6611.7,
+     "p90": 9903.8,
+     "max": 12927.4
+    },
+    "Instanced_L0": {
+     "n": 221,
+     "min": 257.9,
+     "p10": 3093.7,
+     "p50": 5729.6,
+     "p90": 9258.6,
+     "max": 12215.1
+    },
+    "_nearest_any_m": 105.9
+   },
+   "plaza": {
+    "Merged_L0": {
+     "n": 786,
+     "min": 120.9,
+     "p10": 1272.5,
+     "p50": 4539.2,
+     "p90": 7141.0,
+     "max": 9086.3
+    },
+    "Merged_L1": {
+     "n": 256,
+     "min": 198.0,
+     "p10": 1482.7,
+     "p50": 4564.0,
+     "p90": 6866.2,
+     "max": 8905.6
+    },
+    "Instanced_L1": {
+     "n": 748,
+     "min": 198.0,
+     "p10": 2586.4,
+     "p50": 6936.4,
+     "p90": 11236.1,
+     "max": 14693.1
+    },
+    "Instanced_L2": {
+     "n": 256,
+     "min": 506.2,
+     "p10": 2890.3,
+     "p50": 6773.0,
+     "p90": 10780.6,
+     "max": 14331.2
+    },
+    "Instanced_L0": {
+     "n": 221,
+     "min": 843.2,
+     "p10": 2523.4,
+     "p50": 5650.4,
+     "p90": 10554.4,
+     "max": 13615.2
+    },
+    "_nearest_any_m": 120.9
+   },
+   "vista": {
+    "Merged_L0": {
+     "n": 786,
+     "min": 244.0,
+     "p10": 1301.5,
+     "p50": 3482.0,
+     "p90": 6083.4,
+     "max": 7668.0
+    },
+    "Merged_L1": {
+     "n": 256,
+     "min": 192.4,
+     "p10": 1453.9,
+     "p50": 3589.6,
+     "p90": 6005.1,
+     "max": 7488.8
+    },
+    "Instanced_L1": {
+     "n": 748,
+     "min": 192.4,
+     "p10": 2937.9,
+     "p50": 6795.0,
+     "p90": 10110.9,
+     "max": 13247.2
+    },
+    "Instanced_L2": {
+     "n": 256,
+     "min": 415.0,
+     "p10": 2943.2,
+     "p50": 6537.0,
+     "p90": 9991.2,
+     "max": 12886.4
+    },
+    "Instanced_L0": {
+     "n": 221,
+     "min": 350.8,
+     "p10": 3094.6,
+     "p50": 5852.6,
+     "p90": 9168.4,
+     "max": 12346.8
+    },
+    "_nearest_any_m": 192.4
+   },
+   "forest_floor": {
+    "Merged_L0": {
+     "n": 786,
+     "min": 0.0,
+     "p10": 1280.0,
+     "p50": 3792.8,
+     "p90": 6234.0,
+     "max": 8147.9
+    },
+    "Merged_L1": {
+     "n": 256,
+     "min": 181.0,
+     "p10": 1459.4,
+     "p50": 3852.7,
+     "p90": 6006.5,
+     "max": 7966.9
+    },
+    "Instanced_L1": {
+     "n": 748,
+     "min": 181.0,
+     "p10": 2691.0,
+     "p50": 6785.2,
+     "p90": 10496.3,
+     "max": 13758.7
+    },
+    "Instanced_L2": {
+     "n": 256,
+     "min": 404.8,
+     "p10": 2946.7,
+     "p50": 6509.1,
+     "p90": 10054.3,
+     "max": 13396.7
+    },
+    "Instanced_L0": {
+     "n": 221,
+     "min": 362.0,
+     "p10": 2827.6,
+     "p50": 5614.5,
+     "p90": 9801.8,
+     "max": 12676.5
+    },
+    "_nearest_any_m": 0.0
+   }
+  },
+  "switch_distances": {
+   "_what": "Brief 5 v3 Task 4a/4b: LOD/billboard/imposter switch distances (header-verified formula) and recipe-vs-asset LOD comparison.",
+   "_probe": "_verify\\bench\\2026-09-20\\tree_lod_probe_v3.json",
+   "_formula": "D_switch_cm = R_cm / (tan(vFOV/2) * ScreenSize); ScreenMultiple = 0.5/tan(vFOV/2) (P11 dominates at 16:9); all LOD/view distance scales = 1.0. SceneManagement.cpp:980 (ComputeBoundsDrawDistance).",
+   "judge_camera": {
+    "res": [
+     3840,
+     2160
+    ],
+    "fov_h_deg": 90.0,
+    "vfov_deg": 58.7155
+   },
+   "detail_threshold_px": 40.0,
+   "species": [
+    {
+     "species": "Conifer",
+     "nanite": true,
+     "bounding_sphere_radius_cm": 1546.6148681640625,
+     "height_m": 29.31,
+     "cull_distance_m_recipe": 730.0,
+     "lod_switches": [
+      {
+       "lod_index": 0,
+       "screen_size": 2.0,
+       "engage_distance_m": 13.7,
+       "tree_px_height_at_engage": 4093.8,
+       "triangles": 2335,
+       "above_detail_threshold": true
+      }
+     ],
+     "lowest_lod_engage_m": 13.7,
+     "recipe_vs_asset_lod": null
+    },
+    {
+     "species": "ConiferPine",
+     "nanite": false,
+     "bounding_sphere_radius_cm": 1209.6593765645273,
+     "height_m": 22.11,
+     "cull_distance_m_recipe": 730.0,
+     "lod_switches": [
+      {
+       "lod_index": 0,
+       "screen_size": 1.50451,
+       "engage_distance_m": 14.3,
+       "tree_px_height_at_engage": 2969.5,
+       "triangles": 27824,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 1,
+       "screen_size": 0.33642,
+       "engage_distance_m": 63.9,
+       "tree_px_height_at_engage": 664.0,
+       "triangles": 11062,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 2,
+       "screen_size": 0.23788,
+       "engage_distance_m": 90.4,
+       "tree_px_height_at_engage": 469.5,
+       "triangles": 5777,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 3,
+       "screen_size": 0.16821,
+       "engage_distance_m": 127.8,
+       "tree_px_height_at_engage": 332.0,
+       "triangles": 32,
+       "above_detail_threshold": true
+      }
+     ],
+     "lowest_lod_engage_m": 127.8,
+     "recipe_vs_asset_lod": {
+      "recipe_lod_screen_sizes": [
+       0.5,
+       0.21,
+       0.088
+      ],
+      "asset_lod_screen_sizes": [
+       1.50451,
+       0.33642,
+       0.23788,
+       0.16821
+      ],
+      "recipe_lod_count": 3,
+      "asset_lod_count": 4,
+      "differ": true
+     }
+    },
+    {
+     "species": "SpruceSub",
+     "nanite": false,
+     "bounding_sphere_radius_cm": 836.8856811523438,
+     "height_m": 16.72,
+     "cull_distance_m_recipe": 730.0,
+     "lod_switches": [
+      {
+       "lod_index": 0,
+       "screen_size": 1.0,
+       "engage_distance_m": 14.9,
+       "tree_px_height_at_engage": 2158.3,
+       "triangles": 20695,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 1,
+       "screen_size": 0.99,
+       "engage_distance_m": 15.0,
+       "tree_px_height_at_engage": 2136.7,
+       "triangles": 10347,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 2,
+       "screen_size": 0.6,
+       "engage_distance_m": 24.8,
+       "tree_px_height_at_engage": 1295.0,
+       "triangles": 5174,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 3,
+       "screen_size": 0.35,
+       "engage_distance_m": 42.5,
+       "tree_px_height_at_engage": 755.4,
+       "triangles": 2587,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 4,
+       "screen_size": 0.17,
+       "engage_distance_m": 87.5,
+       "tree_px_height_at_engage": 366.9,
+       "triangles": 6,
+       "above_detail_threshold": true
+      }
+     ],
+     "lowest_lod_engage_m": 87.5,
+     "recipe_vs_asset_lod": null
+    },
+    {
+     "species": "SpruceSapling",
+     "nanite": false,
+     "bounding_sphere_radius_cm": 276.3599853515625,
+     "height_m": 4.53,
+     "cull_distance_m_recipe": 180.0,
+     "lod_switches": [
+      {
+       "lod_index": 0,
+       "screen_size": 1.0,
+       "engage_distance_m": 4.9,
+       "tree_px_height_at_engage": 1770.0,
+       "triangles": 2604,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 1,
+       "screen_size": 0.6,
+       "engage_distance_m": 8.2,
+       "tree_px_height_at_engage": 1062.0,
+       "triangles": 1301,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 2,
+       "screen_size": 0.2,
+       "engage_distance_m": 24.6,
+       "tree_px_height_at_engage": 354.0,
+       "triangles": 650,
+       "above_detail_threshold": true
+      },
+      {
+       "lod_index": 3,
+       "screen_size": 0.1,
+       "engage_distance_m": 49.1,
+       "tree_px_height_at_engage": 177.0,
+       "triangles": 326,
+       "above_detail_threshold": true
+      }
+     ],
+     "lowest_lod_engage_m": 49.1,
+     "recipe_vs_asset_lod": null
+    }
+   ]
+  },
+  "_switch_finding": "Every LOD/billboard/imposter switch happens ABOVE the 40 px detail floor: ConiferPine -> 32-tri billboard at 127.8 m (332 px tall), SpruceSub -> 6-tri imposter at 87.5 m (367 px), sapling lowest LOD at 49.1 m (177 px). So 'seen only at DETAIL' (a pixel band) hides that the MESH representation drops to cards while the tree is still hundreds of px tall (audit A8, quantified).",
+  "_recipe_vs_asset_finding": "ConiferPine recipe LODs [0.5,0.21,0.088] != asset [1.50,0.336,0.238,0.168]: 3 vs 4 LODs, billboard at asset ss 0.168 (127.8 m) vs the recipe's 0.088 (~2x farther). The built asset's LOD chain is not the recipe's spec.",
+  "_enable_density_scaling_all_false": "All four FoliageTypes have enable_density_scaling=False -> confirms audit B3: foliage.DensityScale (a scalability lever, opt-in per type) has NO effect on these trees. The density lever cannot test them."
+ }
+}

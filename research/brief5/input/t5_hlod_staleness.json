@@ -1,0 +1,18 @@
+{
+ "_what": "Brief 5 T5 -- HLOD staleness after the T3 hold. REPORT ONLY, no build.",
+ "instanced_hlod_cells": {
+  "_source": "editor_census_v3.json hlod_cells_by_layer_level (2026-09-20)",
+  "Instanced_L0": 221,
+  "Instanced_L1": 748,
+  "Instanced_L2": 256,
+  "total_instanced_cells": 1225,
+  "_note": "The Instanced (INSTANCING) HLOD layer is the one that references the tree meshes' LOWEST LOD. ConiferPine (40,326) and SpruceSub (46,841) instances are placed across the forest, so the great majority of these 1225 Instanced cells reference at least one of the two edited meshes. A per-mesh cell count needs a live WP-HLOD source query (not run -- report-only, no build)."
+ },
+ "lowest_lod_unchanged": {
+  "_source": "brief5_t3_hold.py read-back (t3_hold.json)",
+  "ConiferPine": {"last_lod_tris_before": 32, "last_lod_tris_after": 32, "slots_before": 5, "slots_after": 5},
+  "SpruceSub": {"last_lod_tris_before": 6, "last_lod_tris_after": 6, "slots_before": 4, "slots_after": 4}
+ },
+ "verdict": "The T3 hold changed ONLY the per-LOD ScreenSize arrays; the geometry the INSTANCING HLOD layer uses -- each mesh's lowest LOD (32 tris ConiferPine / 6 tris SpruceSub) and its material slots -- is UNCHANGED (read-back confirmed). So a rebuild would produce byte-identical Instanced proxies: the HLOD is not FUNCTIONALLY stale. It is, however, conservatively SOURCE-stale: re-saving the two .uasset moved their asset hash, so the WP-HLOD builder's source-hash tracking would flag the ~1225 Instanced cells that reference them for rebuild. NO build performed (fence + report-only). If a rebuild is ever run it is a no-op on the proxy geometry.",
+ "_no_hlod_commit": true
+}

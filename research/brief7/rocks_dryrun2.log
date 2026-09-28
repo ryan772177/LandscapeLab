@@ -1,0 +1,142 @@
+placement field: textures/alpine_8k_planting_planting.png  (planting field -- canopy-free)
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+map       : 8129 x 8129, 8128 m span = 6606 ha, 1.0 m grid
+
+--- pivot measurement (ruling (c), rock variant) ---
+  all 9 rock meshes measured from Free\_measured\rock_pivots.json
+    Boulder        horizontal  0.123 m (limit 0.383 = 0.25 x min extent) OK   base offset -0.628 m -> corrected
+    TreeStump      horizontal  0.046 m (limit 0.168 = 0.25 x min extent) OK   base offset -0.127 m -> corrected
+    CliffOutcrop   horizontal  0.558 m (limit 0.925 = 0.25 x min extent) OK   base offset -0.714 m -> corrected
+    CliffOutcropB  horizontal  0.347 m (limit 0.598 = 0.25 x min extent) OK   base offset -0.259 m -> corrected
+    CliffFace      horizontal  0.101 m (limit 1.805 = 0.25 x min extent) OK   base offset -1.426 m -> corrected
+    TalusField     horizontal  0.164 m (limit 0.823 = 0.25 x min extent) OK   base offset -0.173 m -> corrected
+    TalusFieldB    horizontal  0.135 m (limit 1.058 = 0.25 x min extent) OK   base offset -0.236 m -> corrected
+    TalusFieldC    horizontal  0.195 m (limit 0.767 = 0.25 x min extent) OK   base offset -0.222 m -> corrected
+    TalusChannel   horizontal  0.025 m (limit 1.410 = 0.25 x min extent) OK   base offset -0.205 m -> corrected
+
+--- placement priors ---
+  flow      : not requested by any species
+  canopy    : 54599 trunks from alpine_8k_Conifer.json, radius 5.182 m at scale 1.0
+              scale range 0.600-1.150, so effective radius 3.109-5.959 m
+
+--- talus routing ---
+  repose 35.0 deg, source slope >= 45.0 deg, runout 120.0 m, MFD p=1.3
+  cliff source cells 5,652,525 (565.3 ha), routing ran 1953 steps
+  mass conserved (asserted inside the router)
+  deposit  max 25737.3  p99 2.003   p>0.2 520.5 ha   p>0.5 485.5 ha
+  DISCRIMINATION vs a bare slope band: the naive 25-38 deg band is 1123 ha,
+    of which 84.8% has NO cliff feeding it. That difference is the design.
+  apron ladder (area with deposit >= t):
+    t = 0.001      494.1 ha
+    t = 0.003      457.1 ha
+    t = 0.01       412.8 ha
+    t = 0.03       367.2 ha
+    t = 0.1        307.1 ha
+    t = 0.3        232.4 ha
+    t = 1.0        123.3 ha
+    t = 3.0         41.0 ha
+  deposit exceeded by exactly 305.4 ha: 0.102951  ->  implied saturation 0.461459  (current 0.001875)
+
+--- exclusions (post-filter on finished rows; RNG untouched) ---
+  settlement: 1142 rectangles + a plaza disc, margins building 3.0 m / street 2.0 m / plaza 6.0 m (city/alpine_basin_town_plan.json)
+  water     : encounters/alpine_8k_water_exclusion.npz (2033 x 2033 cells, 119396 water cells)
+
+--- exclusion removals ---
+  Boulder        settlement       6   water       9   kept       690
+  TreeStump      settlement      17   water      24   kept     1,008
+  CliffOutcrop   settlement       0   water      31   kept     3,955
+  CliffOutcropB  settlement       1   water      39   kept     5,517
+  CliffFace      settlement       0   water       0   kept       141
+  TalusField     settlement       0   water      35   kept     1,815
+  TalusFieldB    settlement       0   water      23   kept     1,445
+  TalusFieldC    settlement       0   water      16   kept     1,096
+  TalusChannel   settlement       0   water      10   kept       592
+
+--- planned instances ---
+  `mask ha` is the PROBABILITY-WEIGHTED area (sum of p x cell area), not the
+  count of cells with p > 0. For a soft mask those differ by 20x, and only the
+  weighted figure divides into a density that means anything.
+  species        role   candidates    placed  mask ha on-mask/ha   map/ha    cover
+  Boulder        hero        2,304       690   1997.4        0.3    0.104     0.0%
+  TreeStump      clutter      3,844     1,008   1881.5        0.5    0.153     0.0%
+  CliffOutcrop   cliff      12,996     3,955   2009.8        2.0    0.599     0.4%
+  CliffOutcropB  cliff      16,384     5,517   2232.9        2.5    0.835     0.3%
+  CliffFace      cliff         784       141   1152.3        0.1    0.021     0.2%
+  TalusField     talus      59,049     1,815    210.9        8.6    0.275     1.8%
+  TalusFieldB    talus      46,225     1,445    210.9        6.9    0.219     1.4%
+  TalusFieldC    talus      39,601     1,096    182.2        6.0    0.166     0.7%
+  TalusChannel   talus      16,384       592    246.7        2.4    0.090     1.2%
+  TOTAL                    16,259
+
+  areal coverage where the mask reads 1.0 (the heart of a fan / face):
+    cliff    0.9% of the ground
+    talus    5.0% of the ground
+    hero     0.0% of the ground
+    clutter   0.0% of the ground
+  embed depth (mesh height x embed_frac x scale, along the blended up-axis; the surface normal only at align=1):
+    Boulder        0.18 .. 0.40 m into the surface
+    TreeStump      0.22 .. 0.34 m into the surface
+    CliffOutcrop   0.81 .. 1.84 m into the surface
+    CliffOutcropB  0.57 .. 1.22 m into the surface
+    CliffFace      4.38 .. 7.07 m into the surface
+    TalusField     0.08 .. 0.17 m into the surface
+    TalusFieldB    0.10 .. 0.20 m into the surface
+    TalusFieldC    0.09 .. 0.17 m into the surface
+    TalusChannel   0.13 .. 0.24 m into the surface
+
+--- rotation gate (replaces R4's 4-degree tilt check for rocks) ---
+  Boulder        max |pitch|  47.65  max |roll|  29.12  yaw   0.18..359.33 mean 182.02   PASS
+      NOTE Boulder: yaw uniformity SKIPPED (n=690 < 1000) — only the [0,360) range was checked; a pitch-into-yaw transposition would NOT be caught for this species
+  TreeStump      max |pitch|  11.19  max |roll|  10.68  yaw   0.15..359.48 mean 177.22   PASS
+  CliffOutcrop   max |pitch|  46.83  max |roll|  50.94  yaw   0.16..359.81 mean 180.79   PASS
+  CliffOutcropB  max |pitch|  52.18  max |roll|  49.26  yaw   0.04..359.94 mean 177.84   PASS
+  CliffFace      max |pitch|  29.80  max |roll|  26.76  yaw   0.31..359.02 mean 191.34   PASS
+      NOTE CliffFace: yaw uniformity SKIPPED (n=141 < 1000) — only the [0,360) range was checked; a pitch-into-yaw transposition would NOT be caught for this species
+  TalusField     max |pitch|  47.42  max |roll|  49.92  yaw   0.07..359.62 mean 183.14   PASS
+  TalusFieldB    max |pitch|  55.63  max |roll|  48.57  yaw   0.45..359.90 mean 182.63   PASS
+  TalusFieldC    max |pitch|  54.59  max |roll|  51.92  yaw   0.18..359.80 mean 176.18   PASS
+  TalusChannel   max |pitch|  50.03  max |roll|  43.48  yaw   1.46..359.93 mean 187.93   PASS
+      NOTE TalusChannel: yaw uniformity SKIPPED (n=592 < 1000) — only the [0,360) range was checked; a pitch-into-yaw transposition would NOT be caught for this species
+
+--- triangle budget (project convention: full 360-degree disc) ---
+  species           LOD0  mats   C (m)    cull m                  LOD chain  local worst    map avg
+  NOTE Boulder: the generated-chain model would have reported 0.000M here; the MEASURED chain costs 0.001M (7.6x). Vendor LOD chains do not follow percent = screen_size^2.
+  Boulder          4,136     1    4.27       140        1,796/1,186/892/596       0.001M     0.000M
+  NOTE TreeStump: the generated-chain model would have reported 0.000M here; the MEASURED chain costs 0.001M (5.8x). Vendor LOD chains do not follow percent = screen_size^2.
+  TreeStump        5,853     1    3.32       120        5,853/1,878/860/562       0.001M     0.000M
+  NOTE CliffOutcrop: the generated-chain model would have reported 0.024M here; the MEASURED chain costs 0.058M (2.4x). Vendor LOD chains do not follow percent = screen_size^2.
+  CliffOutcrop    15,320     1   10.09       400        5,242/3,842/936/560       0.058M     0.018M
+  NOTE CliffOutcropB: the generated-chain model would have reported 0.012M here; the MEASURED chain costs 0.044M (3.7x). Vendor LOD chains do not follow percent = screen_size^2.
+  CliffOutcropB    9,088     1    7.60       350        3,073/2,272/567/454       0.044M     0.015M
+  NOTE CliffFace: the generated-chain model would have reported 0.027M here; the MEASURED chain costs 0.046M (1.7x). Vendor LOD chains do not follow percent = screen_size^2.
+  CliffFace       29,154     1   38.30       900    6,230/7,288/1,821/1,457       0.046M     0.008M
+  TalusField      33,855     1    8.96       260      9,195/8,405/2,325/829       0.170M     0.005M
+  NOTE TalusFieldB: the generated-chain model would have reported 0.044M here; the MEASURED chain costs 0.099M (2.3x). Vendor LOD chains do not follow percent = screen_size^2.
+  TalusFieldB     15,425     1    8.37       240        6,084/3,855/963/770       0.099M     0.003M
+  NOTE TalusFieldC: the generated-chain model would have reported 0.033M here; the MEASURED chain costs 0.058M (1.8x). Vendor LOD chains do not follow percent = screen_size^2.
+  TalusFieldC     20,218     1    6.31       220     8,227/10,078/1,984/585       0.058M     0.002M
+  TalusChannel    27,354     1   13.09       320          6,107/6,837/1,708       0.135M     0.005M
+
+  local worst case, cliff     0.148M
+  local worst case, talus     0.463M
+  local worst case, hero      0.001M
+  local worst case, clutter    0.001M
+  local worst case, ALL        0.613M   (pessimistic: cliff, talus and meadow
+                                        cannot all surround one camera)
+  map average                  0.056M   (R5's own convention)
+
+  conifers (R5 locked)        39.600M
+  grass    (R11 locked)       29.800M
+  rocks    (this plan)          0.613M
+  ------------------------- ---------
+  TOTAL                        70.013M   working target 40M
+
+--- instance ceiling ---
+  ceiling                   860,000
+  other species this run    185,385
+  rocks                      16,259
+  remaining                 658,356
+
+======================================================================
+REPORT ONLY — nothing written. Re-run with --write.
+======================================================================

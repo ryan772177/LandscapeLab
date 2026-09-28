@@ -1,0 +1,21 @@
+{
+ "_what": "T4 step 2 forest_floor as-is baseline (A/A).",
+ "runs": 3,
+ "gpu_p90_runs": [
+  12.609,
+  12.621,
+  12.678
+ ],
+ "gpu_p90_median": 12.621,
+ "per_pass_median": {
+  "Basepass": 0.8831,
+  "ShadowDepths": 1.9801,
+  "LumenReflections": 0.9345,
+  "Prepass": 0.0702,
+  "NaniteVisBuffer": 2.0429
+ },
+ "AA_sd_ms": 0.03686461718233391,
+ "AA_min_detectable_ms": 0.07372923436466781,
+ "min_det_ref_0.016": 0.016,
+ "AA_confirms_min_det": false
+}

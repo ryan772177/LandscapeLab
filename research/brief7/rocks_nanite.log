@@ -1,0 +1,26 @@
+REPO_ROOT : C:\Users\Admin\UE5LandscapePipeline
+declared  : 8
+  ENABLE  boulder_medium_01      /Game/KiteDemo/Environments/Rocks/Medium_Boulder_001/Medium_Boulder_001
+  ENABLE  cliff_face_01          /Game/KiteDemo/Environments/Cliffs/Cliff01/SM_Cliff01
+  ENABLE  mountain_rock          /Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock
+  ENABLE  mountain_rock_closed   /Game/KiteDemo/Environments/Rocks/Mountain_RockFace_002/SM_MountainRock_Closed
+  ENABLE  scree_bend             /Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002_Bend
+  ENABLE  scree_slab_001         /Game/KiteDemo/Environments/Rocks/Scree001/Scree_001
+  ENABLE  scree_slab_001b        /Game/KiteDemo/Environments/Rocks/Scree001/Scree_001_B
+  ENABLE  scree_slab_002a        /Game/KiteDemo/Environments/Rocks/Scree002/SM_Scree002a
+
+NOTE: these are gitignored Fab assets. This modification is a REPLAYABLE STEP (RECIPES.md Fab-boundary rule 2), not a committable derivative. check_fab_boundary.py WILL report them as changed, and that is expected and declared.
+
+  - 4A7222F34B459765E9D634B018D7AAEF (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  boulder_medium_01      nanite True -> True   src  1,796 tris  nanite    4,136 tris /    2,329 verts   free 15.6GB
+  cliff_face_01          nanite True -> True   src  6,230 tris  nanite   29,154 tris /   14,771 verts   free 15.5GB
+  mountain_rock          nanite True -> True   src  3,073 tris  nanite    9,088 tris /    4,649 verts   free 15.3GB
+  mountain_rock_closed   nanite True -> True   src  5,242 tris  nanite   15,320 tris /    8,193 verts   free 15.2GB
+  scree_bend             nanite True -> True   src  6,107 tris  nanite   27,354 tris /   14,412 verts   free 15.1GB
+  scree_slab_001         nanite True -> True   src  9,195 tris  nanite   33,855 tris /   17,627 verts   free 14.9GB
+  scree_slab_001b        nanite True -> True   src  8,227 tris  nanite   20,218 tris /   10,583 verts   free 14.7GB
+  scree_slab_002a        nanite True -> True   src  6,084 tris  nanite   15,425 tris /    8,036 verts   free 14.7GB
+
+ALL DECLARED MESHES REPORT NANITE ENABLED, read back from the asset rather than from the struct that was written.
+Re-run this after any vendor re-download; that is what makes it a replayable step rather than a lost edit.
+exit 0

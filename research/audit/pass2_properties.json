@@ -1,0 +1,3921 @@
+{
+ "_what": "Pass 2 (Q7): every editor_property lever vs the live 5.8 Python stub. ABSENT rows need their call sites read \u2014 nested-struct fields and typos both land there; the stub cannot tell them apart.",
+ "stub": "LandscapeLab/Intermediate/PythonStub/unreal.py",
+ "n_properties": 306,
+ "counts": {
+  "PRESENT": 290,
+  "PRESENT_AS_SNAKE": 2,
+  "ABSENT": 14
+ },
+ "n_deprecated_flagged": 5,
+ "rows": [
+  {
+   "name": "CellSize",
+   "verdict": "PRESENT_AS_SNAKE",
+   "resolved": "cell_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_streaming_range.py:70"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "LoadingRange",
+   "verdict": "PRESENT_AS_SNAKE",
+   "resolved": "loading_range",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_streaming_range.py:69",
+    "scripts/payloads/apply_streaming_range.py:91",
+    "scripts/payloads/apply_streaming_range.py:93"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "a",
+   "verdict": "PRESENT",
+   "resolved": "a",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:340",
+    "scripts/make_foliage_material.py:227",
+    "scripts/make_foliage_material.py:346",
+    "scripts/make_foliage_material.py:408",
+    "scripts/make_foliage_material.py:414",
+    "scripts/make_foliage_material.py:422",
+    "scripts/make_landscape_material.py:1626",
+    "scripts/make_landscape_material.py:1663",
+    "scripts/make_landscape_material.py:1673",
+    "scripts/make_landscape_material.py:1797",
+    "scripts/make_landscape_material.py:1841",
+    "scripts/make_landscape_material.py:1847",
+    "scripts/make_layer_debug_material.py:273",
+    "scripts/make_layer_debug_material.py:281",
+    "scripts/make_layer_debug_material.py:343"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "action",
+   "verdict": "PRESENT",
+   "resolved": "action",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:108"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "actor_package",
+   "verdict": "PRESENT",
+   "resolved": "actor_package",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_pick_cell.py:87",
+    "scripts/payloads/hlod_verify_built.py:64"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "additional_post_process_materials",
+   "verdict": "PRESENT",
+   "resolved": "additional_post_process_materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:164",
+    "scripts/payloads/bench_render.py:79"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "address_x",
+   "verdict": "PRESENT",
+   "resolved": "address_x",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:124",
+    "scripts/import_alpinelab_masks.py:135",
+    "scripts/import_layer_textures.py:302",
+    "scripts/push_heightmap.py:1795",
+    "scripts/ue5_import_alpinelab.py:419"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "address_y",
+   "verdict": "PRESENT",
+   "resolved": "address_y",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:125",
+    "scripts/import_alpinelab_masks.py:136",
+    "scripts/import_layer_textures.py:303",
+    "scripts/push_heightmap.py:1796"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "affects_world",
+   "verdict": "PRESENT",
+   "resolved": "affects_world",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:274"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "agg_geom",
+   "verdict": "PRESENT",
+   "resolved": "agg_geom",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:257",
+    "scripts/apply_foliage_collision.py:276",
+    "scripts/apply_foliage_collision.py:281",
+    "scripts/audit_fab_pack.py:130",
+    "scripts/measure_foliage_collision.py:131",
+    "scripts/measure_mesh_collision.py:150"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "align_to_surface",
+   "verdict": "PRESENT",
+   "resolved": "align_to_surface",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:460",
+    "scripts/make_landscape_material.py:3081",
+    "scripts/recover_state.py:153"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "alignment_options",
+   "verdict": "PRESENT",
+   "resolved": "alignment_options",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/sanctioned_import.py:111",
+    "scripts/hero_face/likeness/sanctioned_import.py:121"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "always_persist_rendering_state",
+   "verdict": "PRESENT",
+   "resolved": "always_persist_rendering_state",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:164",
+    "scripts/hero_face/likeness/build_capture_stage.py:312",
+    "scripts/hero_face/likeness/build_capture_stage.py:340",
+    "scripts/hero_face/likeness/capture_shot.py:179",
+    "scripts/hero_face/likeness/capture_shot.py:231"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "approximation_accuracy",
+   "verdict": "PRESENT",
+   "resolved": "approximation_accuracy",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:66",
+    "scripts/payloads/hlod_set_approx_accuracy.py:72",
+    "scripts/payloads/hlod_set_approx_accuracy.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "asset_import_data",
+   "verdict": "PRESENT",
+   "resolved": "asset_import_data",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/verify_texture_source.py:75"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "asset_user_data",
+   "verdict": "PRESENT",
+   "resolved": "asset_user_data",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/env_check.py:206"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "atmosphere_sun_light",
+   "verdict": "PRESENT",
+   "resolved": "atmosphere_sun_light",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:311"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "auto_compute_lod_screen_size",
+   "verdict": "PRESENT",
+   "resolved": "auto_compute_lod_screen_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_mesh_lods.py:238"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "auto_exposure_bias",
+   "verdict": "PRESENT",
+   "resolved": "auto_exposure_bias",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:605"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "auto_exposure_max_brightness",
+   "verdict": "PRESENT",
+   "resolved": "auto_exposure_max_brightness",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:612"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "auto_exposure_min_brightness",
+   "verdict": "PRESENT",
+   "resolved": "auto_exposure_min_brightness",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:611"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "automated",
+   "verdict": "PRESENT",
+   "resolved": "automated",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:99",
+    "scripts/build_hero_assets.py:247",
+    "scripts/import_alpinelab_masks.py:109",
+    "scripts/import_layer_textures.py:281",
+    "scripts/import_static_mesh.py:193",
+    "scripts/import_static_mesh.py:231",
+    "scripts/import_surface_set.py:149",
+    "scripts/measure_tree_packs.py:164",
+    "scripts/push_heightmap.py:1773",
+    "scripts/ue5_import_alpinelab.py:389"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "b",
+   "verdict": "PRESENT",
+   "resolved": "b",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:339",
+    "scripts/make_foliage_material.py:226",
+    "scripts/make_foliage_material.py:345",
+    "scripts/make_foliage_material.py:407",
+    "scripts/make_foliage_material.py:413",
+    "scripts/make_foliage_material.py:421",
+    "scripts/make_landscape_material.py:1625",
+    "scripts/make_landscape_material.py:1662",
+    "scripts/make_landscape_material.py:1672",
+    "scripts/make_landscape_material.py:1796",
+    "scripts/make_landscape_material.py:1840",
+    "scripts/make_landscape_material.py:1846",
+    "scripts/make_layer_debug_material.py:272",
+    "scripts/make_layer_debug_material.py:280",
+    "scripts/make_layer_debug_material.py:342"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "base_property_overrides",
+   "verdict": "PRESENT",
+   "resolved": "base_property_overrides",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:126"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "blend_mode",
+   "verdict": "PRESENT",
+   "resolved": "blend_mode",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_foliage_material.py:533",
+    "scripts/measure_tree_packs.py:128",
+    "scripts/payloads/read_grass_card.py:57"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "blend_type",
+   "verdict": "PRESENT",
+   "resolved": "blend_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:483",
+    "scripts/payloads/sample_census.py:483"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "blend_weight",
+   "verdict": "PRESENT",
+   "resolved": "blend_weight",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/grade_probe.py:32"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "blendable_location",
+   "verdict": "PRESENT",
+   "resolved": "blendable_location",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/make_depth_material.py:108",
+    "scripts/payloads/make_ppi0_passthrough.py:118",
+    "scripts/payloads/make_ppi0_passthrough.py:94",
+    "scripts/payloads/make_ppi0_passthrough.py:97",
+    "scripts/payloads/make_scenetexture_passthrough.py:63",
+    "scripts/payloads/make_scenetexture_passthrough.py:79"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "bloom_intensity",
+   "verdict": "PRESENT",
+   "resolved": "bloom_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:700",
+    "scripts/apply_lighting.py:736"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "bloom_method",
+   "verdict": "PRESENT",
+   "resolved": "bloom_method",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:698",
+    "scripts/apply_lighting.py:735"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "body_instance",
+   "verdict": "PRESENT",
+   "resolved": "body_instance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:300",
+    "scripts/apply_foliage_collision.py:326",
+    "scripts/apply_foliage_collision.py:333",
+    "scripts/measure_foliage_collision.py:110"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "body_setup",
+   "verdict": "PRESENT",
+   "resolved": "body_setup",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:254",
+    "scripts/apply_foliage_collision.py:280",
+    "scripts/audit_fab_pack.py:127",
+    "scripts/measure_foliage_collision.py:126",
+    "scripts/measure_mesh_collision.py:117"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "bone_tree",
+   "verdict": "PRESENT",
+   "resolved": "bone_tree",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/env_check.py:201",
+    "scripts/hero_face/likeness/use_preview_mesh.py:102",
+    "scripts/probe_skeleton.py:153"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "bounds",
+   "verdict": "PRESENT",
+   "resolved": "bounds",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_expected_set.py:122",
+    "scripts/payloads/hlod_pick_cell.py:71",
+    "scripts/payloads/hlod_verify_built.py:62",
+    "scripts/payloads/missing_ifa_distance.py:35",
+    "scripts/payloads/vista_hlod_boundary.py:107",
+    "scripts/payloads/vista_hlod_boundary.py:60"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "box_elems",
+   "verdict": "PRESENT",
+   "resolved": "box_elems",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:260"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "build_nanite",
+   "verdict": "PRESENT",
+   "resolved": "build_nanite",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:245"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "camera_component",
+   "verdict": "PRESENT",
+   "resolved": "camera_component",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/meter_warmup_probe.py:81",
+    "scripts/payloads/station_cameras.py:46"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "capsule_component",
+   "verdict": "PRESENT",
+   "resolved": "capsule_component",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/verify_walkable_profile.py:108"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "capture_every_frame",
+   "verdict": "PRESENT",
+   "resolved": "capture_every_frame",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:163",
+    "scripts/hero_face/likeness/capture_shot.py:174",
+    "scripts/hero_face/likeness/capture_shot.py:175",
+    "scripts/hero_face/likeness/capture_shot.py:229"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "capture_source",
+   "verdict": "PRESENT",
+   "resolved": "capture_source",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:161",
+    "scripts/hero_face/likeness/build_capture_stage.py:179"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "cast_dynamic_shadow",
+   "verdict": "PRESENT",
+   "resolved": "cast_dynamic_shadow",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:3082",
+    "scripts/payloads/task4_shadow_lever.py:59",
+    "scripts/payloads/task4_shadow_lever.py:60",
+    "scripts/payloads/task4_shadow_lever.py:61",
+    "scripts/payloads/task4_shadow_lever.py:77",
+    "scripts/recover_state.py:156"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "cast_shadow",
+   "verdict": "PRESENT",
+   "resolved": "cast_shadow",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/shade_pair_place.py:202",
+    "scripts/payloads/shade_pair_place.py:220"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "cast_shadows",
+   "verdict": "PRESENT",
+   "resolved": "cast_shadows",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:312"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "cell_size",
+   "verdict": "PRESENT",
+   "resolved": "cell_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_default_probe.py:86",
+    "scripts/payloads/hlod_probe.py:41",
+    "scripts/payloads/hlod_set_proxy_budget.py:177",
+    "scripts/payloads/hlod_set_proxy_budget.py:99",
+    "scripts/payloads/hlod_set_world_default.py:122",
+    "scripts/payloads/hlod_setup_layers.py:74",
+    "scripts/payloads/hlod_setup_layers.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "center",
+   "verdict": "PRESENT",
+   "resolved": "center",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:267",
+    "scripts/apply_foliage_collision.py:286",
+    "scripts/make_alpinelab_material.py:539",
+    "scripts/make_alpinelab_material.py:552",
+    "scripts/make_landscape_material.py:2918",
+    "scripts/make_landscape_material.py:2931",
+    "scripts/read_nanite_state.py:147",
+    "scripts/verify_cold_boot.py:101"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "clamp_voxel_dimension",
+   "verdict": "PRESENT",
+   "resolved": "clamp_voxel_dimension",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:67",
+    "scripts/payloads/hlod_set_approx_accuracy.py:83"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "collision_enabled",
+   "verdict": "PRESENT",
+   "resolved": "collision_enabled",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:302",
+    "scripts/apply_foliage_collision.py:324",
+    "scripts/apply_foliage_collision.py:335"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "collision_profile_name",
+   "verdict": "PRESENT",
+   "resolved": "collision_profile_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:303",
+    "scripts/apply_foliage_collision.py:323",
+    "scripts/apply_foliage_collision.py:336",
+    "scripts/measure_mesh_collision.py:145"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "collision_trace_flag",
+   "verdict": "PRESENT",
+   "resolved": "collision_trace_flag",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_mesh_collision.py:134"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "color_contrast",
+   "verdict": "PRESENT",
+   "resolved": "color_contrast",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:695",
+    "scripts/apply_lighting.py:716"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "color_gamma",
+   "verdict": "PRESENT",
+   "resolved": "color_gamma",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/set_color_gamma.py:43",
+    "scripts/payloads/set_color_gamma.py:47",
+    "scripts/payloads/set_color_gamma.py:58"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "combine_meshes",
+   "verdict": "PRESENT",
+   "resolved": "combine_meshes",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:243"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "component",
+   "verdict": "PRESENT",
+   "resolved": "component",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/push_heightmap.py:1570",
+    "scripts/recover_state.py:254",
+    "scripts/test_push_heightmap.py:424"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "compression_settings",
+   "verdict": "PRESENT",
+   "resolved": "compression_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_fab_pack.py:159",
+    "scripts/audit_material_samplers.py:98",
+    "scripts/bake_hero_face_textures.py:127",
+    "scripts/import_alpinelab_masks.py:134",
+    "scripts/make_landscape_material.py:1516",
+    "scripts/ue5_import_alpinelab.py:368",
+    "scripts/ue5_import_alpinelab.py:418",
+    "scripts/verify_texture_source.py:70"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "const_b",
+   "verdict": "PRESENT",
+   "resolved": "const_b",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/make_depth_material.py:79",
+    "scripts/payloads/make_depth_material.py:86"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "const_mip_value",
+   "verdict": "PRESENT",
+   "resolved": "const_mip_value",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:293",
+    "scripts/make_landscape_material.py:2104"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "constant",
+   "verdict": "PRESENT",
+   "resolved": "constant",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:232",
+    "scripts/make_landscape_material.py:1617",
+    "scripts/make_landscape_material.py:1745",
+    "scripts/payloads/greycard_place.py:68",
+    "scripts/payloads/shade_pair_place.py:84"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "contact_shadow_length",
+   "verdict": "PRESENT",
+   "resolved": "contact_shadow_length",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/task4_shadow_lever.py:104",
+    "scripts/payloads/task4_shadow_lever.py:112"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "contact_shadow_length_in_ws",
+   "verdict": "PRESENT",
+   "resolved": "contact_shadow_length_in_ws",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/task4_shadow_lever.py:106",
+    "scripts/payloads/task4_shadow_lever.py:107",
+    "scripts/payloads/task4_shadow_lever.py:114"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "convex_elems",
+   "verdict": "PRESENT",
+   "resolved": "convex_elems",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:261"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "cull_distance",
+   "verdict": "PRESENT",
+   "resolved": "cull_distance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/place_foliage.py:1211",
+    "scripts/scatter_alpinelab.py:278",
+    "scripts/update_foliage_culls.py:58"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "custom_navigable_geometry",
+   "verdict": "PRESENT",
+   "resolved": "custom_navigable_geometry",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:304",
+    "scripts/apply_foliage_collision.py:337"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "default",
+   "verdict": "PRESENT",
+   "resolved": "default",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:472",
+    "scripts/make_landscape_material.py:3137",
+    "scripts/read_grass_type.py:57",
+    "scripts/read_grass_type.py:60"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "default_hlod_layer",
+   "verdict": "PRESENT",
+   "resolved": "default_hlod_layer",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/dump_hlod_landscape_layer.py:184",
+    "scripts/payloads/hlod_default_probe.py:67",
+    "scripts/payloads/hlod_hash_by_name.py:64",
+    "scripts/payloads/hlod_probe.py:27",
+    "scripts/payloads/hlod_route_discovery.py:108",
+    "scripts/payloads/hlod_runtimehash_probe.py:74",
+    "scripts/payloads/hlod_save_world_default.py:114",
+    "scripts/payloads/hlod_save_world_default.py:61",
+    "scripts/payloads/hlod_save_world_default.py:70",
+    "scripts/payloads/hlod_set_world_default.py:106",
+    "scripts/payloads/hlod_set_world_default.py:127",
+    "scripts/payloads/hlod_set_world_default.py:132",
+    "scripts/payloads/hlod_set_world_default.py:153",
+    "scripts/payloads/probe_hlod_chain_and_cvars.py:36"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "default_instance",
+   "verdict": "PRESENT",
+   "resolved": "default_instance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/apply_grooms.py:83",
+    "scripts/hero_face/likeness/groom_color.py:84",
+    "scripts/measure_mesh_collision.py:143"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "default_key_mappings",
+   "verdict": "PRESENT",
+   "resolved": "default_key_mappings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:128",
+    "scripts/apply_character_recipe.py:130",
+    "scripts/apply_character_recipe.py:133"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "default_value",
+   "verdict": "PRESENT",
+   "resolved": "default_value",
+   "deprecated_on_doc_row": true,
+   "live_sites": [
+    "research/census/sample_census.py:490",
+    "scripts/payloads/sample_census.py:490"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "destination_name",
+   "verdict": "PRESENT",
+   "resolved": "destination_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:98",
+    "scripts/build_hero_assets.py:246",
+    "scripts/import_alpinelab_masks.py:108",
+    "scripts/import_layer_textures.py:280",
+    "scripts/import_static_mesh.py:191",
+    "scripts/import_static_mesh.py:230",
+    "scripts/import_surface_set.py:147",
+    "scripts/push_heightmap.py:1772",
+    "scripts/ue5_import_alpinelab.py:388"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "destination_path",
+   "verdict": "PRESENT",
+   "resolved": "destination_path",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:97",
+    "scripts/build_hero_assets.py:245",
+    "scripts/import_alpinelab_masks.py:107",
+    "scripts/import_layer_textures.py:279",
+    "scripts/import_static_mesh.py:189",
+    "scripts/import_static_mesh.py:229",
+    "scripts/import_surface_set.py:145",
+    "scripts/push_heightmap.py:1771",
+    "scripts/ue5_import_alpinelab.py:387"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "directional_inscattering_luminance",
+   "verdict": "PRESENT",
+   "resolved": "directional_inscattering_luminance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:506",
+    "scripts/payloads/fog_state.py:89"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "disable_multisample_effects",
+   "verdict": "PRESENT",
+   "resolved": "disable_multisample_effects",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:166",
+    "scripts/payloads/bench_render.py:175"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "disable_tone_curve",
+   "verdict": "PRESENT",
+   "resolved": "disable_tone_curve",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:113",
+    "scripts/payloads/bench_render.py:119",
+    "scripts/payloads/mrq_color_probe.py:38"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "displacement_scaling",
+   "verdict": "PRESENT",
+   "resolved": "displacement_scaling",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:537",
+    "scripts/make_alpinelab_material.py:540",
+    "scripts/make_landscape_material.py:2916",
+    "scripts/make_landscape_material.py:2919",
+    "scripts/make_landscape_material.py:2925",
+    "scripts/verify_cold_boot.py:94"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "dna_asset",
+   "verdict": "PRESENT",
+   "resolved": "dna_asset",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/env_check.py:229"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "dna_file_name",
+   "verdict": "PRESENT",
+   "resolved": "dna_file_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/env_check.py:238"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "enable_auto_lod_generation",
+   "verdict": "PRESENT",
+   "resolved": "enable_auto_lod_generation",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_default_probe.py:119"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "enable_collision",
+   "verdict": "PRESENT",
+   "resolved": "enable_collision",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_skeletal_to_static.py:149"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "enable_density_scaling",
+   "verdict": "PRESENT",
+   "resolved": "enable_density_scaling",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:3124"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "enable_light_shaft_bloom",
+   "verdict": "PRESENT",
+   "resolved": "enable_light_shaft_bloom",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:307"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "enable_nanite",
+   "verdict": "PRESENT",
+   "resolved": "enable_nanite",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_skeletal_to_static.py:148",
+    "scripts/enable_landscape_nanite.py:115",
+    "scripts/enable_landscape_nanite.py:140",
+    "scripts/enable_landscape_nanite.py:144",
+    "scripts/landscape_nanite_build.py:103",
+    "scripts/landscape_nanite_build.py:91",
+    "scripts/nanite_batch_build.py:191",
+    "scripts/nanite_batch_build.py:201",
+    "scripts/nanite_batch_build.py:250",
+    "scripts/verify_cold_boot.py:46"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "enable_tessellation",
+   "verdict": "PRESENT",
+   "resolved": "enable_tessellation",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:536",
+    "scripts/make_alpinelab_material.py:548",
+    "scripts/make_landscape_material.py:2915",
+    "scripts/make_landscape_material.py:2933",
+    "scripts/verify_cold_boot.py:99"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "enable_volumetric_fog",
+   "verdict": "PRESENT",
+   "resolved": "enable_volumetric_fog",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:458",
+    "scripts/payloads/fog_state.py:83"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "enabled",
+   "verdict": "PRESENT",
+   "resolved": "enabled",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:339",
+    "scripts/apply_nanite.py:115",
+    "scripts/apply_nanite.py:96",
+    "scripts/apply_nanite.py:98",
+    "scripts/audit_fab_pack.py:123",
+    "scripts/import_static_mesh.py:273",
+    "scripts/measure_mesh_collision.py:112",
+    "scripts/measure_palette_live.py:80",
+    "scripts/measure_rock_meshes.py:99",
+    "scripts/payloads/bench_render.py:151",
+    "scripts/payloads/bench_render.py:72",
+    "scripts/payloads/bench_render.py:83",
+    "scripts/payloads/hlod_verify_built.py:140",
+    "scripts/payloads/meter_warmup_probe.py:35",
+    "scripts/payloads/mrq_color_probe.py:40",
+    "scripts/payloads/sample_census.py:339",
+    "scripts/payloads/tree_lod_probe.py:62"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "end_console_commands",
+   "verdict": "PRESENT",
+   "resolved": "end_console_commands",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:287",
+    "scripts/payloads/bench_render.py:326"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "end_cull_distance",
+   "verdict": "PRESENT",
+   "resolved": "end_cull_distance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/read_grass_type.py:59",
+    "scripts/recover_state.py:149"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "engine_warm_up_count",
+   "verdict": "PRESENT",
+   "resolved": "engine_warm_up_count",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:196",
+    "scripts/payloads/bench_render.py:311"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "errors",
+   "verdict": "PRESENT",
+   "resolved": "errors",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:172"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "exporter",
+   "verdict": "PRESENT",
+   "resolved": "exporter",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:167"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "expression_collection",
+   "verdict": "ABSENT",
+   "resolved": "expression_collection",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:562"
+   ],
+   "has_read_back": true,
+   "absent_class": "GUARDED-ABSENT",
+   "absent_why": "make_alpinelab_material.py:573 guarded, self-reports (NN6); legacy alpinelab script"
+  },
+  {
+   "name": "field_of_view",
+   "verdict": "PRESENT",
+   "resolved": "field_of_view",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/capture.py:671",
+    "scripts/payloads/bench_ground_place.py:62",
+    "scripts/payloads/bench_ground_place.py:81",
+    "scripts/payloads/bench_make_cameras.py:82",
+    "scripts/payloads/bench_make_cameras.py:97",
+    "scripts/payloads/bench_make_stills.py:74",
+    "scripts/payloads/station_cameras.py:48"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "file_name_format",
+   "verdict": "PRESENT",
+   "resolved": "file_name_format",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:182",
+    "scripts/payloads/bench_render.py:304"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "filename",
+   "verdict": "PRESENT",
+   "resolved": "filename",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:96",
+    "scripts/build_hero_assets.py:244",
+    "scripts/import_alpinelab_masks.py:106",
+    "scripts/import_layer_textures.py:278",
+    "scripts/import_static_mesh.py:188",
+    "scripts/import_static_mesh.py:228",
+    "scripts/import_surface_set.py:144",
+    "scripts/measure_tree_packs.py:163",
+    "scripts/push_heightmap.py:1770",
+    "scripts/ue5_import_alpinelab.py:386"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "film_grain_intensity",
+   "verdict": "PRESENT",
+   "resolved": "film_grain_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:702",
+    "scripts/apply_lighting.py:738"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "filter",
+   "verdict": "PRESENT",
+   "resolved": "filter",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/push_heightmap.py:1794"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "float_value",
+   "verdict": "PRESENT",
+   "resolved": "float_value",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/groom_color.py:129"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "flush_streaming_managers",
+   "verdict": "PRESENT",
+   "resolved": "flush_streaming_managers",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:230"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "fog_density",
+   "verdict": "PRESENT",
+   "resolved": "fog_density",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:423",
+    "scripts/payloads/fog_state.py:80"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "fog_height_falloff",
+   "verdict": "PRESENT",
+   "resolved": "fog_height_falloff",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:452",
+    "scripts/apply_lighting.py:528",
+    "scripts/payloads/fog_state.py:81"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "fog_inscattering_luminance",
+   "verdict": "PRESENT",
+   "resolved": "fog_inscattering_luminance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:504",
+    "scripts/payloads/fog_state.py:85"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "forced_lod",
+   "verdict": "PRESENT",
+   "resolved": "forced_lod",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/landscape_lod_probe.py:150",
+    "scripts/landscape_lod_probe.py:162"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "format",
+   "verdict": "PRESENT",
+   "resolved": "format",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:156"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "fov_angle",
+   "verdict": "PRESENT",
+   "resolved": "fov_angle",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/build_capture_stage.py:178",
+    "scripts/hero_face/likeness/build_capture_stage.py:336",
+    "scripts/hero_face/likeness/capture_shot.py:181"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "g",
+   "verdict": "PRESENT",
+   "resolved": "g",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:338",
+    "scripts/make_foliage_material.py:225",
+    "scripts/make_foliage_material.py:344",
+    "scripts/make_foliage_material.py:406",
+    "scripts/make_foliage_material.py:412",
+    "scripts/make_foliage_material.py:420",
+    "scripts/make_landscape_material.py:1624",
+    "scripts/make_landscape_material.py:1661",
+    "scripts/make_landscape_material.py:1671",
+    "scripts/make_landscape_material.py:1795",
+    "scripts/make_landscape_material.py:1839",
+    "scripts/make_landscape_material.py:1845",
+    "scripts/make_landscape_material.py:2426",
+    "scripts/make_layer_debug_material.py:271",
+    "scripts/make_layer_debug_material.py:279",
+    "scripts/make_layer_debug_material.py:341",
+    "scripts/make_layer_debug_material.py:347"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "generate_lightmap_u_vs",
+   "verdict": "PRESENT",
+   "resolved": "generate_lightmap_u_vs",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:244"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "generate_nanite_enabled_mesh",
+   "verdict": "PRESENT",
+   "resolved": "generate_nanite_enabled_mesh",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:89",
+    "scripts/payloads/hlod_set_proxy_budget.py:173"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "grass_density",
+   "verdict": "PRESENT",
+   "resolved": "grass_density",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:471",
+    "scripts/make_landscape_material.py:3136",
+    "scripts/read_grass_type.py:56",
+    "scripts/recover_state.py:145"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "grass_mesh",
+   "verdict": "PRESENT",
+   "resolved": "grass_mesh",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:452",
+    "scripts/make_landscape_material.py:3065",
+    "scripts/make_landscape_material.py:3140",
+    "scripts/payloads/read_shadow_state.py:83",
+    "scripts/payloads/task4_shadow_lever.py:62",
+    "scripts/read_grass_type.py:55",
+    "scripts/recover_state.py:143"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "grass_type",
+   "verdict": "PRESENT",
+   "resolved": "grass_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:489",
+    "scripts/make_landscape_material.py:3199"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "grass_types",
+   "verdict": "PRESENT",
+   "resolved": "grass_types",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:491",
+    "scripts/make_landscape_material.py:3206"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "grass_varieties",
+   "verdict": "PRESENT",
+   "resolved": "grass_varieties",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:463",
+    "scripts/make_alpinelab_material.py:470",
+    "scripts/make_landscape_material.py:3120",
+    "scripts/make_landscape_material.py:3132",
+    "scripts/payloads/read_shadow_state.py:70",
+    "scripts/payloads/task4_shadow_lever.py:56",
+    "scripts/payloads/task4_shadow_lever.py:74",
+    "scripts/payloads/task4_shadow_lever.py:78",
+    "scripts/read_grass_type.py:54",
+    "scripts/recover_state.py:141"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "grid_settings",
+   "verdict": "ABSENT",
+   "resolved": "grid_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_grid_probe.py:31"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "bench_grid_probe.py:31 try/except with the error RECORDED -- a deliberate surface probe"
+  },
+  {
+   "name": "groom_asset",
+   "verdict": "PRESENT",
+   "resolved": "groom_asset",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/use_preview_mesh.py:157"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "ground_albedo",
+   "verdict": "PRESENT",
+   "resolved": "ground_albedo",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/sky_ground_albedo.py:74",
+    "scripts/payloads/sky_ground_albedo.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "guid",
+   "verdict": "PRESENT",
+   "resolved": "guid",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/capture.py:836",
+    "scripts/delete_stray_landscape.py:201",
+    "scripts/payloads/bench_make_dolly.py:138",
+    "scripts/payloads/bench_make_stills.py:60",
+    "scripts/payloads/hlod_sample_cells.py:58",
+    "scripts/payloads/hlod_verify_built.py:61",
+    "scripts/push_heightmap.py:1403",
+    "scripts/rename_landscape.py:65",
+    "scripts/set_landscape_scale.py:73"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "hidden",
+   "verdict": "PRESENT",
+   "resolved": "hidden",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/foreign_light_probe.py:39",
+    "scripts/read_cloud_state.py:102"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "high_precision_output",
+   "verdict": "PRESENT",
+   "resolved": "high_precision_output",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:75",
+    "scripts/payloads/bench_render.py:90"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "hit_actor",
+   "verdict": "ABSENT",
+   "resolved": "hit_actor",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/push_heightmap.py:1539",
+    "scripts/test_push_heightmap.py:425"
+   ],
+   "has_read_back": true,
+   "absent_class": "DOCUMENTED-CASUALTY",
+   "absent_why": "push_heightmap.py:1535-1545 documents the failure (FHitResult has no actor property; HitResult.h:126-131) and uses the reflected component-owner route; on the ue58-api-protocol casualty list (Pass 5 batch 0)"
+  },
+  {
+   "name": "hlod_builder_settings",
+   "verdict": "PRESENT",
+   "resolved": "hlod_builder_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:207",
+    "scripts/payloads/apply_landscape_hlod_settings.py:51",
+    "scripts/payloads/apply_landscape_hlod_settings.py:81",
+    "scripts/payloads/hlod_census_readback.py:76",
+    "scripts/payloads/hlod_probe_approx_fields.py:20",
+    "scripts/payloads/hlod_set_approx_accuracy.py:62",
+    "scripts/payloads/hlod_set_approx_accuracy.py:78",
+    "scripts/payloads/hlod_set_proxy_budget.py:103",
+    "scripts/payloads/hlod_set_proxy_budget.py:115",
+    "scripts/payloads/hlod_set_proxy_budget.py:162",
+    "scripts/payloads/probe_hlod_layer_refs.py:75",
+    "scripts/payloads/read_hlod_settings.py:70",
+    "scripts/payloads/sample_census.py:207"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "hlod_layer",
+   "verdict": "PRESENT",
+   "resolved": "hlod_layer",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_clear_invalid.py:111",
+    "scripts/payloads/hlod_clear_invalid.py:64",
+    "scripts/payloads/hlod_clear_invalid.py:84",
+    "scripts/payloads/hlod_default_probe.py:106",
+    "scripts/payloads/hlod_setup_layers.py:126",
+    "scripts/payloads/hlod_setup_layers.py:130",
+    "scripts/payloads/hlod_setup_layers.py:148",
+    "scripts/payloads/probe_hlod_layer_refs.py:33",
+    "scripts/payloads/probe_hlod_layer_refs.py:66"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "hlod_layers",
+   "verdict": "ABSENT",
+   "resolved": "hlod_layers",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:118",
+    "scripts/payloads/hlod_runtimehash_probe.py:119"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:116+ guarded, error recorded"
+  },
+  {
+   "name": "hlod_setups",
+   "verdict": "ABSENT",
+   "resolved": "hlod_setups",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:109",
+    "scripts/payloads/hlod_runtimehash_probe.py:111"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:108+ guarded"
+  },
+  {
+   "name": "import_as_skeletal",
+   "verdict": "PRESENT",
+   "resolved": "import_as_skeletal",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:239"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "import_materials",
+   "verdict": "PRESENT",
+   "resolved": "import_materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:238"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "import_mesh",
+   "verdict": "PRESENT",
+   "resolved": "import_mesh",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:236"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "import_textures",
+   "verdict": "PRESENT",
+   "resolved": "import_textures",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:237"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "import_whole_rig",
+   "verdict": "PRESENT",
+   "resolved": "import_whole_rig",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/sanctioned_import.py:109",
+    "scripts/hero_face/likeness/sanctioned_import.py:117"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "imported_object_paths",
+   "verdict": "PRESENT",
+   "resolved": "imported_object_paths",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/build_hero_assets.py:251",
+    "scripts/import_static_mesh.py:249",
+    "scripts/ue5_import_alpinelab.py:394"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "imported_size",
+   "verdict": "ABSENT",
+   "resolved": "imported_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:161",
+    "scripts/import_alpinelab_masks.py:162"
+   ],
+   "has_read_back": true,
+   "absent_class": "GUARDED-ABSENT",
+   "absent_why": "import_alpinelab_masks.py:159-164 reports UNREADABLE; 0 stub hits confirmed -- a degraded-but-honest read on a LEGACY alpinelab script"
+  },
+  {
+   "name": "intensity",
+   "verdict": "PRESENT",
+   "resolved": "intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:300",
+    "scripts/apply_lighting.py:350",
+    "scripts/apply_lighting.py:375",
+    "scripts/hero_body/body_silhouette.py:145",
+    "scripts/hero_face/likeness/build_capture_stage.py:146",
+    "scripts/hero_face/likeness/build_capture_stage.py:148",
+    "scripts/hero_face/likeness/build_capture_stage.py:298",
+    "scripts/hero_face/likeness/capture_shot.py:168"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "is_active",
+   "verdict": "PRESENT",
+   "resolved": "is_active",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/read_cloud_state.py:116"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "is_enabled",
+   "verdict": "PRESENT",
+   "resolved": "is_enabled",
+   "deprecated_on_doc_row": true,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:121",
+    "scripts/payloads/bench_render.py:410"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "is_spatially_loaded",
+   "verdict": "PRESENT",
+   "resolved": "is_spatially_loaded",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:180",
+    "scripts/capture.py:663",
+    "scripts/payloads/bench_expected_set.py:115",
+    "scripts/payloads/bench_ground_place.py:69",
+    "scripts/payloads/bench_make_cameras.py:80",
+    "scripts/payloads/bench_make_cameras.py:99",
+    "scripts/payloads/greycard_place.py:177",
+    "scripts/payloads/hlod_default_probe.py:114",
+    "scripts/payloads/hlod_default_probe.py:89",
+    "scripts/payloads/hlod_probe.py:43",
+    "scripts/payloads/hlod_set_proxy_budget.py:101",
+    "scripts/payloads/hlod_setup_layers.py:76",
+    "scripts/payloads/hlod_setup_layers.py:85",
+    "scripts/payloads/missing_ifa_probe.py:39",
+    "scripts/payloads/shade_pair_place.py:191",
+    "scripts/payloads/vista_hlod_boundary.py:56",
+    "scripts/payloads/vista_hlod_boundary.py:96"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "isolate_head_from_body",
+   "verdict": "PRESENT",
+   "resolved": "isolate_head_from_body",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/sanctioned_import.py:110",
+    "scripts/hero_face/likeness/sanctioned_import.py:119"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "key",
+   "verdict": "PRESENT",
+   "resolved": "key",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:114"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "key_name",
+   "verdict": "PRESENT",
+   "resolved": "key_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:113"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "label",
+   "verdict": "PRESENT",
+   "resolved": "label",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_label_grid.py:56",
+    "scripts/payloads/hlod_pick_cell.py:78",
+    "scripts/payloads/hlod_sample_cells.py:55",
+    "scripts/payloads/hlod_verify_built.py:55"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "landscape_actor",
+   "verdict": "PRESENT",
+   "resolved": "landscape_actor",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/test_push_heightmap.py:333"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "landscape_actor_ref",
+   "verdict": "PRESENT",
+   "resolved": "landscape_actor_ref",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/delete_stray_landscape.py:251",
+    "scripts/delete_stray_landscape.py:317",
+    "scripts/landscape_inventory.py:105",
+    "scripts/push_heightmap.py:1044",
+    "scripts/push_heightmap.py:1250",
+    "scripts/push_heightmap.py:1713",
+    "scripts/set_landscape_scale.py:118",
+    "scripts/verify_landscape.py:166"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "landscape_components",
+   "verdict": "ABSENT",
+   "resolved": "landscape_components",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/create_landscape_from_build.py:219",
+    "scripts/test_push_heightmap.py:332"
+   ],
+   "has_read_back": true,
+   "absent_class": "GUARDED-ABSENT",
+   "absent_why": "create_landscape_from_build.py:218-222 unreadable actors COUNTED not zeroed (NN6)"
+  },
+  {
+   "name": "landscape_guid",
+   "verdict": "ABSENT",
+   "resolved": "landscape_guid",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/landscape_inventory.py:116",
+    "scripts/push_heightmap.py:1052",
+    "scripts/push_heightmap.py:1053",
+    "scripts/push_heightmap.py:1258",
+    "scripts/push_heightmap.py:1259",
+    "scripts/push_heightmap.py:1721",
+    "scripts/push_heightmap.py:1722",
+    "scripts/verify_landscape.py:148",
+    "scripts/verify_landscape.py:173"
+   ],
+   "has_read_back": true,
+   "absent_class": "GUARDED-ABSENT",
+   "absent_why": "landscape_inventory.py:115-120 try/except with guid_error recorded; push_heightmap same pattern"
+  },
+  {
+   "name": "landscape_material",
+   "verdict": "PRESENT",
+   "resolved": "landscape_material",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:576",
+    "scripts/make_alpinelab_material.py:577",
+    "scripts/make_landscape_material.py:3254",
+    "scripts/make_layer_debug_material.py:467",
+    "scripts/make_layer_debug_material.py:474"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "layer_bottom_altitude",
+   "verdict": "PRESENT",
+   "resolved": "layer_bottom_altitude",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:572",
+    "scripts/apply_lighting.py:581",
+    "scripts/read_cloud_state.py:118"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "layer_height",
+   "verdict": "PRESENT",
+   "resolved": "layer_height",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:574",
+    "scripts/apply_lighting.py:582",
+    "scripts/read_cloud_state.py:120"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "layer_name",
+   "verdict": "PRESENT",
+   "resolved": "layer_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:482",
+    "scripts/payloads/sample_census.py:482"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "layer_type",
+   "verdict": "PRESENT",
+   "resolved": "layer_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:50",
+    "scripts/payloads/hlod_default_probe.py:85",
+    "scripts/payloads/hlod_probe.py:40",
+    "scripts/payloads/hlod_set_approx_accuracy.py:91",
+    "scripts/payloads/hlod_set_proxy_budget.py:111",
+    "scripts/payloads/hlod_set_proxy_budget.py:166",
+    "scripts/payloads/hlod_set_proxy_budget.py:98",
+    "scripts/payloads/hlod_set_world_default.py:121",
+    "scripts/payloads/hlod_setup_layers.py:73",
+    "scripts/payloads/hlod_setup_layers.py:81"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "layers",
+   "verdict": "PRESENT",
+   "resolved": "layers",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:481",
+    "scripts/payloads/sample_census.py:481"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "length",
+   "verdict": "PRESENT",
+   "resolved": "length",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:271",
+    "scripts/apply_foliage_collision.py:289"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "light_color",
+   "verdict": "PRESENT",
+   "resolved": "light_color",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:396",
+    "scripts/hero_face/likeness/build_capture_stage.py:147"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "light_component",
+   "verdict": "PRESENT",
+   "resolved": "light_component",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/recover_state.py:245"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "loading_range",
+   "verdict": "PRESENT",
+   "resolved": "loading_range",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_default_probe.py:87",
+    "scripts/payloads/hlod_probe.py:42",
+    "scripts/payloads/hlod_set_proxy_budget.py:100",
+    "scripts/payloads/hlod_set_proxy_budget.py:178",
+    "scripts/payloads/hlod_setup_layers.py:75",
+    "scripts/payloads/hlod_setup_layers.py:83"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "location",
+   "verdict": "PRESENT",
+   "resolved": "location",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_pie_cost.py:261",
+    "scripts/push_heightmap.py:1566",
+    "scripts/site_ground_cameras.py:110"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "lod_group",
+   "verdict": "PRESENT",
+   "resolved": "lod_group",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:128",
+    "scripts/measure_rock_meshes.py:130"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "lod_index",
+   "verdict": "PRESENT",
+   "resolved": "lod_index",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_skeletal_to_static.py:129"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "lod_selection_type",
+   "verdict": "PRESENT",
+   "resolved": "lod_selection_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:66",
+    "scripts/payloads/apply_landscape_hlod_settings.py:89",
+    "scripts/payloads/probe_hlod_layer_refs.py:84"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "lod_settings",
+   "verdict": "PRESENT",
+   "resolved": "lod_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:352",
+    "scripts/payloads/sample_census.py:352"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "lower_hemisphere_color",
+   "verdict": "PRESENT",
+   "resolved": "lower_hemisphere_color",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:380"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "lower_hemisphere_is_black",
+   "verdict": "PRESENT",
+   "resolved": "lower_hemisphere_is_black",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:368",
+    "scripts/apply_lighting.py:379"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "magnitude",
+   "verdict": "PRESENT",
+   "resolved": "magnitude",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:538",
+    "scripts/make_alpinelab_material.py:550",
+    "scripts/make_landscape_material.py:2917",
+    "scripts/make_landscape_material.py:2930",
+    "scripts/read_nanite_state.py:146",
+    "scripts/verify_cold_boot.py:100"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "main_layer",
+   "verdict": "ABSENT",
+   "resolved": "main_layer",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:102",
+    "scripts/payloads/hlod_runtimehash_probe.py:103"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:101+ guarded"
+  },
+  {
+   "name": "mappings",
+   "verdict": "PRESENT",
+   "resolved": "mappings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:129",
+    "scripts/apply_character_recipe.py:135"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material",
+   "verdict": "PRESENT",
+   "resolved": "material",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:570",
+    "scripts/apply_lighting.py:583",
+    "scripts/apply_lighting.py:584",
+    "scripts/make_foliage_material.py:522",
+    "scripts/payloads/bench_render.py:153",
+    "scripts/payloads/bench_render.py:74",
+    "scripts/payloads/bench_render.py:85",
+    "scripts/payloads/greycard_place.py:184",
+    "scripts/payloads/lod_capture_scene.py:227",
+    "scripts/payloads/lod_capture_scene.py:288",
+    "scripts/payloads/shade_pair_place.py:198",
+    "scripts/read_cloud_state.py:122"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_domain",
+   "verdict": "PRESENT",
+   "resolved": "material_domain",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/make_depth_material.py:107",
+    "scripts/payloads/make_depth_material.py:64",
+    "scripts/payloads/make_ppi0_passthrough.py:116",
+    "scripts/payloads/make_ppi0_passthrough.py:91",
+    "scripts/payloads/make_scenetexture_passthrough.py:61",
+    "scripts/payloads/make_scenetexture_passthrough.py:77",
+    "scripts/push_heightmap.py:1871"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_expression_editor_x",
+   "verdict": "PRESENT",
+   "resolved": "material_expression_editor_x",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_material_connectivity.py:93"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_expression_editor_y",
+   "verdict": "PRESENT",
+   "resolved": "material_expression_editor_y",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_material_connectivity.py:94"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_function",
+   "verdict": "PRESENT",
+   "resolved": "material_function",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_foliage_material.py:301",
+    "scripts/make_landscape_material.py:1715",
+    "scripts/payloads/read_grass_card.py:31",
+    "scripts/payloads/read_stochastic_binding.py:102",
+    "scripts/payloads/read_stochastic_binding.py:78"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_interface",
+   "verdict": "PRESENT",
+   "resolved": "material_interface",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:370",
+    "scripts/bake_hero_body_textures.py:112",
+    "scripts/bake_hero_body_textures.py:154",
+    "scripts/bake_hero_body_textures.py:165",
+    "scripts/bake_hero_face_textures.py:159",
+    "scripts/bake_hero_face_textures.py:214",
+    "scripts/bake_hero_face_textures.py:227",
+    "scripts/bake_hero_face_textures.py:239",
+    "scripts/build_hero_assets.py:212",
+    "scripts/build_hero_assets.py:218",
+    "scripts/build_hero_assets.py:263",
+    "scripts/measure_lod_materials.py:63",
+    "scripts/payloads/hlod_verify_built.py:161",
+    "scripts/payloads/sample_census.py:370"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_settings",
+   "verdict": "PRESENT",
+   "resolved": "material_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:60",
+    "scripts/payloads/apply_landscape_hlod_settings.py:73",
+    "scripts/payloads/apply_landscape_hlod_settings.py:83",
+    "scripts/payloads/hlod_set_approx_accuracy.py:80",
+    "scripts/payloads/hlod_set_proxy_budget.py:146",
+    "scripts/payloads/hlod_set_proxy_budget.py:151",
+    "scripts/payloads/hlod_set_proxy_budget.py:164",
+    "scripts/payloads/probe_hlod_layer_refs.py:77"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "material_slot_name",
+   "verdict": "PRESENT",
+   "resolved": "material_slot_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_lod_materials.py:66",
+    "scripts/payloads/hlod_verify_built.py:163"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "materials",
+   "verdict": "PRESENT",
+   "resolved": "materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_body_textures.py:109",
+    "scripts/bake_hero_body_textures.py:156",
+    "scripts/bake_hero_body_textures.py:164",
+    "scripts/bake_hero_face_textures.py:156",
+    "scripts/bake_hero_face_textures.py:220",
+    "scripts/bake_hero_face_textures.py:226",
+    "scripts/bake_hero_face_textures.py:238",
+    "scripts/bake_skeletal_to_static.py:175",
+    "scripts/build_hero_assets.py:208",
+    "scripts/build_hero_assets.py:227",
+    "scripts/build_hero_assets.py:262",
+    "scripts/probe_skeleton.py:128"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "max_lod_level",
+   "verdict": "PRESENT",
+   "resolved": "max_lod_level",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/landscape_force_lod.py:48",
+    "scripts/payloads/landscape_force_lod.py:50",
+    "scripts/payloads/landscape_force_lod.py:51"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "max_texture_size",
+   "verdict": "PRESENT",
+   "resolved": "max_texture_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:129",
+    "scripts/import_alpinelab_masks.py:138"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "max_walk_speed",
+   "verdict": "PRESENT",
+   "resolved": "max_walk_speed",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/walk_character.py:156",
+    "scripts/walk_character.py:158",
+    "scripts/walk_character.py:160"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "merge_materials",
+   "verdict": "PRESENT",
+   "resolved": "merge_materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:62",
+    "scripts/payloads/apply_landscape_hlod_settings.py:74",
+    "scripts/payloads/apply_landscape_hlod_settings.py:85",
+    "scripts/payloads/probe_hlod_layer_refs.py:80"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mesh",
+   "verdict": "PRESENT",
+   "resolved": "mesh",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:394",
+    "scripts/apply_foliage_collision.py:219",
+    "scripts/measure_foliage_collision.py:104",
+    "scripts/measure_foliage_collision.py:125",
+    "scripts/payloads/sample_census.py:394",
+    "scripts/place_foliage.py:1131",
+    "scripts/place_foliage.py:1226",
+    "scripts/scatter_alpinelab.py:275"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mesh_approximation_settings",
+   "verdict": "PRESENT",
+   "resolved": "mesh_approximation_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_probe_approx_fields.py:21",
+    "scripts/payloads/hlod_set_approx_accuracy.py:63",
+    "scripts/payloads/hlod_set_approx_accuracy.py:73",
+    "scripts/payloads/hlod_set_approx_accuracy.py:79",
+    "scripts/payloads/hlod_set_proxy_budget.py:122",
+    "scripts/payloads/hlod_set_proxy_budget.py:157",
+    "scripts/payloads/hlod_set_proxy_budget.py:163"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mesh_merge_settings",
+   "verdict": "PRESENT",
+   "resolved": "mesh_merge_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:59",
+    "scripts/payloads/apply_landscape_hlod_settings.py:75",
+    "scripts/payloads/apply_landscape_hlod_settings.py:82",
+    "scripts/payloads/probe_hlod_layer_refs.py:76"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mesh_type_to_import",
+   "verdict": "PRESENT",
+   "resolved": "mesh_type_to_import",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:240"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "mie_anisotropy",
+   "verdict": "PRESENT",
+   "resolved": "mie_anisotropy",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:341"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mie_scattering_scale",
+   "verdict": "PRESENT",
+   "resolved": "mie_scattering_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:339"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mip_gen_settings",
+   "verdict": "PRESENT",
+   "resolved": "mip_gen_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:137"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "mip_value_mode",
+   "verdict": "PRESENT",
+   "resolved": "mip_value_mode",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:2035",
+    "scripts/payloads/read_stochastic_binding.py:84"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "modifiers",
+   "verdict": "PRESENT",
+   "resolved": "modifiers",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_character_recipe.py:124"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "multi_scattering_factor",
+   "verdict": "PRESENT",
+   "resolved": "multi_scattering_factor",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/sky_ground_albedo.py:78"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "name",
+   "verdict": "PRESENT",
+   "resolved": "name",
+   "deprecated_on_doc_row": true,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:266",
+    "scripts/bake_hero_body_textures.py:141",
+    "scripts/bake_hero_body_textures.py:175",
+    "scripts/bake_hero_face_textures.py:200",
+    "scripts/bake_hero_face_textures.py:250",
+    "scripts/hero_face/likeness/groom_color.py:92",
+    "scripts/make_alpinelab_material.py:488",
+    "scripts/make_landscape_material.py:3198",
+    "scripts/payloads/bench_expected_set.py:128",
+    "scripts/payloads/bench_render.py:152",
+    "scripts/payloads/bench_render.py:294",
+    "scripts/payloads/bench_render.py:408",
+    "scripts/payloads/bench_render.py:73",
+    "scripts/payloads/bench_render.py:87",
+    "scripts/payloads/cloud_mi_probe.py:43",
+    "scripts/payloads/hlod_hash_by_name.py:112",
+    "scripts/payloads/hlod_hash_by_name.py:98",
+    "scripts/payloads/hlod_pick_cell.py:79",
+    "scripts/payloads/hlod_runtimehash_probe.py:114",
+    "scripts/payloads/missing_ifa_distance.py:32",
+    "scripts/payloads/vista_hlod_boundary.py:101",
+    "scripts/payloads/vista_hlod_boundary.py:64"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "nanite_settings",
+   "verdict": "PRESENT",
+   "resolved": "nanite_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:339",
+    "scripts/apply_nanite.py:106",
+    "scripts/apply_nanite.py:114",
+    "scripts/apply_nanite.py:95",
+    "scripts/audit_fab_pack.py:122",
+    "scripts/import_static_mesh.py:271",
+    "scripts/measure_mesh_collision.py:111",
+    "scripts/measure_palette_live.py:78",
+    "scripts/measure_rock_meshes.py:97",
+    "scripts/payloads/hlod_verify_built.py:138",
+    "scripts/payloads/sample_census.py:339",
+    "scripts/payloads/tree_lod_probe.py:61"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "nanite_skirt_depth",
+   "verdict": "PRESENT",
+   "resolved": "nanite_skirt_depth",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/landscape_nanite_build.py:94",
+    "scripts/nanite_batch_build.py:194"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "nanite_skirt_enabled",
+   "verdict": "PRESENT",
+   "resolved": "nanite_skirt_enabled",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/landscape_nanite_build.py:105",
+    "scripts/landscape_nanite_build.py:93",
+    "scripts/nanite_batch_build.py:193",
+    "scripts/nanite_batch_build.py:203"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "native_class",
+   "verdict": "PRESENT",
+   "resolved": "native_class",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/capture.py:828",
+    "scripts/delete_stray_landscape.py:198",
+    "scripts/payloads/hlod_label_grid.py:51",
+    "scripts/payloads/hlod_pick_cell.py:63",
+    "scripts/payloads/hlod_sample_cells.py:50",
+    "scripts/push_heightmap.py:1395",
+    "scripts/rename_landscape.py:62",
+    "scripts/set_landscape_scale.py:70"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "nodes",
+   "verdict": "PRESENT",
+   "resolved": "nodes",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:441",
+    "scripts/payloads/sample_census.py:441"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "object",
+   "verdict": "PRESENT",
+   "resolved": "object",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:162"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "ocio_configuration",
+   "verdict": "PRESENT",
+   "resolved": "ocio_configuration",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:116"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "opacity_mask_clip_value",
+   "verdict": "PRESENT",
+   "resolved": "opacity_mask_clip_value",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_foliage_material.py:180",
+    "scripts/measure_tree_packs.py:132"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "options",
+   "verdict": "PRESENT",
+   "resolved": "options",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:246"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "ortho_width",
+   "verdict": "PRESENT",
+   "resolved": "ortho_width",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:169",
+    "scripts/hero_body/body_silhouette.py:179"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "output_directory",
+   "verdict": "PRESENT",
+   "resolved": "output_directory",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:181",
+    "scripts/payloads/bench_render.py:303"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "output_resolution",
+   "verdict": "PRESENT",
+   "resolved": "output_resolution",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:183",
+    "scripts/payloads/bench_render.py:298"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "override_",
+   "verdict": "ABSENT",
+   "resolved": "override_",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/local_exposure_probe.py:57",
+    "scripts/read_exposure.py:123"
+   ],
+   "has_read_back": true,
+   "absent_class": "SCAN-ARTEFACT",
+   "absent_why": "the sites build 'override_' + field dynamically (local_exposure_probe.py:57, read_exposure.py:123, both guarded); the scanner captured the literal prefix -- not a property name"
+  },
+  {
+   "name": "override_auto_exposure_bias",
+   "verdict": "PRESENT",
+   "resolved": "override_auto_exposure_bias",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:604"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_auto_exposure_max_brightness",
+   "verdict": "PRESENT",
+   "resolved": "override_auto_exposure_max_brightness",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:610"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_auto_exposure_method",
+   "verdict": "PRESENT",
+   "resolved": "override_auto_exposure_method",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:599"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_auto_exposure_min_brightness",
+   "verdict": "PRESENT",
+   "resolved": "override_auto_exposure_min_brightness",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:609"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_blend_mode",
+   "verdict": "PRESENT",
+   "resolved": "override_blend_mode",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:130"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "override_bloom_intensity",
+   "verdict": "PRESENT",
+   "resolved": "override_bloom_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:699"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_bloom_method",
+   "verdict": "PRESENT",
+   "resolved": "override_bloom_method",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:697"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_color_contrast",
+   "verdict": "PRESENT",
+   "resolved": "override_color_contrast",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:694"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_color_gamma",
+   "verdict": "PRESENT",
+   "resolved": "override_color_gamma",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/set_color_gamma.py:42",
+    "scripts/payloads/set_color_gamma.py:46",
+    "scripts/payloads/set_color_gamma.py:62"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "override_existing_output",
+   "verdict": "PRESENT",
+   "resolved": "override_existing_output",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:185"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_film_grain_intensity",
+   "verdict": "PRESENT",
+   "resolved": "override_film_grain_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:701"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_materials",
+   "verdict": "PRESENT",
+   "resolved": "override_materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:3116",
+    "scripts/make_landscape_material.py:3145",
+    "scripts/make_nowind_material_instances.py:260",
+    "scripts/make_nowind_material_instances.py:262",
+    "scripts/place_foliage.py:1170",
+    "scripts/place_foliage.py:1171",
+    "scripts/read_grass_type.py:62"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "override_scene_fringe_intensity",
+   "verdict": "PRESENT",
+   "resolved": "override_scene_fringe_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:705"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_temperature_type",
+   "verdict": "PRESENT",
+   "resolved": "override_temperature_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:681"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_view_distance_scale",
+   "verdict": "PRESENT",
+   "resolved": "override_view_distance_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:227"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_vignette_intensity",
+   "verdict": "PRESENT",
+   "resolved": "override_vignette_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:703"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_white_temp",
+   "verdict": "PRESENT",
+   "resolved": "override_white_temp",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:683"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "override_white_tint",
+   "verdict": "PRESENT",
+   "resolved": "override_white_tint",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:685"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "package_name",
+   "verdict": "PRESENT",
+   "resolved": "package_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/probe_material.py:166"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "parameter_info",
+   "verdict": "PRESENT",
+   "resolved": "parameter_info",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_body_textures.py:143",
+    "scripts/bake_hero_body_textures.py:173",
+    "scripts/bake_hero_face_textures.py:202",
+    "scripts/bake_hero_face_textures.py:248",
+    "scripts/payloads/cloud_mi_probe.py:42"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "parameter_name",
+   "verdict": "PRESENT",
+   "resolved": "parameter_name",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:489",
+    "scripts/payloads/sample_census.py:489"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "parameter_value",
+   "verdict": "PRESENT",
+   "resolved": "parameter_value",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_body_textures.py:144",
+    "scripts/bake_hero_body_textures.py:174",
+    "scripts/bake_hero_face_textures.py:203",
+    "scripts/bake_hero_face_textures.py:249",
+    "scripts/payloads/cloud_mi_probe.py:47"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "parent",
+   "verdict": "PRESENT",
+   "resolved": "parent",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:326",
+    "research/census/sample_census.py:419",
+    "research/census/sample_census.py:469",
+    "research/census/sample_census.py:598",
+    "scripts/bake_hero_body_textures.py:117",
+    "scripts/bake_hero_body_textures.py:129",
+    "scripts/bake_hero_face_textures.py:166",
+    "scripts/bake_hero_face_textures.py:182",
+    "scripts/build_hero_assets.py:97",
+    "scripts/payloads/cloud_mi_probe.py:28",
+    "scripts/payloads/sample_census.py:326",
+    "scripts/payloads/sample_census.py:419",
+    "scripts/payloads/sample_census.py:469",
+    "scripts/payloads/sample_census.py:598",
+    "scripts/probe_material.py:94"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "parent_layer",
+   "verdict": "PRESENT",
+   "resolved": "parent_layer",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_default_probe.py:82",
+    "scripts/payloads/hlod_probe.py:44",
+    "scripts/payloads/probe_hlod_chain_and_cvars.py:52"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "partition_layer",
+   "verdict": "ABSENT",
+   "resolved": "partition_layer",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:123",
+    "scripts/payloads/hlod_runtimehash_probe.py:123"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:122+ guarded"
+  },
+  {
+   "name": "path",
+   "verdict": "PRESENT",
+   "resolved": "path",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:180"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "percent_triangles",
+   "verdict": "PRESENT",
+   "resolved": "percent_triangles",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_mesh_lods.py:231"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "persistent_level",
+   "verdict": "ABSENT",
+   "resolved": "persistent_level",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_world_default.py:20"
+   ],
+   "has_read_back": true,
+   "absent_class": "DOCUMENTED-CASUALTY",
+   "absent_why": "hlod_set_world_default.py:16-24 documents the eliminated route (UPROPERTY(Transient) is not reflected to Python; the reflected surface is the contract)"
+  },
+  {
+   "name": "physics_asset",
+   "verdict": "PRESENT",
+   "resolved": "physics_asset",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/probe_skeleton.py:123"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "post_process_blend_weight",
+   "verdict": "PRESENT",
+   "resolved": "post_process_blend_weight",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/build_capture_stage.py:207",
+    "scripts/hero_face/likeness/capture_shot.py:203"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "post_process_settings",
+   "verdict": "PRESENT",
+   "resolved": "post_process_settings",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/build_capture_stage.py:206",
+    "scripts/hero_face/likeness/capture_shot.py:202",
+    "scripts/payloads/meter_warmup_probe.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "preview_weight",
+   "verdict": "PRESENT",
+   "resolved": "preview_weight",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:484",
+    "scripts/payloads/sample_census.py:484"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "priority",
+   "verdict": "PRESENT",
+   "resolved": "priority",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/grade_probe.py:30",
+    "scripts/payloads/local_exposure_probe.py:44",
+    "scripts/payloads/meter_warmup_probe.py:34"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "projection_type",
+   "verdict": "PRESENT",
+   "resolved": "projection_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:167",
+    "scripts/hero_body/body_silhouette.py:188"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "prompt",
+   "verdict": "PRESENT",
+   "resolved": "prompt",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:165"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "r",
+   "verdict": "PRESENT",
+   "resolved": "r",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:226",
+    "scripts/make_alpinelab_material.py:337",
+    "scripts/make_foliage_material.py:224",
+    "scripts/make_foliage_material.py:255",
+    "scripts/make_foliage_material.py:264",
+    "scripts/make_foliage_material.py:279",
+    "scripts/make_foliage_material.py:284",
+    "scripts/make_foliage_material.py:291",
+    "scripts/make_foliage_material.py:312",
+    "scripts/make_foliage_material.py:325",
+    "scripts/make_foliage_material.py:343",
+    "scripts/make_foliage_material.py:357",
+    "scripts/make_foliage_material.py:364",
+    "scripts/make_foliage_material.py:405",
+    "scripts/make_foliage_material.py:411",
+    "scripts/make_foliage_material.py:419",
+    "scripts/make_landscape_material.py:1585",
+    "scripts/make_landscape_material.py:1623",
+    "scripts/make_landscape_material.py:1660",
+    "scripts/make_landscape_material.py:1670",
+    "scripts/make_landscape_material.py:1794",
+    "scripts/make_landscape_material.py:1838",
+    "scripts/make_landscape_material.py:1844",
+    "scripts/make_landscape_material.py:2425",
+    "scripts/make_layer_debug_material.py:253",
+    "scripts/make_layer_debug_material.py:270",
+    "scripts/make_layer_debug_material.py:278",
+    "scripts/make_layer_debug_material.py:340",
+    "scripts/make_layer_debug_material.py:346",
+    "scripts/payloads/greycard_place.py:102",
+    "scripts/payloads/greycard_place.py:97",
+    "scripts/payloads/read_grass_card.py:28",
+    "scripts/payloads/read_stochastic_binding.py:112",
+    "scripts/push_heightmap.py:1887",
+    "scripts/push_heightmap.py:1896"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "radius",
+   "verdict": "PRESENT",
+   "resolved": "radius",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:270",
+    "scripts/apply_foliage_collision.py:288"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "random_rotation",
+   "verdict": "PRESENT",
+   "resolved": "random_rotation",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:461",
+    "scripts/make_landscape_material.py:3080",
+    "scripts/recover_state.py:151"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "rayleigh_scattering_scale",
+   "verdict": "PRESENT",
+   "resolved": "rayleigh_scattering_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:343"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "real_time_capture",
+   "verdict": "PRESENT",
+   "resolved": "real_time_capture",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:366",
+    "scripts/apply_lighting.py:377",
+    "scripts/apply_lighting.py:384"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "reduction_settings",
+   "verdict": "PRESENT",
+   "resolved": "reduction_settings",
+   "deprecated_on_doc_row": true,
+   "live_sites": [
+    "scripts/make_mesh_lods.py:239"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "relative_scale3d",
+   "verdict": "PRESENT",
+   "resolved": "relative_scale3d",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/recover_state.py:120",
+    "scripts/set_landscape_scale.py:86",
+    "scripts/set_landscape_scale.py:96"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "render_target_format",
+   "verdict": "PRESENT",
+   "resolved": "render_target_format",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/push_heightmap.py:1930"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "render_warm_up_count",
+   "verdict": "PRESENT",
+   "resolved": "render_warm_up_count",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:212",
+    "scripts/payloads/bench_render.py:318"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "render_warm_up_frames",
+   "verdict": "PRESENT",
+   "resolved": "render_warm_up_frames",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:210",
+    "scripts/payloads/bench_render.py:316"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "replace_existing",
+   "verdict": "PRESENT",
+   "resolved": "replace_existing",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:100",
+    "scripts/build_hero_assets.py:248",
+    "scripts/import_alpinelab_masks.py:110",
+    "scripts/import_layer_textures.py:282",
+    "scripts/import_static_mesh.py:194",
+    "scripts/import_static_mesh.py:232",
+    "scripts/import_surface_set.py:150",
+    "scripts/push_heightmap.py:1774",
+    "scripts/ue5_import_alpinelab.py:390"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "replace_identical",
+   "verdict": "PRESENT",
+   "resolved": "replace_identical",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_tree_packs.py:166"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "request_tangents",
+   "verdict": "PRESENT",
+   "resolved": "request_tangents",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_skeletal_to_static.py:123"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "rotation",
+   "verdict": "PRESENT",
+   "resolved": "rotation",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:269"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "runtime_grid",
+   "verdict": "PRESENT",
+   "resolved": "runtime_grid",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_expected_set.py:118",
+    "scripts/payloads/bench_grid_derive.py:177",
+    "scripts/payloads/hlod_label_grid.py:57",
+    "scripts/payloads/hlod_pick_cell.py:80",
+    "scripts/payloads/hlod_verify_built.py:65",
+    "scripts/payloads/missing_ifa_probe.py:34",
+    "scripts/payloads/vista_hlod_boundary.py:58",
+    "scripts/payloads/vista_hlod_boundary.py:98"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "runtime_hash",
+   "verdict": "ABSENT",
+   "resolved": "runtime_hash",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:8",
+    "scripts/payloads/hlod_runtimehash_probe.py:77"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:5-12 documents the bare-UPROPERTY failure pattern; every access guarded, errors recorded; hlod_runtimehash_probe archived (1e/3c)"
+  },
+  {
+   "name": "runtime_partitions",
+   "verdict": "ABSENT",
+   "resolved": "runtime_partitions",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_hash_by_name.py:91",
+    "scripts/payloads/hlod_runtimehash_probe.py:91"
+   ],
+   "has_read_back": true,
+   "absent_class": "PROBE-GUARDED",
+   "absent_why": "hlod_hash_by_name.py:88-94 guarded, error recorded"
+  },
+  {
+   "name": "sampler_type",
+   "verdict": "PRESENT",
+   "resolved": "sampler_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_fab_pack.py:160",
+    "scripts/audit_material_samplers.py:109",
+    "scripts/audit_material_samplers.py:94",
+    "scripts/make_foliage_material.py:189",
+    "scripts/make_foliage_material.py:248",
+    "scripts/make_landscape_material.py:1869",
+    "scripts/make_landscape_material.py:1876",
+    "scripts/make_landscape_material.py:1905",
+    "scripts/make_landscape_material.py:1910",
+    "scripts/make_landscape_material.py:2002",
+    "scripts/make_landscape_material.py:2011",
+    "scripts/payloads/read_layer_tiling.py:127"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "save",
+   "verdict": "PRESENT",
+   "resolved": "save",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/bake_hero_face_textures.py:101",
+    "scripts/build_hero_assets.py:249",
+    "scripts/import_alpinelab_masks.py:111",
+    "scripts/import_layer_textures.py:283",
+    "scripts/import_static_mesh.py:195",
+    "scripts/import_static_mesh.py:233",
+    "scripts/import_surface_set.py:151",
+    "scripts/push_heightmap.py:1775",
+    "scripts/ue5_import_alpinelab.py:391"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "scalar_parameter_values",
+   "verdict": "PRESENT",
+   "resolved": "scalar_parameter_values",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:420",
+    "research/census/sample_census.py:497",
+    "scripts/payloads/sample_census.py:420",
+    "scripts/payloads/sample_census.py:497"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "scale_x",
+   "verdict": "PRESENT",
+   "resolved": "scale_x",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/recover_state.py:154"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "scaling",
+   "verdict": "PRESENT",
+   "resolved": "scaling",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:3075"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "scene_fringe_intensity",
+   "verdict": "PRESENT",
+   "resolved": "scene_fringe_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:706",
+    "scripts/apply_lighting.py:742"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "scene_texture_id",
+   "verdict": "PRESENT",
+   "resolved": "scene_texture_id",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/make_depth_material.py:72",
+    "scripts/payloads/make_ppi0_passthrough.py:101",
+    "scripts/payloads/make_ppi0_passthrough.py:125",
+    "scripts/payloads/make_scenetexture_passthrough.py:66",
+    "scripts/payloads/make_scenetexture_passthrough.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "screen_size",
+   "verdict": "PRESENT",
+   "resolved": "screen_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_mesh_lods.py:232"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "section_base_x",
+   "verdict": "PRESENT",
+   "resolved": "section_base_x",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/delete_stray_landscape.py:266",
+    "scripts/landscape_inventory.py:186",
+    "scripts/push_heightmap.py:1080",
+    "scripts/push_heightmap.py:1293",
+    "scripts/push_heightmap.py:1741",
+    "scripts/set_landscape_scale.py:134",
+    "scripts/verify_landscape.py:196"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "section_base_y",
+   "verdict": "PRESENT",
+   "resolved": "section_base_y",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/landscape_inventory.py:187",
+    "scripts/push_heightmap.py:1294",
+    "scripts/set_landscape_scale.py:135",
+    "scripts/test_push_heightmap.py:346",
+    "scripts/verify_landscape.py:197"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "settings",
+   "verdict": "PRESENT",
+   "resolved": "settings",
+   "deprecated_on_doc_row": true,
+   "live_sites": [
+    "research/census/sample_census.py:447",
+    "research/census/sample_census.py:560",
+    "scripts/apply_lighting.py:709",
+    "scripts/apply_lighting.py:715",
+    "scripts/apply_lighting.py:752",
+    "scripts/payloads/bench_tonecurve_probe.py:43",
+    "scripts/payloads/exposure_probe.py:44",
+    "scripts/payloads/grade_probe.py:26",
+    "scripts/payloads/local_exposure_probe.py:41",
+    "scripts/payloads/meter_warmup_probe.py:38",
+    "scripts/payloads/sample_census.py:447",
+    "scripts/payloads/sample_census.py:560",
+    "scripts/payloads/set_color_gamma.py:40",
+    "scripts/payloads/set_color_gamma.py:49",
+    "scripts/payloads/set_color_gamma.py:57",
+    "scripts/read_exposure.py:110"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "settings_interface",
+   "verdict": "PRESENT",
+   "resolved": "settings_interface",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:447",
+    "scripts/payloads/sample_census.py:447"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "simplify_method",
+   "verdict": "PRESENT",
+   "resolved": "simplify_method",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:86",
+    "scripts/payloads/hlod_set_proxy_budget.py:168"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "size_x",
+   "verdict": "PRESENT",
+   "resolved": "size_x",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/capture_shot.py:185"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "size_y",
+   "verdict": "PRESENT",
+   "resolved": "size_y",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/capture_shot.py:186"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "skeletal_mesh_asset",
+   "verdict": "PRESENT",
+   "resolved": "skeletal_mesh_asset",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/build_hero_assets.py:152",
+    "scripts/hero_body/body_silhouette.py:100",
+    "scripts/hero_body/body_silhouette.py:121",
+    "scripts/hero_body/body_silhouette.py:125",
+    "scripts/hero_face/likeness/axis_test.py:176",
+    "scripts/hero_face/likeness/axis_test.py:177",
+    "scripts/hero_face/likeness/build_capture_stage.py:116",
+    "scripts/hero_face/likeness/use_preview_mesh.py:118",
+    "scripts/hero_face/likeness/use_preview_mesh.py:119",
+    "scripts/hero_face/likeness/use_preview_mesh.py:133",
+    "scripts/hero_face/likeness/use_preview_mesh.py:97"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "skeleton",
+   "verdict": "PRESENT",
+   "resolved": "skeleton",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/build_hero_assets.py:268",
+    "scripts/hero_face/likeness/env_check.py:194",
+    "scripts/hero_face/likeness/use_preview_mesh.py:101",
+    "scripts/probe_skeleton.py:118"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "sky_atmosphere_ambient_contribution_color_scale",
+   "verdict": "PRESENT",
+   "resolved": "sky_atmosphere_ambient_contribution_color_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:509",
+    "scripts/payloads/fog_state.py:87"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "source",
+   "verdict": "PRESENT",
+   "resolved": "source",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_alpinelab_masks.py:155"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "spatial_sample_count",
+   "verdict": "PRESENT",
+   "resolved": "spatial_sample_count",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:189",
+    "scripts/payloads/bench_render.py:309"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "sphere_elems",
+   "verdict": "PRESENT",
+   "resolved": "sphere_elems",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:262"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "sphyl_elems",
+   "verdict": "PRESENT",
+   "resolved": "sphyl_elems",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_foliage_collision.py:259",
+    "scripts/apply_foliage_collision.py:275",
+    "scripts/apply_foliage_collision.py:282"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "srgb",
+   "verdict": "PRESENT",
+   "resolved": "srgb",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_material_samplers.py:99",
+    "scripts/bake_hero_face_textures.py:109",
+    "scripts/bake_hero_face_textures.py:114",
+    "scripts/bake_hero_face_textures.py:119",
+    "scripts/bake_hero_face_textures.py:125",
+    "scripts/import_alpinelab_masks.py:120",
+    "scripts/import_alpinelab_masks.py:133",
+    "scripts/import_layer_textures.py:295",
+    "scripts/make_landscape_material.py:1517",
+    "scripts/push_heightmap.py:1787",
+    "scripts/ue5_import_alpinelab.py:367",
+    "scripts/ue5_import_alpinelab.py:408",
+    "scripts/ue5_import_alpinelab.py:417"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "start_console_commands",
+   "verdict": "PRESENT",
+   "resolved": "start_console_commands",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:282",
+    "scripts/payloads/bench_render.py:324"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "start_cull_distance",
+   "verdict": "PRESENT",
+   "resolved": "start_cull_distance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/recover_state.py:147"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "start_distance",
+   "verdict": "PRESENT",
+   "resolved": "start_distance",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:455",
+    "scripts/apply_lighting.py:524",
+    "scripts/payloads/fog_state.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "static_materials",
+   "verdict": "PRESENT",
+   "resolved": "static_materials",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:367",
+    "scripts/bake_skeletal_to_static.py:202",
+    "scripts/import_static_mesh.py:281",
+    "scripts/make_foliage_material.py:506",
+    "scripts/payloads/hlod_verify_built.py:160",
+    "scripts/payloads/sample_census.py:367",
+    "scripts/recover_state.py:204"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "static_mesh",
+   "verdict": "PRESENT",
+   "resolved": "static_mesh",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/enable_landscape_nanite.py:179",
+    "scripts/landscape_nanite_build.py:138",
+    "scripts/nanite_batch_build.py:109",
+    "scripts/payloads/greycard_place.py:183",
+    "scripts/payloads/greycard_place.py:198",
+    "scripts/payloads/hlod_sample_cells.py:91",
+    "scripts/payloads/hlod_verify_built.py:100",
+    "scripts/payloads/shade_pair_place.py:196",
+    "scripts/read_instance_transforms.py:98",
+    "scripts/recover_state.py:271",
+    "scripts/scatter_alpinelab.py:306",
+    "scripts/verify_cold_boot.py:61",
+    "scripts/verify_tree_collision.py:164",
+    "scripts/verify_tree_collision.py:169"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "static_mesh_import_data",
+   "verdict": "PRESENT",
+   "resolved": "static_mesh_import_data",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/import_static_mesh.py:242"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "support_ray_tracing",
+   "verdict": "PRESENT",
+   "resolved": "support_ray_tracing",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_sample_cells.py:106",
+    "scripts/payloads/hlod_set_approx_accuracy.py:69",
+    "scripts/payloads/hlod_set_approx_accuracy.py:87",
+    "scripts/payloads/hlod_set_proxy_budget.py:171",
+    "scripts/payloads/hlod_verify_built.py:152"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "target_tri_count",
+   "verdict": "PRESENT",
+   "resolved": "target_tri_count",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:68",
+    "scripts/payloads/hlod_set_approx_accuracy.py:85",
+    "scripts/payloads/hlod_set_proxy_budget.py:169"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "temperature",
+   "verdict": "PRESENT",
+   "resolved": "temperature",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:302"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "temperature_type",
+   "verdict": "PRESENT",
+   "resolved": "temperature_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:682",
+    "scripts/apply_lighting.py:723"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "temporal_sample_count",
+   "verdict": "PRESENT",
+   "resolved": "temporal_sample_count",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:188",
+    "scripts/payloads/bench_render.py:307"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "texture",
+   "verdict": "PRESENT",
+   "resolved": "texture",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/audit_fab_pack.py:156",
+    "scripts/audit_material_connectivity.py:123",
+    "scripts/audit_material_samplers.py:107",
+    "scripts/audit_material_samplers.py:93",
+    "scripts/make_alpinelab_material.py:239",
+    "scripts/make_alpinelab_material.py:284",
+    "scripts/make_foliage_material.py:188",
+    "scripts/make_foliage_material.py:247",
+    "scripts/make_landscape_material.py:1733",
+    "scripts/make_landscape_material.py:1868",
+    "scripts/make_landscape_material.py:1903",
+    "scripts/make_landscape_material.py:1994",
+    "scripts/make_landscape_material.py:2092",
+    "scripts/make_layer_debug_material.py:356",
+    "scripts/material_graph.py:170",
+    "scripts/payloads/read_grass_card.py:37",
+    "scripts/payloads/read_layer_tiling.py:117",
+    "scripts/payloads/read_rvt_and_mipbias.py:89",
+    "scripts/payloads/read_stochastic_binding.py:69",
+    "scripts/push_heightmap.py:1877"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "texture_parameter_values",
+   "verdict": "PRESENT",
+   "resolved": "texture_parameter_values",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:421",
+    "scripts/bake_hero_body_textures.py:151",
+    "scripts/bake_hero_body_textures.py:172",
+    "scripts/bake_hero_face_textures.py:210",
+    "scripts/bake_hero_face_textures.py:247",
+    "scripts/payloads/sample_census.py:421"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "texture_size",
+   "verdict": "PRESENT",
+   "resolved": "texture_size",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/hlod_set_approx_accuracy.py:90",
+    "scripts/payloads/hlod_set_proxy_budget.py:150",
+    "scripts/payloads/hlod_set_proxy_budget.py:176",
+    "scripts/payloads/probe_hlod_layer_refs.py:83"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "texture_sizing_type",
+   "verdict": "PRESENT",
+   "resolved": "texture_sizing_type",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:64",
+    "scripts/payloads/apply_landscape_hlod_settings.py:72",
+    "scripts/payloads/apply_landscape_hlod_settings.py:87",
+    "scripts/payloads/hlod_set_proxy_budget.py:175",
+    "scripts/payloads/probe_hlod_layer_refs.py:82"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "texture_target",
+   "verdict": "PRESENT",
+   "resolved": "texture_target",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_body/body_silhouette.py:160",
+    "scripts/hero_face/likeness/build_capture_stage.py:177",
+    "scripts/hero_face/likeness/build_capture_stage.py:306",
+    "scripts/hero_face/likeness/capture_shot.py:172"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "two_sided",
+   "verdict": "PRESENT",
+   "resolved": "two_sided",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_foliage_material.py:179",
+    "scripts/make_foliage_material.py:534",
+    "scripts/payloads/lod_capture_scene.py:207",
+    "scripts/payloads/read_grass_card.py:56"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "unbound",
+   "verdict": "PRESENT",
+   "resolved": "unbound",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:596",
+    "scripts/payloads/grade_probe.py:29",
+    "scripts/payloads/local_exposure_probe.py:43",
+    "scripts/payloads/meter_warmup_probe.py:33"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "use_camera_cut_for_warm_up",
+   "verdict": "PRESENT",
+   "resolved": "use_camera_cut_for_warm_up",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:195",
+    "scripts/payloads/bench_render.py:313"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "use_material_attributes",
+   "verdict": "PRESENT",
+   "resolved": "use_material_attributes",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_alpinelab_material.py:497",
+    "scripts/make_alpinelab_material.py:528",
+    "scripts/make_alpinelab_material.py:546",
+    "scripts/make_landscape_material.py:2871",
+    "scripts/make_landscape_material.py:2906",
+    "scripts/make_landscape_material.py:2935",
+    "scripts/verify_cold_boot.py:97"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "use_temperature",
+   "verdict": "PRESENT",
+   "resolved": "use_temperature",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:301"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "use_texture_binning",
+   "verdict": "PRESENT",
+   "resolved": "use_texture_binning",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/apply_landscape_hlod_settings.py:68",
+    "scripts/payloads/apply_landscape_hlod_settings.py:91",
+    "scripts/payloads/probe_hlod_layer_refs.py:86"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "value",
+   "verdict": "PRESENT",
+   "resolved": "value",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/make_landscape_material.py:1756",
+    "scripts/payloads/bench_render.py:295",
+    "scripts/payloads/bench_render.py:409",
+    "scripts/payloads/read_stochastic_binding.py:117"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "vector_parameter_values",
+   "verdict": "PRESENT",
+   "resolved": "vector_parameter_values",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:498",
+    "scripts/payloads/sample_census.py:498"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "view_distance_scale",
+   "verdict": "PRESENT",
+   "resolved": "view_distance_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/payloads/bench_render.py:228"
+   ],
+   "has_read_back": false
+  },
+  {
+   "name": "vignette_intensity",
+   "verdict": "PRESENT",
+   "resolved": "vignette_intensity",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:704",
+    "scripts/apply_lighting.py:740"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "visible",
+   "verdict": "PRESENT",
+   "resolved": "visible",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/hero_face/likeness/build_capture_stage.py:257",
+    "scripts/hero_face/likeness/capture_shot.py:128",
+    "scripts/hero_face/likeness/use_preview_mesh.py:107",
+    "scripts/hero_face/likeness/use_preview_mesh.py:127",
+    "scripts/hero_face/likeness/use_preview_mesh.py:129",
+    "scripts/hero_face/likeness/use_preview_mesh.py:144",
+    "scripts/hero_face/likeness/use_preview_mesh.py:162",
+    "scripts/read_cloud_state.py:113"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "volumetric_fog_extinction_scale",
+   "verdict": "PRESENT",
+   "resolved": "volumetric_fog_extinction_scale",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:478"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "volumetric_fog_scattering_distribution",
+   "verdict": "PRESENT",
+   "resolved": "volumetric_fog_scattering_distribution",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:480"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "walkable_slope_override",
+   "verdict": "PRESENT",
+   "resolved": "walkable_slope_override",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/measure_mesh_collision.py:139"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "water_material",
+   "verdict": "PRESENT",
+   "resolved": "water_material",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:594",
+    "scripts/payloads/sample_census.py:594"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "white_temp",
+   "verdict": "PRESENT",
+   "resolved": "white_temp",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:684",
+    "scripts/apply_lighting.py:722"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "white_tint",
+   "verdict": "PRESENT",
+   "resolved": "white_tint",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "scripts/apply_lighting.py:686",
+    "scripts/apply_lighting.py:724"
+   ],
+   "has_read_back": true
+  },
+  {
+   "name": "world_partition",
+   "verdict": "PRESENT",
+   "resolved": "world_partition",
+   "deprecated_on_doc_row": false,
+   "live_sites": [
+    "research/census/sample_census.py:256",
+    "scripts/payloads/apply_streaming_range.py:56",
+    "scripts/payloads/bench_grid_derive.py:63",
+    "scripts/payloads/hlod_default_probe.py:63",
+    "scripts/payloads/hlod_hash_by_name.py:61",
+    "scripts/payloads/hlod_route_discovery.py:103",
+    "scripts/payloads/hlod_runtimehash_probe.py:71",
+    "scripts/payloads/hlod_save_world_default.py:43",
+    "scripts/payloads/hlod_set_world_default.py:86",
+    "scripts/payloads/runtime_partition_probe.py:35",
+    "scripts/payloads/runtime_partition_surface.py:15",
+    "scripts/payloads/sample_census.py:256"
+   ],
+   "has_read_back": true
+  }
+ ],
+ "_absent_verdicts": "All 14 ABSENT rows verified at their call sites 2026-09-16: 2 DOCUMENTED-CASUALTY, 7 PROBE-GUARDED, 4 GUARDED-ABSENT, 1 SCAN-ARTEFACT. Zero live defects; every site fails toward refusal/report.",
+ "_deprecated_caveat": "deprecated_on_doc_row is CLASS-BLIND: the flag fires when ANY class's property of that name carries 'deprecated' on its stub doc row. The 5 flagged names (default_value, is_enabled, name, reduction_settings, settings) are generic and their flagged class is not necessarily the accessed class -- a WEAK SIGNAL, recorded not actioned; a per-class pass is the follow-up if one of these sites misbehaves."
+}

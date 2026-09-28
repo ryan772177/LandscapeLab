@@ -1,0 +1,102 @@
+{
+  "_date": "2026-09-21",
+  "_what": "Brief 5 T3 fresh re-probe after set_lod_screen_sizes",
+  "meshes": [
+    {
+      "species": "Conifer",
+      "path": "/Game/Meshes/Trees/SM_PVE_Norway_Spruce_01_A",
+      "lod_count": 1,
+      "nanite_enabled": true,
+      "screen_sizes": [
+        2.0
+      ],
+      "triangles_per_lod": [
+        2335
+      ],
+      "bounds_extent_cm": [
+        518.4675903320312,
+        517.9763793945312,
+        1465.6336669921875
+      ],
+      "height_cm": 2931.267333984375,
+      "bounding_sphere_radius_cm": 1546.6148681640625
+    },
+    {
+      "species": "ConiferPine",
+      "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+      "lod_count": 4,
+      "nanite_enabled": false,
+      "screen_sizes": [
+        1.5045100450515747,
+        0.3364199995994568,
+        0.23788000643253326,
+        0.03818000108003616
+      ],
+      "triangles_per_lod": [
+        27824,
+        11062,
+        5777,
+        32
+      ],
+      "bounds_extent_cm": [
+        486.74578857421875,
+        491.46861267089844,
+        1105.3604736328125
+      ],
+      "height_cm": 2210.720947265625,
+      "bounding_sphere_radius_cm": 1209.6593765645273
+    },
+    {
+      "species": "SpruceSub",
+      "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+      "lod_count": 5,
+      "nanite_enabled": false,
+      "screen_sizes": [
+        1.0,
+        0.9900000095367432,
+        0.6000000238418579,
+        0.3499999940395355,
+        0.026419999077916145
+      ],
+      "triangles_per_lod": [
+        20695,
+        10347,
+        5174,
+        2587,
+        6
+      ],
+      "bounds_extent_cm": [
+        200.59283447265625,
+        183.5990447998047,
+        836.2306518554688
+      ],
+      "height_cm": 1672.4613037109375,
+      "bounding_sphere_radius_cm": 836.8856811523438
+    },
+    {
+      "species": "SpruceSapling",
+      "path": "/Game/PN_interactiveSpruceForest/Meshes/small/spruce_small_05",
+      "lod_count": 4,
+      "nanite_enabled": false,
+      "screen_sizes": [
+        1.0,
+        0.6000000238418579,
+        0.20000000298023224,
+        0.10000000149011612
+      ],
+      "triangles_per_lod": [
+        2604,
+        1301,
+        650,
+        326
+      ],
+      "bounds_extent_cm": [
+        191.36514282226562,
+        213.52926635742188,
+        226.4646453857422
+      ],
+      "height_cm": 452.9292907714844,
+      "bounding_sphere_radius_cm": 276.3599853515625
+    }
+  ]
+}

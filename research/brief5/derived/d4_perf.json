@@ -1,0 +1,106 @@
+{
+ "_what": "Brief 5 D4 -- density world -game perf vs ratified budgets.",
+ "_rule": "Ryan D4 (2026-09-22): any station over its RULED line (median GPU p90 > line; no 10% tolerance except treeline 7.7) -> revert D3, go to D7. This tool measures + flags only.",
+ "runs": 3,
+ "tolerance_frac": 0.0,
+ "gpu_lines": {
+  "forest_floor": 13.0,
+  "open_max": 13.0,
+  "treeline": 7.7,
+  "plaza": 10.5,
+  "vista": 8.5
+ },
+ "stations": {
+  "forest_floor": {
+   "runs": 3,
+   "gpu_p90_median": 15.342,
+   "gpu_budget": 13.0,
+   "gpu_line": 13.0,
+   "gpu_over": true,
+   "game_p90_median": 3.973,
+   "game_budget": 6.0,
+   "game_line": 6.0,
+   "game_over": false,
+   "vram_local_mib": 4911.2,
+   "per_run_gpu": [
+    15.341,
+    15.342,
+    15.389
+   ]
+  },
+  "open_max": {
+   "runs": 3,
+   "gpu_p90_median": 14.151,
+   "gpu_budget": 13.0,
+   "gpu_line": 13.0,
+   "gpu_over": true,
+   "game_p90_median": 4.011,
+   "game_budget": 6.0,
+   "game_line": 6.0,
+   "game_over": false,
+   "vram_local_mib": 4832.6,
+   "per_run_gpu": [
+    14.102,
+    14.151,
+    14.157
+   ]
+  },
+  "treeline": {
+   "runs": 3,
+   "gpu_p90_median": 7.261,
+   "gpu_budget": 7.0,
+   "gpu_line": 7.7,
+   "gpu_over": false,
+   "game_p90_median": 3.555,
+   "game_budget": 6.0,
+   "game_line": 6.0,
+   "game_over": false,
+   "vram_local_mib": 4817.7,
+   "per_run_gpu": [
+    7.309,
+    7.191,
+    7.261
+   ]
+  },
+  "plaza": {
+   "runs": 3,
+   "gpu_p90_median": 12.939,
+   "gpu_budget": 10.5,
+   "gpu_line": 10.5,
+   "gpu_over": true,
+   "game_p90_median": 3.998,
+   "game_budget": 6.0,
+   "game_line": 6.0,
+   "game_over": false,
+   "vram_local_mib": 4959.8,
+   "per_run_gpu": [
+    12.859,
+    13.09,
+    12.939
+   ]
+  },
+  "vista": {
+   "runs": 3,
+   "gpu_p90_median": 8.235,
+   "gpu_budget": 8.5,
+   "gpu_line": 8.5,
+   "gpu_over": false,
+   "game_p90_median": 3.903,
+   "game_budget": 6.0,
+   "game_line": 6.0,
+   "game_over": false,
+   "vram_local_mib": 4542.5,
+   "per_run_gpu": [
+    8.235,
+    8.252,
+    8.132
+   ]
+  }
+ },
+ "over_budget_stations": [
+  "forest_floor",
+  "open_max",
+  "plaza"
+ ],
+ "verdict": "REVERT_D3"
+}

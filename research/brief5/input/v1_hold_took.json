@@ -1,0 +1,19 @@
+{
+ "_what": "Brief 5 V1 band-masked hold-took check.",
+ "mask_pixels": 1102263,
+ "mask_frac_of_frame": 0.1329,
+ "coverage": {
+  "asis": 0.1312,
+  "armA_cards": 0.2063,
+  "armB_geom": 0.1903
+ },
+ "ssim_asis_vs": {
+  "armA_cards": 0.9166,
+  "armB_geom": 0.9177
+ },
+ "hold_took": true,
+ "ssim_margin_B_minus_A": 0.0011,
+ "_verdict": "MARGINAL. Band-masked, post-hold as-is is ~equally similar to cards (0.9166) and geometry (0.9177); the +0.0011 margin favours geometry (hold took) but is below what SSIM resolves cleanly. At 128-512 m the card vs geometry pixel difference is small (small trees), so the hold's band footprint is small -- which AGREES with V2's ~0 ms cost. The card's egregious defect is close-range / >512 m HLOD, not the 128-512 m live band.",
+ "t1_numbers_survive_band_masking": false,
+ "_t1_supersede": "The earlier T1 figures (coverage ratio 1.87, band SSIM 0.46) DO NOT survive band-masking -- they were dominated by the near ForceLOD-4 trunk (~3 m). Band-masked here: SSIM ~0.92 either way. SUPERSEDED."
+}

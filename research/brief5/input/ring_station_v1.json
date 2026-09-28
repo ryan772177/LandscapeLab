@@ -1,0 +1,33 @@
+{
+ "_what": "Brief 5 V1 ring station: camera maximising ConiferPine + SpruceSub in the 128-512 m ring, with NO tree within 15 m of the camera in frame (V1 clearance rule).",
+ "_method": "top-25 densest card-species 256 m bins x yaw(0..350/10) x pitch{-5,0,5}; reject any camera with a tree < 15 m in the frustum; then count in-frustum ConiferPine+SpruceSub with 128 m <= d <= min(512 m, cull). Same frustum as derive_forest_station.",
+ "min_clearance_m": 15.0,
+ "nearest_infrustum_tree_m": 16.6,
+ "candidates_rejected_for_near_tree": 1948,
+ "ring_m": [
+  128.0,
+  512.0
+ ],
+ "chosen_bin": [
+  -7,
+  9
+ ],
+ "camera": {
+  "x_cm": -166400.0,
+  "y_cm": 243200.0,
+  "z_cm": 19847.2,
+  "pitch_deg": -5.0,
+  "yaw_deg": 250.0
+ },
+ "fov_h_deg": 90.0,
+ "vfov_deg": 58.71550708558254,
+ "res": [
+  3840,
+  2160
+ ],
+ "ring_card_trees_total": 920,
+ "per_species": {
+  "ConiferPine": 437,
+  "SpruceSub": 483
+ }
+}

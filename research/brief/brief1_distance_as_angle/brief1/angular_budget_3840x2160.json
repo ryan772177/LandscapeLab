@@ -1,0 +1,103 @@
+{
+ "camera": {
+  "fov_h_deg": 90.0,
+  "fov_v_deg": 58.716,
+  "res": [
+   3840,
+   2160
+  ],
+  "render_pixels_per_degree": 42.67,
+  "arcmin_per_render_pixel": 1.406
+ },
+ "thresholds_px": {
+  "vanish": 1.5,
+  "silhouette": 6.0,
+  "detail": 40.0
+ },
+ "objects": {
+  "Conifer": {
+   "height_m": 14.7,
+   "dist_m_at_detail": 705.6,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 4704.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 18816.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 730.0,
+   "px_tall_at_recipe_cull": 38.66,
+   "ue_screen_size_at_recipe_cull": 0.0358,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 38.7 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 18816 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 4704 m instead of culling."
+  },
+  "SpruceSub": {
+   "height_m": 9.0,
+   "dist_m_at_detail": 432.0,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 2880.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 11520.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 730.0,
+   "px_tall_at_recipe_cull": 23.67,
+   "ue_screen_size_at_recipe_cull": 0.02192,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 23.7 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 11520 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 2880 m instead of culling."
+  },
+  "SpruceSapling": {
+   "height_m": 4.0,
+   "dist_m_at_detail": 192.0,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 1280.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 5120.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 180.0,
+   "px_tall_at_recipe_cull": 42.67,
+   "ue_screen_size_at_recipe_cull": 0.03951,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 42.7 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 5120 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 1280 m instead of culling."
+  },
+  "Blueberry": {
+   "height_m": 0.6,
+   "dist_m_at_detail": 28.8,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 192.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 768.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 45.0,
+   "px_tall_at_recipe_cull": 25.6,
+   "ue_screen_size_at_recipe_cull": 0.0237,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 25.6 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 768 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 192 m instead of culling."
+  },
+  "Meadow": {
+   "height_m": 0.4,
+   "dist_m_at_detail": 19.2,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 128.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 512.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 50.0,
+   "px_tall_at_recipe_cull": 15.36,
+   "ue_screen_size_at_recipe_cull": 0.01422,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 15.4 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 512 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 128 m instead of culling."
+  },
+  "Boulder": {
+   "height_m": 2.5,
+   "dist_m_at_detail": 120.0,
+   "ue_screen_size_at_detail": 0.03704,
+   "dist_m_at_silhouette": 800.0,
+   "ue_screen_size_at_silhouette": 0.00556,
+   "dist_m_at_vanish": 3200.0,
+   "ue_screen_size_at_vanish": 0.00139,
+   "recipe_cull_m": 140.0,
+   "px_tall_at_recipe_cull": 34.29,
+   "ue_screen_size_at_recipe_cull": 0.03175,
+   "verdict": "VISIBLE POP: at the recipe cull the object is 34.3 px tall, above the silhouette threshold (6 px); it disappears as a shape, not as a speck. Either move the cull to >= 3200 m (vanish) or hand off to a proxy (HLOD/imposter/canopy material) at >= 800 m instead of culling."
+  }
+ },
+ "_ue_screen_size_note": "ScreenSize = 2R/(D*tan(vFOV/2)); VERIFY against SceneManagement.cpp before writing to a recipe",
+ "display": {
+  "pixels_per_degree": 43.0,
+  "limiting_factor": "render",
+  "_note": "when the render is the limit, thresholds are in RENDER pixels; the eye never sees finer than the render provides"
+ }
+}

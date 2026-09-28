@@ -1,0 +1,28 @@
+{
+ "_what": "Brief 5 T4 gate, step 1: recalibrate the density cost model from the D4-measured per-tree/per-pass rates (BACKLOG 2026-09-22). The 0.100 ms/1000 rate is withdrawn.",
+ "_source": "research/brief5/derived/d4_model_error.json (D4 3-run -game, GPU/<pass> medians)",
+ "recalibrated_caps": {
+  "_method": "slope_per_unit_m = measured_ms_per_1000 * v3_in_frustum/1000; cap = 1 + (line - margin - hold)/slope",
+  "forest_floor": {"measured_rate_ms_per_1000": 0.854, "v3_in_frustum": 1844, "slope_ms_per_unit_m": 1.576, "old_slope": 0.185, "hold": 12.645, "line": 13.0, "margin": 0.1, "recalibrated_cap": 1.162, "old_cap": 2.378},
+  "plaza": {"measured_rate_ms_per_1000": 0.980, "v3_in_frustum": 903, "slope_ms_per_unit_m": 0.885, "old_slope": 0.185, "hold": 9.476, "line": 10.5, "margin": 0.0, "recalibrated_cap": 2.157, "old_cap": 5.48},
+  "open_max": {"_note": "binding station, new (no v3 baseline). Measured 14.151 ms at 4943 in-frustum trees, OVER 13.0 by 1.151. To get under 13.0 needs ~1348 fewer in-frustum trees at the 0.854 ms/1000 rate."}
+ },
+ "headline": "At the TRUE measured per-tree cost the affordable density collapses: forest_floor cap 2.38 -> 1.162, plaza 5.48 -> 2.157. Without cutting the per-tree cost, the density upgrade is nearly dead at forest_floor (~1.16x).",
+ "per_pass_forest_floor_dense_ms": {
+  "ShadowDepths": 3.194,
+  "NaniteVisBuffer": 2.200,
+  "Basepass": 1.478,
+  "LumenReflections": 1.303,
+  "Prepass": 0.074
+ },
+ "t4_addressability": {
+  "_what": "Which of the measured passes T4 LOD rungs (mesh tri-reduction on the NON-Nanite species: ConiferPine, SpruceSub, SpruceSapling) can actually reduce.",
+  "NaniteVisBuffer_2.200": "NOT ADDRESSABLE by T4 — this is the Conifer (Nanite) raster; Nanite manages its own LODs (derived_ladder: Conifer SINGLE-REPRESENTATION). T4 rungs do not touch it.",
+  "LumenReflections_1.303": "NOT ADDRESSABLE by T4 — screen-space reflection cost, not triangle-driven.",
+  "ShadowDepths_3.194": "PARTIALLY addressable — shadow-depth of ALL species; T4 cuts the NON-Nanite species' shadow tris, but Conifer (Nanite) shadow depth is Nanite-managed. The non-Nanite vs Nanite split is UNMEASURED (per-species -game hide NOT AVAILABLE, forest_cost).",
+  "Basepass_1.478_Prepass_0.074": "PARTIALLY addressable — same non-Nanite/Nanite split, unmeasured.",
+  "bound": "T4-UNTOUCHABLE floor at forest_floor >= NaniteVisBuffer + LumenReflections = 3.50 ms of ~15.3. The reducible part (non-Nanite share of ShadowDepths+Basepass+Prepass) cannot be quantified without a per-species measurement."
+ },
+ "finding": "T4 rungs are NOT clearly the paying lever. The two biggest measured passes are ShadowDepths (3.19, mostly a SHADOW-DISTANCE / caster-count lever) and NaniteVisBuffer (2.20, Conifer/Nanite, untouchable by T4) + LumenReflections (1.30, a CULL / trace-distance lever). The measured dominant cost points at foliage-shadow-distance + cull distance, NOT (only) non-Nanite tri-reduction. The prior 'T4 does not pay' v3 inference was wrong about NaniteVisBuffer being negligible, but the CORRECTED picture still does not make non-Nanite rungs the main lever.",
+ "recommendation": "Before the editor-risky rung build (which stalled on SpruceSub in D1a), rule the lever: (a) T4 rungs as planned (bounded, uncertain payoff), (b) pivot to the measured levers foliage-shadow-distance + cull (address ShadowDepths + LumenReflections directly), or (c) a per-species -game measurement first to attribute ShadowDepths/Basepass before committing to either."
+}

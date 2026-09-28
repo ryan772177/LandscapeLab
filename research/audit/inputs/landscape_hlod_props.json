@@ -1,0 +1,93 @@
+{
+ "ok": true,
+ "_source": "LandscapeProxy.h:953-974 (5.8.1); names snake_cased",
+ "_why": "ULandscapeComponent::GetCustomHLODBuilderClass() returns ULandscapeHLODBuilder unconditionally (LandscapeComponent.cpp:97-100), so the HLODLayer's MeshMerge settings cannot govern landscape HLOD; these proxy properties do.",
+ "n_landscape_actors": 257,
+ "n_by_class": {
+  "Landscape": 1,
+  "LandscapeStreamingProxy": 256
+ },
+ "distribution": {
+  "hlod_texture_size_policy": {
+   "\"<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>\"": 257
+  },
+  "hlod_texture_size": {
+   "256": 257
+  },
+  "hlod_material_override": {
+   "null": 257
+  },
+  "hlod_mesh_source_lod_policy": {
+   "\"<LandscapeHLODMeshSourceLODPolicy.LOWEST_DETAIL_LOD: 2>\"": 257
+  },
+  "hlod_mesh_source_lod": {
+   "0": 257
+  },
+  "use_landscape_for_culling_invisible_hlod_vertices": {
+   "false": 257
+  }
+ },
+ "reads_that_raised": {
+  "hlod_texture_size_policy": 0,
+  "hlod_texture_size": 0,
+  "hlod_material_override": 0,
+  "hlod_mesh_source_lod_policy": 0,
+  "hlod_mesh_source_lod": 0,
+  "use_landscape_for_culling_invisible_hlod_vertices": 0
+ },
+ "first_error_per_property": {},
+ "n_read_ok_per_property": {
+  "hlod_texture_size_policy": 257,
+  "hlod_texture_size": 257,
+  "hlod_material_override": 257,
+  "hlod_mesh_source_lod_policy": 257,
+  "hlod_mesh_source_lod": 257,
+  "use_landscape_for_culling_invisible_hlod_vertices": 257
+ },
+ "outliers": [],
+ "n_outliers": 0,
+ "parent_landscape": [
+  {
+   "label": "Landscape_Alpine8K",
+   "class": "Landscape",
+   "hlod_texture_size_policy": "<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>",
+   "hlod_texture_size": 256,
+   "hlod_material_override": null,
+   "hlod_mesh_source_lod_policy": "<LandscapeHLODMeshSourceLODPolicy.LOWEST_DETAIL_LOD: 2>",
+   "hlod_mesh_source_lod": 0,
+   "use_landscape_for_culling_invisible_hlod_vertices": false
+  }
+ ],
+ "sample_proxies": [
+  {
+   "label": "LandscapeStreamingProxy_3_3_0",
+   "class": "LandscapeStreamingProxy",
+   "hlod_texture_size_policy": "<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>",
+   "hlod_texture_size": 256,
+   "hlod_material_override": null,
+   "hlod_mesh_source_lod_policy": "<LandscapeHLODMeshSourceLODPolicy.LOWEST_DETAIL_LOD: 2>",
+   "hlod_mesh_source_lod": 0,
+   "use_landscape_for_culling_invisible_hlod_vertices": false
+  },
+  {
+   "label": "LandscapeStreamingProxy_0_2_0",
+   "class": "LandscapeStreamingProxy",
+   "hlod_texture_size_policy": "<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>",
+   "hlod_texture_size": 256,
+   "hlod_material_override": null,
+   "hlod_mesh_source_lod_policy": "<LandscapeHLODMeshSourceLODPolicy.LOWEST_DETAIL_LOD: 2>",
+   "hlod_mesh_source_lod": 0,
+   "use_landscape_for_culling_invisible_hlod_vertices": false
+  },
+  {
+   "label": "LandscapeStreamingProxy_0_1_0",
+   "class": "LandscapeStreamingProxy",
+   "hlod_texture_size_policy": "<LandscapeHLODTextureSizePolicy.SPECIFIC_SIZE: 1>",
+   "hlod_texture_size": 256,
+   "hlod_material_override": null,
+   "hlod_mesh_source_lod_policy": "<LandscapeHLODMeshSourceLODPolicy.LOWEST_DETAIL_LOD: 2>",
+   "hlod_mesh_source_lod": 0,
+   "use_landscape_for_culling_invisible_hlod_vertices": false
+  }
+ ]
+}

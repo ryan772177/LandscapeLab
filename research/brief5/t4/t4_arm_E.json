@@ -1,0 +1,80 @@
+{
+ "_what": "T4 step 2 arm E: r.Nanite.MaxPixelsPerEdge at forest_floor vs the as-is baseline.",
+ "cvar": "r.Nanite.MaxPixelsPerEdge",
+ "default": "1.0",
+ "values": [
+  "2",
+  "4",
+  "8"
+ ],
+ "target_pass": "NaniteVisBuffer",
+ "baseline_gpu_p90": 12.621,
+ "min_detectable_ms": 0.07372923436466781,
+ "rungs": [
+  {
+   "value": "2",
+   "gpu_p90_median": 12.614,
+   "gpu_p90_runs": [
+    12.614,
+    12.638,
+    12.591
+   ],
+   "gpu_gain_vs_baseline_ms": 0.007,
+   "gpu_gain_x_min_det": 0.1,
+   "per_pass_median": {
+    "Basepass": 0.8804,
+    "ShadowDepths": 1.9932,
+    "LumenReflections": 0.9211,
+    "Prepass": 0.0694,
+    "NaniteVisBuffer": 2.0716
+   },
+   "target_pass": "NaniteVisBuffer",
+   "target_pass_delta_ms": -0.0287,
+   "target_pass_delta_x_min_det": -0.4
+  },
+  {
+   "value": "4",
+   "gpu_p90_median": 12.612,
+   "gpu_p90_runs": [
+    12.588,
+    12.618,
+    12.612
+   ],
+   "gpu_gain_vs_baseline_ms": 0.009,
+   "gpu_gain_x_min_det": 0.1,
+   "per_pass_median": {
+    "Basepass": 0.8765,
+    "ShadowDepths": 1.9506,
+    "LumenReflections": 0.9644,
+    "Prepass": 0.0684,
+    "NaniteVisBuffer": 2.069
+   },
+   "target_pass": "NaniteVisBuffer",
+   "target_pass_delta_ms": -0.0261,
+   "target_pass_delta_x_min_det": -0.4
+  },
+  {
+   "value": "8",
+   "gpu_p90_median": 12.866,
+   "gpu_p90_runs": [
+    12.884,
+    12.856,
+    12.866
+   ],
+   "gpu_gain_vs_baseline_ms": -0.245,
+   "gpu_gain_x_min_det": -3.3,
+   "per_pass_median": {
+    "Basepass": 0.8736,
+    "ShadowDepths": 1.952,
+    "LumenReflections": 0.9176,
+    "Prepass": 0.0684,
+    "NaniteVisBuffer": 2.325
+   },
+   "target_pass": "NaniteVisBuffer",
+   "target_pass_delta_ms": -0.2821,
+   "target_pass_delta_x_min_det": -3.8
+  }
+ ],
+ "positive_control_pass": false,
+ "verdict": "INCONCLUSIVE (positive control failed: NaniteVisBuffer never moved >=3x min_det)"
+}

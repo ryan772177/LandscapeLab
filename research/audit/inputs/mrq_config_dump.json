@@ -1,0 +1,3026 @@
+{
+ "dev": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E46FAF4600) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E46FAF7B20) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 1,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x000001E58C519970) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x000001E58C51999C) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x000001E58C519990) {x: 2560, y: 1440}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "dev",
+  "_temporal_samples": 1,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_dev_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E829A6F040) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E829A6F068) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E829A6EA40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E829A6EA68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E829A6DE40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E829A6DE68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+ },
+ "target": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFF8200) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFFC850) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 8,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x000001E610BFB1F0) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x000001E610BFB21C) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x000001E610BFB210) {x: 3840, y: 2160}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Nanite.MaxPixelsPerEdge",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+    "value": -1.5,
+    "is_enabled": true
+   }
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "target",
+  "_temporal_samples": 8,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_target_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C00840) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C00868) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C03840) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C03868) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C00C40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C00C68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+ },
+ "dev+cinematic_quality_settings=True": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFFF820) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFF0730) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 1,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineGameOverrideSetting",
+    "is_enabled": true,
+    "properties": {
+     "cinematic_quality_settings": true,
+     "disable_hlo_ds": true,
+     "disable_hlods": true,
+     "flush_grass_streaming": true,
+     "flush_streaming_managers": true,
+     "game_mode_override": null,
+     "grass_cull_distance_scale": 50.0,
+     "grass_density_scale": 1.0,
+     "override_grass_cull_distance_scale": true,
+     "override_grass_density_scale": false,
+     "override_view_distance_scale": true,
+     "override_virtual_texture_feedback_factor": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "soft_game_mode_override": "<Object '/Script/MovieRenderPipelineCore.MoviePipelineGameMode' (0x000001E2311D8200) Class 'Class'>",
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_high_quality_shadows": true,
+     "use_lod_zero": true,
+     "view_distance_scale": 50,
+     "virtual_texture_feedback_factor": 1
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\"",
+      "Scalability",
+      "sg.ShadowQuality",
+      "sg.FoliageQuality",
+      "sg.ViewDistanceQuality",
+      "sg.TextureQuality",
+      "sg.GlobalIlluminationQuality",
+      "sg.EffectsQuality"
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512",
+      "Scalability",
+      "sg.ShadowQuality",
+      "sg.FoliageQuality",
+      "sg.ViewDistanceQuality",
+      "sg.TextureQuality",
+      "sg.GlobalIlluminationQuality",
+      "sg.EffectsQuality"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x000001E610BFF9B0) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x000001E610BFF9DC) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x000001E610BFF9D0) {x: 2560, y: 1440}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'.",
+   "MoviePipelineGameOverrideSetting: Property 'disable_hlo_ds' on 'MoviePipelineGameOverrideSetting' is deprecated: 'disable_hlo_ds' was renamed to 'disable_hlods'.",
+   "MoviePipelineGameOverrideSetting: Property 'game_mode_override' on 'MoviePipelineGameOverrideSetting' is deprecated: Please use the SoftGameModeOverride property instead."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "dev",
+  "_temporal_samples": 1,
+  "_game_override_requested": {
+   "cinematic_quality_settings": true
+  },
+  "_jobs": [
+   {
+    "name": "Bench_dev_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C04240) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C04268) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\"",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": true
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C03E40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C03E68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\"",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": true
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C01040) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C01068) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\"",
+     "Scalability",
+     "sg.ShadowQuality",
+     "sg.FoliageQuality",
+     "sg.ViewDistanceQuality",
+     "sg.TextureQuality",
+     "sg.GlobalIlluminationQuality",
+     "sg.EffectsQuality"
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": true
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+ },
+ "dev+cinematic_quality_settings=False": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFF65E0) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001E60EFFE600) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 1,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineGameOverrideSetting",
+    "is_enabled": true,
+    "properties": {
+     "cinematic_quality_settings": false,
+     "disable_hlo_ds": true,
+     "disable_hlods": true,
+     "flush_grass_streaming": true,
+     "flush_streaming_managers": true,
+     "game_mode_override": null,
+     "grass_cull_distance_scale": 50.0,
+     "grass_density_scale": 1.0,
+     "override_grass_cull_distance_scale": true,
+     "override_grass_density_scale": false,
+     "override_view_distance_scale": true,
+     "override_virtual_texture_feedback_factor": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "soft_game_mode_override": "<Object '/Script/MovieRenderPipelineCore.MoviePipelineGameMode' (0x000001E2311D8200) Class 'Class'>",
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_high_quality_shadows": true,
+     "use_lod_zero": true,
+     "view_distance_scale": 50,
+     "virtual_texture_feedback_factor": 1
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x000001E610BFDCD0) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x000001E610BFDCFC) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x000001E610BFDCF0) {x: 2560, y: 1440}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 3.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   }
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "dev",
+  "_temporal_samples": 1,
+  "_game_override_requested": {
+   "cinematic_quality_settings": false
+  },
+  "_jobs": [
+   {
+    "name": "Bench_dev_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C04840) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C04868) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": false
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": false,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C09040) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C09068) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": false
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": false,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_dev_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001E3C4C05240) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001E3C4C05268) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/dev",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     2560,
+     1440
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {
+      "cinematic_quality_settings": false
+     },
+     "_applied": [
+      "cinematic_quality_settings"
+     ],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": false,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 50,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 1.0,
+     "sg.AntiAliasingQuality": 1.0,
+     "sg.PostProcessQuality": 1.0,
+     "sg.FoliageQuality": 1.0,
+     "sg.ViewDistanceQuality": 1.0,
+     "sg.TextureQuality": 1.0,
+     "sg.EffectsQuality": 1.0,
+     "sg.ShadingQuality": 1.0,
+     "sg.GlobalIlluminationQuality": 3.0,
+     "sg.ReflectionQuality": 3.0,
+     "r.ScreenPercentage": 100.0
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 1,
+     "sg.AntiAliasingQuality": 1,
+     "sg.PostProcessQuality": 1,
+     "sg.FoliageQuality": 1,
+     "sg.ViewDistanceQuality": 1,
+     "sg.TextureQuality": 1,
+     "sg.EffectsQuality": 1,
+     "sg.ShadingQuality": 1,
+     "sg.GlobalIlluminationQuality": 3,
+     "sg.ReflectionQuality": 3,
+     "r.ScreenPercentage": 100
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "b73c30d7c2e5bd076fff2c3f40acfa909e96c5d7-dirty"
+ },
+ "target+truth": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001F78AFE1090) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001F78AFEBD60) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 8,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineGameOverrideSetting",
+    "is_enabled": true,
+    "properties": {
+     "cinematic_quality_settings": true,
+     "disable_hlo_ds": true,
+     "disable_hlods": true,
+     "flush_grass_streaming": true,
+     "flush_streaming_managers": true,
+     "game_mode_override": null,
+     "grass_cull_distance_scale": 50.0,
+     "grass_density_scale": 1.0,
+     "override_grass_cull_distance_scale": true,
+     "override_grass_density_scale": false,
+     "override_view_distance_scale": true,
+     "override_virtual_texture_feedback_factor": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "soft_game_mode_override": "<Object '/Script/MovieRenderPipelineCore.MoviePipelineGameMode' (0x000001F382220500) Class 'Class'>",
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_high_quality_shadows": true,
+     "use_lod_zero": true,
+     "view_distance_scale": 100,
+     "virtual_texture_feedback_factor": 1
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=1200000",
+      "wp.Runtime.MaxLoadingStreamingCells 512",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x000001F78AE37F30) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x000001F78AE37F5C) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x000001F78AE37F50) {x: 3840, y: 2160}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Nanite.MaxPixelsPerEdge",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+    "value": -1.5,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'.",
+   "MoviePipelineGameOverrideSetting: Property 'disable_hlo_ds' on 'MoviePipelineGameOverrideSetting' is deprecated: 'disable_hlo_ds' was renamed to 'disable_hlods'.",
+   "MoviePipelineGameOverrideSetting: Property 'game_mode_override' on 'MoviePipelineGameOverrideSetting' is deprecated: Please use the SoftGameModeOverride property instead."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "target",
+  "_temporal_samples": 8,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_target_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001F5046CBC40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001F5046CBC68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=1200000",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {},
+     "_applied": [],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 100,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001F5046CEC40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001F5046CEC68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=1200000",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {},
+     "_applied": [],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 100,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x000001F5046CB040) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x000001F5046CB068) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-13/target",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=1200000",
+     "wp.Runtime.MaxLoadingStreamingCells 512",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": {
+     "_requested": {},
+     "_applied": [],
+     "_refused": {},
+     "_is_enabled": true,
+     "game_mode_override": null,
+     "cinematic_quality_settings": true,
+     "texture_streaming": "<MoviePipelineTextureStreamingMethod.DISABLED: 1>",
+     "use_lod_zero": true,
+     "disable_hlods": true,
+     "use_high_quality_shadows": true,
+     "shadow_distance_scale": 10,
+     "shadow_radius_threshold": 0.0010000000474974513,
+     "override_view_distance_scale": true,
+     "view_distance_scale": 100,
+     "flush_grass_streaming": true,
+     "override_grass_cull_distance_scale": true,
+     "grass_cull_distance_scale": 50.0,
+     "override_grass_density_scale": false,
+     "grass_density_scale": 1.0,
+     "flush_streaming_managers": true,
+     "override_virtual_texture_feedback_factor": true,
+     "virtual_texture_feedback_factor": 1
+    },
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "3c6a25c738cb955f259c53397d5800317d53e2f1-dirty"
+ },
+ "target+linear": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F6770) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F65E0) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineColorSetting",
+    "is_enabled": true,
+    "properties": {
+     "disable_tone_curve": true,
+     "ocio_configuration": "<Struct 'OpenColorIODisplayConfiguration' (0x0000018B24960190) {is_enabled: False, color_configuration: {configuration_source: None, source_color_space: {color_space_name: \"\", family_name: \"\"}, destination_color_space: {color_space_name: \"\", family_name: \"\"}, destination_display_view: {display: \"\", view: \"\"}, display_view_direction: Forward}}>"
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_EXR",
+    "is_enabled": true,
+    "properties": {
+     "compression": "<EXRCompressionFormat.PIZ: 4>",
+     "multilayer": false,
+     "multipart": false
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 8,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x0000018C3F337E50) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x0000018C3F337E7C) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x0000018C3F337E70) {x: 3840, y: 2160}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Nanite.MaxPixelsPerEdge",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+    "value": -1.5,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "target",
+  "_temporal_samples": 8,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_target_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D09240) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D09268) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D0AE40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D0AE68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D0F640) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D0F668) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "957fa91cc5c4af9597895f5bda51dc35ea128fed-dirty"
+ },
+ "target+linear+pp:PPI0": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9FC8F0) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9FAEB0) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F8430) {enabled: True, name: \"PPI0\", material: \"/Game/Bench/M_PPI0_Passthrough.M_PPI0_Passthrough\", high_precision_output: True, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": false,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineColorSetting",
+    "is_enabled": true,
+    "properties": {
+     "disable_tone_curve": true,
+     "ocio_configuration": "<Struct 'OpenColorIODisplayConfiguration' (0x0000018B00413610) {is_enabled: False, color_configuration: {configuration_source: None, source_color_space: {color_space_name: \"\", family_name: \"\"}, destination_color_space: {color_space_name: \"\", family_name: \"\"}, destination_display_view: {display: \"\", view: \"\"}, display_view_direction: Forward}}>"
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_EXR",
+    "is_enabled": true,
+    "properties": {
+     "compression": "<EXRCompressionFormat.PIZ: 4>",
+     "multilayer": false,
+     "multipart": false
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 8,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x0000018C3F33A4D0) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x0000018C3F33A4FC) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x0000018C3F33A4F0) {x: 3840, y: 2160}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Nanite.MaxPixelsPerEdge",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+    "value": -1.5,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "target",
+  "_temporal_samples": 8,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_target_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D05C40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D05C68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [
+     {
+      "name": "PPI0",
+      "material": "/Game/Bench/M_PPI0_Passthrough.M_PPI0_Passthrough",
+      "high_precision_output": true
+     }
+    ],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D07440) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D07468) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [
+     {
+      "name": "PPI0",
+      "material": "/Game/Bench/M_PPI0_Passthrough.M_PPI0_Passthrough",
+      "high_precision_output": true
+     }
+    ],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D0FA40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D0FA68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 8,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [
+     {
+      "name": "PPI0",
+      "material": "/Game/Bench/M_PPI0_Passthrough.M_PPI0_Passthrough",
+      "high_precision_output": true
+     }
+    ],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "957fa91cc5c4af9597895f5bda51dc35ea128fed-dirty"
+ },
+ "target+depth": {
+  "map": "/Game/Alpine8K",
+  "settings": [
+   {
+    "class": "MoviePipelineDeferredPassBase",
+    "is_enabled": true,
+    "properties": {
+     "accumulator_includes_alpha": false,
+     "actor_layers": [],
+     "add_default_layer": false,
+     "additional_post_process_materials": [
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F4740) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_WorldDepth.MovieRenderQueue_WorldDepth\", high_precision_output: True, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F55A0) {enabled: False, name: \"\", material: \"/MovieRenderPipeline/Materials/MovieRenderQueue_MotionVectors.MovieRenderQueue_MotionVectors\", high_precision_output: False, use_lossless_compression: False}>",
+      "<Struct 'MoviePipelinePostProcessPass' (0x000001889A9F4E20) {enabled: True, name: \"SceneDepth\", material: \"/Game/Bench/M_SceneDepth.M_SceneDepth\", high_precision_output: False, use_lossless_compression: False}>"
+     ],
+     "data_layers": [],
+     "disable_multisample_effects": true,
+     "render_main_pass": true,
+     "stencil_layers": []
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_PNG",
+    "is_enabled": true,
+    "properties": {
+     "write_alpha": true
+    }
+   },
+   {
+    "class": "MoviePipelineImageSequenceOutput_EXR",
+    "is_enabled": true,
+    "properties": {
+     "compression": "<EXRCompressionFormat.PIZ: 4>",
+     "multilayer": true,
+     "multipart": false
+    }
+   },
+   {
+    "class": "MoviePipelineAntiAliasingSetting",
+    "is_enabled": true,
+    "properties": {
+     "anti_aliasing_method": "<AntiAliasingMethod.AAM_NONE: 0>",
+     "engine_warm_up_count": 300,
+     "override_anti_aliasing": false,
+     "render_warm_up_count": 40,
+     "render_warm_up_frames": true,
+     "spatial_sample_count": 1,
+     "temporal_sample_count": 1,
+     "use_camera_cut_for_warm_up": false
+    }
+   },
+   {
+    "class": "MoviePipelineConsoleVariableSetting",
+    "is_enabled": true,
+    "properties": {
+     "console_variable_presets": [],
+     "end_console_commands": [
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+      "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+     ],
+     "start_console_commands": [
+      "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+      "wp.Runtime.MaxLoadingStreamingCells 512"
+     ]
+    }
+   },
+   {
+    "class": "MoviePipelineOutputSetting",
+    "is_enabled": true,
+    "properties": {
+     "additional_submix_outputs": [],
+     "auto_version": true,
+     "custom_end_frame": 0,
+     "custom_start_frame": 0,
+     "file_name_format": "vista",
+     "flush_disk_writes_per_shot": false,
+     "frame_number_offset": 0,
+     "handle_frame_count": 0,
+     "output_directory": "<Struct 'DirectoryPath' (0x0000018C3F33B8F0) {path: \"C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target\"}>",
+     "output_frame_rate": "<Struct 'FrameRate' (0x0000018C3F33B91C) {numerator: 24, denominator: 1}>",
+     "output_frame_step": 1,
+     "output_resolution": "<Struct 'IntPoint' (0x0000018C3F33B910) {x: 3840, y: 2160}>",
+     "override_existing_output": true,
+     "use_custom_frame_rate": false,
+     "use_custom_playback_range": false,
+     "version_number": 1,
+     "zero_pad_frame_numbers": 4
+    }
+   }
+  ],
+  "console_variables": [
+   {
+    "name": "sg.ShadowQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.AntiAliasingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.PostProcessQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.FoliageQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ViewDistanceQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.TextureQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.EffectsQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ShadingQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.GlobalIlluminationQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "sg.ReflectionQuality",
+    "value": 4.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.ScreenPercentage",
+    "value": 100.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Nanite.MaxPixelsPerEdge",
+    "value": 1.0,
+    "is_enabled": true
+   },
+   {
+    "name": "r.Shadow.Virtual.ResolutionLodBiasDirectional",
+    "value": -1.5,
+    "is_enabled": true
+   }
+  ],
+  "deprecation_warnings_raised_by_this_dump": [
+   "MoviePipelineDeferredPassBase: Property 'stencil_layers' on 'MoviePipelineDeferredPassBase' is deprecated: 'stencil_layers' was renamed to 'actor_layers'."
+  ],
+  "_what": "the bench MRQ config as the ENGINE holds it, dumped from the same construction a render uses",
+  "_profile": "target",
+  "_temporal_samples": 1,
+  "_game_override_requested": {},
+  "_jobs": [
+   {
+    "name": "Bench_target_near_ground",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D06040) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D06068) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "near_ground",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_mid_slope",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D04A40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D04A68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "mid_slope",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   },
+   {
+    "name": "Bench_target_vista",
+    "sequence": "<Struct 'SoftObjectPath' (0x0000018B82D0EA40) {}>",
+    "map": "<Struct 'SoftObjectPath' (0x0000018B82D0EA68) {}>",
+    "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/bench/2026-09-15/target",
+    "file_name_format_readback": "vista",
+    "resolution_readback": [
+     3840,
+     2160
+    ],
+    "temporal_sample_count_readback": 1,
+    "spatial_sample_count_readback": 1,
+    "engine_warm_up_count_readback": 300,
+    "use_camera_cut_for_warm_up_readback": false,
+    "render_warm_up_frames_readback": true,
+    "render_warm_up_count_readback": 40,
+    "extra_pp_passes_readback": [],
+    "start_console_commands_readback": [
+     "wp.Runtime.OverrideRuntimeLoadingRange -grid=MainPartition -range=51200",
+     "wp.Runtime.MaxLoadingStreamingCells 512"
+    ],
+    "end_console_commands_readback": [
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_residency_probe_staged.py\"",
+     "py \"C:/Users/Admin/UE5LandscapePipeline/LandscapeLab/Saved/LLPython/bench_tonecurve_probe_staged.py\""
+    ],
+    "game_overrides_readback": null,
+    "cvars_config_readback": {
+     "sg.ShadowQuality": 4.0,
+     "sg.AntiAliasingQuality": 4.0,
+     "sg.PostProcessQuality": 4.0,
+     "sg.FoliageQuality": 4.0,
+     "sg.ViewDistanceQuality": 4.0,
+     "sg.TextureQuality": 4.0,
+     "sg.EffectsQuality": 4.0,
+     "sg.ShadingQuality": 4.0,
+     "sg.GlobalIlluminationQuality": 4.0,
+     "sg.ReflectionQuality": 4.0,
+     "r.ScreenPercentage": 100.0,
+     "r.Nanite.MaxPixelsPerEdge": 1.0,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_requested": {
+     "sg.ShadowQuality": 4,
+     "sg.AntiAliasingQuality": 4,
+     "sg.PostProcessQuality": 4,
+     "sg.FoliageQuality": 4,
+     "sg.ViewDistanceQuality": 4,
+     "sg.TextureQuality": 4,
+     "sg.EffectsQuality": 4,
+     "sg.ShadingQuality": 4,
+     "sg.GlobalIlluminationQuality": 4,
+     "sg.ReflectionQuality": 4,
+     "r.ScreenPercentage": 100,
+     "r.Nanite.MaxPixelsPerEdge": 1,
+     "r.Shadow.Virtual.ResolutionLodBiasDirectional": -1.5
+    },
+    "cvars_match": true
+   }
+  ],
+  "_git_sha": "957fa91cc5c4af9597895f5bda51dc35ea128fed-dirty"
+ }
+}

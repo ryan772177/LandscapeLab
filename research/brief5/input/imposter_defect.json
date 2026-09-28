@@ -1,0 +1,111 @@
+{
+ "_what": "Brief 5 V3 -- spruce_half_01 octahedral imposter tiling, root-cause hypotheses. READ-ONLY (imposter_defect_read.json + T2). Orbit stills not captured; demo map NOT opened (level swap avoided).",
+ "asset": {
+  "mesh": "spruce_half_01 LOD4 (6 tris, the imposter card)",
+  "card_material": "/Game/PN_interactiveSpruceForest/Materials/MaterialInstances/imposter/high/half_01_imposter (MaterialInstanceConstant)",
+  "base_material": "MA_Imposter (custom PN octahedral imposter master)",
+  "atlas": "half_01_imposter_A 4096x4096 (+ _N, _O)",
+  "exposed_frame_params": {
+   "ImposterRoundingOffsetX": 0.375,
+   "ImposterRoundingOffsetY": 1.0
+  },
+  "_frame_count_note": "the octahedral frame grid (Frames/Rows) is baked into MA_Imposter's graph, not exposed as a scalar param (confirmed T2 + V3). Estimated 16x16 -> 256 px/frame (UE octahedral default).",
+  "demo_maps_present": [
+   "/Game/PN_interactiveSpruceForest/Map/Interaction_Showroom",
+   "/Game/PN_interactiveSpruceForest/Map/Showroom"
+  ]
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "favoured": true,
+   "root_cause": "Octahedral frame selection/blend fails under HISM instanced rendering -- the material samples one atlas cell without cross-frame blend, showing the raw square atlas tile.",
+   "for": [
+    "the defect is literally SQUARE TILES = a single un-blended atlas cell (desk crop 3)",
+    "MA_Imposter is a custom octahedral master that needs per-object bounds + camera-relative direction; place_foliage places these as HISM instances, a different data path than a single actor",
+    "only ImposterRoundingOffset is exposed -- the view-direction/bounds inputs are internal and may read object bounds that are degenerate/shared for instances"
+   ],
+   "against": [
+    "it renders (not black), so SOME data flows",
+    "would expect ALL octahedral imposters in the project to tile, not just this one"
+   ]
+  },
+  {
+   "id": "H2",
+   "favoured": false,
+   "root_cause": "ImposterRoundingOffset / frame-count mismatch: OffsetX 0.375 vs OffsetY 1.0 is asymmetric; if the baked atlas grid disagrees with these, frame selection lands between cells and tiles.",
+   "for": [
+    "the offsets are non-standard/asymmetric (0.375 vs 1.0)"
+   ],
+   "against": [
+    "these are the vendor MI defaults, presumably validated in the Showroom demo map"
+   ]
+  },
+  {
+   "id": "H3",
+   "favoured": false,
+   "root_cause": "Placement scale/bounds mismatch: place_foliage's scale_range on the imposter breaks the octahedral direction math if the baked bounds do not track the placed scale.",
+   "for": [
+    "foliage scale_range is applied per instance"
+   ],
+   "against": [
+    "would tile uniformly with scale, not as discrete square cells"
+   ]
+  }
+ ],
+ "C2_showroom_result": {
+  "ran": "2026-09-21, editor pass 2, /Game/PN_interactiveSpruceForest/Map/Showroom, READ-ONLY, R-EDITOR-CLOSE",
+  "placement_in_demo": "spruce_half_01 placed as FoliageInstancedStaticMeshComponent (HISM) AND StaticMeshComponent actors; 5 LODs; material slots [spruce_half_01_trunk, _branch, _leaf, half_01_imposter] -- the SAME half_01_imposter card material and the SAME HISM path as our foliage type.",
+  "stills": [
+   "c2_showroom_150_lit (auto)",
+   "c2_showroom_300_lit (auto)",
+   "c2_showroom_150_card (r.ForceLOD 8 = forced last/imposter)"
+  ],
+  "observation": "At 150 m both AUTO and FORCED-CARD render clean, recognisable spruce billboards with NO square-tile artefact. The vendor's own demo shows the imposter working correctly under HISM.",
+  "consequence": "H1 DISCONFIRMED. The octahedral imposter does NOT fail under HISM instanced rendering -- the demo places it exactly as we do (HISM + half_01_imposter) and it renders clean. H2 (asset/offset) and H3 (scale) likewise not reproduced in the demo."
+ },
+ "favoured": "H4 CONFIRMED + RESOLVED -- scene-specific card magnification from the unpersisted hold, now fixed (R1 persist + R3 runtime). The imposter override MI is correct (vendor octahedral logic + wind/bending off); R4 disconfirms the override-defect hypothesis.",
+ "hypotheses_superseded": "H1/H2/H3 above are retained for the record but are DISCONFIRMED or unreproduced by C2.",
+ "decisive_follow_up": "View spruce_half_01 in ALPINE8K at 150 m forced-card (r.ForceLOD 8), viewmode lit -- the same conditions as c2_showroom_150_card. If it tiles there but not in the Showroom, the cause is the SCENE (lighting/exposure/streaming/card-magnification), not the asset. Pairs with fixing the hold: once the card is pushed past 512 m it is never drawn large, so the tiling disappears regardless of root cause.",
+ "note": "The T3 hold was INTENDED to push this imposter past the 512 m cull so it is never drawn live -- but C1 proves the hold never persisted (false-success save; the live meshes carry the original card ScreenSize). So the tiling the desk flagged is STILL LIVE in the 128-512 m band. The fix is to RE-APPLY the hold and VERIFY it persists across an editor restart (out of this read-only session's scope).",
+ "R4_override_diff_result": {
+  "ran": "2026-09-21 R4, read-only Alpine8K editor pass (R-EDITOR-CLOSE, census dirty_count 0, killed, 0 editors)",
+  "override_mi_exists": true,
+  "override_mi_path": "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind",
+  "_c2_read_was_wrong_folder": "imposter_defect_read.json reported exists:false, but it checked /Game/PN_interactiveSpruceForest/.../imposter/high/; the recipe override_materials point at /Game/Materials/PN_NoWind/ where it DOES exist.",
+  "base_material_match": true,
+  "shared_base": "/Game/PN_interactiveSpruceForest/Materials/MasterMaterials/MA_Imposter (the octahedral master -- SAME on both override and vendor)",
+  "all_kinds_reliable": true,
+  "counts_both_sides": {
+   "scalars": 35,
+   "vectors": 5,
+   "textures": 6,
+   "switches": 8
+  },
+  "vendor_only_params": [],
+  "override_missing_vendor_params": false,
+  "value_diffs": {
+   "switches": {
+    "Level 1 Bending": {
+     "vendor": true,
+     "override": false
+    },
+    "Level 1 Wind": {
+     "vendor": true,
+     "override": false
+    }
+   },
+   "scalars": "none",
+   "vectors": "none",
+   "textures": "none"
+  },
+  "placed_hism": {
+   "components": 990,
+   "imposter_slot_3": "/Game/Materials/PN_NoWind/MI_half_01_imposter_nowind",
+   "num_custom_data_floats": 0
+  },
+  "hlod_proxy": "Instancing-layer ISM not registered in editor session -> unreachable (reported, not faked)",
+  "verdict": "DESK HYPOTHESIS (override starves the octahedral frame lookup) DISCONFIRMED. The _nowind override shares MA_Imposter and EVERY scalar/vector/texture parameter with the vendor MI; the ONLY difference is two static switches (Level 1 Bending, Level 1 Wind) turned OFF -- i.e. WPO wind/bending disabled, which does NOT touch octahedral frame selection (ImposterRoundingOffset/ZRot/Scale/Z/atlas textures all identical). The confirming swap experiment is MOOT (nothing to swap -- the frame logic is byte-identical to the vendor that renders clean in the Showroom).",
+  "consequence": "H4 stands and is now RESOLVED by R1+R3: the tiling was the card drawn LARGE/CLOSE in 128-512 m because the T3 hold never persisted. R1 persisted the hold; R3 proved it took at runtime (+1.13 ms geometry-pass control), pushing the card past the 512 m cull so it is never drawn large. The imposter material is NOT defective."
+ }
+}

@@ -1,0 +1,193 @@
+{
+ "ok": true,
+ "error": null,
+ "sequences": [
+  {
+   "name": "LS_vista",
+   "asset": "/Game/Scratch/Item8/LS_vista",
+   "saved": true,
+   "station": "vista",
+   "loc_cm": [
+    -216400.0,
+    63600.0,
+    76426.16
+   ],
+   "pitch_deg": -4.0,
+   "yaw_deg": 60.0,
+   "fov_h_deg": 90.0,
+   "camera_readback": {
+    "location_cm": [
+     -216400.0,
+     63600.0,
+     76426.2
+    ],
+    "pitch_deg": -4.0,
+    "yaw_deg": 60.0,
+    "roll_deg": -0.0,
+    "field_of_view": 90.0
+   },
+   "camera_ok": true,
+   "spawnable_template_location_cm": "unreadable: AttributeError",
+   "playback_frames": 60,
+   "spawnables": [],
+   "tracks": [
+    "MovieSceneCameraCutTrack"
+   ],
+   "binding_proxy_guid": "<Struct 'Guid' (0x0000025B18C1DB00) {}>"
+  },
+  {
+   "name": "LS_treeline",
+   "asset": "/Game/Scratch/Item8/LS_treeline",
+   "saved": true,
+   "station": "treeline",
+   "loc_cm": [
+    -190000.0,
+    100000.0,
+    63367.37
+   ],
+   "pitch_deg": -2.0,
+   "yaw_deg": 105.0,
+   "fov_h_deg": 90.0,
+   "camera_readback": {
+    "location_cm": [
+     -190000.0,
+     100000.0,
+     63367.4
+    ],
+    "pitch_deg": -2.0,
+    "yaw_deg": 105.0,
+    "roll_deg": -0.0,
+    "field_of_view": 90.0
+   },
+   "camera_ok": true,
+   "spawnable_template_location_cm": "unreadable: AttributeError",
+   "playback_frames": 60,
+   "spawnables": [],
+   "tracks": [
+    "MovieSceneCameraCutTrack"
+   ],
+   "binding_proxy_guid": "<Struct 'Guid' (0x0000025B18C17700) {}>"
+  }
+ ],
+ "configs": [
+  {
+   "name": "Cfg_A",
+   "asset": "/Game/Scratch/Item8/Cfg_A",
+   "saved": true,
+   "hlod_off_arm": false,
+   "settings": [
+    "MoviePipelineDeferredPassBase",
+    "MoviePipelineImageSequenceOutput_PNG",
+    "MoviePipelineAntiAliasingSetting",
+    "MoviePipelineOutputSetting"
+   ],
+   "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/perf/item8/_active",
+   "file_name_format_readback": "item8.{frame_number}",
+   "resolution_readback": [
+    3840,
+    2160
+   ],
+   "temporal_sample_count_readback": 1,
+   "spatial_sample_count_readback": 1,
+   "render_warm_up_frames_readback": true,
+   "render_warm_up_count_readback": 60,
+   "console_variable_setting_readback": null,
+   "has_game_override": false
+  },
+  {
+   "name": "Cfg_B",
+   "asset": "/Game/Scratch/Item8/Cfg_B",
+   "saved": true,
+   "hlod_off_arm": true,
+   "settings": [
+    "MoviePipelineDeferredPassBase",
+    "MoviePipelineImageSequenceOutput_PNG",
+    "MoviePipelineAntiAliasingSetting",
+    "MoviePipelineConsoleVariableSetting",
+    "MoviePipelineOutputSetting"
+   ],
+   "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/perf/item8/_active",
+   "file_name_format_readback": "item8.{frame_number}",
+   "resolution_readback": [
+    3840,
+    2160
+   ],
+   "temporal_sample_count_readback": 1,
+   "spatial_sample_count_readback": 1,
+   "render_warm_up_frames_readback": true,
+   "render_warm_up_count_readback": 60,
+   "console_variable_setting_readback": {
+    "start_console_commands": [
+     "wp.Runtime.HLOD 0"
+    ],
+    "end_console_commands": [
+     "wp.Runtime.HLOD 1"
+    ]
+   },
+   "has_game_override": false
+  },
+  {
+   "name": "Cfg_A_lo",
+   "asset": "/Game/Scratch/Item8/Cfg_A_lo",
+   "saved": true,
+   "hlod_off_arm": false,
+   "settings": [
+    "MoviePipelineDeferredPassBase",
+    "MoviePipelineImageSequenceOutput_PNG",
+    "MoviePipelineAntiAliasingSetting",
+    "MoviePipelineOutputSetting"
+   ],
+   "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/perf/item8/_active",
+   "file_name_format_readback": "item8.{frame_number}",
+   "resolution_readback": [
+    1920,
+    1080
+   ],
+   "temporal_sample_count_readback": 1,
+   "spatial_sample_count_readback": 1,
+   "render_warm_up_frames_readback": true,
+   "render_warm_up_count_readback": 60,
+   "console_variable_setting_readback": null,
+   "has_game_override": false
+  },
+  {
+   "name": "Cfg_B_lo",
+   "asset": "/Game/Scratch/Item8/Cfg_B_lo",
+   "saved": true,
+   "hlod_off_arm": true,
+   "settings": [
+    "MoviePipelineDeferredPassBase",
+    "MoviePipelineImageSequenceOutput_PNG",
+    "MoviePipelineAntiAliasingSetting",
+    "MoviePipelineConsoleVariableSetting",
+    "MoviePipelineOutputSetting"
+   ],
+   "output_dir_readback": "C:/Users/Admin/UE5LandscapePipeline/_verify/perf/item8/_active",
+   "file_name_format_readback": "item8.{frame_number}",
+   "resolution_readback": [
+    1920,
+    1080
+   ],
+   "temporal_sample_count_readback": 1,
+   "spatial_sample_count_readback": 1,
+   "render_warm_up_frames_readback": true,
+   "render_warm_up_count_readback": 60,
+   "console_variable_setting_readback": {
+    "start_console_commands": [
+     "wp.Runtime.HLOD 0"
+    ],
+    "end_console_commands": [
+     "wp.Runtime.HLOD 1"
+    ]
+   },
+   "has_game_override": false
+  }
+ ],
+ "pkg": "/Game/Scratch/Item8",
+ "_note": "read-backs are off the just-created in-memory objects; 'saved' is the persistence signal, confirmed on disk by the host driver's mtime/sha census.",
+ "_verdict": {
+  "sequences_saved": true,
+  "configs_saved": true,
+  "hlod_commands_on_B_only": true
+ }
+}

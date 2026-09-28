@@ -1,0 +1,76 @@
+{
+ "ok": true,
+ "meshes": [
+  {
+   "species": "ConiferPine",
+   "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+   "target_screen_sizes": [
+    1.50451,
+    0.33642,
+    0.23788,
+    0.03818
+   ],
+   "src_duplicate": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01_SRC",
+   "lod_count": 4,
+   "last_lod_tris_before": 32,
+   "slots_before": 5,
+   "screen_sizes_before": [
+    1.5045056343078613,
+    0.33641770482063293,
+    0.23788323998451233,
+    0.16820885241031647
+   ],
+   "auto_compute_before": "no getter: 'StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size'",
+   "auto_compute_after": "no accessor: 'StaticMesh' object has no attribute 'set_auto_compute_lod_screen_size'",
+   "set_returned": true,
+   "screen_sizes_after": [
+    1.5045100450515747,
+    0.3364199995994568,
+    0.23788000643253326,
+    0.03818000108003616
+   ],
+   "readback_matches": true,
+   "last_lod_tris_after": 32,
+   "slots_after": 5,
+   "invariants_ok": true,
+   "saved": true
+  },
+  {
+   "species": "SpruceSub",
+   "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+   "target_screen_sizes": [
+    1.0,
+    0.99,
+    0.6,
+    0.35,
+    0.02642
+   ],
+   "src_duplicate": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01_SRC",
+   "lod_count": 5,
+   "last_lod_tris_before": 6,
+   "slots_before": 4,
+   "screen_sizes_before": [
+    1.0,
+    0.9900000095367432,
+    0.6000000238418579,
+    0.3499999940395355,
+    0.17000000178813934
+   ],
+   "auto_compute_before": "no getter: 'StaticMesh' object has no attribute 'get_auto_compute_lod_screen_size'",
+   "auto_compute_after": "no accessor: 'StaticMesh' object has no attribute 'set_auto_compute_lod_screen_size'",
+   "set_returned": true,
+   "screen_sizes_after": [
+    1.0,
+    0.9900000095367432,
+    0.6000000238418579,
+    0.3499999940395355,
+    0.026419999077916145
+   ],
+   "readback_matches": true,
+   "last_lod_tris_after": 6,
+   "slots_after": 4,
+   "invariants_ok": true,
+   "saved": true
+  }
+ ]
+}

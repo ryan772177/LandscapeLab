@@ -1,0 +1,235 @@
+{
+ "_what": "Brief 5 REPAIR R1 -- apply the LOD hold with a persist protocol and prove it cold. mtime+sha256 before/after + cold readback in a distinct process.",
+ "map": "/Game/Alpine8K",
+ "_src_backup_caveat": "the _SRC pristine backups are ~1/5 the live size (duplicate_asset dropped regenerable bulk/DDC data); this write is float-only (ScreenSize), no geometry/Nanite touch, so the live .uasset size stays ~unchanged and the sha diff is the ScreenSize floats.",
+ "before": {
+  "ConiferPine": {
+   "present": true,
+   "sha256": "c6ca202c32fbcd270f9a03536078f67049c54558bea4c45e625eed508af8c7b9",
+   "mtime": 1785730462.384,
+   "size": 15726604
+  },
+  "SpruceSub": {
+   "present": true,
+   "sha256": "0539bda40843072fa9593cbd1a4382f27d341589909e9672802a34d0a511c758",
+   "mtime": 1786769198.5,
+   "size": 9634231
+  }
+ },
+ "apply_pid": 21944,
+ "apply_nonce": "apply_1790043207_31936",
+ "apply_rc": 0,
+ "apply_editor": {
+  "ok": true,
+  "nonce": "apply_1790043207_31936",
+  "meshes": [
+   {
+    "species": "ConiferPine",
+    "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+    "target_screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "src_backup_present": true,
+    "lod_count": 4,
+    "last_lod_tris_before": 32,
+    "slots_before": 5,
+    "screen_sizes_before": [
+     1.504506,
+     0.336418,
+     0.237883,
+     0.168209
+    ],
+    "auto_compute_before": false,
+    "auto_compute_prop_name": "is_lod_screen_size_auto_computed()",
+    "auto_compute_after_explicit": false,
+    "set_returned": true,
+    "screen_sizes_after_warm": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "readback_matches_warm": true,
+    "auto_compute_after_set": false,
+    "last_lod_tris_after": 32,
+    "slots_after": 5,
+    "invariants_ok": true,
+    "auto_off_ok": true,
+    "modify_returned": false,
+    "package_is_dirty_pre_save": "is_dirty raised: 'Package' object has no attribute 'is_dirty'",
+    "saved_return": true,
+    "screen_sizes_after_save_warm": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ]
+   },
+   {
+    "species": "SpruceSub",
+    "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+    "target_screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "src_backup_present": true,
+    "lod_count": 5,
+    "last_lod_tris_before": 6,
+    "slots_before": 4,
+    "screen_sizes_before": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.17
+    ],
+    "auto_compute_before": false,
+    "auto_compute_prop_name": "is_lod_screen_size_auto_computed()",
+    "auto_compute_after_explicit": false,
+    "set_returned": true,
+    "screen_sizes_after_warm": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "readback_matches_warm": true,
+    "auto_compute_after_set": false,
+    "last_lod_tris_after": 6,
+    "slots_after": 4,
+    "invariants_ok": true,
+    "auto_off_ok": true,
+    "modify_returned": false,
+    "package_is_dirty_pre_save": "is_dirty raised: 'Package' object has no attribute 'is_dirty'",
+    "saved_return": true,
+    "screen_sizes_after_save_warm": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ]
+   }
+  ]
+ },
+ "apply_editor_verified": true,
+ "apply_close": {
+  "launched_pid": 21944,
+  "package_restore_present": false,
+  "census_rc": 0,
+  "census_parsed": true,
+  "census_clean": true,
+  "census_dirty_count": 0,
+  "killed": true,
+  "still_alive": false,
+  "editors_now": [],
+  "package_restore_present_post_kill": false
+ },
+ "after": {
+  "ConiferPine": {
+   "present": true,
+   "sha256": "3b8a0b5af617dc6d64d1e5d39db1e9f9896973799f1f100ded9769faa51352ab",
+   "mtime": 1790043227.487,
+   "size": 3175831
+  },
+  "SpruceSub": {
+   "present": true,
+   "sha256": "c830a651a591493ee7ab1d0f5b44b1fc616e9edebe9d7adf28452f282b938a98",
+   "mtime": 1790043227.534,
+   "size": 2141614
+  }
+ },
+ "changed_on_disk": {
+  "ConiferPine": true,
+  "SpruceSub": true
+ },
+ "all_changed": true,
+ "cold_pid": 32556,
+ "cold_nonce": "cold_1790043331_31936",
+ "cold_rc": 0,
+ "cold_verified": true,
+ "cold_reject_reason": null,
+ "cold_editor": {
+  "ok": true,
+  "nonce": "cold_1790043331_31936",
+  "editor_pid": 32556,
+  "meshes": [
+   {
+    "species": "ConiferPine",
+    "path": "/Game/KiteDemo/Environments/Trees/ScotsPineTall_01/ScotsPineTall_01",
+    "target_screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "num_lods": 4,
+    "screen_sizes": [
+     1.50451,
+     0.33642,
+     0.23788,
+     0.03818
+    ],
+    "last_lod_tris": 32,
+    "slots": 5,
+    "auto_compute": false,
+    "matches_target": true,
+    "invariants_ok": true,
+    "auto_compute_off": true
+   },
+   {
+    "species": "SpruceSub",
+    "path": "/Game/PN_interactiveSpruceForest/Meshes/half/high/spruce_half_01",
+    "target_screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "num_lods": 5,
+    "screen_sizes": [
+     1.0,
+     0.99,
+     0.6,
+     0.35,
+     0.02642
+    ],
+    "last_lod_tris": 6,
+    "slots": 4,
+    "auto_compute": false,
+    "matches_target": true,
+    "invariants_ok": true,
+    "auto_compute_off": true
+   }
+  ],
+  "all_match": true,
+  "all_invariants_ok": true,
+  "all_auto_off": true
+ },
+ "cold_close": {
+  "launched_pid": 32556,
+  "package_restore_present": false,
+  "census_rc": 0,
+  "census_parsed": true,
+  "census_clean": true,
+  "census_dirty_count": 0,
+  "killed": true,
+  "still_alive": false,
+  "editors_now": [],
+  "package_restore_present_post_kill": false
+ },
+ "cold_process_distinct": true,
+ "cold_all_match": true,
+ "cold_invariants_ok": true,
+ "cold_auto_off": true,
+ "PASS": true,
+ "verdict": "HOLD PERSISTED"
+}
