@@ -1,4 +1,19 @@
-# CURRENT STATE — 2026-09-28 (BRIEF 7 P3b CLUTTER DONE, tag look-p3b; P4: FarField DROPPED by measurement, HLOD incremental rebuild RUNNING (~26 h total, resumable), P4 stills OWED after it; INDEX_look.md written; GitHub = lite mirror; world working)
+# CURRENT STATE — 2026-09-30 (BRIEF 7 P4: HLOD incremental rebuild COMPLETE 24/24 (51 h, 0 fatal); FarField dropped; P4 stills + tag look-p4 BLOCKED ON DISK (2.5 GB free: pagefile 206 GB, DDC 58 GB) — operator step; P3b done (look-p3b); GitHub = lite mirror)
+
+> ⭐ **2026-09-30 04:30 — P4 HLOD REBUILD COMPLETE.** 24 of 24 batches, 0 fatal, 0 torn, 3,066 min of commandlet
+> time (110–169 min per batch), VRAM peak 15,925 MiB; final census 2,107 packages / 15.13 GB, layers Instancing
+> 1,070 + MeshApproximate 1,037 (`_verify/hlod/p4b_20260928/batches.json`). Incremental `--no-force` approved 86–88
+> per batch after batch 0 (source-actor hash mismatch after the P3a regen), so "changed cells only" now WORKS
+> (R-HLOD amendment owed). Per-cell cost measured: ~115 of 122 min per batch inside MeshApproximate of ~18 Merged
+> L0 cells (≈6 min each; 12 s on 09-08 with 157k trees — the 797k Nanite spruces are the input). Ryan chose to
+> let it run rather than retune (`bUseRenderLODMeshes`, capture 1024, accuracy); options recorded in LESSONS.
+> **BLOCKER: disk 2.5 GB free.** `C:\pagefile.sys` 206 GB (system-managed; grew with the 25 GB editor sessions),
+> `C:\UnrealDDC` 58 GB (+27 GB of HLOD derived data), `LandscapeLab/DerivedDataCache` 14.5 GB, Saved/Logs 1.9 GB.
+> The P4 stills need the windowed Alpine8K editor (25 GB private, pages to disk) — not launchable at 2.5 GB.
+> Operator step: `! powershell -File scripts/disk_cleanup_20260930.ps1` (in-repo caches), optionally
+> `-IncludeSharedDDC`; a reboot or a fixed pagefile size for the 206 GB (both outside the repo, rule 1).
+> THEN: `p3b_clutter_run.py --stills-only --station-set p4 --stills-dir research/brief7/stills/p4 --still-suffix
+> _look_p4 --skip-perf` → LESSONS/RECIPES → tag `look-p4` → lite push → STOP, ASK L4.**
 
 > ⭐ **2026-09-28 01:45 — P4 CHECKPOINT (Ryan asleep, "continue through phase 4").** FarField: DROPPED on the
 > brief's own criterion by the two existing measurements (09-25 A/B unchanged; 09-27 freeze root cause);
