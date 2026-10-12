@@ -1,0 +1,81 @@
+{
+ "source": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\synthetic_town_map_v2.png",
+ "source_sha256": "a4f371999985336b1e75105712a5bcc443db804764fc2e71564ba27e81668e88",
+ "source_size_px": [
+  505,
+  505
+ ],
+ "crop": [
+  0,
+  0,
+  505,
+  505
+ ],
+ "size_px": [
+  505,
+  505
+ ],
+ "k": 4,
+ "feather_sigma_px": 0.0,
+ "mask_sum_min_max": [
+  1.0,
+  1.0
+ ],
+ "palette": [
+  {
+   "class": 0,
+   "mean_rgb": [
+    89,
+    160,
+    69
+   ],
+   "hex": "#59a045",
+   "share": 0.8581276345456328,
+   "mask": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_class00.png",
+   "name": null,
+   "_name": "to be filled by the reader after looking at the swatch and the source image"
+  },
+  {
+   "class": 1,
+   "mean_rgb": [
+    199,
+    190,
+    171
+   ],
+   "hex": "#c7beab",
+   "share": 0.0584844623076169,
+   "mask": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_class01.png",
+   "name": null,
+   "_name": "to be filled by the reader after looking at the swatch and the source image"
+  },
+  {
+   "class": 2,
+   "mean_rgb": [
+    180,
+    59,
+    60
+   ],
+   "hex": "#b43b3c",
+   "share": 0.05273208508969709,
+   "mask": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_class02.png",
+   "name": null,
+   "_name": "to be filled by the reader after looking at the swatch and the source image"
+  },
+  {
+   "class": 3,
+   "mean_rgb": [
+    26,
+    70,
+    150
+   ],
+   "hex": "#1a4696",
+   "share": 0.03065581805705323,
+   "mask": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_class03.png",
+   "name": null,
+   "_name": "to be filled by the reader after looking at the swatch and the source image"
+  }
+ ],
+ "swatches": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_swatches.png",
+ "clusters_preview": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_clusters.png",
+ "ue_note": "each mask is an 8-bit single-channel PNG at the landscape resolution, the weightmap format Epic documents; name the classes, then map names to landscape layers"
+}

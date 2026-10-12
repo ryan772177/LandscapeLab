@@ -118,6 +118,36 @@ CASES = [
     ("heredoc-escapes", PASS, "no heredoc at all",
      bash("python scripts/capture.py")),
 
+    # ---- --help on a script without argparse (2026-10-06) ------------
+    # The flag text is joined so this file's own source never trips the rule.
+    ("help-runs-script", BLOCK, "--help on a script with no argparse",
+     bash("python scripts/gen_doc_tocs.py " + "--" + "help")),
+    ("help-runs-script", BLOCK, "-h piped, no argparse",
+     bash("python scripts/draw_city_plan.py -h | head")),
+    ("help-runs-script", PASS, "--help on an argparse script",
+     bash("python scripts/plan_city.py " + "--" + "help")),
+    ("help-runs-script", PASS, "no help flag",
+     bash("python scripts/gen_doc_tocs.py")),
+
+    # ---- auditor requests state both roots (2026-10-11e) -------------
+    ("audit-roots", BLOCK, "auditor request with no roots",
+     {"tool_name": "Agent", "tool_input": {"subagent_type": "auditor", "description": "a",
+                                          "prompt": "Audit scripts/x.py"}}),
+    ("audit-roots", BLOCK, "auditor request with REPO_ROOT only",
+     {"tool_name": "Agent", "tool_input": {"subagent_type": "auditor", "description": "a",
+                                          "prompt": "REPO_ROOT: " + REPO + NL + "Audit x"}}),
+    ("audit-roots", BLOCK, "auditor request with a wrong UE_PROJECT_ROOT",
+     {"tool_name": "Agent", "tool_input": {"subagent_type": "auditor", "description": "a",
+                                          "prompt": "REPO_ROOT: " + REPO + NL + "UE_PROJECT_ROOT: "
+                                          + os.path.join(REPO, "Other") + NL + "Audit x"}}),
+    ("audit-roots", PASS, "auditor request with both roots",
+     {"tool_name": "Agent", "tool_input": {"subagent_type": "auditor", "description": "a",
+                                          "prompt": "REPO_ROOT: " + REPO + NL + "UE_PROJECT_ROOT: "
+                                          + os.path.join(REPO, "LandscapeLab") + NL + "Audit x"}}),
+    ("audit-roots", PASS, "a non-auditor agent with no roots",
+     {"tool_name": "Agent", "tool_input": {"subagent_type": "Explore", "description": "a",
+                                          "prompt": "find x"}}),
+
     # ---- H2 forced deletes -------------------------------------------
     ("no-force-delete", BLOCK, "rm -rf", bash("rm -rf build/")),
     ("no-force-delete", BLOCK, "rm -f", bash("rm -f a.txt")),

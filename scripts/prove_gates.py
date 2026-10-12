@@ -1436,6 +1436,64 @@ def run_height_blend_probes(verbose=True):
     return ok, bad
 
 
+def run_street_overlay_probes(verbose=True):
+    """2026-10-10 cobblestone streets (audit question: the "4 mutations, 4 caught" claim had no artefact).
+
+    Two halves: each street CPU mirror is replaced by a plausible WRONG version and `_assert_street_invariants`
+    must catch it; and `_validate_street_overlay` must refuse bad values while accepting the shipped block.
+    """
+    import import_heightmap as ih
+    import make_landscape_material as mlm
+    ok = bad = 0
+
+    def _check(label, condition):
+        nonlocal ok, bad
+        if condition:
+            ok += 1
+            if verbose:
+                print("  {0:<9} {1}".format("refused", label))
+        else:
+            bad += 1
+            if verbose:
+                print("  FAILED    {0}".format(label))
+
+    for label, name, wrong in (
+            ("grass keep leaks 10% at g=1", "_cpu_grass_keep", lambda m, g: m * (1.0 - 0.9 * g)),
+            ("blend not the identity at r=0", "_cpu_street_blend", lambda b, c, r: b + (c - b) * max(r, 0.01)),
+            ("roughness rises with luminance", "_cpu_street_rough",
+             lambda l, r, v: min(1.0, max(0.0, r + v * (l - 0.5)))),
+            ("roughness unclamped", "_cpu_street_rough", lambda l, r, v: r + v * (0.5 - l))):
+        orig = getattr(mlm, name)
+        setattr(mlm, name, wrong)
+        try:
+            _check("mutation: " + label, bool(mlm._assert_street_invariants()))
+        finally:
+            setattr(mlm, name, orig)
+    rec = json.load(open(os.path.join(REPO_ROOT, "recipes", "alpine_8k.json"), encoding="utf-8"))
+    so = (rec.get("material") or {}).get("street_overlay")
+    if not so:
+        bad += 1
+        if verbose:
+            print("  FAILED    no material.street_overlay in the recipe -- nothing to probe (rule 13)")
+        return ok, bad
+    if ih._validate_street_overlay(so):
+        bad += 1
+        if verbose:
+            print("  FAILED    the shipped street_overlay block is refused: {0}".format(
+                ih._validate_street_overlay(so)))
+    for label, k, v in (("mask_px not a power of two", "mask_px", 4000), ("feather 0", "feather_m", 0),
+                        ("roughness > 1", "roughness", 1.5), ("albedo not /Game", "albedo", "T_X"),
+                        ("max_texture_px not pow2", "max_texture_px", 3000),
+                        ("flag not bool", "exclude_grass_in_houses", "yes"), ("mask escapes", "mask", "../x.png")):
+        b = dict(so)
+        b[k] = v
+        _check("validator: " + label, bool(ih._validate_street_overlay(b)))
+    b = dict(so)
+    del b["tile_m"]
+    _check("validator: tile_m missing", bool(ih._validate_street_overlay(b)))
+    return ok, bad
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--quiet", action="store_true")
@@ -1482,13 +1540,17 @@ def main(argv=None):
     hok, hbad = run_height_blend_probes(v)
     print("  {0}/{1} correct".format(hok, hok + hbad))
     print("")
+    print("STREET OVERLAY (2026-10-10) — CPU mirrors mutated, validator fed bad values")
+    sok, sbad = run_street_overlay_probes(v)
+    print("  {0}/{1} correct".format(sok, sok + sbad))
+    print("")
     print("'I COULD NOT LOOK' BRANCHES")
     cnl = run_could_not_look(v)
     print("")
     print("DEAD-GATE SWEEP — a checker with no call site is zero gate")
     dead = run_dead_gate_sweep(v)
     print("")
-    bad = (s + a + abad + pbad + ubad + gbad + rbad + dbad + hbad + len(dead)
+    bad = (s + a + abad + pbad + ubad + gbad + rbad + dbad + hbad + sbad + len(dead)
            + (0 if cnl else 1))
     if bad:
         print("{0} gate(s) failed to refuse. A gate that cannot fail is not "

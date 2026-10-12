@@ -134,8 +134,14 @@ from make_landscape_material import mask_plan  # noqa: E402
 # their authored culls (MeadowFar 512 m is the coarse far tier that IS the
 # representation of the 50-512 m band). None has a measured placed height in
 # the 2026-09-05 bench, so they are excluded explicitly, like GroundClutter.
+# Carry 2026-10-04 (rig hero rounds 3b/14/24 -> recipes/alpine_8k.json): the
+# five FieldGrass bands and MeadowBoulders are the same class again --
+# `system: grass` carpets at authored culls tuned on the rig (60/120/120/200/
+# 120/400 m), no measured placed height. Excluded explicitly, like the rest.
 GROUND_COVER = {"Meadow", "Blueberry", "GroundClutter",
-                "MeadowFar", "ForestLitter", "ForestShrub", "ForestStones"}
+                "MeadowFar", "ForestLitter", "ForestShrub", "ForestStones",
+                "MeadowNear", "MeadowMid", "MeadowMid2", "MeadowFar200",
+                "ScreeTufts", "MeadowBoulders"}
 
 # THE FLOOR, as a fraction of the ruled count. A plan that places below
 # this fraction of what the ruling asked for is REFUSED (D-3, gate F-1 /

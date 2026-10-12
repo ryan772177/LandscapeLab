@@ -94,7 +94,12 @@ FRAMES = 60000         # effectively unbounded: the DWELL bounds the capture,
                        # not the frame count. A frame budget that expires
                        # mid-run ends the capture wherever it happens to be.
 EYE_CM = 175.0
-COLUMNS = ("GPUTime", "GameThreadTime", "RenderThreadTime", "FrameTime")
+# The level under test. Set ONCE in main() from the recipe's
+# landscape.level_path (default recipes/alpine_8k.json -> /Game/Alpine8K, the
+# ratified behaviour). 2026-10-03: --recipe added so the look rig
+# (/Game/LookDevMtn) can be costed with the same instrument.
+LEVEL = "/Game/Alpine8K"
+COLUMNS =("GPUTime", "GameThreadTime", "RenderThreadTime", "FrameTime")
 
 # VRAM budget (docs/environment.md): the DEVICE_HUNG abort ceiling the HLOD
 # builds were held under, and the card's physical VRAM. Both MiB. The perf run
@@ -331,7 +336,7 @@ def run_station(zone, x, y, z, pitch, yaw, outdir, dry=False,
         "CsvProfile frames=%d" % FRAMES,
     ]
     exec_cmds = ",".join(_cmds)
-    cmd = [UE_EXE, UPROJECT, "/Game/Alpine8K",
+    cmd = [UE_EXE, UPROJECT, LEVEL,
            "-game", "-windowed",
            "-ResX=%d" % RES_X, "-ResY=%d" % RES_Y,
            "-ExecCmds=%s" % exec_cmds,
@@ -536,10 +541,12 @@ def run_station(zone, x, y, z, pitch, yaw, outdir, dry=False,
         # initialized and generated its streaming grid -- i.e. the world is
         # STREAMED (bounded by the declared loading range), not monolithically
         # loaded. Recorded as evidence with its limit, not as a cell count.
+        _lvl = LEVEL.rsplit("/", 1)[1]
         _wp = bool(re.search(
-            r"UWorldPartition::Initialize : World = /Game/Alpine8K\.Alpine8K"
-            r".*?World Type = Game", txt))
-        _gen = "GenerateStreaming for 'Alpine8K'" in txt
+            r"UWorldPartition::Initialize : World = "
+            + re.escape("%s.%s" % (LEVEL, _lvl))
+            + r".*?World Type = Game", txt))
+        _gen = ("GenerateStreaming for '%s'" % _lvl) in txt
         rec["residency"] = {
             "wp_initialized_game": _wp,
             "generate_streaming_seen": _gen,
@@ -666,6 +673,11 @@ def main():
     ap.add_argument("--csv-gpu-stats", action="store_true",
                     help="Brief 5 item 1: add -csvGpuStats so the CsvProfiler "
                          "emits per-pass GPU-TIME columns (GPU/<pass>).")
+    ap.add_argument("--recipe", default=os.path.join("recipes",
+                                                      "alpine_8k.json"),
+                    help="repo-relative recipe: its landscape.level_path is "
+                         "the level launched, its heightmap places the "
+                         "camera. Non-default needs --station-json.")
     ap.add_argument("--station-json", default=None,
                     help="Brief 5 v3 Task 3: path to a JSON carrying a 'camera' "
                          "{x_cm,y_cm,z_cm,pitch_deg,yaw_deg}. Runs ONE custom "
@@ -695,9 +707,14 @@ def main():
     budgets = json.load(open(os.path.join(REPO_ROOT, "recipes",
                                           "perf_budgets.json"),
                              encoding="utf-8-sig"))
-    recipe = json.load(open(os.path.join(REPO_ROOT, "recipes",
-                                         "alpine_8k.json"),
+    recipe = json.load(open(os.path.join(REPO_ROOT, a.recipe),
                             encoding="utf-8-sig"))
+    global LEVEL
+    LEVEL = recipe["landscape"]["level_path"]
+    if a.recipe != os.path.join("recipes", "alpine_8k.json") and \
+            not a.station_json:
+        ap.error("--recipe other than alpine_8k needs --station-json: the "
+                 "ratified stations are Alpine8K coordinates")
     spline = budgets["spline"]
     eye = float(spline.get("eye_height_cm", EYE_CM))
     # Brief 5 v3 Task 3: a custom forest_floor station, WITHOUT editing the
@@ -735,7 +752,8 @@ def main():
                                "untouched. This is a second instrument "
                                "reported beside it. Whether any budget should "
                                "move is an operator decision.",
-        "engine": UE_EXE, "project": UPROJECT, "level": "/Game/Alpine8K",
+        "engine": UE_EXE, "project": UPROJECT, "level": LEVEL,
+        "recipe": a.recipe,
         "requested_res": [RES_X, RES_Y], "fov_h_deg": spline.get(
             "fov_horizontal_deg"),
         "_fov_h_deg_note": ("declared from the spline but NOT applied to the "

@@ -178,6 +178,8 @@ def main(argv=None) -> int:
                          "period is always spent waiting, even when the "
                          "node answers in 2 s. 12-25 is right; larger "
                          "values buy nothing but delay.")
+    ap.add_argument("--allow-long-discovery", action="store_true",
+                    help="permit --timeout > 60 (refused otherwise, 2026-10-04b)")
     ap.add_argument("--raw", action="store_true", help="also print raw output")
     ap.add_argument("--set", action="append", default=[], metavar="NAME=VALUE",
                     help="literal __NAME__ substitution in the payload")
@@ -323,6 +325,15 @@ def main(argv=None) -> int:
         # the same day a caller passed 120-180 anyway and paid minutes per
         # call. A rule that lives only in a narrative cannot stop the hand
         # that types the flag; this prints at the point of use.
+        # 2026-10-04b: the NOTE did not fire either -- the caller grepped it
+        # away and waited 40 min on two calls. Now a refusal, with an
+        # explicit override for a genuinely slow-to-answer editor.
+        if not args.allow_long_discovery:
+            print("REFUSE: --timeout %.0f is a DISCOVERY WINDOW, spent in full; "
+                  "it is NOT an execution budget (the payload runs to completion "
+                  "after discovery). Use 12-25, or pass --allow-long-discovery."
+                  % args.timeout)
+            return 2
         print("NOTE: --timeout %.0f is a DISCOVERY WINDOW and will be spent "
               "in full, even though the node usually answers in seconds. "
               "12-25 is right." % args.timeout)

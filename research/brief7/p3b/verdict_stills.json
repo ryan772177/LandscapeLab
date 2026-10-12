@@ -1,21 +1,11 @@
 {
- "started": "2026-09-28T00:02:50",
+ "started": "2026-09-30T18:40:57",
  "phases": {
-  "guard": {
-   "rc": 0,
-   "tail": "REPO_ROOT : C:\\Users\\Admin\\UE5LandscapePipeline\nlock file : C:\\Users\\Admin\\UE5LandscapePipeline\\.heavy-op.lock\nmemory    : 22.6 GB free of 31.4 GB\nheld by   : nobody"
-  },
-  "launch": {
-   "pids": [
-    26164
-   ],
-   "ready_s": 64
-  },
-  "ram_settle": {
-   "free_gb": 0.88,
-   "shader_workers": 0,
-   "editor_ws_gb": 18.91,
-   "waited_s": 2
+  "attach": {
+   "pid": 24364,
+   "free_gb": 5.66,
+   "editor_ws_gb": 10.15,
+   "shader_workers": 0
   },
   "level_check": {
    "ok": true,
@@ -96,52 +86,35 @@
   "grass_dump_cam": {
    "ok": true,
    "error": null,
-   "ground_z_cm": 21028.5,
+   "ignored_actors": 2140,
+   "ground_z_cm": 19644.4,
    "cam_loc": [
     -166400.0,
     192000.0,
-    21203.5
+    19819.4
    ],
    "cam_rot_rpy": [
     0.0,
     -5.0,
     100.0
    ],
-   "shoot_loc": "-166400.0,192000.0,21203.5"
+   "shoot_loc": "-166400.0,192000.0,19819.4"
   },
   "grass_dump": {
    "lines": [
-    "[2026.09.28-07.06.58:576][966]By grass type report:",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_Blueberry: Num components = 79, total data size = 5016.58 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_ForestLitter: Num components = 70, total data size = 4445.07 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_ForestShrub: Num components = 70, total data size = 4445.07 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_ForestStones: Num components = 70, total data size = 4445.07 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_GroundClutter: Num components = 79, total data size = 5016.58 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_Meadow: Num components = 79, total data size = 5016.58 KB",
-    "[2026.09.28-07.06.58:578][966]GT_alpine_8k_MeadowFar: Num components = 79, total data size = 5016.58 KB",
-    "[2026.09.28-07.06.58:578][966]LogPython: __LL__{\"ok\": true, \"error\": null, \"issued\": [\"grass.DumpGrassData -bygrasstype\"]}"
+    "[2026.10.01-01.44.16:431][616]By grass type report:",
+    "[2026.10.01-01.44.16:432][616]GT_alpine_8k_Blueberry: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:432][616]GT_alpine_8k_ForestLitter: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]GT_alpine_8k_ForestShrub: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]GT_alpine_8k_ForestStones: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]GT_alpine_8k_GroundClutter: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]GT_alpine_8k_Meadow: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]GT_alpine_8k_MeadowFar: Num components = 53, total data size = 3365.55 KB",
+    "[2026.10.01-01.44.16:433][616]LogPython: __LL__{\"ok\": true, \"error\": null, \"issued\": [\"grass.DumpGrassData -bygrasstype\"]}"
    ],
    "n": 9
   },
   "stills": {
-   "forest_floor": {
-    "rc": 0,
-    "cam": [
-     -166400.0,
-     192000.0,
-     21203.5
-    ],
-    "png": true
-   },
-   "forest_floor_ground": {
-    "rc": 0,
-    "cam": [
-     -166400.0,
-     192000.0,
-     21203.5
-    ],
-    "png": true
-   },
    "plaza": {
     "rc": 0,
     "cam": [
@@ -151,12 +124,57 @@
     ],
     "png": true
    },
+   "main_street": {
+    "rc": 1,
+    "cam": [
+     -204847.3,
+     278048.0,
+     18890.2
+    ],
+    "png": true
+   },
    "treeline": {
     "rc": 0,
     "cam": [
      -190000.0,
      100000.0,
      63366.2
+    ],
+    "png": true
+   },
+   "vista": {
+    "rc": 0,
+    "cam": [
+     -216400.0,
+     63600.0,
+     76424.9
+    ],
+    "png": true
+   },
+   "forest_floor": {
+    "rc": 0,
+    "cam": [
+     -166400.0,
+     192000.0,
+     19819.4
+    ],
+    "png": true
+   },
+   "slope": {
+    "rc": 0,
+    "cam": [
+     -190000.0,
+     100000.0,
+     63366.2
+    ],
+    "png": true
+   },
+   "cliff_overlook": {
+    "rc": 0,
+    "cam": [
+     -201186.0,
+     219000.0,
+     21722.0
     ],
     "png": true
    }
@@ -217,40 +235,26 @@
    "level": "/Game/Alpine8K.Alpine8K",
    "clean": false
   },
-  "content_quiet_s": 1163,
   "close": {
-   "editors_after": [],
-   "package_restore_data": true
+   "skipped": "--no-close",
+   "editors_after": [
+    24364
+   ]
   }
  },
  "aborted": null,
- "notes": [
-  "stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 0.82 GB"
- ],
+ "notes": [],
  "mode": {
   "offscreen": false,
   "stills_only": true,
   "skip_perf": true,
-  "build_map": null
+  "build_map": null,
+  "attach_pid": 24364,
+  "warmup": false,
+  "no_close": true
  },
- "fence_tag": "pre-p3b-clutter-20260927",
- "pre_shas": {
-  "LandscapeLab/Content/Materials/M_Alpine8K.uasset": "6fadc78a410475457425d436b811319ed04e9155",
-  "LandscapeLab/Content/Foliage/GT_alpine_8k_Meadow.uasset": "c76a5b4c0c2d9d027c1aae07a235f4918b138540",
-  "LandscapeLab/Content/Foliage/GT_alpine_8k_GroundClutter.uasset": "eba17200fb6dfe5fad92c1a3ac7618eb50f8de73",
-  "LandscapeLab/Content/Foliage/GT_alpine_8k_Blueberry.uasset": "e192f5b9dd8d0436717349d691279edadc7b018c"
- },
- "pre_gt_all": [
-  "GT_alpine_8k_Blueberry.uasset",
-  "GT_alpine_8k_ForestLitter.uasset",
-  "GT_alpine_8k_ForestShrub.uasset",
-  "GT_alpine_8k_ForestStones.uasset",
-  "GT_alpine_8k_GroundClutter.uasset",
-  "GT_alpine_8k_Meadow.uasset",
-  "GT_alpine_8k_MeadowFar.uasset"
- ],
- "pre_gt_untracked": [],
- "vram_editor_peak": 7234,
+ "fence_tag": "pre-p4-stills-20260930",
+ "vram_editor_peak": 7230,
  "bench_restore_ok": true,
- "finished": "2026-09-28T00:14:15"
+ "finished": "2026-09-30T18:55:52"
 }

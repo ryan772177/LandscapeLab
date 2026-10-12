@@ -56,7 +56,24 @@ INPUT_KEYS = ("_produced_by", "_recipe", "_world", "_biome",
               # live-pointer fact the _city_plan entry closed for the town.
               # Absent keys are skipped, so plans with no water/planting
               # field are unaffected.
-              "_planting_field", "_water_mask")
+              "_planting_field", "_water_mask",
+              # Added 2026-10-06 with the kit town (plan_city roof source
+              # town_kit): each building's roof_candidate is computed by the
+              # BUILDER's fit (scripts/town_kit_plan.py over
+              # recipes/town_kit.json -- usable flags, eave, roof_tol, snap).
+              # Change either and the plan's roofs are stale. Absent keys are
+              # skipped, so kit_v2 plans are unaffected.
+              "_roof_recipe", "_roof_fit",
+              # scripts/roof_servability.py: its kit_* functions snap every
+              # recorded footprint and decide tileable sides (re-audit F1)
+              "_roof_snap",
+              # 2026-10-08: the reachable sidecar's building doorsteps come from the kit manifest's door
+              # sides -- move a door and the sidecar is stale. Absent elsewhere, so skipped.
+              "_kit_manifest",
+              # 2026-10-10 organic town layout (audit F8): the street network and every plot come from
+              # scripts/city_organic.py -- change it and the plan is stale. Absent from lattice plans, so
+              # skipped. (Its water mask rides the existing "_water_mask" key above; re-audit F3: listed twice.)
+              "_layout_code")
 
 STAMP_KEY = "_input_sha256"
 

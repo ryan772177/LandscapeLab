@@ -119,6 +119,17 @@ was never confirmed. On a 15.4 GB host this is real. | S`
 
 ## Defects found and deliberately not chased
 
+- **2026-10-10: `check_weightmap_feather.py` invariant 3 FAILS (snow aspect: shaded/lit ratio 1.75, lit frac 0.0338).**
+  Pre-existing: identical on the pre-streets heightmap, so neither the street flatten nor the 5.8.3 update caused it
+  (offline numpy only). Same family as the line below; investigate together.
+- **2026-10-10: the shipped weightmap is not reproducible.** `derive_layer_weights.py` on today's inputs differs
+  from textures/alpine_8k_w8{a,b}.png on 16.3 M texels outside the town (street-flatten review change 3 measured
+  it; FLATTEN_DESIGN.md). Find which input or code drifted (water carve, foliage regen, feather) before any re-bake.
+- **2026-10-10: stamp spikes in the heightmap.** `terrain/alpine_8k_stamped.png` (and so the shipped map) carries
+  17,885 single vertices > 2 m off their 3x3 median (1,844 > 3 m), 854 in the town box; `alpine_8k_base.png` has 0.
+  On the town's streets `flatten_streets.py` removes them; elsewhere they stand (some may be intended rock micro-
+  relief -- unmeasured). Measure which stamp writes them before any fix (LESSONS 2026-10-10hh).
+
 `2026-08-16 | THE ROCKS AND CLIFFS DO NOT COLLIDE — needs a ruling, not a fix
 | Unit 6 made the four TREE species query-collidable and measured the cost at
 +0.21 ms GameThread against a +0.5 ms bar. The other ten FT_* — Boulder,
@@ -3206,3 +3217,27 @@ Add a --settle option to shoot.py / a foliage-LOD-resolved wait. | S |`
 `2026-09-28 | Re-baseline every -game perf number taken before 2026-09-28 | They were measured with NO landscape grass (the proxies' grass-type lists were never saved; LESSONS 2026-09-27c #4). Brief 5 D3/D4/T4 budgets, perf_budgets.json tolerances and the T4 'structural floor' rest on grass-less captures. Desk/Ryan ruling on whether to re-derive. | M`
 `2026-09-28 | (WITHDRAWN the same hour, rule 10) treeline still "high aerial" | Not a defect: the station is the bench mid_slope, a snow slope at altitude; p0 mid_slope_look.png has the same framing. Kept as the record of a wrong read. | done`
 `2026-09-28 | Editor memory at 797k trees: 25 GB private on 31.4 GB | Every editor session on Alpine8K now pages; builds moved to a light level (R-P3-CLUTTER). Options to measure: WP editor loading region instead of load-all, foliage editor data, texture pool. | M`
+
+- 2026-09-30: SWEEP every imported colour texture for a 16-bit source with encoding_override TSE_NONE (foliage, kit, hero, water) -- same fault as T_gray_rocks_C / T_forest_floor_C (LESSONS 2026-09-30f). Add the IHDR bit-depth check + override to the surface import path so intake refuses or fixes it. Add a dot-p-y scan over payload TEXT to the offline suite (import_layer_textures was dead for a week on a comment).
+
+- **Guard the 13 legacy region-loading diagnostic payloads against HLOD-proxy and town-roof ground traces**
+  (2026-10-08). `scripts/check_trace_ignores.py` lists them in `LEGACY` (reported, not failed). Each must ignore
+  `WorldPartitionHLOD` actors and both town tags before its output is trusted again; remove it from `LEGACY`
+  when done. Evidence: LESSONS 2026-10-08f/g.
+- **`scripts/place_player_start.py` traces ground with an EMPTY ignore list after loading every region**
+  (2026-10-08 audit F7). The PlayerStart is in the town centre, so a re-run would seat it on a kit roof or HLOD
+  canopy. Add the HLOD + town ignores, then remove it from `check_trace_ignores.LEGACY`.
+- **~28 scripts scratch in `%TEMP%` (standing rule 1)** -- `tempfile.mkdtemp()` / `TemporaryDirectory()` /
+  `gettempdir()` with no `dir=` (grep `mkdtemp|gettempdir|TemporaryDirectory()` in `scripts/`; e.g. prove_gates,
+  prove_encounter_plan, shoot, check_plan_freshness --reproduce, derive_planting_field, resource_guard,
+  run_offline_suite). Re-audit 2026-10-10 BLOCKed this class twice in one day (check_organic_plan,
+  prove_city_gates); both fixed, the rest are selftest/prover scratch. Fix: `dir=<repo>/_verify`, then add a
+  static check to the offline suite (+ selftest) so the class cannot return. Evidence: LESSONS 2026-10-10d.
+- **Organic town: street-edge water** (re-audit 2026-10-10 Q1). Water is tested on the street CENTRELINE only
+  (generator and checker); a 7 m main-road slab's edge can clip a 4 m water-mask cell the centreline misses.
+  Measured 0 wet at 0.5-1 m centreline sampling. Test the slab's two edges too.
+- **guard.py hook: resource_guard chained with a heavy op** (LESSONS 2026-10-10k/l, same slip twice in one session). Flag a Bash command that runs scripts/resource_guard.py AND a heavy tool (town_kit_place, save_level, build_navmesh_chunk, hlod_*) together; the RAM read must be its own call.
+- **Same hook, second shape:** refuse launching an HLOD / WorldPartitionBuilder slice while another commandlet runs (LESSONS 2026-10-10 + 10-10o: parallel slices twice in one day; the engine-alive refusal held both times).
+- **subagent_output.py (SubagentStop NN18) eats subagent reports** (2026-10-10, twice: registry analyst + design reviewer). The injected caution makes the agent reply to the HOOK, so its final message -- the only text the parent receives -- loses the report; both had to be asked to resend. Its own docstring says "degrade, not block" to preserve paid-for work; in practice it discards it. Also its pattern list rejects "could not determine", the exact wording the design-reviewer mandate requires for unchecked claims. Fix: deliver the caution to the PARENT (not as context that resumes the agent), or exempt marked UNVERIFIED registers.
+- **audit_material_samplers dirties the audited material** (LESSONS 2026-10-10u): it creates/deletes a scratch TextureSample in the material itself. Derive the engine sampler choice on a transient material instead, so the audit is read-only.
+- **game_still: read back the camera ROTATION** (LESSONS 2026-10-10aa): same request framed the ridge ~15 deg apart on two runs; only position is proven.

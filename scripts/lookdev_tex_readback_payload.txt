@@ -1,0 +1,35 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# READ-ONLY (2026-09-30, lookdev iter01): the import settings of every layer
+# colour map, to test "albedo sampled without sRGB decode" as the cause of the
+# pale terrain. Loads the assets, changes nothing.
+_out = {"ok": False, "error": None, "textures": {}}
+try:
+    for _n in ("T_Snow007A_C", "T_gray_rocks_C", "T_rocks_ground_04_C",
+               "T_forest_floor_C", "T_WildGrass_C", "T_gray_rocks_N", "T_gray_rocks_R"):
+        _t = _u.EditorAssetLibrary.load_asset("/Game/Surfaces/" + _n)
+        if _t is None:
+            _out["textures"][_n] = None
+            continue
+        _row = {}
+        for _p in ("srgb", "compression_settings", "lod_group", "mip_gen_settings",
+                   "adjust_brightness", "adjust_brightness_curve", "adjust_vibrance",
+                   "adjust_saturation", "adjust_rgb_curve", "adjust_min_alpha",
+                   "adjust_max_alpha", "chroma_key_texture", "virtual_texture_streaming"):
+            try:
+                _row[_p] = str(_t.get_editor_property(_p))
+            except Exception as _e:
+                _row[_p] = "UNREADABLE: %s" % type(_e).__name__
+        try:
+            _row["size"] = [_t.blueprint_get_size_x(), _t.blueprint_get_size_y()]
+        except Exception as _e:
+            _row["size"] = "UNREADABLE: %s" % type(_e).__name__
+        try:
+            _row["source_file"] = _t.get_editor_property("asset_import_data").get_first_filename()
+        except Exception as _e:
+            _row["source_file"] = "UNREADABLE: %s" % type(_e).__name__
+        _out["textures"][_n] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:300])
+print("__LL__" + _json.dumps(_out, default=str))

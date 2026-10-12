@@ -24,6 +24,8 @@ public class LandscapeLabEditor : ModuleRules
 			"LandscapeEditor",
 			// GEditor, FActorLabelUtilities.
 			"UnrealEd",
+			// IProjectManager / IPluginManager (SetProjectPluginEnabled, 2026-10-10).
+			"Projects",
 			"Slate",
 			"SlateCore",
 
@@ -50,6 +52,13 @@ public class LandscapeLabEditor : ModuleRules
 			// MetaHuman/groom entry point to die that way. Running it here puts
 			// it on the game thread in the editor own context instead.
 			"HairStrandsCore",
+
+			// --- Town kit (2026-10-06) ---
+			// AInstancedFoliageActor / FFoliageInfo::RemoveInstances for the
+			// surgical foliage clearance under new houses (RemoveFoliageInBoxes).
+			"Foliage",
+			// UNavigationSystemV1::GetIsAutoUpdateEnabled read-back.
+			"NavigationSystem",
 		});
 	}
 }

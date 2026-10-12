@@ -1,0 +1,17 @@
+{
+ "schema_version": "rvt-1.0",
+ "_what": "RVT for /Game/Alpine8K (R-RVT, carried from the rig 2026-10-04). Bounds from the recipe: landscape location (-406400, -406400), 8128 quads x 100 cm = 812800 cm; terrain Z 0 .. 1552.5 m measured (CLAUDE.md spec) -> volume Z 0 .. 160000 cm. Colour RVT tile_count 12 (the cap, 4096 tiles x 256 px = 1,048,576 px -> 0.78 cm/texel over 8.1 km; 64 MB default pool, editor auto-grows, -game does not).",
+ "level": "/Game/Alpine8K",
+ "asset_dir": "/Game/Alpine8K_RVT",
+ "main_pass": "ALWAYS",
+ "bounds_cm": {
+  "min": [-406400.0, -406400.0, 0.0],
+  "size": [812800.0, 812800.0, 160000.0]
+ },
+ "textures": [
+  {"name": "RVT_Alpine8K_Color", "tag": "LL_RVT8K_Color", "material_type": "BASE_COLOR_NORMAL_ROUGHNESS",
+   "tile_count": 12, "tile_size": 2, "compress_textures": true},
+  {"name": "RVT_Alpine8K_Height", "tag": "LL_RVT8K_Height", "material_type": "WORLD_HEIGHT",
+   "tile_count": 9, "tile_size": 2, "compress_textures": true}
+ ]
+}

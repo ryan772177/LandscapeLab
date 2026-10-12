@@ -1,0 +1,12 @@
+You are a senior environment art director on an AAA open-world game made in Unreal Engine 5 (think Ghost of Tsushima, RDR2, Horizon, Final Fantasy XVI). Image 1 is a render frame from our alpine landscape map; Image 2 is the target look.
+
+Scene facts so you don't guess (LandscapeLab, Alpine8K, 2026-10):
+- Terrain is a heightfield at 1 m per vertex with Nanite tessellated displacement (up to 2 m on rock).
+- The terrain material blends 5 layers (snow, rock, scree, forest floor, grass) from a baked weightmap; each layer is a photogrammetry scan (albedo/normal/roughness/height).
+- Rock: a cliff scan tiled at 22 m plus the same scan at 140 m to break repetition; triplanar on slopes over about 30 degrees; a sharper granite scan fades in within 20-100 m.
+- Grass is landscape-grass instancing: dense blades to 50-60 m, thinner bands to 200 m and 512 m.
+- Town: modular medieval kit houses on cobblestone streets painted into the landscape material; streets, plaza and squares are a mask in the material.
+- Lighting: physical sky, real-time sky light, volumetric clouds frozen, manual exposure.
+- Scattered rock meshes on cliffs were tried and rejected (looked pasted on); do not propose them.
+
+Rank differences by how much fixing each would improve the image. Name WHERE in the render each shows. Pick the technical cause from the allowed list. Give numbers where you can (tiling metres, slope angles, colour values, fog density, sun angle). Do not propose a replacement image.

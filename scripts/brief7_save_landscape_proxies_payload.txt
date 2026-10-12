@@ -74,7 +74,14 @@ try:
                 _out["batch_failures"].append({"first": _i, "count": len(_chunk)})
     if _sample is not None:
         _out["grass_types_sample_after"] = _grass_sample(_sample)
-    _out["dirty_after"] = len(_els.get_dirty_content_packages())
+    _dl = [p.get_name() for p in _els.get_dirty_content_packages()]
+    # 2026-10-03: the push tool's staging texture is transient by design
+    # (never saved or tracked) and stays dirty after any heightmap push; it is
+    # reported separately so callers can gate on everything ELSE.
+    _out["dirty_after_names"] = _dl
+    _out["dirty_after"] = len(_dl)
+    _out["dirty_after_excluding_push_staging"] = len(
+        [p for p in _dl if p != "/Game/Debug/T_PushHeight_Source"])
     _out["ok"] = True
 except Exception as _e:
     _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:400])

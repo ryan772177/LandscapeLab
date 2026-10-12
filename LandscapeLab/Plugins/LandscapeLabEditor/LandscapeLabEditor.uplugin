@@ -28,6 +28,11 @@
 			"Name": "DNACalib",
 			"Enabled": true,
 			"_why": "FDNACalibDNAReader and FDNACalibSetNeutralJointTranslationsCommand. Ships with UE 5.8 and speaks DNA 2.5 natively."
+		},
+		{
+			"Name": "PCGPrimitives",
+			"Enabled": true,
+			"_why": "2026-10-10 PCG Shape Grammar trial (research/town_kit/SHAPE_GRAMMAR_TRIAL.md): grammar examples + Primitives content. Experimental, content-only; its .uplugin pulls PCG, PCGGeometryScriptInterop, PCGBiomeCore, PCGBiomeSample, PCGExternalDataInterop (PluginManager.cpp:2552-2593 enables them at load). Ruling 2: lives here, not in the .uproject."
 		}
 	]
 }

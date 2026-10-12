@@ -1,0 +1,27 @@
+{
+ "schema_version": "grass-dryness-1.0",
+ "_what": "World-space dry/green patches on the FieldGrass meadow bands (hero round 20, 2026-10-03; both Gemini critiques). Built by scripts/make_grass_dryness.py: duplicates the KiteDemo FieldGrass base material and its three LOD instances into target_dir (no vendor edit), multiplies the copy's BaseColor input by lerp(1, dry_tint, dryness), dryness = strength * saturate((noise - lo) / (hi - lo)), noise = Gradient-ALU Noise of AbsoluteWorldPosition / noise_scale_m, 0..1. Round 19 showed the vendor GrassDeadColor mask is per-blade only (LESSONS 2026-10-03o).",
+ "source_material": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_01",
+ "source_instances": [
+  "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01",
+  "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD1",
+  "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD2"
+ ],
+ "target_dir": "/Game/Materials/Lookdev",
+ "target_material": "M_FieldGrass_Dry",
+ "target_instance_prefix": "MI_FieldGrass_Dry_LOD",
+ "noise_scale_m": 45.0,
+ "noise_levels": 3,
+ "threshold": [
+  0.5,
+  0.65
+ ],
+ "dry_tint": [
+  1.45,
+  1.12,
+  1.0
+ ],
+ "strength": 1.0,
+ "_tint_note": "A MULTIPLIER on the vendor colour, not a colour. Gemini's dry (0.42, 0.38, 0.28) over green (0.22, 0.31, 0.15) is (1.9, 1.2, 1.9); blue lowered to 1.2 so dry reads straw, not grey.",
+ "_tuning": "2026-10-03 r20c: 60 m / [0.45,0.70] / (1.7,1.25,1.2) and 150 m / [0.55,0.75] read as an even yellow shift at the hero camera; a red hard-threshold control (hero_r20_ctrl) showed the camera sits inside one 150 m patch. 45 m puts several patches in view."
+}

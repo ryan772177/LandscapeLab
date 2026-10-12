@@ -137,8 +137,12 @@ def seg_seg_dist(p1, p2, p3, p4):
     return math.hypot(cx, cy)
 
 
-def components(segs, tol_cm):
-    """Connected components of the segment graph, by union-find."""
+def components(segs, tol_cm, width_join=False):
+    """Connected components of the segment graph, by union-find.
+
+    width_join (organic layout, audit 2026-10-10 F9): a pair joins when its centrelines are within the MEAN of the
+    two widths (the slabs touch), not one fixed tol_cm -- a 7 m tolerance joined 3.5 m alleys that never touch.
+    tol_cm then only bounds the broad phase and must be >= the widest street."""
     n = len(segs)
     ends = [endpoints(s) for s in segs]
     parent = list(range(n))
@@ -166,7 +170,8 @@ def components(segs, tol_cm):
             hj = 0.5 * float(segs[j]["len_cm"])
             if math.hypot(mi[0] - mj[0], mi[1] - mj[1]) > hi + hj + tol_cm:
                 continue
-            if seg_seg_dist(ends[i][0], ends[i][1], ends[j][0], ends[j][1]) <= tol_cm:
+            t = (0.5 * (float(segs[i]["width_cm"]) + float(segs[j]["width_cm"])) if width_join else tol_cm)
+            if seg_seg_dist(ends[i][0], ends[i][1], ends[j][0], ends[j][1]) <= t:
                 union(i, j)
 
     groups = {}
@@ -219,6 +224,16 @@ def selftest():
           % (got, "OK" if got == 2 else "FAIL"))
     ok &= (got == 2)
 
+    # (e) width join: two 3.5 m alleys 5 m apart do NOT touch (a fixed 7 m tol joined them); 3 m apart they do
+    al = [{"loc_cm": [0.0, 0.0, 0.0], "yaw_deg": 0.0, "len_cm": 1000.0, "width_cm": 350.0},
+          {"loc_cm": [0.0, 500.0, 0.0], "yaw_deg": 0.0, "len_cm": 1000.0, "width_cm": 350.0}]
+    got = len(components(al, 700.0, width_join=True))
+    al[1]["loc_cm"][1] = 300.0
+    got2 = len(components(al, 700.0, width_join=True))
+    print("  selftest width join alleys 5 m / 3 m -> %d / %d component(s), want 2 / 1  %s"
+          % (got, got2, "OK" if (got, got2) == (2, 1) else "FAIL"))
+    ok &= (got, got2) == (2, 1)
+
     return ok
 
 
@@ -264,16 +279,25 @@ def main():
 
     print("PLAN     %s" % os.path.relpath(a.plan, REPO_ROOT))
     print("city_id  %s" % plan.get("city_id"))
-    print("segments %d  (ring %d, spoke %d)"
-          % (len(segs),
-             sum(1 for s in segs if s.get("kind") == "ring"),
-             sum(1 for s in segs if s.get("kind") == "spoke")))
+    kinds = {}
+    for s in segs:
+        kinds[s.get("kind")] = kinds.get(s.get("kind"), 0) + 1
+    # by kind as the plan records them (organic: main/lane/alley; audit 2026-10-10 F14)
+    print("segments %d  (%s)" % (len(segs), ", ".join("%s %d" % kv for kv in sorted(kinds.items(), key=str))))
+    wj = plan.get("layout") == "organic"
+    if wj:
+        print("join     organic: per pair, centrelines within the mean of the two widths (--tol-cm ignored)")
     c = plan.get("counts", {})
     if "streets_rejected_slope" in c:
         # plans written before 2026-08-25, when one number covered a metric
         # that was measuring roughness rather than grade
         print("rejected (legacy single 'slope' count): %s"
               % c["streets_rejected_slope"])
+    elif wj:
+        # organic plans carry no grade/cut-fill counters (re-audit 2026-10-10 F5)
+        os_ = plan.get("organic_stats", {})
+        print("refused  organic pieces failed %s %s (never placed);  pruned unreachable %s"
+              % (os_.get("pieces_failed"), os_.get("why"), c.get("streets_pruned_disconnected")))
     else:
         print("refused  grade %s, cut/fill %s;  pruned unreachable %s"
               % (c.get("streets_rejected_grade"),
@@ -292,10 +316,14 @@ def main():
                      100.0 * len(comps[0]) / len(segs)))
         print("")
 
-    comps = components(segs, a.tol_cm)
+    if wj:
+        # the broad phase bound must cover the widest pair
+        comps = components(segs, max(float(s["width_cm"]) for s in segs), width_join=True)
+    else:
+        comps = components(segs, a.tol_cm)
     total_len = sum(float(s["len_cm"]) for s in segs)
 
-    print("AT tol_cm = %.0f" % a.tol_cm)
+    print("AT %s" % ("per-pair width join" if wj else "tol_cm = %.0f" % a.tol_cm))
     print("  components        %d" % len(comps))
     print("  largest           %d segments (%.1f%% of all)"
           % (len(comps[0]), 100.0 * len(comps[0]) / len(segs)))

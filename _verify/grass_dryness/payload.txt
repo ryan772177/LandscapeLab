@@ -1,0 +1,160 @@
+
+import json as _json
+import unreal as _u
+_R = _json.loads('{"schema_version": "grass-dryness-1.0", "source_material": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_01", "source_instances": ["/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01", "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD1", "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/M_FieldGrass_Inst_01_LOD2"], "target_dir": "/Game/Materials/Lookdev", "target_material": "M_FieldGrass_Dry", "target_instance_prefix": "MI_FieldGrass_Dry_LOD", "noise_scale_m": 45.0, "noise_levels": 3, "threshold": [0.5, 0.65], "dry_tint": [1.45, 1.12, 1.0], "strength": 1.0}')
+_out = dict(ok=False, injected=False, mis=[])
+try:
+    _eal = _u.EditorAssetLibrary
+    _mel = _u.MaterialEditingLibrary
+    _at = _u.AssetToolsHelpers.get_asset_tools()
+    _tgt = _R["target_dir"] + "/" + _R["target_material"]
+    if not _eal.does_asset_exist(_tgt):
+        if _eal.duplicate_asset(_R["source_material"], _tgt) is None:
+            raise RuntimeError("duplicate failed: " + _tgt)
+        _out["duplicated"] = True
+    _m = _eal.load_asset(_tgt)
+    _inv0 = 1.0 / (float(_R["noise_scale_m"]) * 100.0)
+    _lo0 = float(_R["threshold"][0])
+    _wd0 = float(_R["threshold"][1]) - _lo0
+    _sg0 = float(_R["strength"])
+    _t0 = [float(x) for x in _R["dry_tint"]]
+    def _injected():
+        # Marker param AND BaseColor fed by a Multiply: the marker alone made
+        # a half-built graph look finished (audit 2026-10-03).
+        _b = _mel.get_material_property_input_node(_m, _u.MaterialProperty.MP_BASE_COLOR)
+        return ("LL_DryStrength" in [str(n) for n in _mel.get_scalar_parameter_names(_m)]
+                and isinstance(_b, _u.MaterialExpressionMultiply))
+    if not _injected():
+        _bc = _mel.get_material_property_input_node(_m, _u.MaterialProperty.MP_BASE_COLOR)
+        if _bc is None:
+            raise RuntimeError("copy has no BaseColor input")
+        _bcpin = str(_mel.get_material_property_input_node_output_name(
+            _m, _u.MaterialProperty.MP_BASE_COLOR))
+        _made = []
+        def _n(cls, x, y):
+            _x = _mel.create_material_expression(_m, cls, x, y)
+            _made.append(_x)
+            return _x
+        def _w(a, ap, b, bp):
+            if not _mel.connect_material_expressions(a, ap, b, bp):
+                raise RuntimeError("wire failed into " + type(b).__name__ + "." + bp)
+        def _sp(name, v, x, y):
+            _p = _n(_u.MaterialExpressionScalarParameter, x, y)
+            _p.set_editor_property("parameter_name", name)
+            _p.set_editor_property("default_value", float(v))
+            return _p
+        try:
+            _wp = _n(_u.MaterialExpressionWorldPosition, -2200, 1200)
+            _inv = _sp("LL_DryInvScale", _inv0, -2200, 1350)
+            _mp = _n(_u.MaterialExpressionMultiply, -2000, 1250)
+            _w(_wp, "", _mp, "A"); _w(_inv, "", _mp, "B")
+            _nz = _n(_u.MaterialExpressionNoise, -1800, 1250)
+            _nz.set_editor_property("scale", 1.0)
+            _nz.set_editor_property("levels", int(_R["noise_levels"]))
+            _nz.set_editor_property("output_min", 0.0)
+            _nz.set_editor_property("output_max", 1.0)
+            # Resolve the enum member by reflection: the Python spelling of
+            # NOISEFUNCTION_GradientALU is not guessed (ue58-api-protocol).
+            _cands = [n for n in dir(_u.NoiseFunction) if "GRADIENT" in n and "ALU" in n]
+            if len(_cands) != 1:
+                raise RuntimeError("NoiseFunction GradientALU not unique: " + str(
+                    [n for n in dir(_u.NoiseFunction) if n.startswith("NOISE")]))
+            _nz.set_editor_property("noise_function", getattr(_u.NoiseFunction, _cands[0]))
+            _out["noise_function"] = _cands[0]
+            # GetWorldPositionInputName(Absolute) = "World Position", NOT
+            # "Position" (audit 2026-10-03, MaterialShared.cpp:6310).
+            _w(_mp, "", _nz, "World Position")
+            _lo = _sp("LL_DryLo", _lo0, -1600, 1400)
+            _wd = _sp("LL_DryWidth", _wd0, -1600, 1500)
+            _sb = _n(_u.MaterialExpressionSubtract, -1400, 1250)
+            _w(_nz, "", _sb, "A"); _w(_lo, "", _sb, "B")
+            _dv = _n(_u.MaterialExpressionDivide, -1250, 1250)
+            _w(_sb, "", _dv, "A"); _w(_wd, "", _dv, "B")
+            _st = _n(_u.MaterialExpressionSaturate, -1100, 1250)
+            _w(_dv, "", _st, "")
+            _sg = _sp("LL_DryStrength", _sg0, -1100, 1400)
+            _ms = _n(_u.MaterialExpressionMultiply, -950, 1250)
+            _w(_st, "", _ms, "A"); _w(_sg, "", _ms, "B")
+            _one = _n(_u.MaterialExpressionConstant3Vector, -950, 1100)
+            _one.set_editor_property("constant", _u.LinearColor(1.0, 1.0, 1.0, 1.0))
+            _tv = _n(_u.MaterialExpressionVectorParameter, -950, 1450)
+            _tv.set_editor_property("parameter_name", "LL_DryTint")
+            _tv.set_editor_property("default_value", _u.LinearColor(_t0[0], _t0[1], _t0[2], 1.0))
+            _lp = _n(_u.MaterialExpressionLinearInterpolate, -750, 1250)
+            _w(_one, "", _lp, "A"); _w(_tv, "", _lp, "B"); _w(_ms, "", _lp, "Alpha")
+            _fin = _n(_u.MaterialExpressionMultiply, -550, 1000)
+            _w(_bc, _bcpin, _fin, "A"); _w(_lp, "", _fin, "B")
+            if not _mel.connect_material_property(_fin, "", _u.MaterialProperty.MP_BASE_COLOR):
+                raise RuntimeError("BaseColor reconnect failed")
+            _errs = _mel.recompile_material(_m)
+            if _errs:
+                raise RuntimeError("compile errors: " + str([str(x) for x in _errs]))
+        except Exception:
+            # Roll the half-built graph back so a rerun starts clean; nothing saved.
+            for _x in _made:
+                try:
+                    _mel.delete_material_expression(_m, _x)
+                except Exception:
+                    pass
+            _mel.connect_material_property(_bc, _bcpin, _u.MaterialProperty.MP_BASE_COLOR)
+            raise
+        if not _injected():
+          raise RuntimeError("injection read-back failed: BaseColor is not our Multiply")
+        _eal.save_asset(_tgt, only_if_is_dirty=False)
+        _out["injected"] = True
+    _out["injection_readback"] = bool(_injected())
+    _m = _eal.load_asset(_tgt)
+    _out["material_params"] = sorted(str(n) for n in _mel.get_scalar_parameter_names(_m)
+                                     if str(n).startswith("LL_"))
+    _want = dict(LL_DryInvScale=1.0 / (float(_R["noise_scale_m"]) * 100.0),
+                 LL_DryLo=float(_R["threshold"][0]),
+                 LL_DryWidth=float(_R["threshold"][1]) - float(_R["threshold"][0]),
+                 LL_DryStrength=float(_R["strength"]))
+    _tint = [float(x) for x in _R["dry_tint"]]
+    for _i, _src in enumerate(_R["source_instances"]):
+        _path = _R["target_dir"] + "/" + _R["target_instance_prefix"] + str(_i)
+        _s = _eal.load_asset(_src)
+        if _s is None:
+            raise RuntimeError("source instance missing: " + _src)
+        if _eal.does_asset_exist(_path):
+            _mi = _eal.load_asset(_path)
+        else:
+            _mi = _at.create_asset(_path.rsplit("/", 1)[1], _R["target_dir"],
+                                   _u.MaterialInstanceConstant,
+                                   _u.MaterialInstanceConstantFactoryNew())
+        _sbm = _s.get_base_material() if hasattr(_s, "get_base_material") else None
+        if _sbm is None or _sbm.get_path_name().split(".")[0] != _R["source_material"]:
+            raise RuntimeError("source instance " + _src + " does not derive from source_material")
+        _mel.set_material_instance_parent(_mi, _m)
+        for _pn in _mel.get_static_switch_parameter_names(_s):
+            _mel.set_material_instance_static_switch_parameter_value(
+                _mi, _pn, _mel.get_material_instance_static_switch_parameter_value(_s, _pn))
+        for _pn in _mel.get_scalar_parameter_names(_s):
+            _mel.set_material_instance_scalar_parameter_value(
+                _mi, _pn, _mel.get_material_instance_scalar_parameter_value(_s, _pn))
+        for _pn in _mel.get_vector_parameter_names(_s):
+            _mel.set_material_instance_vector_parameter_value(
+                _mi, _pn, _mel.get_material_instance_vector_parameter_value(_s, _pn))
+        for _pn in _mel.get_texture_parameter_names(_s):
+            _mel.set_material_instance_texture_parameter_value(
+                _mi, _pn, _mel.get_material_instance_texture_parameter_value(_s, _pn))
+        for _k, _v in _want.items():
+            _mel.set_material_instance_scalar_parameter_value(_mi, _k, _v)
+        _mel.set_material_instance_vector_parameter_value(
+            _mi, "LL_DryTint", _u.LinearColor(_tint[0], _tint[1], _tint[2], 1.0))
+        _mel.update_material_instance(_mi)
+        _eal.save_asset(_path, only_if_is_dirty=False)
+        _c = _eal.load_asset(_path)
+        _rb = dict((_k, _mel.get_material_instance_scalar_parameter_value(_c, _k)) for _k in _want)
+        _tc = _mel.get_material_instance_vector_parameter_value(_c, "LL_DryTint")
+        _rb["LL_DryTint"] = [_tc.r, _tc.g, _tc.b]
+        _ok = all(abs(_rb[_k] - _want[_k]) <= 1e-6 * max(1.0, abs(_want[_k])) for _k in _want) \
+            and all(abs(a - b) <= 1e-5 for a, b in zip(_rb["LL_DryTint"], _tint)) \
+            and _c.get_editor_property("parent").get_path_name().split(".")[0] == _tgt
+        _out["mis"].append(dict(path=_path, readback=_rb, ok=bool(_ok)))
+    _out["ok"] = (all(x["ok"] for x in _out["mis"]) and len(_out["material_params"]) >= 4
+                  and _out["injection_readback"])
+except Exception as _e:
+    import traceback as _tb
+    _out["error"] = _tb.format_exc()
+print("__LL__" + _json.dumps(_out))

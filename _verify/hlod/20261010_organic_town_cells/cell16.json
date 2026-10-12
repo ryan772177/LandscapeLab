@@ -1,0 +1,86 @@
+{
+ "label": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y5",
+ "command": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/Alpine8K",
+  "-run=WorldPartitionBuilderCommandlet",
+  "-Builder=WorldPartitionHLODsBuilder",
+  "-noxgecontroller",
+  "-AllowCommandletRendering",
+  "-unattended",
+  "-nosplash",
+  "-nopause",
+  "-abslog=C:/Users/Admin/UE5LandscapePipeline/_verify/hlod/20261010_organic_town_cells\\cell16.log",
+  "-BuildHLODs",
+  "-BuildSingleHLOD=Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y5"
+ ],
+ "returncode": 1,
+ "minutes": 0.675,
+ "vram_before_mb": 40,
+ "vram_peak_mb": 3468,
+ "log": "_verify/hlod/20261010_organic_town_cells/cell16.log",
+ "scan": {
+  "last_index": 2,
+  "total": 2,
+  "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-4_Y5",
+  "approve": 2,
+  "reject": 0,
+  "built": 2,
+  "to_build": 2,
+  "fatal": [],
+  "vram_at_fault_mb": null,
+  "log_errors": 2,
+  "log_warnings": 8
+ },
+ "attribution": {
+  "log": "cell16.log",
+  "by_layer": {
+   "Alpine8K_HLODLayer_Instanced": {
+    "layer": "Alpine8K_HLODLayer_Instanced",
+    "ApproveRebuild": 1,
+    "RejectRebuild": 0,
+    "other": 0,
+    "source_layers": {
+     "Alpine8K_MainPartition": 1
+    },
+    "total": 1
+   },
+   "Alpine8K_HLODLayer_Merged": {
+    "layer": "Alpine8K_HLODLayer_Merged",
+    "ApproveRebuild": 1,
+    "RejectRebuild": 0,
+    "other": 0,
+    "source_layers": {
+     "Alpine8K_HLODLayer_Instanced": 1
+    },
+    "total": 1
+   }
+  },
+  "cells": [
+   {
+    "i": 1,
+    "n": 2,
+    "layer": "Alpine8K_HLODLayer_Instanced",
+    "cell": "Alpine8K_MainPartition_L2_X-4_Y5",
+    "decision": "ApproveRebuild"
+   },
+   {
+    "i": 2,
+    "n": 2,
+    "layer": "Alpine8K_HLODLayer_Merged",
+    "cell": "Alpine8K_HLODLayer_Instanced_L1_X-4_Y5",
+    "decision": "ApproveRebuild"
+   }
+  ],
+  "n_building_lines": 2,
+  "n_decisions": 2,
+  "decisions_without_a_cell": 0,
+  "cells_without_a_decision": 0,
+  "_pairing": "each decision is attributed to the most recent preceding `Building HLOD actor` line; the FOLDER is the layer, the cell name is the source",
+  "approved": 2,
+  "rejected": 0,
+  "trustworthy": true
+ },
+ "true_exit": true
+}

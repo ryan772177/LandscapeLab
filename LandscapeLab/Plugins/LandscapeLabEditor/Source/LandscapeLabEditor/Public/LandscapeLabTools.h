@@ -31,6 +31,7 @@ class ALandscapeProxy;
 class UMaterialInterface;
 class USkeletalMesh;
 class UGroomBindingAsset;
+class UStaticMesh;
 
 UCLASS()
 class LANDSCAPELABEDITOR_API ULandscapeLabTools : public UBlueprintFunctionLibrary
@@ -648,4 +649,135 @@ public:
 		FString& OutError,
 		int32 NumInterpolationPoints = 100,
 		int32 MatchingSection = 0);
+
+	// ---------------------------------------------------------------------
+	// TOWN KIT (2026-10-06, research/town_kit/DESIGN.md, design review HOLD
+	// item 2): houses are assembled from the Medieval Village kit's shared
+	// FULL-RESOLUTION Nanite modules as ISM components on one actor per
+	// house. Merging was rejected: the merge reads render LOD0, which on a
+	// Nanite mesh is the fallback (StaticMeshBuilder.cpp:687-716), so a merged
+	// roof kept 0.63 % of its triangles. 5.8 Python cannot add instanced
+	// components to an actor (city_place_payload.txt:20-21), so this does.
+	// Every component is registered as an INSTANCE component
+	// (AActor::AddInstanceComponent) so it serialises with the actor's
+	// World Partition external package.
+	// ---------------------------------------------------------------------
+
+	/**
+	 * Spawn one house actor in the editor world: a USceneComponent root at
+	 * Transform, plus a UBoxComponent "Collision" (BlockAll, affects
+	 * navigation) at BoxCenterCm with half-size BoxExtentCm in root space --
+	 * the authored wall box, NOT the mesh bounds (design review item 6: a
+	 * bounds box would include the roof eaves). Label and Tags as given.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void SpawnKitHouse(
+		const FTransform& Transform,
+		const FString& Label,
+		const TArray<FName>& Tags,
+		const FVector& BoxCenterCm,
+		const FVector& BoxExtentCm,
+		AActor*& OutActor,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * Find-or-create the UInstancedStaticMeshComponent named ComponentName on
+	 * House (attached to its root), set Mesh, REPLACE its instances with
+	 * LocalTransforms (root-relative), no collision (the house's box carries
+	 * it). Returns the instance count read back from the component.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void SetKitInstances(
+		AActor* House,
+		UStaticMesh* Mesh,
+		const TArray<FTransform>& LocalTransforms,
+		const FName ComponentName,
+		int32& OutInstanceCount,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * Remove (or, with bDryRun, only count) every foliage instance in the
+	 * editor world whose LOCATION lies inside any of the oriented boxes:
+	 * BoxTransforms[i] (location + yaw, scale ignored) with half-size
+	 * BoxHalfExtentsCm[i] in that box's local frame. Walks every loaded
+	 * AInstancedFoliageActor and every foliage type
+	 * (InstancedFoliageActor.h:46 ForEachFoliageInfo), candidates from
+	 * FFoliageInfo::GetInstancesInsideBounds (InstancedFoliage.h:347), exact
+	 * oriented test, then FFoliageInfo::RemoveInstances (InstancedFoliage.h:338).
+	 * 2026-10-06 kit town: 450 plan trees stand inside new house footprints;
+	 * Python can only remove ALL instances of a type (place_foliage.py:1854),
+	 * so a surgical removal needs this. OutPerType: "<type>=<count>" rows.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void RemoveFoliageInBoxes(
+		const TArray<FTransform>& BoxTransforms,
+		const TArray<FVector>& BoxHalfExtentsCm,
+		bool bDryRun,
+		int32& OutMatched,
+		int32& OutRemoved,
+		TArray<FString>& OutPerType,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * LoadAllWorldPartitionRegions restricted to one XY box (Z forced wide,
+	 * same FLoaderAdapterShape + SetUserCreated + Load path): the kit town
+	 * needs every actor in the town resident (teardown census, foliage
+	 * clearance) without making the whole 8 km world resident.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void LoadWorldPartitionRegionBox(
+		const FVector& MinCm,
+		const FVector& MaxCm,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * Editor setting "Update Navigation Automatically"
+	 * (ULevelEditorMiscSettings::bNavigationAutoUpdate, not exported to Python:
+	 * audit 2026-10-06 F2) -- set, SaveConfig, read back from GConfig.
+	 * bApplyNow true: also FNavigationSystem::SetNavigationAutoUpdateEnabled,
+	 * which is what the settings panel does (SettingsClasses.cpp:482-491) --
+	 * use it to turn auto-update OFF. bApplyNow false: config only, the
+	 * session keeps its build lock, so re-enabling does NOT fire the in-editor
+	 * RebuildAll (NavigationSystem.cpp:1868-1871); the next launch applies the
+	 * config (EditorEngine.cpp:1013). OutConfigValue is re-read from the ini.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void SetEditorNavigationAutoUpdate(
+		bool bEnable,
+		bool bApplyNow,
+		bool& bOutConfigValue,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * Read back the navigation system's EFFECTIVE auto-update state
+	 * (UNavigationSystemV1::GetIsAutoUpdateEnabled, NavigationSystem.h:1159,
+	 * not reflected). The config value proves only that the setting was
+	 * saved (standing rule 12; design review 2026-10-06 finding 7).
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Town")
+	static void GetNavigationAutoUpdateEnabled(
+		bool& bOutEnabled,
+		bool& bOutSuccess,
+		FString& OutError);
+
+	/**
+	 * 2026-10-10: enable or disable a plugin for THIS project and save the .uproject, through the engine's own
+	 * project manager (IProjectManager::SetPluginEnabled, IProjectManager.h:218; SaveCurrentProjectToDisk :248).
+	 * Standing rule 4 forbids editing the .uproject on disk; PluginBlueprintLibrary (the only reflected plugin
+	 * surface) is read-only. Refuses a plugin the plugin manager does not know (IPluginManager::FindPlugin,
+	 * IPluginManager.h:393). bOutWasDirty = IsCurrentProjectDirty() after the set (:240): false means the request
+	 * was already the project's state and nothing was written. The change takes effect at the NEXT editor start.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "LandscapeLab|Project")
+	static void SetProjectPluginEnabled(
+		const FString& PluginName,
+		bool bEnabled,
+		bool& bOutWasDirty,
+		bool& bOutSuccess,
+		FString& OutError);
 };

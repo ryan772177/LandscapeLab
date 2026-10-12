@@ -13,7 +13,10 @@ try:
     _w = _u.EditorLevelLibrary.get_editor_world()
     _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
     _ign = [a for a in _eas.get_all_level_actors()
-            if isinstance(a, _u.InstancedFoliageActor)]
+            if isinstance(a, (_u.InstancedFoliageActor, _u.WorldPartitionHLOD))]
+    # 2026-09-30: WorldPartitionHLOD proxies are LOADED in the editor and take a complex
+    # trace -- the main_street station landed 14.7 m up on one (LESSONS 2026-09-30c).
+    _out["ignored_actors"] = len(_ign)
     _hit = _u.SystemLibrary.line_trace_single(
         _w, _u.Vector(_X, _Y, 400000.0), _u.Vector(_X, _Y, -400000.0),
         _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,

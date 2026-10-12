@@ -217,6 +217,9 @@ try:
                 _card.set_editor_property("is_spatially_loaded", False)
             except Exception:
                 pass
+            # 2026-10-06: an instrument never ships -- saved HIDDEN IN GAME; the
+            # bench shows it in memory for its PIE render (bench_capture).
+            _card.set_actor_hidden_in_game(True)
             _smc = _card.static_mesh_component
             # A freshly spawned StaticMeshActor is Static; setting the mesh on
             # a Static component is allowed in the EDITOR world.

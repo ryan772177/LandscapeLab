@@ -54,6 +54,36 @@ EXCLUDE = [
 # packages ARE regenerable from the recipes. Snapshot ~6.1 GB of LFS.
 
 
+def ai_restricted(paths):
+    """2026-10-12: the repo on GitHub is PUBLIC (unauthenticated API 200), so everything the AI-input register
+    forbids (recipes/ai_restrictions.json via scripts/ai_input_guard.match -- the ONE declaration: kit renders,
+    derived kit packages, the levels that place the kit) is dropped from the snapshot. A public repo is crawlable,
+    which is a route into exactly the generation-model input the licence forbids. Fail closed: a guard that cannot
+    load raises, and the snapshot is not built."""
+    sys.path.insert(0, os.path.join(REPO, "scripts"))
+    import ai_input_guard
+    reg = ai_input_guard.load_registry()
+    out = []
+    for p in paths:
+        r, why = ai_input_guard.match(os.path.join(REPO, p), reg)
+        if not r:
+            continue
+        # audit 2026-10-12 F3 (ruled): recipe JSON caught ONLY by the package/level leaf-substring rule (e.g.
+        # recipes/rvt_alpine8k.json via 'alpine8k') is parameters, not kit content, and GitHub is its only
+        # off-machine copy -- kept. A recipe matched by a source/render glob is still dropped.
+        if p.startswith("recipes/") and p.endswith(".json") and str(why).startswith("names the restricted"):
+            continue
+        out.append(p)
+    return out
+
+
+def _z(args, env=None):
+    """NUL-separated, UNQUOTED git path listing (audit 2026-10-12 F1: core.quotePath C-quotes non-ASCII paths,
+    which then match no glob -- a fail-open in the licence gate)."""
+    raw = subprocess.run(["git", "-C", REPO, *args, "-z"], env=env, capture_output=True, check=True).stdout
+    return [p for p in raw.decode("utf-8").split("\0") if p]
+
+
 def git(*args, check=True, text=True):
     r = subprocess.run(["git", "-C", REPO, *args], capture_output=True, text=text)
     if check and r.returncode != 0:
@@ -95,7 +125,21 @@ def main(argv=None):
                            env=env, check=True)
         dropped += n
         print("  drop %-48s %6d files" % (p, n))
+    remaining = _z(["ls-files"], env=env)
+    restricted = ai_restricted(remaining)
+    if restricted:
+        lst = os.path.join(REPO, ".git", "lite-restricted.txt")
+        with open(lst, "wb") as f:
+            # :(literal) so a *, ? or [ in a filename is not a pattern (audit F2)
+            f.write(b"\0".join((":(literal)" + p).encode("utf-8") for p in restricted) + b"\0")
+        subprocess.run(["git", "-C", REPO, "rm", "--cached", "-q", "--pathspec-from-file=" + lst,
+                        "--pathspec-file-nul"], env=env, check=True)
+        os.remove(lst)
+    dropped += len(restricted)
+    print("  drop %-48s %6d files" % ("AI-restricted (recipes/ai_restrictions.json)", len(restricted)))
     if a.dry_run:
+        for p in restricted:
+            print("    restricted: %s" % p)
         print("DRY RUN: would drop %d files from the snapshot of %s" % (dropped, head_short))
         os.remove(tmp_index)
         return 0
@@ -104,10 +148,15 @@ def main(argv=None):
     os.remove(tmp_index)
 
     # LEAK GATE: nothing under an excluded path may be in the tree.
-    listing = git("ls-tree", "-r", "--name-only", tree)
-    leaked = [l for l in listing.splitlines() if l.startswith(tuple(EXCLUDE))]
+    listing = _z(["ls-tree", "-r", "--name-only", tree])
+    leaked = [l for l in listing if l.startswith(tuple(EXCLUDE))]
     if leaked:
         print("REFUSE: %d excluded paths leaked into the snapshot, e.g. %s" % (len(leaked), leaked[0]))
+        return 2
+    # the AI gate re-run on the WRITTEN tree (a different read from the index the drop worked on)
+    leaked_ai = ai_restricted(listing)
+    if leaked_ai:
+        print("REFUSE: %d AI-restricted paths in the snapshot tree, e.g. %s" % (len(leaked_ai), leaked_ai[0]))
         return 2
 
     parent = None
@@ -123,7 +172,8 @@ def main(argv=None):
             return 0
     subject = git("log", "-1", "--format=%s", head)
     msg = ("lite snapshot of main @ %s: %s\n\nDerived by scripts/github_lite_snapshot.py; "
-           "excludes %s. Full history stays local on main." % (head_short, subject, ", ".join(EXCLUDE)))
+           "excludes %s and every AI-restricted path (recipes/ai_restrictions.json). Full history stays local "
+           "on main." % (head_short, subject, ", ".join(EXCLUDE)))
     msg_path = os.path.join(REPO, ".git", "lite-msg.txt")
     with open(msg_path, "w", encoding="utf-8") as f:
         f.write(msg)

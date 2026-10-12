@@ -1,0 +1,82 @@
+--- resource guard: landscape heightmap push (landscape rebuild) ---
+  RAM: 4.7 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 6284)
+REPO_ROOT       : C:\Users\Admin\UE5LandscapePipeline
+Heightmap       : C:\Users\Admin\UE5LandscapePipeline\terrain\alpine_8k.png  (8129x8129, uint16, values 0..39743)
+Landscape       : origin (-406400, -406400, 128000) cm, scale 100.0/100.0/500.0
+Mode            : PUSH
+
+--- editor identity gate (conduct rule 7) ---
+  - FB2ABCA14A4A2093A766D38CB94F73F5 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+  VERIFIED: FB2ABCA14A4A2093A766D38CB94F73F5 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab)
+
+--- level gate ---
+  level /Game/Alpine8K
+
+--- identify by property signature ---
+  Landscape_Alpine8K         res=8129 step=254 comps=1024 MATCH
+  matched: Landscape_Alpine8K
+
+--- pre-flight (export read-back vs the LIVE terrain) ---
+  exporting the live heightmap and reading 1280 vertices across 5 blocks, all within the trusted region x,y <= 1008
+  export returned True (not evidence); 1280 vertices read
+  resident census    : {'components': 1024, 'min_section_base': [0, 0]}
+  raw R range        : 9072.0 .. 12261.0
+  identity               1280 vertices  median |dv|      0.000 units  worst 0.000
+  transpose              1280 vertices  median |dv|     48.000 units  worst 1248.000
+  flip_col               1280 vertices  median |dv|   2222.000 units  worst 3418.000
+  transpose_flip_row     1280 vertices  median |dv|   2668.500 units  worst 5504.000
+  transpose_flip_col     1280 vertices  median |dv|   2923.500 units  worst 3416.000
+  flip_row               1280 vertices  median |dv|   3645.000 units  worst 5461.000
+  transpose_flip_both    1280 vertices  median |dv|   7101.500 units  worst 10048.000
+  flip_both              1280 vertices  median |dv|   7934.000 units  worst 10115.000
+
+  classification     : the live terrain DIFFERS from this heightmap (best mapping median 0.0 units), so this push will CHANGE it. --expect-change given.
+  orientation        : NOT derivable pre-flight against a terrain that is meant to differ; using 'identity', which was established by measurement when an idempotent push was possible.
+  encoding           : likewise not confirmable here.
+  what gates the write: the pre-import render-target check, which compares the buffer about to be written against the source and does not involve the terrain.
+  what proves it landed: the post-push export check, which is now load-bearing — a wrong orientation or encoding fails it, and a failure is exit 5 UNKNOWN with an explicit do-not-save.
+  tolerance (FIXED)  = 4 height units = 15.62 cm
+
+
+  render-target check: 2304 texels across 9 blocks
+
+--- push ---
+  stage reached      : done
+  level              : /Game/Alpine8K
+  texture settings   : {'address_x': 'TA_CLAMP', 'address_y': 'TA_CLAMP', 'compression_settings': 'TC_HDR_F32', 'filter': 'TF_NEAREST', 'mip_gen_settings': 'TMGS_NO_MIPMAPS', 'srgb': False}
+  texture built size : [8129, 8129, 1]  (resident mip [8129, 8129])
+  render target      : [8129, 8129] <TextureRenderTargetFormat.RTF_RGBA32F: 9>
+  engine returned    : True
+  staging texture    : kept (deliberate — it must stay resident for the next push's draw; gitignored, do not save it)
+
+--- verification (export read-back vs the SOURCE) ---
+  export agreed after 1 attempt(s)
+  vertices verified  : 1280
+  median |dv|        : 0.0000 height units (0.00 cm)
+  worst  |dv|        : 0.0000 height units (0.00 cm)
+  tolerance          : 4 height units
+  outside tolerance  : 0
+  height spread      : pushed 3189.0 units vs source 3189.0 units
+  flat-result check  : PASS (relief preserved)
+
+======================================================================
+PUSH VERIFIED. 1280 samples, worst 0.00 height units (0.00 cm), all within 4 height units (15.62 cm).
+
+NOTE ON WHAT THIS PROVES. The engine returned True and its
+own log carries 'Took N seconds to import heightmap from
+render target' (LandscapeEdit.cpp:8175) — that is the
+evidence the mechanism RAN. The height comparison shows the
+result equals the source. Pushing the heightmap the terrain
+was already built from is idempotent, so the comparison
+alone could not distinguish a correct push from no push at
+all; the first push of a CHANGED heightmap is what
+exercises that case.
+
+THE WRITE IS IN EDITOR MEMORY ONLY. Nothing here saves the
+level, and git cannot restore a level that was never
+written. Until it is saved the push is not durable; once it
+is saved it is not reversible.
+======================================================================
+
+Next: run scripts/verify_landscape.py (geometry unchanged) and scripts/capture.py, then a one-line changelog note.

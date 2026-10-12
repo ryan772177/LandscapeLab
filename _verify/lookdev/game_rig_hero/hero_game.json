@@ -1,0 +1,97 @@
+{
+ "name": "hero_game",
+ "ok": true,
+ "cmd": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/LookDevMtn",
+  "-game",
+  "-windowed",
+  "-ResX=1600",
+  "-ResY=900",
+  "-ExecCmds=r.setRes 1600x900w,BugItGo 82100.0 82800.0 55297.8 3.0 225.0 0,DisableAllScreenMessages,ShowFlag.SkeletalMeshes 0",
+  "-nosplash",
+  "-NoLoadingScreen",
+  "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\game_still_hero_game.log"
+ ],
+ "level": "/Game/LookDevMtn",
+ "camera": {
+  "x_cm": 82100.0,
+  "y_cm": 82800.0,
+  "z_cm": 55297.8,
+  "pitch_deg": 3.0,
+  "yaw_deg": 225.0,
+  "z_source": "heightmap + eye (placement aid, not a trace)",
+  "pose_read_back": false
+ },
+ "state": "bench_on_disk",
+ "hlod_residency_read_back": false,
+ "view": "player camera, skeletal meshes hidden",
+ "requested_res": [
+  1600,
+  900
+ ],
+ "settle_s": 120.0,
+ "dpi_awareness_set": true,
+ "free_ram_gb": 20.225299835205078,
+ "ram_comfortable": true,
+ "kill_on_close_job": true,
+ "capture": {
+  "windows_found": 1,
+  "still_minimised": false,
+  "foreground_pid": 8396,
+  "foreground_is_game": true,
+  "client_size": [
+   2400,
+   1350
+  ],
+  "client_origin": [
+   80,
+   89
+  ],
+  "window_dpi": 96
+ },
+ "dwell_s": 124.2,
+ "vram_mib": {
+  "peak_mib": 3198,
+  "mean_mib": 2781.5,
+  "n_samples": 24,
+  "peak_window_mib": 3198,
+  "n_window": 24,
+  "abort_ceiling_mib": 13312,
+  "physical_mib": 16303,
+  "headroom_to_abort_mib": 10114,
+  "over_abort_ceiling": false,
+  "_caveat": "whole-GPU used (nvidia-smi memory.used); includes any other consumer, but the -game process dominates a dedicated run."
+ },
+ "frame": {
+  "size": [
+   2400,
+   1350
+  ],
+  "encoding": "srgb_encoded_8bit (NOT display-linear)",
+  "luma_mean_encoded": 0.3772,
+  "luma_std_encoded": 0.117,
+  "display_scale": [
+   1.5,
+   1.5
+  ],
+  "resampled_to": [
+   1600,
+   900
+  ]
+ },
+ "log": {
+  "bugitgo_to_lines": 1,
+  "bugitgo_matching_request": 1,
+  "bugitgo_first": [
+   82100.0,
+   82800.0,
+   55297.801
+  ],
+  "screen_messages_disabled_line": true,
+  "world_partition_lines": 16
+ },
+ "problems": [],
+ "png": "_verify\\lookdev\\game_rig_hero\\hero_game.png"
+}

@@ -52,9 +52,9 @@ copied from a prior block. Sources: `recipes/alpine_8k.json`,
     z_scale_cm   256000.0                loc [-406400, -406400, 128000]
     material     M_Alpine8K              displacement 0.4 m, triplanar Rock
     foliage      219,659 instances       navmesh 72 bounds volumes
-    town         303 buildings, 838 streets, 303 roofs, 1 landmark, 1 spire
-                 -- ENGINE PRIMITIVES, this is the biggest gap
-    encounters   305 verified
+    town         349 KIT houses ORGANIC (R-TOWNKIT), 371 streets, landmark, spire
+                 -- streets/landmark/spire still PRIMITIVES
+    encounters   307 verified
     architecture MULTI-REGION, 2x2 atlas  RULED BY RYAN 2026-08-15
                  [WORLD_VISION.md:174, :191]
 
@@ -62,9 +62,9 @@ copied from a prior block. Sources: `recipes/alpine_8k.json`,
 **35.32 kmÂ² reachable** (navmesh, post-water; was 36.53) of **47.77
 walkable** (was 49.27).
 
-**The biggest gap: the town is 762 engine Cubes and a Cylinder.** The Medieval
-Village kit is on disk (22.6 GB, vault cache) and **is a COMPONENT KIT** â€”
-2.00 m wall courses, no whole-house meshes.
+**Town gap now: streets + landmark are engine primitives.** Houses are
+the Medieval Village kit (vault cache, 3 intakes) -- a COMPONENT KIT:
+2.00 m wall courses, whole roofs, no whole-house meshes.
 
 **The pre-8K world (`/Game/Alpine`, 2017Â², 4 m/vertex) is HISTORY** â€” its docs
 are in `docs/archive/pre8k/`. Reading about `alpine_heightmap_v2.png`, Pass 0â€“7,

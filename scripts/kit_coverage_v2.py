@@ -43,6 +43,14 @@ def load(p):
 def main():
     v2 = load("Free/_measured/kit_medievalvillage_v2.json")["rows"]
     plan = load("city/alpine_basin_town_plan.json")
+    if plan.get("roof_fit_source", "kit_v2") != "kit_v2":
+        # audit 2026-10-06 F3: a town_kit plan was fitted by the builder's own test
+        # (footprint + eave, usable roofs only); judging it with the kit_v2 span test
+        # would be a second answer to one question.
+        print("REFUSE: the plan's roofs were fitted by roof_fit_source=%r; this audit"
+              % plan.get("roof_fit_source"))
+        print("  asks the kit_v2 question. Read roof_candidate from the plan instead.")
+        return 5
 
     foot = []
     for b in plan.get("buildings", []):

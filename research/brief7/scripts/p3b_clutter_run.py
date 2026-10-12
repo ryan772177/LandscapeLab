@@ -91,12 +91,16 @@ STATIONS = {
 # overlook that A2/FOG_TUNE used as the cliff/far-shading camera (cams.json camA).
 P4_STATIONS = {
     "plaza": {"x": -210800.0, "y": 278800.0, "pitch": -2.0, "yaw": -12.8},
-    "main_street": {"x": -204847.3, "y": 278048.0, "pitch": -2.0, "yaw": -12.9},
+    # RE-AUTHORED 2026-09-30: yaw -12.9 (the perf spline heading) faces a building wall 5 m
+    # ahead; 172.8 looks back down the street at the plaza. Same XY as the perf station.
+    "main_street": {"x": -204847.3, "y": 278048.0, "pitch": -2.0, "yaw": 172.8},
     "treeline": {"x": -190000.0, "y": 100000.0, "pitch": -2.0, "yaw": 105.0},
     "vista": {"x": -216400.0, "y": 63600.0, "pitch": -4.0, "yaw": 60.0},
     "forest_floor": {"x": -166400.0, "y": 192000.0, "pitch": -5.0, "yaw": 100.0},
     "slope": {"x": -190000.0, "y": 100000.0, "pitch": -12.0, "yaw": 105.0},
-    "cliff_overlook": {"x": -201186.0, "y": 219000.0, "pitch": -9.0, "yaw": 270.0, "eye": 1599.8},
+    # RE-AUTHORED 2026-09-30: eye 1599.8 (cams.json camA) is inside a tree crown since the
+    # 797k-tree regen; 4500 clears the canopy. XY / pitch / yaw unchanged.
+    "cliff_overlook": {"x": -201186.0, "y": 219000.0, "pitch": -9.0, "yaw": 270.0, "eye": 4500.0},
 }
 PERF = [
     ("forest_floor", os.path.join(BR5, "input", "forest_station.json")),
@@ -291,9 +295,21 @@ def main():
     ap.add_argument("--still-suffix", default="_look_p3b")
     ap.add_argument("--stills-only", action="store_true",
                     help="windowed launch, Look stills + bench restore + close only (no measure/rebuild/read-back)")
+    ap.add_argument("--attach-pid", type=int, default=None,
+                    help="(with --stills-only) drive THIS already-running windowed editor instead of "
+                         "launching one. Refused unless it is the ONLY editor, bootstrap answers and the "
+                         "level check reads the expected map (rules 7, 11). 2026-09-30: run 1's runner "
+                         "was reaped and the loaded editor (663 s + a full navmesh rebuild) was still up.")
+    ap.add_argument("--warmup", action="store_true",
+                    help="visit every station once (place_cam + dwell, NO shot) before the shooting pass, "
+                         "so derived data is built before a frame is taken (LESSONS 2026-09-30)")
+    ap.add_argument("--warmup-dwell", type=int, default=60)
+    ap.add_argument("--no-close", action="store_true",
+                    help="leave the editor up after the bench restore and the dirty census (no kill)")
     a = ap.parse_args()
     V["mode"] = {"offscreen": a.offscreen, "stills_only": a.stills_only, "skip_perf": a.skip_perf,
-                 "build_map": a.build_map}
+                 "build_map": a.build_map, "attach_pid": a.attach_pid, "warmup": a.warmup,
+                 "no_close": a.no_close}
     map_path = a.build_map or "/Game/Alpine8K"
     expect_level = map_path.rstrip("/").split("/")[-1]
     os.makedirs(OUT, exist_ok=True)
@@ -307,6 +323,32 @@ def main():
         _VERDICT_NAME = "verdict_perf.json"
         rc = close_and_perf(a)
         return rc
+
+    # ---- 0a attach to a running editor (stills-only) ------------------------
+    if a.attach_pid is not None:
+        if not a.stills_only or a.offscreen:
+            return abort("--attach-pid is for a windowed --stills-only run")
+        if git("rev-parse", "-q", "--verify", "refs/tags/" + fence).returncode != 0:
+            return abort("fence tag %s does not exist" % fence)
+        pids = editor_pids()
+        if pids != {a.attach_pid}:
+            return abort("attach: expected exactly editor PID %s, found %s" % (a.attach_pid, sorted(pids)))
+        if subprocess.run([PY, os.path.join(SCRIPTS, "bootstrap.py"), "--timeout", "25"],
+                          cwd=REPO, capture_output=True, text=True).returncode != 0:
+            return abort("attach: bootstrap did not answer for this project (rule 7)")
+        if not a.no_close:
+            LAUNCHED.add(a.attach_pid)      # this session's own editor; the close path may kill it
+        _VERDICT_NAME = "verdict_stills.json"
+        V["phases"]["attach"] = {"pid": a.attach_pid, "free_gb": free_ram_gb(), "editor_ws_gb": editor_ws_gb(),
+                                 "shader_workers": shader_workers()}
+        log("attached to PID %s; free RAM %s GB" % (a.attach_pid, free_ram_gb()))
+        rc, rep, _ = ue("brief7_level_check_payload.txt")
+        V["phases"]["level_check"] = rep
+        save()
+        if not rep or not rep.get("ok") or expect_level not in str(rep.get("world_path") or ""):
+            return abort("rule 11: level check failed (expected %s): %s" % (expect_level, rep or "no JSON"))
+        log("level %s" % rep.get("world_path"))
+        return stills_and_close(a, fence)
 
     # ---- 0 pre-flight ----------------------------------------------------
     if editor_pids():
@@ -371,6 +413,25 @@ def main():
         okc = 2
         V["notes"].append("stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free %s GB" % free_ram_gb())
         log(V["notes"][-1])
+        # 2026-09-30: the operator's disk cleanup deleted BOTH DDCs (local +
+        # C:\UnrealDDC), so this launch compiles shaders cold. A still shot
+        # mid-compile shows default materials and passes every tonal check.
+        # Gate on the worker fleet alone: zero ShaderCompileWorker for four
+        # consecutive 15 s samples, up to 2 h. A timeout ABORTS (no stills).
+        quiet = 0
+        m = 0
+        while quiet < 4 and time.time() - t1 < 7200:
+            workers = shader_workers()
+            quiet = quiet + 1 if workers == 0 else 0
+            if m % 8 == 0:
+                log("stills-only: ShaderCompileWorker x%s, free RAM %s GB, editor WS %s GB; waiting for compile quiet"
+                    % (workers, free_ram_gb(), editor_ws_gb()))
+            m += 1
+            time.sleep(15)
+        V["phases"]["shader_quiet"] = {"quiet_samples": quiet, "shader_workers": shader_workers(),
+                                       "waited_s": round(time.time() - t1)}
+        if quiet < 4:
+            return abort("stills-only: ShaderCompileWorker never went quiet within 7200 s (last x%s)" % shader_workers())
     while okc < 2 and time.time() - t1 < 7200:
         free = free_ram_gb()
         workers = shader_workers()
@@ -526,6 +587,19 @@ def stills_and_close(a, fence):
     station_set = P4_STATIONS if a.station_set == "p4" else STATIONS
     stills_dir = a.stills_dir or STILLS
     os.makedirs(stills_dir, exist_ok=True)
+    if a.warmup and look_ok:
+        warm = {}
+        for name, st in station_set.items():
+            rc, rep, _ = ue("brief7_place_cam_payload.txt",
+                            {"X": st["x"], "Y": st["y"], "PITCH": st["pitch"], "YAW": st["yaw"],
+                             "EYE": st.get("eye", 175.0)})
+            warm[name] = {"ok": bool(rep and rep.get("ok")), "shader_workers_before_dwell": shader_workers()}
+            time.sleep(a.warmup_dwell)
+            warm[name]["shader_workers_after_dwell"] = shader_workers()
+            log("warm-up %s ok=%s workers %s -> %s" % (name, warm[name]["ok"],
+                warm[name]["shader_workers_before_dwell"], warm[name]["shader_workers_after_dwell"]))
+        V["phases"]["warmup"] = warm
+        save()
     for name, st in (station_set.items() if look_ok else []):
         if not look_ok:
             break
@@ -566,6 +640,11 @@ def close_and_perf(a):
     # ---- 10 close --------------------------------------------------------
     rc, rep, _ = ue("dirty_package_census_payload.txt")
     V["phases"]["dirty_census"] = rep
+    if getattr(a, "no_close", False):
+        V["phases"]["close"] = {"skipped": "--no-close", "editors_after": sorted(editor_pids())}
+        log("--no-close: editor left up %s; dirty census %s" % (sorted(editor_pids()), rep))
+        save()
+        return perf_phase(a)
     for _ in range(40):
         age = newest_content_age_s()
         if age >= 120:

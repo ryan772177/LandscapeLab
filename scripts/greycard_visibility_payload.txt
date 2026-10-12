@@ -1,0 +1,44 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# HIDE or SHOW the bench grey cards (R-GREYCARD: Bench_GreyCard_<station>,
+# a 30 cm plane 300 cm ahead of each station camera) in the editor viewport.
+#
+#   python scripts/ue_exec.py scripts/greycard_visibility_payload.txt --set HIDDEN=1
+#
+# WHY. The cards are an instrument and belong in BENCH frames. In a LOOK
+# still they are a tan quad in the lower right of every station frame, and
+# on 2026-09-30 they were logged twice as an "unidentified screen-fixed tan
+# quad" (LESSONS 2026-10-01b). Temporary editor visibility only: nothing is
+# saved, nothing is deleted, and a relaunch shows them again.
+#
+# The state is READ BACK from each actor (rule 12) and the count is reported
+# (rule 13): zero cards found is reported as zero, not as success.
+
+HIDDEN = "__HIDDEN__"   # "1" | "0"
+
+_out = {"ok": False, "error": None, "hidden": HIDDEN, "cards": 0, "readback": {}}
+try:
+    if HIDDEN not in ("0", "1"):
+        raise RuntimeError("HIDDEN must be 0|1, got: " + HIDDEN)
+    _want = HIDDEN == "1"
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        _lab = _a.get_actor_label()
+        if not _lab.startswith("Bench_GreyCard_"):
+            continue
+        _a.set_is_temporarily_hidden_in_editor(_want)
+        _out["readback"][_lab] = bool(_a.is_temporarily_hidden_in_editor())
+        _out["cards"] += 1
+    _bad = [k for k, v in _out["readback"].items() if v != _want]
+    if _out["cards"] == 0:
+        _out["error"] = "no Bench_GreyCard_* actor is loaded; nothing was changed"
+    elif _bad:
+        _out["error"] = "read-back disagrees for: " + ", ".join(sorted(_bad))
+    else:
+        _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

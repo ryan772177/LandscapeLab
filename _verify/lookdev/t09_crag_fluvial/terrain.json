@@ -1,0 +1,70 @@
+{
+ "args": {
+  "iter": "t09_crag_fluvial",
+  "fluvial": 40,
+  "fluvial_k": 0.03,
+  "fluvial_m": 0.5,
+  "talus": 52.0,
+  "diffuse": 0.04,
+  "channel_area": 250.0,
+  "jitter": 0.45,
+  "widen": 1.6,
+  "delump": 0.8,
+  "ridged": 45.0,
+  "ridged_wavelength": 260.0,
+  "strata": 0.0,
+  "strata_step": 14.0,
+  "droplets": 0,
+  "lifetime": 90,
+  "droplet_scale": 200.0,
+  "erode": 0.3,
+  "deposit": 0.3,
+  "inertia": 0.05,
+  "drop_smooth": 0.7,
+  "capacity": 8.0,
+  "seed": 20260930,
+  "write": true
+ },
+ "steps": [
+  {
+   "delump": 0.8,
+   "band_rms_m": 2.824757713832733
+  },
+  {
+   "ridged_m": 45.0,
+   "gate_mean": 0.3962388285579948
+  },
+  {
+   "fluvial_iters": 40,
+   "k": 0.03,
+   "m": 0.5,
+   "n": 1.0,
+   "area_max": 34621.0
+  }
+ ],
+ "delta_m": {
+  "min": -36.08616339669243,
+  "max": 36.50609673904603,
+  "rms": 6.344252597790785
+ },
+ "slope_deg_p50_p90_p99": {
+  "before": [
+   29.988449658908458,
+   55.57511550810032,
+   68.13865260261147
+  ],
+  "after": [
+   23.062622463144102,
+   52.863370230611785,
+   66.47037336807698
+  ]
+ },
+ "weights_coverage": {
+  "snow": 0.36105269953339786,
+  "rock": 0.33720424606831007,
+  "scree": 0.045465663957805616,
+  "forest_floor": 0.0,
+  "grass": 0.2562773904404866
+ },
+ "written": true
+}

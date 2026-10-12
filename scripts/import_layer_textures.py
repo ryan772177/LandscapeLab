@@ -83,6 +83,29 @@ EXPECTED = {
 }
 
 
+# Layers whose mips are box-averaged (TMGS_SIMPLE_AVERAGE) and read back: the true weightmap (sum-of-weights
+# partition) and, since 2026-10-10, the street mask (a coverage field). ONE declaration: the payload's set call
+# and the host's read-back check both read this.
+BOX_MIP_LAYERS = ("_weightmap", "_streetmask")
+# Layers imported NeverStream (always fully resident) and read back: the street mask, a DATA map consumed by the
+# runtime grass pass once per component (LESSONS 2026-10-10v -- a streamed mask gave partial grass exclusion).
+NEVER_STREAM_LAYERS = ("_streetmask",)
+
+
+def _channels_ok(abs_map, cv):
+    """True when the cavity bake's sidecar lists every channel the recipe
+    declares (G = lichen, B = damp). A map baked before lichen/damp were
+    declared still holds cavity copies in G/B, and the material would tint the
+    gullies with the lichen colour, silently (audit 2026-10-03, F3)."""
+    try:
+        with open(abs_map + ".channels.json", encoding="utf-8") as fh:
+            ch = json.load(fh)
+    except (OSError, ValueError):
+        return False
+    return ((not cv.get("lichen") or ch.get("G") == "lichen")
+            and (not cv.get("damp") or ch.get("B") == "damp"))
+
+
 def plan(recipe):
     """Recipe -> list of import jobs. No editor contact."""
     biome = recipe["biome_id"]
@@ -258,6 +281,82 @@ def plan(recipe):
                         "src_size": [w, h],
                         "kind": "detail",
                     })
+    # schema v1.31 CAVITY map: a continuous 0..1 field, linear, clamped 1:1
+    # on the weightmap UV chain -- the selector class (kind "weightmap"),
+    # default mips (no partition to preserve, unlike the true weightmap).
+    cv = (recipe.get("material") or {}).get("cavity")
+    if cv:
+        rel = cv["map"]
+        abs_cv = os.path.realpath(os.path.join(REPO_ROOT, rel))
+        if os.path.commonpath([abs_cv, os.path.realpath(REPO_ROOT)]) != \
+                os.path.realpath(REPO_ROOT):
+            missing.append("cavity map escapes REPO_ROOT: {0}".format(rel))
+        elif not os.path.isfile(abs_cv):
+            missing.append("cavity map not found: {0} -- run "
+                           "scripts/bake_cavity_map.py --write".format(rel))
+        else:
+            try:
+                w, h, depth, colour = import_heightmap._read_png_header(
+                    abs_cv)
+            except (ValueError, OSError) as exc:
+                missing.append("unreadable cavity map {0}: {1}".format(
+                    rel, exc))
+            else:
+                if depth != 8 or colour != 2 or w != h:
+                    missing.append(
+                        "cavity map {0} must be square 8-bit RGB, got {1}x{2} "
+                        "depth {3} colour type {4}".format(
+                            rel, w, h, depth, colour))
+                elif any(cv.get(k) for k in ("lichen", "damp")) and not \
+                        _channels_ok(abs_cv, cv):
+                    missing.append(
+                        "cavity map {0} is STALE: the recipe declares lichen/damp "
+                        "but the bake sidecar does not list those channels -- run "
+                        "scripts/bake_cavity_map.py --write".format(rel))
+                else:
+                    jobs.append({
+                        "layer": "_cavitymap",
+                        "source": abs_cv.replace("\\", "/"),
+                        "asset": landscape_spec.cavity_map_asset_path(biome),
+                        "src_size": [w, h],
+                        "kind": "weightmap",
+                    })
+    # 2026-10-10: the town STREET MASK (material.street_overlay, scripts/build_street_mask.py). Kind "weightmap"
+    # -- the SAME settings dict, aliased, not restated (design review change 3i): uncompressed so the exact 0 border
+    # and the exact 255 grass exclusion survive, clamp (it maps once onto its box), box-average mips.
+    so = (recipe.get("material") or {}).get("street_overlay")
+    if so:
+        rel = so["mask"]
+        abs_sm = os.path.realpath(os.path.join(REPO_ROOT, rel))
+        if os.path.commonpath([abs_sm, os.path.realpath(REPO_ROOT)]) != os.path.realpath(REPO_ROOT):
+            missing.append("street mask escapes REPO_ROOT: {0}".format(rel))
+        elif not os.path.isfile(abs_sm) or not os.path.isfile(abs_sm + ".json"):
+            missing.append("street mask or its sidecar not found: {0} -- run "
+                           "scripts/build_street_mask.py --write".format(rel))
+        else:
+            try:
+                w, h, depth, colour = import_heightmap._read_png_header(abs_sm)
+                side = json.load(open(abs_sm + ".json", encoding="utf-8"))
+            except (ValueError, OSError) as exc:
+                missing.append("unreadable street mask {0}: {1}".format(rel, exc))
+            else:
+                import hashlib
+                stale = [p for p, sha in (side.get("inputs_sha16") or {}).items()
+                         if hashlib.sha256(open(os.path.join(REPO_ROOT, p), "rb").read()).hexdigest()[:16] != sha]
+                if depth != 8 or colour != 6 or w != h or w != so["mask_px"]:
+                    missing.append("street mask {0} must be square 8-bit RGBA of mask_px {1}, got {2}x{3} "
+                                   "depth {4} colour type {5}".format(rel, so["mask_px"], w, h, depth, colour))
+                elif stale or not side.get("inputs_sha16"):
+                    missing.append("street mask {0} is STALE against {1} -- run scripts/build_street_mask.py "
+                                   "--write".format(rel, stale or "its (missing) input hashes"))
+                else:
+                    jobs.append({
+                        "layer": "_streetmask",
+                        "source": abs_sm.replace("\\", "/"),
+                        "asset": landscape_spec.street_mask_asset_path(biome),
+                        "src_size": [w, h],
+                        "kind": "weightmap",
+                    })
     return jobs, missing
 
 
@@ -300,7 +399,9 @@ for _j in _jobs:
         # map shares kind=="weightmap" but layer=="_variantmap"; box-averaging
         # a discrete selector across mips is a separate, unruled question, so
         # it keeps its existing (default) mip behaviour here.
-        _is_true_wm = (_j.get("layer") == "_weightmap")
+        # 2026-10-10: the street mask joins it -- a 0..1 coverage field whose edge a sharpening mip would ring
+        # (ONE declaration, BOX_MIP_LAYERS, shared with the host-side read-back check).
+        _is_true_wm = (_j.get("layer") in {box_mip!r})
         _tex.set_editor_property("srgb", False)
         _tex.set_editor_property(
             "compression_settings",
@@ -323,10 +424,19 @@ for _j in _jobs:
             # average is linear, so sum-of-averages == average-of-sums. Any
             # sharpening filter (FROM_TEXTURE_GROUP's sharpen kernels) breaks
             # the partition and rings at layer boundaries -- the CPU invariant
-            # check_weightmap_mip_partition.py holds the <=1e-3 drift bound.
+            # check_weightmap_mip_partition (no extension HERE: a dot-p-y
+            # substring inside a remote-exec payload makes the engine read the
+            # whole payload as a PATHNAME and run nothing -- "import payload
+            # returned nothing", 2026-09-30) holds the <=1e-3 drift bound.
             _tex.set_editor_property(
                 "mip_gen_settings",
                 _unreal.TextureMipGenSettings.TMGS_SIMPLE_AVERAGE)
+        # 2026-10-10 (LESSONS 10-10v): a DATA map the runtime grass pass reads once must be fully resident when it
+        # runs, or the grass maps are built from a blurred low mip and never rebuilt. ONE declaration,
+        # NEVER_STREAM_LAYERS, shared with the host read-back.
+        _never = (_j.get("layer") in {never_stream!r})
+        if _never:
+            _tex.set_editor_property("never_stream", True)
 
         # READ BACK. Enum reads come back as enum objects, so compare on
         # .name; a str() would render "TextureAddress.TA_WRAP" and a
@@ -341,6 +451,8 @@ for _j in _jobs:
                    "address_x", "address_y"):
             _r["settings"][_p] = _rb(_p)
         _r["settings"]["lod_group"] = _rb("lod_group")
+        if _never:
+            _r["settings"]["never_stream"] = bool(_tex.get_editor_property("never_stream"))
         # blueprint_get_size_x/y report the size of the currently RESIDENT
         # streamed mip, NOT the asset's dimensions. A freshly imported
         # 1024^2 texture that nothing is rendering reports 32x32 here.
@@ -380,7 +492,8 @@ for _j in _jobs:
     _out["results"].append(_r)
 
 print("{marker}" + _json.dumps(_out))
-'''.format(jobs=json.dumps(jobs), marker=MARKER)
+'''.format(jobs=json.dumps(jobs), marker=MARKER, box_mip=tuple(BOX_MIP_LAYERS),
+           never_stream=tuple(NEVER_STREAM_LAYERS))
 
 
 def _parse(text):
@@ -423,6 +536,9 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--recipe", default=DEFAULT_RECIPE)
     p.add_argument("--timeout", type=float, default=6.0)
+    p.add_argument("--only", action="append", default=None,
+                   help="import ONLY this planned job layer (repeatable, e.g. _streetmask); every other declared "
+                        "texture is left untouched. Refuses a name the plan does not contain")
     try:
         args = p.parse_args(argv)
     except SystemExit as exc:
@@ -452,6 +568,18 @@ def main(argv=None):
     if not jobs:
         print("No layer declares `texture`; nothing to import.")
         return 0
+    if args.only:
+        # 2026-10-10 (streets): re-importing the whole set re-encodes and re-saves the 8129^2 weightmap and every
+        # map unchanged. --only narrows to named jobs; the plan (and its staleness refusals) is still built for
+        # ALL declared textures first, so a narrowed run cannot skip a validation.
+        known = {j["layer"] for j in jobs}
+        unknown = sorted(set(args.only) - known)
+        if unknown:
+            print("REFUSE: --only names {0}, not in the plan {1}".format(unknown, sorted(known)))
+            return 2
+        jobs = [j for j in jobs if j["layer"] in set(args.only)]
+        print("--only: importing {0} of the {1} planned job(s): {2}".format(
+            len(jobs), len(known), [j["layer"] for j in jobs]))
 
     for j in jobs:
         print("  {0:<8} {1}".format(j["layer"],
@@ -480,7 +608,13 @@ def main(argv=None):
 
         by_layer = {j["layer"]: j for j in jobs}
         bad, failed = [], []
-        for res in r.get("results", []):
+        results = r.get("results", [])
+        # rule 13 (--only delta audit F1): a short or empty results list must not pass as VERIFIED
+        if len(results) != len(jobs):
+            print("REFUSE: payload returned {0} result(s) for {1} job(s) (rule 13)".format(
+                len(results), len(jobs)))
+            return 4
+        for res in results:
             print("  {0}".format(res["asset"]))
             if res.get("error"):
                 print("    ERROR: {0}".format(res["error"]))
@@ -502,7 +636,7 @@ def main(argv=None):
                 # kind=="weightmap" but keeps its default mip behaviour, so its
                 # settings dict never carries this prop -- skip it there rather
                 # than raise a false MISMATCH.
-                if prop == "mip_gen_settings" and res["layer"] != "_weightmap":
+                if prop == "mip_gen_settings" and res["layer"] not in BOX_MIP_LAYERS:
                     continue
                 got = res["settings"].get(prop)
                 ok = (got == want)
@@ -513,6 +647,12 @@ def main(argv=None):
                         res["layer"], prop, want, got))
             print("    {0:<22} {1!r}".format(
                 "lod_group", res["settings"].get("lod_group")))
+            if res["layer"] in NEVER_STREAM_LAYERS:
+                ns = res["settings"].get("never_stream")
+                print("    {0:<22} {1!r:<12} {2}  (a data map the runtime grass pass reads once; LESSONS "
+                      "2026-10-10v)".format("never_stream", ns, "ok" if ns is True else "MISMATCH"))
+                if ns is not True:
+                    bad.append("{0}.never_stream: set True, read back {1!r}".format(res["layer"], ns))
 
         if failed:
             print("")
@@ -530,7 +670,7 @@ def main(argv=None):
             return 5
 
         print("")
-        print("All textures imported and VERIFIED by read-back.")
+        print("All {0} texture(s) imported and VERIFIED by read-back.".format(len(results)))
         return 0
     finally:
         remote.stop()

@@ -33,7 +33,10 @@
   RECIPES R13 belongs to that machine and is now HISTORICAL, not
   wrong** — R13's CALIBRATION CLASS labelled them correctly.
 - **UE 5.8** at `C:\Program Files\Epic Games\UE_5.8`. All API calls
-  target 5.8.
+  target 5.8. **5.8.3 (CL 58210709) since 2026-10-10** (was 5.8.1 CL 56057345;
+  CompatibleChangelist 55116800 unchanged). Read the version from
+  `Engine/Build/Build.version`, not the Launcher's `LauncherInstalled.dat`
+  (it still said 5.8.1 after the update). Restore tag `pre-engine-5.8.3-20261010`.
 - Python Editor Scripting Plugin on; Remote Execution on
   (239.0.0.1:6766). **Use `--timeout 25`** — the 6 s default is
   unreliable on this machine.

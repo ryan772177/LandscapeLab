@@ -1,0 +1,85 @@
+{
+ "_what": "street flattening PROTOTYPE measurement (read-only); see the docstring",
+ "sigma_m": 8.0,
+ "shoulder_m": 3.0,
+ "guard_m": 0.5,
+ "vertices_changed_gt_1cm": 49023,
+ "street_vertices": 28559,
+ "abs_delta_on_street_m": {
+  "50": 0.189,
+  "90": 0.503,
+  "99": 1.074,
+  "max": 3.493
+ },
+ "cut_m_max": 3.309,
+ "fill_m_max": 3.493,
+ "house_edge_step_m": {
+  "50": 0.0,
+  "90": 0.123,
+  "99": 0.454,
+  "max": 1.718
+ },
+ "doorstep_delta_m": {
+  "50": 0.073,
+  "90": 0.215,
+  "99": 0.344,
+  "max": 0.454
+ },
+ "doorsteps_over_0p3m": 10,
+ "houses": 349,
+ "street_roll_natural_m": {
+  "50": 0.368,
+  "90": 0.937,
+  "99": 1.601,
+  "max": 2.324
+ },
+ "street_grade_after_deg": {
+  "50": 1.762,
+  "90": 4.323,
+  "99": 6.451,
+  "max": 7.704
+ },
+ "discs": [
+  {
+   "r_m": 22.0,
+   "plane_slope_deg": 3.75,
+   "max_abs_delta_m": 0.714
+  },
+  {
+   "r_m": 9.0,
+   "plane_slope_deg": 1.86,
+   "max_abs_delta_m": 1.186
+  },
+  {
+   "r_m": 9.0,
+   "plane_slope_deg": 13.58,
+   "max_abs_delta_m": 0.667
+  },
+  {
+   "r_m": 9.0,
+   "plane_slope_deg": 6.02,
+   "max_abs_delta_m": 3.136
+  },
+  {
+   "r_m": 9.0,
+   "plane_slope_deg": 7.39,
+   "max_abs_delta_m": 0.276
+  }
+ ],
+ "centreline_dev_from_chord_before_m": {
+  "50": 0.378,
+  "90": 0.827,
+  "99": 1.435,
+  "max": 1.738
+ },
+ "centreline_dev_from_chord_after_m": {
+  "50": 0.046,
+  "90": 0.165,
+  "99": 0.283,
+  "max": 0.825
+ },
+ "pieces": 371,
+ "height_quantum_cm": 3.9063,
+ "mode": "smooth",
+ "door_apron_m": 3.0
+}

@@ -1,0 +1,90 @@
+{
+ "schema_version": "hlod-override-1.0",
+ "_what": "Far-terrain HLOD material for /Game/Alpine8K, set as ALandscapeProxy.HLODMaterialOverride on all 257 landscape actors (2026-10-06, Ryan chose 'Override material'). WHY: the landscape HLOD bake leaves an undilated near-black strip on every cell edge of all three baked textures (LESSONS 2026-10-06e; cell L2_X-4_Y2 BaseColor: right 16 cols at luma 1.7 vs interior 88), which renders as straight black cracks in the far field; the engine has no dilation for that path. With an override the bake is skipped (LandscapeHLODBuilder.cpp:382-385), so there are no baked edges. The far look is reproduced from data (v1 derivation below; the colours now in `layers` are the v2 cavity-modulated fit, see _rock_modulation): the baked BaseColor of 6 cells (1,452,384 texels) fitted as sum(weight_i * colour_i) over the world weightmap gives R2 0.988 (_verify/lookdev/seams05/layer_fit.json, research/hlod_seams/fit_layer_colors.py). Colours are LINEAR base colour.",
+ "material_path": "/Game/Materials/HLOD/M_Alpine8K_HLODFar",
+ "weights_texture": "/Game/Textures/T_Alpine_8k_Weights",
+ "landscape_origin_cm": [
+  -406400.0,
+  -406400.0
+ ],
+ "weightmap_pixels": 8129,
+ "pixel_cm": 100.0,
+ "layers": {
+  "Snow": {
+   "color_linear": [
+    0.7022,
+    0.8228,
+    0.9429
+   ],
+   "roughness": 0.3
+  },
+  "Rock": {
+   "color_linear": [
+    0.1637,
+    0.1455,
+    0.1173
+   ],
+   "roughness": 0.85
+  },
+  "Scree": {
+   "color_linear": [
+    0.0895,
+    0.0746,
+    0.058
+   ],
+   "roughness": 0.85
+  },
+  "ForestFloor": {
+   "color_linear": [
+    0.1619,
+    0.0997,
+    0.0483
+   ],
+   "roughness": 0.75
+  },
+  "Grass": {
+   "color_linear": [
+    0.0527,
+    0.0441,
+    0.0138
+   ],
+   "roughness": 0.6
+  }
+ },
+ "channels": {
+  "Snow": "R",
+  "Rock": "G",
+  "Scree": "B",
+  "ForestFloor": "A",
+  "Grass": "remainder"
+ },
+ "_roughness": "per-layer roughness from recipes/alpine_8k.json material.layers, blended by the same weights",
+ "cavity_texture": "/Game/Textures/T_Alpine_8k_Cavity",
+ "rock_modulation": {
+  "R": {
+   "tint": [
+    0.25,
+    0.22,
+    0.2
+   ],
+   "strength": 1.0
+  },
+  "G": {
+   "tint": [
+    1.0,
+    0.97,
+    0.88
+   ],
+   "strength": 0.6
+  },
+  "B": {
+   "tint": [
+    0.45,
+    0.45,
+    0.5
+   ],
+   "strength": 1.0
+  }
+ },
+ "_rock_modulation": "2026-10-06: Rock colour x prod_ch lerp(1, tint_ch, cavitymap_ch * strength_ch) -- the near material's own cavity (R) / lichen (G) / damp (B) formula, values cross-checked against recipes/alpine_8k.json material.cavity. Refit WITH this modulation (research/hlod_seams/fit_layer_colors_cavity.py): R2 per channel 0.9825/0.9875/0.9906 -> 0.9895/0.9913/0.9923 over 1,452,384 texels; layer colours above are the modulated fit (_verify/lookdev/seams05/layer_fit_cavity.json)."
+}

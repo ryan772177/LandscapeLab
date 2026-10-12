@@ -1,0 +1,165 @@
+{
+ "schema_version": "town-kit-0.2",
+ "_what": "Town assembly from the Medieval Village kit (research/town_kit/DESIGN.md). THE single source for scripts/town_kit_plan.py (it loads this file at import; no constant is restated in code). Orientation CONFIRMED BY RENDER on the rig 2026-10-06: _verify/lookdev/townkit_probe01 (exterior -1: every wall see-through from outside -- single-sided, visible face +Y), townkit_probe02 (exterior +1: walls correct, corners splayed out), townkit_probe03 (exterior +1, corner yaw -90: closed half-timbered house, four views).",
+ "module_root": "/Game/Megascans/3D_Assets",
+ "course_cm": 200,
+ "snap_cm": 50,
+ "corner_arm_cm": 100,
+ "exterior_sign": 1,
+ "corner_yaw_offset_deg": -90.0,
+ "eave_cm": 60,
+ "roof_tol": 0.2,
+ "roof_drop_cm": 80,
+ "gable": {
+  "name": "SM_MedievalModularGable4",
+  "path": "/Game/Megascans/3D_Assets/MedievalModularGable4/SM_MedievalModularGable4",
+  "width_cm": 482.05,
+  "double_sided": true
+ },
+ "_gable": "Roofs with an arched underside at their ends leave a see-through void over the end walls (townkit_probe06 a315); a gable closes it, one per end, bounds-seated on the wall top, scaled to the end wall's width, facing out. A roof's 'gable_axis' says which mesh-local axis its ends lie on ('x': the ends are the faces at +/- mesh X); absent = no gables (not yet probed). Height per roof: 'gable_z' (House08 0.7 probe06/07; House02/03 1.4 gallery02 -- the small sky triangle at the House03 apex is in the meshes: it did not change at 1.6, gallery03).",
+ "_roof_drop_cm": "the roof bounds BOTTOM (eave tips) sits this far below the wall top, so the roof body meets the walls instead of floating (probe04 showed a gap at 0). Probe-tuned.",
+ "_roof_tol": "per-axis scale must stay within 1 +/- roof_tol (R4a); eave_cm: roof bbox target = footprint + 2*eave_cm (probe-tuned)",
+ "roofs": [
+  {
+   "name": "SM_House02_Roof",
+   "path": "/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof",
+   "material": "/Game/Meshes/Houses/Roofs/House02_Roof/MI_Roof",
+   "size_cm": [
+    899.3,
+    916.6
+   ],
+   "gable_axis": "y",
+   "gable_z": 1.4
+  },
+  {
+   "name": "SM_House03_RoofC",
+   "path": "/Game/Meshes/Houses/Roofs/House03_Roof/SM_House03_RoofC",
+   "material": "/Game/Meshes/Houses/Roofs/House03_Roof/MI_Roof03",
+   "size_cm": [
+    815.3,
+    986.9
+   ],
+   "gable_axis": "y",
+   "gable_z": 1.4
+  },
+  {
+   "name": "SM_House07_Roof01",
+   "path": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof01",
+   "material": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07",
+   "size_cm": [
+    1000.7,
+    750.3
+   ],
+   "usable": false,
+   "_unusable": "townkit_gallery01: a long front awning eave makes the bounds much deeper than the roof body, so the body lands narrower than the house and the front wall top shows. Needs a per-roof body box before use."
+  },
+  {
+   "name": "SM_House07_Roof02",
+   "path": "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof02",
+   "material": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07_02",
+   "size_cm": [
+    522.7,
+    677.3
+   ]
+  },
+  {
+   "name": "SM_House08_Roof",
+   "path": "/Game/Meshes/Houses/Roofs/House08_Roof/SM_House08_Roof",
+   "material": "/Game/Meshes/Houses/Roofs/House08_Roof/MI_Roof08",
+   "size_cm": [
+    826.1,
+    668.0
+   ],
+   "gable_axis": "x",
+   "gable_z": 0.7
+  },
+  {
+   "name": "SM_Roof06",
+   "path": "/Game/Meshes/Houses/Roofs/House06_Roof/SM_Roof06",
+   "material": "/Game/Meshes/Houses/Roofs/House06_Roof/MI_Roof06",
+   "size_cm": [
+    1019.4,
+    832.6
+   ],
+   "usable": false,
+   "_unusable": "townkit_gallery01: a long front awning eave makes the bounds much deeper than the roof body, so the body lands narrower than the house and the front wall top shows. Needs a per-roof body box before use."
+  },
+  {
+   "name": "SM_Roof_05",
+   "path": "/Game/Meshes/Houses/Roofs/House05_Roof/SM_Roof_05",
+   "material": "/Game/Meshes/Houses/Roofs/House05_Roof/MI_Roof05",
+   "size_cm": [
+    1013.9,
+    814.6
+   ],
+   "usable": false,
+   "_unusable": "townkit_gallery01: a long front awning eave makes the bounds much deeper than the roof body, so the body lands narrower than the house and the front wall top shows. Needs a per-roof body box before use."
+  }
+ ],
+ "_roofs": "sizes from Free/_measured/kit_medievalvillage_v2.json (measured live 2026-08-30). EXCLUDED: SM_House04 (a whole-house piece, design review item 8), SM_House07_RoofSmall and SM_Roof_05small (porch-scale).",
+ "probe": {
+  "level": "/Game/LookDevMtn",
+  "camera_xy_cm": [
+   82100.0,
+   82800.0
+  ],
+  "camera_yaw_deg": 225.0,
+  "label": "TownKit_Probe",
+  "tag": "LandscapeLab.TownKitProbe",
+  "gallery_dist_m": 30.0,
+  "gallery_spacing_m": 18.0,
+  "gallery_courses": 2,
+  "rig_test_dist_m": 30.0,
+  "rig_test_spacing_m": 14.0,
+  "rig_test_yaw_step_deg": 20.0,
+  "lineup_dist_m": 10.0,
+  "lineup_gap_cm": 50.0
+ },
+ "foundation": {
+  "slack_cm": 15.0,
+  "margin_cm": 30.0
+ },
+ "_foundation": "scripts/town_kit_manifest.py: sub_courses = 0 when the heightmap drop from the door-side midpoint to the lowest perimeter point is <= slack_cm (hidden by the ground course's own base), else ceil((drop + margin_cm) / course_cm); margin_cm allows for heightmap vs collision-surface disagreement. Initial values, not yet render-tuned.",
+ "foliage_clear_margin_cm": 800.0,
+ "_foliage_clear_margin_cm": "The town's tree clearing (scripts/town_kit_foliage_conflicts.clearing_boxes, the one declaration): house footprint + foliage_clear_margin_cm (a yard), street segments + foliage_clear_street_margin_cm, the plaza square of radius + foliage_clear_plaza_margin_cm. 2026-10-06: houses +100 cm only = 450 trees (the trunks inside walls); 2026-10-08 Alpine8K overview (_verify/lookdev/townkit_alpine01/overview_n.png) showed the town drowned in forest, so 800/400/600 = 2,947 of 797,500 plan instances (swept: 300/200 = 874, 500/300 = 1,823, 1200/600 = 4,290). Margins may only GROW between runs (removed trees do not come back).",
+ "foliage_clear_street_margin_cm": 400.0,
+ "foliage_clear_plaza_margin_cm": 600.0,
+ "_gable_double_sided": "2026-10-08: each roof end gets the Gable4 twice (outward + 180 deg inward on the same bounds-centred pivot). The module is single-sided; where the roof end frame rises above the thatch, the far gable was seen from behind and rendered as nothing (Alpine8K TownKit_008, _verify/lookdev/townkit_alpine03/h008.png).",
+ "style": {
+  "enabled": true,
+  "weights_ground": {"SM_MedievalModularWall2x2MD": 1.0, "SM_MedievalModularWall2x2MG": 2.0, "SM_MedievalModularWall2x2MH": 1.0},
+  "weights_upper": {"SM_MedievalModularWall2x2MD": 2.0, "SM_MedievalModularWall2x2MG": 1.0, "SM_MedievalModularWall2x2MH": 2.0},
+  "symmetric_front": true,
+  "jetty_cm": 50,
+  "roof_variety": {
+   "enabled": true,
+   "max_stretch": 0.2,
+   "neighbours": 6,
+   "neighbour_radius_m": 40.0,
+   "ridge_tol_deg": 45.0,
+   "seed": 11,
+   "grade_dir": "/Game/Materials/TownKit/RoofGrades",
+   "grades": [
+    {"name": "base"},
+    {"name": "aged", "scalars": {"ALBEDO_Intensity": 0.85, "ALBEDO_Desaturation": 0.15}},
+    {"name": "grey", "scalars": {"ALBEDO_Overlay_Strength": 0.35, "ALBEDO_Desaturation": 0.25, "ALBEDO_Intensity": 1.0},
+     "vectors": {"ALBEDO_Color_Overlay": [0.60, 0.62, 0.64, 1.0]}},
+    {"name": "fresh", "scalars": {"ALBEDO_Overlay_Strength": 0.25, "ALBEDO_Intensity": 1.3},
+     "vectors": {"ALBEDO_Color_Overlay": [1.0, 0.86, 0.58, 1.0]}}
+   ],
+   "_grades": "Weathering grades (lever B, research/town_kit/ROOF_VARIETY.md). 'base' = the roof's own MI (no override). Every other grade = one MaterialInstanceConstant per used roof MI at grade_dir/MI_<roof MI name>_<grade>, parent = that roof MI, overriding ONLY the keys listed (parameter names and the parent values Intensity 1.2 / Desaturation -0.3 / Contrast 1.0 / Overlay_Strength 0 / Color_Overlay white from _verify/roof_variety/material_probe.json). Built + read back by scripts/make_roof_grades.py. Values are STARTING values, judged by still; retuning = rerun the builder, no re-placement.",
+   "_what": "2026-10-11 roof variety (Ryan 'go ahead with the roof variety next'; research/town_kit/ROOF_VARIETY.md). Each house's roof is chosen from every usable (roof, yaw 0/90) that fits its (jetty) footprint with plan-scale stretch <= max_stretch. Score = neighbours with the same mesh + neighbours whose WORLD ridge runs within ridge_tol_deg of the candidate's (roofs with no gable_axis have no ridge record and match nothing), over the `neighbours` nearest already-planned houses within neighbour_radius_m; lowest wins, ties by a per-house RNG (seed*100003 + index), separate from the walls' RNG. max_stretch 0.2 = roof_tol, the existing R4a gate; the best-fit roofs shipped before this peaked at 0.153, so the 0.153-0.2 band is judged by still before this is adopted. enabled false = best fit only (the shipped output)."
+  },
+  "soffit": {
+   "meshes": ["/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_01",
+              "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_03",
+              "/Game/Meshes/Houses/MODULAR_ASSETS/HorizontalBeams/SM_HBeam_LS_04"],
+   "beam_length_cm": 274.3,
+   "beam_height_cm": 17.3,
+   "exterior_cm": 34.0,
+   "depths_cm": [-7.5, 9.0, 25.5],
+   "_what": "2026-10-11 jetty soffit (Ryan 'go ahead with the jetty brackets next'): the overhang's underside is the open bottom of single-sided upper-wall modules (dark band in _verify/lookdev/townkit_armc01). Three LS beams side by side close it: the strip runs outward from the ground wall's exterior (depth -16 from the UPPER perimeter line = -jetty + exterior_cm) to the upper wall's exterior (+34); centres -7.5 / 9 / 25.5 with ~17-19 cm beams. Sizes from Free/_measured/kit_medievalvillage_v2.json (LS_01 274.3 x 18.7 x 17.3). Diagonal braces would need a pitch the build payload does not take (yaw only) -- a horizontal soffit is also how a real jetty reads. Beams are NoCollision ISMs: no nav or collision change."
+  },
+  "_what": "2026-10-11 ARM C of the Shape Grammar trial (RECIPES R-SGTRIAL; research/town_kit/SHAPE_GRAMMAR_TRIAL.md VERDICT), adopted for the town on Ryan's 'go ahead with arm C in the town'. Read by town_kit_manifest.py -> town_kit_plan.plan_house(style=...). enabled false = the shipped output byte for byte. Values = the trial's (JUDGED, read by still). Storeys stay the plan's (145 x 2, 204 x 3). A jetty widens the upper storey on the door side; the roof + gables are re-fitted to that footprint, and a house whose widened storey fits no roof keeps no jetty (counted). Jetty brackets: NOT placed yet (deferred)."
+ }
+}

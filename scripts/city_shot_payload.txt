@@ -102,7 +102,9 @@ try:
     # This is the only place every camera necessarily passes through.
     _eas_g = _u.get_editor_subsystem(_u.EditorActorSubsystem)
     _ign_g = [a for a in _eas_g.get_all_level_actors()
-              if isinstance(a, _u.InstancedFoliageActor)]
+              if isinstance(a, (_u.InstancedFoliageActor, _u.WorldPartitionHLOD))]
+    # 2026-09-30: HLOD proxies are loaded in the editor and take this trace; the guard
+    # refused a camera standing ON the street as 12.5 m underground (LESSONS 2026-09-30c).
     _hit_g = _u.SystemLibrary.line_trace_single(
         _u.EditorLevelLibrary.get_editor_world(),
         _u.Vector(_loc.x, _loc.y, _loc.z + 200000.0),

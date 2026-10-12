@@ -1,0 +1,13 @@
+--- resource guard: reachable lattice (whole-world load) ---
+  RAM: 3.5 GB available of 31.4 GB (warn below 4.0)
+  *** LOW MEMORY WARNING ***  reachable lattice (whole-world load) is a heavy operation and only 3.5 GB is free.
+      Close the browser, or any second editor, before blaming the result. Proceeding anyway -- low memory is a risk, not a fault.
+  lock taken (pid 12368)
+  - C0E4CA97458884C1062DB1B16270EF43 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+reply: {'cells': 18496, 'cells_projecting': 15068, 'cells_reachable': 9717, 'path_queries': 12582, 'control_50km_projects': False, 'control_seed_reachable': True, 'trace_ignored': {'hlod': 1037, 'LandscapeLab.City': 2, 'LandscapeLab.TownKit': 349}}
+cells reachable: 9717 -> 9717; lost 0 (in town box 0), gained 0 (in town box 0); OUTSIDE the town 0
+projecting-but-unreachable cells: 5351 (old 5351) -- the BFS can say no
+install gates: {'changes outside the town <= 0': True, 'BFS says no somewhere (projecting-but-unreachable > 0)': True, 'agent unchanged': True, 'nav chunks unchanged': True, 'same grid': True, 'HLOD proxies ignored': True, 'kit-town actors ignored (own count)': True}
+installed city\alpine_basin_reachable_lattice.json; stamp_plan exit 0: STAMPED                    city/alpine_basin_reachable_lattice.json   2 inputs
+
+  STAMPED                    1

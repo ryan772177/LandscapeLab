@@ -569,6 +569,26 @@ def macro_map_asset_path(biome_id):
         TEXTURE_CONTENT_DIR, str(biome_id).capitalize())
 
 
+def cavity_map_asset_path(biome_id):
+    """Deterministic content path for the terrain-scale cavity map (v1.31).
+
+    Created by import_layer_textures, referenced by make_landscape_material;
+    one function so the two cannot disagree (lesson 1.9).
+    """
+    return "{0}/T_{1}_Cavity".format(
+        TEXTURE_CONTENT_DIR, str(biome_id).capitalize())
+
+
+def street_mask_asset_path(biome_id):
+    """Deterministic content path for the town street mask (2026-10-10, material.street_overlay).
+
+    Created by import_layer_textures (kind street_mask), referenced by make_landscape_material;
+    one function so the two cannot disagree (lesson 1.9).
+    """
+    return "{0}/T_{1}_StreetMask".format(
+        TEXTURE_CONTENT_DIR, str(biome_id).capitalize())
+
+
 def variant_map_asset_path(biome_id):
     """Deterministic content path for a biome's sub-surface selector map.
 

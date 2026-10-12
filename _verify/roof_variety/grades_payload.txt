@@ -1,0 +1,81 @@
+
+import json as _json
+import unreal as _u
+_C = _json.loads('{"roofs": ["/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof", "/Game/Meshes/Houses/Roofs/House03_Roof/SM_House03_RoofC", "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof02", "/Game/Meshes/Houses/Roofs/House08_Roof/SM_House08_Roof"], "grade_dir": "/Game/Materials/TownKit/RoofGrades", "recorded_mi": {"/Game/Meshes/Houses/Roofs/House02_Roof/SM_House02_Roof": "/Game/Meshes/Houses/Roofs/House02_Roof/MI_Roof", "/Game/Meshes/Houses/Roofs/House03_Roof/SM_House03_RoofC": "/Game/Meshes/Houses/Roofs/House03_Roof/MI_Roof03", "/Game/Meshes/Houses/Roofs/House07_Roof/SM_House07_Roof02": "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07_02", "/Game/Meshes/Houses/Roofs/House08_Roof/SM_House08_Roof": "/Game/Meshes/Houses/Roofs/House08_Roof/MI_Roof08"}, "mic_paths": {"/Game/Meshes/Houses/Roofs/House03_Roof/MI_Roof03": {"aged": "/Game/Materials/TownKit/RoofGrades/MI_Roof03_aged", "grey": "/Game/Materials/TownKit/RoofGrades/MI_Roof03_grey", "fresh": "/Game/Materials/TownKit/RoofGrades/MI_Roof03_fresh"}, "/Game/Meshes/Houses/Roofs/House08_Roof/MI_Roof08": {"aged": "/Game/Materials/TownKit/RoofGrades/MI_Roof08_aged", "grey": "/Game/Materials/TownKit/RoofGrades/MI_Roof08_grey", "fresh": "/Game/Materials/TownKit/RoofGrades/MI_Roof08_fresh"}, "/Game/Meshes/Houses/Roofs/House07_Roof/MI_Roof07_02": {"aged": "/Game/Materials/TownKit/RoofGrades/MI_Roof07_02_aged", "grey": "/Game/Materials/TownKit/RoofGrades/MI_Roof07_02_grey", "fresh": "/Game/Materials/TownKit/RoofGrades/MI_Roof07_02_fresh"}, "/Game/Meshes/Houses/Roofs/House02_Roof/MI_Roof": {"aged": "/Game/Materials/TownKit/RoofGrades/MI_Roof_aged", "grey": "/Game/Materials/TownKit/RoofGrades/MI_Roof_grey", "fresh": "/Game/Materials/TownKit/RoofGrades/MI_Roof_fresh"}}, "grades": [{"name": "base"}, {"name": "aged", "scalars": {"ALBEDO_Intensity": 0.85, "ALBEDO_Desaturation": 0.15}}, {"name": "grey", "scalars": {"ALBEDO_Overlay_Strength": 0.35, "ALBEDO_Desaturation": 0.25, "ALBEDO_Intensity": 1.0}, "vectors": {"ALBEDO_Color_Overlay": [0.6, 0.62, 0.64, 1.0]}}, {"name": "fresh", "scalars": {"ALBEDO_Overlay_Strength": 0.25, "ALBEDO_Intensity": 1.3}, "vectors": {"ALBEDO_Color_Overlay": [1.0, 0.86, 0.58, 1.0]}}]}')
+_eal = _u.EditorAssetLibrary
+_mel = _u.MaterialEditingLibrary
+_at = _u.AssetToolsHelpers.get_asset_tools()
+_out = {"ok": False, "mics": [], "roof_mis": {}}
+def _p(o):
+    return o.get_path_name().split(".")[0] if o is not None else None
+try:
+    _parents = {}
+    for _rp in _C["roofs"]:
+        _m = _eal.load_asset(_rp)
+        if _m is None or not isinstance(_m, _u.StaticMesh):
+            raise RuntimeError("roof mesh does not load: " + _rp)
+        _sm = _m.static_materials
+        if len(_sm) != 1 or _sm[0].material_interface is None:
+            raise RuntimeError("%s has %d slots (need exactly 1 with a material)" % (_rp, len(_sm)))
+        _mi = _sm[0].material_interface
+        if not isinstance(_mi, _u.MaterialInstance):
+            raise RuntimeError("%s slot 0 is not a MaterialInstance: %s" % (_rp, _p(_mi)))
+        _out["roof_mis"][_rp] = _p(_mi)
+        if _p(_mi) != _C["recorded_mi"][_rp]:
+            raise RuntimeError("%s slot 0 is %s live, recipe records %s" % (_rp, _p(_mi), _C["recorded_mi"][_rp]))
+        _parents[_p(_mi)] = _mi
+    for _pp, _par in sorted(_parents.items()):
+        _sn = set(str(n) for n in _mel.get_scalar_parameter_names(_par))
+        _vn = set(str(n) for n in _mel.get_vector_parameter_names(_par))
+        for _g in _C["grades"]:
+            if _g["name"] == "base":
+                continue
+            _miss = [k for k in _g.get("scalars", {}) if k not in _sn] + [k for k in _g.get("vectors", {}) if k not in _vn]
+            if _miss:
+                raise RuntimeError("grade %s: %s are not parameters of %s" % (_g["name"], _miss, _pp))
+            _path = _C["mic_paths"][_pp][_g["name"]]
+            if _eal.does_asset_exist(_path):
+                _mic = _eal.load_asset(_path)
+                if not isinstance(_mic, _u.MaterialInstanceConstant):
+                    raise RuntimeError(_path + " exists and is not a MaterialInstanceConstant")
+                _made = False
+            else:
+                _mic = _at.create_asset(_path.rsplit("/", 1)[1], _C["grade_dir"], _u.MaterialInstanceConstant,
+                                        _u.MaterialInstanceConstantFactoryNew())
+                if _mic is None:
+                    raise RuntimeError("create_asset failed: " + _path)
+                _made = True
+            _mel.set_material_instance_parent(_mic, _par)
+            # a rerun with FEWER keys must not keep the old ones: clear every override first
+            _mel.clear_all_material_instance_parameters(_mic)
+            # the setters' bool is a CONSTANT false in 5.8 (MaterialEditingLibrary.cpp:1485-1494, 1573-1582:
+            # bResult never assigned) -- design review 2026-10-11 M1. The read-back below is the check.
+            for _k, _v in _g.get("scalars", {}).items():
+                _mel.set_material_instance_scalar_parameter_value(_mic, _k, float(_v))
+            for _k, _v in _g.get("vectors", {}).items():
+                _mel.set_material_instance_vector_parameter_value(_mic, _k, _u.LinearColor(*[float(x) for x in _v]))
+            _mel.update_material_instance(_mic)
+            if not _eal.save_asset(_path, only_if_is_dirty=False):
+                raise RuntimeError("save_asset returned False: " + _path)
+            _c = _eal.load_asset(_path)
+            _rb = {"parent": _p(_c.get_editor_property("parent")), "scalars": {}, "vectors": {}}
+            _ok = _rb["parent"] == _pp
+            for _k, _v in _g.get("scalars", {}).items():
+                _r = _mel.get_material_instance_scalar_parameter_value(_c, _k)
+                _rb["scalars"][_k] = _r
+                _ok = _ok and abs(_r - float(_v)) <= 1e-5
+            for _k, _v in _g.get("vectors", {}).items():
+                _r = _mel.get_material_instance_vector_parameter_value(_c, _k)
+                _rb["vectors"][_k] = [_r.r, _r.g, _r.b, _r.a]
+                _ok = _ok and all(abs(a - float(b)) <= 1e-5 for a, b in zip(_rb["vectors"][_k], _v))
+            # the textures must be the PARENT's (inherited, not overridden)
+            _tx = _mel.get_material_instance_texture_parameter_value(_c, "ALBEDO")
+            _tp = _mel.get_material_instance_texture_parameter_value(_par, "ALBEDO")
+            _rb["albedo_inherited"] = _p(_tx) == _p(_tp) and _tx is not None
+            _ok = _ok and _rb["albedo_inherited"]
+            _out["mics"].append({"path": _path, "grade": _g["name"], "created": _made, "readback": _rb, "ok": bool(_ok)})
+    _out["ok"] = bool(_out["mics"]) and all(x["ok"] for x in _out["mics"])
+except Exception:
+    import traceback as _tb
+    _out["error"] = _tb.format_exc()
+print("__LL__" + _json.dumps(_out, default=str))

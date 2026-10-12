@@ -184,5 +184,25 @@
   "solve": null,
   "_solve": "null until Phase B. The reader records what the image shows; the SOLVER finds the camera that reproduces it. Collapsing those two is how a scene gets built to fit a guessed camera."
  },
- "_schema_1_2": "1.2 adds plausible_cm bands on ratio-scored heights. A ratio check cannot detect an error in the quantity it is a ratio OF -- both terms move together and the quotient stays right, which is how ruling 1 was scored against a chalet whose roof was buried 201.49 cm in its walls. A band is an ABSOLUTE check and is the only kind that can catch that."
+ "_schema_1_2": "1.2 adds plausible_cm bands on ratio-scored heights. A ratio check cannot detect an error in the quantity it is a ratio OF -- both terms move together and the quotient stays right, which is how ruling 1 was scored against a chalet whose roof was buried 201.49 cm in its walls. A band is an ABSOLUTE check and is the only kind that can catch that.",
+ "camera_solve": {
+  "_what": "Phase B camera solve, MoGe-2 (Ruicheng/moge-2-vitl, MIT) run 2026-10-10 in the WSL trellis env via C:/Users/Admin/Gemini2UE/scripts/depth_moge.py; sidecar depth in _verify/20261010_camera_solve/. ADVICE until a bearing is checked against the site (rule 9): the model is documented on photographs, this is a painting.",
+  "sidecar": "_verify/20261010_camera_solve/alpine_village_01.camera.json",
+  "hfov_deg": 96.79,
+  "vfov_deg": 60.09,
+  "fx_px": 636.3,
+  "principal_px": [
+   716.5,
+   368.0
+  ],
+  "image_size_px": [
+   1433,
+   736
+  ],
+  "depth_m_p2_p98": [
+   7.1,
+   450.1
+  ],
+  "valid_fraction": 0.884
+ }
 }

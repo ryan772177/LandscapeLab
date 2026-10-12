@@ -1,0 +1,53 @@
+{
+ "args": {
+  "iter": "t01_delump_ridged_strata_drops",
+  "delump": 0.75,
+  "ridged": 16.0,
+  "ridged_wavelength": 90.0,
+  "strata": 5.0,
+  "strata_step": 14.0,
+  "droplets": 1200000,
+  "lifetime": 90,
+  "erode": 0.3,
+  "capacity": 8.0,
+  "seed": 20260930,
+  "write": false
+ },
+ "steps": [
+  {
+   "delump": 0.75,
+   "band_rms_m": 2.8213700773174826
+  },
+  {
+   "ridged_m": 16.0,
+   "gate_mean": 0.39769300223769355
+  },
+  {
+   "strata_m": 5.0,
+   "step_m": 14.0,
+   "gate_mean": 0.19701136643848247
+  },
+  {
+   "droplets": 1200000,
+   "flow_max": 992.7790545886091,
+   "depo_max_m": 1.3560831119206e+41
+  }
+ ],
+ "delta_m": {
+  "min": -1343.671875,
+  "max": 2147.421875,
+  "rms": 476.9923946164978
+ },
+ "slope_deg_p50_p90_p99": {
+  "before": [
+   29.988449658908458,
+   55.57511550810032,
+   68.13865260261147
+  ],
+  "after": [
+   24.786718313449565,
+   89.85269783891596,
+   89.96197854486016
+  ]
+ }
+}

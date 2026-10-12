@@ -1,0 +1,18 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# Save the named /Game/Surfaces textures, and ONLY if their source-encoding
+# override reads back as sRGB (the 16-bit colour fix, LESSONS 2026-09-30f).
+_NAMES = __NAMES__
+_out = {"ok": False, "error": None, "saved": {}}
+try:
+    for _n in _NAMES:
+        _p = "/Game/Surfaces/" + _n
+        _t = _u.EditorAssetLibrary.load_asset(_p)
+        _enc = str(_t.get_editor_property("source_color_settings").get_editor_property("encoding_override"))
+        if "TSE_S_RGB" not in _enc:
+            raise RuntimeError("%s encoding_override is %s, not TSE_S_RGB; refusing to save" % (_n, _enc))
+        _out["saved"][_n] = bool(_u.EditorAssetLibrary.save_asset(_p, only_if_is_dirty=False))
+    _out["ok"] = all(_out["saved"].values()) and len(_out["saved"]) == len(_NAMES)
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:300])
+print("__LL__" + _json.dumps(_out, default=str))

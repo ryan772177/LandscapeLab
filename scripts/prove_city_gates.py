@@ -83,10 +83,20 @@ DEFAULT_PLANNER = os.path.join(REPO_ROOT, "scripts", "plan_city.py")
 # None key = the positive control, which must PASS and must WRITE.
 CASES = [
     ("POSITIVE CONTROL (unmutated)", None, None, None),
+    # The two ORPHAN cases prove the WHOLE-TOWN gate, so they switch the
+    # per-plot street gate off (2026-10-06 kit town): with it on, a 1 m
+    # threshold empties every plot and the refusal comes from min_buildings,
+    # which names a different gate and proves nothing about this one.
+    # They also pin plan.layout "lattice" (2026-10-10 organic layout, audit F2):
+    # organic houses are street-fronted by construction, so a fraction of 0.0
+    # finds 0 orphans and the case would fail for a reason that is not the
+    # gate. The gate code is shared by both layouts; lattice can exercise it.
     ("orphan fraction 0.0", "gates.max_orphan_building_fraction", 0.0,
-     "orphan"),
+     "orphan", {"buildings.place_only_near_streets": False,
+                "plan.layout": "lattice"}),
     ("building-to-street 1 m", "gates.max_building_to_street_m", 1.0,
-     "orphan"),
+     "orphan", {"buildings.place_only_near_streets": False,
+                "plan.layout": "lattice"}),
     ("min_buildings 10000", "gates.min_buildings", 10000, "building"),
     ("min_street_segments 100000", "gates.min_street_segments", 100000,
      "street"),
@@ -196,14 +206,23 @@ def run_suite(planner, recipe, quiet_header=False):
           % (os.path.relpath(committed, REPO_ROOT), committed_before))
     print()
 
-    scratch = tempfile.mkdtemp(prefix="prove_city_gates_")
+    # inside the repo's _verify/ (standing rule 1; re-audit 2026-10-10 B1: this was %TEMP%)
+    scratch = tempfile.mkdtemp(prefix="prove_city_gates_", dir=os.path.join(REPO_ROOT, "_verify"))
     case_recipe = os.path.join(scratch, "city_case.json")
     case_out = os.path.join(scratch, "case_plan.json")
 
     failures = []
-    for label, key, value, must_name in CASES:
+    for case in CASES:
+        label, key, value, must_name = case[:4]
         mutated = json.loads(json.dumps(base))          # deep copy
         old = set_existing(mutated, key, value) if key else None
+        for xk, xv in (case[4] if len(case) > 4 else {}).items():
+            # only where the recipe HAS the key: an older recipe without the
+            # per-plot gate already proves the whole-town gate unaided
+            try:
+                set_existing(mutated, xk, xv)
+            except KeyError:
+                pass
         io.open(case_recipe, "w", encoding="utf-8", newline="\n").write(
             json.dumps(mutated, indent=1))
         if os.path.exists(case_out):

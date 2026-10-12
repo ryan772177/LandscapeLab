@@ -1,0 +1,43 @@
+
+=== batch_00 (attempt 1) ===
+    cells in section: 4   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  0.5 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  0.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  1.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  1.5 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  1.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  2.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  2.5 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  2.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  3.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  3.5 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  3.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  4.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  4.6 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  4.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  5.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  5.6 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  5.9 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  6.2 min] 1/4  approve=0 reject=0  vram=369 peak=369  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-1
+    [  6.6 min] 1/4  approve=1 reject=0  vram=2774 peak=2774  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-1
+    [  6.9 min] 1/4  approve=1 reject=0  vram=2774 peak=2774  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-1
+    [  7.2 min] 1/4  approve=1 reject=0  vram=2774 peak=2774  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-1
+    [  7.6 min] 2/4  approve=2 reject=0  vram=2855 peak=2855  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-2
+    [  7.9 min] 2/4  approve=2 reject=0  vram=2855 peak=2855  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-2
+    [  8.2 min] 2/4  approve=2 reject=0  vram=2855 peak=2855  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-2
+    [  8.6 min] 3/4  approve=3 reject=0  vram=2904 peak=2904  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-3
+    [  8.9 min] 3/4  approve=3 reject=0  vram=2904 peak=2904  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-3
+    [  9.3 min] 4/4  approve=4 reject=0  vram=2952 peak=2952  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-4
+    [  9.6 min] 4/4  approve=4 reject=0  vram=2952 peak=2952  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-4
+    [  9.9 min] 4/4  approve=4 reject=0  vram=2399 peak=2952  Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-4
+    done rc=1 in 10.1 min | approve=4 reject=0 | STALE 0 -> 0 (-0), current=1037 | vram peak 2952 MiB | true_exit=True | written=4 torn=0 last_write_to_exit=10.91s
+  attribution  building-lines 4  decisions 4  approved 4  rejected 0
+    Alpine8K_HLODLayer_Merged          approve 4      reject 0       from Alpine8K_HLODLayer_Instanced x4
+warning: in the working copy of '_verify/hlod/parents_refresh_20261002/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/parents_refresh_20261002/batch_00.log', LF will be replaced by CRLF the next time Git touches it
+    cells baked at/after 2026-10-02 03:10:00: 0 -> 4  (+4, expected +4)   free disk 71.64 GB   VRAM peak 2952 MiB
+
+FINAL  landscape cells 256  baked at/after 2026-10-02 03:10:00: 4  stale: 252
+FINAL  landscape package bytes: 474,975,881 (0.44 GB)
+FINAL  free disk: 71.64 GB

@@ -1,0 +1,16 @@
+saved kit houses 349 (manifest 349); saved nav chunk packages 64 (lattice 64)
+navmesh rebuilt after the town: all 64 chunks newer than all 349 houses; log [121 / 121] cells
+--- resource guard: town reachability (whole-world load) ---
+  RAM: 3.7 GB available of 31.4 GB (warn below 4.0)
+  *** LOW MEMORY WARNING ***  town reachability (whole-world load) is a heavy operation and only 3.7 GB is free.
+      Close the browser, or any second editor, before blaming the result. Proceeding anyway -- low memory is a risk, not a fault.
+  lock taken (pid 32512)
+  - C0E4CA97458884C1062DB1B16270EF43 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+reply: {'streets': {'total': 371, 'reachable': 371, 'unreachable': 0, 'failed_projection': 0}, 'buildings': {'total': 349, 'reachable': 349, 'unreachable': 0, 'failed_projection': 0}, 'trace_ignored_by_tag': {'LandscapeLab.City': 2, 'LandscapeLab.TownKit': 349}, 'loaded_bounds': [[-512000.0, -512000.0], [614400.0, 614400.0]], 'control_positive_failures': 0, 'control_50km_pathable': None, 'trace_ignored_hlod_actors': 1037}
+binding new: {'nav_chunk_actors_resident': 64, 'converged': True, 'rounds_to_converge': 1, 'building_doorstep': 'kit manifest door side + 150 cm'}
+STREETS: 371 rows (same streets), reachable 371 -> 371, flipped 0 []
+BUILDINGS (kit town, doorstep at the door): 349 rows, reachable 349 (100.0%)
+install gates: {'converged': True, 'positive control 0 failures': True, '50 km control cannot join (did not project, or did not path)': True, 'agent max slope unchanged': True, 'chunks == lattice': True}
+installed city\alpine_basin_town_reachable.json; stamp_plan exit 0: STAMPED                    city/alpine_basin_town_reachable.json      4 inputs
+
+  STAMPED                    1

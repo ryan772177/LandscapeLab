@@ -1,0 +1,48 @@
+--- resource guard: encounter verify (whole-world load) ---
+  RAM: 4.5 GB available of 31.4 GB (warn below 4.0)
+  lock taken (pid 4284)
+  - C0E4CA97458884C1062DB1B16270EF43 (user=Admin, machine=LAPTOP-BN8417P3, project=LandscapeLab): MATCH
+{
+ "ok": true,
+ "error": null,
+ "encounters": [],
+ "regions_loaded": true,
+ "player_start": [
+  -210800.0,
+  278800.0,
+  18791.8
+ ],
+ "success_enum_value": "<NavigationQueryResult.SUCCESS: 3>",
+ "start_projected": [
+  -210800.0,
+  278800.0,
+  18660.8
+ ],
+ "lattice_rows": 9717,
+ "control_positive": {
+  "what": "a point 42 m from the spawn",
+  "same_island": true,
+  "path_cm": 4734.906798474728,
+  "via": "spawn"
+ },
+ "control_negative": {
+  "what": "world origin, outside every volume",
+  "same_island": null,
+  "path_cm": 0.0,
+  "via": "no projection"
+ },
+ "failed_rows_shown": 0,
+ "rows_file_bytes": 60345,
+ "total": 307,
+ "failed_projection": 0,
+ "unreachable": 0,
+ "reached_via": {},
+ "path_len_m_DIRECT_ONLY": {
+  "n": 6,
+  "min": 250.8,
+  "max": 515.3,
+  "_what": "walk length from the PlayerStart, for rows reached by a DIRECT query. Relay rows are excluded: their length is the last leg only."
+ },
+ "controls_ok": true,
+ "verdict": "ALL 307 ENCOUNTERS REACHABLE"
+}

@@ -665,6 +665,26 @@ def _load_derivation(date):
     return json.load(open(dpath, encoding="utf-8"))
 
 
+_GREYCARDS_SHOWN = [False]
+
+
+def _greycard_game_visibility(hidden, save):
+    """Set the grey cards' hidden-in-game flag (2026-10-06). Returns the payload's
+    result dict, or None if nothing answered."""
+    text = open(os.path.join(REPO, "scripts", "greycard_game_visibility_payload.txt"),
+                encoding="utf-8").read()
+    text = text.replace("__HIDDEN__", "1" if hidden else "0").replace("__SAVE__", "1" if save else "0")
+    # F1 (audit 2026-10-06): mark "shown" on the ATTEMPT, so a partial or lost
+    # show is still restored by __main__'s finally.
+    if not hidden:
+        _GREYCARDS_SHOWN[0] = True
+    _c, parsed, _raw = ue_exec.run(text, timeout=25.0, stage_name="greycard_game_visibility",
+                                   quiet=True)
+    if hidden and parsed and parsed.get("ok"):
+        _GREYCARDS_SHOWN[0] = False
+    return parsed
+
+
 def run_payload(name, subs=None, timeout=25.0):
     # `timeout` is ue_exec's NODE DISCOVERY WINDOW and is spent in full; it
     # does NOT bound execution (ue_exec.run passes it only to
@@ -1395,6 +1415,24 @@ def main(argv=None):
                   % (editor_census.get("components"), expect_components))
             return 6
 
+    # GREY CARDS ARE SAVED HIDDEN-IN-GAME (2026-10-06) so the shipped game never
+    # draws them; MRQ renders through PIE, which duplicates the editor world, so
+    # show them IN MEMORY for this render. __main__ hides and re-saves them in a
+    # finally (greycard_game_visibility_payload; LESSONS 2026-10-06i).
+    if not cfg.get("dump_only"):
+        _gv = _greycard_game_visibility(hidden=False, save=False)
+        if not _gv or not _gv.get("ok"):
+            print("REFUSE: could not show the grey cards for this render: %s"
+                  % ((_gv or {}).get("error") or "no marker"))
+            return 6
+        # F4: every rendered station that has a card region must have its card.
+        _want_cards = sum(1 for _s in stations if _greycard_rect(_s))
+        if int(_gv.get("cards", 0)) < _want_cards:
+            print("REFUSE: %d grey card(s) shown, %d rendered station(s) expect one"
+                  % (int(_gv.get("cards", 0)), _want_cards))
+            return 6
+        print("  grey cards shown in memory for the render: %d" % _gv.get("cards", 0))
+
     log_mark = log_size()          # so the log parse sees only THIS render
     # Anchor for artefact freshness, taken BEFORE the render is triggered so
     # nothing this render writes can predate it. The 1 s slack absorbs
@@ -2006,4 +2044,24 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        _rc = main()
+    finally:
+        # Restore the shipped state whatever happened above: cards hidden in
+        # game and saved, so no render leaves them visible in the -game world.
+        if _GREYCARDS_SHOWN[0]:
+            # F2: an exception here must not replace the original one, and F3: a
+            # failed restore gets its own exit code (8), printed beside main's.
+            try:
+                _gv = _greycard_game_visibility(hidden=True, save=True)
+                _err = None if (_gv and _gv.get("ok")) else ((_gv or {}).get("error") or "no marker")
+            except Exception as _x:
+                _gv, _err = None, "%s: %s" % (type(_x).__name__, _x)
+            if _err:
+                print("WARNING: grey cards were shown for the render and could NOT be "
+                      "re-hidden: %s -- run greycard_game_visibility_payload HIDDEN=1 SAVE=1 "
+                      "(main returned %s)" % (_err, locals().get("_rc")))
+                _rc = 8
+            else:
+                print("  grey cards re-hidden in game and saved: %d" % _gv.get("cards", 0))
+    sys.exit(_rc)

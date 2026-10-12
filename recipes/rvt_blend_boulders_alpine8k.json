@@ -1,0 +1,18 @@
+{
+ "schema_version": "rvt-blend-1.0",
+ "_what": "World copy of recipes/rvt_blend_boulders.json for /Game/Alpine8K (carry 2026-10-04). The RVT assets are wired into the duplicated MASTER's RuntimeVirtualTextureSample nodes, so a world that samples its own RVTs needs its own master: the rig master reads RVT_LookDev_*, which have no volume in the world. Same source, blend_cm and strength as the rig; world Grass displacement is the same 0.03 m (recipes/alpine_8k.json material.displacement.per_layer), so the 25 cm band holds.",
+ "rvt_recipe": "recipes/rvt_alpine8k.json",
+ "source_material": "/Game/KiteDemo/Material/M_Photoscan_Master",
+ "source_instances": [
+  "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/MI_GroundRevealRock001a",
+  "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/MI_GroundRevealRock002"
+ ],
+ "target_dir": "/Game/Materials/Alpine8K",
+ "target_material": "M_Photoscan_RVTBlend8K",
+ "target_instance_names": [
+  "MI_GroundRevealRock001a_RVT8K",
+  "MI_GroundRevealRock002_RVT8K"
+ ],
+ "blend_cm": 25.0,
+ "strength": 1.0
+}

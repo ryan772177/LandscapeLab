@@ -139,8 +139,15 @@ def build_spec(world_recipe, world_path, char_recipe, only=None):
             % (agent_profile, agent_deg, pawn_profile, pawn_deg))
 
     agent = char_recipe.get("navigation") or {}
+    recast_extra = {}
+    if nav.get("is_world_partitioned") is not None:
+        # config bool; written as True/False, the ini form the engine parses.
+        # True: an editor save of the RecastNavMesh actor stores NO tiles --
+        # they live in the NavigationDataChunkActors (PImplRecastNavMesh.cpp:
+        # 522-527). LESSONS 2026-10-04h.
+        recast_extra["bIsWorldPartitioned"] = bool(nav["is_world_partitioned"])
     return {
-        "recast": {
+        "recast": dict({
             "TileSizeUU": float(nav["tile_size_uu"]),
             "AverageLayersPerTile": float(nav["average_layers_per_tile"]),
             "MaxSimultaneousTileGenerationJobsCount":
@@ -152,7 +159,7 @@ def build_spec(world_recipe, world_path, char_recipe, only=None):
             "AgentMaxSlope": agent_deg,
             "AgentRadius": float(agent["agent_radius_cm"]),
             "AgentHeight": float(agent["agent_height_cm"]),
-        },
+        }, **recast_extra),
         "navsystem": {
             "DataGatheringMode": nav["data_gathering_mode"].capitalize(),
             # THE AGENT DIMENSIONS DO NOT COME FROM ARecastNavMesh.
@@ -276,7 +283,8 @@ try:
     cdo = _u.get_default_object(_u.RecastNavMesh)
     for p in ("tile_size_uu", "agent_max_slope", "average_layers_per_tile",
               "max_simultaneous_tile_generation_jobs_count",
-              "min_region_area", "agent_radius", "agent_height"):
+              "min_region_area", "agent_radius", "agent_height",
+              "is_world_partitioned"):
         _out["recast_cdo"][p] = _rd(cdo, p)
 
     ws = w.get_world_settings()
@@ -301,7 +309,8 @@ try:
             for p in ("tile_size_uu", "agent_max_slope",
                       "average_layers_per_tile",
                       "max_simultaneous_tile_generation_jobs_count",
-                      "min_region_area", "agent_radius", "agent_height"):
+                      "min_region_area", "agent_radius", "agent_height",
+                      "is_world_partitioned"):
                 rec[p] = _rd(a, p)
             _out.setdefault("recast_actors", []).append(rec)
 
@@ -437,6 +446,14 @@ def main(argv=None):
         print("   %-46s %-12s want %-12s %s"
               % (k, got, want, "OK" if ok else "*** NOT IN EFFECT ***"))
 
+    want_iwp = spec["recast"].get("bIsWorldPartitioned")
+    if want_iwp is not None:
+        got = d["recast_cdo"].get("is_world_partitioned")
+        ok = got is want_iwp
+        bad += 0 if ok else 1
+        print("   %-46s %-12s want %-12s %s"
+              % ("is_world_partitioned", got, want_iwp,
+                 "OK" if ok else "*** NOT IN EFFECT ***"))
     actors = d.get("recast_actors") or []
     print()
     if not actors:
@@ -459,6 +476,16 @@ def main(argv=None):
                 print("      %-44s %-12s want %-12s %s%s"
                       % (k, got, want, "OK" if ok else "*** MISMATCH ***",
                          note))
+            if want_iwp is not None:
+                # The ACTOR's value is what its next save obeys
+                # (PImplRecastNavMesh.cpp:522). A saved actor may carry its
+                # own value over the CDO's; this is the check, not the ini.
+                got = a.get("is_world_partitioned")
+                ok = got is want_iwp
+                bad += 0 if ok else 1
+                print("      %-44s %-12s want %-12s %s"
+                      % ("is_world_partitioned", got, want_iwp,
+                         "OK" if ok else "*** MISMATCH ***"))
 
     print()
     print("WorldSettings:")
@@ -501,6 +528,12 @@ def main(argv=None):
     print()
     if not args.go:
         print("DRY RUN — nothing written to the world.")
+        # A read-only run is a READ-BACK, and a caller decides its next step
+        # from it: mismatched CDO/actor rows must not exit 0 (audit
+        # 2026-10-04, finding 3; standing rule 12).
+        if bad:
+            print("%d read-back value(s) do not match the recipe." % bad)
+            return 4
         return 0
     if bad:
         print("%d value(s) NOT IN EFFECT. If the CDO rows are the ones "

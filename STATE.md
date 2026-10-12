@@ -1,4 +1,395 @@
-# CURRENT STATE — 2026-09-30 (BRIEF 7 P4: HLOD incremental rebuild COMPLETE 24/24 (51 h, 0 fatal); FarField dropped; P4 stills + tag look-p4 BLOCKED ON DISK (2.5 GB free: pagefile 206 GB, DDC 58 GB) — operator step; P3b done (look-p3b); GitHub = lite mirror)
+# CURRENT STATE — 2026-10-01 (AAA BAR, FAST LOOP, in force; PALE-TERRAIN ROOT CAUSE FOUND AND FIXED on Alpine8K — white background constant leaking through the layer composite; tints and P4 stills to re-judge; lite push NOT done; GitHub = lite mirror)
+
+> **NEWEST-OF-ALL 2026-10-11 night -- ROOF VARIETY DONE (Ryan "go ahead with the roof variety next").** Lever A:
+> mesh + ridge chosen against the 6 nearest neighbours (171 roofs changed; same-mesh 0.24 -> 0.19, same-ridge
+> 0.58 -> 0.46). Lever B: 12 weathering-grade MICs (/Game/Materials/TownKit/RoofGrades, AI-restricted), 255
+> roof overrides (base 94 / aged 88 / grey 83 / fresh 84). 349 re-placed, verify EXACT 21,974 + overrides
+> 255 == 255, saved. Navmesh 256 s; streets 371/371, doors 349/349, lattice 0 changes, encounters 307/307. HLOD
+> 21/21 detached, check OK. Stills _verify/lookdev/townkit_roofs01. Grades read SUBTLE: retune = make_roof_grades
+> + HLOD, no re-placement (RECIPES R-SGTRIAL ROOF VARIETY). New hook H15: auditor requests must state both roots.
+> OPEN: House07_Roof02 roof ends are open from above (no gable_axis; pre-existing). overview_n shows a line of
+> house-like blocks on the snow north of the town -- NOT investigated (stale HLOD or other content?). Snapshot
+> commits are local only; the GitHub mirror push is not done. No editor running.
+
+> **PREVIOUS 2026-10-11 evening -- JETTY SOFFIT + TOWN HLOD DONE.** Soffit beams (3 LS per jetty, update-in-place,
+> verify EXACT 21,970 instances, saved). Town HLOD rebuilt DETACHED: 21/21 cells, check OK. Memory measured: the HLOD
+> commandlet peaks 60.2 GB private / 79 GB commit, free RAM 0 at peaks (pagefile) -- detached launch + sampler is
+> now the rule (RECIPES R-SGTRIAL section, LESSONS 2026-10-11d). Disk: 25.9 GB free after Ryan cleared DDC + _trash.
+> Stills _verify/lookdev/townkit_soffit01. NEXT candidate (not started): roof variety (the whole roofs are now the
+> dominant sameness). No editor running.
+
+> **PREVIOUS 2026-10-11 later -- ARM C IN THE TOWN (Ryan "go ahead with arm C in the town").** recipes/town_kit.json
+> `style` enabled (banded variants, symmetric door fronts, 50 cm jetty); manifest 349 jettied, 38 roofs re-fitted, box
+> = ground footprint (audit F1); plan re-recorded on pre_source (identical). World: 349 cleared + placed, verify EXACT,
+> saved 698; navmesh 188 s; streets 371/371, doors 349/349, lattice 0 changes, encounters 307/307; street mask
+> re-stamped (PNG identical). Stills _verify/lookdev/townkit_armc01 (jetties read; open soffit = thin dark band).
+> **BLOCKED: HLOD town cells -- disk C: 7.4 GB free < tool floor 10 GB** (setup done, census 37, 21 labels listed).
+> Needs Ryan: cache cleanup (DDC 13.9 + C:\UnrealDDC 15.8 GB, _trash 4.8) or lfs prune. Until built, the town's
+> DISTANT view shows the old houses' HLOD. Next after: jetty brackets, roof variety. Restore tag pre-armc-town-20261011.
+
+> **PREVIOUS 2026-10-11 -- ENGINE 5.8.3 + SHAPE GRAMMAR TRIAL VERDICT (Ryan "go ahead with the 5.8.3 update
+> and the Shape Grammar trial").** Engine 5.8.3 CL 58210709 (Ryan via Launcher); plugin rebuilt; PCGPrimitives on via
+> LandscapeLabEditor.uplugin; smoke same-pose still matches 5.8.1. Trial (R-SGTRIAL): PCG grammar NOT adopted for
+> rectangles (30/96 facades unfilled); arm C (Python style: jetty, storey mix, banded variants) adopted, NOT yet
+> wired into the town. NEXT (decided, unbuilt): style switch in town_kit_manifest + recipe; jetty brackets (probe
+> SupportBeam bounds); roof variety. Restore tags pre-engine-5.8.3-20261010. Pre-existing weightmap snow-aspect
+> failure in BACKLOG. No editor running after this block's commit.
+
+> **PREVIOUS 2026-10-10 night-2 -- STREETS FLATTENED IN ALPINE8K (Ryan "do the street flattening next").**
+> scripts/flatten_streets.py: pre-streets heights (terrain/alpine_8k_prestreets.png, sha-pinned) -> smoothed streets
+> (sigma 4 m, natural cross-slope kept, houses untouched, door aprons); chord deviation p90 0.83 -> 0.29 m. Pushed,
+> collision flushed, 256 proxies saved, navmesh rebuilt; streets 371/371, doors 349/349, lattice 0 changes,
+> encounters 307/307. Stills _verify/lookdev/townkit_flat01. RECIPES R-TOWNKIT AMENDED 2026-10-10d; LESSONS
+> 10-10gg/hh/ii/jj. Restore tag pre-street-flatten-20261010. OPEN: landscape HLOD in the town stale (deferred,
+> recorded); weightmap not reproducible (BACKLOG); stamp spikes map-wide (BACKLOG); 8 plans STALE by history (the
+> terrain hash moved; town plan re-gated OK on pre_source; encounters re-verified live). Town tools now read
+> pre_source: the next plan_city run records it. No editor running.
+> NEXT candidates (research, needs Ryan): 5.8.3 update + one-block PCG Shape Grammar trial for building variety.
+
+> **PREVIOUS 2026-10-10 evening-2 -- THE TWO ROCKS ARE GONE (Ryan "go ahead with the rocks").** They were
+> MeadowBoulders landscape GRASS (runtime; editor census 0), not actors. Fix: street mask B channel = boulder
+> exclusion (boulder_margin_m 12.25 >= derived floor 12.04), MeadowBoulders street_keep_channel B; material rebuilt
+> on LookDevMtn (44/0 samplers), proxies re-saved 257/257. Stills `_verify/lookdev/townkit_boulders01`: rocks gone,
+> B=0 control keeps boulders. Navmesh/reachability/encounters/HLOD untouched (grass NoCollision, never HLOD).
+> RECIPES R-TOWNKIT AMENDED 2026-10-10c; LESSONS 2026-10-10ff. Restore tag pre-boulder-exclusion-20261010.
+> OPEN: 35 deg tilt bound is JUDGED (measure max slope under meadow weight); 0.5 m mip term UNVERIFIED.
+> No editor running.
+
+> **PREVIOUS 2026-10-10 late — AI GATE: THE TOWN KIT IS AI-RESTRICTED; ALPINE8K RENDERS NOW REFUSED.**
+> Medieval Village Megascans Sample (Fab `2e11a225-…`, houses + cobblestone) reads `isAiForbidden: true`; it was
+> missing from `recipes/ai_restrictions.json`, and the R-GEMINIJUDGE run below sent `ridge_town_e.png` to
+> gemini-3.8-flash (not recallable; licence consequence is **Ryan's call — OPEN**). Registered + guard hardened
+> (sidecar level rule, captures/ + bench globs), audited PASS (b8b0896c, c8f794ce, f6e84796; LESSONS 2026-10-10ee).
+> **R-GEMINIJUDGE can no longer judge any Alpine8K frame.** ROCKS (two at the main-road east end on the cobble):
+> rock census RAN (0 rock-named instances; the rocks were grass) -- see the evening-2 block above.
+
+> **PREVIOUS 2026-10-10 night — Gemini2UE research integrated (Ryan "go with your order").**
+> (1) R-GEMINIJUDGE: `scripts/gemini_vision.py judge` + `research/gemini_judge_context.txt`, free Gemini API
+> (`gemini-3.8-flash`, key in user env `GEMINI_API_KEY`), first JSON critique in `_verify/20261010_gemini_judge/`.
+> (2) R-CITYIMAGE: `plan.layout "image"` (`scripts/city_image.py`, `classify_topdown.py`, `town_from_topdown.py`),
+> proven OFFLINE on a synthetic map via `recipes/city_image_test.json` (79 buildings / 58 streets, deterministic);
+> organic producer regression IDENTICAL to the shipped plan except `_input_sha256` (LESSONS 2026-10-10dd).
+> NOT placed in Alpine8K; no real Gemini map yet. (3) `camera_solve` block (MoGe-2) on both concept recipes.
+> Research source: C:/Users/Admin/Gemini2UE/docs/PIPELINE_RESEARCH.md. EDITOR: a G2UE editor (other project) may still be open.
+
+
+> **NEWEST-OF-ALL 2026-10-10 evening — COBBLESTONE STREETS ARE IN ALPINE8K (Ryan "do the streets with
+> cobblestone").** Streets, plaza and squares are part of the landscape surface: a mask inside M_Alpine8K
+> (`material.street_overlay`). The 371 primitive slabs are deleted. Grass and boulders are off the stone, and
+> the landscape proxies were re-saved so -game uses the new grass data.
+> - **Restore point:** tag `pre-cobble-streets-20261010`.
+> - **Recipe:** "R-TOWNKIT — AMENDED 2026-10-10b".
+> - **Measured:** reachability doors 349/349 (TownKit_101 RESOLVED), streets 371/371; lattice 9,717
+>   unchanged; encounters 307/307; HLOD 21/21 labels, 23/23 house cells.
+> - **Stills:** _verify/lookdev/townkit_cobble01.
+>
+> **OPEN (replaces the list below):**
+> - (a) Two large rocks at street edges near the main road's east end -- identify by in-editor actor query.
+> - (b) Streets follow terrain undulation -> Landscape Patch / heightmap flattening next.
+> - (c) Roof defects (OWED).
+> - (d) Ryan's research playbook (C:\Users\Admin\UE58_TownFrom2D\docs) reviewed. Recommended cherry-picks:
+>   PCG Shape Grammar for building variety, Landscape Patch for street flattening, the PCG Primitives
+>   medieval example, image-to-3D for landmark/spire, the 5.8.3 hotfix. AWAITING his pick.
+> - (e) BACKLOG: game_still rotation read-back; audit_material_samplers read-only; the NN18 subagent hook;
+>   %TEMP% class; RAM-chain/parallel-slice hook.
+>
+> EDITOR: CLOSED.
+>
+> **PREVIOUS 2026-10-10 ~02:30 — ORGANIC TOWN IS IN ALPINE8K AND SAVED (Ryan "option a").**
+> The ring-and-spoke lattice is replaced.
+> - **Restore point:** tag `pre-organic-town-20261010`.
+> - **Plan:** city/ plan = scripts/city_organic.py, 349 kit houses + 371 streets (main/lane/alley), 4 squares;
+>   landmark and spire unchanged and now an obstacle.
+> - **Runbook:** _verify/organic/RELAYOUT_RUNBOOK.md. Audited (4 rounds, final PASS) and design-reviewed
+>   (GO-WITH-CHANGES, applied).
+> - **World (d8c08527):** teardown 385 + 838 from tag counts; placed 371 + 349. Census EXACT (349 / 18,329),
+>   also after save and after relaunch. Trees: 714 more removed (ledger 3,661). Save: 720 written, 1,223
+>   deletions verified.
+> - **Navmesh rebuilt (166f19e7):** 426 s, 64 chunks.
+> - **Reachability installed (63b6657f):** streets 371/371, doors 348/349.
+> - **Lattice installed (a7bab094):** 9,711 -> 9,717, 0 changes outside the town.
+> - **Encounters (b6b7fa87):** re-planned 309, adopted 307, re-verify 307/307.
+> - **HLOD (01c1a9f3, 3cd2fcc5):** setup 2,115 -> 2,102; 21 labels built one per call; check 23/23.
+> - **Stills:** _verify/lookdev/townkit_organic01. Ridge: ring geometry gone, no ghost massing or ghost tree
+>   holes (open meadow). Street level: houses front the lanes.
+> - **RECIPES:** "R-TOWNKIT — AMENDED 2026-10-10: THE ORGANIC LAYOUT" + REJECTED additions.
+>
+> **OPEN:**
+> - (a) TownKit_101 door unreachable (SE arm end, doorstep 1.2 m off a reachable main road) -- needs an
+>   in-editor nav query.
+> - (b) STREET SURFACE: MeadowBoulders/Meadow landscape grass grow on and through the primitive slabs (a
+>   boulder on the main road at the plaza; lanes read as broken grey patches). Needs grass exclusion + real
+>   street meshes ("streets -> cobblestone").
+> - (c) Roof defects (open gable / loose pieces), the OWED roof item.
+> - (d) Next art items from Ryan's critique: building variety, clutter, materials; lighting needs his ruling.
+> - (e) BACKLOG: guard hook for RAM-chaining / parallel slices (3 repeats today, LESSONS 10-10k/l/o/p);
+>   street-edge water; %TEMP% scratch class.
+>
+> EDITOR: CLOSED (0 Unreal processes).
+>
+> ⭐⭐⭐⭐⭐⭐ **2026-10-03 — HERO ROUNDS ON THE RIG (/Game/LookDevMtn, hero cam 82100, 82800, pitch 3, yaw
+> 225, eye 172).** r6: `near_surface` (schema v1.30) built — gray_rocks 9 m fades into Rock026 over 20–100 m;
+> sharp up close, NO change to faces seen from 150 m+ (they need macro structure: rock meshes or cliff-scale
+> maps — the next round). r3b: meadow filled to 200 m (MeadowMid2, MeadowFar200). Tone: drifting clouds were
+> moving meadow luma 8% between identical shots — rig cloud wind FROZEN (recipe `clouds.wind`, read back);
+> exposure +0.35 EV (meadow 0.235). LESSONS 2026-10-03, 10-03b. **OPEN:** alpine_8k.json clouds still animate;
+> grass frame cost of r3b NOT measured; status-line progress bar `.claude/progress.py` (drive it per task).
+> Editor: LookDevMtn UP, lighting saved by apply_lighting, nothing owed.
+> **NEWEST-OF-ALL 2026-10-09 ~02:30 UTC — KIT TOWN IS IN ALPINE8K AND SAVED (commit 0cd28114, R-TOWNKIT).**
+> 385 kit houses replace the 606 primitive buildings+roofs; census exact (385 actors / 19,207 instances);
+> heights 2-3 courses; tree clearing 8/4/6 m (2,947 of 797,500 plan trees removed surgically, no regeneration);
+> nav auto-update restored in config (next launch ON). Medieval Game pack re-downloaded (vault, 21.1 GB) and a
+> third intake taken (407 packages: roof parts, fences, well, mossy stone walls, cobblestone -- NOT yet used or
+> rendered). Disk ~30 GB free. DONE SINCE: audit FIX x6 applied (LESSONS 10-08e); R-NAVBUILD after the town
+> (e687bdc3, 514 s, 64 chunks replaced); relaunch: town census EXACT after reload, nav auto-update effective ON
+> (engine Base ini), RecastNavMesh is_world_partitioned True. EDITOR: UP on Alpine8K, town region loaded.
+> DONE 2026-10-08 late: reachability 385/385 doors, 835/838 streets (HLOD-trace false alarm fixed); lattice
+> 9,711 (106 marginal-gateway cells accepted, LESSONS 10-08h); encounters 304 adopted, re-verify 0 unreachable.
+> HLOD PILOT: kit houses are NOT in HLOD (needs -SetupHLODs; LESSONS 10-08j) -- the town is invisible past
+> ~256 m and stale cubes/removed trees show there. Disk 13 GB free. EDITOR: CLOSED.
+> OWED, in order: (3) HLOD setup+build once disk allows; roof defect seen at ring_w (gable + sky gap on a 3-course
+> house, _verify/lookdev/townkit_alpine02/ring_w.png); (4) HLOD: read DefaultHLODLayer, A/B
+> gate, rebuild town cells; (5) -game stills plaza/main street + perf; (6) next look items: primitive streets ->
+> cobblestone, landmark/spire -> kit, stone foundations, roof-part roofs for variety.
+> **PREVIOUS 2026-10-07 ~04:00 UTC — KIT TOWN (Ryan: "do the town with the medieval village kit").**
+> PROVEN ON THE RIG: one actor per house, full-res Nanite kit modules as ISMs (C++ SpawnKitHouse/SetKitInstances);
+> orientation/corners/roofs/gables tuned by render; 4 usable roofs (3 awning roofs usable:false). PLAN ADOPTED:
+> city/alpine_basin_town_plan.json = 385 kit-servable buildings (was 303 primitives; LESSONS 10-06w). MANIFEST:
+> city/alpine_basin_town_kit_manifest.json, 21,267 instances, door to nearest street, 1x2MB foundation courses.
+> Rig test of 4 manifest houses via the batch placer: OK (townkit_rigtest01). DESIGN REVIEW of the Alpine8K
+> promotion: GO WITH CHANGES (research/town_kit/DESIGN.md rev 2026-10-06b + review in LESSONS 10-06y).
+> NOT YET DONE IN ALPINE8K -- nothing placed, nothing destroyed. DONE since: audits PASS (LESSONS 10-06z/aa),
+> plugin built with 4 new UFUNCTIONs, tag pre-town-kit-2026-10-06 set, editor launched windowed on Alpine8K
+> (~04:15 UTC). PAUSED THERE: Claude Code reaped the readiness poll for LOW SYSTEM MEMORY (5.3 GB free of 31.4,
+> editor 12.4 GB RSS while loading). Nav auto-update NOT yet touched. Resume when memory allows, from
+> "town_kit_load_region --go". 2026-10-08: editor CLOSED, C:/UnrealDDC cleared (54.7 GB free) for the Medieval
+> Game sample project Ryan is creating via the launcher; next launch rebuilds shaders cold. NEXT, in order:
+> open Alpine8K ->
+> town_kit_load_region --go -> nav_autoupdate off -> town_kit_clear (dry, then --commit, 606) -> town_kit_place
+> --go (385) -> town_kit_foliage_clear (dry, then --commit, 450) -> save_level --save, re-open, re-count ->
+> nav_autoupdate restore -> R-NAVBUILD (editor closed) -> reachability + encounters re-plan/verify -> HLOD
+> (read DefaultHLODLayer first; A/B gate) -> -game stills + perf. Foliage REGENERATION is NOT done (Ryan's ruling);
+> the 450 trees inside houses are removed surgically instead. **CRASH CHECK:** if a session dies between nav
+> off and restore, run `python scripts/nav_autoupdate.py status` -- the setting persists OFF in config.
+> **NEWEST 2026-10-06 ~05:30 UTC — "FIX EVERYTHING" PASS (overnight, Ryan asleep), all committed.**
+> (1) **White balance**: the carry had overwritten the world's card-solved grade WB (3438.6) with the rig's 5200 —
+> my error, misreported as "Ryan's ruling" (5200 K is the SUN). Re-solved at the 28° sun with the joint 2x2:
+> **4421.0 K / tint -0.067899**, card R/G 1.0041 B/G 1.0217 PASS; exposure -14.3273 PASS. carry_rig_to_world no
+> longer carries calibration values (exposure, WB). (2) **Far-field faceting FIXED**: landscape HLOD mesh source
+> SpecificLOD 2 (was LowestDetailLOD = LOD6, 127 m quads). (3) **Far-field black cracks FIXED**: cause = the landscape
+> HLOD bake leaves an undilated near-black strip on every cell edge of all baked textures (measured, LESSONS 10-06e);
+> Ryan chose an override material: `M_Alpine8K_HLODFar` (recipes/hlod_override_alpine8k.json, layer colours fitted
+> to the old bake, R2 0.988) as HLODMaterialOverride on 257 actors, 256 cells rebuilt, NO bake -> HLOD packages
+> 14.47 -> 0.19 GB. (4) **Grey cards no longer ship**: the vista/treeline "grey boxes" were Bench_GreyCard_*; saved
+> hidden-in-game, bench_capture shows them in memory for its PIE render and re-hides in a finally (card still 0.18002
+> PASS). Final stills `_verify/lookdev/final01`: no cracks, no boxes. Treeline perf GPU p90 7.205 ms / 10.0, VRAM
+> 5.6 GB. **Far field v2 DONE (06:00 UTC):** M_Alpine8K_HLODFar now applies the near material's cavity/lichen/damp
+> to Rock from the world cavity map (refit R2 0.9895/0.9913/0.9923 vs 0.9825/0.9875/0.9906, n 1,452,384); 256 cells
+> rebuilt; `_verify/lookdev/final02` far wall shows gully/crevice structure matching the near rock, no cracks;
+> treeline GPU p90 7.202 ms, VRAM 5.5 GB.
+> **RULED 2026-10-06 (Ryan delegated: "if those get us to AAA, do them"):** (a) **sun stays 28°** — the approved
+> hero-still look; bench profile still resets 12° for benchmark comparability. (b) **tree plans NOT regenerated** —
+> no visible gain, would move 797k trees; the 2 offline-suite reds stay red honestly (no waiver: the plans consume
+> the whole material/foliage blocks the carry changed, so "unaffected" cannot be shown without regenerating).
+> (c) **HLOD Merged parents NOT rebuilt** — A/B from 400 m altitude (`_verify/lookdev/parents_ab`) shows the far world
+> continuous with no cracks/facets; nothing visible to fix (R-HLODCAP gate). **Previously OPEN:** sun 28° vs Ryan's earlier 12° ruling (his call); offline suite: 2 pre-existing failures (plan
+> stamps -> regenerating plans moves 797k trees, Ryan's call; snow-aspect feather check); HLOD Merged parents are
+> stale vs the override cells — A/B before any rebuild (R-HLODCAP). Two process slips logged (10-05c).
+>
+> **2026-10-05 ~05:00 UTC — CARRY INTO ALPINE8K FINISHED (Ryan's 5-step queue done).**
+> (1) HLOD: 256 landscape cells + 256 Merged parents rebuilt, both censused fresh (tag
+> pre-hlod-landscape-carry-20261004). (2) Navmesh: actor `bIsWorldPartitioned` true (notify NEVER, actor before
+> ini), 786 MB -> 4.4 KB, maxTiles 401,843 kept, 0 tile-limit lines; game reaches treeline in ~21 s, stills OK at
+> settle 120 (research/navmesh_786mb/FINDINGS.md). (3) Exposure re-solved on the Alpine8K grey card (PPI0):
+> -14.3273, verify card 0.179998 PASS; WB on the card OUT of band (PPI0 R/G 1.41, B/G 0.69) — NOT changed, 5200 K
+> is Ryan's ruling. (4) Stills `_verify/lookdev/world_carry02`: near field good; **far-field faceting + straight
+> black seams PERSIST after the full HLOD rebuild — they are in the HLOD proxy geometry, not staleness (LESSONS
+> 10-05b). OPEN, next.** (5) Treeline perf (standalone, 4K): GPU p90 7.199 ms (n 2,943) vs 10.0 budget,
+> GPUSceneInstanceCount 191,859, VRAM 5.6 GB. Offline suite: 2 failures predate the carry (plan stamps, snow
+> aspect). Sun is the rig's 28° (Ryan ruled 12° earlier; tag pre-carry-lighting-alpine8k-20261004 reverts).
+>
+> **QUEUE 2026-10-04 21:40 UTC (Ryan's order):** (1) finish HLOD parents (`_verify/hlod/carry_20261004p`, 64×4,
+> ~5.6 min/batch, VRAM 3.6 GB) — landscape children DONE 256/256 stale 0; (2) navmesh 786 MB: investigate +
+> shrink WITHOUT losing coverage (the 10-02 re-save fixed the 19,406 tile cap; tiles may now be duplicated in
+> actor + chunks — source research running); (3) grey-card exposure re-solve; (4) -game stills; (5) frame cost +
+> GPUSceneInstanceCount at treeline (10.0 ms). DDC trimmed twice under Ryan's permission (LESSONS 10-04f/g).
+>
+> **NEWEST-OF-ALL 2026-10-04 — CARRY INTO ALPINE8K (Ryan: "carry into alpine8k"), steps 1–7 committed.**
+> DONE: recipe carry (`carry_rig_to_world.py`, idempotent; NOT carried: azimuth, ForestFloor tint, terrain
+> edits); 8K cavity/lichen/damp + macro baked (damp `slope_smooth_m` 4 -> 2.5%) and imported; world RVT assets
+> (`make_rvt --assets-only`), M_Photoscan_RVTBlend8K + MIs, M_Alpine8K + 13 grass types built ON THE RIG LEVEL;
+> Alpine8K: RVT volumes saved, landscape bound 256/256, proxies saved (dirty 0), lighting applied+saved
+> (**on-disk sun 12° -> 28°, exposure -13.9071 from the rig — NOT grey-card re-solved for the world**; tag
+> `pre-carry-lighting-alpine8k-20261004` reverts). First -game still (treeline, settle 900 — 100 s is no
+> longer enough to load the world, LESSONS 10-04d) loads but looks WRONG: pale bleached ground, faceted far
+> field with black tile seams, no visible grass. The far field matches pre-carry game01 (stale landscape
+> HLOD). Near field PARTLY EXPLAINED offline: the treeline station sits on ROCK (weightmap within 50 m: Rock
+> 0.951, Scree 0.026, Snow 0.010, Grass ~0.01), so no meadow grass is expected there; the pale ground is the
+> Rock026 tint under the 28° sun at +0.35 EV over the old world exposure; one green grass clump lower-left
+> shows -game grass DOES generate. Whether the rock reads too bright still needs an editor Base Color check. **BLOCKED:**
+> HLOD rebuild needs ~17 GB + 8 GB floor; disk has 17 GB (editor autosaves took 4.9 GB in
+> LandscapeLab/Saved/Autosaves -- Ryan to delete; rule 2 forbids me). **NEXT:** free disk -> HLOD rebuild ->
+> re-shoot P4 stills (settle 900) -> diagnose near-field paleness (editor still at same pose, Base Color
+> tile) -> perf at treeline (10.0 ms). ue_exec now REFUSES --timeout > 60 (LESSONS 10-04b).
+>
+> **NEWEST 2026-10-04 — rounds 25–27 + RVT (rig), all committed.** r25 scree/barren rocks removed (Ryan);
+> r26 neutral lichen, luminance-only macro, **rig landscape Nanite ENABLED** (it was off; world is on), macro
+> normal on Rock (now 1.0); r27b cliff relief (`--cliffrelief 3,18,32,45`); Nanite error-target cvars A/B'd: no
+> gain (heightfield data is the limit). **RVT stages B+C built (R-RVT):** landscape writes colour/height RVTs,
+> meadow boulders blend their bottom 25 cm into the ground; stage D dropped (smears cliffs). Perf A -> B+C:
+> GPU p90 ~10.0 ms both (no change), VRAM 4.6 -> 4.74 GB. **Rig is now ~10.0 ms GPU p90 at 4K** (was 7.9 at r18;
+> mostly the Nanite landscape switch-on). **NEXT:** carry rounds 6–27 + RVT to Alpine8K (cavity/lichen/damp bake
+> at 8K, scree shaping in derive_layer_weights, grass dryness, RVT bounds for 8 km, HLOD rebuild) -- budget-check
+> the treeline station (10.0 ms) first.
+>
+> **LATEST 2026-10-03 — rounds 13–24 (rig), all committed.** Kept: r14b/c rockfall-shaped scree (no crest rocks,
+> clustered fans, ScreeRocksFar + ScreeBoulders, rock shadows); r17 calmer scree; r18 gray_rocks near fade 3–15 m;
+> r20 dry/green meadow patches via an OWNED FieldGrass material (`make_grass_dryness.py`, R-GRASSDRY); r21 lichen +
+> damp cliff base (cavity map G/B, v1.33, stale-map guard); r23 midground terrace (6 m × 80 m, `--midridge`);
+> r24 meadow boulders (GroundRevealRock, Ryan's ruling reversing 09-27). Rejected: r13 triplanar 20°, r16 shadow
+> grade, r19 vendor dead-colour mask. Rig -game had NO meadow until the landscape proxies were re-saved
+> (lookdev_iter now does it every build). Frame cost measured through r18 (7.9 ms GPU p90, 4K); **r20–r24 NOT
+> measured** (grass Noise per pixel, boulders). Latest frame `_verify/lookdev/hero_r24b_meadow_boulders/hero_a.png`.
+> **NEXT:** perf re-measure; Meadow (0–50 m) card material has no dryness yet; lichen tint slightly sulphur;
+> then promote rounds 6–24 to Alpine8K (cavity/lichen bake at 8K, scree shaping in derive_layer_weights, HLOD rebuild).
+>
+> **LATER 2026-10-03 — rounds 7–12 (rig).** r7 macro albedo triplanar (face smears gone). Gemini critique
+> (`research/gemini_critique_prompt.md`) worked item by item: r8 valley fog REJECTED (camera inside the layer);
+> r9 sky 2.125 kept; r10 sun azimuth 255 kept, cloud coverage 0.35 REJECTED; r11 `material.cavity` (v1.31,
+> baked gully map, strength 1.0) kept; r12 scree apron 30 m + Scree tint 0.45 kept. Latest frame
+> `_verify/lookdev/hero_r12b_scree_dark/hero_a.png`. **PARKED FOR RYAN:** big foreground boulders with RVT
+> blending (reverses the 09-27 rock ruling; multi-day). **NOT DONE:** frame cost of r3b/r7/r11; none of r6–r12
+> promoted to Alpine8K. LESSONS 2026-10-03c–g.
+>
+> ⭐⭐⭐⭐⭐ **2026-10-02 04:45 UTC — LANDSCAPE HLOD DONE (256/256), NAVMESH CAP FIXED.** Game stills
+> `_verify/lookdev/game02` (published to Ryan: claude.ai/artifact/9HGo98s7kigHQ2kN8MqSCQ): near ground fixed,
+> far hills + cliff wall still wrong = the 256 Merged PARENTS (tool ready: `hlod_build_landscape_cells.py
+> --parents --built-before "2026-10-02 03:10:00"`, fresh run dir). **BLOCKED ON DISK:** 13.3 GB free vs 8 GB
+> floor; the landscape run used ~17 GB, mostly shared DDC outside the repo — reclaiming it is Ryan's (ruling
+> 2026-09-14). ASKED. Navmesh: actor re-saved, 0 tile-limit lines in the game (LESSONS 2026-10-02), BUT the
+> package grew 36 MB → 786 MB and game load now needs `--settle 220`. Next after parents: HLOD tile seams,
+> shipped-look decision, weight de-blob, town.
+>
+> ⭐⭐⭐⭐ **2026-10-02 03:15 UTC — THE GAME IS NOT THE EDITOR (supersedes the "STILL FAILS" order below).**
+> New instrument R-GAMESTILL (`scripts/game_still.py`): a still from `-game`. At the treeline the player
+> sees a WHITE mottled basin with seams and boxes — World Partition HLOD (A/B with `wp.Runtime.HLOD 0`:
+> terrain vanishes). All 256 landscape HLOD cells were baked 09-28..30 from the old material, and the HLOD
+> hash cannot see a material changed in place. **RUNNING:** `hlod_build_landscape_cells.py --built-before
+> "2026-10-02 03:10:00"` → `_verify/hlod/landscape_refresh_20261001/` (32 batches, tag
+> `pre-landscape-hlod-refresh-20261001`). **NEXT:** 1 game-still treeline/vista again; 2 the 256 Merged L1
+> parents are stale too (they govern 512 m – 1 km) — find a parents-only build; 3 **OPEN DECISION: the
+> shipped game runs the BENCH look** (PPV_Look saved off, sun 12°, no sky fill) — the Look is an
+> editor-only runtime toggle; making it the shipped state moves every perf/bench number (R-PERFBUDGET) →
+> Ryan; 4 navmesh "19406 tile limit reached" in the game log — navmesh incomplete, not investigated;
+> 5 weight de-blob (`material.weight_derivation`, built, inert). LESSONS 2026-10-01c; RECIPES
+> R-GAMESTILL, R-HLODCAP AMENDED 2026-10-01.
+>
+> ⭐⭐⭐ **2026-10-01 evening — LOOK SHADOW FILL DONE; P4 RESHOT (supersedes NEXT 1–3 of the block below).**
+> Look profile now sets `r.SkylightIntensityMultiplier 2.5` (bench restores 1.0) and PPV_Look shadow
+> contrast is 0.6, saved (tag `pre-look-skyfill-20261001`). Plaza shaded wall 0.0104 → 0.0186, forest
+> shade 0.0047 → 0.0187. All seven P4 stations reshot on corrected albedo + fill:
+> `_verify/lookdev/world13_look_skyfill/`. LESSONS 2026-10-01b; RECIPES R-LOOKDEV AMENDED 2026-10-01b
+> (the world look-still procedure is now written down there).
+> **The "tan quad" is the bench grey card** (R-GREYCARD) — hide with `greycard_visibility_payload`.
+> **Tints:** ForestFloor and Rock tints judged on world13 with fill: both read correctly; kept.
+> **STILL FAILS THE BAR, by visual gain per hour:** 1 far forest absent at treeline/slope (dark blob stubs
+> where HLOD should be); 2 valley ground: brown leopard mottle, no meadow green, sparse grass cover —
+> WildGrass albedo 0.0385 vs a meadow near 0.10, base_color cannot tint above 1; 3 lake has no shoreline;
+> 4 horizon is a hard grey slab where the 8 km terrain ends (BACKLOG far-field ring); 5 cliff rock tiles
+> visibly; 6 displacement pyramids on the forest floor; 7 town is boxes (multi-day kit work); 8 old C/D.
+> **Not done:** the skylight multiplier is a runtime cvar — a packaged game needs it in an ini.
+> **Editor:** Alpine8K editor UP on bench (read back); sun + skylight packages dirty in memory from the
+> profile toggles — do NOT save the level from this session.
+>
+> ⭐⭐⭐ **2026-10-01 — THE PALE TERRAIN IS FIXED AT ITS CAUSE (supersedes NEXT A and most of NEXT B below).**
+> The layer composite was a lerp chain over a WHITE constant with raw weightmap masks as alphas: every
+> blended texel kept prod(1 - m_i) of white (world mean 15.7 %). Now `alpha_i = m_i / running sum`
+> (`make_landscape_material.py`, CPU mirror + invariants at import, auditor PASS). `M_Alpine8K` and
+> `M_LookDev` rebuilt and saved; tag `pre-composite-alphas-20261001`. LESSONS 2026-10-01; RECIPES
+> R-LOOKDEV AMENDED 2026-10-01.
+> **Read back:** rig blends 0.39–0.42 → 0.14–0.17 (weighted sum 0.16–0.17); Alpine8K forest_floor Base
+> Color 0.241 → 0.097; cliff_overlook far wall has no cream blobs; `_verify/lookdev/world06_alphas/`.
+> **The "Grass layer 2.5x" finding of 09-30j is RETRACTED** — it measured the constant.
+> **Instruments:** `lookdev_blendcheck.ps1` (blended patches — the only one that can see this class);
+> `lookdev_basecolor.ps1` stations re-derived (they go stale with the rig terrain).
+> **NEXT, in order:** 1 re-judge the ForestFloor and Rock tints on the rig — both were chosen over leaking
+> frames and may now be too dark (forest floor in shade reads near black under Look); 2 reshoot the seven
+> P4 stations (all stale again) and re-judge the Look grade; 3 displacement pyramids on the forest floor
+> and the screen-fixed tan quad (vista) — unidentified; 4 old C: snow edge + grass valley + atmosphere on
+> the rig; 5 old D: full terrain t09 promotion. Old B (weightmap de-blob) is DEMOTED: re-check the far
+> walls first, the cream was the leak.
+> **Editor:** Alpine8K editor was left UP on the bench profile (read back), nothing saved from it, nothing
+> owed to it — rule 11 before any launch.
+
+> ⭐⭐ **2026-09-30 21:45 — RYAN: "your goal is to take the full world to aaa game level keep working until it's
+> all complete do not stop for me."** Standing authorisation: scope calls inside that goal (mountain shape,
+> rocks back, town kit, re-grading) are MINE to make; do not stop to ask. Hard stops unchanged: destructive
+> edits to LESSONS/RECIPES, VRAM 13,312, rule 1, tag before any world write. Order of attack is by visual gain
+> per hour, on the rig first, promoted to Alpine8K only after it passes there.
+>
+> ⭐ **2026-09-30 20:00 — THE FAST LOOP (Ryan's directive, in force).** Compare every aspect to a AAA game
+> (FF7 Remake, FF16). Aspect fails → make a change → compare → repeat until it passes → next aspect. Setting
+> tweaks then compare; material rebuilds on a SMALL scale then compare. Judge the frames yourself and say
+> plainly when they fail. Promote to Alpine8K only what passed on the rig.
+> **RIG: R-LOOKDEV** — `/Game/LookDevMtn` (central 2 km of alpine_8k, M_Alpine8K unchanged, no trees; editor
+> 7.4 GB, 40 s). `scripts/lookdev_shot.ps1`; frames `_verify/lookdev/iterNN/`. A WINDOWED editor on LookDevMtn
+> may still be running — rule 11 before any launch.
+> **SURFACE (b) — ROOT CAUSE FOUND, FIXED, SAVED (2026-09-30 21:30, LESSONS 2026-09-30f):** `gray_rocks` and
+> `forest_floor` colour sources are 16-BIT PNGs; the texture build read them as LINEAR, so Rock/ForestFloor
+> rendered at 2.70× their albedo. `encoding_override = TSE_S_RGB` saved on `T_gray_rocks_C` +
+> `T_forest_floor_C` (tag `pre-srgb-override-20260930`). Rock now 1.17× of source; iter07 near-ground reads
+> as rock. Instrument: `scripts/lookdev_basecolor.ps1` (Snow must read 1.00×). **ALL look-p* stills are STALE
+> for terrain; Alpine8K not yet re-shot.** Every look ruling since Brief 3 was made over 2.7×-bright ground.
+> **2026-09-30 23:30 PROGRESS:** rig mountains pass 'reads as an alpine face' (terrain t09 + Rock026 tinted, iter12). World material PROMOTED (`c2679de3`): Rock -> Rock026 tint/tiling/displacement; ForestFloor tinted. On Alpine8K rock is fixed (vista); **forest floor still pale -- cause NOT found (LESSONS 2026-09-30i)**; far walls show the 28 m blob pattern (weightmap). Terrain t09 NOT promoted (moves heights +-36 m: foliage, nav, town, water, HLOD re-run -- multi-day). Alpine8K editor may be UP (27 GB).
+> **NEXT:** A the GRASS layer reads ~2.5x its source at forest_floor (primaries probe, LESSONS 2026-09-30j; grass meshes and WildGrass sRGB ruled out) -- test its generated 	exture multiplier and macro sample; B world weightmap without the 28 m blobs (re-derive on a de-lumped height, no height change -- cheap, no foliage re-run); C snow edge + grass valley + atmosphere on the rig; D decide the full terrain promotion.
+> **SHAPE (a) STILL FAILS** — smooth lumps, no strata/cliff bands (4 m upsample base), snow in soft blotches.
+> **NEXT:** 1 isolate Scree (read 1.70× on a 36 % patch) and Grass; 2 sweep other 16-bit colour sources
+> (BACKLOG); 3 re-shoot Alpine8K P4 stations and re-judge the Look grade on correct albedo; 4 mountain shape
+> (erosion detail / cliff meshes / Gaea regions) — a SCOPE call for Ryan. `import_layer_textures.py` was dead
+> since P1 (dot-p-y in a payload comment) — fixed.
+> Alpine8K editor PID 24364 was KILLED UNSAVED (navmesh rebuild dropped — expect a full nav rebuild on the next
+> Alpine8K launch). The memory directory is outside the repo and the rule-1 hook refuses it: this block IS the
+> record of the directive.
+
+> ⭐ **2026-09-30 19:15 — P4 STILLS DONE (supersedes the two blocks below).** Ryan chose the reshoot. Root
+> cause of the bad camera heights: **the ground trace hit `WorldPartitionHLOD` proxies** (loaded in the
+> editor, 13–25 m above ground) — fixed in all three tracing payloads (`ad7066cf` + city_shot_payload).
+> Run 3 reshot all 7; main_street (yaw → 172.8) and cliff_overlook (eye → 4500) re-authored and shot by hand.
+> `research/brief7/stills/p4/*_look_p4.png`, all opened: plaza, main_street, forest_floor, cliff_overlook
+> clean; treeline/slope/vista as before. **Shooting needs the editor FOREGROUND** (read back). Bench restored
+> and read back. Tag `look-p4` set. LESSONS 2026-09-30/b/c; R-CITYSHOT AMENDED 2026-09-30 + REJECTED b/c.
+> **OPEN:** (1) lite push — not done; (2) editor PID 24364 still up, navmesh rebuild UNSAVED (save = world
+> write, Ryan's call; kill = same rebuild next launch); (3) treeline/slope show NO far forest though HLOD
+> proxies are loaded — unexplained; (4) vista low-mip ground, screen-fixed tan quad, white pyramids on the
+> forest floor; (5) earlier phases' still Z never compared against the HLOD-trace fault. THEN: STOP, ASK L4.
+
+> ⭐ **2026-09-30 18:30 — P4 STILLS RUN 2.** `--attach-pid 24364 --warmup --no-close`, detached. 7 of 7 written
+> to `research/brief7/stills/p4/`, all opened: plaza + forest_floor clean; **main_street = flat brown surface
+> (camera on a roof)**; **cliff_overlook = inside a tree crown**; treeline/slope show basin + lake + town and
+> **no far forest** (whether the editor viewport shows HLOD proxies was NOT checked); vista still has low-mip
+> ground patches; a screen-fixed tan quad in four frames, unidentified. **NO FRAME root cause (very likely):
+> the editor must be the FOREGROUND window** — frame landed the minute it was foregrounded; not A/B-isolated.
+> Bench restore read back ok; dirty census 2 external-actor packages, nothing saved. **Editor PID 24364 is
+> STILL UP** holding a full navmesh rebuild (saved navmesh rejected at load, log line 8384) — save or kill is
+> Ryan's call; killing means the same rebuild next launch. LESSONS 2026-09-30b; R-CITYSHOT AMENDED 2026-09-30.
+> **OPEN, WITH RYAN:** (1) accept the set / re-author main_street + cliff_overlook; (2) save the navmesh;
+> (3) tag `look-p4`. THEN lite push → STOP, ASK L4.
+
+> ⭐ **2026-09-30 17:15 — P4 STILLS RUN 1: NOT DONE.** Disk blocker cleared by the operator (86.8 GB free; BOTH
+> DDCs deleted, so the launch was cold). `p3b_clutter_run.py --stills-only --station-set p4` (fence
+> `pre-p4-stills-20260930`): editor ready 663 s; plaza / main_street / treeline / vista landed in
+> `research/brief7/stills/p4/`; **forest_floor NO FRAME after 600 s** (cause NOT established); slope and
+> cliff_overlook never shot — the runner was killed by the Claude Code background-shell memory reaper (host
+> 3.6 GB free beside the 25.8 GB editor). **The 4 frames are EVIDENCE, NOT the P4 stills**: blocky conifers,
+> flat grey quads, low-mip ground (cold derived data is the candidate). The shader-quiet gate added today
+> (`97a92450`) passed over them — insufficient. Bench restore / census / close did NOT run; **editor PID 24364
+> was LEFT UP in the Look profile, nothing saved** — check for it (rule 11) before any launch.
+> R-HLOD AMENDED 2026-09-30 is written (`19d704d0`) — no longer owed. LESSONS 2026-09-30; R-CITYSHOT REJECTED
+> additions 2026-09-30.
+> **NEXT:** (1) editor: reuse if still up and Alpine8K answers the level check, else zero editors then relaunch;
+> (2) WARM-UP pass (place_cam at all 7 P4 stations, no shot), then the shooting pass; runner launched DETACHED
+> (`Start-Process`, log under `_verify/`), never as a background shell; (3) OPEN all 7 frames; (4) STATE →
+> tag `look-p4` → lite push → STOP, ASK L4. Do not tag on the run-1 frames.
 
 > ⭐ **2026-09-30 04:30 — P4 HLOD REBUILD COMPLETE.** 24 of 24 batches, 0 fatal, 0 torn, 3,066 min of commandlet
 > time (110–169 min per batch), VRAM peak 15,925 MiB; final census 2,107 packages / 15.13 GB, layers Instancing

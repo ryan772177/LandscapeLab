@@ -25,7 +25,7 @@ the same set. Refuses off /Game/Alpine8K (rule 11). Reads back area_class and
 bounds per volume (rule 12); reports per-body counts (rule 13).
 
 Run:  python scripts/ue_exec.py scripts/payloads/carve_navmesh_water.py \
-          --marker __T6_NAVCARVE__ --set GO=1 --timeout 120
+          --marker __T6_NAVCARVE__ --set GO=1 --timeout 25
 Dry-run (GO unset): reports what it WOULD spawn, spawns nothing.
 """
 import json

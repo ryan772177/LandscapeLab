@@ -117,6 +117,24 @@ try:
             raise RuntimeError("atmosphere %s did not take: want %r got %r"
                                % (_k, _v, _out["atmosphere"][_k]))
 
+    # SKY FILL (2026-10-01, LESSONS 2026-10-01b): a Look-profile field. With the
+    # albedo fixed, open-sky shade read near black under Look (plaza shaded wall
+    # 0.0104 display-linear against sunlit grass 0.075). Look multiplies the
+    # skylight by 2.5 through the cvar; bench RESTORES 1.0, and the SkyLight
+    # actor itself stays at its ruled intensity 1.0, so no bench measurement
+    # sees the Look fill. Runtime (not saved); read back from the cvar (rule 12).
+    LOOK_SKY_MULT = 2.5
+    BENCH_SKY_MULT = 1.0
+    _want_mult = LOOK_SKY_MULT if _want else BENCH_SKY_MULT
+    _sl.execute_console_command(
+        None, "r.SkylightIntensityMultiplier %s" % _want_mult)
+    _out["skylight_intensity_multiplier"] = float(
+        _sl.get_console_variable_float_value("r.SkylightIntensityMultiplier"))
+    if abs(_out["skylight_intensity_multiplier"] - _want_mult) > 1e-6:
+        raise RuntimeError("r.SkylightIntensityMultiplier did not take: want %r "
+                           "got %r" % (_want_mult,
+                                       _out["skylight_intensity_multiplier"]))
+
     # read a couple back as a sanity signal (console set applies the group)
     _out["sg_applied"] = _sg
     _out["readback"] = {

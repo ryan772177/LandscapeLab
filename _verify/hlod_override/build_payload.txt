@@ -1,0 +1,319 @@
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import ll_must as _ll_must
+
+def _ll_clear_graph(_mel, _mat):
+    """Total clear of a material graph. Returns survivor counts.
+
+    delete_all_material_expressions does NOT delete all material
+    expressions -- custom outputs and some node types survive it. This
+    deletes every survivor explicitly and re-reads, so the caller can
+    refuse rather than build on debris.
+    """
+    _mel.delete_all_material_expressions(_mat)
+    _survivors = list(_mel.get_material_expressions(_mat))
+    for _e in _survivors:
+        try:
+            _mel.delete_material_expression(_mat, _e)
+        except Exception:
+            pass
+    _remaining = list(_mel.get_material_expressions(_mat))
+    return {"survived": len(_survivors), "remaining": len(_remaining)}
+
+
+
+def _ll_wire(_mel, _from, _from_pin, _to, _to_pin):
+    """connect_material_expressions, CHECKED. Raises on a failed connect.
+
+    SHARED INFRASTRUCTURE under CLAUDE.md non-negotiable 4a: the same
+    silent-failure surface exists in every builder in this repo (93
+    connections in the landscape material, 30 in the layer debug
+    material, 10 in the foliage material), so it is fixed once here
+    rather than patched per tool.
+
+    THE DEFECT IT CLOSES, read at the source rather than inferred
+    (MaterialEditingLibrary.cpp:928-943, UE 5.8):
+
+        bool UMaterialEditingLibrary::ConnectMaterialExpressions(...)
+        {
+            bool bResult = false;
+            if (FromExpression && ToExpression)
+            {
+                FExpressionInput* Input = GetExpressionInputByName(...);
+                int32 FromIndex = GetExpressionOutputIndexByName(...);
+                if (Input && FromIndex != INDEX_NONE)
+                {
+                    Input->Connect(FromIndex, FromExpression);
+                    bResult = true;
+                    ...
+
+    **An unresolvable pin name returns false and connects nothing.** The
+    input keeps its default -- 0 for a scalar, black for a colour -- and
+    the material COMPILES CLEAN, because an unconnected input is legal.
+    Every builder in this repo discarded that return value.
+
+    That is the project's worst failure shape: a wiring mistake that
+    reports success and renders plausibly. A mask input left at 0 blends
+    nothing; a height input left at 0 turns a height blend into a linear
+    lerp with no error anywhere.
+
+    Pin names are also exactly the thing non-negotiable 23 says not to
+    trust from memory, and this is the check that makes a wrong guess
+    LOUD instead of silent.
+    """
+    if not _mel.connect_material_expressions(_from, _from_pin, _to,
+                                             _to_pin):
+        raise RuntimeError(
+            "connect FAILED: {0}.{1!r} -> {2}.{3!r}. The pin name did "
+            "not resolve, so NOTHING was connected and the input kept "
+            "its default. Check both pin names against the node class."
+            .format(type(_from).__name__, _from_pin,
+                    type(_to).__name__, _to_pin))
+
+
+def _ll_assert_graph(_mel, _mat, _want, _distinct=False):
+    """Post-build assertion: the sampled texture set must EQUAL spec.
+
+    _want is a list of texture object paths (or short asset names).
+    EXTRA samplers are a failure, not a warning: the defect this guards
+    against is a SURVIVING node, never a missing one.
+
+    _distinct=False (default) compares MULTISETS -- a texture sampled
+    twice must be declared twice. Use this wherever the sampler count is
+    fixed and known; it is the stricter check.
+
+    _distinct=True compares DISTINCT SETS. Use only where one texture is
+    legitimately sampled a variable number of times -- the landscape
+    material samples each surface at a detail AND a macro scale, so its
+    multiplicities are a function of the recipe, not a constant. The set
+    check still catches a texture that should not be present at all,
+    which is the debris signature.
+    """
+    _got = []
+    for _e in _mel.get_material_expressions(_mat):
+        if type(_e).__name__ != "MaterialExpressionTextureSample":
+            continue
+        _t = _e.get_editor_property("texture")
+        if _t is None:
+            _got.append("<none>")
+            continue
+        _got.append(_t.get_path_name().split("/")[-1].split(".")[0])
+
+    def _norm(_x):
+        return _x.split("/")[-1].split(".")[0]
+
+    _wn = [_norm(_w) for _w in _want]
+    # Multiset comparison by default; distinct-set when the caller says
+    # the multiplicity is recipe-dependent rather than fixed.
+    if _distinct:
+        _g = sorted(set(_got))
+        _w = sorted(set(_wn))
+    else:
+        _g = sorted(_got)
+        _w = sorted(_wn)
+    _extra = list(_g)
+    for _x in _w:
+        if _x in _extra:
+            _extra.remove(_x)
+    _missing = list(_w)
+    for _x in _g:
+        if _x in _missing:
+            _missing.remove(_x)
+    return {"got": _g, "want": _w, "extra": _extra, "missing": _missing,
+            "exact": (not _extra) and (not _missing)}
+
+
+import json as _json
+import unreal as _u
+_R = _json.loads('{"schema_version": "hlod-override-1.0", "material_path": "/Game/Materials/HLOD/M_Alpine8K_HLODFar", "weights_texture": "/Game/Textures/T_Alpine_8k_Weights", "landscape_origin_cm": [-406400.0, -406400.0], "weightmap_pixels": 8129, "pixel_cm": 100.0, "layers": {"Snow": {"color_linear": [0.7022, 0.8228, 0.9429], "roughness": 0.3}, "Rock": {"color_linear": [0.1637, 0.1455, 0.1173], "roughness": 0.85}, "Scree": {"color_linear": [0.0895, 0.0746, 0.058], "roughness": 0.85}, "ForestFloor": {"color_linear": [0.1619, 0.0997, 0.0483], "roughness": 0.75}, "Grass": {"color_linear": [0.0527, 0.0441, 0.0138], "roughness": 0.6}}, "channels": {"Snow": "R", "Rock": "G", "Scree": "B", "ForestFloor": "A", "Grass": "remainder"}, "cavity_texture": "/Game/Textures/T_Alpine_8k_Cavity", "rock_modulation": {"R": {"tint": [0.25, 0.22, 0.2], "strength": 1.0}, "G": {"tint": [1.0, 0.97, 0.88], "strength": 0.6}, "B": {"tint": [0.45, 0.45, 0.5], "strength": 1.0}}}')
+_out = dict(ok=False)
+try:
+    _mel = _u.MaterialEditingLibrary
+    _eal = _u.EditorAssetLibrary
+    _tex = _eal.load_asset(_R["weights_texture"])
+    if _tex is None:
+        raise RuntimeError("weights texture missing: " + _R["weights_texture"])
+    # Preflight BEFORE the clear (audit F2): LINEAR_COLOR is the engine's choice for
+    # this texture only if sRGB is off, the LOD group is not 8/16BitData and it is
+    # not virtual-textured (MaterialExpressionUtils.cpp:25-47).
+    _tx = dict(srgb=bool(_tex.get_editor_property("srgb")),
+               compression=str(_tex.get_editor_property("compression_settings")),
+               lod_group=str(_tex.get_editor_property("lod_group")),
+               vt=bool(_tex.get_editor_property("virtual_texture_streaming")))
+    _out["texture"] = _tx
+    _NOT_LC = ("NORMALMAP", "GRAYSCALE", "ALPHA", "MASKS", "DISTANCE_FIELD_FONT")
+    if (_tx["srgb"] or _tx["vt"] or "8BIT_DATA" in _tx["lod_group"] or "16BIT_DATA" in _tx["lod_group"]
+            or any(_k in _tx["compression"] for _k in _NOT_LC)):
+        raise RuntimeError("weights texture state does not admit LINEAR_COLOR: " + str(_tx))
+    _ctex = _eal.load_asset(_R["cavity_texture"])
+    if _ctex is None:
+        raise RuntimeError("cavity texture missing: " + _R["cavity_texture"])
+    _ctx = dict(srgb=bool(_ctex.get_editor_property("srgb")),
+                compression=str(_ctex.get_editor_property("compression_settings")),
+                lod_group=str(_ctex.get_editor_property("lod_group")),
+                vt=bool(_ctex.get_editor_property("virtual_texture_streaming")))
+    _out["cavity_texture"] = _ctx
+    if (_ctx["srgb"] or _ctx["vt"] or "8BIT_DATA" in _ctx["lod_group"] or "16BIT_DATA" in _ctx["lod_group"]
+            or any(_k in _ctx["compression"] for _k in _NOT_LC)):
+        raise RuntimeError("cavity texture state does not admit LINEAR_COLOR: " + str(_ctx))
+    _path = _R["material_path"]
+    _dir, _name = _path.rsplit("/", 1)
+    if _eal.does_asset_exist(_path):
+        _mat = _eal.load_asset(_path)
+    else:
+        _mat = _u.AssetToolsHelpers.get_asset_tools().create_asset(
+            _name, _dir, _u.Material, _u.MaterialFactoryNew())
+    if _mat is None:
+        raise RuntimeError("material neither loadable nor creatable: " + _path)
+    _c = _ll_clear_graph(_mel, _mat)
+    _out["clear"] = _c
+    if _c["remaining"]:
+        raise RuntimeError("graph not empty after total clear")
+
+    def _n(_cls, _x, _y):
+        return _mel.create_material_expression(_mat, _cls, _x, _y)
+
+    def _const(_v, _x, _y):
+        _e = _n(_u.MaterialExpressionConstant, _x, _y)
+        _e.set_editor_property("r", float(_v))
+        return _e
+
+    def _const3(_v, _x, _y):
+        _e = _n(_u.MaterialExpressionConstant3Vector, _x, _y)
+        _e.set_editor_property("constant", _u.LinearColor(float(_v[0]), float(_v[1]), float(_v[2]), 1.0))
+        return _e
+
+    # uv = (wp.xy - origin + pixel/2) / (pixels * pixel)
+    _wp = _n(_u.MaterialExpressionWorldPosition, -1800, 0)
+    _xy = _n(_u.MaterialExpressionComponentMask, -1600, 0)
+    for _ch, _on in (("r", True), ("g", True), ("b", False), ("a", False)):
+        _xy.set_editor_property(_ch, _on)
+    _ll_wire(_mel, _wp, "", _xy, "")
+    _half = 0.5 * float(_R["pixel_cm"])
+    _off = _n(_u.MaterialExpressionConstant2Vector, -1600, 120)
+    _off.set_editor_property("r", -float(_R["landscape_origin_cm"][0]) + _half)
+    _off.set_editor_property("g", -float(_R["landscape_origin_cm"][1]) + _half)
+    _add = _n(_u.MaterialExpressionAdd, -1400, 0)
+    _ll_wire(_mel, _xy, "", _add, "A")
+    _ll_wire(_mel, _off, "", _add, "B")
+    _div = _n(_u.MaterialExpressionDivide, -1200, 0)
+    _ll_wire(_mel, _add, "", _div, "A")
+    _ll_wire(_mel, _const(float(_R["weightmap_pixels"]) * float(_R["pixel_cm"]), -1400, 160), "", _div, "B")
+
+    _ts = _n(_u.MaterialExpressionTextureSample, -1000, 0)
+    _ts.set_editor_property("texture", _tex)
+    # AutoSetSampleType fires on texture assignment (MaterialExpressions.cpp:2627-2631):
+    # read the ENGINE's choice before writing ours, and refuse on disagreement.
+    _auto = _ts.get_editor_property("sampler_type")
+    _out["sampler_auto"] = str(_auto)
+    if _auto != _u.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR:
+        raise RuntimeError("engine picked sampler " + str(_auto) + ", expected LINEAR_COLOR")
+    _ts.set_editor_property("sampler_type", _u.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR)
+    _ll_wire(_mel, _div, "", _ts, "UVs")
+
+    # grass = saturate(1 - (r + g + b + a))
+    _s1 = _n(_u.MaterialExpressionAdd, -760, 300)
+    _ll_wire(_mel, _ts, "R", _s1, "A"); _ll_wire(_mel, _ts, "G", _s1, "B")
+    _s2 = _n(_u.MaterialExpressionAdd, -620, 300)
+    _ll_wire(_mel, _s1, "", _s2, "A"); _ll_wire(_mel, _ts, "B", _s2, "B")
+    _s3 = _n(_u.MaterialExpressionAdd, -480, 300)
+    _ll_wire(_mel, _s2, "", _s3, "A"); _ll_wire(_mel, _ts, "A", _s3, "B")
+    _om = _n(_u.MaterialExpressionOneMinus, -340, 300)
+    _ll_wire(_mel, _s3, "", _om, "")
+    _gr = _n(_u.MaterialExpressionSaturate, -200, 300)
+    _ll_wire(_mel, _om, "", _gr, "")
+
+    # Rock modulation: prod_ch (1 + cav_ch * strength_ch * (tint_ch - 1)) -- algebraically
+    # lerp(1, tint, cav * strength), the near material's cavity/lichen/damp formula.
+    _cs = _n(_u.MaterialExpressionTextureSample, -1000, 1400)
+    _cs.set_editor_property("texture", _ctex)
+    _cauto = _cs.get_editor_property("sampler_type")
+    _out["cavity_sampler_auto"] = str(_cauto)
+    if _cauto != _u.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR:
+        raise RuntimeError("engine picked cavity sampler " + str(_cauto) + ", expected LINEAR_COLOR")
+    _cs.set_editor_property("sampler_type", _u.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR)
+    _ll_wire(_mel, _div, "", _cs, "UVs")
+    _mod = None
+    _yy = 1400
+    for _ch in ("R", "G", "B"):
+        _rm = _R["rock_modulation"][_ch]
+        _k = [float(_rm["strength"]) * (float(_t) - 1.0) for _t in _rm["tint"]]
+        _mk = _n(_u.MaterialExpressionMultiply, -760, _yy)
+        _ll_wire(_mel, _cs, _ch, _mk, "A")
+        _ll_wire(_mel, _const3(_k, -900, _yy + 60), "", _mk, "B")
+        _one = _n(_u.MaterialExpressionAdd, -600, _yy)
+        _ll_wire(_mel, _mk, "", _one, "A")
+        _ll_wire(_mel, _const(1.0, -760, _yy + 60), "", _one, "B")
+        if _mod is None:
+            _mod = _one
+        else:
+            _mm = _n(_u.MaterialExpressionMultiply, -440, _yy)
+            _ll_wire(_mel, _mod, "", _mm, "A")
+            _ll_wire(_mel, _one, "", _mm, "B")
+            _mod = _mm
+        _yy += 160
+    _rockw = _n(_u.MaterialExpressionMultiply, -300, 1400)
+    _ll_wire(_mel, _ts, "G", _rockw, "A")
+    _ll_wire(_mel, _mod, "", _rockw, "B")
+
+    _w = dict(Snow=(_ts, "R"), Rock=(_ts, "G"), Scree=(_ts, "B"), ForestFloor=(_ts, "A"), Grass=(_gr, ""))
+    # Colour uses the MODULATED rock weight; roughness keeps the plain weight.
+    _wc = dict(_w, Rock=(_rockw, ""))
+    _col_acc = None
+    _rgh_acc = None
+    _y = -600
+    for _k in ("Snow", "Rock", "Scree", "ForestFloor", "Grass"):
+        _src, _pin = _w[_k]
+        _L = _R["layers"][_k]
+        _mc = _n(_u.MaterialExpressionMultiply, -100, _y)
+        _csrc, _cpin = _wc[_k]
+        _ll_wire(_mel, _csrc, _cpin, _mc, "A")
+        _ll_wire(_mel, _const3(_L["color_linear"], -300, _y), "", _mc, "B")
+        _mr = _n(_u.MaterialExpressionMultiply, -100, _y + 900)
+        _ll_wire(_mel, _src, _pin, _mr, "A")
+        _ll_wire(_mel, _const(_L["roughness"], -300, _y + 900), "", _mr, "B")
+        if _col_acc is None:
+            _col_acc, _rgh_acc = _mc, _mr
+        else:
+            _a1 = _n(_u.MaterialExpressionAdd, 100, _y)
+            _ll_wire(_mel, _col_acc, "", _a1, "A"); _ll_wire(_mel, _mc, "", _a1, "B")
+            _a2 = _n(_u.MaterialExpressionAdd, 100, _y + 900)
+            _ll_wire(_mel, _rgh_acc, "", _a2, "A"); _ll_wire(_mel, _mr, "", _a2, "B")
+            _col_acc, _rgh_acc = _a1, _a2
+        _y += 140
+
+    if not _mel.connect_material_property(_col_acc, "", _u.MaterialProperty.MP_BASE_COLOR):
+        raise RuntimeError("connect BaseColor failed")
+    if not _mel.connect_material_property(_rgh_acc, "", _u.MaterialProperty.MP_ROUGHNESS):
+        raise RuntimeError("connect Roughness failed")
+
+    _mat.set_editor_property("used_with_nanite", True)
+    _a = _ll_assert_graph(_mel, _mat, [_R["weights_texture"], _R["cavity_texture"]])
+    _out["assert"] = _a
+    if not _a["exact"]:
+        raise RuntimeError("graph does not match spec")
+    _errs = _mel.recompile_material(_mat)
+    _out["compile_errors"] = [str(_x) for _x in (_errs or [])]
+    if _out["compile_errors"]:
+        raise RuntimeError("compile errors: " + str(_out["compile_errors"]))
+    # The return can be empty while the compile is still running
+    # (make_foliage_material lesson): record the material's own state too.
+    for _probe in ("is_compiling_or_had_compile_error", "get_material_resource_compile_errors"):
+        _fn = getattr(_mat, _probe, None)
+        if _fn is not None:
+            try:
+                _out["material_state_" + _probe] = str(_fn())
+            except Exception as _e:
+                _out["material_state_" + _probe] = "READ FAILED: " + type(_e).__name__
+    _ll_must.must_save(_path, _eal)
+    _m2 = _eal.load_asset(_path)
+    _out["readback"] = dict(
+        used_with_nanite=bool(_m2.get_editor_property("used_with_nanite")),
+        n_expressions=len(list(_mel.get_material_expressions(_m2))),
+        samplers=_ll_assert_graph(_mel, _m2, [_R["weights_texture"], _R["cavity_texture"]])["got"])
+    _out["ok"] = bool(_out["readback"]["used_with_nanite"] and _a["exact"]
+                      and not _out["compile_errors"])
+except Exception:
+    import traceback as _tb
+    _out["error"] = _tb.format_exc()
+print("__LL__" + _json.dumps(_out))

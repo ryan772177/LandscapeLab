@@ -2713,7 +2713,14 @@ def main(argv=None):
         # encoding shows up there as a FAILURE (exit 5, do not save),
         # never as a silent pass.
         best_units = scored[0][0]
-        changed = best_units > ENCODING_MAX_UNITS
+        # --expect-change DECLARES the push changes the terrain. A LOCALISED
+        # edit (2026-10-03 cliff relief: steep ground only) leaves the median
+        # near 0, so without this it was classified "unchanged" and the extent
+        # gate below read meadow-blocks-match / cliff-blocks-differ as a
+        # PARTIAL EXPORT -- a false refusal before any write. The changed path
+        # is not weaker: the pre-import render-target check still gates every
+        # sampled texel and the post-push export check stays load-bearing.
+        changed = best_units > ENCODING_MAX_UNITS or bool(args.expect_change)
 
         if changed and not args.expect_change:
             print("")

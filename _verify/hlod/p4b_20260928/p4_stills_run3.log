@@ -1,0 +1,55 @@
+[P3B 18:41:24] attached to PID 24364; free RAM 5.66 GB
+[P3B 18:41:24] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 18:41:49]   -> rc=0 in 25s
+[P3B 18:41:49] level /Game/Alpine8K.Alpine8K
+[P3B 18:41:49] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"]
+[P3B 18:42:15]   -> rc=0 in 25s
+[P3B 18:42:15] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look
+[P3B 18:42:40]   -> rc=0 in 25s
+[P3B 18:42:40] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 18:43:06]   -> rc=0 in 25s
+[P3B 18:43:06] dwell 45 s at forest_floor for grass generation
+[P3B 18:43:51] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"]
+[P3B 18:44:16]   -> rc=0 in 25s
+[P3B 18:44:24] grass dump lines: 9
+[P3B 18:44:24] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-210800.0 --set Y=278800.0 --set PITCH=-2.0 --set YAW=-12.8 --set EYE=175.0
+[P3B 18:44:50]   -> rc=0 in 25s
+[P3B 18:45:25] run: python.exe shoot.py --name plaza_look_p4 --loc=-210800.0,278800.0,18846.8 --rot=0,-2.0,-12.8 --outdir p4 --deadline 600
+[P3B 18:45:56]   -> rc=0 in 31s
+[P3B 18:45:56] still plaza rc=0 png=True
+[P3B 18:45:56] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-204847.3 --set Y=278048.0 --set PITCH=-2.0 --set YAW=-12.9 --set EYE=175.0
+[P3B 18:46:21]   -> rc=0 in 25s
+[P3B 18:46:56] run: python.exe shoot.py --name main_street_look_p4 --loc=-204847.3,278048.0,18890.2 --rot=0,-2.0,-12.9 --outdir p4 --deadline 600
+[P3B 18:47:22]   -> rc=1 in 25s
+[P3B 18:47:22] still main_street rc=1 png=True
+[P3B 18:47:22] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-2.0 --set YAW=105.0 --set EYE=175.0
+[P3B 18:47:47]   -> rc=0 in 25s
+[P3B 18:48:22] run: python.exe shoot.py --name treeline_look_p4 --loc=-190000.0,100000.0,63366.2 --rot=0,-2.0,105.0 --outdir p4 --deadline 600
+[P3B 18:48:54]   -> rc=0 in 31s
+[P3B 18:48:54] still treeline rc=0 png=True
+[P3B 18:48:54] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-216400.0 --set Y=63600.0 --set PITCH=-4.0 --set YAW=60.0 --set EYE=175.0
+[P3B 18:49:19]   -> rc=0 in 25s
+[P3B 18:49:54] run: python.exe shoot.py --name vista_look_p4 --loc=-216400.0,63600.0,76424.9 --rot=0,-4.0,60.0 --outdir p4 --deadline 600
+[P3B 18:50:25]   -> rc=0 in 31s
+[P3B 18:50:25] still vista rc=0 png=True
+[P3B 18:50:25] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 18:50:51]   -> rc=0 in 25s
+[P3B 18:51:26] run: python.exe shoot.py --name forest_floor_look_p4 --loc=-166400.0,192000.0,19819.4 --rot=0,-5.0,100.0 --outdir p4 --deadline 600
+[P3B 18:51:57]   -> rc=0 in 31s
+[P3B 18:51:57] still forest_floor rc=0 png=True
+[P3B 18:51:57] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-12.0 --set YAW=105.0 --set EYE=175.0
+[P3B 18:52:23]   -> rc=0 in 25s
+[P3B 18:52:58] run: python.exe shoot.py --name slope_look_p4 --loc=-190000.0,100000.0,63366.2 --rot=0,-12.0,105.0 --outdir p4 --deadline 600
+[P3B 18:53:29]   -> rc=0 in 31s
+[P3B 18:53:29] still slope rc=0 png=True
+[P3B 18:53:29] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-201186.0 --set Y=219000.0 --set PITCH=-9.0 --set YAW=270.0 --set EYE=1599.8
+[P3B 18:53:54]   -> rc=0 in 25s
+[P3B 18:54:29] run: python.exe shoot.py --name cliff_overlook_look_p4 --loc=-201186.0,219000.0,21722.0 --rot=0,-9.0,270.0 --outdir p4 --deadline 600
+[P3B 18:55:01]   -> rc=0 in 31s
+[P3B 18:55:01] still cliff_overlook rc=0 png=True
+[P3B 18:55:01] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=bench
+[P3B 18:55:26]   -> rc=0 in 25s
+[P3B 18:55:26] run: python.exe ue_exec.py dirty_package_census_payload.txt --timeout 25
+[P3B 18:55:51]   -> rc=0 in 25s
+[P3B 18:55:52] --no-close: editor left up [24364]; dirty census {'ok': True, 'error': None, 'dirty': [{'kind': 'map', 'package': '/Game/__ExternalActors__/Alpine8K/3/XP/BPW0LO1X38VYGTUYN044BC'}, {'kind': 'map', 'package': '/Game/__ExternalActors__/Alpine8K/A/YU/TFX5OZE9RR4THA2TVWQ9UZ'}], 'dirty_count': 2, 'level': '/Game/Alpine8K.Alpine8K', 'clean': False}
+[P3B 18:55:52] P3B DONE

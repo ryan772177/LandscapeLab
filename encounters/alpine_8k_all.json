@@ -18,7 +18,7 @@
   ],
   "walkable_slope_deg": 44.765083,
   "_walkable_slope_derived_from": "recipes/character.json navigation.agent_profile = 'walk'",
-  "target_count": 320,
+  "target_count": 309,
   "connectivity": {
     "grid": [
       1017,
@@ -33,28 +33,29 @@
   },
   "available_ground": {
     "tested": 256027,
-    "available": 109307,
-    "available_fraction": 0.4269,
-    "available_km2": 27.8721,
+    "available": 105380,
+    "available_fraction": 0.4116,
+    "available_km2": 26.8708,
     "_why": "the density target is computed over the ground a candidate can actually occupy -- outside the settlement, outside the spawn-safe radius, connected to the player, and near MEASURED reachable ground -- not over the whole box, most of which is town or cut off by the basin rim."
   },
   "_connectivity_is_a_HEIGHTMAP_model": "walkable mask + 8-connected components, keeping the component holding the player start. A point can be locally flat and still unreachable -- the first plan placed 5 encounters that all passed the point-slope test and were ALL in a different navmesh island. The editor gate re-checks this against the BUILT navmesh, which is collision-derived, so the two corroborate rather than agree.",
   "counts": {
-    "encounters": 320,
+    "encounters": 309,
     "by_archetype": {
-      "scavenger": 210,
-      "raider_camp": 82,
-      "highland_beast": 28
+      "scavenger": 208,
+      "raider_camp": 76,
+      "highland_beast": 25
     }
   },
   "rejected": {
-    "in_settlement": 8,
+    "in_settlement": 3,
     "near_player_start": 0,
-    "too_steep": 466,
-    "unreachable_from_player": 2,
-    "far_from_reachable_ground": 260,
+    "too_steep": 455,
+    "unreachable_from_player": 1,
+    "far_from_reachable_ground": 259,
     "no_archetype_at_elevation": 0,
-    "separation": 44
+    "separation": 49,
+    "in_water": 38
   },
   "_rejected_is_reported": "a planner that silently drops candidates cannot be told apart from one that never generated them",
   "player_start_cm": [
@@ -1222,45 +1223,6 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        277630.9,
-        -65411.5,
-        7449.1
-      ],
-      "elevation_m": 74.5,
-      "slope_deg": 40.11,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "highland_beast",
-      "loc_cm": [
-        210465.7,
-        -250408.3,
-        48370.1
-      ],
-      "elevation_m": 483.7,
-      "slope_deg": 42.34,
-      "party_size": 1,
-      "aggro_radius_cm": 4000.0,
-      "leash_radius_cm": 9000.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        90536.8,
-        -395938.4,
-        42792.5
-      ],
-      "elevation_m": 427.9,
-      "slope_deg": 19.25,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
         -279527.9,
         176334.1,
         43525.2
@@ -1280,6 +1242,19 @@
       ],
       "elevation_m": 223.6,
       "slope_deg": 6.17,
+      "party_size": 3,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        319119.4,
+        -154747.0,
+        17163.0
+      ],
+      "elevation_m": 171.6,
+      "slope_deg": 6.3,
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -1287,52 +1262,13 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -25619.6,
-        397495.2,
-        18026.0
+        -118385.8,
+        343689.1,
+        17341.6
       ],
-      "elevation_m": 180.3,
-      "slope_deg": 19.05,
-      "party_size": 3,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        -161454.0,
-        348566.4,
-        22916.4
-      ],
-      "elevation_m": 229.2,
-      "slope_deg": 33.23,
-      "party_size": 4,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        -111459.2,
-        402100.8,
-        32198.2
-      ],
-      "elevation_m": 322.0,
-      "slope_deg": 6.53,
-      "party_size": 3,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        342939.6,
-        -119931.5,
-        16406.2
-      ],
-      "elevation_m": 164.1,
-      "slope_deg": 12.25,
-      "party_size": 3,
+      "elevation_m": 173.4,
+      "slope_deg": 20.66,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -1345,20 +1281,20 @@
       ],
       "elevation_m": 389.1,
       "slope_deg": 11.63,
-      "party_size": 4,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -267999.4,
-        146013.5,
-        38161.2
+        296577.3,
+        -252073.4,
+        28886.0
       ],
-      "elevation_m": 381.6,
-      "slope_deg": 15.21,
-      "party_size": 4,
+      "elevation_m": 288.9,
+      "slope_deg": 41.67,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -1376,28 +1312,15 @@
       "leash_radius_cm": 9000.0
     },
     {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        -128314.3,
-        -303185.9,
-        34042.3
-      ],
-      "elevation_m": 340.4,
-      "slope_deg": 43.07,
-      "party_size": 5,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
-    },
-    {
       "archetype": "scavenger",
       "loc_cm": [
-        -328071.0,
-        -61214.5,
-        22145.4
+        -311667.0,
+        202909.7,
+        41484.5
       ],
-      "elevation_m": 221.5,
-      "slope_deg": 28.74,
-      "party_size": 4,
+      "elevation_m": 414.8,
+      "slope_deg": 25.29,
+      "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -1410,7 +1333,7 @@
       ],
       "elevation_m": 276.4,
       "slope_deg": 11.38,
-      "party_size": 4,
+      "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -1436,32 +1359,6 @@
       ],
       "elevation_m": 298.6,
       "slope_deg": 30.67,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        320236.1,
-        -149442.9,
-        17550.3
-      ],
-      "elevation_m": 175.5,
-      "slope_deg": 17.58,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        -23158.5,
-        -218712.7,
-        70246.2
-      ],
-      "elevation_m": 702.5,
-      "slope_deg": 16.72,
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -2013,17 +1910,30 @@
       "leash_radius_cm": 9000.0
     },
     {
-      "archetype": "highland_beast",
+      "archetype": "scavenger",
       "loc_cm": [
-        155319.7,
-        -173156.5,
-        47006.1
+        -328626.8,
+        -60122.0,
+        22309.7
       ],
-      "elevation_m": 470.1,
-      "slope_deg": 11.34,
-      "party_size": 2,
-      "aggro_radius_cm": 4000.0,
-      "leash_radius_cm": 9000.0
+      "elevation_m": 223.1,
+      "slope_deg": 32.72,
+      "party_size": 3,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -180083.5,
+        269277.8,
+        19393.8
+      ],
+      "elevation_m": 193.9,
+      "slope_deg": 22.7,
+      "party_size": 3,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
@@ -2034,22 +1944,22 @@
       ],
       "elevation_m": 222.9,
       "slope_deg": 22.29,
-      "party_size": 3,
+      "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
     {
-      "archetype": "raider_camp",
+      "archetype": "highland_beast",
       "loc_cm": [
-        -327932.1,
-        131486.1,
-        49882.9
+        128200.3,
+        40005.3,
+        50373.1
       ],
-      "elevation_m": 498.8,
-      "slope_deg": 26.8,
-      "party_size": 3,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
+      "elevation_m": 503.7,
+      "slope_deg": 34.2,
+      "party_size": 1,
+      "aggro_radius_cm": 4000.0,
+      "leash_radius_cm": 9000.0
     },
     {
       "archetype": "scavenger",
@@ -2067,26 +1977,13 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -395628.0,
-        -266622.6,
-        28818.6
-      ],
-      "elevation_m": 288.2,
-      "slope_deg": 23.67,
-      "party_size": 4,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
         9306.0,
         -375767.1,
         44347.0
       ],
       "elevation_m": 443.5,
       "slope_deg": 29.29,
-      "party_size": 4,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -2353,38 +2250,25 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        294255.5,
-        -140966.8,
-        15968.1
-      ],
-      "elevation_m": 159.7,
-      "slope_deg": 38.11,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
         299391.7,
         107891.2,
         52556.8
       ],
       "elevation_m": 525.6,
       "slope_deg": 38.33,
-      "party_size": 2,
+      "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
     {
       "archetype": "highland_beast",
       "loc_cm": [
-        137598.8,
-        -324600.5,
-        56954.5
+        -333337.6,
+        254837.8,
+        42809.4
       ],
-      "elevation_m": 569.5,
-      "slope_deg": 30.03,
+      "elevation_m": 428.1,
+      "slope_deg": 16.86,
       "party_size": 2,
       "aggro_radius_cm": 4000.0,
       "leash_radius_cm": 9000.0
@@ -2398,22 +2282,22 @@
       ],
       "elevation_m": 756.8,
       "slope_deg": 5.72,
-      "party_size": 4,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
     {
-      "archetype": "raider_camp",
+      "archetype": "scavenger",
       "loc_cm": [
-        -388188.5,
-        -326285.5,
-        34049.4
+        228729.9,
+        -73115.7,
+        22638.9
       ],
-      "elevation_m": 340.5,
-      "slope_deg": 21.61,
-      "party_size": 5,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
+      "elevation_m": 226.4,
+      "slope_deg": 39.36,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
     },
     {
       "archetype": "raider_camp",
@@ -2429,19 +2313,6 @@
       "leash_radius_cm": 7000.0
     },
     {
-      "archetype": "scavenger",
-      "loc_cm": [
-        -101324.9,
-        -229114.8,
-        59590.6
-      ],
-      "elevation_m": 595.9,
-      "slope_deg": 21.29,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
       "archetype": "raider_camp",
       "loc_cm": [
         -401169.0,
@@ -2450,7 +2321,7 @@
       ],
       "elevation_m": 351.0,
       "slope_deg": 13.68,
-      "party_size": 4,
+      "party_size": 3,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
     },
@@ -2496,41 +2367,15 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -162165.9,
-        299794.1,
-        14232.6
-      ],
-      "elevation_m": 142.3,
-      "slope_deg": 40.74,
-      "party_size": 4,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
         -142728.9,
         307613.5,
         14880.9
       ],
       "elevation_m": 148.8,
       "slope_deg": 21.68,
-      "party_size": 2,
+      "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        -393560.5,
-        -190250.1,
-        32897.9
-      ],
-      "elevation_m": 329.0,
-      "slope_deg": 26.08,
-      "party_size": 5,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
     },
     {
       "archetype": "scavenger",
@@ -2587,25 +2432,25 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        304112.2,
-        -63683.0,
-        9270.2
+        314167.8,
+        -181694.1,
+        20300.3
       ],
-      "elevation_m": 92.7,
-      "slope_deg": 6.45,
-      "party_size": 3,
+      "elevation_m": 203.0,
+      "slope_deg": 25.9,
+      "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -405593.5,
-        -325745.7,
-        33090.4
+        -107048.3,
+        406244.3,
+        30635.2
       ],
-      "elevation_m": 330.9,
-      "slope_deg": 36.59,
+      "elevation_m": 306.4,
+      "slope_deg": 29.6,
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -2626,13 +2471,39 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
+        84967.9,
+        -392079.6,
+        44176.6
+      ],
+      "elevation_m": 441.8,
+      "slope_deg": 23.11,
+      "party_size": 2,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        159440.2,
+        -177711.9,
+        45985.8
+      ],
+      "elevation_m": 459.9,
+      "slope_deg": 27.95,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
         -279376.6,
         344844.0,
         25563.6
       ],
       "elevation_m": 255.6,
       "slope_deg": 26.99,
-      "party_size": 2,
+      "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -2886,12 +2757,12 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        338881.7,
-        -75786.9,
-        17376.2
+        197632.5,
+        347618.7,
+        79109.2
       ],
-      "elevation_m": 173.8,
-      "slope_deg": 38.03,
+      "elevation_m": 791.1,
+      "slope_deg": 42.44,
       "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -3094,12 +2965,12 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        -329323.6,
-        247530.5,
-        43360.5
+        189977.4,
+        -53751.5,
+        39633.0
       ],
-      "elevation_m": 433.6,
-      "slope_deg": 21.57,
+      "elevation_m": 396.3,
+      "slope_deg": 20.78,
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -3107,13 +2978,26 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        189977.4,
-        -53751.5,
-        39633.0
+        385830.3,
+        -203414.1,
+        20610.9
       ],
-      "elevation_m": 396.3,
-      "slope_deg": 20.78,
-      "party_size": 3,
+      "elevation_m": 206.1,
+      "slope_deg": 38.33,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -234508.4,
+        281776.0,
+        19648.0
+      ],
+      "elevation_m": 196.5,
+      "slope_deg": 15.76,
+      "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -3133,39 +3017,26 @@
     {
       "archetype": "raider_camp",
       "loc_cm": [
-        -369822.9,
-        80182.0,
-        33400.9
-      ],
-      "elevation_m": 334.0,
-      "slope_deg": 26.03,
-      "party_size": 3,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
-    },
-    {
-      "archetype": "raider_camp",
-      "loc_cm": [
         -28640.9,
         157930.7,
         27233.5
       ],
       "elevation_m": 272.3,
       "slope_deg": 21.81,
-      "party_size": 3,
+      "party_size": 6,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
     },
     {
       "archetype": "scavenger",
       "loc_cm": [
-        282748.5,
-        -82035.3,
-        5081.6
+        -148415.8,
+        192000.0,
+        20320.6
       ],
-      "elevation_m": 50.8,
-      "slope_deg": 26.08,
-      "party_size": 4,
+      "elevation_m": 203.2,
+      "slope_deg": 13.29,
+      "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -3178,7 +3049,7 @@
       ],
       "elevation_m": 260.4,
       "slope_deg": 11.99,
-      "party_size": 5,
+      "party_size": 3,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
     },
@@ -3198,39 +3069,26 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
+        -20638.4,
+        -212437.5,
+        73771.6
+      ],
+      "elevation_m": 737.7,
+      "slope_deg": 38.94,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
         -313897.5,
         -305552.5,
         55509.3
       ],
       "elevation_m": 555.1,
       "slope_deg": 24.23,
-      "party_size": 4,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        -222103.4,
-        239866.4,
-        25515.6
-      ],
-      "elevation_m": 255.2,
-      "slope_deg": 41.04,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        -42313.6,
-        326312.3,
-        21612.0
-      ],
-      "elevation_m": 216.1,
-      "slope_deg": 14.87,
-      "party_size": 4,
+      "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
     },
@@ -3256,6 +3114,19 @@
       ],
       "elevation_m": 332.9,
       "slope_deg": 33.54,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        261500.5,
+        -304405.7,
+        43501.2
+      ],
+      "elevation_m": 435.0,
+      "slope_deg": 31.13,
       "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -3354,12 +3225,12 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        280063.6,
-        -111660.7,
-        6317.2
+        313255.9,
+        -209489.5,
+        20741.8
       ],
-      "elevation_m": 63.2,
-      "slope_deg": 26.5,
+      "elevation_m": 207.4,
+      "slope_deg": 4.32,
       "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -3389,6 +3260,32 @@
       "party_size": 3,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        155390.2,
+        -184423.4,
+        46970.6
+      ],
+      "elevation_m": 469.7,
+      "slope_deg": 33.34,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -254649.2,
+        296445.4,
+        22726.9
+      ],
+      "elevation_m": 227.3,
+      "slope_deg": 31.85,
+      "party_size": 3,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
@@ -3588,28 +3485,15 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        321429.7,
-        -88811.9,
-        12109.8
+        -336876.2,
+        138940.1,
+        50043.5
       ],
-      "elevation_m": 121.1,
-      "slope_deg": 27.75,
+      "elevation_m": 500.4,
+      "slope_deg": 21.04,
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        274286.3,
-        -328097.4,
-        42027.3
-      ],
-      "elevation_m": 420.3,
-      "slope_deg": 33.98,
-      "party_size": 3,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
     },
     {
       "archetype": "scavenger",
@@ -3623,19 +3507,6 @@
       "party_size": 2,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "highland_beast",
-      "loc_cm": [
-        -226697.7,
-        -345738.7,
-        51689.1
-      ],
-      "elevation_m": 516.9,
-      "slope_deg": 40.26,
-      "party_size": 1,
-      "aggro_radius_cm": 4000.0,
-      "leash_radius_cm": 9000.0
     },
     {
       "archetype": "raider_camp",
@@ -3653,25 +3524,12 @@
     {
       "archetype": "scavenger",
       "loc_cm": [
-        275828.5,
-        -104982.4,
-        4571.0
+        -2313.1,
+        284254.9,
+        29678.4
       ],
-      "elevation_m": 45.7,
-      "slope_deg": 21.49,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        282795.0,
-        -129928.0,
-        12576.7
-      ],
-      "elevation_m": 125.8,
-      "slope_deg": 40.42,
+      "elevation_m": 296.8,
+      "slope_deg": 21.88,
       "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -3685,9 +3543,35 @@
       ],
       "elevation_m": 306.9,
       "slope_deg": 12.48,
-      "party_size": 4,
+      "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        33866.1,
+        -224778.7,
+        78102.4
+      ],
+      "elevation_m": 781.0,
+      "slope_deg": 28.74,
+      "party_size": 2,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "raider_camp",
+      "loc_cm": [
+        -316370.9,
+        330332.6,
+        26677.1
+      ],
+      "elevation_m": 266.8,
+      "slope_deg": 37.58,
+      "party_size": 4,
+      "aggro_radius_cm": 3500.0,
+      "leash_radius_cm": 7000.0
     },
     {
       "archetype": "scavenger",
@@ -3703,45 +3587,6 @@
       "leash_radius_cm": 4500.0
     },
     {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        273689.4,
-        48060.5,
-        31215.9
-      ],
-      "elevation_m": 312.2,
-      "slope_deg": 24.09,
-      "party_size": 5,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        344032.7,
-        -384087.2,
-        30614.7
-      ],
-      "elevation_m": 306.1,
-      "slope_deg": 22.77,
-      "party_size": 3,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "highland_beast",
-      "loc_cm": [
-        -163706.3,
-        403944.6,
-        38508.9
-      ],
-      "elevation_m": 385.1,
-      "slope_deg": 5.09,
-      "party_size": 1,
-      "aggro_radius_cm": 4000.0,
-      "leash_radius_cm": 9000.0
-    },
-    {
       "archetype": "highland_beast",
       "loc_cm": [
         -320802.3,
@@ -3750,7 +3595,7 @@
       ],
       "elevation_m": 430.7,
       "slope_deg": 33.29,
-      "party_size": 2,
+      "party_size": 1,
       "aggro_radius_cm": 4000.0,
       "leash_radius_cm": 9000.0
     },
@@ -3807,6 +3652,19 @@
       "leash_radius_cm": 9000.0
     },
     {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -184423.2,
+        285457.1,
+        19148.8
+      ],
+      "elevation_m": 191.5,
+      "slope_deg": 12.82,
+      "party_size": 2,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
+    },
+    {
       "archetype": "raider_camp",
       "loc_cm": [
         -256711.0,
@@ -3815,22 +3673,9 @@
       ],
       "elevation_m": 390.9,
       "slope_deg": 34.55,
-      "party_size": 5,
+      "party_size": 4,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        242227.3,
-        -283247.3,
-        45729.6
-      ],
-      "elevation_m": 457.3,
-      "slope_deg": 23.81,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
@@ -3937,19 +3782,6 @@
       "leash_radius_cm": 4500.0
     },
     {
-      "archetype": "scavenger",
-      "loc_cm": [
-        246337.1,
-        -78828.1,
-        15415.1
-      ],
-      "elevation_m": 154.2,
-      "slope_deg": 29.29,
-      "party_size": 4,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
       "archetype": "raider_camp",
       "loc_cm": [
         273480.0,
@@ -3958,9 +3790,22 @@
       ],
       "elevation_m": 417.4,
       "slope_deg": 23.76,
-      "party_size": 4,
+      "party_size": 5,
       "aggro_radius_cm": 3500.0,
       "leash_radius_cm": 7000.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -372444.2,
+        -170336.9,
+        28675.3
+      ],
+      "elevation_m": 286.8,
+      "slope_deg": 26.95,
+      "party_size": 3,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
     },
     {
       "archetype": "scavenger",
@@ -4080,19 +3925,6 @@
       "leash_radius_cm": 4500.0
     },
     {
-      "archetype": "raider_camp",
-      "loc_cm": [
-        -231811.9,
-        -117345.7,
-        38076.7
-      ],
-      "elevation_m": 380.8,
-      "slope_deg": 35.58,
-      "party_size": 4,
-      "aggro_radius_cm": 3500.0,
-      "leash_radius_cm": 7000.0
-    },
-    {
       "archetype": "scavenger",
       "loc_cm": [
         136152.2,
@@ -4101,19 +3933,6 @@
       ],
       "elevation_m": 465.0,
       "slope_deg": 14.42,
-      "party_size": 2,
-      "aggro_radius_cm": 2500.0,
-      "leash_radius_cm": 4500.0
-    },
-    {
-      "archetype": "scavenger",
-      "loc_cm": [
-        318464.7,
-        -21105.0,
-        18065.2
-      ],
-      "elevation_m": 180.7,
-      "slope_deg": 33.34,
       "party_size": 3,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
@@ -4221,14 +4040,53 @@
       "party_size": 4,
       "aggro_radius_cm": 2500.0,
       "leash_radius_cm": 4500.0
+    },
+    {
+      "archetype": "raider_camp",
+      "loc_cm": [
+        -305671.3,
+        -86858.8,
+        26041.8
+      ],
+      "elevation_m": 260.4,
+      "slope_deg": 10.25,
+      "party_size": 6,
+      "aggro_radius_cm": 3500.0,
+      "leash_radius_cm": 7000.0
+    },
+    {
+      "archetype": "raider_camp",
+      "loc_cm": [
+        -340448.7,
+        -328211.3,
+        45817.4
+      ],
+      "elevation_m": 458.2,
+      "slope_deg": 27.44,
+      "party_size": 6,
+      "aggro_radius_cm": 3500.0,
+      "leash_radius_cm": 7000.0
+    },
+    {
+      "archetype": "scavenger",
+      "loc_cm": [
+        -229830.5,
+        306950.4,
+        20350.1
+      ],
+      "elevation_m": 203.5,
+      "slope_deg": 9.18,
+      "party_size": 4,
+      "aggro_radius_cm": 2500.0,
+      "leash_radius_cm": 4500.0
     }
   ],
   "_input_sha256": {
-    "scripts/plan_encounters.py": "a8300f9d7895f6bbb073eb02e49b8a7e2d2b26451af863bccc7cb8aab6f74705",
-    "recipes/encounters.json": "9eabf2e02c32718e967a4b60b26fd15db07ba9afb18c752875ed28d7b2d01e03",
-    "recipes/alpine_8k.json": "b8f67ae4d39abbc99d8f23e95de8959a9a06e0d5d22a8fb498969e0833396639",
+    "scripts/plan_encounters.py": "aba68d4b8abf1e92e32705e83d22d92395fa91282111d376a4bea93a05175d45",
+    "recipes/encounters.json": "5f4d4b9c20eebbd140f40c1663e0380411391bab38d2533cc37eff1677a34b75",
+    "recipes/alpine_8k.json": "e8f925cd46b1f467dc9df9a65d859a8ee12bdc262835070de751fb82e2b87b73",
     "recipes/character.json": "25fb08944ecbf527ed0f7108cf0cb17636b7709e7279f9f6461ca17c7816ec58",
-    "city/alpine_basin_town_plan.json": "b9e7c61026e727f5c366b34e8bc968e7ebd3e7bed35f534ed8ad2f53508b6c6f"
+    "city/alpine_basin_town_plan.json": "f6244997bfe39a133f2abdbee17ecd11fef004d19c13f007ede17e37e03082dc"
   },
   "_consumed_sha256": {
     "recipes/character.json": {
@@ -4244,7 +4102,7 @@
         "site_centre_cm",
         "streets"
       ],
-      "sha256": "53334f091ad1535aab9b61c71537f5cf8b30792b27291f920dd34df5a6fd03f8"
+      "sha256": "33ec53e84d38db130ea9485550c043bb4fd4bea862fbf93c5ef520b77c29ac48"
     },
     "recipes/encounters.json": {
       "fields": [
@@ -4259,7 +4117,7 @@
         "seed",
         "slope"
       ],
-      "sha256": "2a7d00447a4d5de651e614baf2dbff796d506789ccd2de6584c5cf811055ae54"
+      "sha256": "c0a75a214823828a3f29f6216e9e80216adc8ed1e7855a099e14284290f2ee9d"
     },
     "recipes/alpine_8k.json": {
       "fields": [
@@ -4268,37 +4126,6 @@
         "landscape"
       ],
       "sha256": "fa337e9008a2a65ae6f968fac77ba6379224ca412aace82ea5687641c8ae56d4"
-    }
-  },
-  "_stamp_waiver": {
-    "inputs": [
-      "recipes/encounters.json",
-      "scripts/plan_encounters.py"
-    ],
-    "recorded": "2026-09-19b (T10; Brief-4 T8 moves)",
-    "why": "_all is the PRE-WATER candidate pool (320 rows). Brief-4 T8 added exclusions.water to encounters.json (a field the PLACER reads, so its consumed subset genuinely moved) and the WaterMask rejection to plan_encounters.py, then re-froze the SHIPPED verified set 317->305 by removing the 12 Lake-A drowned. By T8's ruling _all is FROZEN, not regenerated: a regen re-samples placement and needs the post-carve navmesh lattice (T6-owned). The 12 drowned remain in _all as the historical record of what was removed. town_plan/alpine_8k/character consumed subsets are unchanged (MATCHES_CONSUMED).",
-    "granted_for": {
-      "recipes/encounters.json": {
-        "from": "9eabf2e02c32718e967a4b60b26fd15db07ba9afb18c752875ed28d7b2d01e03",
-        "to": "5f4d4b9c20eebbd140f40c1663e0380411391bab38d2533cc37eff1677a34b75"
-      },
-      "scripts/plan_encounters.py": {
-        "kind": "ruled",
-        "ruling": "Brief-4 T8 (2026-09-19): _all is the FROZEN pre-water candidate pool; the water exclusion is FORWARD-only (applied to the shipped verified set + future regens). The plan_encounters.py WaterMask edit does not alter the committed pool.",
-        "retires_when": "encounters are re-placed on the post-carve navmesh lattice (a future session; shared with the T6 reachable-lattice regeneration)",
-        "from": "a8300f9d7895",
-        "to": "aba68d4b8abf"
-      }
-    }
-  },
-  "_divergence_note": {
-    "why": "_all is the FROZEN pre-water candidate pool (320 rows). Brief-4 T8 added exclusions.water to encounters.json (a field the PLACER reads) and the WaterMask rejection to plan_encounters.py, then re-froze the SHIPPED verified set 317->305 by removing the 12 Lake-A drowned. A --reproduce now applies the water exclusion and produces a smaller, water-excluded pool that legitimately DIFFERS from the frozen committed _all, which is KEPT as the pre-water record (the 12 drowned remain in it). NOT regenerated: a regen re-samples placement and needs the post-carve navmesh lattice (T6-owned).",
-    "retires_when": "encounters are re-placed on the post-carve navmesh lattice (a future session; shared with the T6 reachable-lattice regeneration)",
-    "recorded": "2026-09-19b (Brief-4 T10)",
-    "ruling": "Brief-4 T8 (2026-09-19): _all is the FROZEN pre-water candidate pool; the water exclusion is FORWARD-only (shipped verified set + future regens), DIVERGENT-BY-RULING for --reproduce",
-    "bound_to": {
-      "committed": "69420bbea09e",
-      "fresh": "cda86f9d6549"
     }
   }
 }

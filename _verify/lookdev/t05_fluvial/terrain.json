@@ -1,0 +1,55 @@
+{
+ "args": {
+  "iter": "t05_fluvial",
+  "fluvial": 25,
+  "fluvial_k": 0.03,
+  "fluvial_m": 0.45,
+  "talus": 0.0,
+  "diffuse": 0.0,
+  "delump": 0.9,
+  "ridged": 0.0,
+  "ridged_wavelength": 90.0,
+  "strata": 0.0,
+  "strata_step": 14.0,
+  "droplets": 0,
+  "lifetime": 90,
+  "droplet_scale": 200.0,
+  "erode": 0.3,
+  "deposit": 0.3,
+  "inertia": 0.05,
+  "drop_smooth": 0.7,
+  "capacity": 8.0,
+  "seed": 20260930,
+  "write": false
+ },
+ "steps": [
+  {
+   "delump": 0.9,
+   "band_rms_m": 2.824757713832733
+  },
+  {
+   "fluvial_iters": 25,
+   "k": 0.03,
+   "m": 0.45,
+   "n": 1.0,
+   "area_max": 355905.0
+  }
+ ],
+ "delta_m": {
+  "min": -69.96097072626367,
+  "max": 25.915077950199702,
+  "rms": 4.238255354401033
+ },
+ "slope_deg_p50_p90_p99": {
+  "before": [
+   29.988449658908458,
+   55.57511550810032,
+   68.13865260261147
+  ],
+  "after": [
+   39.649922232072306,
+   74.24321843393831,
+   84.54921625804225
+  ]
+ }
+}

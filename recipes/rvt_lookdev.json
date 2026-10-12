@@ -1,0 +1,19 @@
+{
+ "schema_version": "rvt-1.0",
+ "_what": "Runtime Virtual Texturing on the look rig (research/rvt_lookdev_design.md, stage B). Built by scripts/make_rvt.py: find-or-create the RVT assets, find-or-spawn one RuntimeVirtualTextureVolume per RVT (by actor TAG), set each volume's transform by hand (SetBounds is C++ only: location = min corner, scale = size in cm), assign the RVTs to the landscape parent (propagates to the streaming proxies), save, read everything back.",
+ "level": "/Game/LookDevMtn",
+ "asset_dir": "/Game/Lookdev/RVT",
+ "main_pass": "ALWAYS",
+ "_main_pass": "Landscape virtual_texture_render_pass_type (LandscapeProxy.h:663): ALWAYS = the landscape still draws its own main pass; stage D (main pass from RVT) is dropped on the rig.",
+ "bounds_cm": {
+  "min": [-100800.0, -100800.0, 40000.0],
+  "size": [201600.0, 201600.0, 100000.0],
+  "_source": "measured 2026-10-03: proxy bounds X/Y -100800 .. ~101200 (2016 quads x 100 cm), Z 41488 .. 136738 cm"
+ },
+ "textures": [
+  {"name": "RVT_Lookdev_Color", "tag": "LL_RVT_Color", "material_type": "BASE_COLOR_NORMAL_ROUGHNESS",
+   "tile_count": 9, "tile_size": 2, "compress_textures": true},
+  {"name": "RVT_Lookdev_Height", "tag": "LL_RVT_Height", "material_type": "WORLD_HEIGHT",
+   "tile_count": 6, "tile_size": 2, "compress_textures": true}
+ ]
+}

@@ -1,0 +1,27 @@
+command:
+   "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" C:\Users\Admin\UE5LandscapePipeline\LandscapeLab\LandscapeLab.uproject /Game/Alpine8K -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionNavigationDataBuilder -SCCProvider=None -Unattended -NoSplash
+
+before: commit 20.2 / 223.4 GB   free RAM 23.0 / 31.4 GB
+bars:   peak commit <= 200 GB, wall clock <= 30 min
+
+
+=== RESULT ===
+exit code        : 1
+wall clock       : 432.1 s (7.20 min)
+peak commit      : 31.8 GB of 223.4 GB limit
+min free RAM     : 10.4 GB
+new packages     : 64, 952.93 MB
+changed packages : 0, net +0.00 MB
+   + Content\__ExternalActors__\Alpine8K\0\33\BEVF8L6PHYC3SR4GWLROUB.uasset  16734.8 KB
+   + Content\__ExternalActors__\Alpine8K\1\A9\L22PQ5JV8C4XEB87MTDL4X.uasset  18078.1 KB
+   + Content\__ExternalActors__\Alpine8K\1\AE\QJQ143RXRQMU2WMJLRY6OK.uasset  13180.9 KB
+   + Content\__ExternalActors__\Alpine8K\1\XQ\N3I7DRIDI8IV8EHV7J5FHS.uasset  16970.4 KB
+   + Content\__ExternalActors__\Alpine8K\2\3D\MI7JPAIBZAQ0XCZCIOQK1S.uasset  14432.8 KB
+   + Content\__ExternalActors__\Alpine8K\2\NW\5MI77JSH52CHVOWYVTZRWE.uasset  10679.8 KB
+   + Content\__ExternalActors__\Alpine8K\3\46\MSRAOE78C0E6BY7Q1J0WSP.uasset  15377.6 KB
+   + Content\__ExternalActors__\Alpine8K\3\8Q\J5M3PLS6LVHXXFOWFW5W5Y.uasset   9617.2 KB
+   + Content\__ExternalActors__\Alpine8K\3\AG\YAC2UGOBF63TIETNQU05D2.uasset  14325.9 KB
+   + Content\__ExternalActors__\Alpine8K\3\MC\LQT6DINC3F9JJOVG3HKQJH.uasset  18704.7 KB
+log              : _verify\navmesh_build_WorldPartitionNavigationDataBuilder.log
+
+*** commandlet exited 1 — read the log before concluding anything about cost ***

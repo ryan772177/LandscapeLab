@@ -157,6 +157,21 @@ def _entry(e):
 # happened.
 
 
+def _strip_prose(v):
+    """Drop `_`-prefixed prose keys, recursively, before the lighting block
+    is embedded in the payload. Remote exec ECHOES the command in its reply,
+    and the reply is cut at 64 KB: on 2026-10-03 it came back at 65,479
+    bytes, truncated mid-JSON ("Failed to deserialize JSON" -> "payload did
+    not complete") once the recipe's notes and new grade code pushed it
+    over. The payload never reads a `_` key (grep `["_` in this file)."""
+    if isinstance(v, dict):
+        return {k: _strip_prose(x) for k, x in v.items()
+                if not str(k).startswith("_")}
+    if isinstance(v, list):
+        return [_strip_prose(x) for x in v]
+    return v
+
+
 def _payload(biome_id, lighting, sun_height_cm):
     # ⛔ THE HOST NO LONGER PRE-ENCODES. R-SKYCOLOR, 2026-09-13.
     # `set_light_color` ENCODES; it does not decode (see the block at
@@ -670,6 +685,15 @@ if _cl and _cl.get("enabled"):
     _mel.set_material_instance_parent(_mi, _parent)
     _mel.set_material_instance_scalar_parameter_value(
         _mi, _cl["coverage_param"], float(_cl["coverage"]))
+    # v1.30 (2026-10-03): WIND. The engine material animates its layout by
+    # Time x this vector (xyz per world axis, alpha a uniform multiplier),
+    # and with real-time sky capture drifting clouds moved meadow luma 8%
+    # between two unchanged shots. Alpha 0 freezes the sky. Optional.
+    if _cl.get("wind_param"):
+        _w = [float(v) for v in _cl["wind"]]
+        _mel.set_material_instance_vector_parameter_value(
+            _mi, _cl["wind_param"],
+            _unreal.LinearColor(_w[0], _w[1], _w[2], _w[3]))
     _mel.update_material_instance(_mi)
     _eal.save_asset(_mi_path)
 
@@ -690,6 +714,10 @@ if _cl and _cl.get("enabled"):
                         if _cc.get_editor_property("material") else None),
         "coverage": float(_mel.get_material_instance_scalar_parameter_value(
             _chk, _cl["coverage_param"])),
+        "wind": ([round(float(getattr(
+            _mel.get_material_instance_vector_parameter_value(
+                _chk, _cl["wind_param"]), _a)), 6) for _a in "rgba"]
+            if _cl.get("wind_param") else None),
         "cvar_r_VolumetricCloud": float(
             _unreal.SystemLibrary.get_console_variable_float_value(
                 "r.VolumetricCloud")),
@@ -813,6 +841,25 @@ if _g:
     _s.set_editor_property("override_scene_fringe_intensity", True)
     _s.set_editor_property("scene_fringe_intensity",
                            float(_g["chromatic_aberration"]))
+    # v1.32 (2026-10-03, Gemini 2nd critique): optional SHADOW grade. Same
+    # xyz*w rule as contrast (PostProcessCombineLUTs.usf:100, 111-114):
+    # saturation in w with xyz 1, gain in xyz with w 1, so the PRODUCT is
+    # the recipe value; the product is read back and compared host-side.
+    _sh = _g.get("shadows")
+    if _sh:
+        _s.set_editor_property("override_color_saturation_shadows", True)
+        _s.set_editor_property(
+            "color_saturation_shadows",
+            _unreal.Vector4(1.0, 1.0, 1.0, float(_sh["saturation"])))
+        _gn = [float(v) for v in _sh["gain"]]
+        _s.set_editor_property("override_color_gain_shadows", True)
+        _s.set_editor_property(
+            "color_gain_shadows", _unreal.Vector4(_gn[0], _gn[1], _gn[2], 1.0))
+    else:
+        # The volume is REUSED: clear overrides a previous recipe set, or a
+        # dropped shadow grade keeps rendering unchecked (audit 2026-10-03).
+        _s.set_editor_property("override_color_saturation_shadows", False)
+        _s.set_editor_property("override_color_gain_shadows", False)
 
 _ppv.set_editor_property("settings", _s)
 
@@ -848,6 +895,17 @@ if _g:
             _rb.get_editor_property("vignette_intensity")),
         "scene_fringe_intensity": float(
             _rb.get_editor_property("scene_fringe_intensity")),
+        "shadow_saturation_effective": [round(float(getattr(
+            _rb.get_editor_property("color_saturation_shadows"), _a))
+            * float(_rb.get_editor_property("color_saturation_shadows").w), 6)
+            for _a in "xyz"],
+        "shadow_gain_effective": [round(float(getattr(
+            _rb.get_editor_property("color_gain_shadows"), _a))
+            * float(_rb.get_editor_property("color_gain_shadows").w), 6)
+            for _a in "xyz"],
+        "shadow_overrides": [
+            bool(_rb.get_editor_property("override_color_saturation_shadows")),
+            bool(_rb.get_editor_property("override_color_gain_shadows"))],
     }}
 
 # EXPOSURE READ-BACK. Added 2026-09-11: compensation_ev had been applied
@@ -956,7 +1014,7 @@ _out["save"] = _save
 
 _out["ok"] = True
 print("{marker}" + _json.dumps(_out))
-'''.format(biome=biome_id, lighting=json.dumps(lighting),
+'''.format(biome=biome_id, lighting=json.dumps(_strip_prose(lighting)),
            sun_z=float(sun_height_cm),
            sky_col=json.dumps(sky_col), marker=MARKER)
 
@@ -1329,6 +1387,27 @@ def main(argv=None):
                             "%.6f -- the shader applies ColorContrast.xyz*w "
                             "(PostProcessCombineLUTs.usf:98), so the PRODUCT "
                             "is the exponent" % (ax, float(v), want_c))
+        _shw = (lighting.get("grade") or {}).get("shadows")
+        if _shw:
+            grb = r.get("grade_readback") or {}
+            _ws = [float(_shw["saturation"])] * 3
+            _wg = [float(v) for v in _shw["gain"]]
+            _gs = grb.get("shadow_saturation_effective")
+            _gg = grb.get("shadow_gain_effective")
+            if grb.get("shadow_overrides") != [True, True]:
+                bad.append("shadow grade overrides not both on: {0}".format(
+                    grb.get("shadow_overrides")))
+            for _nm, _got, _want in (("saturation", _gs, _ws),
+                                     ("gain", _gg, _wg)):
+                if not (isinstance(_got, list) and len(_got) == 3):
+                    bad.append("no shadow %s read-back" % _nm)
+                elif any(abs(a - b) > 1e-4 for a, b in zip(_got, _want)):
+                    bad.append("shadow %s %r != recipe %r" % (_nm, _got, _want))
+        elif lighting.get("grade"):
+            _so = (r.get("grade_readback") or {}).get("shadow_overrides")
+            if _so != [False, False]:
+                bad.append("recipe declares no shadow grade but the volume's "
+                           "shadow overrides read {0!r}".format(_so))
         if got_apce != want_apce:
             bad.append("apply_physical_camera_exposure {0} != recipe {1}"
                        .format(got_apce, want_apce))
@@ -1386,6 +1465,17 @@ def main(argv=None):
                                                     1e-4 * abs(want_fd)):
                 bad.append("fog_density {0!r} != recipe {1!r}".format(
                     got_fd, want_fd))
+        # v1.30 cloud wind (rule 12: applied AND read back from the
+        # reloaded MI, or the field is prose).
+        _clr = lighting.get("clouds") or {}
+        if _clr.get("enabled") and _clr.get("wind_param"):
+            got_w = (r.get("clouds_readback") or {}).get("wind")
+            want_w = [float(v) for v in _clr["wind"]]
+            if not (isinstance(got_w, list) and len(got_w) == 4):
+                bad.append("no cloud wind read-back")
+            elif any(abs(a - b) > 1e-4 for a, b in zip(got_w, want_w)):
+                bad.append("cloud wind {0!r} != recipe {1!r}".format(
+                    got_w, want_w))
         if bad:
             print("FAIL: exposure did not take:")
             for b in bad:

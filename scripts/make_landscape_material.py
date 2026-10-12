@@ -189,6 +189,14 @@ SAMPLED_TEXTURES = (
     ("sub_n",         "normal",    ("sub_active", "surface_n", "sub_n"), (), _WRAP),
     ("sub_r",         "mask",      ("sub_active", "surface_r", "sub_r"), (), _WRAP),
     ("sub_d",         "grayscale", ("sub_active",),                   (), _WRAP),
+    # schema v1.30 -- the NEAR SURFACE (distance detail). The near maps are
+    # lerped against the primary's by camera distance, so each requires the
+    # primary map it pairs with, exactly as the sub rows do. No near _D:
+    # displacement stays the primary's (a camera-dependent height would
+    # move the geometry as the camera moves).
+    ("near_c",        "colour",    ("near_active",),                  (), _WRAP),
+    ("near_n",        "normal",    ("near_active", "surface_n", "near_n"), (), _WRAP),
+    ("near_r",        "mask",      ("near_active", "surface_r", "near_r"), (), _WRAP),
 )
 
 # Whole-material, one each, clamped 1:1 onto the terrain (never tiled).
@@ -202,6 +210,13 @@ GLOBAL_TEXTURES = (
     # not, which is the whole distinction between the two selector-ish
     # classes.
     ("macromap",   "variation", _CLAMP),
+    # schema v1.31: the terrain-scale cavity map, a linear 0..1 field.
+    ("cavitymap",  "selector",  _CLAMP),
+    # 2026-10-10 the town STREET MASK (material.street_overlay): clamped onto its own box, selector class like
+    # the weightmap (uncompressed, linear). The cobble pair TILES (world-aligned), so WRAP.
+    ("streetmask", "selector",  _CLAMP),
+    ("street_c",   "colour",    _WRAP),
+    ("street_n",   "normal",    _WRAP),
 )
 
 
@@ -254,7 +269,8 @@ def mask_plan(n_layers, channels=WEIGHTMAP_CHANNELS):
 
 
 def texture_plan(bands, weightmap=None, variantmap=None,
-                 macromap=None):
+                 macromap=None, cavitymap=None, streetmask=None,
+                 street_c=None, street_n=None):
     """Reduce THE ONE DECLARATION against these bands into the plan.
 
     One row per TextureSample the builder will create:
@@ -291,7 +307,9 @@ def texture_plan(bands, weightmap=None, variantmap=None,
             rows.append([i, key, klass, _sm, source, path, _comp, _srgb])
     for key, klass, source in GLOBAL_TEXTURES:
         path = {"weightmap": weightmap, "variantmap": variantmap,
-                "macromap": macromap}[key]
+                "macromap": macromap, "cavitymap": cavitymap,
+                "streetmask": streetmask, "street_c": street_c,
+                "street_n": street_n}[key]
         if path:
             _sm, _comp, _srgb = SAMPLER_CLASS[klass]
             rows.append([-1, key, klass, _sm, source, path, _comp, _srgb])
@@ -412,6 +430,44 @@ def assert_texture_plan_gates():
     except TexturePlanError as exc:
         fails.append("refused a valid displacement-only plan: {0}".format(
             exc))
+
+    # schema v1.30. NEAR SURFACE: active with no colour path must refuse
+    # (the preflight would otherwise skip a map the graph samples) ...
+    b6 = {"name": "R", "surface_c": "/Game/S/T_A_C", "near_active": True,
+          "near_c": None}
+    expect_refuse("near_active with no near_c path", [b6])
+    # ... and the full shape plans exactly the three near maps beside the
+    # primary's, with no near height map.
+    try:
+        rows = texture_plan(
+            [{"name": "Rock", "surface_c": "/Game/S/T_A_C",
+              "surface_n": "/Game/S/T_A_N", "surface_r": "/Game/S/T_A_R",
+              "near_active": True, "near_c": "/Game/S/T_N_C",
+              "near_n": "/Game/S/T_N_N", "near_r": "/Game/S/T_N_R"}])
+        keys = sorted(r[1] for r in rows)
+        want = ["near_c", "near_n", "near_r", "surface_c", "surface_n",
+                "surface_r"]
+        if keys != want:
+            fails.append("a near-surface band should plan {0}, got "
+                         "{1}".format(want, keys))
+    except TexturePlanError as exc:
+        fails.append("refused a valid near-surface plan: {0}".format(exc))
+
+    # 2026-10-10 STREET OVERLAY: the three global rows reduce to the declared classes and samplers, and a plan
+    # without them is unchanged (the off switch adds nothing).
+    try:
+        base = texture_plan([{"name": "G", "surface_c": "/Game/S/T_G_C"}])
+        rows = texture_plan([{"name": "G", "surface_c": "/Game/S/T_G_C"}],
+                            streetmask="/Game/T/T_X_StreetMask", street_c="/Game/C/T_Cobble_A",
+                            street_n="/Game/C/T_Cobble_N")
+        got = sorted((r[1], r[2], r[4]) for r in rows if r[1].startswith("street"))
+        want = [("street_c", "colour", _WRAP), ("street_n", "normal", _WRAP), ("streetmask", "selector", _CLAMP)]
+        if got != want:
+            fails.append("street rows should plan {0}, got {1}".format(want, got))
+        if [r for r in rows if not r[1].startswith("street")] != base:
+            fails.append("adding the street rows changed the rest of the plan")
+    except TexturePlanError as exc:
+        fails.append("refused a valid street-overlay plan: {0}".format(exc))
 
     return fails
 
@@ -616,6 +672,292 @@ def _surface_asset(layer, role):
     ss = layer.get("sub_surface") or {}
     sid = ss.get("surface")
     return "/Game/Surfaces/T_{0}_{1}".format(sid, role) if sid else None
+
+
+def _near_asset(layer, role):
+    """`/Game/Surfaces/T_<id>_<role>` for a layer's NEAR surface, or None.
+
+    None when the layer binds no primary `surface`: the near scan is lerped
+    against the primary's maps and has nothing to fade into without one.
+    """
+    ns = layer.get("near_surface") or {}
+    sid = ns.get("surface")
+    if not (sid and layer.get("surface")):
+        return None
+    return "/Game/Surfaces/T_{0}_{1}".format(sid, role)
+
+
+def _cavity_for(recipe, layer_name):
+    """{strength, tint} when material.cavity lists this layer, else None."""
+    cv = (recipe.get("material") or {}).get("cavity")
+    if not cv or layer_name not in (cv.get("layers") or []):
+        return None
+    out = {"strength": float(cv["strength"]),
+           "tint": [float(c) for c in cv["tint"]],
+           # v1.33: optional tints from the map's G (lichen) and B (damp)
+           # channels, same lerp(1, tint, value*strength) form; None = no node.
+           "lichen": None, "damp": None}
+    for k in ("lichen", "damp"):
+        if cv.get(k):
+            out[k] = {"strength": float(cv[k]["strength"]),
+                      "tint": [float(c) for c in cv[k]["tint"]]}
+    return out
+
+
+def cavity_map_asset(recipe):
+    """The cavity map's content path, or None when the recipe has none."""
+    if not (recipe.get("material") or {}).get("cavity"):
+        return None
+    return landscape_spec.cavity_map_asset_path(recipe["biome_id"])
+
+
+def street_overlay_spec(recipe):
+    """2026-10-10 cobblestone streets: material.street_overlay reduced to the payload's `_street`, or None.
+
+    The BOX is not restated here: it is read from the mask's sidecar (written by build_street_mask.py, the one
+    producer) and every producer parameter the recipe declares must EQUAL the sidecar's, so a recipe edit
+    without a re-bake refuses instead of sampling a mask built from other numbers (design review change 3ii).
+    The sidecar's input hashes must match the plan + manifest on disk (a moved town = a stale mask).
+    Raises ValueError (a recipe/artefact fault, exit 2) -- before any editor contact.
+    """
+    so = (recipe.get("material") or {}).get("street_overlay")
+    if not so:
+        return None
+    side_p = os.path.join(REPO_ROOT, so["mask"] + ".json")
+    if not os.path.isfile(side_p):
+        raise ValueError("material.street_overlay: mask sidecar {0} missing -- run "
+                         "scripts/build_street_mask.py --write".format(so["mask"] + ".json"))
+    side = json.load(open(side_p, encoding="utf-8"))
+    for k in ("box_m", "feather_m", "house_margin_m", "grass_margin_m", "boulder_margin_m", "border_px",
+              "exclude_grass_in_houses"):
+        if side.get(k) != so[k]:
+            raise ValueError("material.street_overlay.{0} = {1!r} but the mask was built with {2!r} -- "
+                             "re-run scripts/build_street_mask.py --write".format(k, so[k], side.get(k)))
+    if side.get("px") != so["mask_px"]:
+        raise ValueError("material.street_overlay.mask_px {0} != mask {1}".format(so["mask_px"], side.get("px")))
+    import hashlib
+    for rel, sha in sorted((side.get("inputs_sha16") or {}).items()):
+        now = hashlib.sha256(open(os.path.join(REPO_ROOT, rel), "rb").read()).hexdigest()[:16]
+        if now != sha:
+            raise ValueError("street mask is STALE: {0} changed since the bake -- re-run "
+                             "scripts/build_street_mask.py --write".format(rel))
+    if not side.get("inputs_sha16"):
+        raise ValueError("street mask sidecar records no input hashes")
+    x0, y0, size = side["box_cm"]
+    if abs(size - so["box_m"] * 100.0) > 0.5:
+        raise ValueError("street mask box size {0} cm != box_m {1}".format(size, so["box_m"]))
+    # 2026-10-10b (audit F2): B >= G on the png ON DISK -- the sidecar hashes the inputs, not the mask, so this is
+    # the only check that sees a post-bake edit. keep_B <= keep_G per pixel is what the per-species channel rests on.
+    from PIL import Image as _Img
+    import numpy as _np
+    _px = _np.asarray(_Img.open(os.path.join(REPO_ROOT, so["mask"])))
+    if _px.ndim != 3 or _px.shape[2] < 3 or _px.shape[0] != so["mask_px"]:
+        raise ValueError("street mask {0} shape {1} is not {2}^2 RGB(A)".format(so["mask"], _px.shape,
+                                                                              so["mask_px"]))
+    _bad = int((_px[..., 2] < _px[..., 1]).sum())
+    if _bad:
+        raise ValueError("street mask {0}: {1} of {2} pixels read B < G (keep_B > keep_G) -- re-run "
+                         "scripts/build_street_mask.py --write".format(so["mask"], _bad, _px[..., 1].size))
+    return {
+        "mask": landscape_spec.street_mask_asset_path(recipe["biome_id"]),
+        "x0_cm": float(x0), "y0_cm": float(y0), "size_cm": float(size),
+        "albedo": so["albedo"], "normal": so["normal"],
+        "tile_cm": float(so["tile_m"]) * 100.0,
+        "tint": [float(c) for c in so["tint"]],
+        "roughness": float(so["roughness"]), "roughness_variation": float(so["roughness_variation"]),
+        "flatten_displacement": bool(so["flatten_displacement"]),
+        "max_texture_px": int(so["max_texture_px"]),
+    }
+
+
+def _cpu_street_blend(base, cobble, r):
+    """The overlay lerp on one channel: base where r=0, cobble where r=1 (MaterialExpressionLinearInterpolate)."""
+    return base + (cobble - base) * r
+
+
+def _cpu_street_rough(lum, rough, var):
+    """Street roughness: saturate(rough + var * (0.5 - lum)) -- dark stone gaps rougher."""
+    return min(1.0, max(0.0, rough + var * (0.5 - lum)))
+
+
+def _cpu_grass_keep(m, g):
+    """A grass input after the street exclusion: m * (1 - g)."""
+    return m * (1.0 - g)
+
+
+def _assert_street_invariants():
+    """Pure. Over the domain the VALIDATOR admits (skill rule), not only the shipped values."""
+    fails = []
+    import random
+    rnd = random.Random(20261010)
+    for _ in range(2000):
+        b, c, r = rnd.random(), rnd.random(), rnd.random()
+        if _cpu_street_blend(b, c, 0.0) != b:
+            fails.append("street blend at r=0 is not the identity (b={0})".format(b))
+            break
+        if abs(_cpu_street_blend(b, c, 1.0) - c) > 1e-12:
+            fails.append("street blend at r=1 is not the cobble (c={0})".format(c))
+            break
+        v = _cpu_street_blend(b, c, r)
+        if not (min(b, c) - 1e-12 <= v <= max(b, c) + 1e-12):
+            fails.append("street blend left the [base, cobble] interval at r={0}".format(r))
+            break
+        lum, ro, va = rnd.random(), rnd.random(), rnd.random()
+        q = _cpu_street_rough(lum, ro, va)
+        if not 0.0 <= q <= 1.0:
+            fails.append("street roughness outside [0, 1]: {0}".format(q))
+            break
+        if _cpu_street_rough(lum, ro, 0.0) != ro:
+            fails.append("street roughness with variation 0 is not the constant")
+            break
+        if va > 0 and _cpu_street_rough(min(1.0, lum + 0.1), ro, va) > q + 1e-12:
+            fails.append("street roughness rises with luminance (dark gaps must be rougher)")
+            break
+    # grass: g=1 -> 0 exactly, g=0 -> identity, and an INDEPENDENT reference (numpy elementwise) agrees
+    if _cpu_grass_keep(0.7, 1.0) != 0.0 or _cpu_grass_keep(0.7, 0.0) != 0.7:
+        fails.append("grass keep is not (0 at g=1, identity at g=0)")
+    try:
+        import numpy as _np
+        m = _np.asarray([rnd.random() for _ in range(256)])
+        g = _np.asarray([rnd.random() for _ in range(256)])
+        ref = _np.multiply(m, _np.subtract(1.0, g))
+        got = _np.asarray([_cpu_grass_keep(float(a), float(b)) for a, b in zip(m, g)])
+        if not _np.allclose(ref, got, atol=1e-12):
+            fails.append("grass keep disagrees with the numpy reference")
+    except ImportError:
+        fails.append("numpy unavailable: the grass-keep reference could not run (rule 13: not a pass)")
+    return fails
+
+
+def _cpu_cavity(albedo, cav, strength, tint):
+    """CPU mirror of the payload's cavity multiply, one channel."""
+    a = min(1.0, max(0.0, float(cav))) * float(strength)
+    return float(albedo) * (1.0 + (float(tint) - 1.0) * a)
+
+
+def _assert_cavity_invariants():
+    """schema v1.31. 1 cavity 0 (and a fully-mipped flat map) is the
+    identity; 2 cavity 1 at strength 1 is exactly albedo * tint; 3 the
+    result is monotone in cavity and never leaves [albedo*tint, albedo];
+    4 INDEPENDENT reference: equals a plain lerp(albedo, albedo*tint, a)."""
+    fails = []
+    for alb in (0.0, 0.07, 0.38, 1.0):
+        for tint in (0.0, 0.3, 0.9, 1.0):
+            for s in (0.1, 0.6, 1.0):
+                if abs(_cpu_cavity(alb, 0.0, s, tint) - alb) > 1e-12:
+                    fails.append("cavity 0 not identity (alb %s tint %s s %s)"
+                                 % (alb, tint, s))
+                prev = None
+                for k in range(21):
+                    c = k / 20.0
+                    v = _cpu_cavity(alb, c, s, tint)
+                    lo, hi = alb * tint, alb
+                    if not (lo - 1e-12 <= v <= hi + 1e-12):
+                        fails.append("cavity out of range at c %s" % c)
+                    if prev is not None and v > prev + 1e-12:
+                        fails.append("cavity not monotone at c %s" % c)
+                    prev = v
+                    a = c * s
+                    ref = alb + (alb * tint - alb) * a
+                    if abs(v - ref) > 1e-12:
+                        fails.append("cavity != lerp reference at c %s" % c)
+            if abs(_cpu_cavity(alb, 1.0, 1.0, tint) - alb * tint) > 1e-12:
+                fails.append("cavity 1 strength 1 != albedo * tint")
+    # v1.33 lichen/damp reuse this form with tints up to 2.0: bounds and the
+    # monotone direction follow sign(tint - 1) (audit 2026-10-03, F2).
+    for alb in (0.07, 0.38):
+        for tint in (1.0, 1.4, 2.0):
+            lo, hi = min(alb, alb * tint), max(alb, alb * tint)
+            prev = None
+            for k in range(21):
+                v = _cpu_cavity(alb, k / 20.0, 1.0, tint)
+                if not (lo - 1e-12 <= v <= hi + 1e-12):
+                    fails.append("tint>1 out of range (alb %s tint %s)" % (alb, tint))
+                if prev is not None and v < prev - 1e-12:
+                    fails.append("tint>1 not monotone increasing (tint %s)" % tint)
+                prev = v
+    return fails
+
+
+def _cpu_macro_normal(d, m, s):
+    """CPU mirror of the payload's _macro_normal (v1.34). d, m: unit
+    tangent-space normals (x, y, z); s: strength in [0, 1]."""
+    mf = [0.0 + (m[0] - 0.0) * s, 0.0 + (m[1] - 0.0) * s, 1.0 + (m[2] - 1.0) * s]
+    v = [d[0] + mf[0], d[1] + mf[1], d[2] * mf[2]]
+    n = (v[0] ** 2 + v[1] ** 2 + v[2] ** 2) ** 0.5
+    return [c / n for c in v]
+
+
+def _assert_macro_normal_invariants():
+    """1 strength 0 is the identity; 2 a flat macro (0,0,1) is the identity
+    at any strength; 3 output is unit length; 4 a tilted macro tilts the
+    result the same way (sign of x follows m.x for a flat detail)."""
+    import math
+    fails = []
+    ds = [[0.0, 0.0, 1.0], [0.3, -0.2, math.sqrt(1 - 0.13)], [-0.5, 0.1, math.sqrt(1 - 0.26)]]
+    ms = [[0.0, 0.0, 1.0], [0.4, 0.3, math.sqrt(1 - 0.25)], [-0.6, 0.0, 0.8]]
+    for d in ds:
+        for m in ms:
+            for s in (0.0, 0.3, 1.0):
+                o = _cpu_macro_normal(d, m, s)
+                if abs(sum(c * c for c in o) - 1.0) > 1e-9:
+                    fails.append("macro normal not unit length")
+            if any(abs(a - b) > 1e-9 for a, b in zip(_cpu_macro_normal(d, ms[1], 0.0), d)):
+                fails.append("strength 0 is not the identity")
+            if any(abs(a - b) > 1e-9 for a, b in zip(_cpu_macro_normal(d, [0.0, 0.0, 1.0], 0.7), d)):
+                fails.append("flat macro is not the identity")
+    if not _cpu_macro_normal([0.0, 0.0, 1.0], [0.6, 0.0, 0.8], 1.0)[0] > 0.0:
+        fails.append("tilted macro does not tilt the result")
+    return fails
+
+
+def _cpu_near_mix(near, far, depth_cm, fade_cm):
+    """CPU mirror of the payload's `_near_mix`: lerp(near, far, t), where
+    t = _ramp(PixelDepth, edge=fade end, outer=fade start, rising)."""
+    t = _cpu_ramp(depth_cm, fade_cm[1], fade_cm[0], True)
+    return near + (far - near) * t
+
+
+def _assert_near_mix_invariants():
+    """Prove the distance fade before any editor contact (schema v1.30).
+
+    1. Inside fade start the result is EXACTLY the near value; beyond fade
+       end EXACTLY the far value -- the primary is untouched at range, so
+       every far-field look ruling made before v1.30 still holds.
+    2. Monotone between: no overshoot (a lerp alpha outside [0, 1]
+       extrapolates past both scans).
+    3. INDEPENDENT REFERENCE: the midpoint of the fade is the plain mean of
+       the two values, computed without the ramp.
+    """
+    fails = []
+    near, far = 0.31, 0.07
+    # The validator admits 0 <= start < end <= 5000 m; the narrowest fade
+    # is the 1 cm case below. A zero-width fade is refused there.
+    for fade in ((3000.0, 12000.0), (0.0, 500.0), (4000.0, 4001.0),
+                 (0.0, 500000.0)):
+        for d in (0.0, fade[0] * 0.5, fade[0]):
+            if abs(_cpu_near_mix(near, far, d, fade) - near) > 1e-12:
+                fails.append("near_mix not the near value at depth %s, "
+                             "fade %s" % (d, fade))
+        for d in (fade[1] + 1.0, fade[1] * 4.0 + 1.0, 1e9):
+            if abs(_cpu_near_mix(near, far, d, fade) - far) > 1e-12:
+                fails.append("near_mix not the far value at depth %s, "
+                             "fade %s" % (d, fade))
+        prev = None
+        for k in range(41):
+            d = fade[0] - 100.0 + k * (fade[1] - fade[0] + 200.0) / 40.0
+            v = _cpu_near_mix(near, far, d, fade)
+            if not (min(near, far) - 1e-12 <= v <= max(near, far) + 1e-12):
+                fails.append("near_mix overshoots at depth %s: %s" % (d, v))
+            if prev is not None and v > prev + 1e-12:
+                fails.append("near_mix not monotone at depth %s" % d)
+            prev = v
+    fade = (3000.0, 12000.0)
+    mid = _cpu_near_mix(near, far, 0.5 * (fade[0] + fade[1]), fade)
+    if abs(mid - 0.5 * (near + far)) > 1e-12:
+        fails.append("near_mix midpoint %s != mean %s"
+                     % (mid, 0.5 * (near + far)))
+    return fails
 
 
 def displacement_spec(recipe):
@@ -1099,6 +1441,31 @@ def layer_bands(recipe):
             "disp_k": (
                 _dspec["per_layer"][layer["name"]] / _dspec["amplitude_ref"]
                 if _dspec and _dspec["amplitude_ref"] > 0.0 else None),
+            # schema v1.30 -- the NEAR SURFACE. A second scan for the same
+            # layer, shown close to the camera and faded into the primary
+            # by PixelDepth over fade_m. The primary is the FAR look; the
+            # near scan only adds close-range detail. `near_active` is the
+            # one predicate the plan rows and the graph both test (NN24).
+            "near_active": bool(layer.get("surface")
+                                and (layer.get("near_surface") or {})
+                                .get("surface")),
+            "near_c": _near_asset(layer, "C"),
+            "near_n": _near_asset(layer, "N"),
+            "near_r": _near_asset(layer, "R"),
+            "near_uv_cm": (float(layer["near_surface"]["tiling_m"]) * 100.0
+                           if layer.get("near_surface") else None),
+            "near_tint": ([float(c) for c in
+                           layer["near_surface"].get("tint", [1.0, 1.0, 1.0])]
+                          if layer.get("near_surface") else None),
+            "near_fade_cm": ([float(v) * 100.0 for v in
+                              layer["near_surface"]["fade_m"]]
+                             if layer.get("near_surface") else None),
+            # schema v1.31 -- CAVITY darkening for this layer, or None.
+            # The graph multiplies the layer albedo by
+            # lerp(1, tint, cavity * strength); CPU mirror _cpu_cavity.
+            "cavity": _cavity_for(recipe, layer["name"]),
+            # schema v1.34 -- macro normal strength (0 = none, the default).
+            "macro_normal": float(layer.get("macro_normal_strength", 0.0)),
         })
 
     _attach_forest_floor(recipe, out, world_z)
@@ -1611,6 +1978,101 @@ def _assert_height_blend_invariants():
     return fails
 
 
+# ----------------------------------------------------------------------
+# THE COMPOSITE ALPHAS (2026-10-01, LESSONS 2026-10-01).
+#
+# The layer composite is a LERP CHAIN, last layer first, over a flat
+# background constant:  col = lerp(col, layer_i, alpha_i).  With the raw
+# masks as alphas the background keeps prod(1 - m_i), and that is ZERO
+# only where one mask is exactly 1. The weightmap masks are a PARTITION
+# (they sum to 1), which is a different statement: at FF 0.45 / Grass 0.55
+# the background holds 0.2475 of the pixel. The background constant is the
+# last band's `color`, which for a surfaced layer is its TINT -- white --
+# so every blended texel rendered up to 25% white. Measured on the shipped
+# weightmap: mean 15.7% of the world's base colour was the constant.
+#
+# The alphas that make a lerp chain reproduce a partition are
+#     alpha_i = m_i / (m_i + m_{i+1} + ... + m_{n-1} + eps)
+# i.e. each mask over the sum of itself and every layer ALREADY composited
+# (the chain runs n-1 -> 0). The first non-zero layer met gets alpha 1 and
+# erases the background; the result is sum(m_i * v_i) / sum(m_i).
+#
+# eps is a divide-by-zero floor only. Its cost is a background share of
+# eps / (m + eps) under the first non-zero layer: 2.5e-4 at the 1/255
+# weightmap quantum, below one 8-bit step of any colour.
+# ----------------------------------------------------------------------
+COMPOSITE_ALPHA_EPS = 1e-6
+
+
+def _cpu_composite_alphas(masks, eps=COMPOSITE_ALPHA_EPS):
+    """Lerp-chain alphas that reproduce the partition `masks`. CPU mirror
+    of the `_alphas` block in the payload (same order, same eps)."""
+    out = [0.0] * len(masks)
+    acc = 0.0
+    for i in range(len(masks) - 1, -1, -1):
+        acc += float(masks[i])
+        out[i] = float(masks[i]) / (acc + eps)
+    return out
+
+
+def _cpu_composite(values, alphas, background):
+    """The payload's composite loop: last layer first, lerp over `background`."""
+    col = float(background)
+    for i in range(len(values) - 1, -1, -1):
+        col = col + (float(values[i]) - col) * alphas[i]
+    return col
+
+
+def _assert_composite_invariants():
+    """Prove the composite is the weighted sum, BEFORE any editor contact."""
+    fails = []
+    vals = [0.84, 0.17, 0.22, 0.14, 0.04]
+    q = 1.0 / 255.0
+    cases = [
+        [0.0, 0.0, 0.0, 0.45, 0.55],
+        [0.0, 0.0, 0.109, 0.715, 0.176],    # the forest_floor station texel
+        [0.2, 0.2, 0.2, 0.2, 0.2],
+        [0.0, 0.5, 0.5, 0.0, 0.0],
+        [1.0, 0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0, 1.0],
+        [q, 0.0, 0.0, 0.0, 1.0 - q],
+        [1.0 - q, 0.0, 0.0, 0.0, q],
+        [0.0, q, 0.0, 0.0, 0.0],            # under-full: sum < 1
+    ]
+    tol = 5e-4   # eps / (q + eps) = 2.5e-4 is the designed worst case
+    for m in cases:
+        al = _cpu_composite_alphas(m)
+        # 1. INDEPENDENT REFERENCE: the weighted sum, which shares no code
+        #    with the lerp chain.
+        ref = sum(a * b for a, b in zip(m, vals)) / sum(m)
+        for bg in (0.0, 1.0):
+            got = _cpu_composite(vals, al, bg)
+            if abs(got - ref) > tol:
+                fails.append("composite != weighted sum for masks=%s bg=%s: "
+                             "%.6f vs %.6f" % (m, bg, got, ref))
+        # 2. Alphas stay in [0, 1] -- a lerp alpha outside it extrapolates.
+        if any(a < 0.0 or a > 1.0 for a in al):
+            fails.append("alpha outside [0,1] for masks=%s: %s" % (m, al))
+
+    # 3. NO MASK AT ALL -> the background, and no NaN. The remainder makes
+    #    this unreachable on a weightmap; the floor must still hold.
+    al0 = _cpu_composite_alphas([0.0, 0.0, 0.0])
+    if any(a != 0.0 for a in al0) or _cpu_composite(vals[:3], al0, 0.5) != 0.5:
+        fails.append("all-zero masks did not resolve to the background: %s"
+                     % al0)
+
+    # 4. THE TEST CAN SEE THE DEFECT IT EXISTS FOR. Raw masks as alphas must
+    #    FAIL property 1 by the known amount (0.45 * 0.55 = 0.2475 of the
+    #    background). If this stops failing, property 1 has gone blind.
+    m = [0.0, 0.0, 0.0, 0.45, 0.55]
+    leak = _cpu_composite([0.0] * 5, m, 1.0)
+    if abs(leak - 0.2475) > 1e-9:
+        fails.append("raw-mask lerp chain no longer shows the 0.2475 "
+                     "background share (got %.6f): the suite cannot see the "
+                     "defect it guards" % leak)
+    return fails
+
+
 class CpuModelInvariantError(AssertionError):
     """The CPU model of a shader construct violates a physical property."""
 
@@ -1656,6 +2118,18 @@ def _assert_cpu_model_invariants():
     # preserved, no NaN at a pure-remainder texel, height drives the blend,
     # eps floor, monotone in k) hold before any editor contact.
     fails.extend(_assert_height_blend_invariants() or [])
+    # 2026-10-01. The weightmap composite's lerp-chain alphas: the result
+    # must equal the weighted sum of the layers and hold none of the flat
+    # background constant.
+    fails.extend(_assert_composite_invariants() or [])
+    # schema v1.30. The near-surface distance fade.
+    fails.extend(_assert_near_mix_invariants() or [])
+    # schema v1.31. The cavity darkening.
+    fails.extend(_assert_cavity_invariants() or [])
+    # schema v1.34. The macro normal blend.
+    fails.extend(_assert_macro_normal_invariants() or [])
+    # 2026-10-10. The street overlay (cobble lerp, street roughness, grass exclusion).
+    fails.extend(_assert_street_invariants() or [])
     if fails:
         raise CpuModelInvariantError(
             "{0} CPU-model invariant(s) violated; the shader these model "
@@ -1752,6 +2226,7 @@ def _assert_band_invariant(bands):
 
 def _payload(asset_path, bands, assign, actor_name,
              weightmap=None, variantmap=None, macromap=None,
+             cavitymap=None, rvt_out=False, street=None,
              plan=None, tri=None, macro=None, disp=None, hblend=None,
              org_x=0.0, org_y=0.0,
              span_cm=1.0, grass=None,
@@ -1790,6 +2265,10 @@ _CHAN = {chan!r}
 _VCHAN = {vchan!r}
 _variantmap = {variantmap!r}
 _macromap = {macromap!r}
+_cavitymap = {cavitymap!r}
+_rvt_out = {rvt_out!r}
+# 2026-10-10 street overlay: None when off; the reducer street_overlay_spec owns every unit conversion
+_street = _json.loads({street!r})
 _plan = _json.loads({plan!r})
 _tri = _json.loads({tri!r})
 _macro = _json.loads({macro!r})
@@ -1802,6 +2281,9 @@ _disp = _json.loads({disp!r})
 # (raw_height + eps)**k and renormalised to preserve their sum, so the
 # meadow remainder is unchanged; the CPU mirror is _cpu_height_blend.
 _hblend = _json.loads({hblend!r})
+# 2026-10-01. Divide floor of the composite alphas, injected from
+# COMPOSITE_ALPHA_EPS so the graph and _cpu_composite_alphas share it.
+_COMP_EPS = float({comp_eps!r})
 _org_x = {org_x!r}
 _org_y = {org_y!r}
 _span_cm = {span_cm!r}
@@ -1890,6 +2372,18 @@ else:
         _fatal = ("texture asset(s) not found: " + ", ".join(_missing)
                   + " -- run the import_layer_textures script first. "
                     "The material was NOT modified.")
+    elif _street:
+        # 2026-10-10 (design review 4ii): the cobble pair must carry the declared MaxTextureSize cap BEFORE the
+        # first compile, or an 8K source encodes on a cold DDC. Read from the asset in THIS session -- which is a
+        # persistence proof for cap_street_textures ONLY when this session did not itself apply the cap (run the
+        # cap, restart the editor, then build; audit F5b).
+        _uncapped = [_p + " max_texture_size " + str(_textures[_p].get_editor_property("max_texture_size"))
+                     for _p in (_street["albedo"], _street["normal"])
+                     if int(_textures[_p].get_editor_property("max_texture_size")) != int(_street["max_texture_px"])]
+        if _uncapped:
+            _fatal = ("street textures not capped to " + str(_street["max_texture_px"]) + ": "
+                      + ", ".join(_uncapped) + " -- run the cap_street_textures script with --apply. "
+                      "The material was NOT modified.")
 
 if _fatal is not None:
     _out["error"] = _fatal
@@ -2106,8 +2600,13 @@ else:
     # the normal channel and once on colour; here there is no second
     # entry point to duplicate).
     #
-    # RULED: detail ALBEDO only, three planes, the existing top-down
-    # sample reused AS the Z plane. +4 fetches, not +12.
+    # RULED 2026-08-03: detail ALBEDO only, three planes, the existing
+    # top-down sample reused AS the Z plane. +4 fetches, not +12.
+    # SUPERSEDED IN PART 2026-10-03 (LESSONS 2026-10-03c): the MACRO
+    # albedo sample is projected too -- a top-down macro DID read as
+    # diagonal smears on 30-50 deg faces. +2 side fetches per triplanar
+    # layer (+2 more on an active sub-surface). Normal, roughness and
+    # displacement stay top-down.
     #
     # NN26 permits the vertex normal here: this is SHADING (how to
     # project a surface already selected), not SELECTION. As the normal
@@ -2507,17 +3006,22 @@ else:
         _val = _det
         _pin = "RGB"
 
-        # TRIPLANAR, detail albedo only. The top-down _det IS the Z
+        # TRIPLANAR, detail AND macro albedo (macro since 2026-10-03).
+        # The top-down _det IS the Z
         # plane; we add the two side planes and blend by the shared
         # weights. Covers the sub-surface automatically, because the
         # sub-surface is built through this same function with its
         # surface slots repointed.
-        if _B.get("tri_active") and _tri_w is not None:
+        def _tri_mix(_top, _div, _x, _y):
+            # (side X, side Y, top Z) weighted by the shared triplanar
+            # weights. Used for the detail AND (2026-10-03) the macro
+            # sample: a top-down macro alone smeared diagonal streaks down
+            # every 30-50 deg face (hero round 7, LESSONS 2026-10-03c).
             _wxm, _wym, _wz, _den, _mmask = _tri_w
-            _sx = _sample_uv(_B["surface_c"], _tri_uv[0],
-                             _B["uv_detail_cm"], _x + 260, _y - 120)
-            _sy = _sample_uv(_B["surface_c"], _tri_uv[1],
-                             _B["uv_detail_cm"], _x + 260, _y - 380)
+            _sx = _sample_uv(_B["surface_c"], _tri_uv[0], _div,
+                             _x + 260, _y - 120)
+            _sy = _sample_uv(_B["surface_c"], _tri_uv[1], _div,
+                             _x + 260, _y - 380)
             _nx = _n(_unreal.MaterialExpressionMultiply, _x + 560, _y - 120)
             _ll_wire(_mel, _sx, "RGB", _nx, "A")
             _ll_wire(_mel, _wxm, "", _nx, "B")
@@ -2525,7 +3029,7 @@ else:
             _ll_wire(_mel, _sy, "RGB", _ny, "A")
             _ll_wire(_mel, _wym, "", _ny, "B")
             _nzz = _n(_unreal.MaterialExpressionMultiply, _x + 560, _y + 160)
-            _ll_wire(_mel, _det, "RGB", _nzz, "A")
+            _ll_wire(_mel, _top, "RGB", _nzz, "A")
             _ll_wire(_mel, _wz, "", _nzz, "B")
             _s1 = _n(_unreal.MaterialExpressionAdd, _x + 720, _y - 250)
             _ll_wire(_mel, _nx, "", _s1, "A")
@@ -2536,11 +3040,19 @@ else:
             _tv = _n(_unreal.MaterialExpressionDivide, _x + 1000, _y - 60)
             _ll_wire(_mel, _s2, "", _tv, "A")
             _ll_wire(_mel, _den, "", _tv, "B")
-            _val = _tv
+            return _tv
+
+        _tri_on = bool(_B.get("tri_active") and _tri_w is not None)
+        if _tri_on:
+            _val = _tri_mix(_det, _B["uv_detail_cm"], _x, _y)
             _pin = ""
         if _B["uv_macro_cm"]:
             _mac = _sample_typed(
                 _B["surface_c"], _B["uv_macro_cm"], _x + 260, _y + 420)
+            _mac_pin = "RGB"
+            if _tri_on:
+                _mac = _tri_mix(_mac, _B["uv_macro_cm"], _x, _y + 900)
+                _mac_pin = ""
             _sum = _n(_unreal.MaterialExpressionAdd, _x + 700, _y + 290)
             # CONSUME THE PREVIOUS STAGE, never the raw sample. This read
             # `_det, "RGB"` until 2026-08-07, which DISCARDED the
@@ -2554,7 +3066,7 @@ else:
             # idiom and always was -- it consumes (_val, _pin).
             # LESSONS 2026-08-07; R2 OPEN DEFECT.
             _ll_wire(_mel, _val, _pin, _sum, "A")
-            _ll_wire(_mel, _mac, "RGB", _sum, "B")
+            _ll_wire(_mel, _mac, _mac_pin, _sum, "B")
             _val = _n(_unreal.MaterialExpressionMultiply,
                       _x + 900, _y + 290)
             _ll_wire(_mel, _sum, "", _val, "A")
@@ -2609,6 +3121,90 @@ else:
         _ll_wire(_mel, 
             _c(_B["roughness"] * 2.0, _x + 500, _y + 1040), "", _mul, "B")
         return _mul
+
+    # v1.34 MACRO NORMAL: the layer's own normal map sampled again at the
+    # macro scale, pulled toward flat by strength, whiteout-blended over the
+    # incoming normal: normalize(d.xy + m.xy, d.z * m.z). CPU mirror
+    # _cpu_macro_normal. Top-down projection, like the detail normal.
+    def _macro_normal(_B, _d, _d_pin, _x, _y):
+        _s = float(_B.get("macro_normal") or 0.0)
+        if _d is None or _s <= 0.0 or not _B.get("uv_macro_cm") \
+                or not _B.get("surface_n"):
+            return _d, _d_pin
+        _ms = _sample_typed(_B["surface_n"], _B["uv_macro_cm"], _x, _y)
+        _mf = _n(_unreal.MaterialExpressionLinearInterpolate, _x + 300, _y)
+        _ll_wire(_mel, _c3([0.0, 0.0, 1.0], _x + 100, _y - 80), "", _mf, "A")
+        _ll_wire(_mel, _ms, "RGB", _mf, "B")
+        _ll_wire(_mel, _c(_s, _x + 100, _y + 80), "", _mf, "Alpha")
+        _dxy = _n(_unreal.MaterialExpressionComponentMask, _x + 500, _y - 120)
+        _dxy.set_editor_property("r", True)
+        _dxy.set_editor_property("g", True)
+        _dxy.set_editor_property("b", False)
+        _dxy.set_editor_property("a", False)
+        _ll_wire(_mel, _d, _d_pin, _dxy, "")
+        _mxy = _n(_unreal.MaterialExpressionComponentMask, _x + 500, _y)
+        _mxy.set_editor_property("r", True)
+        _mxy.set_editor_property("g", True)
+        _mxy.set_editor_property("b", False)
+        _mxy.set_editor_property("a", False)
+        _ll_wire(_mel, _mf, "", _mxy, "")
+        _dz = _n(_unreal.MaterialExpressionComponentMask, _x + 500, _y + 120)
+        for _k, _v in (("r", False), ("g", False), ("b", True), ("a", False)):
+            _dz.set_editor_property(_k, _v)
+        _ll_wire(_mel, _d, _d_pin, _dz, "")
+        _mz = _n(_unreal.MaterialExpressionComponentMask, _x + 500, _y + 240)
+        for _k, _v in (("r", False), ("g", False), ("b", True), ("a", False)):
+            _mz.set_editor_property(_k, _v)
+        _ll_wire(_mel, _mf, "", _mz, "")
+        _sxy = _n(_unreal.MaterialExpressionAdd, _x + 700, _y - 60)
+        _ll_wire(_mel, _dxy, "", _sxy, "A")
+        _ll_wire(_mel, _mxy, "", _sxy, "B")
+        _pz = _n(_unreal.MaterialExpressionMultiply, _x + 700, _y + 180)
+        _ll_wire(_mel, _dz, "", _pz, "A")
+        _ll_wire(_mel, _mz, "", _pz, "B")
+        _ap = _n(_unreal.MaterialExpressionAppendVector, _x + 900, _y + 60)
+        _ll_wire(_mel, _sxy, "", _ap, "A")
+        _ll_wire(_mel, _pz, "", _ap, "B")
+        _nm = _n(_unreal.MaterialExpressionNormalize, _x + 1100, _y + 60)
+        _ll_wire(_mel, _ap, "", _nm, "")
+        return _nm, ""
+
+    # v1.30 NEAR SURFACE: lerp(near, far, t), t = ramp(PixelDepth) 0 at
+    # fade start, 1 at fade end (CPU mirror _cpu_near_mix). One t per band.
+    _near_t = dict()
+
+    def _near_mix(_B, _far, _far_pin, _kind, _x, _y):
+        if _far is None or not _B.get("near_active"):
+            return _far, _far_pin
+        _nb = dict(_B)
+        _nb["surface_c"] = _B["near_c"]
+        _nb["surface_n"] = _B["near_n"]
+        _nb["surface_r"] = _B["near_r"]
+        _nb["uv_detail_cm"] = _B["near_uv_cm"]
+        _nb["uv_macro_cm"] = None
+        _nb["tint"] = _B["near_tint"]
+        if _kind == "c":
+            _nv, _np = _surface_albedo(_nb, _x, _y)
+        elif _kind == "r":
+            _nv, _np = _surface_roughness(_nb, _x, _y), ""
+        else:
+            _nv, _np = _surface_normal(_nb, _x, _y), "RGB"
+        if _nv is None:
+            raise RuntimeError(
+                "band " + str(_B.get("name")) + " near surface has no '"
+                + _kind + "' map but its primary does; the plan rows and "
+                "the graph disagree")
+        _t = _near_t.get(_B["name"])
+        if _t is None:
+            _f = _B["near_fade_cm"]
+            _pd = _n(_unreal.MaterialExpressionPixelDepth, _x - 900, _y)
+            _t = _ramp(_pd, _f[1], _f[0], _x - 700, _y, True)
+            _near_t[_B["name"]] = _t
+        _l = _n(_unreal.MaterialExpressionLinearInterpolate, _x + 1300, _y)
+        _ll_wire(_mel, _nv, _np, _l, "A")
+        _ll_wire(_mel, _far, _far_pin, _l, "B")
+        _ll_wire(_mel, _t, "", _l, "Alpha")
+        return _l, ""
 
     def _albedo(_B, _x, _y):
         """base_color, optionally modulated by its texture at two scales."""
@@ -2753,6 +3349,7 @@ else:
     # Without this a recipe with no weightmap raises NameError deep in
     # the band loop instead of simply building no sub-surfaces.
     _vsamp = None
+    _csamp = None          # v1.31 cavity map sampler (weightmap branch)
     _wsamp = None          # audit 2026-09-11 F4: the v1.25 forest-floor
                            # driver reads this inside the band loop
     _chan = list(_CHAN)   # ONE spelling of the channel contract — a
@@ -2791,6 +3388,16 @@ else:
         _wsamp = _n(_unreal.MaterialExpressionTextureSample, -1150, 700)
         _bind_global(_wsamp, _wmt, _weightmap)
         _ll_wire(_mel, _uvw, "", _wsamp, "UVs")
+
+        # v1.31 CAVITY map, same UV node as the weightmap (registration).
+        if _cavitymap:
+            _cmt = _unreal.EditorAssetLibrary.load_asset(_cavitymap)
+            if _cmt is None:
+                raise RuntimeError("cavity map asset not found: "
+                                   + _cavitymap)
+            _csamp = _n(_unreal.MaterialExpressionTextureSample, -1150, 1000)
+            _bind_global(_csamp, _cmt, _cavitymap)
+            _ll_wire(_mel, _uvw, "", _csamp, "UVs")
 
         # The SUB-SURFACE SELECTOR shares the weightmap's UV node
         # EXACTLY -- same origin, same span, same clamp. They are two
@@ -2938,6 +3545,34 @@ else:
             _rem = _n(_unreal.MaterialExpressionSaturate, -600, _y0)
             _ll_wire(_mel, _rsub, "", _rem, "")
             _masks.append(_rem)
+        # COMPOSITE ALPHAS (2026-10-01). The masks are a PARTITION and the
+        # composite below is a LERP CHAIN over a flat constant, so the raw
+        # masks as alphas leave prod(1 - m_i) of that constant in every
+        # blended texel (see COMPOSITE_ALPHA_EPS). Each alpha is its mask
+        # over the running sum of the layers already composited -- the
+        # chain runs last layer first, so the sum runs the same way.
+        # `_masks` itself is untouched: the grass density outputs still
+        # read the true weights.
+        _alphas = [None] * len(_masks)
+        _run = None
+        for _i in range(len(_masks) - 1, -1, -1):
+            if _run is None:
+                _run = _masks[_i]
+            else:
+                _radd = _n(_unreal.MaterialExpressionAdd,
+                           -450, _i * 1100 - 160)
+                _ll_wire(_mel, _run, "", _radd, "A")
+                _ll_wire(_mel, _masks[_i], "", _radd, "B")
+                _run = _radd
+            _rden = _n(_unreal.MaterialExpressionAdd, -330, _i * 1100 - 160)
+            _ll_wire(_mel, _run, "", _rden, "A")
+            _ll_wire(_mel, _c(_COMP_EPS, -450, _i * 1100 - 80), "",
+                     _rden, "B")
+            _ral = _n(_unreal.MaterialExpressionDivide,
+                      -210, _i * 1100 - 160)
+            _ll_wire(_mel, _masks[_i], "", _ral, "A")
+            _ll_wire(_mel, _rden, "", _ral, "B")
+            _alphas[_i] = _ral
     else:
         _masks = []
         for _i, _B in enumerate(_bands):
@@ -2950,10 +3585,16 @@ else:
             _ll_wire(_mel, _sm, "", _both, "A")
             _ll_wire(_mel, _hm, "", _both, "B")
             _masks.append(_both)
+        # Slope/height bands are NOT a partition -- they overlap by design
+        # and resolve first-match-wins -- so the raw masks are the alphas.
+        _alphas = _masks
 
     # Composite last-to-first so layer 0 lands on top (first-match-wins).
     # The BACKGROUND stays a flat colour deliberately: it is only visible
     # where no band matches at all, which alpine.json drives to 0.00%.
+    # CORRECTED 2026-10-01: that held for the band path only. On the
+    # weightmap path the raw masks left prod(1 - m_i) of this constant in
+    # every blended texel; `_alphas` is what makes it invisible there.
     # Running it through _albedo would duplicate every texture sample of
     # the last layer to paint pixels that do not exist.
     _col = _c3(_bands[-1]["color"], -200, -900)
@@ -2990,6 +3631,8 @@ else:
         _hB = None
         if _B.get("surface_c"):
             _lc, _lc_pin = _surface_albedo(_B, -200, _i * 1100 + 200)
+            _lc, _lc_pin = _near_mix(_B, _lc, _lc_pin, "c", -3400,
+                                     _i * 1100 + 200)
         else:
             _lc, _lc_pin = _albedo(_B, -200, _i * 1100 + 200), ""
 
@@ -3130,16 +3773,62 @@ else:
             _ll_wire(_mel, _ft, "", _fm, "B")
             _lc, _lc_pin = _fm, ""
 
+        # v1.31 CAVITY: albedo * lerp(1, tint, cavity.R * strength).
+        # Cavity 0 is the identity (CPU mirror _cpu_cavity).
+        _CV = _B.get("cavity")
+        if _CV:
+            if _csamp is None:
+                raise RuntimeError("band " + str(_B.get("name"))
+                                   + " declares cavity but no cavity map "
+                                   "was sampled")
+            _ca = _n(_unreal.MaterialExpressionMultiply, -640, _i * 1100 + 980)
+            _ll_wire(_mel, _csamp, "R", _ca, "A")
+            _ll_wire(_mel, _c(_CV["strength"], -820, _i * 1100 + 1060), "",
+                     _ca, "B")
+            _ct = _n(_unreal.MaterialExpressionLinearInterpolate,
+                     -440, _i * 1100 + 980)
+            _ll_wire(_mel, _c3([1.0, 1.0, 1.0], -640, _i * 1100 + 900), "",
+                     _ct, "A")
+            _ll_wire(_mel, _c3(_CV["tint"], -640, _i * 1100 + 1140), "",
+                     _ct, "B")
+            _ll_wire(_mel, _ca, "", _ct, "Alpha")
+            _cm = _n(_unreal.MaterialExpressionMultiply, -60, _i * 1100 + 900)
+            _ll_wire(_mel, _lc, _lc_pin, _cm, "A")
+            _ll_wire(_mel, _ct, "", _cm, "B")
+            _lc, _lc_pin = _cm, ""
+            # v1.33: lichen (G) and damp (B), same form as the cavity term.
+            _lk2 = 0
+            for _lch2, _lsub2 in (("G", _CV.get("lichen")), ("B", _CV.get("damp"))):
+                if not _lsub2:
+                    continue
+                _lk2 += 1
+                _ly2 = _i * 1100 + 1200 + _lk2 * 200
+                _la2 = _n(_unreal.MaterialExpressionMultiply, -640, _ly2)
+                _ll_wire(_mel, _csamp, _lch2, _la2, "A")
+                _ll_wire(_mel, _c(_lsub2["strength"], -820, _ly2 + 60), "",
+                         _la2, "B")
+                _lt2 = _n(_unreal.MaterialExpressionLinearInterpolate,
+                         -440, _ly2)
+                _ll_wire(_mel, _c3([1.0, 1.0, 1.0], -640, _ly2 - 80), "",
+                         _lt2, "A")
+                _ll_wire(_mel, _c3(_lsub2["tint"], -640, _ly2 + 120), "",
+                         _lt2, "B")
+                _ll_wire(_mel, _la2, "", _lt2, "Alpha")
+                _lm2 = _n(_unreal.MaterialExpressionMultiply, -60, _ly2)
+                _ll_wire(_mel, _lc, _lc_pin, _lm2, "A")
+                _ll_wire(_mel, _lt2, "", _lm2, "B")
+                _lc, _lc_pin = _lm2, ""
+
         _cl = _n(_unreal.MaterialExpressionLinearInterpolate,
                  200 + (len(_bands) - _i) * 260, _i * 1100)
         _ll_wire(_mel, _col, _col_pin, _cl, "A")
         _ll_wire(_mel, _lc, _lc_pin, _cl, "B")
-        _ll_wire(_mel, _masks[_i], "", _cl, "Alpha")
+        _ll_wire(_mel, _alphas[_i], "", _cl, "Alpha")
         _col = _cl
         _col_pin = ""
 
         _lr = _surface_roughness(_B, -200, _i * 1100 + 200)
-        _lr_pin = ""
+        _lr, _lr_pin = _near_mix(_B, _lr, "", "r", -3400, _i * 1100 + 500)
         if _lr is None:
             _lr = _c(_B["roughness"], -200, _i * 1100 + 400)
         elif _hw_w is not None and _sb is not None:
@@ -3155,7 +3844,7 @@ else:
                  200 + (len(_bands) - _i) * 260, _i * 1100 + 500)
         _ll_wire(_mel, _rgh, "", _rl, "A")
         _ll_wire(_mel, _lr, _lr_pin, _rl, "B")
-        _ll_wire(_mel, _masks[_i], "", _rl, "Alpha")
+        _ll_wire(_mel, _alphas[_i], "", _rl, "Alpha")
         _rgh = _rl
 
         # NORMALS BLEND WITH THE SAME MASK as colour and roughness. A
@@ -3166,7 +3855,8 @@ else:
         # difference invisible against a 4 m grid. Stated because it IS
         # an approximation, not because it is free.
         _ln = _surface_normal(_B, -200, _i * 1100 + 200)
-        _ln_pin = "RGB"
+        _ln, _ln_pin = _near_mix(_B, _ln, "RGB", "n", -3400, _i * 1100 + 800)
+        _ln, _ln_pin = _macro_normal(_B, _ln, _ln_pin, -4600, _i * 1100 + 800)
         if _ln is not None and _hw_w is not None and _sb is not None:
             _sn = _surface_normal(_sb, -200, _i * 1100 + 200 - 560)
             if _sn is not None:
@@ -3175,7 +3865,7 @@ else:
                 # at the sub-4-metre relief these maps carry, and far
                 # better than the sub-surface silently wearing the
                 # primary's lighting.
-                _ln = _heightlerp_apply(_ln, "RGB", _sn, "RGB",
+                _ln = _heightlerp_apply(_ln, _ln_pin, _sn, "RGB",
                                         _hw_w, 700, _i * 1100 + 1180)
                 _ln_pin = ""
         if _ln is not None:
@@ -3184,7 +3874,7 @@ else:
                      200 + (len(_bands) - _i) * 260, _i * 1100 + 900)
             _ll_wire(_mel, _nrm, _nrm_pin, _nl, "A")
             _ll_wire(_mel, _ln, _ln_pin, _nl, "B")
-            _ll_wire(_mel, _masks[_i], "", _nl, "Alpha")
+            _ll_wire(_mel, _alphas[_i], "", _nl, "Alpha")
             _nrm = _nl
             _nrm_pin = ""
 
@@ -3266,7 +3956,7 @@ else:
                      200 + (len(_bands) - _i) * 260, _i * 1100 + 900)
             _ll_wire(_mel, _dsp, "", _dl, "A")
             _ll_wire(_mel, _ld, _ld_pin, _dl, "B")
-            _ll_wire(_mel, _masks[_i], "", _dl, "Alpha")
+            _ll_wire(_mel, _alphas[_i], "", _dl, "Alpha")
             _dsp = _dl
         # ⛔ CLEARED AT THE END OF EVERY ITERATION. Left set, the NEXT
         # band would silently sample through this band's shifted UVs --
@@ -3323,6 +4013,92 @@ else:
         _col, _col_pin = _mv, ""
 
     # ==================================================================
+    # STREET OVERLAY (2026-10-10, research/town_kit/STREETS_DESIGN.md). The town's cobblestone streets are PART
+    # OF THE LANDSCAPE SURFACE: an offline mask (R = cobble, G = grass exclusion) over a box of the town lerps the
+    # FINAL composite to a world-aligned cobble surface. Inserted here, after every band and the macro multiply,
+    # so _col/_rgh/_nrm/_dsp change ONCE and both the main outputs and the RVT output below see the streets.
+    # Absent street_overlay => this block does not run and the graph is unchanged (the off switch).
+    # CPU mirrors: _cpu_street_blend / _cpu_street_rough / _cpu_grass_keep (asserted at import).
+    _street_keep = None
+    _street_keep_b = None
+    if _street:
+        _smt = _textures.get(_street["mask"])
+        if _smt is None:
+            raise RuntimeError("street mask was never preflighted: " + str(_street["mask"]))
+        _sorg = _n(_unreal.MaterialExpressionConstant2Vector, -2000, 2400)
+        _sorg.set_editor_property("r", float(_street["x0_cm"]))
+        _sorg.set_editor_property("g", float(_street["y0_cm"]))
+        _srel = _n(_unreal.MaterialExpressionSubtract, -1700, 2400)
+        _ll_wire(_mel, _wxy, "", _srel, "A")
+        _ll_wire(_mel, _sorg, "", _srel, "B")
+        _suv = _n(_unreal.MaterialExpressionDivide, -1450, 2400)
+        _ll_wire(_mel, _srel, "", _suv, "A")
+        _ll_wire(_mel, _c(float(_street["size_cm"]), -1700, 2520), "", _suv, "B")
+        _ssamp = _n(_unreal.MaterialExpressionTextureSample, -1150, 2400)
+        _bind_global(_ssamp, _smt, _street["mask"])
+        _ll_wire(_mel, _suv, "", _ssamp, "UVs")
+        # cobble surface, world-aligned (tile_cm), shared WRAP sampler from the plan row
+        _sc = _sample_uv(_street["albedo"], _wxy, float(_street["tile_cm"]), -1450, 2700)
+        _sn = _sample_uv(_street["normal"], _wxy, float(_street["tile_cm"]), -1450, 3000)
+        _stint = _c3(_street["tint"], -1150, 2850)
+        _salb = _n(_unreal.MaterialExpressionMultiply, -900, 2700)
+        _ll_wire(_mel, _sc, "RGB", _salb, "A")
+        _ll_wire(_mel, _stint, "", _salb, "B")
+        # roughness: rough + var * (0.5 - luminance(albedo)), saturated -- the stone gaps (dark) read rougher.
+        # T_Cobblestone_R is NOT used: its channel packing is unmeasured and it is stored sRGB (design review 8).
+        _slum = _n(_unreal.MaterialExpressionDotProduct, -900, 2900)
+        _ll_wire(_mel, _sc, "RGB", _slum, "A")
+        _ll_wire(_mel, _c3([0.299, 0.587, 0.114], -1150, 2980), "", _slum, "B")
+        _sl1 = _n(_unreal.MaterialExpressionSubtract, -700, 2900)
+        _ll_wire(_mel, _c(0.5, -900, 3020), "", _sl1, "A")
+        _ll_wire(_mel, _slum, "", _sl1, "B")
+        _sl2 = _n(_unreal.MaterialExpressionMultiply, -550, 2900)
+        _ll_wire(_mel, _sl1, "", _sl2, "A")
+        _ll_wire(_mel, _c(float(_street["roughness_variation"]), -700, 3020), "", _sl2, "B")
+        _sl3 = _n(_unreal.MaterialExpressionAdd, -400, 2900)
+        _ll_wire(_mel, _sl2, "", _sl3, "A")
+        _ll_wire(_mel, _c(float(_street["roughness"]), -550, 3020), "", _sl3, "B")
+        _srgh = _n(_unreal.MaterialExpressionSaturate, -250, 2900)
+        _ll_wire(_mel, _sl3, "", _srgh, "")
+        # the lerps -- alpha = mask R
+        _scol = _n(_unreal.MaterialExpressionLinearInterpolate, 0, 2700)
+        _ll_wire(_mel, _col, _col_pin, _scol, "A")
+        _ll_wire(_mel, _salb, "", _scol, "B")
+        _ll_wire(_mel, _ssamp, "R", _scol, "Alpha")
+        _col, _col_pin = _scol, ""
+        _srl = _n(_unreal.MaterialExpressionLinearInterpolate, 0, 2900)
+        _ll_wire(_mel, _rgh, "", _srl, "A")
+        _ll_wire(_mel, _srgh, "", _srl, "B")
+        _ll_wire(_mel, _ssamp, "R", _srl, "Alpha")
+        _rgh = _srl
+        # normal: plain lerp like every layer normal above (the engine normalises the Normal input)
+        _snl = _n(_unreal.MaterialExpressionLinearInterpolate, 0, 3100)
+        _ll_wire(_mel, _nrm, _nrm_pin, _snl, "A")
+        _ll_wire(_mel, _sn, "RGB", _snl, "B")
+        _ll_wire(_mel, _ssamp, "R", _snl, "Alpha")
+        _nrm, _nrm_pin = _snl, ""
+        _any_normal = True
+        # displacement: toward CENTER (the neutral value, see the accumulator note) on the stones
+        if _dsp is not None and _street["flatten_displacement"]:
+            _sdl = _n(_unreal.MaterialExpressionLinearInterpolate, 0, 3300)
+            _ll_wire(_mel, _dsp, "", _sdl, "A")
+            _ll_wire(_mel, _c(float(_disp["center"]), -200, 3420), "", _sdl, "B")
+            _ll_wire(_mel, _ssamp, "R", _sdl, "Alpha")
+            _dsp = _sdl
+        # grass keep factor (1 - G), consumed by the grass output below
+        _street_keep = _n(_unreal.MaterialExpressionOneMinus, -900, 3500)
+        _ll_wire(_mel, _ssamp, "G", _street_keep, "")
+        # 2026-10-10b: (1 - B), the boulder exclusion, for species with keep_channel "B" (MeadowBoulders)
+        _street_keep_b = None
+        if any(_g.get("keep_channel") == "B" for _g in _grass):
+            _street_keep_b = _n(_unreal.MaterialExpressionOneMinus, -900, 3620)
+            _ll_wire(_mel, _ssamp, "B", _street_keep_b, "")
+        _out["street_overlay"] = {{"mask": _street["mask"], "box_cm": [_street["x0_cm"], _street["y0_cm"],
+                                                                     _street["size_cm"]],
+                                  "tile_cm": _street["tile_cm"], "flatten": bool(
+                                      _dsp is not None and _street["flatten_displacement"])}}
+
+    # ==================================================================
     # OUTPUTS. Two routes, and which one is used is decided by the recipe.
     #
     # WHY THERE ARE TWO. MP_Displacement EXISTS at value 32
@@ -3345,6 +4121,33 @@ else:
     # this is the main world's material; a recipe flag that can turn the
     # restructure off is what makes the change revertible without a git
     # checkout of a 129 KB binary asset.
+    # v1.35 RVT OUTPUT (research/rvt_lookdev_design.md, stage B). Writes the
+    # final composite into the runtime virtual textures; the main pass is
+    # unchanged. Normal goes in WORLD space (review: the slot holds whatever
+    # the material writes, VirtualTextureMaterial.usf:114) and WorldHeight
+    # MUST be connected (unconnected = constant 0, MaterialExpressions.cpp:3087).
+    if _rvt_out:
+        _ro = _n(_unreal.MaterialExpressionRuntimeVirtualTextureOutput, 900, -2600)
+        _ll_wire(_mel, _col, _col_pin, _ro, "BaseColor")
+        _ll_wire(_mel, _rgh, "", _ro, "Roughness")
+        # ALWAYS wired (audit F3): with no normal maps _nrm is the flat
+        # tangent constant, which still transforms to the true surface normal.
+        _tw = _n(_unreal.MaterialExpressionTransform, 600, -2500)
+        _tw.set_editor_property(
+            "transform_source_type",
+            _unreal.MaterialVectorCoordTransformSource.TRANSFORMSOURCE_TANGENT)
+        _tw.set_editor_property(
+            "transform_type", _unreal.MaterialVectorCoordTransform.TRANSFORM_WORLD)
+        _ll_wire(_mel, _nrm, _nrm_pin, _tw, "")
+        _ll_wire(_mel, _tw, "", _ro, "Normal")
+        _rwp = _n(_unreal.MaterialExpressionWorldPosition, 400, -2700)
+        _rz = _n(_unreal.MaterialExpressionComponentMask, 600, -2700)
+        for _k, _v in (("r", False), ("g", False), ("b", True), ("a", False)):
+            _rz.set_editor_property(_k, _v)
+        _ll_wire(_mel, _rwp, "", _rz, "")
+        _ll_wire(_mel, _rz, "", _ro, "WorldHeight")
+        _out["rvt_output"] = True
+
     if _disp is None:
         _mat.set_editor_property("use_material_attributes", False)
         _mel.connect_material_property(
@@ -3444,6 +4247,7 @@ else:
         _tools = _unreal.AssetToolsHelpers.get_asset_tools()
         _inputs = []
         _wire = []
+        _chan = []        # 2026-10-10b: the street keep channel per input, carried in step with _wire (review 5)
         for _g in _grass:
             _gp = _g["asset"]
             if _unreal.EditorAssetLibrary.does_asset_exist(_gp):
@@ -3558,7 +4362,11 @@ else:
                     _unreal.FloatInterval(_v["smin"], _v["smax"]))
                 _var.set_editor_property("random_rotation", True)
                 _var.set_editor_property("align_to_surface", True)
-                _var.set_editor_property("cast_dynamic_shadow", False)
+                # Per species since 2026-10-03 (`cast_shadow`, default
+                # False = the previous behaviour): rocks without a contact
+                # shadow read as pasted on (Gemini rock critique, r14b).
+                _var.set_editor_property("cast_dynamic_shadow",
+                                         bool(_g["cast_shadow"]))
                 # MATERIAL OVERRIDES on the variety. `GrassVariety` really
                 # does carry `override_materials` in 5.8 (PythonStub
                 # :121628, "Material Overrides"), which is what lets a
@@ -3626,6 +4434,8 @@ else:
                     "mesh": _m.get_path_name().split(".")[0] if _m
                             else None,
                     "density": round(_d, 5),
+                    "cast_shadow": bool(
+                        _gv.get_editor_property("cast_dynamic_shadow")),
                     "override_materials": [
                         _x.get_path_name().split(".")[0] if _x else None
                         for _x in _ov]}})
@@ -3672,12 +4482,16 @@ else:
                 "overrides_declared": len(_declared),
                 "overrides_mismatched": _ovr_bad,
                 "overrides_match": bool(not _ovr_bad),
+                "cast_shadow_matches": bool(all(
+                    _r["cast_shadow"] == bool(_g["cast_shadow"])
+                    for _r in _rows)),
                 "ok": bool(_got)}})
             _gi = _unreal.GrassInput()
             _gi.set_editor_property("name", _g["name"])
             _gi.set_editor_property("grass_type", _gt)
             _inputs.append(_gi)
             _wire.append(_g["layer_index"])
+            _chan.append(_g["keep_channel"])
 
         if _inputs:
             _go = _n(_unreal.MaterialExpressionLandscapeGrassOutput,
@@ -3686,9 +4500,27 @@ else:
             # The output's input pins are named by the GrassInput name,
             # so each connects to its own layer's weight mask.
             for _k, _li in enumerate(_wire):
-                _ll_wire(_mel, 
-                    _masks[_li], "", _go, _inputs[_k].get_editor_property(
+                _gsrc = _masks[_li]
+                if _street_keep is not None:
+                    # 2026-10-10: no grass or boulders on the streets (or in the houses when the recipe says
+                    # so). Weight 0 spawns nothing (LandscapeGrass.cpp:2412-2416, design review Q2). The ALBEDO
+                    # masks are untouched: only the grass density sees the multiply.
+                    # 2026-10-10b: keep_channel "B" = the boulder exclusion (B >= G), LESSONS 2026-10-10ff
+                    _keep = _street_keep_b if _chan[_k] == "B" else _street_keep
+                    if _keep is None:
+                        raise RuntimeError("grass input " + str(_inputs[_k].get_editor_property("name"))
+                                           + " asks keep_channel B but no (1 - B) node was built")
+                    _gm = _n(_unreal.MaterialExpressionMultiply, 700, -1400 + 120 * _k)
+                    _ll_wire(_mel, _masks[_li], "", _gm, "A")
+                    _ll_wire(_mel, _keep, "", _gm, "B")
+                    _gsrc = _gm
+                _ll_wire(_mel,
+                    _gsrc, "", _go, _inputs[_k].get_editor_property(
                         "name"))
+            _out["grass_street_excluded"] = _street_keep is not None
+            _out["grass_keep_channels"] = {{str(_inputs[_k].get_editor_property("name")):
+                                            (_chan[_k] if _street_keep is not None else None)
+                                            for _k in range(len(_inputs))}}
             _out["grass_output_inputs"] = len(_inputs)
 
     # MANDATORY POST-BUILD ASSERTION (shared utility, rule 4a).
@@ -3718,6 +4550,15 @@ else:
     _mel.layout_material_expressions(_mat)
     _errs = _mel.recompile_material(_mat)
     _out["compile_errors"] = [str(_e) for _e in (_errs or [])]
+    # 2026-10-10 (street overlay design review change 4iii): the compiled sampler count, READ BACK from the
+    # engine (MaterialEditingLibrary.get_statistics -> MaterialShared.cpp:4521-4526), so "+3 textures cost +0
+    # sampler slots" is a measurement, not the shared-sampler argument alone. None = could not read (reported).
+    try:
+        _st = _mel.get_statistics(_mat)
+        _out["num_samplers"] = int(_st.get_editor_property("num_samplers"))
+    except Exception as _se:
+        _out["num_samplers"] = None
+        _out["num_samplers_error"] = str(_se)
     # CHECKED SAVE: save, then re-load from disk and confirm.
     # The return value of save_asset is not the evidence; the file
     # is. make_foliage_material printed "saved" for five weeks
@@ -3745,11 +4586,15 @@ print("{marker}" + _json.dumps(_out))
            vchan=tuple(VARIANTMAP_CHANNELS),
            variantmap=variantmap,
            macromap=macromap,
+           cavitymap=cavitymap,
+           rvt_out=bool(rvt_out),
+           street=json.dumps(street),
            plan=json.dumps(plan or []),
            tri=json.dumps(tri or {}),
            macro=json.dumps(macro or {}),
            disp=json.dumps(disp),
            hblend=json.dumps(hblend),
+           comp_eps=COMPOSITE_ALPHA_EPS,
            org_x=float(org_x), org_y=float(org_y),
            span_cm=float(span_cm), grass=json.dumps(grass or []),
            max_pivot=float(max_pivot),
@@ -3902,8 +4747,26 @@ def grass_entries(recipe):
             # dropped silently earlier the same day.
             "cull_cm": _grass_cull_cm(sp),
             "varieties": varieties,
+            # 2026-10-03: optional, default False (the prior behaviour).
+            "cast_shadow": bool(sp.get("cast_shadow", False)),
+            # 2026-10-10b: which street-mask channel excludes this species ("G" grass, "B" boulders).
+            "keep_channel": _keep_channel(sp, recipe),
         })
     return out
+
+
+def _keep_channel(sp, recipe):
+    """street_keep_channel: absent -> "G" (the pre-2026-10-10b behaviour); "B" needs boulder_margin_m declared.
+    Anything else REFUSES (design review 2026-10-10b change 5): a typo must not fall back to G silently."""
+    ch = sp.get("street_keep_channel", "G")
+    if ch not in ("G", "B"):
+        raise ValueError("grass species {0!r}: street_keep_channel {1!r} must be \"G\" or \"B\""
+                         .format(sp.get("name"), ch))
+    so = (recipe.get("material") or {}).get("street_overlay") or {}
+    if ch == "B" and "boulder_margin_m" not in so:
+        raise ValueError("grass species {0!r}: street_keep_channel \"B\" but material.street_overlay declares no "
+                         "boulder_margin_m".format(sp.get("name")))
+    return ch
 
 
 def _parse(text, marker=MARKER):
@@ -4026,7 +4889,7 @@ def main(argv=None):
     # ordering exists to prevent. Refuse here instead (exit 2).
     _mat_block = recipe.get("material") or {}
     if not _mat_block.get("weightmap"):
-        for _needs_wm in ("variant_map", "macro_variation"):
+        for _needs_wm in ("variant_map", "macro_variation", "cavity"):
             if _mat_block.get(_needs_wm):
                 print("REFUSE: material.{0} is declared without "
                       "material.weightmap — it rides the weightmap's UV "
@@ -4042,6 +4905,7 @@ def main(argv=None):
         bands = layer_bands(recipe)
         (weightmap_asset, variant_asset, macro_asset, _org_x, _org_y,
          span_cm) = weightmap_uv_params(recipe)
+        street = street_overlay_spec(recipe)
     except ValueError as exc:
         print("REFUSE: {0}".format(exc))
         return 2
@@ -4049,14 +4913,26 @@ def main(argv=None):
     # THE ONE DECLARATION, reduced. Any fault here is a RECIPE fault and
     # is refused before a single byte reaches the editor.
     try:
+        cavity_asset = cavity_map_asset(recipe)
         plan = texture_plan(bands, weightmap=weightmap_asset,
                             variantmap=variant_asset,
-                            macromap=macro_asset)
+                            macromap=macro_asset,
+                            cavitymap=cavity_asset,
+                            streetmask=street and street["mask"],
+                            street_c=street and street["albedo"],
+                            street_n=street and street["normal"])
     except TexturePlanError as exc:
         print("REFUSE: {0}".format(exc))
         return 2
     print("  texture plan : {0} sampled textures across {1} band(s)"
           .format(len(plan), len(bands)))
+    if street:
+        print("  street       : mask {0} over box ({1:.0f}, {2:.0f}) + {3:.0f} cm; cobble tile {4:.0f} cm; "
+              "rough {5} +/- {6}; flatten displacement {7}".format(
+                  street["mask"], street["x0_cm"], street["y0_cm"], street["size_cm"], street["tile_cm"],
+                  street["roughness"], street["roughness_variation"], street["flatten_displacement"]))
+    else:
+        print("  street       : off (no material.street_overlay)")
 
     # v1.21. Printed with its DERIVED engine magnitude and the physical
     # amplitude side by side, because the two differ by the landscape's
@@ -4214,6 +5090,9 @@ def main(argv=None):
                           weightmap=weightmap_asset,
                           variantmap=variant_asset,
                           macromap=macro_asset,
+                          cavitymap=cavity_asset,
+                          street=street,
+                          rvt_out=bool((recipe.get("material") or {}).get("rvt_output")),
                           plan=plan,
                           tri=_tri_spec(recipe),
                           macro=(recipe['material'].get('macro_variation') or {}),
@@ -4256,6 +5135,27 @@ def main(argv=None):
         # looking. This builder computed a residual count for two
         # sessions and never printed it.
         material_graph.report(r)
+        # 2026-10-10 streets audit F1: the payload's read-backs are PRINTED here, not carried and dropped (the
+        # class this file documents below). num_samplers None prints its recorded error.
+        print("  num_samplers : {0}{1}".format(
+            r.get("num_samplers"),
+            "  (could not read: {0})".format(r.get("num_samplers_error")) if r.get("num_samplers") is None else ""))
+        if street:
+            so_echo = r.get("street_overlay")
+            print("  street echo  : {0}; grass excluded {1}".format(so_echo, r.get("grass_street_excluded")))
+            if not so_echo or r.get("grass_street_excluded") is not True:
+                print("FAIL: the recipe declares street_overlay but the payload did not report building it "
+                      "(street echo {0}, grass excluded {1})".format(so_echo, r.get("grass_street_excluded")))
+                return 5
+            # 2026-10-10b: the keep channel per grass input, read back from the payload, must equal the recipe's
+            want_ch = {g["name"]: g["keep_channel"] for g in grass_entries(recipe)}
+            got_ch = r.get("grass_keep_channels") or {}
+            print("  grass keep   : {0} of {1} inputs reported; B on {2}".format(
+                len(got_ch), len(want_ch), sorted(k for k, v in got_ch.items() if v == "B")))
+            if not want_ch or got_ch != want_ch:
+                print("FAIL: grass keep channels read back {0} != recipe {1} (rule 13: 0 reported is not "
+                      "agreement)".format(got_ch, want_ch))
+                return 5
         if r.get("compile_errors"):
             for e in r["compile_errors"]:
                 print("    {0}".format(e))

@@ -253,5 +253,64 @@
    }
   ],
   "_absent_2026_09_27": "Six P2-inventory meshes (DragonCave LeafPile01 / TreeBranch09 / StoneDebris01_, Atlantis_Ruins Sticks_Medium_00 / Sticks_Small_10 / Rocks_04) measured 'asset does not exist': those packs are gitignored and absent from Content/. Rows dropped; not registered."
+ },
+ "hero_r24_meadow_boulders": {
+  "_what": "Brief 7 Phase 3b ground-clutter meshes (grass system, ForestFloor + Grass layers); rows measured live, contract applied, refusals written with ok=false.",
+  "objects": [
+   {
+    "object": "SM_GroundRevealRock001",
+    "ok": true,
+    "asset": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+    "pivot_offset_xy_m": 0.0361,
+    "base_offset_z_m": -0.0804,
+    "height_m": 0.65,
+    "extent_m": [
+     1.672,
+     1.222,
+     0.325
+    ],
+    "nanite_enabled": false,
+    "lod_count": 4,
+    "lod_triangles": [
+     13536,
+     3368,
+     1531,
+     916
+    ],
+    "material_slots": 1,
+    "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py (no FBX; R-ASSET forbids authoring into a Fab folder). Measured on the LIVE asset by scripts/measure_clutter_meshes.py on 2026-10-03 for Brief 7 Phase 3b ground clutter. Placed by the GRASS system, which applies NO pivot correction -- read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+    "measured_by": "scripts/measure_clutter_meshes.py",
+    "measured_on": "2026-10-03",
+    "group": "hero_r24_meadow_boulders",
+    "source_measurement": "Free/_measured/hero_r24_meadow_boulders.json"
+   },
+   {
+    "object": "SM_GroundRevealRock002",
+    "ok": true,
+    "asset": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002",
+    "pivot_offset_xy_m": 0.0,
+    "base_offset_z_m": -0.2061,
+    "height_m": 1.17,
+    "extent_m": [
+     0.888,
+     1.769,
+     0.585
+    ],
+    "nanite_enabled": false,
+    "lod_count": 4,
+    "lod_triangles": [
+     10589,
+     2624,
+     1454,
+     927
+    ],
+    "material_slots": 1,
+    "provenance": "vendor Fab content, already .uasset on disk; never went through scripts/blender/normalize_asset.py (no FBX; R-ASSET forbids authoring into a Fab folder). Measured on the LIVE asset by scripts/measure_clutter_meshes.py on 2026-10-03 for Brief 7 Phase 3b ground clutter. Placed by the GRASS system, which applies NO pivot correction -- read by landscape_spec.uncorrected_pivot_errors(), not merely recorded.",
+    "measured_by": "scripts/measure_clutter_meshes.py",
+    "measured_on": "2026-10-03",
+    "group": "hero_r24_meadow_boulders",
+    "source_measurement": "Free/_measured/hero_r24_meadow_boulders.json"
+   }
+  ]
  }
 }

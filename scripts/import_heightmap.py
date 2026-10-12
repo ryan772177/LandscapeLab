@@ -479,7 +479,7 @@ def _validate_rock_species(sp, tag, layer_names):
 _NAV_KEYS = {"tile_size_uu", "average_layers_per_tile",
              "max_simultaneous_tile_generation_jobs", "min_region_dimension_uu",
              "data_gathering_mode", "builder_loading_cell_size_cm",
-             "chunk_grid_size_cm", "bounds_volumes"}
+             "chunk_grid_size_cm", "bounds_volumes", "is_world_partitioned"}
 _NAV_VOLUME_KEYS = {"name", "min_cm", "max_cm", "basis"}
 _NAV_GATHERING = {"instant", "lazy"}
 # ARecastNavMesh::TileNumberHardLimit = 1 << 20 (RecastNavMesh.cpp:551).
@@ -555,6 +555,15 @@ def _validate_navigation(nav):
             "400x400 uu = 16 m2, not 400 cm2. The engine's own property is "
             "misleadingly NAMED MinRegionArea while its tooltip says "
             "'minimum dimension'")
+
+    # 2026-10-04h. ARecastNavMesh::bIsWorldPartitioned (RecastNavMesh.h:833,
+    # `config`, default false). False in a WP world makes every editor save
+    # serialize the in-memory tiles INTO the actor (PImplRecastNavMesh.cpp:
+    # 534-538) -- a 786 MB duplicate of the chunk actors' tiles was measured.
+    # True saves none (:522-527). Optional; absent = engine default.
+    iwp = nav.get("is_world_partitioned")
+    if iwp is not None and not isinstance(iwp, bool):
+        e.append("navigation.is_world_partitioned must be a bool")
 
     mode = nav.get("data_gathering_mode")
     if mode not in _NAV_GATHERING:
@@ -1097,6 +1106,11 @@ def _validate_foliage(f, recipe):
                 "system", "cull_distance_m", "density_per_10m2",
                 "varieties", "lods", "sink_depth_m", "closure",
                 "override_materials", "collision",
+                # 2026-10-03: grass-system variety shadow flag, consumed by
+                # make_landscape_material grass_entries (default False).
+                "cast_shadow",
+                # 2026-10-10b: grass-system street-mask exclusion channel, "G" (default) or "B" (boulders).
+                "street_keep_channel",
                 # `card` is the grass-card material block (ground_tint,
                 # hue_percent, brightness_amp, contact_*), consumed by
                 # make_foliage_material.py:213-375. Added to Meadow in
@@ -1226,6 +1240,13 @@ def _validate_foliage(f, recipe):
         if system not in ("instanced", "grass"):
             e.append("{0}.system must be 'instanced' or 'grass', got "
                      "{1!r}".format(tag, system))
+        # 2026-10-10b: an unknown channel must refuse, not fall back to G (design review change 5); only grass
+        # reads it, so on an instanced species it would be inert (NN21)
+        if "street_keep_channel" in sp:
+            if sp["street_keep_channel"] not in ("G", "B"):
+                e.append("{0}.street_keep_channel must be 'G' or 'B'".format(tag))
+            elif system != "grass":
+                e.append("{0}.street_keep_channel is read only for system 'grass'".format(tag))
         # Keyed off the SAME `system` value the placement path reads, so
         # the preflight and the applier cannot disagree about whether a
         # species needs a collision declaration (non-negotiable 24).
@@ -2233,6 +2254,46 @@ def _validate_heightmap(hm):
                 "sections_per_component={3}: {4}".format(
                     res, expected, ss, spc,
                     _nearest_legal_resolutions(res, ss, spc)))
+    e.extend(_validate_street_flatten(hm.get("street_flatten"), src))
+    return e
+
+
+# 2026-10-10 street flattening (research/town_kit/FLATTEN_DESIGN.md). All REQUIRED when the block is present.
+_FLATTEN_NUM = {"sigma_m": (0.5, 50.0), "shoulder_m": (0.5, 30.0), "bank_max_deg": (5.0, 60.0),
+                "guard_m": (0.0, 5.0), "house_fade_m": (0.0, 10.0), "door_apron_m": (0.0, 10.0),
+                "max_abs_delta_m": (0.05, 20.0), "doorstep_max_m": (0.0, 2.0), "house_edge_step_max_m": (0.0, 5.0),
+                "changed_threshold_cm": (0.1, 100.0), "crop_margin_m": (0.0, 200.0)}
+
+
+def _validate_street_flatten(sf, src):
+    """`heightmap.street_flatten` -- optional, strict when present. Refusals: an unknown key (inert); a pre_source
+    that is not a repo-relative .png or EQUALS the live source (the tool would read its own output and flatten
+    twice); a sha that is not 64 hex; any number out of range."""
+    if sf is None:
+        return []
+    if not isinstance(sf, dict):
+        return ["heightmap.street_flatten must be an object"]
+    tag = "heightmap.street_flatten."
+    e = []
+    keys = set(_FLATTEN_NUM) | {"pre_source", "pre_source_sha256"}
+    for k in sf:
+        if k not in keys and not k.startswith("_"):
+            e.append("unknown key in heightmap.street_flatten: {0!r}".format(k))
+    for k in sorted(keys - set(sf)):
+        e.append(tag + k + " is required")
+    if e:
+        return e
+    ps = sf["pre_source"]
+    if not (isinstance(ps, str) and ps.endswith(".png") and not os.path.isabs(ps)
+            and ".." not in re.split(r"[\\/]+", ps)):
+        e.append(tag + "pre_source must be a repo-relative .png path")
+    elif isinstance(src, str) and os.path.normcase(os.path.normpath(ps)) == os.path.normcase(os.path.normpath(src)):
+        e.append(tag + "pre_source must differ from heightmap.source (it would flatten its own output)")
+    if not (isinstance(sf["pre_source_sha256"], str) and re.fullmatch(r"[0-9a-f]{64}", sf["pre_source_sha256"])):
+        e.append(tag + "pre_source_sha256 must be 64 lowercase hex characters")
+    for k, (lo, hi) in sorted(_FLATTEN_NUM.items()):
+        if not (_is_num(sf[k]) and lo <= sf[k] <= hi):
+            e.append("{0}{1} must be in [{2}, {3}]".format(tag, k, lo, hi))
     return e
 
 
@@ -2278,7 +2339,180 @@ _MATERIAL_KEYS = {
     "parent_material", "height_jitter_m", "height_jitter_scale_m",
     "weightmap", "weightmap_feather_sigma_px", "variant_map", "forest_floor",
     "layers", "triplanar", "macro_variation", "displacement", "height_blend",
+    "cavity", "rvt_output", "street_overlay",
 }
+
+_CAVITY_KEYS = {"map", "layers", "strength", "tint", "scales_m", "depths_m"}
+
+# 2026-10-10 cobblestone streets (research/town_kit/STREETS_DESIGN.md). All REQUIRED when the block is present:
+# an optional field here would be a default nobody chose.
+_STREET_KEYS = {
+    "mask", "mask_px", "box_m", "feather_m", "house_margin_m", "grass_margin_m", "boulder_margin_m", "border_px",
+    "exclude_grass_in_houses", "albedo", "normal", "tile_m", "tint", "roughness", "roughness_variation",
+    "max_texture_px", "flatten_displacement",
+}
+
+
+def _validate_street_overlay(so):
+    """`material.street_overlay` -- optional, strict when present (2026-10-10).
+
+    Refusals, each a silent failure otherwise: an unknown key (inert); a non-repo mask path; a mask resolution
+    that is not a power of two (mips); feather/margins/tile/roughness out of range (0 feather is a pixel step,
+    roughness outside [0,1] clamps silently); textures that are not /Game paths; max_texture_px not a power of
+    two (MaxTextureSize rounds and the read-back would disagree)."""
+    if so is None:
+        return []
+    if not isinstance(so, dict):
+        return ["material.street_overlay must be an object"]
+    e = []
+    for k in so:
+        if k not in _STREET_KEYS and not k.startswith("_"):
+            e.append("unknown key in material.street_overlay: {0!r}".format(k))
+    for k in sorted(_STREET_KEYS - set(so)):
+        e.append("material.street_overlay.{0} is required".format(k))
+    if e:
+        return e
+    tag = "material.street_overlay."
+    m = so["mask"]
+    if not (isinstance(m, str) and m.endswith(".png") and not os.path.isabs(m)
+            and ".." not in re.split(r"[\\/]+", m)):
+        e.append(tag + "mask must be a repo-relative .png path")
+
+    def _pow2(v, lo, hi):
+        return isinstance(v, int) and not isinstance(v, bool) and lo <= v <= hi and v & (v - 1) == 0
+    if not _pow2(so["mask_px"], 256, 8192):
+        e.append(tag + "mask_px must be a power of two in [256, 8192]")
+    if not _pow2(so["max_texture_px"], 256, 8192):
+        e.append(tag + "max_texture_px must be a power of two in [256, 8192]")
+    if not (isinstance(so["border_px"], int) and 1 <= so["border_px"] <= 16):
+        e.append(tag + "border_px must be an int in [1, 16]")
+    for k, lo, hi in (("box_m", 64.0, 8192.0), ("feather_m", 0.05, 5.0), ("house_margin_m", 0.0, 5.0),
+                      ("grass_margin_m", 0.0, 5.0), ("boulder_margin_m", 0.0, 50.0),
+                      ("tile_m", 0.25, 20.0), ("roughness", 0.0, 1.0),
+                      ("roughness_variation", 0.0, 1.0)):
+        if not (_is_num(so[k]) and lo <= so[k] <= hi):
+            e.append("{0}{1} must be in [{2}, {3}]".format(tag, k, lo, hi))
+    if _is_num(so["feather_m"]) and so["feather_m"] <= 0.0:
+        e.append(tag + "feather_m must be > 0")
+    # 2026-10-10b: B >= G is the contract the boulder exclusion rests on
+    if _is_num(so["boulder_margin_m"]) and _is_num(so["grass_margin_m"]) \
+            and so["boulder_margin_m"] < so["grass_margin_m"]:
+        e.append(tag + "boulder_margin_m must be >= grass_margin_m (B contains G)")
+    t = so["tint"]
+    if not (isinstance(t, list) and len(t) == 3 and all(_is_num(c) and 0.0 <= c <= 2.0 for c in t)):
+        e.append(tag + "tint must be [r, g, b] multipliers in [0, 2]")
+    for k in ("albedo", "normal"):
+        if not (isinstance(so[k], str) and so[k].startswith("/Game/")):
+            e.append(tag + k + " must be a /Game/ texture path")
+    for k in ("exclude_grass_in_houses", "flatten_displacement"):
+        if not isinstance(so[k], bool):
+            e.append(tag + k + " must be true or false")
+    return e
+
+
+def _validate_cavity(cv, layer_names, has_weightmap):
+    """Schema v1.31 `material.cavity` -- optional, strict when present.
+
+    A baked terrain-scale concavity map (scripts/bake_cavity_map.py) that
+    darkens the listed layers' albedo by lerp(1, tint, cavity * strength).
+    Refusals, each a silent failure otherwise: no weightmap (the map rides
+    its UV chain, so nothing would sample it); an unknown layer (inert);
+    strength outside (0, 1] (0 is inert, >1 extrapolates past the tint);
+    scales/depths of unequal length (the bake zips them and drops the tail).
+    """
+    if cv is None:
+        return []
+    if not isinstance(cv, dict):
+        return ["material.cavity must be an object"]
+    e = []
+    for k in cv:
+        if k not in _CAVITY_KEYS and k not in ("lichen", "damp") \
+                and not k.startswith("_"):
+            e.append("unknown key in material.cavity: {0!r}".format(k))
+    # v1.33: optional G (lichen) / B (damp) channel tints.
+    _sub_keys = {"lichen": {"strength", "tint", "slope_deg", "noise_m", "seed",
+                            "slope_fade_deg", "convex_blur_m", "convex_depth_m",
+                            "convex_weight", "noise_band"},
+                 "damp": {"strength", "tint", "reach_m", "gentle_deg",
+                          "steep_ramp_deg", "slope_smooth_m"}}
+    _sub_req = {"lichen": {"strength", "tint", "slope_deg", "noise_m"},
+                "damp": {"strength", "tint", "reach_m", "gentle_deg"}}
+    for sk, allowed in _sub_keys.items():
+        sb = cv.get(sk)
+        if sb is None:
+            continue
+        tag = "material.cavity." + sk
+        if not isinstance(sb, dict):
+            e.append(tag + " must be an object")
+            continue
+        n0 = len(e)   # per-block: an earlier block's error must not hide this one's
+        for k in sb:
+            if k not in allowed and not k.startswith("_"):
+                e.append("unknown key in {0}: {1!r}".format(tag, k))
+        for k in sorted(_sub_req[sk] - set(sb)):
+            e.append("{0}.{1} is required".format(tag, k))
+        if len(e) > n0:
+            continue
+        if "seed" in sb and not (isinstance(sb["seed"], int)
+                                 and not isinstance(sb["seed"], bool)):
+            e.append(tag + ".seed must be an int")
+        for k, lo, hi in (("slope_fade_deg", 0.0, 20.0), ("convex_blur_m", 0.5, 100.0),
+                          ("convex_depth_m", 0.05, 50.0), ("convex_weight", 0.0, 1.0),
+                          ("steep_ramp_deg", 1.0, 45.0), ("slope_smooth_m", 0.0, 50.0)):
+            if k in sb and not (_is_num(sb[k]) and lo <= sb[k] <= hi):
+                e.append("{0}.{1} must be in [{2}, {3}]".format(tag, k, lo, hi))
+        if "noise_band" in sb and not (_num_pair(sb["noise_band"])
+                                       and 0.0 <= sb["noise_band"][0] < sb["noise_band"][1] <= 1.0):
+            e.append(tag + ".noise_band must be [lo, hi] in [0, 1], lo < hi")
+        if not _is_num(sb["strength"]) or not 0.0 < sb["strength"] <= 1.0:
+            e.append(tag + ".strength must be in (0, 1]")
+        t = sb["tint"]
+        if not (isinstance(t, list) and len(t) == 3
+                and all(_is_num(c) and 0.0 <= c <= 2.0 for c in t)):
+            e.append(tag + ".tint must be [r, g, b] multipliers in [0, 2]")
+        if sk == "lichen":
+            sd = sb["slope_deg"]
+            if not (_num_pair(sd) and 0.0 <= sd[0] < sd[1] <= 90.0):
+                e.append(tag + ".slope_deg must be [lo, hi] in [0, 90], lo < hi")
+            if not _is_num(sb["noise_m"]) or not 0.5 <= sb["noise_m"] <= 200.0:
+                e.append(tag + ".noise_m must be in [0.5, 200]")
+        else:
+            if not _is_num(sb["reach_m"]) or not 0.5 <= sb["reach_m"] <= 200.0:
+                e.append(tag + ".reach_m must be in [0.5, 200]")
+            if not _is_num(sb["gentle_deg"]) or not 0.0 < sb["gentle_deg"] < 75.0:
+                e.append(tag + ".gentle_deg must be in (0, 75)")
+    for k in sorted(_CAVITY_KEYS):
+        if k not in cv:
+            e.append("material.cavity.{0} is required".format(k))
+    if e:
+        return e
+    if not has_weightmap:
+        e.append("material.cavity requires material.weightmap: the map is "
+                 "sampled on the weightmap's UV chain")
+    m = cv["map"]
+    if not isinstance(m, str) or not m or os.path.isabs(m) or \
+            ".." in re.split(r"[\\/]+", m):
+        e.append("material.cavity.map must be a repo-relative path")
+    ls = cv["layers"]
+    if not (isinstance(ls, list) and ls
+            and all(isinstance(x, str) and x in layer_names for x in ls)):
+        e.append("material.cavity.layers must name material.layers, got "
+                 "{0!r}".format(ls))
+    s = cv["strength"]
+    if not _is_num(s) or not 0.0 < s <= 1.0:
+        e.append("material.cavity.strength must be in (0, 1]")
+    t = cv["tint"]
+    if not (isinstance(t, list) and len(t) == 3
+            and all(_is_num(c) and 0.0 <= c <= 1.0 for c in t)):
+        e.append("material.cavity.tint must be [r, g, b], each 0-1")
+    sc, dp = cv["scales_m"], cv["depths_m"]
+    if not (isinstance(sc, list) and isinstance(dp, list) and sc
+            and len(sc) == len(dp)
+            and all(_is_num(v) and 0.5 <= v <= 500.0 for v in sc)
+            and all(_is_num(v) and 0.01 <= v <= 500.0 for v in dp)):
+        e.append("material.cavity.scales_m / depths_m must be equal-length "
+                 "lists of metres (scales 0.5-500, depths 0.01-500)")
+    return e
 
 _DISPLACEMENT_KEYS = {"enabled", "center", "per_layer"}
 
@@ -2547,6 +2781,13 @@ def _validate_triplanar(tp, layer_names):
     against +12 for the full variant — and on an integrated GPU that has
     already been lost to a driver timeout, frame cost is a correctness
     concern.
+
+    SUPERSEDED IN PART 2026-10-03 (LESSONS 2026-10-03c): the macro sample
+    IS now projected as well. The premise above was wrong on the rig: a
+    top-down 140 m macro read as diagonal smears on every 30-50 deg face
+    (_verify/lookdev/hero_r7b_nomacro shows them gone without it). Cost
+    +2 side fetches per triplanar layer. Normal/roughness/displacement
+    unchanged.
     """
     e = []
     if tp is None:
@@ -2591,6 +2832,73 @@ def _validate_triplanar(tp, layer_names):
     return e
 
 _SUB_SURFACE_KEYS = {"surface", "height_contrast"}
+
+# schema v1.30. `tint` optional; the rest required.
+_NEAR_SURFACE_KEYS = {"surface", "tiling_m", "fade_m", "tint"}
+_NEAR_SURFACE_REQUIRED = ("surface", "tiling_m", "fade_m")
+
+
+def _validate_near_surface(layer, layer_name):
+    """schema v1.30 -- a layer's NEAR SURFACE (distance detail).
+
+    A second scan shown close to the camera and faded into the layer's
+    primary surface by PixelDepth over `fade_m` [start, end] metres. Every
+    refusal here is a silent failure in the shader otherwise:
+
+      * no primary `surface`  -> the near scan has nothing to fade into and
+                                 the builder plans no near rows: inert field.
+      * fade start >= end     -> the ramp degenerates to a step, a hard
+                                 visible ring around the camera.
+      * stochastic_tiling     -> the near samples would ride the primary's
+                                 per-cell shifted UVs at the wrong divisor.
+      * same surface as primary -> a fade between identical scans that
+                                 only changes tiling reads as a setting
+                                 and does almost nothing; use tiling_m.
+    """
+    ns = layer.get("near_surface")
+    if ns is None:
+        return []
+    tag = "material.layers[{0!r}].near_surface".format(layer_name)
+    if not isinstance(ns, dict):
+        return ["{0} must be an object".format(tag)]
+    e = []
+    for key in ns:
+        if key not in _NEAR_SURFACE_KEYS:
+            e.append("unknown key in {0}: {1}".format(tag, key))
+    for key in _NEAR_SURFACE_REQUIRED:
+        if key not in ns:
+            e.append("{0}.{1} is required".format(tag, key))
+    if e:
+        return e
+    if not layer.get("surface"):
+        e.append("{0} requires the layer to bind a primary `surface`; "
+                 "without one the near scan has nothing to fade into and "
+                 "the builder samples nothing (inert field)".format(tag))
+    if layer.get("stochastic_tiling"):
+        e.append("{0} and stochastic_tiling on one layer: the near samples "
+                 "would ride the primary's shifted UVs. Drop one".format(tag))
+    surf = ns["surface"]
+    if not isinstance(surf, str) or not surf:
+        e.append("{0}.surface must be a manifest surface id".format(tag))
+    elif surf == layer.get("surface"):
+        e.append("{0}.surface equals the primary surface; a fade between "
+                 "one scan at two tilings is not a near surface".format(tag))
+    tm = ns["tiling_m"]
+    if not _is_num(tm) or tm <= 0:
+        e.append("{0}.tiling_m must be a positive number".format(tag))
+    fd = ns["fade_m"]
+    if not _num_pair(fd):
+        e.append("{0}.fade_m must be [start, end] in metres".format(tag))
+    elif not (0.0 <= fd[0] < fd[1] <= 5000.0):
+        e.append("{0}.fade_m must satisfy 0 <= start < end <= 5000; a "
+                 "zero-width fade is a hard ring around the camera".format(
+                     tag))
+    if "tint" in ns:
+        t = ns["tint"]
+        if not (isinstance(t, list) and len(t) == 3
+                and all(_is_num(c) and 0.0 <= c <= 1.0 for c in t)):
+            e.append("{0}.tint must be [r, g, b], each 0-1".format(tag))
+    return e
 
 
 def _validate_sub_surface(ss, layer_name):
@@ -2726,6 +3034,27 @@ def _validate_material(mat):
         mat.get("displacement"),
         [l.get("name") for l in layers if isinstance(l, dict)]))
     e.extend(_validate_height_blend(mat.get("height_blend")))
+    # v1.35: material.rvt_output = repo-relative path to the RVT recipe (the ONE
+    # declaration of the RVT assets; research/rvt_lookdev_design.md change 4).
+    _rv = mat.get("rvt_output")
+    if _rv is not None:
+        if not (isinstance(_rv, str) and _rv.endswith(".json") and not os.path.isabs(_rv)
+                and ".." not in re.split(r"[\\/]+", _rv)):
+            e.append("material.rvt_output must be a repo-relative .json path to an rvt recipe")
+        else:
+            try:
+                import json as _js
+                _rr = _js.load(open(os.path.join(os.path.dirname(os.path.dirname(
+                    os.path.abspath(__file__))), _rv), encoding="utf-8"))
+                if _rr.get("schema_version") != "rvt-1.0":
+                    e.append("material.rvt_output points at a file that is not rvt-1.0")
+            except (OSError, ValueError) as _x:
+                e.append("material.rvt_output unreadable: {0}".format(_x))
+    e.extend(_validate_cavity(
+        mat.get("cavity"),
+        {l.get("name") for l in layers if isinstance(l, dict)},
+        bool(mat.get("weightmap"))))
+    e.extend(_validate_street_overlay(mat.get("street_overlay")))
     # CROSS-FIELD (schema v1.28, Brief 7 Phase 1 addendum). height_blend
     # reweights the STORED WEIGHTMAP channels, so it is meaningless without
     # a weightmap and would be a silent no-op (the builder consumes it only
@@ -2788,6 +3117,8 @@ def _validate_material(mat):
         e.extend(_validate_sub_surface(
             layer.get("sub_surface"),
             name if isinstance(name, str) and name else i))
+        e.extend(_validate_near_surface(
+            layer, name if isinstance(name, str) and name else i))
 
         for key, lo, hi in (("slope_deg", 0.0, 90.0),):
             rng = layer.get(key)
@@ -2834,6 +3165,21 @@ def _validate_material(mat):
         tm = layer.get("tiling_m")
         if not _is_num(tm) or tm <= 0:
             e.append("{0}.tiling_m must be a positive number".format(tag))
+
+        # schema v1.34: macro normal strength; needs a macro scale and a
+        # surface (its normal map is what gets resampled) or it is inert.
+        mns = layer.get("macro_normal_strength")
+        if mns is not None:
+            if not _is_num(mns) or not 0.0 <= mns <= 1.0:
+                e.append("{0}.macro_normal_strength must be in [0, 1]".format(tag))
+            elif mns > 0.0 and not (layer.get("macro_tiling_m") and layer.get("surface")):
+                e.append("{0}.macro_normal_strength needs macro_tiling_m and a "
+                         "surface (inert otherwise)".format(tag))
+            elif mns > 0.0 and layer.get("stochastic_tiling"):
+                e.append("{0}.macro_normal_strength and stochastic_tiling on one "
+                         "layer: under stochastic tiling the sampler ignores the "
+                         "macro divisor, so the 'macro' normal is the detail one "
+                         "at detail scale (audit 2026-10-03). Drop one".format(tag))
 
         # schema v1.2. Optional; only meaningful alongside `texture`.
         # Validated even though unknown layer keys are not rejected,
@@ -2982,6 +3328,40 @@ def _validate_lighting(lt):
                 elif not (lo <= v <= hi):
                     e.append("lighting.clouds.{0} must lie within "
                              "[{1}, {2}], got {3}".format(key, lo, hi, v))
+            # v1.30: wind_param and wind travel together or not at all --
+            # one without the other is an inert field.
+            if ("wind_param" in cl) != ("wind" in cl):
+                e.append("lighting.clouds.wind_param and lighting.clouds.wind "
+                         "must be set together")
+            elif "wind_param" in cl:
+                if not isinstance(cl["wind_param"], str) or not cl["wind_param"]:
+                    e.append("lighting.clouds.wind_param must be a non-empty "
+                             "string")
+                w = cl["wind"]
+                if not (isinstance(w, list) and len(w) == 4
+                        and all(_is_num(x) and -100.0 <= x <= 100.0
+                                for x in w)):
+                    e.append("lighting.clouds.wind must be [x, y, z, scale], "
+                             "each a number in [-100, 100] (scale 0 freezes "
+                             "the clouds)")
+    # v1.32: optional lighting.grade.shadows {saturation, gain[3]}, applied
+    # by apply_lighting as xyz*w products and read back (2026-10-03).
+    _gr = lt.get("grade")
+    _sh = _gr.get("shadows") if isinstance(_gr, dict) else None
+    if _sh is not None:
+        if not isinstance(_sh, dict) or {k for k in _sh
+                                          if not k.startswith("_")} \
+                != {"saturation", "gain"}:
+            e.append("lighting.grade.shadows must be {saturation, gain}")
+        else:
+            if not _is_num(_sh["saturation"]) or \
+                    not 0.0 <= _sh["saturation"] <= 2.0:
+                e.append("lighting.grade.shadows.saturation must be in [0, 2]")
+            g = _sh["gain"]
+            if not (isinstance(g, list) and len(g) == 3
+                    and all(_is_num(v) and 0.0 <= v <= 2.0 for v in g)):
+                e.append("lighting.grade.shadows.gain must be [r, g, b], "
+                         "each in [0, 2]")
     return e
 
 

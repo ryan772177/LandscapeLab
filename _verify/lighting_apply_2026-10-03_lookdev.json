@@ -1,0 +1,219 @@
+{
+ "ok": true,
+ "actors": {
+  "sun": "reused",
+  "sky_atmosphere": "reused",
+  "skylight": "reused",
+  "fog": "reused",
+  "clouds": "reused",
+  "post_process": "reused"
+ },
+ "pin_readbacks": {
+  "Lighting_lookdev_Sun": false,
+  "Lighting_lookdev_SkyAtmo": false,
+  "Lighting_lookdev_SkyLight": false,
+  "Lighting_lookdev_Fog": false,
+  "Lighting_lookdev_Clouds": false,
+  "Lighting_lookdev_PostProcess": false
+ },
+ "sun_intensity_readback": 130000.0,
+ "sun_use_temperature_readback": true,
+ "sun_temperature_readback": 5200.0,
+ "sun_rotation_readback": [
+  -0.0,
+  -28.0,
+  -105.0
+ ],
+ "sun_rotation_expected": [
+  0.0,
+  -28.0,
+  255.0
+ ],
+ "sun_rotation_matches": true,
+ "sun_light_shaft_bloom_readback": true,
+ "sun_atmosphere_sun_light_readback": true,
+ "sun_cast_shadows_readback": true,
+ "atmo_mie_scattering_scale": 0.009999999776482582,
+ "atmo_mie_anisotropy": 0.800000011920929,
+ "atmo_rayleigh_scattering_scale": 0.03310000151395798,
+ "sky_intensity": 2.125,
+ "sky_real_time_capture": true,
+ "sky_lower_hemisphere_is_black": true,
+ "sky_lower_hemisphere_color": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "sky_color_requested_linear": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "sky_color_readback_fcolor": [
+  255,
+  255,
+  255,
+  255
+ ],
+ "sky_color_readback_linear": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "sky_color_roundtrip_abs_error": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "sky_color_quantisation_floor_linear": 0.0089,
+ "fog_datum_cm": 18674.0,
+ "fog_density_readback": 0.0041600000113248825,
+ "fog_half_height_m": 517.49,
+ "fog_height_falloff": 0.01932404490908037,
+ "fog_volumetric_enabled_readback": true,
+ "fog_volumetric_extinction_scale": 1.0,
+ "fog_volumetric_scattering_distribution": 0.4000000059604645,
+ "fog_inscattering_luminance": [
+  0.0,
+  0.0,
+  0.0,
+  1.0
+ ],
+ "fog_directional_inscattering_luminance": [
+  0.0,
+  0.0,
+  0.0,
+  1.0
+ ],
+ "fog_sky_atmosphere_ambient_scale": [
+  1.0,
+  1.0,
+  1.0,
+  1.0
+ ],
+ "fog_start_distance_cm": 0.0,
+ "fog_implied_half_height_m": 517.49,
+ "clouds_readback": {
+  "layer_bottom_km": 2.0,
+  "layer_height_km": 1.5,
+  "material": "/Game/Bench/MI_AlpineClouds.MI_AlpineClouds",
+  "coverage": 0.11999999731779099,
+  "wind": [
+   1.0,
+   1.0,
+   0.5,
+   0.0
+  ],
+  "cvar_r_VolumetricCloud": 1.0
+ },
+ "ppv_unbound_readback": true,
+ "grade_readback": {
+  "white_temp": 5200.0,
+  "temperature_type": "<TemperatureMethod.TEMP_WHITE_BALANCE: 0>",
+  "white_tint": -0.024800000712275505,
+  "color_contrast": [
+   1.0,
+   1.0,
+   1.0,
+   0.95
+  ],
+  "color_contrast_effective_xyz_times_w": [
+   0.95,
+   0.95,
+   0.95
+  ],
+  "bloom_method": "<BloomMethod.BM_FFT: 1>",
+  "bloom_intensity": 0.4000000059604645,
+  "film_grain_intensity": 0.0,
+  "vignette_intensity": 0.0,
+  "scene_fringe_intensity": 0.0,
+  "shadow_saturation_effective": [
+   1.15,
+   1.15,
+   1.15
+  ],
+  "shadow_gain_effective": [
+   0.94,
+   0.97,
+   1.03
+  ],
+  "shadow_overrides": [
+   false,
+   false
+  ]
+ },
+ "exposure_readback": {
+  "auto_exposure_method": "<AutoExposureMethod.AEM_MANUAL: 2>",
+  "auto_exposure_bias": -13.907099723815918,
+  "auto_exposure_min_brightness": 1.0,
+  "auto_exposure_max_brightness": 1.0,
+  "auto_exposure_apply_physical_camera_exposure": false,
+  "override_auto_exposure_apply_physical_camera_exposure": true
+ },
+ "census": {
+  "DirectionalLight": {
+   "ours": [
+    [
+     "Lighting_lookdev_Sun",
+     "/Game/LookDevMtn.LookDevMtn:PersistentLevel.DirectionalLight_UAID_183D2D961742BE0603_1678037609"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "ExponentialHeightFog": {
+   "ours": [
+    [
+     "Lighting_lookdev_Fog",
+     "/Game/LookDevMtn.LookDevMtn:PersistentLevel.ExponentialHeightFog_UAID_183D2D961742BE0603_1678064612"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "SkyAtmosphere": {
+   "ours": [
+    [
+     "Lighting_lookdev_SkyAtmo",
+     "/Game/LookDevMtn.LookDevMtn:PersistentLevel.SkyAtmosphere_UAID_183D2D961742BE0603_1678051610"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "SkyLight": {
+   "ours": [
+    [
+     "Lighting_lookdev_SkyLight",
+     "/Game/LookDevMtn.LookDevMtn:PersistentLevel.SkyLight_UAID_183D2D961742BE0603_1678057611"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  },
+  "VolumetricCloud": {
+   "ours": [
+    [
+     "Lighting_lookdev_Clouds",
+     "/Game/LookDevMtn.LookDevMtn:PersistentLevel.VolumetricCloud_UAID_183D2D961742BE0603_1678071613"
+    ]
+   ],
+   "foreign": [],
+   "inert": []
+  }
+ },
+ "save": {
+  "marked": 6,
+  "packages": [
+   "/Game/__ExternalActors__/LookDevMtn/A/N1/RTPFH8HUSRYWHKX3GVXG5M",
+   "/Game/__ExternalActors__/LookDevMtn/5/R1/M4OMWB6T1YX2IRLXM942Z7",
+   "/Game/__ExternalActors__/LookDevMtn/9/23/WZ9S90B6U3MCZ23MFOYTTV",
+   "/Game/__ExternalActors__/LookDevMtn/E/WK/QCOL6PC3QKWTC6OMMB7AL8",
+   "/Game/__ExternalActors__/LookDevMtn/B/RO/RMR7FPV2AN176OJERGE6ZL",
+   "/Game/__ExternalActors__/LookDevMtn/E/7V/JMY012Z1F4FQTN2S4ZFRU4",
+   "/Game/Bench/MI_AlpineClouds"
+  ],
+  "saved": true,
+  "still_dirty_ours": []
+ }
+}

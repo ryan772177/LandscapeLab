@@ -1,0 +1,261 @@
+{
+  "run_dir": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\hlod\\parents_refresh_20261002",
+  "manifest": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\hlod\\parents_refresh_20261002\\HLODBuildManifest_landscape.ini",
+  "batches": 64,
+  "per_batch": 4,
+  "engine_version": "5.8.1-56057345+++UE5+Release-5.8",
+  "guids_total": 256,
+  "section_sizes": {
+    "HLODBuilder0": 4,
+    "HLODBuilder1": 4,
+    "HLODBuilder10": 4,
+    "HLODBuilder11": 4,
+    "HLODBuilder12": 4,
+    "HLODBuilder13": 4,
+    "HLODBuilder14": 4,
+    "HLODBuilder15": 4,
+    "HLODBuilder16": 4,
+    "HLODBuilder17": 4,
+    "HLODBuilder18": 4,
+    "HLODBuilder19": 4,
+    "HLODBuilder2": 4,
+    "HLODBuilder20": 4,
+    "HLODBuilder21": 4,
+    "HLODBuilder22": 4,
+    "HLODBuilder23": 4,
+    "HLODBuilder24": 4,
+    "HLODBuilder25": 4,
+    "HLODBuilder26": 4,
+    "HLODBuilder27": 4,
+    "HLODBuilder28": 4,
+    "HLODBuilder29": 4,
+    "HLODBuilder3": 4,
+    "HLODBuilder30": 4,
+    "HLODBuilder31": 4,
+    "HLODBuilder32": 4,
+    "HLODBuilder33": 4,
+    "HLODBuilder34": 4,
+    "HLODBuilder35": 4,
+    "HLODBuilder36": 4,
+    "HLODBuilder37": 4,
+    "HLODBuilder38": 4,
+    "HLODBuilder39": 4,
+    "HLODBuilder4": 4,
+    "HLODBuilder40": 4,
+    "HLODBuilder41": 4,
+    "HLODBuilder42": 4,
+    "HLODBuilder43": 4,
+    "HLODBuilder44": 4,
+    "HLODBuilder45": 4,
+    "HLODBuilder46": 4,
+    "HLODBuilder47": 4,
+    "HLODBuilder48": 4,
+    "HLODBuilder49": 4,
+    "HLODBuilder5": 4,
+    "HLODBuilder50": 4,
+    "HLODBuilder51": 4,
+    "HLODBuilder52": 4,
+    "HLODBuilder53": 4,
+    "HLODBuilder54": 4,
+    "HLODBuilder55": 4,
+    "HLODBuilder56": 4,
+    "HLODBuilder57": 4,
+    "HLODBuilder58": 4,
+    "HLODBuilder59": 4,
+    "HLODBuilder6": 4,
+    "HLODBuilder60": 4,
+    "HLODBuilder61": 4,
+    "HLODBuilder62": 4,
+    "HLODBuilder63": 4,
+    "HLODBuilder7": 4,
+    "HLODBuilder8": 4,
+    "HLODBuilder9": 4
+  },
+  "cells_total": 256,
+  "cells_stale_at_plan": 256,
+  "built_before": "2026-10-02 03:10:00",
+  "parents": true,
+  "free_disk_at_plan": 79807758336,
+  "records": [
+    {
+      "batch": 0,
+      "attempt": 1,
+      "extra_args": [
+        "-BuildHLODLayer=Alpine8K_HLODLayer_Merged"
+      ],
+      "log": "_verify/hlod/parents_refresh_20261002/batch_00.log",
+      "returncode": 1,
+      "minutes": 10.09,
+      "true_exit": true,
+      "leftover_processes": [],
+      "cells_seen": 4,
+      "cells_in_batch": 4,
+      "approve_rebuild": 4,
+      "reject_rebuild": 0,
+      "built_reported": 4,
+      "last_cell": "Alpine8K_HLODLayer_Merged/Alpine8K_HLODLayer_Instanced_L1_X-1_Y-4",
+      "attribution": {
+        "log": "batch_00.log",
+        "by_layer": {
+          "Alpine8K_HLODLayer_Merged": {
+            "layer": "Alpine8K_HLODLayer_Merged",
+            "ApproveRebuild": 4,
+            "RejectRebuild": 0,
+            "other": 0,
+            "source_layers": {
+              "Alpine8K_HLODLayer_Instanced": 4
+            },
+            "total": 4
+          }
+        },
+        "cells": [
+          {
+            "i": 1,
+            "n": 4,
+            "layer": "Alpine8K_HLODLayer_Merged",
+            "cell": "Alpine8K_HLODLayer_Instanced_L1_X-1_Y-1",
+            "decision": "ApproveRebuild"
+          },
+          {
+            "i": 2,
+            "n": 4,
+            "layer": "Alpine8K_HLODLayer_Merged",
+            "cell": "Alpine8K_HLODLayer_Instanced_L1_X-1_Y-2",
+            "decision": "ApproveRebuild"
+          },
+          {
+            "i": 3,
+            "n": 4,
+            "layer": "Alpine8K_HLODLayer_Merged",
+            "cell": "Alpine8K_HLODLayer_Instanced_L1_X-1_Y-3",
+            "decision": "ApproveRebuild"
+          },
+          {
+            "i": 4,
+            "n": 4,
+            "layer": "Alpine8K_HLODLayer_Merged",
+            "cell": "Alpine8K_HLODLayer_Instanced_L1_X-1_Y-4",
+            "decision": "ApproveRebuild"
+          }
+        ],
+        "n_building_lines": 4,
+        "n_decisions": 4,
+        "decisions_without_a_cell": 0,
+        "cells_without_a_decision": 0,
+        "_pairing": "each decision is attributed to the most recent preceding `Building HLOD actor` line; the FOLDER is the layer, the cell name is the source",
+        "approved": 4,
+        "rejected": 0,
+        "trustworthy": true
+      },
+      "packages_written": 4,
+      "torn_packages": [],
+      "last_write_to_exit_seconds": 10.91,
+      "vram_peak_mb": 2952,
+      "vram_at_fault_mb": null,
+      "log_errors": 2,
+      "log_warnings": 6,
+      "errors_over_baseline": 0,
+      "completed": true,
+      "fatal": [],
+      "over_5mb_before": 256,
+      "over_5mb_after": 256,
+      "over_5mb_delta": 0,
+      "census_after": {
+        "packages_listed": 2107,
+        "packages_present": 2107,
+        "packages_missing": 0,
+        "missing_sample": [],
+        "over_5mb": 256,
+        "under_3mb": 1841,
+        "shorter_than_1kb": 0,
+        "total_bytes": 16095049814,
+        "total_gb": 16.095
+      },
+      "stride_after": [
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/0/0I/MX2OXG3AWJUXBENVOOJH5M.uasset",
+          "bytes": 271899,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/1/CR/OKF9QK7BK1F4L9EKO3ITAP.uasset",
+          "bytes": 55492423,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/2/N6/DR4J1TVVNUYPLP6LF9EPAA.uasset",
+          "bytes": 932229,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/3/UG/Q1DVCP3MVL6PVK9DF28SWU.uasset",
+          "bytes": 2320918,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/5/34/AN8AUDBTL4W9LTZS3RD9K4.uasset",
+          "bytes": 50146284,
+          "band": "STALE>5MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/6/8G/KF5M9NO3DPHVXEG6KVDYJG.uasset",
+          "bytes": 265202,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/7/BZ/5Y607MWLTYY93UV4MLXG90.uasset",
+          "bytes": 1870851,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/8/NY/Z15100A49UZNXK078TSCQ4.uasset",
+          "bytes": 19755,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/9/X5/X0Y8O50HD5MSKJR7Z61QK9.uasset",
+          "bytes": 967144,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/B/24/0T2Q4JZLU8X8LZWNWD1DOZ.uasset",
+          "bytes": 262880,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/C/H8/A0SDRE05H41BU1Q759ZBB0.uasset",
+          "bytes": 249680,
+          "band": "rebuilt<3MB"
+        },
+        {
+          "package": "LandscapeLab/Content/__ExternalActors__/Alpine8K/D/TR/9VVCHQ93BS1LSA4ACBD1O1.uasset",
+          "bytes": 73805,
+          "band": "rebuilt<3MB"
+        }
+      ],
+      "layers_before": {
+        "Instancing(0)": 1070,
+        "MeshApproximate(3)": 1037
+      },
+      "layers_after": {
+        "Instancing(0)": 1070,
+        "MeshApproximate(3)": 1037
+      },
+      "stale_before": 0,
+      "stale_after": 0,
+      "stale_delta": 0,
+      "current_after": 1037,
+      "cap_at_target_before": 0,
+      "cap_at_target_after": 4,
+      "cap_delta": 4,
+      "bytes_total_after": 474975881,
+      "free_disk_after": 76921188352
+    }
+  ],
+  "final": {
+    "landscape_cells": 256,
+    "at_target_cap": 4,
+    "stale": 252,
+    "bytes_total": 474975881
+  }
+}

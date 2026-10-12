@@ -213,7 +213,7 @@ STALE_LAYER = "MeshMerge(1)"
 CURRENT_LAYER = "MeshApproximate(3)"
 
 PACKAGE_LIST = os.path.join(REPO_ROOT, "_verify", "hlod", "hlod_packages.txt")
-EXPECTED_PACKAGES = 2107   # 2026-09-28: -SetupHLODs after the P3a regen destroyed 886 unreferenced HLOD actors and created new ones; hlod_gitignore.py --apply listed 2,107 by signature (was 2267)
+EXPECTED_PACKAGES = 2100   # 2026-10-10b: -SetupHLODs after the 371 street slabs were deleted (cobble streets); hlod_gitignore listed 2,100 (was 2102). 2026-10-10: -SetupHLODs after the ORGANIC town (349 houses + 371 streets in, 385 + 838 out); hlod_gitignore.py --apply listed 2,102 by signature (was 2115). PREVIOUS 2026-10-08: -SetupHLODs after the kit town (385 houses in, 606 primitives out); hlod_gitignore.py --apply listed 2,115 by signature (was 2107). PREVIOUS 2026-09-28: -SetupHLODs after the P3a regen destroyed 886 unreferenced HLOD actors and created new ones; hlod_gitignore.py --apply listed 2,107 by signature (was 2267)
 
 # The mixed-world bands, from CURRENT STATE / LESSONS 2026-09-08i. A cell over
 # this is old MeshMerge output (~329k triangles); the rebuilt cells land near
@@ -644,11 +644,17 @@ def write_state(run_dir, state):
 # the batch loop
 # --------------------------------------------------------------------------
 
-def run_batch(state, run_dir, idx, attempt, force=True):
-    """One fresh commandlet for one manifest section. Returns a record."""
+def run_batch(state, run_dir, idx, attempt, force=True, extra_args=None):
+    """One fresh commandlet for one manifest section. Returns a record.
+
+    `extra_args` (2026-10-01): appended verbatim, recorded in the record.
+    Used by hlod_build_landscape_cells --parents for `-BuildHLODLayer=`,
+    which disables the child-before-parent workload check
+    (WorldPartitionHLODsBuilder.cpp:1378-1381) so a batch may hold parents
+    whose children were built in an earlier run."""
     tag = "batch_%02d" % idx if attempt == 1 else "batch_%02d_retry" % idx
     log_path = os.path.join(run_dir, "%s.log" % tag)
-    cmd = base_args(log_path) + ["-BuildHLODs"]
+    cmd = base_args(log_path) + ["-BuildHLODs"] + list(extra_args or [])
     if force:
         # NOT optional here -- the hash skip rejects cells that are stale by
         # the very setting that changed. Measured, batch 0, 2026-09-09.
@@ -719,6 +725,7 @@ def run_batch(state, run_dir, idx, attempt, force=True):
     rec = {
         "batch": idx,
         "attempt": attempt,
+        "extra_args": list(extra_args or []),
         "log": os.path.relpath(log_path, REPO_ROOT).replace(os.sep, "/"),
         "returncode": rc,
         "minutes": round(minutes, 2),

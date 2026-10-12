@@ -1029,7 +1029,8 @@
     ],
     "basis": "Tile (6, 1) of the 1040 m navmesh grid anchored on NavBounds_Town, derived by scripts/plan_navmesh_tiles from one declaration rather than hand-authored. Walkable fraction 88.8% at the 44.765 deg walk bar. Z from the HEIGHTMAP, not from collision traces: those two agree on this landscape at p50 0.011 / p90 0.039 / max 0.168 m over 500 random points (check_collision_truth), which cannot matter against margins of 11 m below and 20 m above. Bounds are multiples of TileSizeUU 1600 so chunk actors do not straddle tiles."
    }
-  ]
+  ],
+  "is_world_partitioned": true
  },
  "engine": {
   "target_version": "5.8",
@@ -1041,7 +1042,25 @@
   "resolution": 8129,
   "section_size": 127,
   "sections_per_component": 2,
-  "component_count": 32
+  "component_count": 32,
+  "street_flatten": {
+   "pre_source": "terrain/alpine_8k_prestreets.png",
+   "pre_source_sha256": "13789791538d20a6ab061ef4ea87d2c82b74d207dd892f890eadb6e986724e84",
+   "sigma_m": 4.0,
+   "shoulder_m": 3.0,
+   "bank_max_deg": 30.0,
+   "guard_m": 0.5,
+   "house_fade_m": 1.0,
+   "door_apron_m": 3.0,
+   "max_abs_delta_m": 4.0,
+   "doorstep_max_m": 0.3,
+   "house_edge_step_max_m": 0.5,
+   "changed_threshold_cm": 2.0,
+   "crop_margin_m": 20.0,
+   "_what": "2026-10-10 street flattening (research/town_kit/FLATTEN_DESIGN.md, design review GO-WITH-CHANGES): scripts/flatten_streets.py reads pre_source (the pre-streets heights, sha-pinned) and writes heightmap.source with the town's streets smoothed at sigma_m (natural cross-slope kept), plaza/squares a least-squares plane (natural tilt, no cap: review Q4), shoulders max(shoulder_m, 1.5 x delta / tan(bank_max_deg)), houses untouched inside footprint + guard_m and faded over house_fade_m, doors under a door_apron_m apron. The TOWN tools (plan_city, town_kit_manifest, check_organic_plan) read pre_source; every other heightmap reader reads the live flattened source. Prototype choice: _verify/streets_flatten/prototype_s4_sh3_smooth_ap3.json (0 doorsteps > 0.3 m; chord deviation p90 0.83 -> 0.29 m).",
+   "_max_abs_delta_m": "review change 7: just above the measured max so the gate does not refuse its own design. 2026-10-10 first real run: max 3.594 m = removal of a single-vertex STAMP SPIKE on a main street (LESSONS 2026-10-10hh; alpine_8k_stamped.png carries 854 > 2 m in the town box), so 3.5 -> 4.0. Doorstep/house-edge/bank gates measure WORSENING, not raw delta.",
+   "_house_fade_m": "review change 5: the prototype's hard house guard left a 1.8 m scarp one vertex outside a non-door wall; the fade spreads it, and gate 5b bounds what is left (house_edge_step_max_m)."
+  }
  },
  "stamps": {
   "base": "terrain/alpine_8k_base.png",
@@ -1257,6 +1276,30 @@
  },
  "material": {
   "parent_material": "/Game/Materials/M_Alpine8K",
+  "street_overlay": {
+   "mask": "textures/alpine_8k_street_mask.png",
+   "mask_px": 4096,
+   "box_m": 1024.0,
+   "feather_m": 0.35,
+   "house_margin_m": 0.5,
+   "grass_margin_m": 0.75,
+   "boulder_margin_m": 12.25,
+   "_boulder_margin_m": "2026-10-10b (LESSONS 2026-10-10ff, STREETS_DESIGN.md addendum, design review GO-WITH-CHANGES): mask B = the G shapes grown by this instead of grass_margin_m, for grass species with street_keep_channel B (MeadowBoulders). Floor = measured reach 9.70 m (Free/_measured/meadow_boulder_reach.json: pivot-to-bounds-corner + tilt at 35 deg JUDGED, x max scale 4.0) + spawn slack sqrt(2) m grass-cell diagonal + 0.5 m mip allowance (UNVERIFIED ceiling) + 0.25 m mask texel + feather_m/2 = 12.04 m; build_street_mask.py refuses below it. 12.25 = the floor rounded up to the next 25 cm texel.",
+   "border_px": 2,
+   "exclude_grass_in_houses": true,
+   "_exclude_grass_in_houses": "AN ADDITION to Ryan's 'do the streets with cobblestone' (design review change 7, declared here rather than slipped in): G also covers every kit-house footprint + house_margin_m, so meadow grass and MeadowBoulders stop growing up through house floors. false = streets/plaza/squares only.",
+   "albedo": "/Game/Megascans/Surfaces/Cobblestone/T_Cobblestone_A",
+   "normal": "/Game/Megascans/Surfaces/Cobblestone/T_Cobblestone_N",
+   "tile_m": 2.0,
+   "_tile_size_UNSTATED": "R-TILE: the Megascans cobblestone scan's physical size is not published in the pack (registry analyst 2026-10-10: no physical-size field in the package tags), so 2.0 m is a judged starting value, to be checked by still against the kit doors (2.0 m courses). Texel budget: max_texture_px 2048 over 2.0 m = 1024 texels/m >= the 814.9 texels/m the material's _tiling_derivation requires.",
+   "tint": [1.0, 1.0, 1.0],
+   "roughness": 0.75,
+   "roughness_variation": 0.3,
+   "_roughness": "T_Cobblestone_R is NOT used (design review change 8): its channel packing is unmeasured (vendor 'MRF') and it is stored sRGB, so sampling it as roughness would gamma-decode linear data. Roughness = saturate(roughness + roughness_variation * (0.5 - luminance(albedo))): dark stone gaps rougher.",
+   "max_texture_px": 2048,
+   "flatten_displacement": true,
+   "_what": "2026-10-10 cobblestone streets (research/town_kit/STREETS_DESIGN.md, design review GO-WITH-CHANGES). The town's streets, plaza and squares are PART OF THE LANDSCAPE SURFACE: scripts/build_street_mask.py rasterises the city plan into a mask (R = cobble, G = grass exclusion) over a box_m square around the town at mask_px; the material lerps its final colour/roughness/normal to world-aligned cobble by R and multiplies every landscape-grass input by (1 - G). Absent block = the material is unchanged."
+  },
   "height_jitter_m": 45.0,
   "height_jitter_scale_m": 700.0,
   "layers": [
@@ -1288,9 +1331,9 @@
    {
     "name": "Rock",
     "base_color": [
-     1.0,
-     1.0,
-     1.0
+     0.4,
+     0.375,
+     0.34
     ],
     "roughness": 0.85,
     "slope_deg": [
@@ -1303,20 +1346,36 @@
     ],
     "blend_sharpness": 0.7,
     "texture": "textures/alpine_rock.png",
-    "tiling_m": 1.8,
+    "tiling_m": 22.0,
     "_tiling_m_from_the_scan": "RULED 2026-09-12b: tile this layer FROM 1.8 m. gray_rocks declares stated_size_m [1.8, 1.8] in its own vendor sidecar, so 1.8 shows the scan at ITS TRUE SIZE. The texel-budget figure below (5.03 m) is a CEILING, not a target: it is the largest tile that still resolves ~1 texel per render pixel at 3 m. Tiling at 5.03 would have STRETCHED a 1.8 m scan by 2.79x -- the stretch factor ASSETS.md row 167 records -- and rocks at 2.8x life size read as a texture rather than as ground. Tiling tighter costs nothing in sharpness: 4096/1.8 = 2276 texels/m, far above the 814.9 needed.",
-    "macro_tiling_m": 188.0,
+    "macro_tiling_m": 140.0,
     "_tiling_derivation": "BRIEF 3 TASK 3, 2026-09-11. tiling_m is DERIVED, not chosen: the texel budget at hfov 90, 3840x2160, near 3 m gives 814.9 texels/m needed, so a 4096 albedo spans 4096/814.9 = 5.03 m at ~1 texel per render pixel. Every surface bound to a layer here is 4096 square (vendor manifest), so 5.03 applies to all three. macro_tiling_m 188.0 = 37.4x the tile, inside the ruled 20-50x band. PREVIOUS: Snow/Rock 4.0 -- that implies 1024 texels/m at 3 m, 26% short of what the camera resolves; Grass 2.1 with macro 98.7 (47x).",
-    "surface": "gray_rocks",
+    "surface": "Rock026",
     "_surface_bind": "RULED 2026-09-12b, APPLIED 2026-09-13. gray_rocks (Poly Haven, CC0, R-FETCH, author Dimitrios Savva), 4K, 16-bit Displacement, all five maps present, NormalDX. REPLACES Rock051, which had NO RECORDED SOURCE AND NO LICENCE (ASSETS.md row 37: UNRECORDED / UNRECORDED) and therefore could never ship. THE SWAP IS EVIDENCED, NOT ASSERTED: measured linear albedo gray_rocks 0.1795 against Rock051 0.1805 -- 0.6% apart -- so the layer's tonal contribution is preserved and the only thing that changes is that the asset now has a provenance. See ASSETS.md rows 37 and 167.",
-    "_sub_surface_removed": "schema v1.26 (2026-09-12). REMOVED: {surface: Rock026, height_contrast: 0.35}, which was the SCREE/TALUS sub-surface selected by the variant map's G channel (make_variant_map.py:16). Scree is now a real LAYER with its own derived weight (weightmap channel B) and its own scan (rocks_ground_04). Keeping both would be TWO DERIVATIONS OF ONE PHYSICAL FACT -- derive_layer_weights' slope-plus-uphill-source mask and rock_scatter.talus_deposit -- which is NN19, and they cannot be reconciled by inspection because both are plausible. The weightmap's scree wins: R-LAYERS is locked on three independent strands and the eight weights sum to 1 by construction. The sub-surface mechanism was the documented workaround for 'the weightmap carries THREE'; that budget no longer binds."
+    "_sub_surface_removed": "schema v1.26 (2026-09-12). REMOVED: {surface: Rock026, height_contrast: 0.35}, which was the SCREE/TALUS sub-surface selected by the variant map's G channel (make_variant_map.py:16). Scree is now a real LAYER with its own derived weight (weightmap channel B) and its own scan (rocks_ground_04). Keeping both would be TWO DERIVATIONS OF ONE PHYSICAL FACT -- derive_layer_weights' slope-plus-uphill-source mask and rock_scatter.talus_deposit -- which is NN19, and they cannot be reconciled by inspection because both are plausible. The weightmap's scree wins: R-LAYERS is locked on three independent strands and the eight weights sum to 1 by construction. The sub-surface mechanism was the documented workaround for 'the weightmap carries THREE'; that budget no longer binds.",
+    "_look_2026_09_30": "Rebound gray_rocks -> Rock026 and tinted on the look rig (R-LOOKDEV iter12, LESSONS 2026-09-30h): a boulder-field scan reads bland on a mountain face at any tiling; the cliff scan untinted reads white. tiling/macro judged at 1 km on the rig.",
+    "near_surface": {
+     "surface": "gray_rocks",
+     "tiling_m": 9.0,
+     "tint": [
+      0.8,
+      0.8,
+      0.8
+     ],
+     "fade_m": [
+      3.0,
+      15.0
+     ]
+    },
+    "macro_normal_strength": 1.0,
+    "_carry_2026_10_04": "Rig rounds 6-27 + RVT carried by scripts/carry_rig_to_world.py (Ryan: 'carry into alpine8k'). NOT carried: sun azimuth (rig hero camera), ForestFloor tint (world-tuned), heightmap/weightmap edits (cliff relief, terrace, scree shaping), rig map paths."
    },
    {
     "name": "Scree",
     "base_color": [
-     1.0,
-     1.0,
-     1.0
+     0.38,
+     0.36,
+     0.34
     ],
     "roughness": 0.85,
     "slope_deg": [
@@ -1328,7 +1387,7 @@
      2560.0
     ],
     "blend_sharpness": 0.7,
-    "tiling_m": 2.0,
+    "tiling_m": 4.0,
     "_tiling_m_from_the_scan": "R-TILE, RULED 2026-09-13. 5.03 -> 2.00 m, the scan's own surface_tile_m from the vendor manifest. 5.03 is the TEXEL-BUDGET CEILING -- the largest tile that still resolves about one texel per render pixel at 3 m -- not a target, and tiling there stretched this 2.00 m scan by 2.52x. Tighter tiling costs no sharpness: 4096/2.00 = 2048 texels/m against the 814.9 required.",
     "surface": "rocks_ground_04",
     "_no_macro_tiling": "macro_tiling_m is ABSENT deliberately: it scales the legacy per-layer `texture` (schema v1.2) and this layer has none -- it is bound by `surface` alone. The validator REFUSES macro_tiling_m without texture, correctly: a scale factor with nothing to scale is an inert field that reads like a setting.",
@@ -1338,9 +1397,9 @@
    {
     "name": "ForestFloor",
     "base_color": [
-     1.0,
-     1.0,
-     1.0
+     0.42,
+     0.4,
+     0.38
     ],
     "roughness": 0.75,
     "slope_deg": [
@@ -1357,7 +1416,8 @@
     "surface": "forest_floor",
     "_no_macro_tiling": "macro_tiling_m is ABSENT deliberately: it scales the legacy per-layer `texture` (schema v1.2) and this layer has none -- it is bound by `surface` alone.",
     "_band_note": "The band is a FALLBACK ONLY and is a poor proxy by construction: forest_floor is driven by CANOPY COVER from the placed foliage, not by slope or altitude. The baked A channel carries the real mask (each instance splatted as its crown disk, blurred by crown radius, smoothstepped over the 0.15-0.45 cover band). Slope 0-29 and height 0-730 merely bound where trees can stand.",
-    "_surface_bind": "BRIEF 3 TASK 3, 2026-09-12. forest_floor (Poly Haven, CC0, R-FETCH). PROMOTED FROM A TINT: until now forest_floor was a colour tint applied to the Grass layer (material.forest_floor, schema v1.25) because no litter surface had ever passed the intake gate. It is now a real layer with its own surface, and the tint block is REMOVED rather than kept alongside -- a tint and a layer driven by the SAME alpha channel would double-count the canopy. Linear albedo 0.2760; stated 2.14 m vs the 5.03 m tile = STRETCH 2.35x."
+    "_surface_bind": "BRIEF 3 TASK 3, 2026-09-12. forest_floor (Poly Haven, CC0, R-FETCH). PROMOTED FROM A TINT: until now forest_floor was a colour tint applied to the Grass layer (material.forest_floor, schema v1.25) because no litter surface had ever passed the intake gate. It is now a real layer with its own surface, and the tint block is REMOVED rather than kept alongside -- a tint and a layer driven by the SAME alpha channel would double-count the canopy. Linear albedo 0.2760; stated 2.14 m vs the 5.03 m tile = STRETCH 2.35x.",
+    "_look_2026_09_30": "Measured base colour 0.303 linear at the forest_floor station (buffer overview) after the 16-bit sRGB fix: the scan is bright orange duff and reads as pale sand in sun. Tinted toward 0.12-0.13, the range of a shaded conifer floor."
    },
    {
     "name": "Grass",
@@ -1393,8 +1453,8 @@
     "Rock"
    ],
    "slope_deg": [
-    45.0,
-    50.0
+    28.0,
+    36.0
    ],
    "sharpness": 2.0
   },
@@ -1406,14 +1466,14 @@
     2700.0
    ],
    "strength": 0.1,
-   "chroma_ratio": 0.3
+   "chroma_ratio": 0.0
   },
   "displacement": {
    "enabled": true,
    "center": 0.5,
    "per_layer": {
     "Snow": 0.02,
-    "Rock": 0.2,
+    "Rock": 2.0,
     "Scree": 0.06,
     "ForestFloor": 0.04,
     "Grass": 0.03
@@ -1428,7 +1488,56 @@
    "_schema": "v1.28 (Brief 7 Phase 1 addendum). Height-weighted layer blend inside the weightmap composite -- the effect of LB_HeightBlend, which has no referent in M_Alpine8K (it is a LinearInterpolate composite over a baked weightmap, not a LandscapeLayerBlend). Each STORED layer's mask (Snow/Rock/Scree/ForestFloor) is scaled by (h_i + eps)**k, where h_i is that layer's raw height-map sample in [0,1], then the four are renormalised to preserve their sum so the meadow/Grass REMAINDER (1 - sum(stored)) is unchanged. Where two stored layers overlap, the higher-elevation surface wins; a zero-height texel keeps a floor weight (eps) instead of vanishing. k=0 disables the reweighting (absent block behaves identically).",
    "_height_source": "The RAW height sample (0..1), NOT the displacement-centred value. An even power (k=4) applied to a re-centred height (which straddles 0) would fold a texel far BELOW its own mean onto one far above, which is not a height blend. The desk lever wrote 'centred height'; centring is a displacement-only transform and cannot feed (h+eps)**k -- recorded as an intentional interpretation, see LESSONS.",
    "_bake_lookup_divergence_RESOLVED": "F2 (audit + cloud review) RULED by Ryan 2026-09-23: MEASURE, then accept (<=2%) or model (>2%). Measured offline on the real weightmap, walkable area only (research/brief7/input/f2_argmax_flip.json): the raw argmax flips on 3.12% of walkable texels (> 2%), margins p50 0.35 -- so MODELLED. bake_surface_lookup.py now applies the same reweight (same _cpu_height_blend, same k/eps, heights sampled at the texel's world position under each layer's tiling) before its argmax, so the footstep/surface answer matches the painted surface by construction. The surface lookup PNG (textures/alpine_8k_surface.png) must be RE-BAKED with --write during Phase 1, in sync with the material rebuild, so the shipped lookup carries the modelled dominant."
-  }
+  },
+  "cavity": {
+   "map": "textures/alpine_8k_cavity.png",
+   "layers": [
+    "Rock"
+   ],
+   "strength": 1.0,
+   "tint": [
+    0.25,
+    0.22,
+    0.2
+   ],
+   "scales_m": [
+    6.0,
+    24.0
+   ],
+   "depths_m": [
+    4.0,
+    12.0
+   ],
+   "_why": "HERO ROUND 11, 2026-10-03, schema v1.31 (Gemini critique item 3: crevices too even). Baked by scripts/bake_cavity_map.py from the rig heightmap: depth below the 6 m and 24 m neighbourhood mean, normalised by 4 m / 12 m. 10.5% of rock texels read > 0.5 (gully floors and couloirs, preview checked). Tint is a MULTIPLIER on the tinted Rock026 albedo, so 0.35 x 0.7 strength darkens a full gully to ~55% of the face.",
+   "lichen": {
+    "strength": 0.6,
+    "tint": [
+     1.0,
+     0.97,
+     0.88
+    ],
+    "slope_deg": [
+     29.0,
+     45.0
+    ],
+    "noise_m": 8.0,
+    "_why": "HERO ROUND 21, 2026-10-03 (Gemini 2nd critique): yellow-grey lichen on exposed, less-steep rock and convex edges.",
+    "_round_26": "2026-10-03 (Gemini mtn_wide critique, 'yellow tint'): the r21 lichen read as a yellow-green overlay at distance; near-neutral and weaker now."
+   },
+   "damp": {
+    "strength": 1.0,
+    "tint": [
+     0.45,
+     0.45,
+     0.5
+    ],
+    "reach_m": 15.0,
+    "gentle_deg": 25.0,
+    "_why": "HERO ROUND 21: dark damp rock within 12 m of gentle ground at the cliff foot.",
+    "slope_smooth_m": 4.0
+   }
+  },
+  "rvt_output": "recipes/rvt_alpine8k.json"
  },
  "foliage": {
   "density_per_hectare": 135.0,
@@ -1501,50 +1610,58 @@
      730.0
     ],
     "scale_range": [
-     0.9,
-     1.6
+     1.35,
+     2.4
     ],
     "system": "grass",
     "cull_distance_m": 50.0,
-    "density_per_10m2": 120.0,
+    "density_per_10m2": 180.0,
     "varieties": [
      {
       "mesh": "/Game/Meshes/grass_medium_01_tiny_a_LOD0",
-      "share": 0.55,
+      "share": 0.3,
       "scale_range": [
-       1.3,
-       2.4
+       2.535,
+       4.68
       ]
      },
      {
       "mesh": "/Game/Meshes/grass_medium_01_tall_a_LOD0",
-      "share": 0.25,
+      "share": 0.22,
       "scale_range": [
-       0.9,
-       1.5
+       1.755,
+       2.925
       ]
      },
      {
       "mesh": "/Game/Meshes/grass_medium_01_small_a_LOD0",
-      "share": 0.12,
+      "share": 0.1,
       "scale_range": [
-       1.0,
-       1.7
+       1.95,
+       3.315
       ]
      },
      {
       "mesh": "/Game/Meshes/grass_medium_01_mid_b_LOD0",
       "share": 0.08,
       "scale_range": [
-       0.9,
-       1.6
+       1.755,
+       3.12
+      ]
+     },
+     {
+      "mesh": "/Game/Meshes/grass_medium_01_large_a_LOD0",
+      "share": 0.3,
+      "scale_range": [
+       1.5,
+       2.7
       ]
      }
     ],
     "card": {
      "hue_percent": 0.08,
      "brightness_amp": 0.08,
-     "ground_tint": 1.0,
+     "ground_tint": 0.0,
      "ground_tiling_m": 5.03,
      "ground_albedo": "/Game/Surfaces/T_WildGrass_C",
      "ground_albedo_mean": 0.038457,
@@ -1845,6 +1962,227 @@
     ]
    },
    {
+    "name": "MeadowNear",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     1.3,
+     2.2
+    ],
+    "system": "grass",
+    "cull_distance_m": 60.0,
+    "density_per_10m2": 60.0,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px.",
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "share": 1.0,
+      "scale_range": [
+       1.3,
+       2.2
+      ],
+      "override_materials": [
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD0",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD1",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD2"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "MeadowMid",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     1.2,
+     2.0
+    ],
+    "system": "grass",
+    "cull_distance_m": 120.0,
+    "density_per_10m2": 33.0,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px.",
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "share": 1.0,
+      "scale_range": [
+       1.2,
+       2.0
+      ],
+      "override_materials": [
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD0",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD1",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD2"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "MeadowMid2",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     1.0,
+     1.8
+    ],
+    "system": "grass",
+    "cull_distance_m": 120.0,
+    "density_per_10m2": 33.0,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px.",
+    "_round": "HERO ROUND 3b 2026-10-03: second 120 m FieldGrass band; the disc guard (150,000 per species) caps one species at 33/10m2 at 120 m, so density past it comes from another species.",
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "share": 1.0,
+      "scale_range": [
+       1.0,
+       1.8
+      ],
+      "override_materials": [
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD0",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD1",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD2"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "MeadowFar200",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     29.0
+    ],
+    "height_m": [
+     0.0,
+     730.0
+    ],
+    "scale_range": [
+     1.0,
+     1.6
+    ],
+    "system": "grass",
+    "cull_distance_m": 200.0,
+    "density_per_10m2": 11.0,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px.",
+    "_round": "HERO ROUND 3b 2026-10-03: 11/10m2 to 200 m (138k in disc); the 120-200 m meadow read as brown ground with green dots.",
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "share": 1.0,
+      "scale_range": [
+       1.0,
+       1.6
+      ],
+      "override_materials": [
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD0",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD1",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD2"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "ScreeTufts",
+    "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+    "layer": "Scree",
+    "slope_deg": [
+     0.0,
+     40.0
+    ],
+    "height_m": [
+     0.0,
+     900.0
+    ],
+    "scale_range": [
+     1.2,
+     2.0
+    ],
+    "system": "grass",
+    "cull_distance_m": 120.0,
+    "density_per_10m2": 4.0,
+    "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px."
+   },
+   {
+    "name": "MeadowBoulders",
+    "mesh": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+    "layer": "Grass",
+    "slope_deg": [
+     0.0,
+     25.0
+    ],
+    "height_m": [
+     0.0,
+     900.0
+    ],
+    "scale_range": [
+     2.0,
+     4.0
+    ],
+    "system": "grass",
+    "cull_distance_m": 400.0,
+    "density_per_10m2": 0.1,
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/SM_GroundRevealRock001",
+      "share": 0.55,
+      "scale_range": [
+       2.0,
+       4.0
+      ],
+      "override_materials": [
+       "/Game/Materials/Alpine8K/MI_GroundRevealRock001a_RVT8K"
+      ]
+     },
+     {
+      "mesh": "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/SM_GroundRevealRock002",
+      "share": 0.45,
+      "scale_range": [
+       1.8,
+       3.5
+      ],
+      "override_materials": [
+       "/Game/Materials/Alpine8K/MI_GroundRevealRock002_RVT8K"
+      ]
+     }
+    ],
+    "cast_shadow": true,
+    "street_keep_channel": "B",
+    "_street_keep_channel": "2026-10-10b: excluded by street-mask B (boulder_margin_m), not G: a spawn point 1 m off the cobble laid a 9 m slab across it (LESSONS 2026-10-10ff). Other grass species keep G (absent key = G).",
+    "_why": "HERO ROUND 24, 2026-10-03, RULED BY RYAN ('big boulders in the meadow', reversing the 2026-09-27 no-rocks ruling). KiteDemo GroundRevealRock001/002: low, wide slabs whose pivot sits at ground level, made to emerge from soil, so they read embedded without the z offset GrassVariety lacks. 3.3x2.4x0.65 m and 1.8x3.5x1.2 m natively; 1.0-2.5x -> 2-8 m slabs. 0.03/10m2 = 3 per hectare; disc pi*400^2*0.03/10 = 1,508.",
+    "_rvt_blend": "World copy (carry 2026-10-04): varieties use the M_Photoscan_RVTBlend8K instances (recipes/rvt_blend_boulders_alpine8k.json), which sample the world RVTs."
+   },
+   {
     "name": "MeadowFar",
     "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
     "layer": "Grass",
@@ -1862,9 +2200,24 @@
     ],
     "system": "grass",
     "cull_distance_m": 512.0,
-    "density_per_10m2": 0.6,
+    "density_per_10m2": 1.8,
     "_why": "Brief 7 Phase 3b, 2026-09-27. The COARSE tier of a two-level meadow: Meadow stays at its RULED 50 m / 120 per 10 m2 (R11, Ryan 2026-09-08), and this species carries the 50-512 m band the perception block records as UNREPRESENTED (perception._cull_ceiling: 'needs a REPRESENTATION below, not a different cull'). One 1.06 x 1.20 m FieldGrass clump per ~16 m2 to the 512 m streaming range: pi*512^2*0.06 = 49,400 clumps in the cull disc (the validator's grass disc guard bounds this at 150,000; Meadow itself is 94,248). Brief 7 P3 asks 'meadow grass to 512 m on the fine grid'; the FINE grid at 12 tufts/m2 to 512 m would be 9.9 million instances, so the far tier is coarse by construction -- the same hierarchical-grid idea Electric Dreams uses (PCG grid 800 cm close, 3200/6400 cm far), realised through the ratified grass system (RECIPES 6d) because every consumer of a grass species already exists and is read back (R-CULLDERIVE).",
-    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px."
+    "_representation": "SM_FieldGrass_01 is the ONLY grass-class mesh in any registry dump (clutter_inventory._gaps_stated); 765 tris LOD0 with LOD1/LOD2 vendor materials, 1024 px.",
+    "varieties": [
+     {
+      "mesh": "/Game/KiteDemo/Environments/Foliage/Grass/FieldGrass/SM_FieldGrass_01",
+      "share": 1.0,
+      "scale_range": [
+       0.9,
+       1.4
+      ],
+      "override_materials": [
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD0",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD1",
+       "/Game/Materials/Lookdev/MI_FieldGrass_Dry_LOD2"
+      ]
+     }
+    ]
    },
    {
     "name": "ForestLitter",
@@ -2030,7 +2383,7 @@
  },
  "lighting": {
   "sun": {
-   "elevation_deg": 12.0,
+   "elevation_deg": 28.0,
    "azimuth_deg": 285.0,
    "intensity_lux": 130000.0,
    "temperature_kelvin": 5200.0,
@@ -2039,7 +2392,7 @@
   },
   "sky": {
    "type": "physical",
-   "intensity": 1.0,
+   "intensity": 2.125,
    "_intensity_SLOPE_RESULT_2026_09_12": "⛔ SLOPE MEASURED, VALUE REVERTED to 1.0. near_ground, target class, one variable, read back at both ends (1.0 and 1.600000023): sky 1.0 -> B 1.8051 (R 0.70, shadow_luma 0.00475, lit 0.12044); sky 1.6 -> B 1.9885 (R 0.61, shadow_luma 0.00551, lit 0.11960). SLOPE = 0.3057 B PER UNIT, against a PREDICTION of about 0.60 recorded before the capture -- 2x optimistic; the inherited 0.375 (different white point, different world) was also wrong for here. THE SKY IS WORKING: shadow_luma rose 16% and R fell 0.70 -> 0.61, so shadows do take more blue fill; the RATIO moves slowly. CONCLUSION: reaching the re-derived floor of 2.587 from 1.8051 needs delta 0.7824, i.e. sky about 3.56 -- nearly DOUBLE the 1.8 rejected on 2026-09-09 for over-filling and 3.5x the settled value. SKY INTENSITY CANNOT CLOSE A 30% DEFICIT HERE, which was the pre-committed reading of this outcome. WHAT REMAINS IS CONTENT, NOT LIGHTING: this world reads 0.7674 at neutral WB where Brief 2b read 1.1243 on 2026-09-10, a 32% drop at identical grade and lighting, because the five-layer material changed what is IN the frame and shadow_tint_B is a statistic over the LAND REGION. A ruling, not a lever.",
    "_intensity_SLOPE_TEST_2026_09_12": "⚠ SUPERSEDED BY THE RESULT ABOVE. TEMPORARY -- 1.0 -> 1.6 to MEASURE THE RESPONSE, reverts after. RULED BY RYAN 2026-09-12. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10). WHY: the band re-derived AT THE GRADE IN FORCE is 2.587-3.764 (neutral-WB band 1.10-1.60 scaled by the MEASURED white-point factor 2.3522, corroborated against the Planck 9454 K slope to 4.09%). near_ground measures 1.8051 = 0.6976 of the floor, so the shade is 30.2% UNDER-blue and needs MORE sky fill -- the OPPOSITE of what the untransformed band said. NO USABLE SLOPE EXISTS at this station and grade: the only historical figure, 0.375 B per unit, comes from a different white point AND a different world (that world read 1.1243 at neutral WB where this one reads 0.7674). So this is a MEASUREMENT, not a solve. 1.6 is a 60% step, large enough to resolve a slope, and already exercised today so it is not new territory. DELIBERATELY NOT 1.8: that is a RECORDED REJECTED value (over-filled at B 1.75, 2026-09-09) and re-testing it needs its own justification rather than being swept into a slope measurement. PREDICTION RECORDED BEFORE MEASURING, so it cannot be fitted afterwards: scaling 0.375 by the world difference and the WB factor gives about 0.60 B per unit, so 1.6 should land near 2.16 -- still SHORT of the 2.587 floor. If that holds, sky intensity alone does not close a 30% deficit and the remedy is a wider question.",
    "_intensity_excursion_2026_09_12": "⛔ 1.0 -> 1.6 -> 1.0. REVERTED SAME DAY, RULED BY RYAN, and the excursion is kept here because the REASON it was wrong is the useful part. NO DOT-P-Y FILENAMES IN THIS PROSE -- it is interpolated into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10). THE ERROR: the shadow-tint band 1.10-1.60 is specified AT near_ground and NOWHERE ELSE -- the tool's own docstring line 3 says so. I measured it at three RECIPE CAMERAS (forest_floor 1.2526, verify_ground 0.9569, player_eye 0.7366), read 'two of three FAIL' as a world defect, and raised sky intensity to fix it. None of those stations is governed by that band, and near_ground is not even in the recipe camera set -- it is a BENCH station. THE TOOL DOCUMENTS THE EXACT TRAP: 'near band B/luma 0.971 <- sunlit meadow grass, GREEN-dominant ... reading it as the shade answers a different question'. player_eye's B 0.7366 against G 1.10 IS that green bounce, and it is physically correct, not a fault. WHAT IT NEARLY COST: at near_ground sky 1.0 measured 1.45, comfortably inside the band; at the historical slope 1.6 lands near 1.675, ABOVE the 1.60 ceiling. The change would have BROKEN a passing acceptance to 'fix' stations that were never under its jurisdiction. An instrument's premise does not travel to a different specimen -- and this is the third time in one day I applied one outside its class.",
@@ -2097,7 +2450,7 @@
   },
   "exposure": {
    "method": "manual",
-   "compensation_ev": -14.2571,
+   "compensation_ev": -14.3273,
    "_compensation_solved_on_PPI0": "R-INSTRUMENTS, RULED 2026-09-13c. The exposure solve moves to the SCENE-LINEAR instrument. PPI0 -- the BL_SCENE_COLOR_AFTER_DOF pass-through -- is LINEAR in exposure: a requested -1.000 EV delivers -1.0000 there (ratio 0.5000136), so a correction applies at face value with no slope to divide by. MEASURED at -14.2554: PPI0 card 0.113475, correction -log2(0.113475/0.18) = +0.6656 EV -> -13.5898. The FinalImage card value at this solve is RECORDED BESIDE IT AND NOT TARGETED, because FinalImage is the LOOK instrument: it carries white balance, tint and the grade, which is what makes it the right place to judge those and the wrong place to solve exposure.",
    "_compensation_at_render_warmup_on": "RE-SOLVED 2026-09-13 once RENDER warm-up was actually enabled. ⛔ EVERY CAPTURE BEFORE THIS PROJECT DATE RAN WITH ZERO RENDERED WARM-UP FRAMES: `render_warm_up_count` defaulted to 32 but `render_warm_up_frames` -- the BOOL that gates it -- defaulted to FALSE, while the sidecar recorded a warm-up of 300. That 300 is the ENGINE count, which ticks the game thread and renders nothing. Turning render warm-up on moved the card 0.180 (predicted by the warm-up-off slope model) to 0.216851, about +0.27 EV. Re-solve: correction -log2(0.216851/0.18) = -0.2687 EV DELIVERED, which at the measured slope 0.7196 is -0.3734 REQUESTED -> -14.2554. MEASURED after applying: card 0.179812 against a 0.18 target, band [0.171, 0.189] -- PASS, the first time this bench's card has landed in band.",
    "_compensation_resolved_at_manual": "R-METER, RULED 2026-09-12b: RE-SOLVED at Manual metering with Apply Physical Camera Exposure OFF. OLD -4.1268, correction -7.1412, NEW -11.2680. MEASURED per R-GREYCARD on the SCENE-LINEAR EXR: card luma 25.408342 against a 0.18 target, so correction = -log2(25.408342/0.18) = -7.1412. Linearity evidenced by the frame itself -- frame_max_linear 74.5625 EXCEEDS display white, which a tonemapped frame cannot, and disable_tone_curve read back true. WHY IT MOVED SO FAR: with the physical-camera term removed, the scene came back 4-5 stops hot and the capture's own content gate REFUSED it (near_ground luma 0.9576, 57.0% featureless against 0.8% predicted sky). benchmark.json records that exact signature historically -- 'the first ever target run came back 4-5 stops over-exposed, near_ground luma 0.95'. So the old -4.1268 was never a clean exposure: it was a manual bias silently multiplied by the camera's aperture, shutter and ISO, and it only looked right because the two errors cancelled.",
@@ -2109,30 +2462,38 @@
    "_card_rederivation_expectation": "ONE STEP, and it is EXPECTED to under-deliver: the decoded PNG is post-tonemap and the filmic curve is compressive here, which is _solve_caveat's own measured finding (a 0.137 EV step yielded -5.4% where linear arithmetic said -9.1%) and matches the white-balance chain's 68%-then-40% per-step efficiency. The residual is to be RECORDED, not tuned away.",
    "_solve": "SOLVED FOR THIS SCENE 2026-08-14, not ported. Measured on diag_topdown (9 km, whole-map coverage) with the SKY MASKED OUT by local-variance: terrain-only linear luma 0.4135 against the solver target 0.3201 for sunlit terrain at albedo 0.2675, giving -1.786 - log2(0.4135/0.3201) = -1.923. THREE DENOMINATORS WERE TRIED AND THEY DISAGREE BY 0.13 EV, which is why the masking matters: whole-frame including sky gives 0.3470 -> -1.902 (the frame is ~57% sky at 9 km, so that is a sky-weighted average); a 4 km all-terrain probe gives 0.3805 -> -2.035 but samples only the central massif, which is snow-biased against a map that is 21.56% snow. Only the masked whole-map figure matches the area-weighted albedo the solver assumes. CROSS-CHECK: /Game/Alpine s Lumen-corrected -1.897 was derived independently for this same terrain, material and lighting, and agrees to 0.026 EV. That is confirmation by re-derivation, NOT a port -- and note the AlpineLab_8129 case where porting -1.897 would have been wrong, because that is a different mountain.",
    "_solve_caveat": "THE SOLVE IS APPROXIMATE AND THE RESIDUAL IS NOT SMALL. Applying -1.923 moved the measured terrain-only linear from 0.4134 to 0.3909, where linear scaling predicted 0.3760 and the target is 0.3201. IT CANNOT CONVERGE BY CONSTRUCTION: the decoded PNG is POST-TONEMAP and the solver target 0.3201 is a PRE-TONEMAP scene value, and the filmic curve is compressive in this range -- a 0.137 EV step yielded -5.4% where linear arithmetic says -9.1%. This limitation applies to every exposure check this project has made by decoding a screenshot, including /Game/Alpine s 0.3169-vs-0.3201 agreement, which is closer than the method can actually resolve. The value is therefore anchored on TWO things that do not share this flaw: the measured brightness ORDERING (this scene reads brighter than the -1.786 reference) and agreement to 0.026 EV with alpine s independently-derived -1.897 for the same terrain, material and lighting. Frames at -1.923 read sRGB mean 0.610 with 0.000% blown. A proper solve needs the pre-tonemap value, which a screenshot cannot give. OPEN.",
-   "_resolve_2026_09_13": "comp_ev -13.5898 -> -14.2571, from the card at 0.25580 against the 0.18 scene-linear target through a MEASURED log-log slope of 0.7598. See the grade block's note for the full derivation and for why the solve is on the EXR. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10)."
+   "_resolve_2026_09_13": "comp_ev -13.5898 -> -14.2571, from the card at 0.25580 against the 0.18 scene-linear target through a MEASURED log-log slope of 0.7598. See the grade block's note for the full derivation and for why the solve is on the EXR. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10).",
+   "_resolve_2026_10_05": "comp_ev -13.9071 -> -14.3273 (Ryan 2026-10-04: re-calibrate for Alpine8K, not the rig value). Solved on the PPI0 scene-linear channel per R-METER/R-PPSPLIT at the carried 28 deg sun: near_ground card 0.240853 (std 0.003479) against 0.18, correction -log2(0.240853/0.18) = -0.4202 EV, delivered 1:1 on PPI0. Capture _verify/bench/2026-10-04/target_carry_greycard. White balance on the card is OUT of band and NOT changed here: PPI0 R/G 1.4106 B/G 0.6945, FinalImage R/G 1.193 B/G 0.8822 (band 0.97-1.03); the 5200 K white point is Ryan's ruling."
   },
   "clouds": {
    "enabled": true,
    "material_parent": "/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst",
    "material_instance": "/Game/Bench/MI_AlpineClouds",
    "coverage_param": "Cloud_GlobalCoverage",
-   "coverage": 0.3,
+   "coverage": 0.12,
    "layer_bottom_km": 2.0,
    "layer_height_km": 1.5,
-   "_task6": "Brief 2 Task 6, 2026-09-10. One VolumetricCloud (find-or-create by label) on the engine's simple cloud material: bottom 2.0 km, height 1.5 km, coverage 0.3. Cloud_GlobalCoverage VERIFIED on the parent material's reflected surface (the cloud_mi_probe payload against the live 5.8 editor -- the MI exposes it, so the brief's conditional applies). The override lives on a CHILD instance in /Game/Bench because writing a parameter to the ENGINE MI would dirty engine content outside both roots (standing rule 1). layer_bottom_altitude / layer_height are in KILOMETRES on the component (the read_cloud_state script's verified reflected reads). NO DOT-P-Y FILENAMES IN THIS PROSE: it is interpolated into a remote-exec payload, and the engine treats the first such substring as a pathname (LESSONS 12.10, recurred 2026-09-10c)."
+   "_task6": "Brief 2 Task 6, 2026-09-10. One VolumetricCloud (find-or-create by label) on the engine's simple cloud material: bottom 2.0 km, height 1.5 km, coverage 0.3. Cloud_GlobalCoverage VERIFIED on the parent material's reflected surface (the cloud_mi_probe payload against the live 5.8 editor -- the MI exposes it, so the brief's conditional applies). The override lives on a CHILD instance in /Game/Bench because writing a parameter to the ENGINE MI would dirty engine content outside both roots (standing rule 1). layer_bottom_altitude / layer_height are in KILOMETRES on the component (the read_cloud_state script's verified reflected reads). NO DOT-P-Y FILENAMES IN THIS PROSE: it is interpolated into a remote-exec payload, and the engine treats the first such substring as a pathname (LESSONS 12.10, recurred 2026-09-10c).",
+   "wind_param": "Layout_WindControls",
+   "wind": [
+    1.0,
+    1.0,
+    0.5,
+    0.0
+   ]
   },
   "grade": {
-   "white_temp_k": 3438.6,
+   "white_temp_k": 4421.0,
    "_wb_joint_2026_09_15": "R-WB2x2 (closure A-6): white_temp_k 3415.7 -> 3438.6 and white_tint -0.0113 -> -0.0248, SOLVED JOINTLY from the measured card at the in-force values (R/G 1.0000, B/G 1.0332 on the finalimage_linear EXR, target_a5_base) against the FULL 2x2 slope matrix of the 2026-09-14 run -- including the off-diagonal coupling terms the first-order solve dropped (temp moves B/G at -3.678e-4 per K; tint moves R/G at +0.588 per unit). The 09-14 first-order solve nulled each axis on its own slope and the dropped coupling became the measured B/G residual 1.033. Solver: wb_joint_solve (selftest reproduces the 09-14 first-order adoption from the same base and predicts its residual). First-order and joint recorded side by side in _verify/bench/2026-09-15/wb_joint_solve_a6.json; adoption per the ruling on the confirm card 0.97-1.03 both axes.",
    "_wb_TEST_2026_09_12_RESULT": "⛔ TEST COMPLETE, VALUE REVERTED to R-GRADE's card-derived 3481.9. MEASURED at near_ground, target class, one variable, read back at both ends: WB 3481.9 -> B 1.8051 (R 0.70 G 1.01); WB 5200 -> B 0.7674 (R 1.36 G 0.92). TWO FINDINGS. (1) WHITE BALANCE DOMINATES THIS METRIC: a 94.89-mired move swung B by 2.35x and flipped R from 0.70 to 1.36, so shadow_tint_B at this station is substantially a white-balance readout and a WB-calibrated band cannot be transported across a WB change -- which is the very trap its docstring cited when retiring the old 1.3-1.7 band. (2) THE WORLD ALSO CHANGED: at IDENTICAL WB 5200 this reads 0.7674 where Brief 2b read 1.1243 on 2026-09-10, 32% lower, so the band's calibration specimen and today's scene are not the same content -- expected, since the five-layer material put scree and forest_floor in frame as real surfaces and the weightmap feeding them was a month stale on 09-10 too. NEITHER VALUE PASSES: 1.8051 too high at the locked grade, 0.7674 too low at the band's own calibration point. Interpolating the two measured points, the 1.10-1.60 band maps to WB about 3725-4490 K, and 3481.9 sits just BELOW that window -- but the response is known to saturate, so treat that as an indication, not a solve. THE BAND AND R-GRADE ARE IN CONFLICT AND BOTH ARE LOCKED RULINGS; reconciling them is Ryan's, not a value to tune.",
    "_wb_TEST_2026_09_12_original": "⚠ TEMPORARY TEST VALUE -- 3481.9 -> 5200.0, RULED BY RYAN 2026-09-12, TO BE REVERTED. NO DOT-P-Y FILENAMES IN THIS PROSE (LESSONS 12.10). WHY: near_ground measures shadow_tint_B 1.8051 against a 1.10-1.60 band, and that band was RULED 2026-09-10 on Brief 2b's measurement of 1.1243 taken at sun 5200 / WB 5200 -- WB EXACTLY AT THE SUN. The grade has since moved to 3481.9, i.e. 1718 K BELOW the sun, which is MORE blue-amplifying than the 1300-K-below grade the band was rewritten to EXCLUDE. THE BAND CANNOT BE RE-DERIVED BY EXTRAPOLATION: the only two calibration points (Brief 2b 1.1243 at delta 0 mired; Task 3 1.4456 at delta 25.64 mired) differ in SUN as well as WB, and both a linear and a log mired model predict 2.313 and 2.850 at the current delta of 94.89 mired against an actual 1.8051 -- the response SATURATES, as the recipe's own 45-60%-per-step note says. So instead of extrapolating the band to the grade, this puts the GRADE back to the band's calibration condition and measures. Lands near 1.1243 -> the world is correct and the band and R-GRADE are incompatible by construction. Lands elsewhere -> something else moved since 2026-09-10, and the five-layer material and the un-staled weightmap are the suspects. 5200 sits AT the R-GRADE ceiling ('never above the sun'), so the rule is not violated; it simply is not the card-derived effective illuminant, which is why this reverts.",
    "_wb_on_the_linear_pass": "RULED BY RYAN 2026-09-11: WB re-checked on the SCENE-LINEAR pass, one step. 3550 -> 3481.9 K. THE DISPLAY-REFERRED READING WAS FLATTERING THE GRADE: at the same 3550 K the tonemapped card read R/G 1.0230 / B/G 1.0000, both inside 0.97-1.03, and R-GRADE was LOCKED on that. On the linear pass the same grade reads R/G 1.0549 / B/G 1.0014 -- R is OUT of band. The tone curve was compressing the white-balance error exactly as it was compressing the exposure error, so the lock was taken against a compressed instrument. Step DERIVED as before: r = (R/G)/(B/G) = 1.0534, delta = ln(r)/9454 = +5.51 mired, 281.69 -> 287.20 mired -> 3481.9 K. The R-GRADE ceiling still holds: 3481.9 is far below the 5200 K sun.",
    "_task1_final": "RULED 2026-09-11: one final step to the extrapolated neutral (~3550 K -- the geometric extrapolation of the measured ~45%-per-step convergence). Card within 0.97-1.03 locks R-GRADE here; otherwise R-GRADE locks at the best reading with the residual recorded. The chain is NOT von Kries (the per-step efficiency even FELL between steps: 68% then 40% of the theoretical mired slope (audit-recomputed: 0.0688 removed / 0.1721 theoretical)), which is the measured reason a one-shot formula cannot land this.",
    "_task1_b3_step2": "Step 2 of 2 (2026-09-10). At 4026 the card read R/G 1.1070 / B/G 0.9322 (highlight band PASS, card band 0.97-1.03 not yet). Residual r2 = 1.1070/0.9322 = 1.1875 -> ln 0.1719 / 9454 K = +18.2 mired; 248.4 + 18.2 = 266.6 mired -> 3751 K. Tint left 0: the common factor sqrt(R/G x B/G) = 1.016 puts the green axis within the band once temperature lands. One-step-gets-within-3% (BRIEF 3.7) held approximately: 26% error -> 19% residual... the slope under-corrects because the atmosphere's spectrum is not a blackbody; two steps were allowed for exactly this.",
-   "_shade_band_2026_09_15": "R-SHADEBAND (closure A-7, AMENDED same day): the shade acceptance band is 2.065-2.998 AT WHITE POINT 3438.6 K, SHADE FLOOR D6000, by research/brief3/scripts/shade_reference.py --white 3438.6 --shade 6000 10000. THE FLOOR IS D6000 NOT D6500 because the sun is at 12 deg elevation (< ~30 deg): low-sun hemispherical skylight is warmer than the D6500 overhead-daylight default (Hernandez-Andres et al. 2001, JOSA A 18). The A-7 measurement 2.1896 (near_ground, 09-15) is PASS in this band (it sits at ~D6380). The earlier D6500 figures (2.229-2.998 @ 3438.6, and 2.254-3.029 @ 3415.7 before A-6) were the same white points at the overhead floor. ⛔ THE FinalImage PAIR 2.587-3.764 IS STRUCK: it appears in _intensity_SLOPE_RESULT_2026_09_12 and _intensity_SLOPE_TEST_2026_09_12 below as the band the shade deficit was measured against, and FinalImage is NOT this band's domain (B3.15 moved the acceptance to the scene-linear PPI0 pass). Those two prose blocks are kept as the historical slope measurement but their 2.587-3.764 figure is superseded. The band lives in scripts/shade_card_pair.py and its selftest now RE-DERIVES it from shade_reference at BAND_WHITE_K, so it cannot silently drift from the white point again.",
+   "_shade_band_2026_09_15": "R-SHADEBAND (closure A-7, AMENDED same day): the shade acceptance band is 2.065-2.998 AT WHITE POINT 3438.6 K, SHADE FLOOR D6000, by research/brief3/scripts/shade_reference (scripts/) --white 3438.6 --shade 6000 10000. THE FLOOR IS D6000 NOT D6500 because the sun is at 12 deg elevation (< ~30 deg): low-sun hemispherical skylight is warmer than the D6500 overhead-daylight default (Hernandez-Andres et al. 2001, JOSA A 18). The A-7 measurement 2.1896 (near_ground, 09-15) is PASS in this band (it sits at ~D6380). The earlier D6500 figures (2.229-2.998 @ 3438.6, and 2.254-3.029 @ 3415.7 before A-6) were the same white points at the overhead floor. ⛔ THE FinalImage PAIR 2.587-3.764 IS STRUCK: it appears in _intensity_SLOPE_RESULT_2026_09_12 and _intensity_SLOPE_TEST_2026_09_12 below as the band the shade deficit was measured against, and FinalImage is NOT this band's domain (B3.15 moved the acceptance to the scene-linear PPI0 pass). Those two prose blocks are kept as the historical slope measurement but their 2.587-3.764 figure is superseded. The band lives in scripts/shade_card_pair (scripts/) and its selftest now RE-DERIVES it from shade_reference at BAND_WHITE_K, so it cannot silently drift from the white point again.",
    "temperature_type": "white_balance",
    "_temperature_type": "PINNED 2026-09-10 (Brief 3 Task 1): Scene.h:1503 -- TemperatureType picks White Balance vs Color Temperature and the two are INVERSE; it had been unset since the grade existed (flagged 2026-09-09). white_balance = WhiteTemp names the ILLUMINANT the scene treats as white, which is the semantics every ruling here has assumed.",
-   "white_tint": -0.0248,
+   "white_tint": -0.067899,
    "_white_tint_2026_09_15": "R-WB2x2 joint solve -- see _wb_joint_2026_09_15 above. The -0.0113 below stands as the 09-13 first-order record.",
    "_white_tint": "Green-magenta axis (Scene.h:1508-1510). SOLVED 2026-09-13 (R-GRADE tint) by ONE measured step, at Manual metering with RENDER warm-up ON, card read off the scene-linear EXR at near_ground. Baseline at tint 0: R/G 1.0295, B/G 1.0318. At tint 0.2: R/G 1.1412, B/G 1.4887. SLOPES per unit tint: R/G +0.5585, B/G +2.2845. Nulling the out-of-band ratio gives t = (1.0-1.0318)/2.2845 = -0.0139, PREDICTING R/G 1.0217, B/G 1.0000. MEASURED after applying: R/G 1.0221, B/G 1.0091 -- both inside the 0.97-1.03 acceptance; prediction good to 0.04% on R and 0.9% on B. APPLIED and kept.",
    "_white_tint_is_not_a_clean_green_axis": "MEASURED, and it is why one step could not null both ratios: tint moves B FOUR TIMES harder than R (2.2845 vs 0.5585 per unit). A pure green-magenta axis would move R/G and B/G together, since both are numerators over the same G. Solving for R instead would have driven B to 0.911, far outside the band. The axis is named for the control it exposes, not for what it does to this chain -- so the solve targets the ratio that is OUT of band and checks the other lands inside, rather than pretending one number can null both.",
@@ -2148,7 +2509,9 @@
    "chromatic_aberration": 0.0,
    "_rule": "RULED BY RYAN 2026-09-10: white_temp = the sun's temperature (neutral); NEVER above it. Scene.h:1505 -- WhiteTemp is what the scene treats as white, so a WhiteTemp above the sun renders the sun WARM. REFINED by Brief 3 Task 1 (2026-09-10): 'the sun's temperature' means the MEASURED EFFECTIVE ILLUMINANT on the grey card -- the atmosphere reddens the ground-level sun below its source temperature, so the neutral point sits BELOW the source value; the ceiling stands (never above the source). Current value and its derivation: _task1_b3. History: 8800 ('sun + 1000 K') REJECTED -- contradicted its own citation, highlight_tint R 1.3748 / B 0.1895 vs 0.9-1.1, broke Task 3's shadow band; 7800 measured 2026-09-10 (shadow_tint_B 1.2580 truth-class, 0.042 below the floor). See RECIPES R-GRADE and LESSONS 2026-09-09e/2026-09-10.",
    "_quiet": "grain 0, vignette 0, chromatic aberration 0 -- the bench COMPARES frames and every grade element is noise in that comparison. Bloom is FFT at 0.4 on the engine's default kernel, a quieter version of the Epic grades.",
-   "_resolve_2026_09_13": "⭐ RE-SOLVED 2026-09-13 on the settled bench AFTER R-SKYCOLOR (sky light 0.42/0.6/1.0 -> white, and the double sRGB encode removed). R-GREYCARD measured-slope procedure with the slopes MEASURED THIS RUN, not inherited: one capture per axis at a known offset, near_ground, target class, scene-linear EXR. SLOPES: d(wb_R)/dK = 3.472e-04 from a +500 K step; d(wb_B)/d(tint) = 1.830 from a +0.06 step; d(log2 card_luma)/dEV = 0.7598 from a -0.7 EV step -- that last corroborates the 0.731 measured 2026-09-11 on different data and confirms the chain is NOT linear. BEFORE: white_temp 3481.9, white_tint -0.0139, comp_ev -13.5898, card R/G 1.02300 B/G 0.99520 luma 0.25580. ⛔ THE SOLVE IS ON SCENE-LINEAR, NOT FinalImage, AND THAT WAS A MEASUREMENT NOT A PREFERENCE: on the FinalImage PNG the card read linear 0.28315/0.27889/0.27889, which are 8-bit codes 145/144/144. One code is 1.526 percent of the card, so the whole white-balance signal was 1.00 code in R and 0.00 codes in B against a card spatial std of 1.84 codes -- signal-to-noise below one, and a slope measured there would be a slope of the quantiser. The acceptance BAND (0.85-1.15, about plus or minus 10 codes) is still read on FinalImage; only the SOLVE moved. TINT AND TEMPERATURE ARE COUPLED -- the tint probe moved R/G from 1.023 to 1.0583 as well as B/G -- so the two axes were solved first-order and the residual is recorded after the confirm capture, not tuned away. NO DOT-P-Y FILENAMES IN THIS PROSE -- this block is serialised whole into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10)."
+   "_resolve_2026_09_13": "⭐ RE-SOLVED 2026-09-13 on the settled bench AFTER R-SKYCOLOR (sky light 0.42/0.6/1.0 -> white, and the double sRGB encode removed). R-GREYCARD measured-slope procedure with the slopes MEASURED THIS RUN, not inherited: one capture per axis at a known offset, near_ground, target class, scene-linear EXR. SLOPES: d(wb_R)/dK = 3.472e-04 from a +500 K step; d(wb_B)/d(tint) = 1.830 from a +0.06 step; d(log2 card_luma)/dEV = 0.7598 from a -0.7 EV step -- that last corroborates the 0.731 measured 2026-09-11 on different data and confirms the chain is NOT linear. BEFORE: white_temp 3481.9, white_tint -0.0139, comp_ev -13.5898, card R/G 1.02300 B/G 0.99520 luma 0.25580. ⛔ THE SOLVE IS ON SCENE-LINEAR, NOT FinalImage, AND THAT WAS A MEASUREMENT NOT A PREFERENCE: on the FinalImage PNG the card read linear 0.28315/0.27889/0.27889, which are 8-bit codes 145/144/144. One code is 1.526 percent of the card, so the whole white-balance signal was 1.00 code in R and 0.00 codes in B against a card spatial std of 1.84 codes -- signal-to-noise below one, and a slope measured there would be a slope of the quantiser. The acceptance BAND (0.85-1.15, about plus or minus 10 codes) is still read on FinalImage; only the SOLVE moved. TINT AND TEMPERATURE ARE COUPLED -- the tint probe moved R/G from 1.023 to 1.0583 as well as B/G -- so the two axes were solved first-order and the residual is recorded after the confirm capture, not tuned away. NO DOT-P-Y FILENAMES IN THIS PROSE -- this block is serialised whole into a remote-exec payload and the engine treats the first such substring as a pathname (LESSONS 12.10).",
+   "_restore_2026_10_05": "white_temp_k 5200.0 -> 3438.6 restored. The 2026-10-04 carry copied the RIG's grade white balance (5200) over the world's grey-card solve; the card then read FinalImage R/G 1.193 B/G 0.8822 (band 0.97-1.03). 5200 K is the SUN's ruled temperature (Brief 2b), not this field. carry_rig_to_world no longer carries it.",
+   "_resolve_2026_10_05": "white balance re-solved at the carried 28 deg sun / sky 2.125 (the 3438.6 / -0.0248 solve was at 12 deg / sky 1.0). near_ground card, FinalImage EXR: 5200 K -> R/G 1.193 B/G 0.8822; 3438.6 K -> 0.7068 / 1.4259; 4500 K (tint -0.0248) -> 1.0528 / 1.0498. Joint 2x2 (scripts/wb_joint_solve, R-WB2x2 slopes) from the 4500 card -> 4421.0 K, tint -0.067899, predicted 1.000 / 1.000. Confirm card recorded in LESSONS 2026-10-05."
   }
  },
  "capture": {

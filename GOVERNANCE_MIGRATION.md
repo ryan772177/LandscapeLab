@@ -76,6 +76,8 @@ enforcement layer itself.
 | H10 | **Stop on dirty tree** — no session ends with uncommitted work | `Stop` | exit 2 with `git status --short` when dirty | **Medium** — must not trap a user who intends to stop; needs an escape |
 | H11 | **Standing 6** — two consecutive script failures ⇒ stop | `PostToolUseFailure`, `Bash` | stateful counter in session dir; block the third | **Medium** — stateful, needs care |
 | H12 | **Standing 5** — record dependencies | `PostToolUse`, `if: Bash(pip install *)` | non-blocking reminder to update the record | **Low** — advisory only, cannot verify the record was written |
+| H14 | **`--help` on a script with no argparse runs it** (LESSONS 2026-10-06u/v) | `PreToolUse`, `Bash\|PowerShell` | deny `python <x>.py ... --help\|-h` when the file contains neither `argparse` nor `--help` | **High** — reads the script; unopenable files pass (documented limit) |
+| H15 | **Auditor requests state both roots** (LESSONS 2026-10-11e; third blocked audit for the same omission) | `PreToolUse`, `Agent\|Task` | deny when `subagent_type` is `auditor` and the prompt lacks a `REPO_ROOT: <root>` or `UE_PROJECT_ROOT: <root>` line with the exact path | **High** — pure string test; other agent types pass |
 
 **Not migrated, deliberately:** Standing 7 (editor identity) and
 Standing 8 (dry-run destructive) are **already enforced in code** —

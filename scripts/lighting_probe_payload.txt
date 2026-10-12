@@ -1,0 +1,78 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# LIGHTING PROBE. Read-only: every SkyLight, DirectionalLight, SkyAtmosphere,
+# ExponentialHeightFog and PostProcessVolume in the loaded level, with the
+# properties that decide how much light reaches a SHADOW (2026-10-01: open-sky
+# shade on the plaza read 1:60 against sunlit grass). Mutates and saves nothing.
+
+_out = {"ok": False, "error": None, "level": None, "actors": [], "cvars": {}}
+
+
+def _get(o, names):
+    r = {}
+    for n in names:
+        try:
+            r[n] = str(o.get_editor_property(n))
+        except Exception as _e:
+            r[n] = "UNREADABLE: " + str(_e)[:80]
+    return r
+
+
+try:
+    _w = _u.get_editor_subsystem(_u.UnrealEditorSubsystem).get_editor_world()
+    _out["level"] = _w.get_path_name()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    for _a in _eas.get_all_level_actors():
+        _row = None
+        if isinstance(_a, _u.SkyLight):
+            _c = _a.get_component_by_class(_u.SkyLightComponent)
+            _row = _get(_c, ["intensity", "real_time_capture", "source_type", "mobility",
+                             "visible", "affects_world", "cast_shadows", "light_color",
+                             "lower_hemisphere_is_black", "indirect_lighting_intensity",
+                             "volumetric_scattering_intensity", "sky_distance_threshold",
+                             "cubemap", "occlusion_max_distance", "min_occlusion"])
+        elif isinstance(_a, _u.DirectionalLight):
+            _c = _a.get_component_by_class(_u.DirectionalLightComponent)
+            _row = _get(_c, ["intensity", "visible", "affects_world", "mobility",
+                             "atmosphere_sun_light", "indirect_lighting_intensity",
+                             "temperature", "use_temperature"])
+            _row["rotation"] = str(_a.get_actor_rotation())
+        elif isinstance(_a, _u.PostProcessVolume):
+            _s = _a.get_editor_property("settings")
+            _row = _get(_a, ["enabled", "unbound", "priority", "blend_weight"])
+            _row.update(_get(_s, [
+                "auto_exposure_method", "auto_exposure_bias", "override_auto_exposure_bias",
+                "auto_exposure_apply_physical_camera_exposure",
+                "auto_exposure_min_brightness", "auto_exposure_max_brightness",
+                "local_exposure_method", "local_exposure_highlight_contrast_scale",
+                "local_exposure_shadow_contrast_scale", "local_exposure_detail_strength",
+                "color_contrast", "color_gamma", "color_gain", "color_offset",
+                "film_toe", "film_slope", "film_shoulder", "film_black_clip",
+                "indirect_lighting_intensity", "override_indirect_lighting_intensity",
+                "lumen_scene_lighting_quality", "lumen_final_gather_quality",
+                "lumen_skylight_leaking", "dynamic_global_illumination_method",
+                "ambient_occlusion_intensity"]))
+        elif isinstance(_a, _u.SkyAtmosphere):
+            _c = _a.get_component_by_class(_u.SkyAtmosphereComponent)
+            _row = _get(_c, ["multi_scattering_factor", "rayleigh_scattering_scale",
+                             "mie_scattering_scale", "ground_albedo", "visible"])
+        if _row is not None:
+            _row["label"] = _a.get_actor_label()
+            _row["class"] = _a.get_class().get_name()
+            _row["hidden_in_game"] = str(_a.get_editor_property("hidden"))
+            _row["hidden_in_editor"] = str(_a.is_temporarily_hidden_in_editor())
+            _out["actors"].append(_row)
+    _sl = _u.SystemLibrary
+    for _cv in ("r.DynamicGlobalIlluminationMethod", "r.Lumen.DiffuseIndirect.Allow",
+                "r.SkyLight.RealTimeReflectionCapture", "sg.GlobalIlluminationQuality",
+                "r.Lumen.ScreenProbeGather.ScreenTraces", "r.SkylightIntensityMultiplier",
+                "r.EyeAdaptation.CachedLightingPreExposure", "r.DefaultFeature.AutoExposure",
+                "r.Lumen.HardwareRayTracing", "r.RayTracing.SkyLight"):
+        _out["cvars"][_cv] = _sl.get_console_variable_string_value(_cv)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

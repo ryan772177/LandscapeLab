@@ -157,6 +157,12 @@ CHECKS = [
      ["scripts/check_help_ascii.py"], None, None),
     ("...and that the help check can itself fail",
      ["scripts/check_help_ascii.py", "--selftest"], None, None),
+    # 2026-10-08: the HLOD-proxy ground-trace fix lived in ONE payload and the next payload repeated the
+    # defect (225 of 385 houses "unreachable", truth 385). Region-loading + tracing payloads must guard.
+    ("every region-loading ground trace ignores HLOD proxies and towns",
+     ["scripts/check_trace_ignores.py"], None, None),
+    ("...and that the trace-ignore check can itself fail",
+     ["scripts/check_trace_ignores.py", "--selftest"], None, None),
     ("every plan against its inputs",
      ["scripts/check_plan_freshness.py", "--reproduce"], None, None),
     ("the street network is one component",

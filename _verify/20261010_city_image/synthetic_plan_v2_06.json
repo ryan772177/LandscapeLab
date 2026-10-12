@@ -1,0 +1,3534 @@
+{
+ "schema_version": "g2ue-town-plan-0.1",
+ "_contract": "rows follow the proven R-TOWNKIT plan shape (buildings: loc_cm, size_cm on the 50 cm snap, storeys, yaw_deg, door_side; streets: segments <= segment_max_m with width_cm); roof fields are left for the kit's roof_servability step",
+ "source_classes": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\classes_v2\\synthetic_town_map_v2_classes.json",
+ "source_image": "C:\\Users\\Admin\\UE5LandscapePipeline\\_verify\\20261010_city_image\\synthetic_town_map_v2.png",
+ "source_sha256": "a4f371999985336b1e75105712a5bcc443db804764fc2e71564ba27e81668e88",
+ "m_per_px": 0.6,
+ "origin_cm": [
+  0.0,
+  0.0
+ ],
+ "axis_mapping": "A: image column -> world X, image row -> world Y (verify with marker cubes)",
+ "classes": {
+  "roads": "class01",
+  "buildings": "class02",
+  "water": "class03"
+ },
+ "streets": [
+  {
+   "kind": "lane",
+   "id": "street_0000",
+   "chain": 1,
+   "seq": 0,
+   "a_cm": [
+    14760.0,
+    2340.0
+   ],
+   "b_cm": [
+    13656.06601717798,
+    3203.93398282202
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0001",
+   "chain": 1,
+   "seq": 1,
+   "a_cm": [
+    13656.06601717798,
+    3203.93398282202
+   ],
+   "b_cm": [
+    12664.852813742378,
+    4255.14718625762
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0002",
+   "chain": 1,
+   "seq": 2,
+   "a_cm": [
+    12664.852813742378,
+    4255.14718625762
+   ],
+   "b_cm": [
+    11673.63961030678,
+    5306.36038969322
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0003",
+   "chain": 1,
+   "seq": 3,
+   "a_cm": [
+    11673.63961030678,
+    5306.36038969322
+   ],
+   "b_cm": [
+    10680.0,
+    6356.568542494943
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0004",
+   "chain": 1,
+   "seq": 4,
+   "a_cm": [
+    10680.0,
+    6356.568542494943
+   ],
+   "b_cm": [
+    9648.786796564385,
+    7391.2132034356155
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0005",
+   "chain": 1,
+   "seq": 5,
+   "a_cm": [
+    9648.786796564385,
+    7391.2132034356155
+   ],
+   "b_cm": [
+    8657.573593128785,
+    8442.426406871215
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0006",
+   "chain": 1,
+   "seq": 6,
+   "a_cm": [
+    8657.573593128785,
+    8442.426406871215
+   ],
+   "b_cm": [
+    7666.360389693184,
+    9493.639610306816
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0007",
+   "chain": 1,
+   "seq": 7,
+   "a_cm": [
+    7666.360389693184,
+    9493.639610306816
+   ],
+   "b_cm": [
+    6675.147186257584,
+    10544.852813742418
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0008",
+   "chain": 1,
+   "seq": 8,
+   "a_cm": [
+    6675.147186257584,
+    10544.852813742418
+   ],
+   "b_cm": [
+    5641.5075759507945,
+    11578.492424049206
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0009",
+   "chain": 1,
+   "seq": 9,
+   "a_cm": [
+    5641.5075759507945,
+    11578.492424049206
+   ],
+   "b_cm": [
+    4650.294372515209,
+    12629.705627484791
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0010",
+   "chain": 1,
+   "seq": 10,
+   "a_cm": [
+    4650.294372515209,
+    12629.705627484791
+   ],
+   "b_cm": [
+    3659.0811690796263,
+    13680.918830920373
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0011",
+   "chain": 1,
+   "seq": 11,
+   "a_cm": [
+    3659.0811690796263,
+    13680.918830920373
+   ],
+   "b_cm": [
+    2880.0,
+    14820.0
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "main",
+   "id": "street_0012",
+   "chain": 2,
+   "seq": 0,
+   "a_cm": [
+    14760.0,
+    2340.0
+   ],
+   "b_cm": [
+    15000.0,
+    3663.015151901646
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0013",
+   "chain": 2,
+   "seq": 1,
+   "a_cm": [
+    15000.0,
+    3663.015151901646
+   ],
+   "b_cm": [
+    15000.0,
+    5085.441558772832
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0014",
+   "chain": 2,
+   "seq": 2,
+   "a_cm": [
+    15000.0,
+    5085.441558772832
+   ],
+   "b_cm": [
+    15000.0,
+    6507.867965644017
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0015",
+   "chain": 2,
+   "seq": 3,
+   "a_cm": [
+    15000.0,
+    6507.867965644017
+   ],
+   "b_cm": [
+    15000.0,
+    7930.294372515202
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0016",
+   "chain": 2,
+   "seq": 4,
+   "a_cm": [
+    15000.0,
+    7930.294372515202
+   ],
+   "b_cm": [
+    15000.0,
+    9352.720779386394
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0017",
+   "chain": 2,
+   "seq": 5,
+   "a_cm": [
+    15000.0,
+    9352.720779386394
+   ],
+   "b_cm": [
+    15000.0,
+    10775.147186257596
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0018",
+   "chain": 2,
+   "seq": 6,
+   "a_cm": [
+    15000.0,
+    10775.147186257596
+   ],
+   "b_cm": [
+    15000.0,
+    12197.573593128798
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0019",
+   "chain": 2,
+   "seq": 7,
+   "a_cm": [
+    15000.0,
+    12197.573593128798
+   ],
+   "b_cm": [
+    15000.0,
+    13620.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "alley",
+   "id": "street_0020",
+   "chain": 3,
+   "seq": 0,
+   "a_cm": [
+    22800.0,
+    4860.0
+   ],
+   "b_cm": [
+    22800.0,
+    6183.550401963196
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0021",
+   "chain": 3,
+   "seq": 1,
+   "a_cm": [
+    22800.0,
+    6183.550401963196
+   ],
+   "b_cm": [
+    22800.0,
+    7507.100803926389
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0022",
+   "chain": 3,
+   "seq": 2,
+   "a_cm": [
+    22800.0,
+    7507.100803926389
+   ],
+   "b_cm": [
+    22800.0,
+    8830.651205889582
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0023",
+   "chain": 3,
+   "seq": 3,
+   "a_cm": [
+    22800.0,
+    8830.651205889582
+   ],
+   "b_cm": [
+    22800.0,
+    10154.201607852776
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0024",
+   "chain": 3,
+   "seq": 4,
+   "a_cm": [
+    22800.0,
+    10154.201607852776
+   ],
+   "b_cm": [
+    22800.0,
+    11477.75200981597
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0025",
+   "chain": 3,
+   "seq": 5,
+   "a_cm": [
+    22800.0,
+    11477.75200981597
+   ],
+   "b_cm": [
+    22800.0,
+    12801.302411779177
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0026",
+   "chain": 3,
+   "seq": 6,
+   "a_cm": [
+    22800.0,
+    12801.302411779177
+   ],
+   "b_cm": [
+    22740.0,
+    14100.0
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "main",
+   "id": "street_0027",
+   "chain": 4,
+   "seq": 0,
+   "a_cm": [
+    2880.0,
+    14820.0
+   ],
+   "b_cm": [
+    4283.300003312688,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0028",
+   "chain": 4,
+   "seq": 1,
+   "a_cm": [
+    4283.300003312688,
+    15000.0
+   ],
+   "b_cm": [
+    5761.15844785253,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0029",
+   "chain": 4,
+   "seq": 2,
+   "a_cm": [
+    5761.15844785253,
+    15000.0
+   ],
+   "b_cm": [
+    7200.0,
+    15120.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0030",
+   "chain": 5,
+   "seq": 0,
+   "a_cm": [
+    13920.0,
+    14760.0
+   ],
+   "b_cm": [
+    12645.587878478678,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0031",
+   "chain": 5,
+   "seq": 1,
+   "a_cm": [
+    12645.587878478678,
+    15000.0
+   ],
+   "b_cm": [
+    11271.764501987816,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0032",
+   "chain": 5,
+   "seq": 2,
+   "a_cm": [
+    11271.764501987816,
+    15000.0
+   ],
+   "b_cm": [
+    9897.941125496955,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0033",
+   "chain": 5,
+   "seq": 3,
+   "a_cm": [
+    9897.941125496955,
+    15000.0
+   ],
+   "b_cm": [
+    8524.117749006095,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0034",
+   "chain": 5,
+   "seq": 4,
+   "a_cm": [
+    8524.117749006095,
+    15000.0
+   ],
+   "b_cm": [
+    7200.0,
+    15120.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0035",
+   "chain": 6,
+   "seq": 0,
+   "a_cm": [
+    14520.0,
+    14760.0
+   ],
+   "b_cm": [
+    15916.443435705323,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0036",
+   "chain": 6,
+   "seq": 1,
+   "a_cm": [
+    15916.443435705323,
+    15000.0
+   ],
+   "b_cm": [
+    17412.29812638019,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0037",
+   "chain": 6,
+   "seq": 2,
+   "a_cm": [
+    17412.29812638019,
+    15000.0
+   ],
+   "b_cm": [
+    18908.152817055052,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0038",
+   "chain": 6,
+   "seq": 3,
+   "a_cm": [
+    18908.152817055052,
+    15000.0
+   ],
+   "b_cm": [
+    20404.00750772991,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0039",
+   "chain": 6,
+   "seq": 4,
+   "a_cm": [
+    20404.00750772991,
+    15000.0
+   ],
+   "b_cm": [
+    21899.86219840479,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0040",
+   "chain": 6,
+   "seq": 5,
+   "a_cm": [
+    21899.86219840479,
+    15000.0
+   ],
+   "b_cm": [
+    23296.305634110126,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0041",
+   "chain": 6,
+   "seq": 6,
+   "a_cm": [
+    23296.305634110126,
+    15000.0
+   ],
+   "b_cm": [
+    24792.160324785003,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0042",
+   "chain": 6,
+   "seq": 7,
+   "a_cm": [
+    24792.160324785003,
+    15000.0
+   ],
+   "b_cm": [
+    26288.01501545989,
+    15000.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0043",
+   "chain": 6,
+   "seq": 8,
+   "a_cm": [
+    26288.01501545989,
+    15000.0
+   ],
+   "b_cm": [
+    27720.0,
+    15180.0
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "alley",
+   "id": "street_0044",
+   "chain": 7,
+   "seq": 0,
+   "a_cm": [
+    7200.0,
+    15120.0
+   ],
+   "b_cm": [
+    7200.0,
+    16559.999999999996
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0045",
+   "chain": 7,
+   "seq": 1,
+   "a_cm": [
+    7200.0,
+    16559.999999999996
+   ],
+   "b_cm": [
+    7200.0,
+    17999.99999999999
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0046",
+   "chain": 7,
+   "seq": 2,
+   "a_cm": [
+    7200.0,
+    17999.99999999999
+   ],
+   "b_cm": [
+    7200.0,
+    19439.99999999998
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0047",
+   "chain": 7,
+   "seq": 3,
+   "a_cm": [
+    7200.0,
+    19439.99999999998
+   ],
+   "b_cm": [
+    7200.0,
+    20879.999999999975
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0048",
+   "chain": 7,
+   "seq": 4,
+   "a_cm": [
+    7200.0,
+    20879.999999999975
+   ],
+   "b_cm": [
+    7200.0,
+    22319.999999999978
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0049",
+   "chain": 7,
+   "seq": 5,
+   "a_cm": [
+    7200.0,
+    22319.999999999978
+   ],
+   "b_cm": [
+    7200.0,
+    23759.99999999999
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "alley",
+   "id": "street_0050",
+   "chain": 7,
+   "seq": 6,
+   "a_cm": [
+    7200.0,
+    23759.99999999999
+   ],
+   "b_cm": [
+    7200.0,
+    25200.0
+   ],
+   "width_cm": 360
+  },
+  {
+   "kind": "lane",
+   "id": "street_0051",
+   "chain": 8,
+   "seq": 0,
+   "a_cm": [
+    27720.0,
+    15180.0
+   ],
+   "b_cm": [
+    26972.363969117625,
+    16287.636030882375
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0052",
+   "chain": 8,
+   "seq": 1,
+   "a_cm": [
+    26972.363969117625,
+    16287.636030882375
+   ],
+   "b_cm": [
+    26012.59590387929,
+    17307.40409612071
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0053",
+   "chain": 8,
+   "seq": 2,
+   "a_cm": [
+    26012.59590387929,
+    17307.40409612071
+   ],
+   "b_cm": [
+    25020.0,
+    18313.574425370574
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0054",
+   "chain": 8,
+   "seq": 3,
+   "a_cm": [
+    25020.0,
+    18313.574425370574
+   ],
+   "b_cm": [
+    24050.633366531416,
+    19329.366633468584
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0055",
+   "chain": 8,
+   "seq": 4,
+   "a_cm": [
+    24050.633366531416,
+    19329.366633468584
+   ],
+   "b_cm": [
+    23090.865301293077,
+    20349.134698706923
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0056",
+   "chain": 8,
+   "seq": 5,
+   "a_cm": [
+    23090.865301293077,
+    20349.134698706923
+   ],
+   "b_cm": [
+    22131.09723605474,
+    21368.90276394526
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0057",
+   "chain": 8,
+   "seq": 6,
+   "a_cm": [
+    22131.09723605474,
+    21368.90276394526
+   ],
+   "b_cm": [
+    21128.902763945207,
+    22371.097236054793
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0058",
+   "chain": 8,
+   "seq": 7,
+   "a_cm": [
+    21128.902763945207,
+    22371.097236054793
+   ],
+   "b_cm": [
+    20169.134698706865,
+    23390.865301293135
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0059",
+   "chain": 8,
+   "seq": 8,
+   "a_cm": [
+    20169.134698706865,
+    23390.865301293135
+   ],
+   "b_cm": [
+    19209.36663346853,
+    24410.63336653147
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0060",
+   "chain": 8,
+   "seq": 9,
+   "a_cm": [
+    19209.36663346853,
+    24410.63336653147
+   ],
+   "b_cm": [
+    18249.5985682302,
+    25430.4014317698
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0061",
+   "chain": 8,
+   "seq": 10,
+   "a_cm": [
+    18249.5985682302,
+    25430.4014317698
+   ],
+   "b_cm": [
+    17247.40409612069,
+    26432.59590387931
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0062",
+   "chain": 8,
+   "seq": 11,
+   "a_cm": [
+    17247.40409612069,
+    26432.59590387931
+   ],
+   "b_cm": [
+    16287.636030882364,
+    27452.363969117636
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "lane",
+   "id": "street_0063",
+   "chain": 8,
+   "seq": 12,
+   "a_cm": [
+    16287.636030882364,
+    27452.363969117636
+   ],
+   "b_cm": [
+    15240.0,
+    28260.0
+   ],
+   "width_cm": 432
+  },
+  {
+   "kind": "main",
+   "id": "street_0064",
+   "chain": 9,
+   "seq": 0,
+   "a_cm": [
+    15000.0,
+    16320.0
+   ],
+   "b_cm": [
+    15000.0,
+    17663.235209161587
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0065",
+   "chain": 9,
+   "seq": 1,
+   "a_cm": [
+    15000.0,
+    17663.235209161587
+   ],
+   "b_cm": [
+    15000.0,
+    19006.47041832317
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0066",
+   "chain": 9,
+   "seq": 2,
+   "a_cm": [
+    15000.0,
+    19006.47041832317
+   ],
+   "b_cm": [
+    15000.0,
+    20349.705627484756
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0067",
+   "chain": 9,
+   "seq": 3,
+   "a_cm": [
+    15000.0,
+    20349.705627484756
+   ],
+   "b_cm": [
+    15000.0,
+    21692.940836646336
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0068",
+   "chain": 9,
+   "seq": 4,
+   "a_cm": [
+    15000.0,
+    21692.940836646336
+   ],
+   "b_cm": [
+    15000.0,
+    23036.176045807922
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0069",
+   "chain": 9,
+   "seq": 5,
+   "a_cm": [
+    15000.0,
+    23036.176045807922
+   ],
+   "b_cm": [
+    15000.0,
+    24379.411254969524
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0070",
+   "chain": 9,
+   "seq": 6,
+   "a_cm": [
+    15000.0,
+    24379.411254969524
+   ],
+   "b_cm": [
+    15000.0,
+    25722.64646413112
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0071",
+   "chain": 9,
+   "seq": 7,
+   "a_cm": [
+    15000.0,
+    25722.64646413112
+   ],
+   "b_cm": [
+    15000.0,
+    27065.881673292723
+   ],
+   "width_cm": 720
+  },
+  {
+   "kind": "main",
+   "id": "street_0072",
+   "chain": 9,
+   "seq": 8,
+   "a_cm": [
+    15000.0,
+    27065.881673292723
+   ],
+   "b_cm": [
+    15240.0,
+    28260.0
+   ],
+   "width_cm": 720
+  }
+ ],
+ "buildings": [
+  {
+   "kind": "building",
+   "id": "bld_0000",
+   "loc_cm": [
+    15660.0,
+    3300.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 47.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0001",
+   "loc_cm": [
+    12150.001831054688,
+    3810.0009155273438,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 44.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0002",
+   "loc_cm": [
+    14220.0,
+    4290.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 54.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0003",
+   "loc_cm": [
+    15630.0,
+    4290.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 27.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0004",
+   "loc_cm": [
+    11250.000915527344,
+    4770.000457763672,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    850.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 53.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0005",
+   "loc_cm": [
+    13050.000915527344,
+    4679.999542236328,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    650.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0006",
+   "loc_cm": [
+    14250.0,
+    5460.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 52.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0007",
+   "loc_cm": [
+    10590.000915527344,
+    5460.000457763672,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 33.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0008",
+   "loc_cm": [
+    15720.0,
+    5460.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0009",
+   "loc_cm": [
+    12150.001831054688,
+    5640.000457763672,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 33.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0010",
+   "loc_cm": [
+    9720.000915527344,
+    6300.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 40.7
+  },
+  {
+   "kind": "building",
+   "id": "bld_0011",
+   "loc_cm": [
+    11490.001831054688,
+    6330.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.3
+  },
+  {
+   "kind": "building",
+   "id": "bld_0012",
+   "loc_cm": [
+    22260.0,
+    6390.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 31.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0013",
+   "loc_cm": [
+    14310.0,
+    6570.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0014",
+   "loc_cm": [
+    9000.000915527344,
+    7200.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 29.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0015",
+   "loc_cm": [
+    10650.000915527344,
+    7200.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 33.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0016",
+   "loc_cm": [
+    22260.0,
+    7350.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0017",
+   "loc_cm": [
+    14280.0,
+    7770.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0018",
+   "loc_cm": [
+    9900.000915527344,
+    8040.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 51.5
+  },
+  {
+   "kind": "building",
+   "id": "bld_0019",
+   "loc_cm": [
+    23400.0,
+    8460.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 58.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0020",
+   "loc_cm": [
+    14280.0,
+    8850.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0021",
+   "loc_cm": [
+    15630.0,
+    8880.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0022",
+   "loc_cm": [
+    7110.0,
+    9210.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    850.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0023",
+   "loc_cm": [
+    22260.0,
+    9720.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 47.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0024",
+   "loc_cm": [
+    14250.0,
+    10020.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 52.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0025",
+   "loc_cm": [
+    15660.0,
+    9990.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0026",
+   "loc_cm": [
+    6180.0,
+    10140.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 29.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0027",
+   "loc_cm": [
+    5339.999542236328,
+    10920.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.5
+  },
+  {
+   "kind": "building",
+   "id": "bld_0028",
+   "loc_cm": [
+    7050.000915527344,
+    10980.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0029",
+   "loc_cm": [
+    15660.0,
+    11340.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 47.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0030",
+   "loc_cm": [
+    14250.0,
+    11310.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 34.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0031",
+   "loc_cm": [
+    6270.0,
+    11820.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 45.0,
+   "size_cm": [
+    650.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0032",
+   "loc_cm": [
+    4499.999542236328,
+    11880.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0033",
+   "loc_cm": [
+    22290.0,
+    12270.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0034",
+   "loc_cm": [
+    23310.0,
+    12270.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 27.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0035",
+   "loc_cm": [
+    5445.000457763672,
+    12735.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 45.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0036",
+   "loc_cm": [
+    2969.999542236328,
+    13470.000915527344,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.3
+  },
+  {
+   "kind": "building",
+   "id": "bld_0037",
+   "loc_cm": [
+    23370.0,
+    13500.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0038",
+   "loc_cm": [
+    13950.0,
+    14040.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    1150.0,
+    950.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 73.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0039",
+   "loc_cm": [
+    15360.0,
+    14040.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    1300.0,
+    950.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 92.5
+  },
+  {
+   "kind": "building",
+   "id": "bld_0040",
+   "loc_cm": [
+    3870.000457763672,
+    14310.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.3
+  },
+  {
+   "kind": "building",
+   "id": "bld_0041",
+   "loc_cm": [
+    10080.0,
+    14220.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0042",
+   "loc_cm": [
+    18660.0,
+    14220.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0043",
+   "loc_cm": [
+    21000.0,
+    14220.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0044",
+   "loc_cm": [
+    22140.0,
+    14220.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0045",
+   "loc_cm": [
+    7590.0,
+    14250.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    650.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0046",
+   "loc_cm": [
+    11070.0,
+    14250.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 34.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0047",
+   "loc_cm": [
+    19890.0,
+    14250.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 34.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0048",
+   "loc_cm": [
+    5220.0,
+    14280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    850.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 47.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0049",
+   "loc_cm": [
+    6510.0,
+    14280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    800.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0050",
+   "loc_cm": [
+    12450.0,
+    14280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0051",
+   "loc_cm": [
+    24270.0,
+    14280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    800.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0052",
+   "loc_cm": [
+    17400.0,
+    14310.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0053",
+   "loc_cm": [
+    23130.0,
+    14310.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    800.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0054",
+   "loc_cm": [
+    13920.0,
+    15300.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    1200.0,
+    1100.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 85.7
+  },
+  {
+   "kind": "building",
+   "id": "bld_0055",
+   "loc_cm": [
+    3870.0,
+    15720.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    800.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 54.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0056",
+   "loc_cm": [
+    5220.0,
+    15660.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 34.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0057",
+   "loc_cm": [
+    7620.0,
+    15720.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0058",
+   "loc_cm": [
+    11070.0,
+    15630.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    550.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 27.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0059",
+   "loc_cm": [
+    15030.0,
+    15690.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    800.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 49.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0060",
+   "loc_cm": [
+    16380.0,
+    15660.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 40.7
+  },
+  {
+   "kind": "building",
+   "id": "bld_0061",
+   "loc_cm": [
+    18660.0,
+    15690.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0062",
+   "loc_cm": [
+    19890.0,
+    15630.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    650.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 33.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0063",
+   "loc_cm": [
+    20970.0,
+    15720.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    650.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 46.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0064",
+   "loc_cm": [
+    22140.0,
+    15660.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 40.7
+  },
+  {
+   "kind": "building",
+   "id": "bld_0065",
+   "loc_cm": [
+    23130.0,
+    15630.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    650.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 33.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0066",
+   "loc_cm": [
+    24300.0,
+    15630.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    850.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0067",
+   "loc_cm": [
+    25620.0,
+    15630.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0068",
+   "loc_cm": [
+    14250.0,
+    16320.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 52.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0069",
+   "loc_cm": [
+    6690.0,
+    16500.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0070",
+   "loc_cm": [
+    7710.0,
+    16500.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0071",
+   "loc_cm": [
+    26910.003662109375,
+    17100.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    450.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0072",
+   "loc_cm": [
+    25110.003662109375,
+    17190.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 46.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0073",
+   "loc_cm": [
+    6600.0,
+    17760.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 58.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0074",
+   "loc_cm": [
+    14310.0,
+    17700.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0075",
+   "loc_cm": [
+    15720.0,
+    17700.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0076",
+   "loc_cm": [
+    24435.001831054688,
+    17955.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 45.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0077",
+   "loc_cm": [
+    26025.001831054688,
+    18105.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    850.0,
+    450.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.5
+  },
+  {
+   "kind": "building",
+   "id": "bld_0078",
+   "loc_cm": [
+    23580.003662109375,
+    18810.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    800.0,
+    650.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 54.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0079",
+   "loc_cm": [
+    6690.0,
+    18840.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0080",
+   "loc_cm": [
+    14280.0,
+    18750.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0081",
+   "loc_cm": [
+    25335.001831054688,
+    18855.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 40.3
+  },
+  {
+   "kind": "building",
+   "id": "bld_0082",
+   "loc_cm": [
+    7800.0,
+    18840.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0083",
+   "loc_cm": [
+    22950.001831054688,
+    19530.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0084",
+   "loc_cm": [
+    24450.0,
+    19650.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    850.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 41.8
+  },
+  {
+   "kind": "building",
+   "id": "bld_0085",
+   "loc_cm": [
+    14310.0,
+    20100.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0086",
+   "loc_cm": [
+    6660.0,
+    20130.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0087",
+   "loc_cm": [
+    7710.0,
+    20130.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    550.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 27.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0088",
+   "loc_cm": [
+    23865.001831054688,
+    20445.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    650.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 46.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0089",
+   "loc_cm": [
+    21960.001831054688,
+    20520.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 51.5
+  },
+  {
+   "kind": "building",
+   "id": "bld_0090",
+   "loc_cm": [
+    15690.0,
+    21180.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 52.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0091",
+   "loc_cm": [
+    21360.001831054688,
+    21240.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    850.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 46.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0092",
+   "loc_cm": [
+    14220.0,
+    21180.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.1
+  },
+  {
+   "kind": "building",
+   "id": "bld_0093",
+   "loc_cm": [
+    22830.0,
+    21360.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    450.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 36.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0094",
+   "loc_cm": [
+    7740.0,
+    21450.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    650.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 37.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0095",
+   "loc_cm": [
+    20565.001831054688,
+    22005.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0096",
+   "loc_cm": [
+    14250.0,
+    22560.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 52.6
+  },
+  {
+   "kind": "building",
+   "id": "bld_0097",
+   "loc_cm": [
+    15720.0,
+    22560.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0098",
+   "loc_cm": [
+    7740.0,
+    22710.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 43.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0099",
+   "loc_cm": [
+    6600.0,
+    22710.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 0.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0100",
+   "loc_cm": [
+    20535.001831054688,
+    23745.003662109375,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    550.0,
+    400.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 25.9
+  },
+  {
+   "kind": "building",
+   "id": "bld_0101",
+   "loc_cm": [
+    18795.001831054688,
+    23865.003662109375,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    650.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 40.7
+  },
+  {
+   "kind": "building",
+   "id": "bld_0102",
+   "loc_cm": [
+    14220.0,
+    23910.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    800.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 54.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0103",
+   "loc_cm": [
+    15660.0,
+    23940.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 34.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0104",
+   "loc_cm": [
+    19695.0,
+    24735.001831054688,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 3,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 45.4
+  },
+  {
+   "kind": "building",
+   "id": "bld_0105",
+   "loc_cm": [
+    15720.0,
+    24960.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    700.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 50.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0106",
+   "loc_cm": [
+    18270.001831054688,
+    26280.003662109375,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    700.0,
+    650.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 49.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0107",
+   "loc_cm": [
+    15720.0,
+    26280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    850.0,
+    600.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 58.0
+  },
+  {
+   "kind": "building",
+   "id": "bld_0108",
+   "loc_cm": [
+    14250.0,
+    26280.0,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 90.0,
+   "size_cm": [
+    600.0,
+    550.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 0,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 38.2
+  },
+  {
+   "kind": "building",
+   "id": "bld_0109",
+   "loc_cm": [
+    17370.001831054688,
+    27150.003662109375,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    600.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 2,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 35.3
+  },
+  {
+   "kind": "building",
+   "id": "bld_0110",
+   "loc_cm": [
+    15570.001831054688,
+    27270.003662109375,
+    0.0
+   ],
+   "pad_z_cm": 0.0,
+   "yaw_deg": 135.0,
+   "size_cm": [
+    750.0,
+    500.0,
+    800.0
+   ],
+   "storeys": 2,
+   "door_side": 1,
+   "roof_candidate": null,
+   "roof_servable": false,
+   "area_m2": 42.1
+  }
+ ],
+ "water_polygons_cm": [
+  [
+   [
+    25800.0,
+    1800.0
+   ],
+   [
+    24960.0,
+    1920.0
+   ],
+   [
+    24000.0,
+    2400.0
+   ],
+   [
+    23280.0,
+    3180.0
+   ],
+   [
+    22860.0,
+    4260.0
+   ],
+   [
+    22980.0,
+    5820.0
+   ],
+   [
+    23400.0,
+    6600.0
+   ],
+   [
+    24180.0,
+    7320.0
+   ],
+   [
+    24960.0,
+    7680.0
+   ],
+   [
+    25800.0,
+    7800.0
+   ],
+   [
+    26640.0,
+    7680.0
+   ],
+   [
+    27600.0,
+    7200.0
+   ],
+   [
+    28320.0,
+    6420.0
+   ],
+   [
+    28680.0,
+    5640.0
+   ],
+   [
+    28800.0,
+    4800.0
+   ],
+   [
+    28680.0,
+    3960.0
+   ],
+   [
+    28200.0,
+    3000.0
+   ],
+   [
+    27420.0,
+    2280.0
+   ],
+   [
+    26640.0,
+    1920.0
+   ]
+  ]
+ ],
+ "counts": {
+  "streets": 73,
+  "chains": 9,
+  "buildings": 111,
+  "water_polygons": 1
+ }
+}

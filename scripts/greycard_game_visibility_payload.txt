@@ -1,0 +1,68 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# Set the bench grey cards' HIDDEN-IN-GAME flag (R-GREYCARD: Bench_GreyCard_<station>).
+#
+#   run with scripts/ue_exec (CLI): payload greycard_game_visibility_payload.txt --set HIDDEN=1 --set SAVE=1
+#   (no dot-p-y name in payload text: ExecuteFile reads it as a path, LESSONS 12.10)
+#
+# WHY (2026-10-06). The cards are an instrument, but they were saved visible, so the
+# shipped -game world drew them: a grey quad 3 m in front of the vista camera and
+# 2 m from the treeline (mid_slope) camera (_verify/lookdev/seams06, identified by
+# actors_near_points). On disk they are now HIDDEN=1. bench_capture renders through
+# MRQ in PIE, which duplicates the editor world, so it sets HIDDEN=0 SAVE=0 in
+# memory before the render and HIDDEN=1 SAVE=1 after (try/finally in its __main__).
+# Distinct from greycard_visibility_payload, which only toggles EDITOR-viewport
+# visibility and never reaches PIE or -game.
+#
+# Read back per actor (rule 12); zero cards is reported as zero (rule 13). SAVE=1
+# writes only the cards' own external-actor packages.
+
+HIDDEN = "__HIDDEN__"   # "1" | "0"
+SAVE = "__SAVE__"       # "1" | "0"
+
+_out = {"ok": False, "error": None, "hidden": HIDDEN, "save": SAVE, "cards": 0,
+        "readback": {}, "saved": []}
+try:
+    if HIDDEN not in ("0", "1") or SAVE not in ("0", "1"):
+        raise RuntimeError("HIDDEN and SAVE must be 0|1")
+    _want = HIDDEN == "1"
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _pk = []
+    # F5 (rule 8): a label match is not an identity -- StaticMeshActor only, and
+    # exactly one per Bench_GreyCard_<station> label, checked BEFORE any change.
+    _cards = [_a for _a in _eas.get_all_level_actors()
+              if _a.get_actor_label().startswith("Bench_GreyCard_")]
+    _labels = [_a.get_actor_label() for _a in _cards]
+    _dupes = sorted(set(l for l in _labels if _labels.count(l) > 1))
+    _wrong = sorted(_a.get_actor_label() for _a in _cards if not isinstance(_a, _u.StaticMeshActor))
+    if _dupes or _wrong:
+        raise RuntimeError("refusing: duplicate labels %s, non-StaticMeshActor %s" % (_dupes, _wrong))
+    for _a in _cards:
+        _lab = _a.get_actor_label()
+        _a.modify()
+        _a.set_actor_hidden_in_game(_want)
+        _out["readback"][_lab] = bool(_a.get_editor_property("hidden"))
+        _out["cards"] += 1
+        _pk.append(_a.get_package())
+    _bad = [k for k, v in _out["readback"].items() if v != _want]
+    if _out["cards"] == 0:
+        _out["error"] = "no Bench_GreyCard_* actor is loaded; nothing was changed"
+    elif _bad:
+        _out["error"] = "read-back disagrees for: " + ", ".join(sorted(_bad))
+    else:
+        if SAVE == "1":
+            _ok = _u.EditorLoadingAndSavingUtils.save_packages(_pk, False)
+            _out["saved"] = [str(_p.get_name()) for _p in _pk]
+            _out["save_returned"] = bool(_ok)
+            _left = [str(_p.get_name()) for _p in (_u.EditorLoadingAndSavingUtils.get_dirty_content_packages() or [])]
+            _left += [str(_p.get_name()) for _p in (_u.EditorLoadingAndSavingUtils.get_dirty_map_packages() or [])]
+            _out["cards_still_dirty"] = [n for n in _left if n in _out["saved"]]
+            _out["ok"] = bool(_ok) and not _out["cards_still_dirty"]
+        else:
+            _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,43 @@
+{
+ "ok": true,
+ "texture": {
+  "srgb": false,
+  "compression": "<TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP: 5>",
+  "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+  "vt": false
+ },
+ "cavity_texture": {
+  "srgb": false,
+  "compression": "<TextureCompressionSettings.TC_VECTOR_DISPLACEMENTMAP: 5>",
+  "lod_group": "<TextureGroup.TEXTUREGROUP_WORLD: 0>",
+  "vt": false
+ },
+ "clear": {
+  "survived": 19,
+  "remaining": 0
+ },
+ "sampler_auto": "<MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR: 6>",
+ "cavity_sampler_auto": "<MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR: 6>",
+ "assert": {
+  "got": [
+   "T_Alpine_8k_Cavity",
+   "T_Alpine_8k_Weights"
+  ],
+  "want": [
+   "T_Alpine_8k_Cavity",
+   "T_Alpine_8k_Weights"
+  ],
+  "extra": [],
+  "missing": [],
+  "exact": true
+ },
+ "compile_errors": [],
+ "readback": {
+  "used_with_nanite": true,
+  "n_expressions": 56,
+  "samplers": [
+   "T_Alpine_8k_Cavity",
+   "T_Alpine_8k_Weights"
+  ]
+ }
+}

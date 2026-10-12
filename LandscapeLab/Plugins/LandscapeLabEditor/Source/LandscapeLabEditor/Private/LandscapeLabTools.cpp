@@ -1931,3 +1931,480 @@ void ULandscapeLabTools::BuildFreshGroomBinding(
 	OutBindingPath = DestPackagePath;
 	bOutSuccess = true;
 }
+
+// ===========================================================================
+// TOWN KIT (2026-10-06). See the header block above SpawnKitHouse.
+// ===========================================================================
+#include "Components/BoxComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
+#include "Components/SceneComponent.h"
+#include "Engine/StaticMesh.h"
+#include "Engine/CollisionProfile.h"
+
+void ULandscapeLabTools::SpawnKitHouse(
+	const FTransform& Transform,
+	const FString& Label,
+	const TArray<FName>& Tags,
+	const FVector& BoxCenterCm,
+	const FVector& BoxExtentCm,
+	AActor*& OutActor,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	OutActor = nullptr;
+	bOutSuccess = false;
+	OutError.Reset();
+
+	UWorld* World = GetEditorWorldChecked(OutError);
+	if (World == nullptr)
+	{
+		return;
+	}
+	if (BoxExtentCm.X <= 0.0 || BoxExtentCm.Y <= 0.0 || BoxExtentCm.Z <= 0.0)
+	{
+		OutError = TEXT("BoxExtentCm must be positive on every axis.");
+		return;
+	}
+	// Audit F3 (2026-10-06): an untagged house can never be found by the placer's
+	// tagged teardown, so a re-run would duplicate it (pipeline rule 3).
+	if (Tags.Num() == 0)
+	{
+		OutError = TEXT("Tags must not be empty: the town teardown finds houses by tag.");
+		return;
+	}
+
+	FActorSpawnParameters Params;
+	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	AActor* House = World->SpawnActor<AActor>(AActor::StaticClass(), Transform, Params);
+	if (House == nullptr)
+	{
+		OutError = TEXT("SpawnActor returned null.");
+		return;
+	}
+	House->Modify();
+
+	USceneComponent* Root = NewObject<USceneComponent>(House, TEXT("Root"), RF_Transactional);
+	Root->CreationMethod = EComponentCreationMethod::Instance;
+	Root->SetMobility(EComponentMobility::Static);
+	House->SetRootComponent(Root);
+	House->AddInstanceComponent(Root);
+	Root->RegisterComponent();
+	House->SetActorTransform(Transform);
+
+	UBoxComponent* Box = NewObject<UBoxComponent>(House, TEXT("Collision"), RF_Transactional);
+	Box->CreationMethod = EComponentCreationMethod::Instance;
+	Box->SetMobility(EComponentMobility::Static);
+	Box->SetupAttachment(Root);
+	Box->SetRelativeLocation(BoxCenterCm);
+	Box->SetBoxExtent(BoxExtentCm, false);
+	Box->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
+	Box->SetCanEverAffectNavigation(true);
+	Box->SetHiddenInGame(true);
+	House->AddInstanceComponent(Box);
+	Box->RegisterComponent();
+
+	if (!Label.IsEmpty())
+	{
+		House->SetActorLabel(Label);
+	}
+	for (const FName& Tag : Tags)
+	{
+		House->Tags.AddUnique(Tag);
+	}
+	House->MarkPackageDirty();
+
+	OutActor = House;
+	bOutSuccess = true;
+}
+
+void ULandscapeLabTools::SetKitInstances(
+	AActor* House,
+	UStaticMesh* Mesh,
+	const TArray<FTransform>& LocalTransforms,
+	const FName ComponentName,
+	int32& OutInstanceCount,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	OutInstanceCount = 0;
+	bOutSuccess = false;
+	OutError.Reset();
+
+	if (House == nullptr || Mesh == nullptr)
+	{
+		OutError = TEXT("House and Mesh are required.");
+		return;
+	}
+	if (ComponentName.IsNone())
+	{
+		OutError = TEXT("ComponentName is required.");
+		return;
+	}
+	// Audit F2 (2026-10-06, standing rule 8): only a house made by SpawnKitHouse,
+	// in the editor world, may be changed -- never the landscape or a City_* actor.
+	if (House->GetClass() != AActor::StaticClass())
+	{
+		OutError = FString::Printf(TEXT("%s is a %s, not a plain kit-house AActor."),
+			*House->GetActorLabel(), *House->GetClass()->GetName());
+		return;
+	}
+	UWorld* EdWorld = GetEditorWorldChecked(OutError);
+	if (EdWorld == nullptr || House->GetWorld() != EdWorld)
+	{
+		if (OutError.IsEmpty())
+		{
+			OutError = TEXT("House is not in the editor world (PIE or another world).");
+		}
+		return;
+	}
+	USceneComponent* Root = House->GetRootComponent();
+	if (Root == nullptr || Root->GetFName() != FName(TEXT("Root"))
+		|| Root->CreationMethod != EComponentCreationMethod::Instance)
+	{
+		OutError = TEXT("House root is not the 'Root' instance component made by SpawnKitHouse.");
+		return;
+	}
+	House->Modify();
+
+	UInstancedStaticMeshComponent* Ism = nullptr;
+	for (UActorComponent* C : House->GetComponents())
+	{
+		if (C != nullptr && C->GetFName() == ComponentName)
+		{
+			Ism = Cast<UInstancedStaticMeshComponent>(C);
+			if (Ism == nullptr)
+			{
+				OutError = FString::Printf(TEXT("Component %s exists and is not an ISM."), *ComponentName.ToString());
+				return;
+			}
+			break;
+		}
+	}
+	// Audit F1 (2026-10-06): a destroyed component keeps its name until GC, and
+	// NewObject with an explicit name over an object of another class is Fatal
+	// (UObjectGlobals.cpp:3516-3540). Refuse any non-live object under the name.
+	if (UObject* Existing = StaticFindObjectFast(nullptr, House, ComponentName))
+	{
+		if (Existing != Ism)
+		{
+			OutError = FString::Printf(TEXT("An object named %s already exists under the house and is not its live ISM."),
+				*ComponentName.ToString());
+			return;
+		}
+	}
+	if (Ism == nullptr)
+	{
+		Ism = NewObject<UInstancedStaticMeshComponent>(House, ComponentName, RF_Transactional);
+		Ism->CreationMethod = EComponentCreationMethod::Instance;
+		Ism->SetMobility(EComponentMobility::Static);
+		Ism->SetupAttachment(Root);
+		House->AddInstanceComponent(Ism);
+		Ism->RegisterComponent();
+	}
+	Ism->Modify();
+	Ism->SetStaticMesh(Mesh);
+	Ism->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Ism->SetCanEverAffectNavigation(false);
+	Ism->ClearInstances();
+	if (LocalTransforms.Num() > 0)
+	{
+		Ism->AddInstances(LocalTransforms, /*bShouldReturnIndices=*/false, /*bWorldSpace=*/false);
+	}
+	House->MarkPackageDirty();
+
+	OutInstanceCount = Ism->GetInstanceCount();
+	if (OutInstanceCount != LocalTransforms.Num())
+	{
+		OutError = FString::Printf(TEXT("Instance count read back %d, expected %d."),
+			OutInstanceCount, LocalTransforms.Num());
+		return;
+	}
+	bOutSuccess = true;
+}
+
+// ---------------------------------------------------------------------------
+// TOWN KIT -- foliage clearance and nav read-back (2026-10-06, header for
+// the contract and citations).
+// ---------------------------------------------------------------------------
+#include "EngineUtils.h"
+#include "InstancedFoliage.h"
+#include "InstancedFoliageActor.h"
+#include "FoliageType.h"
+#include "NavigationSystem.h"
+
+void ULandscapeLabTools::RemoveFoliageInBoxes(
+	const TArray<FTransform>& BoxTransforms,
+	const TArray<FVector>& BoxHalfExtentsCm,
+	bool bDryRun,
+	int32& OutMatched,
+	int32& OutRemoved,
+	TArray<FString>& OutPerType,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	OutMatched = 0;
+	OutRemoved = 0;
+	OutPerType.Reset();
+	bOutSuccess = false;
+	OutError.Reset();
+
+	if (BoxTransforms.Num() == 0 || BoxTransforms.Num() != BoxHalfExtentsCm.Num())
+	{
+		OutError = FString::Printf(TEXT("Need one half-extent per box (%d transforms, %d extents, >0 required)."),
+			BoxTransforms.Num(), BoxHalfExtentsCm.Num());
+		return;
+	}
+	UWorld* World = GetEditorWorldChecked(OutError);
+	if (World == nullptr)
+	{
+		return;
+	}
+
+	// Box frames without scale: location + rotation only, so the local test is in cm.
+	TArray<FTransform> Frames;
+	TArray<FBox> Aabbs;
+	for (int32 B = 0; B < BoxTransforms.Num(); ++B)
+	{
+		const FVector E = BoxHalfExtentsCm[B];
+		if (E.X <= 0.0 || E.Y <= 0.0 || E.Z <= 0.0)
+		{
+			OutError = FString::Printf(TEXT("Box %d has a non-positive half-extent %s."), B, *E.ToString());
+			return;
+		}
+		const FTransform F(BoxTransforms[B].GetRotation(), BoxTransforms[B].GetLocation());
+		Frames.Add(F);
+		Aabbs.Add(FBox(FVector(-E), FVector(E)).TransformBy(F));
+	}
+
+	TMap<FString, int32> PerType;
+	int32 NumIfa = 0;
+	for (TActorIterator<AInstancedFoliageActor> It(World); It; ++It)
+	{
+		AInstancedFoliageActor* Ifa = *It;
+		++NumIfa;
+		Ifa->ForEachFoliageInfo([&](UFoliageType* Type, FFoliageInfo& Info) -> bool
+		{
+			// RemoveInstancesImpl starts with check(IsInitialized()) (InstancedFoliage.cpp:2431):
+			// an uninitialised info must FAIL here, in the dry run too, not assert the editor (audit F1).
+			if (!Info.IsInitialized())
+			{
+				const FString Name = Type ? Type->GetName() : TEXT("<null type>");
+				OutPerType.Add(FString::Printf(TEXT("%s=UNINITIALIZED"), *Name));
+				if (OutError.IsEmpty())
+				{
+					OutError = FString::Printf(TEXT("Foliage info for %s is not initialised."), *Name);
+				}
+				return true;
+			}
+			TSet<int32> Hit;
+			TArray<int32> Cand;
+			for (int32 B = 0; B < Frames.Num(); ++B)
+			{
+				Cand.Reset();
+				Info.GetInstancesInsideBounds(Aabbs[B], Cand);
+				const FVector E = BoxHalfExtentsCm[B];
+				for (const int32 Idx : Cand)
+				{
+					if (!Info.Instances.IsValidIndex(Idx))
+					{
+						continue;
+					}
+					const FVector L = Frames[B].InverseTransformPosition(Info.Instances[Idx].Location);
+					if (FMath::Abs(L.X) <= E.X && FMath::Abs(L.Y) <= E.Y && FMath::Abs(L.Z) <= E.Z)
+					{
+						Hit.Add(Idx);
+					}
+				}
+			}
+			if (Hit.Num() > 0)
+			{
+				OutMatched += Hit.Num();
+				const FString Name = Type ? Type->GetName() : TEXT("<null type>");
+				PerType.FindOrAdd(Name) += Hit.Num();
+				if (!bDryRun)
+				{
+					const int32 Before = Info.Instances.Num();
+					Ifa->Modify();
+					TArray<int32> Idx = Hit.Array();
+					Info.RemoveInstances(Idx, true);
+					OutRemoved += Before - Info.Instances.Num();
+				}
+			}
+			return true;
+		});
+	}
+	for (const TPair<FString, int32>& P : PerType)
+	{
+		OutPerType.Add(FString::Printf(TEXT("%s=%d"), *P.Key, P.Value));
+	}
+	if (NumIfa == 0)
+	{
+		OutError = TEXT("No InstancedFoliageActor loaded in the editor world -- 0 would be silence, not a verdict.");
+		return;
+	}
+	if (!OutError.IsEmpty())
+	{
+		return;   // an UNINITIALIZED info was met (see above)
+	}
+	if (!bDryRun && OutRemoved != OutMatched)
+	{
+		OutError = FString::Printf(TEXT("Matched %d but the instance arrays shrank by %d."), OutMatched, OutRemoved);
+		return;
+	}
+	bOutSuccess = true;
+}
+
+void ULandscapeLabTools::GetNavigationAutoUpdateEnabled(
+	bool& bOutEnabled,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	bOutEnabled = false;
+	bOutSuccess = false;
+	OutError.Reset();
+	UWorld* World = GetEditorWorldChecked(OutError);
+	if (World == nullptr)
+	{
+		return;
+	}
+	const UNavigationSystemV1* Nav = FNavigationSystem::GetCurrent<UNavigationSystemV1>(World);
+	if (Nav == nullptr)
+	{
+		OutError = TEXT("The editor world has no UNavigationSystemV1.");
+		return;
+	}
+	bOutEnabled = Nav->GetIsAutoUpdateEnabled();
+	bOutSuccess = true;
+}
+
+void ULandscapeLabTools::LoadWorldPartitionRegionBox(
+	const FVector& MinCm,
+	const FVector& MaxCm,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	bOutSuccess = false;
+	OutError.Reset();
+	if (!(MinCm.X < MaxCm.X && MinCm.Y < MaxCm.Y))
+	{
+		OutError = FString::Printf(TEXT("Empty box %s .. %s."), *MinCm.ToString(), *MaxCm.ToString());
+		return;
+	}
+	UWorld* World = GetEditorWorldChecked(OutError);
+	if (World == nullptr)
+	{
+		return;
+	}
+	UWorldPartition* WorldPartition = World->GetWorldPartition();
+	if (WorldPartition == nullptr)
+	{
+		OutError = TEXT("This world is not World Partition; everything in it is already resident.");
+		return;
+	}
+	// Z forced wide, as LoadAllWorldPartitionRegions does (SWorldPartitionEditorGrid2D.cpp:703).
+	const FBox LoadBox(FVector(MinCm.X, MinCm.Y, -HALF_WORLD_MAX), FVector(MaxCm.X, MaxCm.Y, HALF_WORLD_MAX));
+	UWorldPartitionEditorLoaderAdapter* Adapter =
+		WorldPartition->CreateEditorLoaderAdapter<FLoaderAdapterShape>(World, LoadBox, TEXT("LandscapeLab TownBox"));
+	if (Adapter == nullptr || Adapter->GetLoaderAdapter() == nullptr)
+	{
+		OutError = TEXT("CreateEditorLoaderAdapter returned no usable adapter.");
+		return;
+	}
+	Adapter->GetLoaderAdapter()->SetUserCreated(true);
+	Adapter->GetLoaderAdapter()->Load();
+	if (!Adapter->GetLoaderAdapter()->IsLoaded())
+	{
+		OutError = TEXT("Load() completed but the adapter does not report IsLoaded() -- treat as PARTIALLY loaded.");
+		return;
+	}
+	bOutSuccess = true;
+	UE_LOG(LogLandscapeLab, Display, TEXT("LoadWorldPartitionRegionBox: loaded XY [%f..%f, %f..%f]"),
+		MinCm.X, MaxCm.X, MinCm.Y, MaxCm.Y);
+}
+
+#include "Settings/LevelEditorMiscSettings.h"
+#include "Misc/ConfigCacheIni.h"
+
+void ULandscapeLabTools::SetEditorNavigationAutoUpdate(
+	bool bEnable,
+	bool bApplyNow,
+	bool& bOutConfigValue,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	bOutConfigValue = !bEnable;
+	bOutSuccess = false;
+	OutError.Reset();
+	UWorld* World = GetEditorWorldChecked(OutError);
+	if (World == nullptr)
+	{
+		return;
+	}
+	ULevelEditorMiscSettings* Settings = GetMutableDefault<ULevelEditorMiscSettings>();
+	if (Settings == nullptr)
+	{
+		OutError = TEXT("No ULevelEditorMiscSettings CDO.");
+		return;
+	}
+	Settings->bNavigationAutoUpdate = bEnable;
+	if (bApplyNow)
+	{
+		FNavigationSystem::SetNavigationAutoUpdateEnabled(bEnable, World->GetNavigationSystem());
+	}
+	Settings->SaveConfig();
+	bool bIni = !bEnable;
+	if (GConfig == nullptr || !GConfig->GetBool(TEXT("/Script/UnrealEd.LevelEditorMiscSettings"),
+		TEXT("bNavigationAutoUpdate"), bIni, GEditorPerProjectIni))
+	{
+		OutError = TEXT("bNavigationAutoUpdate not found in GEditorPerProjectIni after SaveConfig.");
+		return;
+	}
+	bOutConfigValue = bIni;
+	if (bIni != bEnable)
+	{
+		OutError = FString::Printf(TEXT("Config reads %d after SaveConfig of %d."), bIni ? 1 : 0, bEnable ? 1 : 0);
+		return;
+	}
+	bOutSuccess = true;
+}
+
+// ---------------------------------------------------------------------------------------------------------------
+// 2026-10-10: SetProjectPluginEnabled -- the engine writes the .uproject (standing rule 4), we only ask it to.
+// ---------------------------------------------------------------------------------------------------------------
+#include "Interfaces/IProjectManager.h"
+#include "Interfaces/IPluginManager.h"
+
+void ULandscapeLabTools::SetProjectPluginEnabled(
+	const FString& PluginName,
+	bool bEnabled,
+	bool& bOutWasDirty,
+	bool& bOutSuccess,
+	FString& OutError)
+{
+	bOutWasDirty = false;
+	bOutSuccess = false;
+	OutError.Reset();
+	if (PluginName.IsEmpty())
+	{
+		OutError = TEXT("Empty plugin name.");
+		return;
+	}
+	if (!IPluginManager::Get().FindPlugin(PluginName).IsValid())
+	{
+		OutError = FString::Printf(TEXT("The plugin manager knows no plugin named '%s'."), *PluginName);
+		return;
+	}
+	FText Fail;
+	if (!IProjectManager::Get().SetPluginEnabled(PluginName, bEnabled, Fail))
+	{
+		OutError = FString::Printf(TEXT("SetPluginEnabled refused: %s"), *Fail.ToString());
+		return;
+	}
+	bOutWasDirty = IProjectManager::Get().IsCurrentProjectDirty();
+	if (bOutWasDirty && !IProjectManager::Get().SaveCurrentProjectToDisk(Fail))
+	{
+		OutError = FString::Printf(TEXT("SaveCurrentProjectToDisk failed: %s"), *Fail.ToString());
+		return;
+	}
+	bOutSuccess = true;
+}

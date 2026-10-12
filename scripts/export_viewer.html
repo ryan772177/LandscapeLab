@@ -1,0 +1,70 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Alpine stills viewer</title>
+<style>
+:root{--bg:#121514;--ink:#e4e9e6;--muted:#8f9a95;--pick:#e7b34a;--line:#2a312e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#121514ee;border-bottom:1px solid var(--line);
+ display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:8px 16px}
+header b{font-size:15px}
+header .sp{flex:1}
+button,select{background:#1d2321;color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:5px 10px;font:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible{outline:2px solid var(--pick)}
+#picks{font-family:ui-monospace,monospace;color:var(--pick);max-width:46ch;overflow-x:auto;white-space:nowrap}
+main{display:flex;flex-direction:column;align-items:center;gap:28px;padding:20px 16px 80px}
+.it{width:min(1280px,100%);scroll-margin-top:56px}
+.it img{width:100%;height:auto;display:block;border-radius:3px;background:#1b201e;min-height:200px}
+.cap{display:flex;gap:12px;align-items:baseline;padding:6px 2px;font-size:13px;color:var(--muted)}
+.cap .id{font:600 16px ui-monospace,monospace;color:var(--ink)}
+.cap .star{margin-left:auto}
+.it.picked img{outline:3px solid var(--pick)}
+.it.picked .star{background:var(--pick);color:#111;border-color:var(--pick)}
+.help{color:var(--muted);font-size:12px}
+</style>
+<header>
+ <b>Alpine stills</b><span class="help">&darr;/&uarr; or J/K: next/previous &middot; P or Space: pick &middot; click a number to jump</span>
+ <span class="sp"></span>
+ <label>Folder <select id="folder"><option value="">all</option></select></label>
+ <span>Picked: <span id="picks">none</span></span>
+ <button id="copy">Copy picks</button>
+</header>
+<main id="list"></main>
+<script>
+const DATA = __DATA__;
+const list = document.getElementById('list'), sel = document.getElementById('folder');
+let picks = new Set();
+try { picks = new Set(JSON.parse(localStorage.getItem('picks') || '[]')); } catch (e) {}
+const folders = [...new Set(DATA.map(d => d.f))];
+folders.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; sel.appendChild(o); });
+function save() { try { localStorage.setItem('picks', JSON.stringify([...picks])); } catch (e) {}
+  const s = [...picks].sort(); document.getElementById('picks').textContent = s.length ? s.join(', ') : 'none'; }
+function render() {
+  list.innerHTML = '';
+  DATA.filter(d => !sel.value || d.f === sel.value).forEach(d => {
+    const el = document.createElement('section'); el.className = 'it' + (picks.has(d.id) ? ' picked' : ''); el.id = 'i' + d.id;
+    el.innerHTML = `<img loading="lazy" src="images/${d.id}.jpg" alt="${d.id}"><div class="cap"><span class="id">${d.id}</span><span>${d.date}</span><span>${d.f}</span><span>${d.n}</span><button class="star">${picks.has(d.id) ? '★ picked' : '☆ pick'}</button></div>`;
+    el.querySelector('.star').onclick = () => toggle(d.id);
+    list.appendChild(el);
+  });
+}
+function toggle(id) { picks.has(id) ? picks.delete(id) : picks.add(id); save();
+  const el = document.getElementById('i' + id); if (el) { el.classList.toggle('picked', picks.has(id));
+  el.querySelector('.star').textContent = picks.has(id) ? '★ picked' : '☆ pick'; } }
+function items() { return [...list.querySelectorAll('.it')]; }
+function current() { const its = items(); let best = its[0], bd = 1e9;
+  its.forEach(e => { const d = Math.abs(e.getBoundingClientRect().top - 60); if (d < bd) { bd = d; best = e; } }); return best; }
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'SELECT') return;
+  const its = items(), c = current(), i = its.indexOf(c);
+  if (['ArrowDown', 'j', 'J'].includes(e.key)) { e.preventDefault(); (its[i + 1] || c).scrollIntoView({behavior: 'auto'}); }
+  if (['ArrowUp', 'k', 'K'].includes(e.key)) { e.preventDefault(); (its[i - 1] || c).scrollIntoView({behavior: 'auto'}); }
+  if (e.key === 'p' || e.key === 'P' || e.key === ' ') { e.preventDefault(); if (c) toggle(c.id.slice(1)); }
+});
+sel.onchange = render;
+document.getElementById('copy').onclick = () => { const t = [...picks].sort().join(', ');
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(
+    () => { document.getElementById('copy').textContent = 'Copied'; setTimeout(() => document.getElementById('copy').textContent = 'Copy picks', 1500); },
+    () => { prompt('Copy these numbers:', t); }); };
+render(); save();
+</script>

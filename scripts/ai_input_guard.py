@@ -25,6 +25,11 @@ contain them, and the render outputs that depict them. All four are declared in
 
 FAIL CLOSED, AND WHY THAT IS THE RIGHT DEFAULT HERE
 ---------------------------------------------------
+HONEST SCOPE (audit 2026-10-10): the register is a DENY-LIST. "Cleared" means
+"matches no restriction", so `--strict` adds only "refuse when nothing was
+cleared" -- it cannot catch an asset nobody registered. Every pack placed in a
+level we render must have its listing's AI flag read at intake (LESSONS
+2026-10-10ee). The original intent, kept below, is not what the code does:
 `--strict` refuses any input that cannot be positively cleared, not merely the
 ones that match a restriction. The asymmetry justifies it: a false refusal
 costs a re-run and a question, a false pass costs a licence violation that
@@ -90,11 +95,55 @@ def match(path, reg):
             for c in cands:
                 if fnmatch.fnmatch(rel, c) or fnmatch.fnmatch(raw, c):
                     return r, ("path matches %s" % g)
+        low = raw.lower()
         for pkg in list(r.get("packages") or []) + list(r.get("levels") or []):
-            leaf = pkg.rsplit("/", 1)[-1]
-            if raw == pkg or raw.endswith(pkg) or leaf and leaf in raw:
+            leaf = pkg.rsplit("/", 1)[-1].lower()
+            if low == pkg.lower() or low.endswith(pkg.lower()) or leaf and leaf in low:
                 return r, ("names the restricted package %s" % pkg)
+    # 2026-10-10: a RENDER is restricted by what it depicts, which its path need not say. game_still.py writes a
+    # per-image sidecar <stem>.json with "level" (its .REJECTED rename included); capture.py writes NO sidecar and
+    # bench_capture.py a per-RUN one ("level_requested"), so those two are covered by render_globs instead, not
+    # here. An image whose sidecar names a restricted level is refused wherever it was saved. No sidecar = this
+    # rule says nothing (the path rules above still apply); a sidecar that exists but cannot be read is REFUSED.
+    side = _sidecar_level(path)
+    if side is _UNREADABLE:
+        return {"title": "unreadable sidecar", "author": "-", "licence": None,
+                "_no_ai_input_source": "the image's sidecar JSON exists but is not a readable object; fail closed"}, \
+            "its sidecar exists but could not be read"
+    if side:
+        s = side.split(".")[0].lower()
+        for r in reg["restrictions"]:
+            if not r.get("no_ai_input"):
+                continue
+            for lv in r.get("levels") or []:
+                if s == lv.lower() or s.endswith(lv.lower()):
+                    return r, ("its sidecar records the restricted level %s" % lv)
     return None, None
+
+
+_UNREADABLE = object()
+
+
+def _sidecar_level(path):
+    """The `level` in the image's sibling <stem>.json (or .REJECTED -> stem); None if no sidecar; _UNREADABLE if
+    a sidecar exists but is not a JSON object."""
+    base, ext = os.path.splitext(str(path))
+    if ext.lower() not in (".png", ".jpg", ".jpeg", ".webp", ".exr", ".bmp"):
+        return None
+    for cand in (base + ".json", base.replace(".REJECTED", "") + ".json"):
+        if not os.path.isfile(cand):
+            continue
+        try:
+            with io.open(cand, encoding="utf-8") as fh:
+                obj = json.load(fh)
+        except (OSError, ValueError):
+            return _UNREADABLE
+        if not isinstance(obj, dict):
+            return _UNREADABLE
+        lv = obj.get("level")
+        if isinstance(lv, str) and lv:
+            return lv
+    return None
 
 
 def check(paths, strict=False, reg=None):
@@ -147,15 +196,40 @@ def self_test():
         "_verify/20260830_overnight/C0_side_by_side_stage.png",
         "_verify/20260830_c0/C0_side_by_side.png",
         "/Game/Scratch/C0House/SM_C0_DonorHouse",
+        # 2026-10-10: the town kit IS restricted. The old must-pass line "the kit is a different listing
+        # entirely" was a belief nobody checked: its Fab listing reads isAiForbidden true.
+        "Free/_measured/kit_medievalvillage.json",
+        "/Game/Megascans/3D_Assets/MedievalModularWall1x2MB/SM_MedievalModularWall1x2MB",
+        "/Game/Megascans/Surfaces/Cobblestone/T_Cobblestone_A",
+        "_verify/lookdev/townkit_cobble01/ridge_town_e.png",
+        # audit F1/F2: capture.py stills (no sidecar) and bench frames (per-run sidecar) of Alpine8K
+        "captures/alpine_8k/alpine_8k__cliff_face__20260912T223508Z__d4fbad4d.png",
+        "captures/alpine_8k__town_overlook__20261010T120000Z__b8b0896c.png",
+        "_verify/bench/2026-09-13/alpine_8k/station_03.png",
+        "/game/megascans/surfaces/cobblestone/t_cobblestone_a",
     ]
     must_pass = [
         # the church input actually used: the operator's own concept art
         "_verify/20260830_bakeoff/church_input_518.png",
         "refs/alpine_village_01.jpg",
-        # the kit is a different listing entirely
-        "Free/_measured/kit_medievalvillage.json",
         "refs/textures_v1/beam_wood_tiled.jpg",
     ]
+    # the sidecar-level rule, both directions, on real files under _verify/ (standing rule 1)
+    import tempfile
+    with tempfile.TemporaryDirectory(dir=os.path.join(REPO, "_verify")) as td:
+        for name, side in (("alpine_frame", {"level": "/Game/Alpine8K.Alpine8K"}),
+                           ("rig_frame", {"level": "/Game/LookDevMtn"}),
+                           ("list_frame", [{"level": "/Game/LookDevMtn"}])):
+            with io.open(os.path.join(td, name + ".png"), "wb") as fh:
+                fh.write(b"\x89PNG\r\n\x1a\n")
+            with io.open(os.path.join(td, name + ".json"), "w", encoding="utf-8") as fh:
+                json.dump(side, fh)
+        must_refuse += [os.path.join(td, "alpine_frame.png"), os.path.join(td, "list_frame.png")]
+        must_pass.append(os.path.join(td, "rig_frame.png"))
+        return _run_self_test(reg, must_refuse, must_pass)
+
+
+def _run_self_test(reg, must_refuse, must_pass):
     ok = True
     for p in must_refuse:
         r, why = match(p, reg)

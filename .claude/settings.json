@@ -41,6 +41,23 @@
             "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" heredoc-escapes",
             "statusMessage": "heredoc escape mangling",
             "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" help-runs-script",
+            "statusMessage": "--help on a script without argparse",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/guard.py\" audit-roots",
+            "statusMessage": "auditor requests state both roots",
+            "timeout": 20
           }
         ]
       },

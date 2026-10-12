@@ -1,0 +1,41 @@
+# navmesh_set_iwp payload (2026-10-04h). Sets ARecastNavMesh.bIsWorldPartitioned on the
+# RecastNavMesh ACTOR(S) of the open level and reads it back. Does NOT save: the caller saves
+# with save_tagged_actors (--class RecastNavMesh --expect 1 --go), which dirties and writes
+# the actor package. With the flag true that save stores no tiles (PImplRecastNavMesh
+# serialize, lines 522-527); the tiles stay in the NavigationDataChunkActors.
+#   LEVEL  = expected level package, refused otherwise (standing rule 11)
+#   APPLY  = True to set, False to report only
+import json as _json
+import unreal as _u
+
+LEVEL = "__LEVEL__"
+APPLY = __APPLY__
+
+_out = {"ok": False, "error": None, "level": None, "actors": []}
+try:
+    _w = _u.get_editor_subsystem(_u.UnrealEditorSubsystem).get_editor_world()
+    _out["level"] = _w.get_path_name().split(".")[0]
+    if _out["level"] != LEVEL:
+        raise RuntimeError("open level is " + _out["level"] + ", expected " + LEVEL)
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _navs = [a for a in _eas.get_all_level_actors() if isinstance(a, _u.RecastNavMesh)]
+    if len(_navs) != 1:
+        raise RuntimeError("expected exactly 1 RecastNavMesh actor, found " + str(len(_navs)))
+    for _a in _navs:
+        _rec = {"label": _a.get_actor_label(), "path": _a.get_path_name(),
+                "before": bool(_a.get_editor_property("is_world_partitioned"))}
+        if APPLY and not _rec["before"]:
+            _a.modify()
+            # NOTIFY NEVER (audit 2026-10-04): the default mode runs
+            # PostEditChangeProperty -> RebuildAll (RecastNavMesh.cpp:4270),
+            # which releases the Detour mesh and recomputes maxTiles from
+            # current (possibly clipped) bounds before our save.
+            _a.set_editor_property("is_world_partitioned", True,
+                                   _u.PropertyAccessChangeNotifyMode.NEVER)
+        _rec["after"] = bool(_a.get_editor_property("is_world_partitioned"))
+        _out["actors"].append(_rec)
+    _out["ok"] = all(r["after"] for r in _out["actors"]) if APPLY else True
+except Exception as _e:
+    import traceback as _tb
+    _out["error"] = "%s\n%s" % (_e, _tb.format_exc())
+print("__LL__" + _json.dumps(_out))

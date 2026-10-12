@@ -1,0 +1,97 @@
+{
+ "name": "far_high_cliff",
+ "ok": true,
+ "cmd": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/Alpine8K",
+  "-game",
+  "-windowed",
+  "-ResX=1600",
+  "-ResY=900",
+  "-ExecCmds=r.setRes 1600x900w,BugItGo -201186.0 219000.0 60125.3 -6.0 270.0 0,DisableAllScreenMessages,ShowFlag.SkeletalMeshes 0",
+  "-nosplash",
+  "-NoLoadingScreen",
+  "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\game_still_far_high_cliff.log"
+ ],
+ "level": "/Game/Alpine8K",
+ "camera": {
+  "x_cm": -201186.0,
+  "y_cm": 219000.0,
+  "z_cm": 60125.3,
+  "pitch_deg": -6.0,
+  "yaw_deg": 270.0,
+  "z_source": "heightmap + eye (placement aid, not a trace)",
+  "pose_read_back": false
+ },
+ "state": "bench_on_disk",
+ "hlod_residency_read_back": false,
+ "view": "player camera, skeletal meshes hidden",
+ "requested_res": [
+  1600,
+  900
+ ],
+ "settle_s": 150.0,
+ "dpi_awareness_set": true,
+ "free_ram_gb": 21.047691345214844,
+ "ram_comfortable": true,
+ "kill_on_close_job": true,
+ "capture": {
+  "windows_found": 1,
+  "still_minimised": false,
+  "foreground_pid": 27948,
+  "foreground_is_game": true,
+  "client_size": [
+   2400,
+   1350
+  ],
+  "client_origin": [
+   80,
+   89
+  ],
+  "window_dpi": 96
+ },
+ "dwell_s": 154.4,
+ "vram_mib": {
+  "peak_mib": 4433,
+  "mean_mib": 3862.5,
+  "n_samples": 30,
+  "peak_window_mib": 4433,
+  "n_window": 30,
+  "abort_ceiling_mib": 13312,
+  "physical_mib": 16303,
+  "headroom_to_abort_mib": 8879,
+  "over_abort_ceiling": false,
+  "_caveat": "whole-GPU used (nvidia-smi memory.used); includes any other consumer, but the -game process dominates a dedicated run."
+ },
+ "frame": {
+  "size": [
+   2400,
+   1350
+  ],
+  "encoding": "srgb_encoded_8bit (NOT display-linear)",
+  "luma_mean_encoded": 0.4263,
+  "luma_std_encoded": 0.0756,
+  "display_scale": [
+   1.5,
+   1.5
+  ],
+  "resampled_to": [
+   1600,
+   900
+  ]
+ },
+ "log": {
+  "bugitgo_to_lines": 1,
+  "bugitgo_matching_request": 1,
+  "bugitgo_first": [
+   -201186.0,
+   219000.0,
+   60125.301
+  ],
+  "screen_messages_disabled_line": true,
+  "world_partition_lines": 16
+ },
+ "problems": [],
+ "png": "_verify\\lookdev\\parents_ab\\far_high_cliff.png"
+}

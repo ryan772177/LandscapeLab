@@ -17,8 +17,12 @@ distribution biases toward what the Roofs set serves; a handful of landmarks may
 compose roofs from other kit pieces where that is clean; everything else stays a
 counted greybox.
 
-**ONE DECLARATION.** This module owns the fit test: `plan_city` calls it to
-bias sampling (plan_city.py:49,361-362,449) and `kit_coverage_v2` calls
+**TWO SOURCES SINCE 2026-10-06, each with ONE declaration.** `kit_v2` (below:
+roof_spans/fits/servable_by/targets) and `town_kit` (kit_*: delegates to the
+BUILDER, scripts/town_kit_plan.py). plan_city picks by
+`buildings.roof_servability.source` and records `roof_fit_source` in the plan;
+kit_coverage_v2 refuses to judge a town_kit plan with the kit_v2 test.
+Original note: `plan_city` calls it to bias sampling and `kit_coverage_v2` calls
 `roof_spans()`/`servable_by()` to audit (routed through here 2026-09-18) —
 rather than each carrying its own copy of "+-20% on both axes, roofs may
 rotate 90 degrees", the two-lists-one-badly-stored defect this module exists
@@ -80,6 +84,53 @@ def targets(spans, fmin_m, fmax_m, tol=0.20):
     out = []
     for name, sx, sy in spans:
         for fx, fy in ((sx, sy), (sy, sx)):
+            if fmin_m <= fx <= fmax_m and fmin_m <= fy <= fmax_m:
+                out.append((name, fx, fy))
+    return out
+
+
+# ---- source "town_kit" (2026-10-06): the fit test the BUILDER uses -----------
+# The town is built by scripts/town_kit_plan.py, whose plan_roof() fits a roof to
+# footprint + 2*eave within +-roof_tol over the USABLE roofs of
+# recipes/town_kit.json. Planning against fits() above (bare footprint vs span,
+# every roof incl. the three gallery-rejected awning roofs) would let the planner
+# promise roofs the builder refuses. So under this source the planner asks the
+# builder's own function -- one declaration, not a second copy of it.
+
+def kit_snap_m(f_m):
+    """Footprint side the builder will build: snapped DOWN to the kit snap, in m."""
+    import town_kit_plan as tkp
+    return (int(round(f_m * 100.0, 6)) // tkp.SNAP_CM * tkp.SNAP_CM) / 100.0
+
+
+def kit_servable_by(fx_m, fy_m):
+    """Roof the builder would put on this footprint (snapped), or None."""
+    import town_kit_plan as tkp
+    W, D = int(round(kit_snap_m(fx_m) * 100)), int(round(kit_snap_m(fy_m) * 100))
+    if not (kit_side_tiles(W) and kit_side_tiles(D)):
+        return None
+    r = tkp.plan_roof(W, D, 2)                       # courses only move z, never the choice
+    return r["mesh"] if r else None
+
+
+def kit_side_tiles(L_cm):
+    """Can the builder wall a side of L_cm? Asks the builder's own tile() for the run
+    between the two corners -- not a restated minimum (audit 2026-10-06 F4)."""
+    import random
+    import town_kit_plan as tkp
+    return L_cm >= 2 * tkp.CORNER_ARM_CM and tkp.tile(int(L_cm) - 2 * tkp.CORNER_ARM_CM,
+                                                      random.Random(0)) is not None
+
+
+def kit_targets(fmin_m, fmax_m):
+    """(name, fx, fy) draw targets: each usable roof's native size minus the eave
+    allowance, both orientations -- the footprint it fits at scale 1. Targets outside
+    [fmin_m, fmax_m] are DROPPED, not clamped (see targets())."""
+    import town_kit_plan as tkp
+    out = []
+    for name, (_path, (sx, sy)) in sorted(tkp.ROOFS.items()):
+        ex, ey = (sx - 2 * tkp.EAVE_CM) / 100.0, (sy - 2 * tkp.EAVE_CM) / 100.0
+        for fx, fy in ((ex, ey), (ey, ex)):
             if fmin_m <= fx <= fmax_m and fmin_m <= fy <= fmax_m:
                 out.append((name, fx, fy))
     return out

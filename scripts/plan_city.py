@@ -6,8 +6,10 @@ OFFLINE and SEEDED, so it produces the same plan every run and can be replayed
 without an editor -- the same contract as `foliage/*.json`: absolute-cm
 transforms in a plain JSON file that the placer reads and does not re-derive.
 
-WHAT IT PRODUCES: a MASSING BLOCKOUT. Volumes on terraced pads along a ring-and
--spoke street network. Not architecture; see the recipe's own _what_this_is.
+WHAT IT PRODUCES: a MASSING BLOCKOUT. Volumes on terraced pads along a street
+network: plan.layout "lattice" (ring-and-spoke, below) or "organic" (least-cost
+roads + street-fronted lots, scripts/city_organic.py, 2026-10-10). Not
+architecture; see the recipe's own _what_this_is.
 
 THE THINGS IT REFUSES, each because the alternative is a silent defect:
 
@@ -52,12 +54,24 @@ Image.MAX_IMAGE_PIXELS = None
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 
+def terrain_source_rel(biome_recipe):
+    """heightmap.street_flatten.pre_source when declared, else heightmap.source."""
+    sf = (biome_recipe.get("heightmap") or {}).get("street_flatten")
+    return sf["pre_source"] if sf else biome_recipe["heightmap"]["source"]
+
+
 class Terrain:
     """Heightmap sampler in world centimetres."""
 
-    def __init__(self, biome_recipe):
+    def __init__(self, biome_recipe, town=False):
         ls = biome_recipe["landscape"]
-        src = os.path.join(REPO, biome_recipe["heightmap"]["source"])
+        # 2026-10-10 street flattening (FLATTEN_DESIGN.md, review change 2): the TOWN tools (town=True: plan_city,
+        # town_kit_manifest, check_organic_plan) plan and trace on the PRE-streets ground, or a re-plan would gate
+        # streets on ground already flattened for them. Every other caller (walkable extent, encounters, navmesh
+        # tiles, design_pass ...) wants the LIVE map and keeps the default. `source_rel` = the file actually read,
+        # which the town tools record and compare (one declaration).
+        self.source_rel = terrain_source_rel(biome_recipe) if town else biome_recipe["heightmap"]["source"]
+        src = os.path.join(REPO, self.source_rel)
         if not os.path.isfile(src):
             sys.exit("REFUSE: no heightmap at %s" % src)
         self.H = np.asarray(Image.open(src)).astype(np.float64)
@@ -163,7 +177,7 @@ def main():
 
     rec = json.load(open(os.path.join(REPO, a.recipe), encoding="utf-8"))
     biome = json.load(open(os.path.join(REPO, a.biome), encoding="utf-8"))
-    T = Terrain(biome)
+    T = Terrain(biome, town=True)
 
     site = rec["site"]
     pl = rec["plan"]
@@ -188,6 +202,13 @@ def main():
     # earthmoving limit. Both are needed and neither is sufficient.
     street_max = float(pl.get("max_street_slope_deg", 8.0))
     street_cf_cm = float(pl.get("max_street_cut_fill_m", 1.8)) * 100.0
+    gate_ds_cm = (float(pl["street_gate_sample_m"]) * 100.0
+                  if "street_gate_sample_m" in pl else None)
+    if gate_ds_cm is not None and not gate_ds_cm > 0:
+        # 0 was falsy (silent legacy 15 points) and negative silently sampled
+        # 15 too (delta re-audit 2026-10-10 F-1)
+        raise ValueError("plan.street_gate_sample_m must be > 0, got %r"
+                         % pl["street_gate_sample_m"])
     streets = []
     st_rej_grade = 0
     st_rej_cutfill = 0
@@ -220,7 +241,11 @@ def main():
         hl = seg_len * 0.5
         ax, ay = mx - hl * math.cos(a2), my - hl * math.sin(a2)
         bx2, by2 = mx + hl * math.cos(a2), my + hl * math.sin(a2)
-        t = np.linspace(0.0, 1.0, 15)
+        # SAMPLE SPACING, not a fixed count (LESSONS 2026-10-10e: 15 points
+        # over 17.9 m read cut/fill 1.58 m where 21/41/81 read 1.96 m).
+        # Absent key = the legacy 15 points, so lattice payloads reproduce.
+        t = (np.linspace(0.0, 1.0, max(15, int(math.ceil(seg_len / gate_ds_cm)) + 1))
+             if gate_ds_cm is not None else np.linspace(0.0, 1.0, 15))
         zz = np.asarray(T.z_cm(ax + (bx2 - ax) * t, ay + (by2 - ay) * t),
                         dtype=np.float64)
         grade = math.degrees(math.atan(abs(float(zz[-1] - zz[0]))
@@ -242,7 +267,69 @@ def main():
 
     core = float(pl["core_radius_m"]) * 100.0
     spacing = float(pl["ring_spacing_m"]) * 100.0
-    for i in range(int(pl["ring_count"])):
+    # ---- the landmark -----------------------------------------------------
+    # COMPUTED BEFORE THE LAYOUT (2026-10-10): it depends only on the plaza and
+    # draws no RNG, so the lattice payload is unchanged, and the organic layout
+    # can route streets and plots around it. It used to be placed AFTER every
+    # street and building and tested against none: the shipped lattice
+    # landmark overlaps 2 streets (#707, #718) and the organic plans put 1-2
+    # houses inside it (LESSONS 2026-10-10f).
+    landmark = None
+    lm = rec.get("landmark", {})
+    if lm.get("enabled"):
+        lx = cx0 + (float(pl["plaza_radius_m"]) * 100.0 + 900.0) * math.cos(math.radians(35.0))
+        ly = cy0 + (float(pl["plaza_radius_m"]) * 100.0 + 900.0) * math.sin(math.radians(35.0))
+        s = float(lm["footprint_m"]) * 100.0
+        px, py = footprint_samples(lx, ly, s, s, 0.0, 5)
+        z = T.z_cm(px, py)
+        pad = float(z.mean())
+        h = float(lm["height_m"]) * 100.0
+        lm_cut_fill = round(float(np.abs(z - pad).max()) / 100.0, 3)
+        # THE LANDMARK GETS THE SAME CUT/FILL GATE AS EVERY BUILDING
+        # (Pass 3 2026-09-16 F5): its cut_fill was recorded and compared
+        # against NOTHING, so on a different site it could ship
+        # half-buried or floating — the exact refusal the module
+        # docstring promises. The shipped site passes (0.797 m vs 1.8),
+        # so the committed payload is unchanged by this gate.
+        if lm_cut_fill > float(bd["max_pad_cut_fill_m"]):
+            sys.exit(
+                "REFUSE: the landmark pad needs %.3f m of cut/fill, above "
+                "buildings.max_pad_cut_fill_m = %.1f. A landmark that is "
+                "half-buried or floating is the docstring's own named "
+                "failure. Nothing was written."
+                % (lm_cut_fill, float(bd["max_pad_cut_fill_m"])))
+        landmark = {
+            "kind": "landmark",
+            "loc_cm": [round(lx, 1), round(ly, 1), round(pad + h * 0.5, 1)],
+            "pad_z_cm": round(pad, 1), "yaw_deg": 0.0,
+            "size_cm": [round(s, 1), round(s, 1), round(h, 1)],
+            "pad_cut_fill_m": lm_cut_fill}
+
+
+    # LAYOUT (2026-10-10, Ryan option a): "lattice" (default, the ring-and-spoke network below, payload unchanged)
+    # or "organic" (scripts/city_organic.py: least-cost roads + street-fronted plots).
+    layout = pl.get("layout", "lattice")
+    if layout not in ("lattice", "organic", "image"):
+        raise ValueError("plan.layout must be lattice, organic or image")
+    o_junctions, o_stats = [], {}
+    # "image" (2026-10-10): streets and lots from a town-from-image plan (scripts/city_image.py), same
+    # call signatures as city_organic, so every organic branch below applies to it unchanged.
+    if layout in ("organic", "image"):
+        import city_organic
+        if layout == "image":
+            import city_image as city_organic  # noqa: F811 -- same interface, different source
+        def street_pass(mx, my, yaw_deg, seg_len):
+            # the SAME street gate as street_ok, uncounted -- the organic generator calls it once per segment per
+            # reroute attempt, and a counter summed over attempts would report refusals no final segment had
+            grade, cf = street_gates(mx, my, yaw_deg, seg_len)
+            return grade <= street_max and cf <= street_cf_cm
+        # the landmark footprint is an obstacle to streets and plots (LESSONS 2026-10-10f)
+        o_obstacles = ([(landmark["loc_cm"][0], landmark["loc_cm"][1], landmark["size_cm"][0],
+                         landmark["size_cm"][1], landmark["yaw_deg"])] if landmark else [])
+        streets, o_junctions, o_stats = city_organic.streets(
+            T, pl, cx0, cy0, R_cm, rng, street_pass, street_seat, o_obstacles)
+        print("organic    %s" % o_stats)
+    for i in (range(int(pl["ring_count"])) if layout == "lattice" else []):
         r = core + i * spacing
         if r > R_cm:
             break
@@ -267,7 +354,7 @@ def main():
                 "roll_deg": _roll,
                 "len_cm": round(seg_len, 1),
                 "width_cm": _w_cm})
-    for s in range(int(pl["spoke_count"])):
+    for s in (range(int(pl["spoke_count"])) if layout == "lattice" else []):
         th = 2 * math.pi * s / int(pl["spoke_count"])
         r0 = float(pl["plaza_radius_m"]) * 100.0
         n_seg = 14
@@ -320,9 +407,13 @@ def main():
     # transforms, which is a different SOURCE for the same definition.
     join_tol_cm = float(pl.get("street_join_tol_m",
                                pl["street_width_m"])) * 100.0
+    # organic: join per pair at the mean of the two widths (audit 2026-10-10 F9; measure_city_connectivity owns it)
+    wjoin = layout in ("organic", "image")
+    if wjoin and streets:
+        join_tol_cm = max(float(s["width_cm"]) for s in streets)
     st_pruned = 0
     if streets:
-        comps = street_components(streets, join_tol_cm)
+        comps = street_components(streets, join_tol_cm, width_join=wjoin)
 
         def _r(seg):
             return math.hypot(seg["loc_cm"][0] - cx0, seg["loc_cm"][1] - cy0)
@@ -335,14 +426,39 @@ def main():
 
     # ---- buildings on plots ----------------------------------------------
     accepted, boxes = [], []
-    # `on_street` is NEVER INCREMENTED (Pass 3 2026-09-16 F1): street
+    # LATTICE: `on_street` is NEVER INCREMENTED (Pass 3 2026-09-16 F1): street
     # clearance is by PLOT CONSTRUCTION only (r_in/r_out padded by
     # half_street; pad_t), and no building-vs-street overlap check
     # exists — a 0 here is the absence of a measurement, not a verdict.
     # The key stays until the next RULED regeneration (removing it now
     # would change the plan payload roofbias reproduces against).
+    # ORGANIC (2026-10-10): city_organic's oriented clearance test DOES
+    # increment on_street, so there it is a measurement.
     rej = {"outside_radius": 0, "in_plaza": 0, "pad_cut_fill": 0,
            "pad_slope": 0, "overlap": 0, "on_street": 0}
+    # ONE distance for both uses: the whole-town orphan gate below, and the
+    # optional per-plot gate (buildings.place_only_near_streets, 2026-10-06 kit
+    # town -- small kit footprints fill rim plots the street network never
+    # reaches, 21 of 405 = 5.2%, and the whole-town gate refused the plan).
+    # The street network is final (pruned) at this point, so the per-plot gate
+    # measures the same network the whole-town gate does.
+    orphan_cm = float(g.get("max_building_to_street_m", 40.0)) * 100.0
+    _sxy = [(s["loc_cm"][0], s["loc_cm"][1]) for s in streets]
+
+    def nearest_street_cm(bx, by):
+        return min(math.hypot(bx - px, by - py) for px, py in _sxy)
+
+    # organic plots are fronted ON a street piece by construction, so the per-plot gate never runs there and a
+    # far_from_street 0 would be the absence of a measurement (audit 2026-10-10 F3): the key is lattice-only
+    near_only = bool(bd.get("place_only_near_streets", False)) and layout == "lattice"
+    if layout in ("organic", "image"):
+        # organic clashes are counted by what they hit (F4); the lattice dict stays as its payload has it
+        rej["in_square"] = 0
+        rej["on_landmark"] = 0
+    if near_only:
+        if not _sxy:
+            sys.exit("REFUSE: place_only_near_streets with zero street segments")
+        rej["far_from_street"] = 0
     plaza = float(pl["plaza_radius_m"]) * 100.0
     gap = float(bd["gap_min_m"]) * 100.0
     half_street = float(pl["street_width_m"]) * 50.0
@@ -358,11 +474,144 @@ def main():
     rs_tol = float(_rsc.get("tolerance", 0.20))
     rs_bias = float(_rsc.get("bias", 0.0)) if rs_on else 0.0
     rs_jitter = float(_rsc.get("jitter", 0.5))
-    rs_spans = roof_servability.roof_spans() if rs_on else []
-    rs_targets = (roof_servability.targets(
-        rs_spans, fmin / 100.0, fmax / 100.0, rs_tol) if rs_on else [])
+    # source "town_kit": the builder's own fit (roof_servability.kit_*), sizes
+    # snapped to the kit snap. Absent = the original kit_v2 span test, so a
+    # recipe without the key reproduces its old payload unchanged.
+    rs_kit = rs_on and _rsc.get("source", "kit_v2") == "town_kit"
+    if rs_on and _rsc.get("source", "kit_v2") not in ("kit_v2", "town_kit"):
+        raise ValueError("buildings.roof_servability.source must be kit_v2 or town_kit")
+    rs_spans = roof_servability.roof_spans() if rs_on and not rs_kit else []
+    if rs_kit:
+        import town_kit_plan as _tkp
+        # every size the snap can record must be one the builder can wall
+        # (audit 2026-10-06 F5): bounds on the snap, every snapped side tiles
+        if fmin % _tkp.SNAP_CM or fmax % _tkp.SNAP_CM or not all(
+                roof_servability.kit_side_tiles(L) for L in
+                range(int(fmin), int(fmax) + 1, _tkp.SNAP_CM)):
+            raise ValueError("town_kit: footprint_m %.2f-%.2f must be multiples of "
+                             "the kit snap and every side between must tile"
+                             % (fmin / 100.0, fmax / 100.0))
+        # the fit tolerance is the BUILDER's roof_tol; jitter scales it, so
+        # city.json `tolerance` is not read under town_kit (F6)
+        rs_tol = float(_tkp.ROOF_TOL)
+        rs_targets = roof_servability.kit_targets(fmin / 100.0, fmax / 100.0)
+        if not rs_targets:
+            raise ValueError("town_kit: no usable roof target inside footprint_m")
+    else:
+        rs_targets = (roof_servability.targets(
+            rs_spans, fmin / 100.0, fmax / 100.0, rs_tol) if rs_on else [])
 
-    n_rings = int(pl["ring_count"])
+    # ---- the size draw and the building gate, ONE implementation for both layouts (2026-10-10) ----
+    # Extracted verbatim from the lattice loop; the lattice calls them in the same order with the same RNG draws,
+    # so a "lattice" recipe reproduces its old payload byte for byte (positive control).
+    def draw_size():
+        # ---- ROOF SERVABILITY BIAS (ruled 2026-08-30, 4b) --------
+        # A roof piece is a WHOLE object with a fixed span, unlike the
+        # modular walls, so a footprint either takes one at +-tol or it
+        # does not. Sampling UNIFORMLY over 7-15 m left only 43.6%
+        # servable. `bias` of the draws now come from the servable
+        # targets, jittered INSIDE their tolerance band; the rest stay
+        # free so the town keeps size variety.
+        if rs_targets and rng.random() < rs_bias:
+            _name, _tx, _ty = rs_targets[
+                rng.integers(0, len(rs_targets))]
+            _j = rs_tol * rs_jitter
+            sx = _tx * (1.0 + rng.uniform(-_j, _j)) * 100.0
+            sy = _ty * (1.0 + rng.uniform(-_j, _j)) * 100.0
+            sx = min(max(sx, fmin), fmax)
+            sy = min(max(sy, fmin), fmax)
+        else:
+            sx = rng.uniform(fmin, fmax)
+            sy = sx * rng.uniform(1.0 / float(bd["aspect_max"]),
+                                  float(bd["aspect_max"]))
+            sy = min(max(sy, fmin), fmax)
+        if rs_kit:
+            # the plan records the footprint the builder will BUILD
+            sx = roof_servability.kit_snap_m(sx / 100.0) * 100.0
+            sy = roof_servability.kit_snap_m(sy / 100.0) * 100.0
+        return sx, sy
+
+    def try_building(bx, by, sx, sy, yaw, d, extra=None, fields=None):
+        """The building gate: pad cut/fill, pad slope, overlap (AABB, conservative), optional extra test (organic:
+        oriented square/street/house clearance, returning None or the rejection key), height falloff, roof
+        candidate. `fields` are merged into the record (organic: door_side). Appends and returns True if accepted."""
+        px, py = footprint_samples(bx, by, sx, sy, yaw, 5)
+        z = T.z_cm(px, py)
+        pad = float(z.mean())
+        cut_fill = float(np.abs(z - pad).max()) / 100.0
+        if cut_fill > float(bd["max_pad_cut_fill_m"]):
+            rej["pad_cut_fill"] += 1
+            return False
+        span = max(sx, sy)
+        slope = math.degrees(math.atan(
+            (float(z.max()) - float(z.min())) / max(span, 1.0)))
+        if slope > float(bd["max_pad_slope_deg"]):
+            rej["pad_slope"] += 1
+            return False
+
+        bb = bbox(bx, by, sx, sy, yaw)
+        if extra is None:
+            if any(rects_overlap(bb, o, gap) for o in boxes):
+                rej["overlap"] += 1
+                return False
+        else:
+            why = extra(bx, by, sx, sy, yaw)
+            if why is not None:
+                rej[why] += 1
+                return False
+
+        f = d / R_cm
+        h = (hc + (he - hc) * f) * 100.0
+        storeys = max(1, int(round(h / (float(bd["storey_m"]) * 100.0))))
+        h = storeys * float(bd["storey_m"]) * 100.0
+
+        boxes.append(bb)
+        # Record what covers it PER BUILDING, so the audit reads the
+        # plan instead of re-deriving the fit and possibly disagreeing
+        # with the planner about the same footprint.
+        if rs_kit:
+            _roof = roof_servability.kit_servable_by(sx / 100.0, sy / 100.0)
+        else:
+            _roof = (roof_servability.servable_by(
+                sx / 100.0, sy / 100.0, rs_spans, rs_tol)
+                if rs_spans else None)
+        accepted.append({
+            "kind": "building",
+            # null when NOT MEASURED (servability disabled) —
+            # bool(None) read as "measured not-servable" was
+            # rule 13's silence-as-verdict, persisted (Pass 3
+            # F7; latent — the shipped recipe enables it, so
+            # the shipped payload is unchanged)
+            "roof_servable": (bool(_roof) if (rs_spans or rs_kit) else None),
+            "roof_candidate": _roof,
+            "loc_cm": [round(bx, 1), round(by, 1),
+                       round(pad + h * 0.5, 1)],
+            "pad_z_cm": round(pad, 1),
+            "yaw_deg": round(yaw, 2),
+            "size_cm": [round(sx, 1), round(sy, 1), round(h, 1)],
+            "storeys": storeys,
+            "radial_frac": round(f, 3),
+            "pad_cut_fill_m": round(cut_fill, 3),
+            "pad_slope_deg": round(slope, 2)})
+        if fields:
+            accepted[-1].update(fields)
+        return True
+
+    o_squares, o_plot_stats = [], {}
+    if layout in ("organic", "image"):
+        def _try(bx, by, sx, sy, yaw, d, extra, fields):
+            if d > R_cm:
+                rej["outside_radius"] += 1
+                return False
+            if d < plaza:
+                rej["in_plaza"] += 1
+                return False
+            return try_building(bx, by, sx, sy, yaw, d, extra, fields)
+        # fronted along the PRUNED network only (audit F7): a dropped or stranded piece fronts no house
+        o_squares, o_plot_stats = city_organic.plots(pl, bd, streets, o_junctions, o_obstacles, cx0, cy0, plaza, rng,
+                                                     draw_size, _try)
+
+    n_rings = int(pl["ring_count"]) if layout == "lattice" else 0
     n_spokes = int(pl["spoke_count"])
     per_plot = int(pl.get("candidates_per_plot", 3))
     for i in range(n_rings):
@@ -389,26 +638,12 @@ def main():
                 if d < plaza:
                     rej["in_plaza"] += 1
                     continue
-                # ---- ROOF SERVABILITY BIAS (ruled 2026-08-30, 4b) --------
-                # A roof piece is a WHOLE object with a fixed span, unlike the
-                # modular walls, so a footprint either takes one at +-tol or it
-                # does not. Sampling UNIFORMLY over 7-15 m left only 43.6%
-                # servable. `bias` of the draws now come from the servable
-                # targets, jittered INSIDE their tolerance band; the rest stay
-                # free so the town keeps size variety.
-                if rs_targets and rng.random() < rs_bias:
-                    _name, _tx, _ty = rs_targets[
-                        rng.integers(0, len(rs_targets))]
-                    _j = rs_tol * rs_jitter
-                    sx = _tx * (1.0 + rng.uniform(-_j, _j)) * 100.0
-                    sy = _ty * (1.0 + rng.uniform(-_j, _j)) * 100.0
-                    sx = min(max(sx, fmin), fmax)
-                    sy = min(max(sy, fmin), fmax)
-                else:
-                    sx = rng.uniform(fmin, fmax)
-                    sy = sx * rng.uniform(1.0 / float(bd["aspect_max"]),
-                                          float(bd["aspect_max"]))
-                    sy = min(max(sy, fmin), fmax)
+                # tested AFTER the plot draws and BEFORE the size draws, so a
+                # recipe without the flag consumes the RNG exactly as before
+                if near_only and nearest_street_cm(bx, by) > orphan_cm:
+                    rej["far_from_street"] += 1
+                    continue
+                sx, sy = draw_size()
                 # sx axis tangential to the ring; the LONG axis may be
                 # either — sy = sx * uniform(1/aspect, aspect) exceeds sx
                 # ~65% of the time, so most long axes are RADIAL (Pass 3
@@ -417,88 +652,7 @@ def main():
                 # change the reproducible payload, so the comment moves
                 # to the truth and the geometry stays).
                 yaw = math.degrees(tt) + 90.0 + rng.uniform(-8.0, 8.0)
-
-                px, py = footprint_samples(bx, by, sx, sy, yaw, 5)
-                z = T.z_cm(px, py)
-                pad = float(z.mean())
-                cut_fill = float(np.abs(z - pad).max()) / 100.0
-                if cut_fill > float(bd["max_pad_cut_fill_m"]):
-                    rej["pad_cut_fill"] += 1
-                    continue
-                span = max(sx, sy)
-                slope = math.degrees(math.atan(
-                    (float(z.max()) - float(z.min())) / max(span, 1.0)))
-                if slope > float(bd["max_pad_slope_deg"]):
-                    rej["pad_slope"] += 1
-                    continue
-
-                bb = bbox(bx, by, sx, sy, yaw)
-                if any(rects_overlap(bb, o, gap) for o in boxes):
-                    rej["overlap"] += 1
-                    continue
-
-                f = d / R_cm
-                h = (hc + (he - hc) * f) * 100.0
-                storeys = max(1, int(round(h / (float(bd["storey_m"]) * 100.0))))
-                h = storeys * float(bd["storey_m"]) * 100.0
-
-                boxes.append(bb)
-                # Record what covers it PER BUILDING, so the audit reads the
-                # plan instead of re-deriving the fit and possibly disagreeing
-                # with the planner about the same footprint.
-                _roof = (roof_servability.servable_by(
-                    sx / 100.0, sy / 100.0, rs_spans, rs_tol)
-                    if rs_spans else None)
-                accepted.append({
-                    "kind": "building",
-                    # null when NOT MEASURED (servability disabled) —
-                    # bool(None) read as "measured not-servable" was
-                    # rule 13's silence-as-verdict, persisted (Pass 3
-                    # F7; latent — the shipped recipe enables it, so
-                    # the shipped payload is unchanged)
-                    "roof_servable": (bool(_roof) if rs_spans else None),
-                    "roof_candidate": _roof,
-                    "loc_cm": [round(bx, 1), round(by, 1),
-                               round(pad + h * 0.5, 1)],
-                    "pad_z_cm": round(pad, 1),
-                    "yaw_deg": round(yaw, 2),
-                    "size_cm": [round(sx, 1), round(sy, 1), round(h, 1)],
-                    "storeys": storeys,
-                    "radial_frac": round(f, 3),
-                    "pad_cut_fill_m": round(cut_fill, 3),
-                    "pad_slope_deg": round(slope, 2)})
-
-    # ---- the landmark -----------------------------------------------------
-    landmark = None
-    lm = rec.get("landmark", {})
-    if lm.get("enabled"):
-        lx = cx0 + (plaza + 900.0) * math.cos(math.radians(35.0))
-        ly = cy0 + (plaza + 900.0) * math.sin(math.radians(35.0))
-        s = float(lm["footprint_m"]) * 100.0
-        px, py = footprint_samples(lx, ly, s, s, 0.0, 5)
-        z = T.z_cm(px, py)
-        pad = float(z.mean())
-        h = float(lm["height_m"]) * 100.0
-        lm_cut_fill = round(float(np.abs(z - pad).max()) / 100.0, 3)
-        # THE LANDMARK GETS THE SAME CUT/FILL GATE AS EVERY BUILDING
-        # (Pass 3 2026-09-16 F5): its cut_fill was recorded and compared
-        # against NOTHING, so on a different site it could ship
-        # half-buried or floating — the exact refusal the module
-        # docstring promises. The shipped site passes (0.797 m vs 1.8),
-        # so the committed payload is unchanged by this gate.
-        if lm_cut_fill > float(bd["max_pad_cut_fill_m"]):
-            sys.exit(
-                "REFUSE: the landmark pad needs %.3f m of cut/fill, above "
-                "buildings.max_pad_cut_fill_m = %.1f. A landmark that is "
-                "half-buried or floating is the docstring's own named "
-                "failure. Nothing was written."
-                % (lm_cut_fill, float(bd["max_pad_cut_fill_m"])))
-        landmark = {
-            "kind": "landmark",
-            "loc_cm": [round(lx, 1), round(ly, 1), round(pad + h * 0.5, 1)],
-            "pad_z_cm": round(pad, 1), "yaw_deg": 0.0,
-            "size_cm": [round(s, 1), round(s, 1), round(h, 1)],
-            "pad_cut_fill_m": lm_cut_fill}
+                try_building(bx, by, sx, sy, yaw, d)
 
     # ---- roofs -----------------------------------------------------------
     #
@@ -563,10 +717,25 @@ def main():
                         round(float(lmk["spire_height_m"]) * 100.0, 1)]}
 
     zs = [b["pad_z_cm"] for b in accepted]
+    # which fit test filled roof_candidate (audit 2026-10-06 F2); only under
+    # town_kit, so a kit_v2 recipe's payload is unchanged
+    _roof_src = ({"roof_fit_source": "town_kit",
+                  "_roof_recipe": "recipes/town_kit.json",
+                  "_roof_fit": "scripts/town_kit_plan.py",
+                  # decides every snapped size and tileable side (re-audit F1)
+                  "_roof_snap": "scripts/roof_servability.py"} if rs_kit else {})
+    # organic layout record (2026-10-10): only under "organic", so a lattice payload is unchanged
+    _org = ({"layout": layout, "_layout_code": "scripts/city_organic.py" if layout == "organic" else "scripts/city_image.py",
+             "_water_mask": getattr(city_organic, "WATER_REL", None),
+             **({"_image_plan": (pl.get("image") or {}).get("plan_json")} if layout == "image" else {}),
+             "squares": [list(sq) for sq in o_squares],
+             "organic_stats": dict(o_stats, plots=o_plot_stats)} if layout in ("organic", "image") else {})
     plan = {
+        **_roof_src,
+        **_org,
         "_produced_by": "scripts/plan_city.py",
         "_recipe": a.recipe, "_biome": a.biome,
-        "_terrain_source": biome["heightmap"]["source"],
+        "_terrain_source": T.source_rel,      # the file Terrain read (pre_source when street_flatten is declared)
         "_heights_are_a_PLAN": (
             "pad heights come from the HEIGHTMAP. The collidable surface is a "
             "different representation and has disagreed with it before; the "
@@ -584,14 +753,20 @@ def main():
         # the clear uses comes from the plan, and a radius fetched from a recipe
         # that may have moved since would be a second source for one fact.
         "plaza_radius_cm": float(pl["plaza_radius_m"]) * 100.0,
-        "counts": {"buildings": len(accepted),
-                   "roofs": len(roofs),
-                   "spire": 1 if spire else 0,
-                   "streets": len(streets),
-                   "streets_rejected_grade": st_rej_grade,
-                   "streets_rejected_cutfill": st_rej_cutfill,
-                   "streets_pruned_disconnected": st_pruned,
-                   "landmark": 1 if landmark else 0},
+        # organic: the street gate is called uncounted (street_pass), so the two
+        # refusal counters would be unincremented zeros printed as measurements
+        # (re-audit 2026-10-10 F5); its refusals are organic_stats.why instead
+        "counts": {k: v for k, v in (
+                   ("buildings", len(accepted)),
+                   ("roofs", len(roofs)),
+                   ("spire", 1 if spire else 0),
+                   ("streets", len(streets)),
+                   ("streets_rejected_grade", st_rej_grade),
+                   ("streets_rejected_cutfill", st_rej_cutfill),
+                   ("streets_pruned_disconnected", st_pruned),
+                   ("landmark", 1 if landmark else 0))
+                   if layout == "lattice" or k not in (
+                       "streets_rejected_grade", "streets_rejected_cutfill")},
         "_street_counts_are_separate": (
             "grade and cut/fill are counted apart because they refuse for "
             "different physical reasons, and a single total cannot say which "
@@ -638,7 +813,7 @@ def main():
     # saying "the network is one piece" is a belief compiled into text, and
     # nothing re-checks it when the code changes underneath. This re-derives it.
     if streets:
-        n_comp = len(street_components(streets, join_tol_cm))
+        n_comp = len(street_components(streets, join_tol_cm, width_join=wjoin))
         if n_comp != 1:
             sys.exit("REFUSE: the pruned street network is %d components, not "
                      "1. The prune did not do what it claims and the plan would "
@@ -662,7 +837,6 @@ def main():
     # sufficient -- scripts/reachability.py against the BUILT navmesh remains the
     # authority. It catches the class that produced this town: structures placed
     # beyond where the network reaches.
-    orphan_cm = float(g.get("max_building_to_street_m", 40.0)) * 100.0
     orphans = []
     # ZERO STREETS REFUSES HERE (Pass 3 2026-09-16 F2): with streets ==
     # [], this loop, the prune, and the one-component re-derivation all
@@ -676,10 +850,9 @@ def main():
                  "zero samples is silence wearing agreement's clothes. "
                  "Nothing was written.")
     if streets and accepted:
-        sxy = [(s["loc_cm"][0], s["loc_cm"][1]) for s in streets]
         for bi, b in enumerate(accepted):
             bx, by = b["loc_cm"][0], b["loc_cm"][1]
-            best = min(math.hypot(bx - px, by - py) for px, py in sxy)
+            best = nearest_street_cm(bx, by)
             if best > orphan_cm:
                 orphans.append({"building": bi,
                                 "nearest_street_m": round(best / 100.0, 1)})
@@ -694,6 +867,19 @@ def main():
           "%d orphaned, %.1f%%)"
           % (len(accepted) - len(orphans), len(accepted), orphan_cm / 100.0,
              len(streets), len(orphans), 100.0 * frac_orphan))
+    if near_only:
+        # audit 2026-10-06 F7: with the per-plot gate on, this re-check uses the
+        # SAME function, threshold and centre point -- it is not independent
+        # (non-negotiable 0); reachability.py on the built navmesh is.
+        print("network    NOTE: enforced per plot by the same nearest_street_cm "
+              "(%d plots rejected far_from_street); the line above is a re-check "
+              "of that filter, NOT an independent measurement"
+              % rej["far_from_street"])
+    if layout == "organic":
+        # audit 2026-10-10 F2: every organic house is fronted on a pruned piece, so this gate is near-vacuous by
+        # construction; reachability.py on the built navmesh is the measurement
+        print("network    NOTE: organic houses are street-fronted by construction -- the line above re-checks the "
+              "construction, it is NOT an independent measurement")
     if frac_orphan > max_frac:
         sys.exit(
             "REFUSE: %.1f%% of buildings are further than %.0f m from the "
@@ -720,11 +906,11 @@ def main():
     plan[plan_stamp.STAMP_KEY] = plan_stamp.stamp(plan, REPO)
     # R5 (E-4): the CONSUMED-FIELD stamp — reviewed against the reads,
     # cited (granularity floor: at or above what the code touches):
-    #   city.json: site :168, plan :169, buildings :170, gates :171,
-    #     landmark :449/:509, roofs :482, city_id :530/:662,
-    #     level_path :530
-    #   biome recipe: landscape + heightmap (Terrain.__init__ :59-:60,
-    #     _terrain_source :525)
+    #   city.json: site :170, plan :171, buildings :172, gates :173,
+    #     landmark :266/:691, roofs :658, city_id :726/:904,
+    #     level_path :726  (re-cited 2026-10-10 after the landmark move)
+    #   biome recipe: landscape + heightmap (Terrain.__init__ :61-:62,
+    #     _terrain_source :721)
     # A recipe edit outside these fields no longer stales this plan.
     plan[plan_stamp.CONSUMED_KEY] = plan_stamp.consumed_stamp(plan, REPO, {
         "_recipe": ["site", "plan", "buildings", "gates", "landmark",
@@ -753,9 +939,17 @@ def main():
              min([r["ridge_height_cm"] for r in roofs]) / 100.0 if roofs else 0,
              max([r["ridge_height_cm"] for r in roofs]) / 100.0 if roofs else 0,
              "yes" if spire else "no"))
-    print("street %d refused on grade, %d on cut/fill, %d pruned as "
-          "unreachable from the plaza"
-          % (st_rej_grade, st_rej_cutfill, st_pruned))
+    if layout == "lattice":
+        print("street %d refused on grade, %d on cut/fill, %d pruned as "
+              "unreachable from the plaza"
+              % (st_rej_grade, st_rej_cutfill, st_pruned))
+    elif layout == "image":
+        print("street image pieces dropped by gate %d of %d, outside radius %d; %d pruned as unreachable from the plaza"
+              % (o_stats.get("dropped_by_gate", 0), o_stats.get("source_streets", 0), o_stats.get("outside_radius", 0), st_pruned))
+    else:
+        print("street organic pieces failed %d %s (detoured or truncated, "
+              "never placed); %d pruned as unreachable from the plaza"
+              % (o_stats["pieces_failed"], o_stats["why"], st_pruned))
     # a real if/else: the old conditional EXPRESSION evaluated the bare
     # string 'pads   none' and discarded it — the else branch never
     # printed (Pass 3 2026-09-16 F10).

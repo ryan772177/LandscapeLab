@@ -36,7 +36,9 @@ import unreal as _u
 # query; it is iterating to closure that turns "this query failed" into "no
 # reachable row can reach it".
 #
-# CONTROLS, both mandatory and both asserted below:
+# CONTROLS, both mandatory. MEASURED and REPORTED here (control_positive_failures,
+# control_50km_pathable); ASSERTED by the caller before the sidecar is installed
+# (scripts/town_kit_reachability.py --install) -- this payload does not refuse on them:
 #   POSITIVE  rows already reachable must stay reachable through the relay, or
 #             the relay is answering yes to everything.
 #   NEGATIVE  a point 50 km away must never join the set.
@@ -50,7 +52,25 @@ MAX_ROUNDS = 12
 
 _out = {"ok": False, "error": None}
 try:
-    _u.LandscapeLabTools.load_all_world_partition_regions()
+    # 2026-10-08 kit town, all from the caller (JSON, parsed INSIDE the try so a bad substitution still replies):
+    #   LEVEL      the manifest's level_path (rule 11)
+    #   TOWN_TAGS  tags whose actors ground traces must ignore (the kit manifest's "tag")
+    #   DOORS      {building index: [x, y]} doorsteps from the manifest's door side (null = the old +Y rule)
+    _K = _json.loads(r'''__KIT__''')
+    LEVEL = _K["level"]
+    TOWN_TAGS = list(_K.get("town_tags") or [])
+    DOORS = {int(k): v for k, v in (_K.get("doors") or {}).items()}
+    _lvl0 = _u.get_editor_subsystem(_u.UnrealEditorSubsystem).get_editor_world().get_path_name().split(".")[0]
+    if _lvl0 != LEVEL:
+        raise RuntimeError("open level is %s, expected %s" % (_lvl0, LEVEL))
+    # WHOLE-WORLD load kept deliberately (2026-10-08): a town-box load was considered and REJECTED by audit --
+    # navmesh tiles join only with their chunk actor (NavigationDataChunkActor.cpp:21-35), so a box load can
+    # turn rows falsely unreachable, and a <64-chunk sidecar would break every consumer's chunk binding.
+    _la = _u.LandscapeLabTools.load_all_world_partition_regions()
+    _la_ok, _la_min, _la_max, _la_err = _la
+    if not _la_ok:
+        raise RuntimeError("load_all_world_partition_regions failed: %s" % _la_err)
+    _out["loaded_bounds"] = [[_la_min.x, _la_min.y], [_la_max.x, _la_max.y]]
     _w = _u.EditorLevelLibrary.get_editor_world()
     _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
     _actors = _eas.get_all_level_actors()
@@ -68,16 +88,41 @@ try:
     # building traces onto its neighbour's roof. Trees are excluded for the
     # same reason -- they are query-collidable and a trace lands on canopy.
     _CITY_TAG = "LandscapeLab.City"
+    # the kit town (2026-10-08) carries its own tag (passed in as TOWN_TAGS); its houses must be ignored
+    # exactly like the primitive town was, or a street trace lands on a kit roof
+    _TOWN_TAGS = tuple([_CITY_TAG] + list(TOWN_TAGS))
     _ign = []
+    _per_tag = dict((t, 0) for t in _TOWN_TAGS)
+    _n_hlod_ign = 0
     for _a in _actors:
         if isinstance(_a, _u.InstancedFoliageActor):
             _ign.append(_a)
             continue
+        # HLOD PROXIES TOO (2026-10-08): with every region loaded the editor keeps the WorldPartitionHLOD actors,
+        # and the Instanced layer's tree proxies are collidable canopy 12+ m up -- measured: 128 kit doorsteps
+        # "did not project" because the ground trace landed on HLOD canopy (Alpine8K_HLODLayer_Instanced_L0_*),
+        # including proxies of trees the town clearing had already removed (HLOD not yet rebuilt). Same class as
+        # the 2026-09-30 HLOD-proxy-trace fault.
+        if _a.get_class().get_name() == "WorldPartitionHLOD":
+            _ign.append(_a)
+            _n_hlod_ign += 1
+            continue
         try:
-            if _CITY_TAG in [str(_t) for _t in _a.tags]:
+            _ts = [str(_t) for _t in _a.tags]
+            _hit = [t for t in _TOWN_TAGS if t in _ts]
+            for t in _hit:
+                _per_tag[t] += 1
+            if _hit:
                 _ign.append(_a)
         except Exception:
             pass
+    # rule 13 (re-audit 2026-10-08 F3): counted PER TAG -- the City streets alone would keep a combined count
+    # above zero and hide a drifted kit tag. Every passed tag must match something.
+    _out["trace_ignored_by_tag"] = _per_tag
+    _out["trace_ignored_hlod_actors"] = _n_hlod_ign
+    _zero = [t for t in TOWN_TAGS if _per_tag.get(t, 0) == 0]
+    if _zero:
+        raise RuntimeError("town tag(s) %s matched 0 actors -- traces would land on roofs" % (_zero,))
     _E = _u.Vector(EXTENT_CM, EXTENT_CM, EXTENT_CM)
     _SUCCESS = _u.NavigationQueryResult.SUCCESS
 
@@ -144,6 +189,10 @@ try:
         _l = _s["loc_cm"]
         _rows.append({"kind": "street", "idx": _k, "loc_cm": [_l[0], _l[1]]})
     for _k, _b in enumerate(_p.get("buildings", [])):
+        if _k in DOORS:
+            # kit town: the doorstep in front of the house's own door (manifest door side), 2026-10-08
+            _rows.append({"kind": "building", "idx": _k, "loc_cm": list(DOORS[_k]), "doorstep": "door"})
+            continue
         _l = _b["loc_cm"]
         _sz = _b.get("size_cm", [600.0, 600.0, 600.0])
         _yaw = _math.radians(float(_b.get("yaw_deg", 0.0)))
@@ -151,6 +200,8 @@ try:
         _rows.append({"kind": "building", "idx": _k,
                       "loc_cm": [_l[0] - _off * _math.sin(_yaw),
                                  _l[1] + _off * _math.cos(_yaw)]})
+    if DOORS and len(DOORS) != len(_p.get("buildings", [])):
+        raise RuntimeError("doors for %d of %d buildings" % (len(DOORS), len(_p.get("buildings", []))))
 
     # ---- project every row once ------------------------------------------
     _proj_pt = []
@@ -243,6 +294,10 @@ try:
             "extent it was measured with; the reachability module enforces the "
             "agent and (when the caller can supply it) the chunk count."),
         "_produced_by": "scripts/city_reachable_region_payload.txt",
+        # declared inputs for stamp_plan (2026-10-08): the plan whose rows were measured and the kit manifest
+        # whose door sides placed the building doorsteps
+        "_city_plan": "city/alpine_basin_town_plan.json",
+        "_kit_manifest": ("city/alpine_basin_town_kit_manifest.json" if DOORS else None),
         "_recipe": "recipes/city.json",
         "_bound_to": {
             "city_plan": _os.path.basename(PLAN),
@@ -253,6 +308,8 @@ try:
             "method": "transitive closure by relay",
             "rounds_to_converge": _rounds,
             "converged": bool(_round_gain[-1] == 0),
+            "building_doorstep": ("kit manifest door side + 150 cm" if DOORS else "local +Y side + 150 cm"),
+            "trace_ignored_by_tag": _per_tag,
         },
         "streets": _out["streets"],
         "buildings": _out["buildings"],

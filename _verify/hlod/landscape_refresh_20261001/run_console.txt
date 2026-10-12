@@ -1,0 +1,42 @@
+
+=== batch_00 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  0.5 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  0.8 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  1.2 min] 1/8  approve=0 reject=0  vram=401 peak=401  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y-1
+    [  1.5 min] 1/8  approve=0 reject=0  vram=401 peak=401  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y-1
+    [  1.8 min] 1/8  approve=0 reject=0  vram=401 peak=401  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y-1
+    [  2.2 min] 3/8  approve=2 reject=0  vram=6008 peak=6008  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y-3
+    [  2.5 min] 7/8  approve=7 reject=0  vram=12307 peak=12307  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y-7
+    done rc=1 in 2.7 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1037 | vram peak 12307 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=4.719s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batch_00.log', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batches.json', CRLF will be replaced by LF the next time Git touches it
+    cells baked at/after 2026-10-02 03:10:00: 0 -> 8  (+8, expected +8)   free disk 61.24 GB   VRAM peak 12307 MiB
+
+=== batch_01 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 0/0  approve=0 reject=0  vram=364 peak=364  -
+    [  0.5 min] 5/8  approve=5 reject=0  vram=9823 peak=9823  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y4
+    [  0.8 min] 8/8  approve=8 reject=0  vram=153 peak=11124  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-1_Y7
+    done rc=1 in 0.8 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1037 | vram peak 11124 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=5.516s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batch_01.log', LF will be replaced by CRLF the next time Git touches it
+    cells baked at/after 2026-10-02 03:10:00: 8 -> 16  (+8, expected +8)   free disk 60.18 GB   VRAM peak 11124 MiB
+
+=== batch_02 (attempt 1) ===
+    cells in section: 8   stale(MeshMerge(1)) now: 0
+    [  0.2 min] 0/0  approve=0 reject=0  vram=365 peak=365  -
+    [  0.5 min] 4/8  approve=4 reject=0  vram=8872 peak=8872  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-2_Y-4
+    [  0.8 min] 8/8  approve=8 reject=0  vram=13354 peak=13354  Alpine8K_HLODLayer_Instanced/Alpine8K_MainPartition_L2_X-2_Y-8
+    done rc=1 in 1.0 min | approve=8 reject=0 | STALE 0 -> 0 (-0), current=1037 | vram peak 13354 MiB | true_exit=True | written=8 torn=0 last_write_to_exit=8.046s
+  attribution  building-lines 8  decisions 8  approved 8  rejected 0
+    Alpine8K_HLODLayer_Instanced       approve 8      reject 0       from Alpine8K_MainPartition x8
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batches.json', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of '_verify/hlod/landscape_refresh_20261001/batch_02.log', LF will be replaced by CRLF the next time Git touches it
+    cells baked at/after 2026-10-02 03:10:00: 16 -> 24  (+8, expected +8)   free disk 58.72 GB   VRAM peak 13354 MiB
+STOP: batch 2 VRAM peak 13354 MiB exceeded the 13312 MiB abort. Resume with: run --start 3

@@ -1,0 +1,97 @@
+{
+ "name": "cliff_overlook",
+ "ok": true,
+ "cmd": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/Alpine8K",
+  "-game",
+  "-windowed",
+  "-ResX=1600",
+  "-ResY=900",
+  "-ExecCmds=r.setRes 1600x900w,BugItGo -201186.0 219000.0 24625.3 -9.0 270.0 0,DisableAllScreenMessages,ShowFlag.SkeletalMeshes 0",
+  "-nosplash",
+  "-NoLoadingScreen",
+  "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\game_still_cliff_overlook.log"
+ ],
+ "level": "/Game/Alpine8K",
+ "camera": {
+  "x_cm": -201186.0,
+  "y_cm": 219000.0,
+  "z_cm": 24625.3,
+  "pitch_deg": -9.0,
+  "yaw_deg": 270.0,
+  "z_source": "heightmap + eye (placement aid, not a trace)",
+  "pose_read_back": false
+ },
+ "state": "bench_on_disk",
+ "hlod_residency_read_back": false,
+ "view": "player camera, skeletal meshes hidden",
+ "requested_res": [
+  1600,
+  900
+ ],
+ "settle_s": 240.0,
+ "dpi_awareness_set": true,
+ "free_ram_gb": 22.960693359375,
+ "ram_comfortable": true,
+ "kill_on_close_job": true,
+ "capture": {
+  "windows_found": 1,
+  "still_minimised": false,
+  "foreground_pid": 28200,
+  "foreground_is_game": true,
+  "client_size": [
+   2400,
+   1350
+  ],
+  "client_origin": [
+   80,
+   89
+  ],
+  "window_dpi": 96
+ },
+ "dwell_s": 246.4,
+ "vram_mib": {
+  "peak_mib": 4552,
+  "mean_mib": 1723.2,
+  "n_samples": 48,
+  "peak_window_mib": 4552,
+  "n_window": 48,
+  "abort_ceiling_mib": 13312,
+  "physical_mib": 16303,
+  "headroom_to_abort_mib": 8760,
+  "over_abort_ceiling": false,
+  "_caveat": "whole-GPU used (nvidia-smi memory.used); includes any other consumer, but the -game process dominates a dedicated run."
+ },
+ "frame": {
+  "size": [
+   2400,
+   1350
+  ],
+  "encoding": "srgb_encoded_8bit (NOT display-linear)",
+  "luma_mean_encoded": 0.2355,
+  "luma_std_encoded": 0.1505,
+  "display_scale": [
+   1.5,
+   1.5
+  ],
+  "resampled_to": [
+   1600,
+   900
+  ]
+ },
+ "log": {
+  "bugitgo_to_lines": 1,
+  "bugitgo_matching_request": 1,
+  "bugitgo_first": [
+   -201186.0,
+   219000.0,
+   24625.301
+  ],
+  "screen_messages_disabled_line": true,
+  "world_partition_lines": 17
+ },
+ "problems": [],
+ "png": "_verify\\lookdev\\game04\\cliff_overlook.png"
+}

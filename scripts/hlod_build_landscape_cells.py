@@ -32,11 +32,16 @@ LANDSCAPE COMPONENTS, which are ordinary actors, not HLOD actors -- so
 from a layer that consumes other HLOD actors would NOT be safe to shard this
 way, and the engine would refuse at :1325 rather than produce a wrong result.
 
-⚠ THE PARENTS GO STALE AND THIS TOOL DOES NOT FIX THEM. The Merged layer
-consumes these Instanced cells as sources (`HLODSourceActorsFromCell.cpp:213-220`
-hashes the source actor set), so rebuilding the children leaves the parents
-mismatched. That is a deliberate scope boundary, not an oversight; it is
-reported at the end rather than silently accepted.
+⚠ THE PARENTS GO STALE WITH THE CHILDREN. The Merged layer consumes these
+Instanced cells as sources (`HLODSourceActorsFromCell.cpp:213-220`), so
+rebuilding the children leaves the parents mismatched.
+SINCE 2026-10-01, `--parents` (with `--built-before`) rebuilds them. It is
+safe to shard by hand for a DIFFERENT reason than the children are: it
+passes `-BuildHLODLayer=`, which skips the child-before-parent check
+(WorldPartitionHLODsBuilder.cpp:1378-1381) -- so the children MUST already be
+finished, and plan and every batch refuse unless all landscape children are
+baked at/after the cutoff. A parent built over an old child would count as
+done and never be selected again.
 
 WHY NOT `cmd_run` FROM THE OTHER SCRIPT: its success test is
 `stale_delta` on `STALE_LAYER = "MeshMerge(1)"`, the 2026-09-09 layer
@@ -112,22 +117,126 @@ def landscape_cells():
     return out
 
 
+# The Merged layer every landscape PARENT belongs to. Passed as
+# -BuildHLODLayer= in --parents mode: that is what turns off the
+# child-before-parent workload check (WorldPartitionHLODsBuilder.cpp:1378-1381)
+# so parents can be built after their children, in a separate run.
+PARENT_LAYER = "Alpine8K_HLODLayer_Merged"
+
+
+def parent_cells():
+    """Every HLOD package that is NOT a landscape cell but whose own report
+    names a landscape child's baked texture (hlod_stale_parents.CHILD_TEX):
+    the parents that consume the landscape cells. Membership by content
+    signature, like landscape_cells."""
+    import hlod_stale_parents as SP
+    out = []
+    for p in HR.gitignored_hlod_packages():
+        if not os.path.exists(p):
+            continue
+        text = HR.extract_block(p)
+        if (text is None or "ProjectHLODMaxTextureSize" in text
+                or not SP.CHILD_TEX.search(text)):
+            continue
+        rec = HR.parse(text, p)
+        if not rec.get("guid"):
+            raise SystemExit(f"REFUSING: no GUID parsed for {p}")
+        out.append(rec)
+    return out
+
+
+def cells_for(parents):
+    return parent_cells() if parents else landscape_cells()
+
+
+def _children_finished_or_exit(built_before):
+    """--parents precondition (audit 2026-10-01): EVERY landscape child must
+    already be baked at/after the cutoff. A parent rebuilt while a child is
+    still old gets a fresh date, counts as done, and is never selected again
+    -- baked from the old child with nothing to flag it."""
+    kids = cap_census(built_before, parents=False)
+    if kids["stale"] != 0:
+        raise SystemExit(
+            f"REFUSING: {kids['stale']} of {kids['landscape_cells']} landscape "
+            f"children are still baked before {built_before}. Finish the "
+            f"landscape-cell run first; parents built now would bake the old "
+            f"children in.")
+
+
+_DT_FMT = "%Y-%m-%d %H:%M:%S"
+
+
+def _built_before(cell, cutoff):
+    """True if the cell's own report DateTimeUTC precedes `cutoff` (UTC,
+    'YYYY-MM-DD HH:MM:SS'). An unparseable date REFUSES: counting it either
+    way would be a silent guess."""
+    import datetime as _dt
+    raw = cell.get("DateTimeUTC")
+    try:
+        when = _dt.datetime.strptime((raw or "")[:19], _DT_FMT)
+    except ValueError:
+        raise SystemExit(f"REFUSING: unparseable DateTimeUTC {raw!r} in "
+                         f"{cell.get('path')}")
+    return when < _dt.datetime.strptime(cutoff, _DT_FMT)
+
+
 def cmd_plan(args, run_dir):
     editors = HB.running_editors()
     if editors:
         raise SystemExit(f"REFUSING: {len(editors)} UnrealEditor process(es) "
                          f"alive: {editors}\nStanding rule 11: wait for ZERO.")
 
-    cells = landscape_cells()
-    print(f"landscape cells found      : {len(cells)}")
+    if args.parents and not args.built_before:
+        raise SystemExit("REFUSING: --parents needs --built-before. A parent "
+                         "has no ProjectHLODMaxTextureSize, so the cap test "
+                         "would call every parent stale forever.")
+    if os.path.exists(HB.state_path(run_dir)):
+        raise SystemExit(f"REFUSING: {HB.state_path(run_dir)} exists; plan "
+                         f"would overwrite a run's state. Use a fresh --run-dir.")
+    if args.parents:
+        _children_finished_or_exit(args.built_before)
+    cells = cells_for(args.parents)
+    print(f"{'parent' if args.parents else 'landscape'} cells found      "
+          f": {len(cells)}")
     if not cells:
         raise SystemExit("REFUSING: 0 landscape cells. Nothing to build, and "
                          "a zero here is a broken scan, not an empty world.")
 
-    done = [c for c in cells if c["ProjectHLODMaxTextureSize"] == TARGET_CAP]
-    todo = [c for c in cells if c["ProjectHLODMaxTextureSize"] != TARGET_CAP]
-    print(f"  already at cap {TARGET_CAP}       : {len(done)}")
-    print(f"  STALE, to rebuild        : {len(todo)}")
+    if args.built_before:
+        # The cutoff is checked ON ITS OWN first (audit 2026-10-01): a
+        # malformed one must refuse cleanly, and a FUTURE one (local time
+        # typed as UTC) would leave freshly built cells "before" it, so
+        # every batch would read as having done nothing.
+        import datetime as _dt
+        try:
+            _cut = _dt.datetime.strptime(args.built_before, _DT_FMT)
+        except ValueError:
+            raise SystemExit(f"REFUSING: --built-before {args.built_before!r} "
+                             f"is not 'YYYY-MM-DD HH:MM:SS' (UTC)")
+        _now = _dt.datetime.now(_dt.timezone.utc).replace(tzinfo=None)
+        if _cut > _now:
+            raise SystemExit(f"REFUSING: --built-before {args.built_before} "
+                             f"is in the future (UTC now "
+                             f"{_now.strftime(_DT_FMT)}); was local time "
+                             f"typed as UTC?")
+        # MATERIAL-REFRESH MODE (2026-10-01, LESSONS 2026-10-01c). The
+        # landscape HLOD hash covers the material OBJECT REFERENCE
+        # (LandscapeHLODBuilder.cpp:84 `<< MaterialInstances`), not the
+        # material's content, so a rebuilt-in-place M_Alpine8K leaves every
+        # cell's hash equal and nothing marks it stale. Staleness is then by
+        # construction: a cell whose own report DateTimeUTC precedes the
+        # material change was baked from the old material.
+        done = [c for c in cells if not _built_before(c, args.built_before)]
+        todo = [c for c in cells if _built_before(c, args.built_before)]
+        print(f"  baked at/after {args.built_before} : {len(done)}")
+        print(f"  baked BEFORE it, to rebuild    : {len(todo)}")
+    else:
+        done = [c for c in cells if c["ProjectHLODMaxTextureSize"] == TARGET_CAP]
+        todo = [c for c in cells if c["ProjectHLODMaxTextureSize"] != TARGET_CAP]
+        print(f"  already at cap {TARGET_CAP}       : {len(done)}")
+        print(f"  STALE, to rebuild        : {len(todo)}")
+    if not todo:
+        raise SystemExit("REFUSING: 0 cells to rebuild -- nothing to plan.")
 
     # Deterministic order so a resume covers the same cells in the same batches.
     todo.sort(key=lambda c: c["label"] or c["guid"])
@@ -174,6 +283,7 @@ def cmd_plan(args, run_dir):
         "section_sizes": {k: len(v) for k, v in sorted(s2.items())},
         "cells_total": len(cells),
         "cells_stale_at_plan": len(todo),
+        "built_before": args.built_before, "parents": bool(args.parents),
         "free_disk_at_plan": free_disk_bytes(),
         "records": [],
     }
@@ -183,10 +293,16 @@ def cmd_plan(args, run_dir):
     return 0
 
 
-def cap_census():
-    """How many landscape cells now record the target cap."""
-    cells = landscape_cells()
-    at = sum(1 for c in cells if c["ProjectHLODMaxTextureSize"] == TARGET_CAP)
+def cap_census(built_before=None, parents=False):
+    """How many landscape cells are DONE: at the target cap, or -- in
+    material-refresh mode -- baked at/after the cutoff. The key keeps its
+    name `at_target_cap` so the run loop and batches.json read one field."""
+    cells = cells_for(parents)
+    if built_before:
+        at = sum(1 for c in cells if not _built_before(c, built_before))
+    else:
+        at = sum(1 for c in cells
+                 if c["ProjectHLODMaxTextureSize"] == TARGET_CAP)
     return {"landscape_cells": len(cells), "at_target_cap": at,
             "stale": len(cells) - at,
             "bytes_total": sum(c["bytes"] for c in cells)}
@@ -200,6 +316,9 @@ def cmd_run(args, run_dir):
     if HB.stop_requested(run_dir):
         raise SystemExit(f"REFUSING: STOP file present in {run_dir}")
 
+    # What "done" means, in the words every message below uses.
+    done_what = ("baked at/after %s" % state["built_before"]
+                 if state.get("built_before") else "at cap %s" % TARGET_CAP)
     indices = ([args.only] if args.only is not None
                else list(range(args.start, state["batches"])))
 
@@ -212,22 +331,26 @@ def cmd_run(args, run_dir):
         free = free_disk_bytes()
         floor = args.free_disk_abort_gb * 2 ** 30
         if free < floor:
-            done = cap_census()
+            done = cap_census(state.get("built_before"), state.get("parents", False))
             raise SystemExit(
                 f"\n=== DISK GATE TRIPPED -- STOPPED CLEANLY ===\n"
                 f"free disk        {free/2**30:.2f} GB  (floor "
                 f"{args.free_disk_abort_gb} GB)\n"
                 f"RESUME AT BATCH  {idx}   of {state['batches']}\n"
                 f"batches unbuilt  {state['batches']-idx}\n"
-                f"cells at {TARGET_CAP}    {done['at_target_cap']} of "
+                f"cells {done_what}  {done['at_target_cap']} of "
                 f"{done['landscape_cells']}   still stale {done['stale']}\n"
                 f"resume with      run --run-dir <ABS> --start {idx}\n"
                 f"Nothing was written by this check. Reclaiming space is NOT "
                 f"this tool's job -- see the module docstring.")
 
-        before = cap_census()
-        rec = HB.run_batch(state, run_dir, idx, attempt=1, force=True)
-        after = cap_census()
+        if state.get("parents"):
+            # Re-checked before EVERY batch: the children could have gone
+            # stale again between plan and run (audit 2026-10-01).
+            _children_finished_or_exit(state["built_before"])
+        before = cap_census(state.get("built_before"), state.get("parents", False))
+        rec = HB.run_batch(state, run_dir, idx, attempt=1, force=True, extra_args=(["-BuildHLODLayer=%s" % PARENT_LAYER] if state.get("parents") else None))
+        after = cap_census(state.get("built_before"), state.get("parents", False))
 
         rec["cap_at_target_before"] = before["at_target_cap"]
         rec["cap_at_target_after"] = after["at_target_cap"]
@@ -239,7 +362,7 @@ def cmd_run(args, run_dir):
         HB.commit_batch(run_dir, rec)
 
         expect = state["section_sizes"].get(f"HLODBuilder{idx}", 0)
-        print(f"    cells at cap {TARGET_CAP}: {before['at_target_cap']} -> "
+        print(f"    cells {done_what}: {before['at_target_cap']} -> "
               f"{after['at_target_cap']}  (+{rec['cap_delta']}, expected "
               f"+{expect})   free disk {rec['free_disk_after']/2**30:.2f} GB"
               f"   VRAM peak {rec['vram_peak_mb']} MiB")
@@ -264,12 +387,12 @@ def cmd_run(args, run_dir):
         # new cap has done nothing.
         if rec["cap_delta"] < expect:
             raise SystemExit(
-                f"STOP: batch {idx} moved {rec['cap_delta']} cells to cap "
-                f"{TARGET_CAP}, expected {expect}. Clean exit, wrong artefact.")
+                f"STOP: batch {idx} moved {rec['cap_delta']} cells to "
+                f"{done_what}, expected {expect}. Clean exit, wrong artefact.")
 
-    final = cap_census()
+    final = cap_census(state.get("built_before"), state.get("parents", False))
     print(f"\nFINAL  landscape cells {final['landscape_cells']}  "
-          f"at cap {TARGET_CAP}: {final['at_target_cap']}  "
+          f"{done_what}: {final['at_target_cap']}  "
           f"stale: {final['stale']}")
     print(f"FINAL  landscape package bytes: {final['bytes_total']:,} "
           f"({final['bytes_total']/2**30:.2f} GB)")
@@ -291,6 +414,13 @@ def main(argv=None):
                     help="stop cleanly BEFORE a batch when free disk is under "
                          "this (default %d GB, ruled 2026-09-14)"
                          % DEFAULT_FREE_DISK_ABORT_GB)
+    ap.add_argument("--parents", action="store_true", help="build the PARENTS that consume the landscape cells (Merged layer), with -BuildHLODLayer=%s; requires --built-before" % PARENT_LAYER)
+    ap.add_argument("--built-before", default=None,
+                    help="MATERIAL-REFRESH mode: plan every landscape cell "
+                         "whose report DateTimeUTC precedes this UTC time "
+                         "('YYYY-MM-DD HH:MM:SS'); a batch is done when its "
+                         "cells' dates move past it. For a material changed "
+                         "in place, which the HLOD hash cannot see.")
     ap.add_argument("--engine-version-from",
                     default=os.path.join(REPO_ROOT, "_verify", "hlod",
                                          "build_20260914b",
@@ -303,7 +433,11 @@ def main(argv=None):
         return cmd_plan(a, run_dir)
     if a.command == "run":
         return cmd_run(a, run_dir)
-    print(json.dumps(cap_census(), indent=1))
+    if a.parents and not a.built_before:
+        print("REFUSING: census --parents needs --built-before (parents carry "
+              "no ProjectHLODMaxTextureSize)")
+        return 2
+    print(json.dumps(cap_census(a.built_before, a.parents), indent=1))
     return 0
 
 

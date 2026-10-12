@@ -27,9 +27,12 @@ import unreal as _u
 # Each cell costs about ONE path query (from whichever neighbour discovered
 # it), not one per neighbour, so the cost is linear in cells.
 #
-# CONTROLS, both asserted:
-#   POSITIVE  the seed cell must project, or nothing below means anything.
-#   NEGATIVE  a cell 50 km away must never be reached.
+# CONTROLS (corrected 2026-10-08, audit F4 -- the old header said "both asserted"; neither was):
+#   POSITIVE  the seed cell must project (raises below), or nothing means anything.
+#   The 50 km point is OUTSIDE the BFS grid and off the world, so it can never be reached BY CONSTRUCTION --
+#   reported, but it is not a control. The real "can the BFS say no" control is in the caller
+#   (scripts/measure_reach_lattice.py): projecting-but-unreachable cells must exist, and lattice changes away
+#   from the town refuse the install.
 #
 # WRITES A FILE.
 
@@ -40,9 +43,16 @@ MAX_Y = __MAX_Y__
 STEP_CM = __STEP_CM__
 OUT = r"__OUT__"
 
+# kit-town tags to ignore in ground traces, passed by the caller from the manifest (audit 2026-10-08 F1)
+TOWN_TAGS = __TOWN_TAGS__
+
 _out = {"ok": False, "error": None}
 try:
-    _u.LandscapeLabTools.load_all_world_partition_regions()
+    # audit 2026-10-08 F2: the load result is checked, not discarded
+    _la_ok, _la_min, _la_max, _la_err = _u.LandscapeLabTools.load_all_world_partition_regions()
+    if not _la_ok:
+        raise RuntimeError("load_all_world_partition_regions failed: %s" % _la_err)
+    _out["loaded_bounds"] = [[_la_min.x, _la_min.y], [_la_max.x, _la_max.y]]
     _w = _u.EditorLevelLibrary.get_editor_world()
     _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
     _actors = _eas.get_all_level_actors()
@@ -68,10 +78,17 @@ try:
             _ign.append(_a)
             continue
         try:
-            if _CITY_TAG in [str(_t) for _t in _a.tags]:
+            _ts = [str(_t) for _t in _a.tags]
+            # the kit town (2026-10-08) has its own tag(s), TOWN_TAGS; a lattice cell under a kit house must
+            # not trace its roof
+            if _CITY_TAG in _ts or any(t in _ts for t in TOWN_TAGS):
                 _ign.append(_a)
         except Exception:
             pass
+    # counted PER TAG (audit F1): the City streets alone would hide a drifted kit tag in a combined count
+    _out["trace_ignored"] = {"hlod": sum(1 for _a in _ign if "WorldPartitionHLOD" in _a.get_class().get_name())}
+    for _t0 in [_CITY_TAG] + list(TOWN_TAGS):
+        _out["trace_ignored"][_t0] = sum(1 for _a in _ign if _t0 in [str(_t) for _t in _a.tags])
 
     _E = _u.Vector(500.0, 500.0, 500.0)
     _SUCCESS = _u.NavigationQueryResult.SUCCESS

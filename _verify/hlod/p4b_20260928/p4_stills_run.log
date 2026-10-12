@@ -1,0 +1,53 @@
+[P3B 16:38:32] run: python.exe resource_guard.py
+[P3B 16:38:32]   -> rc=0 in 0s
+working directory : C:\Users\Admin\UE5LandscapePipeline
+map               : /Game/Alpine8K
+mode              : WINDOWED -- the viewport Present path that took the GPU on 2026-09-12 is live
+launched. Confirm with scripts/bootstrap.py before any remote work.
+[P3B 16:38:39] launched PIDs [24364]; waiting for bootstrap
+[P3B 16:49:42] editor ready after 663 s
+[P3B 16:49:43] stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 3.61 GB
+[P3B 16:49:45] stills-only: ShaderCompileWorker x7, free RAM 1.57 GB, editor WS 16.3 GB; waiting for compile quiet
+[P3B 16:51:47] stills-only: ShaderCompileWorker x0, free RAM 3.5 GB, editor WS 17.23 GB; waiting for compile quiet
+[P3B 16:52:04] RAM settled: 3.43 GB free after 141 s
+[P3B 16:52:04] run: python.exe ue_exec.py brief7_level_check_payload.txt --timeout 25
+[P3B 16:52:29]   -> rc=0 in 25s
+[P3B 16:52:29] level /Game/Alpine8K.Alpine8K; grass inputs before: [['GroundClutter', '/Game/Foliage/GT_alpine_8k_GroundClutter'], ['Meadow', '/Game/Foliage/GT_alpine_8k_Meadow'], ['Blueberry', '/Game/Foliage/GT_alpine_8k_Blueberry'], ['MeadowFar', '/Game/Foliage/GT_alpine_8k_MeadowFar'], ['ForestLitter', '/Game/Foliage/GT_alpine_8k_ForestLitter'], ['ForestShrub', '/Game/Foliage/GT_alpine_8k_ForestShrub'], ['ForestStones', '/Game/Foliage/GT_alpine_8k_ForestStones']]
+[P3B 16:52:29] stills-only mode: skipping measure / validate / rebuild / read-back
+[P3B 16:52:29] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.FlushCache"]
+[P3B 16:52:54]   -> rc=0 in 25s
+[P3B 16:52:54] run: python.exe ue_exec.py brief7_p0e_setprofile_payload.txt --timeout 25 --set PROFILE=look
+[P3B 16:53:20]   -> rc=0 in 25s
+[P3B 16:53:20] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 16:53:45]   -> rc=0 in 25s
+[P3B 16:53:45] dwell 45 s at forest_floor for grass generation
+[P3B 16:54:30] run: python.exe ue_exec.py brief7_console_exec_payload.txt --timeout 25 --set CMDS=["grass.DumpGrassData -bygrasstype"]
+[P3B 16:54:55]   -> rc=0 in 25s
+[P3B 16:55:03] grass dump lines: 2
+[P3B 16:55:03] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-210800.0 --set Y=278800.0 --set PITCH=-2.0 --set YAW=-12.8 --set EYE=175.0
+[P3B 16:55:29]   -> rc=0 in 25s
+[P3B 16:56:04] run: python.exe shoot.py --name plaza_look_p4 --loc=-210800.0,278800.0,18846.8 --rot=0,-2.0,-12.8 --outdir p4 --deadline 600
+[P3B 16:56:47]   -> rc=0 in 43s
+[P3B 16:56:47] still plaza rc=0 png=True
+[P3B 16:56:47] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-204847.3 --set Y=278048.0 --set PITCH=-2.0 --set YAW=-12.9 --set EYE=175.0
+[P3B 16:57:12]   -> rc=0 in 25s
+[P3B 16:57:47] run: python.exe shoot.py --name main_street_look_p4 --loc=-204847.3,278048.0,20314.9 --rot=0,-2.0,-12.9 --outdir p4 --deadline 600
+[P3B 16:58:18]   -> rc=0 in 31s
+[P3B 16:58:18] still main_street rc=0 png=True
+[P3B 16:58:18] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-2.0 --set YAW=105.0 --set EYE=175.0
+[P3B 16:58:44]   -> rc=0 in 25s
+[P3B 16:59:19] run: python.exe shoot.py --name treeline_look_p4 --loc=-190000.0,100000.0,63366.2 --rot=0,-2.0,105.0 --outdir p4 --deadline 600
+[P3B 16:59:50]   -> rc=0 in 31s
+[P3B 16:59:50] still treeline rc=0 png=True
+[P3B 16:59:50] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-216400.0 --set Y=63600.0 --set PITCH=-4.0 --set YAW=60.0 --set EYE=175.0
+[P3B 17:00:15]   -> rc=0 in 25s
+[P3B 17:00:50] run: python.exe shoot.py --name vista_look_p4 --loc=-216400.0,63600.0,76424.9 --rot=0,-4.0,60.0 --outdir p4 --deadline 600
+[P3B 17:01:21]   -> rc=0 in 31s
+[P3B 17:01:21] still vista rc=0 png=True
+[P3B 17:01:21] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-166400.0 --set Y=192000.0 --set PITCH=-5.0 --set YAW=100.0 --set EYE=175.0
+[P3B 17:01:47]   -> rc=0 in 25s
+[P3B 17:02:22] run: python.exe shoot.py --name forest_floor_look_p4 --loc=-166400.0,192000.0,21517.8 --rot=0,-5.0,100.0 --outdir p4 --deadline 600
+[P3B 17:12:51]   -> rc=1 in 629s
+[P3B 17:12:51] still forest_floor rc=1 png=False
+[P3B 17:12:51] run: python.exe ue_exec.py brief7_place_cam_payload.txt --timeout 25 --set X=-190000.0 --set Y=100000.0 --set PITCH=-12.0 --set YAW=105.0 --set EYE=175.0
+[P3B 17:13:17]   -> rc=0 in 27s

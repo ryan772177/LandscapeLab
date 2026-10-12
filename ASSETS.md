@@ -296,6 +296,7 @@ re-downloadable); paths recorded here instead.
 | asset | source | licence | on disk | tier | role | verified |
 |---|---|---|---|---|---|---|
 | Open World Demo Collection (Kite) | Fab / Epic | Fab Standard — UE only | `Content/KiteDemo` — 272 files, 6,527 MB (270 uasset + 2 umap; 110 T, 37 M, 29 SM, 25 MI) | as shipped | **highest-value batch** — rocks, cliffs, ground, vegetation. Highland rocks/cliffs are alpine candidates | **NO** |
+| ↳ `SM_GroundRevealRock001`, `SM_GroundRevealRock002` (Kite) | Fab / Epic | Fab Standard — UE only (inherits the pack row) | `Content/KiteDemo/Environments/Rocks/GroundRevealRock00{1,2}` | as shipped, non-Nanite, 4 LODs (13,536 / 10,589 tris LOD0) | **rig meadow boulders** (`MeadowBoulders`, hero round 24, 2026-10-03, Ryan's ruling): low, wide slabs, pivot at ground | pivot + bounds **measured live** 2026-10-03 (`Free/_measured/engine_derived.json`, base_z −0.08 / −0.21 m); look judged on `_verify/lookdev/hero_r24b_meadow_boulders` |
 | Dragon Cave | Fab | Fab Standard — UE only | `Content/DragonCave` — 333 files, 5,050 MB (115 SM, 130 T, 66 MI) **— NOT ON DISK 2026-09-27** (gitignored pack; absent from Content/, measured live: `asset does not exist`; the registry dump `Free/_measured/fab_registry_DragonCave.json` survives it) | as shipped | POI / dungeon inventory | **NO** |
 | Atlantis Ruins | Fab | Fab Standard — UE only | `Content/Atlantis_Ruins` — 274 files, 3,369 MB (37 SM, 158 T, 54 MI, **12 SK** skeletal fish/turtle/crab) **— NOT ON DISK 2026-09-27** (gitignored pack; absent from Content/, measured live; registry dump survives) | as shipped | POI / dungeon inventory | **NO** |
 | UE template content | Engine template | Epic EULA | `Content/Mannequin` (26), `ThirdPerson` (6), `ThirdPersonBP` (5), `Geometry` (4) | n/a | mannequin is the **retarget target** for GASP | **NO** |
@@ -1141,6 +1142,39 @@ is the gap, stated rather than averaged away. The HBeams (1.45 / 2.54 / 2.56 /
 2.74 m) supply the half-timbered banding the concept art shows, and they ARE
 modular, so they tile any length.
 
+## 2026-10-08 — MEDIEVAL VILLAGE KIT, THIRD INTAKE (the town kit)
+
+Same pack, same licence position as the rows above: Fab / Epic Games Launcher VaultCache `MedievalGame_5.3`,
+re-downloaded by Ryan 2026-10-08 after the disk cleanup removed the first copy (the launcher offers it only as
+"Create Project"; the created project at `OneDrive\Documents\Unreal Projects\MedievalVillageMegascansS` is a
+duplicate of the vault and is NOT read). Vault re-verified against the launcher manifest: 9,776 files, 489
+`SM_` meshes; `kit_closure_walk.py --self-test` reproduces the first intake's closure from it.
+
+Purpose: the kit town (research/town_kit/DESIGN.md) -- composable roof parts for larger houses, stone
+foundations, cobblestone, wells, fences, boarded windows.
+
+| Seed (`kit_closure_walk.py --seed-dir`) | seed meshes |
+|---|---|
+| Meshes/Houses (MODULAR_ASSETS, Roofs, Construction_Pieces, House1, Thatch_Cards) | 143 |
+| Meshes/Fences, Meshes/Well, Meshes/WellHole | 7 + 4 + 1 |
+| Megascans/3D_Assets/MossyStoneWallA/B/C | 1 + 1 + 4 |
+| Megascans/Surfaces/Cobblestone | 2 |
+
+Closure `Free/_measured/kit_medievalvillage_v3_closure.txt`: 558 packages, 6.84 GB, **0 dangling**. Minus the
+151 already adopted by the v1 + v2 manifests (checked on disk: 0 adopted-but-missing, 0 on-disk-unmanifested)
+→ delta `Free/_measured/kit_medievalvillage_v3_delta.txt`, **407 packages, 4.85 GB**, dry run 0 missing / 0
+collisions. `SM_StoneWall` was DROPPED from the seed: its package names `ud0sdajfa_4K_Normal_LOD0`, which is
+not in the pack (its real normal is `T_StoneWall_N`) -- 1 dangling, and the closure must close.
+Not yet rendered (R-ASSET steps 6-7 open).
+
+**2026-10-10 — cobblestone surface ADOPTED for the town streets** (recipes/alpine_8k.json
+`material.street_overlay`, research/town_kit/STREETS_DESIGN.md). Used: `T_Cobblestone_A` (8192², DXT5, sRGB) and
+`T_Cobblestone_N` (8192², BC5, normal), sampled by M_Alpine8K world-aligned. NOT used: `T_Cobblestone_R`
+(channel packing unmeasured, stored sRGB), `MI_Cobblestone` (mesh-UV on M_BlendMaster), and the `SM_Cobblestone_*`
+1 m patches. **Asset setting this project applies:** `max_texture_size` = 2048 on A and N, via
+`scripts/cap_street_textures.py --apply`. The pack is untracked, so a vault re-intake LOSES this. Re-run the
+script after any re-intake; the material preflight refuses until you do.
+
 ---
 
 ## 2026-08-30 — POLYTRICITY HAIR CARDS (staging only)
@@ -1391,3 +1425,34 @@ the project's). Recorded here so a reference-scan tool finds them (Pass 5 2026-0
 | holding | size | what it is | ruling |
 |---|---|---|---|
 | `VaultCache/AncientGame_5.7` | 88.9 GB | Epic's *Valley of the Ancient* sample (ships as a project named `AncientGame`) | **KEEP** per Ryan (LESSONS.md:30229, 2026-09-13); re-acquiring is an 89 GB download. Do NOT propose deletion on reference-scan grounds. |
+
+---
+
+## 2026-10-10 — MEDIEVAL VILLAGE MEGASCANS SAMPLE IS AI-RESTRICTED
+
+**Supersedes the 2026-08-30b "observation" (DB `is_ai_forbidden` reads 0) and
+the guard docstring's claim that the kit passes.** That observation was right
+not to treat the 0 as evidence; nobody went and checked the live listing.
+
+| Asset | Source | Licence | `no_ai_input` | Role |
+|---|---|---|---|---|
+| **Medieval Village Megascans Sample** | **Fab**, listing `2e11a225-a6ea-4781-a3e1-fe975b461894`, Quixel Megascans, cached as `VaultCache/MedievalGame_5.3` | Fab (free Epic/Quixel sample) — shippable | **`no_ai_input: true`** | town kit houses (`/Game/Megascans/3D_Assets`), cobblestone streets (`/Game/Megascans/Surfaces/Cobblestone`) |
+
+**Evidence:** the Fab listing JSON (`https://www.fab.com/i/listings/2e11a225-a6ea-4781-a3e1-fe975b461894`,
+fetched 2026-10-10 with a browser user agent) reads `isAiForbidden: true`,
+`isAiGenerated: false`. Independently reported in
+`research/gemini2ue/FOR_ALPINE8K.md` §B2.
+
+**Scope in `recipes/ai_restrictions.json`:** the measurement and intake files,
+both UE package roots, the level `/Game/Alpine8K` (which places the kit, so
+**every Alpine8K render is restricted** — a terrain-only frame cannot be told
+apart by path), the town lookdev render folders, and — new rule in
+`scripts/ai_input_guard.py` — **any image whose sidecar JSON records a
+restricted level**, wherever it was saved.
+
+**Not clean retrospectively.** Before this row existed, `ai_input_guard.py
+--strict` cleared town stills, and the R-GEMINIJUDGE run
+`_verify/20261010_gemini_judge/ridge_town_e_vs_concept01.json` sent
+`_verify/lookdev/townkit_cobble01/ridge_town_e.png` (an Alpine8K render showing
+the kit) to `gemini-3.8-flash`. That cannot be recalled. Reported to Ryan
+2026-10-10; the licence consequence is his call.

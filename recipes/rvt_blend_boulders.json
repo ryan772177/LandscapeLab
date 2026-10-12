@@ -1,0 +1,19 @@
+{
+ "schema_version": "rvt-blend-1.0",
+ "_what": "Stage C of research/rvt_lookdev_design.md: the meadow boulders take the landscape's colour/roughness/normal in their bottom blend_cm, read from the runtime virtual textures. Built by scripts/make_rvt_blend_material.py: duplicates source_material (KiteDemo M_Photoscan_Master, Material Attributes output) into target_dir once, injects a BlendMaterialAttributes (A = original, B = RVT ground, Alpha = strength * saturate(1 - (WorldZ - RVT WorldHeight) / blend_cm), pixel attributes only) once, then child MIs of the copy carrying each source instance's values. RVT asset paths come from rvt_recipe (one declaration).",
+ "rvt_recipe": "recipes/rvt_lookdev.json",
+ "source_material": "/Game/KiteDemo/Material/M_Photoscan_Master",
+ "source_instances": [
+  "/Game/KiteDemo/Environments/Rocks/GroundRevealRock001/MI_GroundRevealRock001a",
+  "/Game/KiteDemo/Environments/Rocks/GroundRevealRock002/MI_GroundRevealRock002"
+ ],
+ "target_dir": "/Game/Materials/Lookdev",
+ "target_material": "M_Photoscan_RVTBlend",
+ "target_instance_names": [
+  "MI_GroundRevealRock001a_RVT",
+  "MI_GroundRevealRock002_RVT"
+ ],
+ "blend_cm": 25.0,
+ "strength": 1.0,
+ "_blend_check": "2026-10-03: control at 500 cm turned the boulders fully meadow-coloured (rvt_C_control) -- RVT written and sampled. Boulders sit on the Grass layer, displacement 0.03 m, so the undisplaced RVT height is within 3 cm of the rendered ground: inside the 25 cm band."
+}

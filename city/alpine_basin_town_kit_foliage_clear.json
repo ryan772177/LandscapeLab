@@ -1,0 +1,56 @@
+{
+ "_produced_by": "scripts/town_kit_foliage_clear.py",
+ "manifest": "city/alpine_basin_town_kit_manifest.json",
+ "plan": "city/alpine_basin_town_plan.json",
+ "inputs_sha16": {
+  "city/alpine_basin_town_kit_manifest.json": "b4ba6fa1d396f337",
+  "city/alpine_basin_town_plan.json": "f6244997bfe39a13"
+ },
+ "margin_cm": 800.0,
+ "street_margin_cm": 400.0,
+ "plaza_margin_cm": 600.0,
+ "offline_in_clearing": 1545,
+ "removed_this_run": 714,
+ "removed_total": 3661,
+ "per_type_this_run": [
+  "FT_Conifer=228",
+  "FT_ConiferPine=148",
+  "FT_SpruceSub=193",
+  "FT_SpruceSapling=145"
+ ],
+ "previous_runs": [
+  {
+   "_produced_by": "scripts/town_kit_foliage_clear.py",
+   "manifest": "city/alpine_basin_town_kit_manifest.json",
+   "margin_cm": 100.0,
+   "offline_count": 450,
+   "removed": 450,
+   "per_type": [
+    "FT_Conifer=150",
+    "FT_ConiferPine=103",
+    "FT_SpruceSub=109",
+    "FT_SpruceSapling=88"
+   ],
+   "after_dry_run_matched": 0
+  },
+  {
+   "_produced_by": "scripts/town_kit_foliage_clear.py",
+   "manifest": "city/alpine_basin_town_kit_manifest.json",
+   "plan": "city/alpine_basin_town_plan.json",
+   "margin_cm": 800.0,
+   "street_margin_cm": 400.0,
+   "plaza_margin_cm": 600.0,
+   "offline_in_clearing": 2947,
+   "removed_this_run": 2497,
+   "removed_total": 2947,
+   "per_type_this_run": [
+    "FT_Conifer=764",
+    "FT_ConiferPine=564",
+    "FT_SpruceSub=641",
+    "FT_SpruceSapling=528"
+   ],
+   "after_dry_run_matched": 0
+  }
+ ],
+ "after_dry_run_matched": 0
+}

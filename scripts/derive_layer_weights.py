@@ -211,16 +211,36 @@ def _wet_shore(h_m, water, spacing_m):
 
 
 def derive(h_m, spacing_m, flow01, depo01, cover01, snow_base_m=SNOW_BASE_M,
-           shaded_rad=0.0, water=None):
+           shaded_rad=0.0, water=None, landform_sigma_m=0.0):
     """The eight masks + precedence normalisation. Pure function of its
     inputs so the selftest runs it on synthetic terrain unchanged.
     REFUSES non-finite input: a NaN heightmap must not produce weights
     (direction 3 -- NaN propagates through every comparison as False and
-    would yield a plausible all-meadow map)."""
+    would yield a plausible all-meadow map).
+
+    `landform_sigma_m` (2026-10-01, LESSONS 2026-10-01c). When > 0 the SLOPE
+    and ASPECT gates read the heightmap smoothed by a gaussian of that sigma
+    -- the LANDFORM -- instead of the raw surface. The adopted heightmap
+    carries isotropic 12-45 m lumps (the detail-relief band); on the raw
+    surface each lump tips the slope across the 29-35 degree rock threshold
+    and back, so rock and meadow alternate at the lumps' pitch and the
+    ground reads as a leopard skin from any distance. ELEVATION terms (the
+    snow line, "is the steep cell above me") still read the raw height: the
+    lumps do not move a surface up or down a snow line, only its tilt.
+    0 is the legacy behaviour, bit for bit."""
     if not np.isfinite(h_m).all():
         raise ValueError("heightmap holds non-finite values -- refusing "
                          "to derive weights from it")
-    slope, aspect = slope_aspect(h_m, spacing_m)
+    if landform_sigma_m < 0:
+        raise ValueError("landform_sigma_m must be >= 0, got %r"
+                         % (landform_sigma_m,))
+    if landform_sigma_m > 0:
+        h_form = gaussian_filter(np.asarray(h_m, dtype=np.float32),
+                                 landform_sigma_m / spacing_m)
+        slope, aspect = slope_aspect(h_form, spacing_m)
+        del h_form
+    else:
+        slope, aspect = slope_aspect(h_m, spacing_m)
 
     # lowest snow line on the SHADED aspect (cos -> 1 there).
     line = snow_base_m - SNOW_ASPECT_HALF_M * np.cos(aspect - shaded_rad)
@@ -260,10 +280,21 @@ def derive(h_m, spacing_m, flow01, depo01, cover01, snow_base_m=SNOW_BASE_M,
     return weights, slope, aspect
 
 
-def canopy_cover(shape, spacing_m, plans, origin_m, crown_r_m):
+def canopy_cover(shape, spacing_m, plans, origin_m, crown_r_m,
+                 spread_sigma_m=0.0):
     """Canopy cover 0..1: each instance splats its crown DISK AREA into
     the cell grid (as area / cell area), then a crown-radius box blur
-    spreads it; the result approximates local crown-area coverage."""
+    spreads it; the result approximates local crown-area coverage.
+
+    `spread_sigma_m` (2026-10-01). When > 0 the cover is additionally
+    smoothed by a gaussian of that sigma BEFORE the cap at 1. A crown-radius
+    blur alone leaves every tree its own disc of forest floor with meadow
+    between -- a dalmatian at the tree spacing -- where a stand's litter is
+    continuous. The blur conserves the sum, so sparse trees do not gain
+    cover; they share it. 0 is the legacy behaviour."""
+    if spread_sigma_m < 0:
+        raise ValueError("spread_sigma_m must be >= 0, got %r"
+                         % (spread_sigma_m,))
     cover = np.zeros(shape, dtype=np.float32)
     cell_area = spacing_m * spacing_m
     disk_area = math.pi * crown_r_m * crown_r_m
@@ -279,6 +310,8 @@ def canopy_cover(shape, spacing_m, plans, origin_m, crown_r_m):
                 n += 1
     r_px = max(1, int(round(crown_r_m / spacing_m)))
     cover = box_blur(cover, r_px)
+    if spread_sigma_m > 0:
+        cover = gaussian_filter(cover, spread_sigma_m / spacing_m)
     # blur conserves sum; convert to coverage by capping at full cover
     return np.clip(cover, 0.0, 1.0), n
 
@@ -547,6 +580,76 @@ def selftest():
     except ValueError:
         d3 = False
     check("D3: wet==0 and dirt_path==0 PASSES expand (baseline)", d3)
+
+    # --- E: landform slope and canopy spread (2026-10-01) ------------------
+    # A plane dipping at 20 deg (BELOW the 29-35 rock threshold) carrying
+    # isotropic lumps of 28 m wavelength and 3 m amplitude, the shape of the
+    # adopted heightmap's detail-relief band. The INDEPENDENT expectation is
+    # geometric, not derive's output: the landform is a 20 deg plane, so it
+    # holds NO rock. The raw surface tips past 35 deg on every lump flank.
+    NE = 384
+    yyE, xxE = np.mgrid[0:NE, 0:NE].astype(np.float32)
+    lump = 3.0 * np.sin(2 * np.pi * xxE / 28.0) * np.sin(2 * np.pi * yyE / 28.0)
+    hE = 600.0 - xxE * math.tan(math.radians(20.0)) + lump
+    zE = np.zeros((NE, NE), dtype=np.float32)
+    core = (slice(60, NE - 60), slice(60, NE - 60))
+    wE0 = derive(hE, 1.0, zE, zE, zE, snow_base_m=5000.0)[0]
+    wE1 = derive(hE, 1.0, zE, zE, zE, snow_base_m=5000.0,
+                 landform_sigma_m=10.0)[0]
+    r0 = float(wE0["rock"][core].mean())
+    r1 = float(wE1["rock"][core].mean())
+    check("E: raw slope paints rock on a lumpy 20 deg plane (%.2f)" % r0,
+          r0 > 0.15)
+    check("E: landform slope does not (%.3f)" % r1, r1 < 0.02)
+    totalE = sum(wE1[k] for k in wE1)
+    check("E: weights sum to 1 with landform slope (max err %.1e)"
+          % float(np.abs(totalE - 1).max()),
+          float(np.abs(totalE - 1).max()) < 1e-4)
+    # ...and a real cliff must SURVIVE the smoothing (the other direction:
+    # a sigma that erased rock everywhere would also pass the check above).
+    wB1 = derive(h, sp, zeros, depo, cover, snow_base_m=5000.0,
+                 landform_sigma_m=3.0)[0]
+    check("E: a 50 m cliff is still rock at landform sigma 3 m (%.2f)"
+          % float(wB1["rock"][cliff_px].mean()),
+          float(wB1["rock"][cliff_px].mean()) > 0.6)
+    wB0 = derive(h, sp, zeros, depo, cover, snow_base_m=5000.0,
+                 landform_sigma_m=0.0)[0]
+    check("E: landform_sigma_m 0 is the legacy derivation exactly",
+          all(np.array_equal(wB0[k], wB[k]) for k in wB))
+    try:
+        derive(h, sp, zeros, depo, cover, landform_sigma_m=-1.0)
+        neg_ok = False
+    except ValueError:
+        neg_ok = True
+    check("E: a negative landform sigma refuses", neg_ok)
+
+    # canopy spread: a regular 12 m grid of trees with a 3 m crown. Crown
+    # blur alone leaves gaps; the spread must close them WITHOUT inventing
+    # cover -- the sum is conserved to the cap.
+    import tempfile
+    pts = [[x * 100.0, y * 100.0, 0.0]
+           for y in range(30, 160, 12) for x in range(30, 160, 12)]
+    with tempfile.TemporaryDirectory(dir=os.path.join(REPO, "_verify")) as td:
+        pp = os.path.join(td, "plan.json")
+        with open(pp, "w", encoding="utf-8") as fh:
+            json.dump({"instances": pts}, fh)
+        c0, n0 = canopy_cover((200, 200), 1.0, [pp], (0.0, 0.0), 3.0)
+        c1, n1 = canopy_cover((200, 200), 1.0, [pp], (0.0, 0.0), 3.0,
+                              spread_sigma_m=8.0)
+    stand = (slice(50, 140), slice(50, 140))
+    check("E: %d trees splatted in both runs" % n0, n0 == len(pts) == n1)
+    check("E: crown blur alone leaves bare gaps in a stand (min %.2f)"
+          % float(c0[stand].min()), float(c0[stand].min()) < 0.05)
+    check("E: the spread closes them (min %.2f, max/min %.2f)"
+          % (float(c1[stand].min()),
+             float(c1[stand].max() / max(c1[stand].min(), 1e-6))),
+          float(c1[stand].min()) > 0.12
+          and float(c1[stand].max() / max(c1[stand].min(), 1e-6)) < 1.5)
+    check("E: the spread conserves cover (%.1f vs %.1f)"
+          % (float(c1.sum()), float(c0.sum())),
+          abs(float(c1.sum()) - float(c0.sum())) < 0.02 * float(c0.sum()))
+    check("E: no cover far from the stand (%.4f)" % float(c1[185:, 185:].max()),
+          float(c1[185:, 185:].max()) < 0.01)
 
     # direction 3: garbage in -> refuse, not crash-through
     try:
@@ -871,7 +974,30 @@ def main(argv=None):
              for s in ("Conifer", "ConiferPine", "SpruceSub",
                        "SpruceSapling")]
     plans = [p for p in plans if os.path.isfile(p)]
-    cover, n_inst = canopy_cover(shape, spacing_m, plans, origin_m, crown_r)
+    # material.weight_derivation (schema v1.30, 2026-10-01): the two smoothing
+    # scales. ABSENT = 0 = the legacy derivation. Read here, validated here,
+    # recorded in the sidecar (rule 12: the sidecar is the read-back).
+    wd = rec["material"].get("weight_derivation") or {}
+    unknown = sorted(k for k in wd if not k.startswith("_")
+                     and k not in ("landform_sigma_m", "canopy_sigma_m"))
+    if unknown:
+        print("REFUSE: unknown material.weight_derivation key(s) %r" % unknown)
+        return 2
+    try:
+        landform_sigma = float(wd.get("landform_sigma_m", 0.0))
+        canopy_sigma = float(wd.get("canopy_sigma_m", 0.0))
+    except (TypeError, ValueError):
+        print("REFUSE: material.weight_derivation values must be numbers")
+        return 2
+    if not (0.0 <= landform_sigma <= 50.0 and 0.0 <= canopy_sigma <= 50.0):
+        print("REFUSE: weight_derivation sigmas must be in [0, 50] m, got "
+              "landform %r canopy %r" % (landform_sigma, canopy_sigma))
+        return 2
+    print("weight_derivation: landform sigma %.1f m, canopy sigma %.1f m"
+          % (landform_sigma, canopy_sigma))
+
+    cover, n_inst = canopy_cover(shape, spacing_m, plans, origin_m, crown_r,
+                                 spread_sigma_m=canopy_sigma)
     print("canopy: %d instances splatted, crown %.2f m, cover p99 %.2f"
           % (n_inst, crown_r, float(np.percentile(cover, 99))))
 
@@ -898,7 +1024,8 @@ def main(argv=None):
 
     weights, slope, aspect = derive(h_m, spacing_m, flow, depo, cover,
                                     snow_base_m=snow_base,
-                                    shaded_rad=shaded, water=water)
+                                    shaded_rad=shaded, water=water,
+                                    landform_sigma_m=landform_sigma)
 
     A = ["snow", "rock", "scree", "forest_floor"]
     B = ["wet_shore", "dirt_path", "gravel", "meadow"]
@@ -940,6 +1067,8 @@ def main(argv=None):
                       "scree_source_deg": SCREE_SOURCE_DEG,
                       "scree_runout_m": SCREE_RUNOUT_M,
                       "canopy_cover_band": CANOPY_COVER_BAND,
+                      "landform_sigma_m": landform_sigma,
+                      "canopy_sigma_m": canopy_sigma,
                       "gravel_max_slope_deg": GRAVEL_MAX_SLOPE_DEG,
                       "wet_shore_band_m": WET_SHORE_BAND_M,
                       "wet_shore_ring_m": WET_SHORE_RING_M},

@@ -1,0 +1,99 @@
+{
+ "name": "hero_rear",
+ "ok": false,
+ "cmd": [
+  "C:\\Program Files\\Epic Games\\UE_5.8\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\LandscapeLab.uproject",
+  "/Game/Alpine8K",
+  "-game",
+  "-windowed",
+  "-ResX=1600",
+  "-ResY=900",
+  "-ExecCmds=r.setRes 1600x900w,BugItGo 354678.0 -321400.0 31192.0 -4.0 180.0 0,DisableAllScreenMessages,ShowFlag.SkeletalMeshes 0",
+  "-nosplash",
+  "-NoLoadingScreen",
+  "-AbsLog=C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab\\Saved\\Logs\\game_still_hero_rear.log"
+ ],
+ "level": "/Game/Alpine8K",
+ "camera": {
+  "x_cm": 354678.0,
+  "y_cm": -321400.0,
+  "z_cm": 31192.0,
+  "pitch_deg": -4.0,
+  "yaw_deg": 180.0,
+  "z_source": "heightmap + eye (placement aid, not a trace)",
+  "pose_read_back": false
+ },
+ "state": "bench_on_disk",
+ "hlod_residency_read_back": false,
+ "view": "player camera, skeletal meshes hidden",
+ "requested_res": [
+  1600,
+  900
+ ],
+ "settle_s": 240.0,
+ "dpi_awareness_set": true,
+ "free_ram_gb": 20.06667709350586,
+ "ram_comfortable": true,
+ "kill_on_close_job": true,
+ "capture": {
+  "windows_found": 1,
+  "still_minimised": false,
+  "foreground_pid": 24896,
+  "foreground_is_game": true,
+  "client_size": [
+   2400,
+   1350
+  ],
+  "client_origin": [
+   80,
+   89
+  ],
+  "window_dpi": 96
+ },
+ "dwell_s": 245.8,
+ "vram_mib": {
+  "peak_mib": 5587,
+  "mean_mib": 2581.5,
+  "n_samples": 48,
+  "peak_window_mib": 5587,
+  "n_window": 48,
+  "abort_ceiling_mib": 13312,
+  "physical_mib": 16303,
+  "headroom_to_abort_mib": 7725,
+  "over_abort_ceiling": false,
+  "_caveat": "whole-GPU used (nvidia-smi memory.used); includes any other consumer, but the -game process dominates a dedicated run."
+ },
+ "frame": {
+  "size": [
+   2400,
+   1350
+  ],
+  "encoding": "srgb_encoded_8bit (NOT display-linear)",
+  "luma_mean_encoded": 0.0077,
+  "luma_std_encoded": 0.0261,
+  "display_scale": [
+   1.5,
+   1.5
+  ],
+  "resampled_to": [
+   1600,
+   900
+  ]
+ },
+ "log": {
+  "bugitgo_to_lines": 1,
+  "bugitgo_matching_request": 1,
+  "bugitgo_first": [
+   354678.0,
+   -321400.0,
+   31192.0
+  ],
+  "screen_messages_disabled_line": true,
+  "world_partition_lines": 18
+ },
+ "problems": [
+  "frame is black or flat"
+ ],
+ "png": "_verify\\lookdev\\game05\\hero_rear.REJECTED.png"
+}

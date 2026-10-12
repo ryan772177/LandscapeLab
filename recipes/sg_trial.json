@@ -1,0 +1,46 @@
+{
+ "schema_version": "sg-trial-1.0",
+ "_what": "PCG Shape Grammar trial, one block (research/town_kit/SHAPE_GRAMMAR_TRIAL.md, design review GO-WITH-CHANGES). Scratch level only; nothing here touches /Game/Alpine8K. Arm A = the shipped kit builder (manifest pieces verbatim); arm C = the same builder with `style` (scripts/town_kit_plan.py); arm B = PCG SubdivideSegment over the same footprints (native nodes, review change 1).",
+ "level": "/Game/LookDevMtn",
+ "_level": "SUPERSEDED the design's /Game/Scratch/SG_Trial (build decision 2026-10-10: arms are placed on the town_kit gallery rig; every script reads recipes/town_kit.json probe.level, which this mirrors -- audit F4).",
+ "houses": {
+  "count": 8,
+  "near_cm": [-206200.0, 273000.0],
+  "_near": "the street_lane_s still's camera (_verify/lookdev/townkit_flat01/street_lane_s.json): the 8 manifest houses whose centres are nearest, so the trial has a real reference frame"
+ },
+ "arm_c": {
+  "style": {
+   "weights_ground": {"SM_MedievalModularWall2x2MD": 1.0, "SM_MedievalModularWall2x2MG": 2.0, "SM_MedievalModularWall2x2MH": 1.0},
+   "weights_upper": {"SM_MedievalModularWall2x2MD": 2.0, "SM_MedievalModularWall2x2MG": 1.0, "SM_MedievalModularWall2x2MH": 2.0},
+   "symmetric_front": true,
+   "jetty_cm": 50
+  },
+  "storey_weights": {"2": 1.0, "3": 1.0},
+  "_brackets_DEFERRED": "review change 12 asked for SupportBeam brackets under the jetty; NOT placed in this run (bracket mesh orientation/bounds not yet probed). The arm C jetty overhang is UNSUPPORTED in these stills -- judge arm C's jetty as a silhouette only (audit 2026-10-10 F3).",
+  "_values": "JUDGED starting values to be read by still, not tuned: ground favours MG, upper favours MD/MH (a different band reads as a storey change); jetty = one 50 cm kit snap; 2 vs 3 storeys even. storey_weights overrides the plan's storeys for the trial only."
+ },
+ "arm_b": {
+  "grammar_front": "{[W2D]:2,[W2G]:1,[W2H]:1,[W15]:1,[W1A]:1}*,<[W15],[W1A]>",
+  "grammar_side": "{[W1A]:1,[W1B]:2,[W15]:1,[W2D]:1}*,<[W15],[W1A]>",
+  "modules_cm": {"W1A": 100, "W1B": 100, "W15": 150, "W2D": 200, "W2G": 200, "W2H": 200, "W3": 300},
+  "accept_incomplete_subdivision": false,
+  "symbol_mesh": {"W1A": "SM_MedievalModularWall1x2MA", "W1B": "SM_MedievalModularWall1x2MB",
+                  "W15": "SM_MedievalModularWall15x2M", "W2D": "SM_MedievalModularWall2x2MD",
+                  "W2G": "SM_MedievalModularWall2x2MG", "W2H": "SM_MedievalModularWall2x2MH",
+                  "W3": "SM_MedievalModularWall3x2M"},
+  "seed": {"per_house": 7919, "per_course": 101, "component": 20261010},
+  "volume_offset_y_cm": 200000.0,
+  "_volume": "the PCGVolume only hosts the component; CreatePoints is World-space and unculled (PCGCreatePoints.h:65,69), so its location does not matter -- placed 2 km off the rig so nothing it might spawn could enter a frame.",
+  "_review": "changes 5 (NOMINAL sizes), 6 (1/1.5 m symbols + <> tail fallback; incomplete = loud missing facade, counted), 7 (per-house seed attribute), 8 (corners placed from Python; the grammar runs over L - 2 x corner arm). Door placed from Python as in arms A/C."
+ },
+ "rig": {
+  "dist_m": 40.0,
+  "gap_m": 3.0,
+  "_rig": "arms A/C are placed on the town_kit gallery rig (recipes/town_kit.json probe block: /Game/LookDevMtn, camera_xy, camera_yaw) in one row of the 8 footprints, door sides toward the camera, gap_m between footprints, dist_m in front of the camera. Same labels per arm, so the framing is identical. The rig is not saved."
+ },
+ "shots": [
+  {"name": "front", "dist_back_m": 0.0, "pitch": -3.0, "eye_cm": 175.0},
+  {"name": "oblique", "dist_back_m": 0.0, "side_m": 25.0, "yaw_offset_deg": -30.0, "pitch": -8.0, "eye_cm": 600.0}
+ ],
+ "outputs": "_verify/sg_trial"
+}

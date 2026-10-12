@@ -1,0 +1,100 @@
+import json as _json
+import traceback as _tb
+import unreal as _u
+
+# LOOK KNOBS, IN MEMORY. Sets up to four shadow-fill controls on the loaded
+# level, reads each back from the engine (rule 12), and SAVES NOTHING. For the
+# fast look loop: set, shoot, judge. Persisting a value that passed is a
+# separate, tagged world write -- not this payload.
+#
+#   python scripts/ue_exec.py scripts/look_knobs_payload.txt \
+#       --set SKY=2.0 --set SHADOWC=0.6 --set TOE=keep --set SKYLEAK=keep --set INDIRECT=keep
+#
+#   SKY      SkyLight component `intensity`            (world value 1.0)
+#   SHADOWC  PPV_Look local_exposure_shadow_contrast_scale   (0.8; lower lifts shade)
+#   TOE      PPV_Look film_toe                         (0.55)
+#   SKYLEAK  PPV_Look lumen_skylight_leaking           (0.0)
+#   INDIRECT PPV_Look indirect_lighting_intensity      (1.0; Look-only, the bench
+#            profile disables PPV_Look, so the bench is not moved by it)
+# Each is a number or the word keep. BEFORE values are reported so a run can
+# be undone by hand; a relaunch also undoes it, since nothing is saved.
+
+RAW = {"SKY": "__SKY__", "SHADOWC": "__SHADOWC__", "TOE": "__TOE__",
+       "SKYLEAK": "__SKYLEAK__", "INDIRECT": "__INDIRECT__"}
+SKYLIGHT = "Lighting_alpine_8k_SkyLight"
+PPV = "PPV_Look"
+PPV_FIELD = {"SHADOWC": "local_exposure_shadow_contrast_scale",
+             "TOE": "film_toe", "SKYLEAK": "lumen_skylight_leaking",
+             "INDIRECT": "indirect_lighting_intensity"}
+LIMITS = {"SKY": (0.0, 8.0), "SHADOWC": (0.2, 1.0), "TOE": (0.0, 1.0),
+          "SKYLEAK": (0.0, 0.2), "INDIRECT": (0.0, 8.0)}
+
+_out = {"ok": False, "error": None, "before": {}, "after": {}, "set": 0,
+        "saved": False}
+try:
+    _want = {}
+    for _k, _v in RAW.items():
+        if _v == "keep":
+            continue
+        _f = float(_v)
+        _lo, _hi = LIMITS[_k]
+        if not (_lo <= _f <= _hi):
+            raise RuntimeError("%s=%s outside [%s, %s]" % (_k, _v, _lo, _hi))
+        _want[_k] = _f
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _all = _eas.get_all_level_actors()
+
+    def _one(label, cls):
+        _m = [a for a in _all if isinstance(a, cls)
+              and str(a.get_actor_label()) == label]
+        if len(_m) != 1:
+            raise RuntimeError("need exactly one %s, found %d" % (label, len(_m)))
+        return _m[0]
+
+    _sc = _one(SKYLIGHT, _u.SkyLight).get_component_by_class(_u.SkyLightComponent)
+    _look = _one(PPV, _u.PostProcessVolume)
+    _s = _look.get_editor_property("settings")
+    _out["before"]["SKY"] = float(_sc.get_editor_property("intensity"))
+    for _k, _fld in PPV_FIELD.items():
+        _out["before"][_k] = float(_s.get_editor_property(_fld))
+        # the override flag is part of the BEFORE state: restoring the value
+        # alone leaves a newly-true override behind (audit 2026-10-01).
+        _out["before"]["override_" + _k] = bool(
+            _s.get_editor_property("override_" + _fld))
+
+    if "SKY" in _want:
+        _sc.set_editor_property("intensity", _want["SKY"])
+        _out["set"] += 1
+    _touched = False
+    for _k, _fld in PPV_FIELD.items():
+        if _k in _want:
+            _s.set_editor_property("override_" + _fld, True)
+            _s.set_editor_property(_fld, _want[_k])
+            _touched = True
+            _out["set"] += 1
+    if _touched:
+        _look.set_editor_property("settings", _s)
+
+    _s2 = _look.get_editor_property("settings")
+    _out["after"]["SKY"] = float(_sc.get_editor_property("intensity"))
+    for _k, _fld in PPV_FIELD.items():
+        _out["after"][_k] = float(_s2.get_editor_property(_fld))
+        _out["after"]["override_" + _k] = bool(
+            _s2.get_editor_property("override_" + _fld))
+    # A value that landed under an override flag that did not is a knob with
+    # no rendering effect, so the flag is part of the verdict (audit 2026-10-01).
+    _bad = [k for k, v in _want.items()
+            if abs(_out["after"][k] - v) > 1e-4
+            or (k in PPV_FIELD and not _out["after"]["override_" + k])]
+    # These sets DIRTY the level package although nothing is saved here: a
+    # later save in this editor session would persist experimental values.
+    _out["dirty_map_packages"] = [
+        str(p) for p in _u.EditorLoadingAndSavingUtils.get_dirty_map_packages()]
+    if _bad:
+        _out["error"] = "read-back disagrees for: " + ", ".join(sorted(_bad))
+    else:
+        _out["ok"] = True
+except Exception as _e:
+    _out["error"] = str(_e) + " | " + _tb.format_exc()[:400]
+
+print("__LL__" + _json.dumps(_out, default=str))

@@ -1,0 +1,29 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# lookdev iter06 (2026-09-30): a 16-bit colour source is read as LINEAR by the
+# texture build, so its sRGB-encoded values arrive in the material un-decoded
+# (Rock base colour 2.7x its source). APPLY=False reads the source-colour
+# settings; APPLY=True sets encoding_override on the named textures IN MEMORY
+# (nothing is saved here) and reads it back.
+_APPLY = __APPLY__
+_NAMES = __NAMES__
+_ENC = "__ENC__"
+_out = {"ok": False, "error": None, "textures": {}, "enum_members": None}
+try:
+    _E = _u.TextureSourceEncoding
+    _out["enum_members"] = [m for m in dir(_E) if m.isupper()]
+    for _n in _NAMES:
+        _t = _u.EditorAssetLibrary.load_asset("/Game/Surfaces/" + _n)
+        _row = {}
+        _s = _t.get_editor_property("source_color_settings")
+        _row["before"] = str(_s.get_editor_property("encoding_override"))
+        if _APPLY:
+            _s.set_editor_property("encoding_override", getattr(_E, _ENC))
+            _t.set_editor_property("source_color_settings", _s)
+            _row["after"] = str(_t.get_editor_property("source_color_settings").get_editor_property("encoding_override"))
+        _row["srgb"] = str(_t.get_editor_property("srgb"))
+        _out["textures"][_n] = _row
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e, _tb.format_exc()[:400])
+print("__LL__" + _json.dumps(_out, default=str))

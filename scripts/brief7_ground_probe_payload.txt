@@ -1,0 +1,43 @@
+import json as _json, traceback as _tb
+import unreal as _u
+# Brief 7 P4 station re-authoring (2026-09-30): READ-ONLY grid of ground traces
+# around a station XY, same trace as brief7_place_cam_payload (complex, foliage
+# ignored). A station whose trace lands on a ROOF puts the camera on the roof
+# (main_street, LESSONS 2026-09-30b); this reports Z and the hit actor per cell
+# so the host can pick an XY that is on the landscape. Moves nothing.
+_X = float(__X__); _Y = float(__Y__)
+_STEP = float(__STEP__); _N = int(__N__)        # (2N+1)^2 cells, STEP cm apart
+_out = {"ok": False, "error": None}
+try:
+    _w = _u.EditorLevelLibrary.get_editor_world()
+    _eas = _u.get_editor_subsystem(_u.EditorActorSubsystem)
+    _ign = [a for a in _eas.get_all_level_actors()
+            if isinstance(a, (_u.InstancedFoliageActor, _u.WorldPartitionHLOD))]
+    # 2026-09-30: WorldPartitionHLOD proxies are LOADED in the editor and take a complex
+    # trace -- the main_street station landed 14.7 m up on one (LESSONS 2026-09-30c).
+    _out["ignored_actors"] = len(_ign)
+    _cells = []
+    for _i in range(-_N, _N + 1):
+        for _j in range(-_N, _N + 1):
+            _px = _X + _i * _STEP; _py = _Y + _j * _STEP
+            _hit = _u.SystemLibrary.line_trace_single(
+                _w, _u.Vector(_px, _py, 400000.0), _u.Vector(_px, _py, -400000.0),
+                _u.TraceTypeQuery.TRACE_TYPE_QUERY1, True, _ign,
+                _u.DrawDebugTrace.NONE, True)
+            if not _hit:
+                _cells.append([_i, _j, None, None])
+                continue
+            _t = _hit.to_tuple()
+            _cls = None
+            for _v in _t:
+                if isinstance(_v, _u.Actor):
+                    _cls = type(_v).__name__
+                    break
+            _cells.append([_i, _j, round(float(_t[4].z), 1), _cls])
+    _out["cells"] = _cells
+    _out["n"] = len(_cells)
+    _out["ok"] = True
+except Exception as _e:
+    _out["error"] = "%s: %s | %s" % (type(_e).__name__, _e,
+                                     _tb.format_exc()[:200])
+print("__LL__" + _json.dumps(_out, default=str))

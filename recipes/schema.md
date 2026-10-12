@@ -50,6 +50,7 @@ Guards version-specific API calls (audit criterion 4).
 | `section_size` | int | Quads per section: 7, 15, 31, 63, 127, or 255. |
 | `sections_per_component` | int | **1 or 2** — the integer Unreal stores, not the dialog label. The New Landscape dialog shows "1×1 Section" / "2×2 Sections"; the stored value is the *linear* subsection count, so "2×2" is **2**. Engine authority: `FLandscapeConfig::NumSectionValues[2] = { 1, 2 }` (LandscapeConfigHelper.cpp:24), used linearly as `QuadsPerComponent = SectionsPerComponent * QuadsPerSection`. No other value is buildable. |
 | `component_count` | int | Components per side. `resolution` must equal `section_size * sections_per_component * component_count + 1`; the script validates this and reports the nearest legal resolution on failure. |
+| `street_flatten` | object | **Optional (2026-10-10), strict when present: every key required.** `{pre_source, pre_source_sha256, sigma_m, shoulder_m, bank_max_deg, guard_m, house_fade_m, door_apron_m, max_abs_delta_m, doorstep_max_m, house_edge_step_max_m, changed_threshold_cm, crop_margin_m}`. `scripts/flatten_streets.py` reads `pre_source` (sha-pinned; must differ from `source`) and writes `source` with the town's streets smoothed (research/town_kit/FLATTEN_DESIGN.md; gates 1-7 + an overwrite guard). The TOWN tools (`plan_city`, `town_kit_manifest`, `check_organic_plan`: `Terrain(..., town=True)`) read `pre_source`; every other heightmap reader reads `source`. Absent = no flattening. |
 
 ### `landscape`
 | Key | Type | Notes |
@@ -82,6 +83,11 @@ Layer object:
 | `blend_sharpness` | float | 0–1; 0 is a wide feather, 1 a hard edge. Width is **normative as of v1.2** — see the feather formula below. |
 | `tiling_m` | float | **Detail** texture repeat distance in metres. Live as of v1.2 (was reserved). Inert on a layer with no `texture`. |
 | `macro_tiling_m` | float | **Optional (v1.2).** *Macro* repeat distance in metres for a second sample of the same texture. Must exceed `tiling_m`. Omit for detail-only. See "Why two scales" below — without it, texture detail is invisible at kilometre viewing distances. |
+| *(material-level)* `cavity` | object | **Optional (v1.31), a `material` key, not a layer key.** `{map, layers, strength, tint, scales_m, depths_m}`. A terrain-scale concavity map baked by `scripts/bake_cavity_map.py`. The map is the max over scales of `clip((blur(h, s) - h) / depth, 0, 1)`, written 8-bit RGB at heightmap resolution and imported as a selector (linear, clamped) on the weightmap UV chain. Each listed layer's albedo is multiplied by `lerp(1, tint, cavity * strength)`, so cavity 0 leaves the layer unchanged. Requires `weightmap`. CPU mirror `_cpu_cavity`. |
+| *(material-level)* `street_overlay` | object | **Optional (2026-10-10), strict when present: every key required.** `{mask, mask_px, box_m, feather_m, house_margin_m, grass_margin_m, boulder_margin_m, border_px, exclude_grass_in_houses, albedo, normal, tile_m, tint, roughness, roughness_variation, max_texture_px, flatten_displacement}`. **2026-10-10b:** **B** = large-grass (boulder) exclusion: the G shapes grown by `boulder_margin_m` (>= `grass_margin_m`; B >= G asserted); a grass species with `street_keep_channel: "B"` is multiplied by (1 − B) instead of (1 − G). `build_street_mask.py` refuses a `boulder_margin_m` below measured reach (`Free/_measured/meadow_boulder_reach.json`) + sqrt(2) m grass-cell + 0.5 m mip + one mask texel + `feather_m`/2. Cobblestone streets as part of the landscape surface (research/town_kit/STREETS_DESIGN.md). `scripts/build_street_mask.py` rasterises the city plan into an 8-bit RGBA `mask` (`mask_px`² over a `box_m` square around the town; **R** = cobble: streets + plaza + squares, edge ramp `feather_m`; **G** = grass exclusion: R grown by `grass_margin_m`, plus house footprints + `house_margin_m` when `exclude_grass_in_houses`; border `border_px` = 0) and a `.json` sidecar holding the box, which the builder reads and checks equal to these keys and to the plan/manifest hashes (refuses when stale). Imported as the weightmap kind (uncompressed, clamp, box-average mips). The material lerps its final colour × `tint`, roughness (`saturate(roughness + roughness_variation × (0.5 − lum))`), normal and (when `flatten_displacement`) displacement toward centre by R, with world-aligned UV `/ tile_m`; every landscape-grass input × (1 − G), except species with `street_keep_channel: "B"`, which take (1 − B). `albedo`/`normal` are /Game textures whose `max_texture_size` must equal `max_texture_px` (scripts/cap_street_textures.py; preflight refuses otherwise). CPU mirrors `_cpu_street_blend`, `_cpu_street_rough`, `_cpu_grass_keep`. |
+| *(material-level)* `cavity.lichen`, `cavity.damp` | object | **Optional (v1.33).** Extra channels of the cavity map, each applied to the cavity's `layers` as `albedo × lerp(1, tint, value × strength)`. Tints are multipliers in [0, 2] (above 1 brightens; UE clamps BaseColor at 1). **G = lichen** `{strength, tint, slope_deg[lo,hi], noise_m, seed?, slope_fade_deg? 3, convex_blur_m? 6, convex_depth_m? 1.5, convex_weight? 0.6, noise_band? [0.35, 0.65]}`: exposed rock inside the slope band, boosted on convex edges, broken into patches by value noise. **B = damp** `{strength, tint, reach_m, gentle_deg, steep_ramp_deg? 10}`: steep cells within `reach_m` of gentle ground. The bake writes `<map>.channels.json`, and the importer REFUSES a map whose sidecar doesn't list a declared channel (a stale bake would tint gullies with the lichen colour). Undeclared channels repeat R, which the material ignores. |
+| `macro_normal_strength` | float | **Optional (v1.34), default 0.** In [0, 1]. Resamples the layer's own normal map at `macro_tiling_m`, pulls it toward flat by this strength, and whiteout-blends it over the incoming normal (`normalize(d.xy + m.xy, d.z·m.z)`) for large structural shading at distance. Projected top-down, like the detail normal. Requires `macro_tiling_m` and `surface`; refused with `stochastic_tiling`, because the sampler would ignore the macro scale. CPU mirror `_cpu_macro_normal`. |
+| `near_surface` | object | **Optional (v1.30).** A second scan shown close to the camera: `{surface, tiling_m, fade_m: [start, end], tint?}`. Albedo, roughness and normal are `lerp(near, primary, t)` with `t` ramping 0 → 1 over `fade_m` metres of **PixelDepth**; beyond `end` the primary renders exactly as before. Displacement is **not** blended (a camera-dependent height would move the geometry as the camera moves). Requires the layer's own `surface`; refused with `stochastic_tiling`, with `surface` equal to the primary's, and with `start >= end` (a zero-width fade is a hard ring around the camera). `tint` defaults to white; set it to match the primary's tinted tone at the fade. Builder: `make_landscape_material.py` `_near_mix`, CPU mirror `_cpu_near_mix`. |
 
 #### v1.1 — layer appearance (normative, and the decisions behind it)
 **Versioning:** v1.1 is a revision of v1, not a new schema version —
@@ -273,6 +279,9 @@ Every value here is scene-artist territory; none may be hardcoded in scripts.
 | `clouds.coverage` | float | 0–1. |
 | `clouds.layer_bottom_km` | float | **KILOMETRES** — the component's `layer_bottom_altitude` is km, not cm (read_cloud_state.py's verified reads). 0–20. |
 | `clouds.layer_height_km` | float | **KILOMETRES**, 0.1–20. |
+| `clouds.wind_param`, `clouds.wind` | string, [x, y, z, scale] | **Optional (v1.30), set together.** The cloud material's wind vector (`Layout_WindControls` on the engine simple cloud; xyz = per-axis strength, alpha = uniform multiplier). `scale` 0 freezes the clouds. Moving clouds plus real-time sky capture change the fill light between otherwise identical shots (LESSONS 2026-10-03b). Read back from the reloaded MI. |
+| `grade` | object | White balance, contrast, bloom, grain, vignette and chromatic aberration on the managed PostProcessVolume. Applied and read back by `apply_lighting`; contrast is checked as the shader's `xyz*w` product. |
+| `grade.shadows` | `{saturation, gain[3]}` | **Optional (v1.32).** Shadow-range colour grading: saturation in [0, 2], gain per channel in [0, 2]. Written as `xyz*w` products (`PostProcessCombineLUTs.usf:100,111-114`) and read back. When it is absent, `apply_lighting` CLEARS both shadow overrides on the reused volume and checks they read `[False, False]`. |
 
 ### `capture`
 | Key | Type | Notes |
@@ -593,6 +602,7 @@ validation error rather than an ignored field:
 |-----|------|-------|
 | `density_per_10m2` | float | Engine unit, passed through unchanged. NOT converted from `density_per_hectare`, and grass does NOT draw from the persistent-instance budget — nothing is stored, so there is nothing to cap. |
 | `cull_distance_m` | float | End cull distance, (0, 512] m. Start cull is derived at 75% of it. **AMENDED 2026-09-27 (Brief 7 P3b):** the ceiling was 250 m; it is now the 512 m streaming range, and the validator adds a GRASS DISC GUARD -- `pi*cull^2*density_per_10m2/10 <= 150,000` instances -- because the GPU-hang class the ceiling guards is a count, not a distance (Meadow at its ruled 50 m / 120 is 94,248). A far tier such as `MeadowFar` (512 m, 0.6 per 10 m2 = 49,400) is what the raise is for. |
+| `street_keep_channel` | "G" \| "B" | **Optional (2026-10-10b), grass only; absent = "G".** Which `material.street_overlay` mask channel excludes this species from the town: G (streets + `grass_margin_m`) or B (+ `boulder_margin_m`, for species whose footprint reaches far past their spawn point, e.g. MeadowBoulders). Anything else refuses; "B" without `boulder_margin_m` refuses. Read back per input from the material build (`grass_keep_channels`). |
 
 `weight_share` is meaningless for `grass` and must be absent: there is no
 shared instance budget to take a share of. `place_foliage.py` skips
@@ -1320,17 +1330,36 @@ recipe**; not loaded by `landscape_spec.load_recipe`. Read by
 
 | key | type | meaning |
 |---|---|---|
-| `core_radius_m` | float | inner ring radius |
+| `layout` | `"lattice"` \| `"organic"` | optional, default `"lattice"` (2026-10-10). Lattice = ring-and-spoke (rows marked L). Organic = `scripts/city_organic.py`, configured by `organic` below. |
+| `core_radius_m` | float | L: inner ring radius. Read, no effect under organic. |
 | `extent_radius_m` | float | how far the town MAY reach; the pad gates decide the real edge |
-| `ring_count` | int | **the real extent**: plots exist only between rings |
-| `ring_spacing_m` | float | |
-| `spoke_count` | int | radial streets |
-| `candidates_per_plot` | int | placement attempts per plot |
-| `street_width_m` | float | |
-| `max_street_slope_deg` | float | **END-TO-END GRADE**, not roughness — see R-CITY REJECTED |
-| `max_street_cut_fill_m` | float | max deviation of ground from the straight run |
-| `street_join_tol_m` | float | centrelines within this are one network |
+| `ring_count` | int | L: **the real extent**: plots exist only between rings. No effect under organic. |
+| `ring_spacing_m` | float | L only |
+| `spoke_count` | int | L: radial streets. No effect under organic. |
+| `candidates_per_plot` | int | L: placement attempts per plot. No effect under organic. |
+| `street_width_m` | float | L only (organic widths: `organic.widths_m`) |
+| `max_street_slope_deg` | float | **END-TO-END GRADE**, not roughness — see R-CITY REJECTED. Both layouts. |
+| `max_street_cut_fill_m` | float | max deviation of ground from the straight run. Both layouts. |
+| `street_gate_sample_m` | float | optional (2026-10-10e). Profile sample SPACING for the street gate (≥ 15 points). Absent = legacy fixed 15 points, which undersamples pieces longer than ~7 m on the 1 m heightmap. |
+| `street_join_tol_m` | float | L: centrelines within this are one network. Organic joins per pair at the mean of the two widths. |
 | `plaza_radius_m` | float | open centre; no buildings inside |
+| `organic` | object | required when `layout` is `"organic"`. Every key is read by `city_organic.py`; none has a default. |
+| `organic.cell_m` | float | A* grid cell |
+| `organic.main_roads` / `lanes` / `alleys` | int | how many of each to try |
+| `organic.lane_len_m` / `alley_len_m` | [min, max] | straight-line reach of a branch target |
+| `organic.road_reuse_discount` | float | cost multiplier on cells already road (merge into trunks) |
+| `organic.slope_cost_k` | float | step cost = L·(1 + k·(grade/bar)²) |
+| `organic.widths_m` | {main, lane, alley} | street widths by tier |
+| `organic.segment_max_m` | float | straight piece length cap |
+| `organic.setback_m` / `frontage_gap_m` / `open_lot_m` | [min, max] | lot geometry along a street |
+| `organic.open_lot_chance` | float | probability a lot stays empty |
+| `organic.squares` / `square_radius_m` / `square_min_from_plaza_edge_m` / `square_min_spacing_m` | int / float | open squares at lane/alley junctions |
+| `organic.branch_centre_bias_m` | float | branch origins weighted exp(−d/this) toward the plaza |
+| `organic.rim_radius_frac` / `rim_samples` / `rim_sector_span` | float / int / [start, span] | main-road gate placement on the rim |
+| `organic.min_branch_cells` | int | shortest branch path, in cells |
+| `organic.max_detours` | int | local detours per run around a failing piece; past it the run is truncated there (a failing piece never becomes street) |
+| `organic.street_clearance_m` | float | oriented gap between a house and any street slab |
+| `organic.min_frontage_chain_m` | float | no lots along a shorter surviving run |
 
 ### `buildings`
 
@@ -1340,10 +1369,17 @@ recipe**; not loaded by `landscape_spec.load_recipe`. Read by
 | `aspect_max` | float | |
 | `height_m` | {centre,edge} | falls outward |
 | `storey_m` | float | heights snap to this |
-| `gap_min_m` | float | |
+| `gap_min_m` | float | house-to-house spacing, both layouts |
 | `max_pad_cut_fill_m` | float | a pad needing more is REFUSED, never floated or buried |
 | `max_pad_slope_deg` | float | |
 | `seed` | int | the plan is deterministic on this |
+| `place_only_near_streets` | bool | optional, default false. Reject a plot whose centre is further than `gates.max_building_to_street_m` from the pruned street network (`rejected.far_from_street`). It shares the function with the whole-town orphan gate, which then becomes a re-check rather than an independent measurement. Lattice only: read, no effect under `plan.layout` organic. |
+| `roof_servability.enabled` | bool | bias footprint draws toward sizes a whole kit roof fits |
+| `roof_servability.source` | `"kit_v2"` \| `"town_kit"` | optional, default `kit_v2` (span test, `Free/_measured/kit_medievalvillage_v2.json`). `town_kit` uses the BUILDER's fit (`scripts/town_kit_plan.py` over the usable roofs of `recipes/town_kit.json`), snaps sizes to the kit snap, requires `footprint_m` on the snap with every side tileable, and stamps `_roof_recipe`/`_roof_fit` and `roof_fit_source` into the plan. |
+| `roof_servability.tolerance` | float | fit tolerance under `kit_v2`. **Not read under `town_kit`**, where the builder's `roof_tol` is used. |
+| `roof_servability.bias` | float | fraction of draws taken from servable targets |
+| `roof_servability.jitter` | float | fraction of the tolerance band used when perturbing a target |
+| `roof_servability.landmark_compose_max` | int | **INERT: no script reads it** (found 2026-10-06). It is meant as the number of buildings that may compose a roof from other kit pieces. |
 
 ### `roofs`
 
@@ -1635,3 +1671,7 @@ and proven now so the rewire has a verified field to adopt. The persistence
 question the rewire must answer — bake the planting field to its own PNG for
 `place_foliage` to read, versus compute it inline — is left to that gated
 step; it is an implementation choice, not an ambiguity in this spec.
+
+## camera_solve (concept recipes, added 2026-10-10)
+
+Optional block on a `1.2-concept` recipe: `{sidecar, hfov_deg, vfov_deg, fx_px, principal_px, image_size_px, depth_m_p2_p98, valid_fraction, _what}` written from a MoGe-2 run (`_verify/20261010_camera_solve/`). It turns the concept's IMAGE-RELATIVE bearings into a usable field of view and metric depth per pixel; the bearing_deg fields stay image-relative until a bearing is checked against the site. Advice, not law (rule 9).

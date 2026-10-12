@@ -1,0 +1,183 @@
+{
+ "crop_rc": [
+  6332,
+  1428,
+  1064
+ ],
+ "streets": 371,
+ "discs": 5,
+ "houses": 349,
+ "crop_edge_alpha_max": 0.0,
+ "changed_vertices": 44173,
+ "protected_vertices": 19536,
+ "doorstep_abs_delta_m": {
+  "n": 349,
+  "p50": 0.041,
+  "p90": 0.121,
+  "max": 0.354
+ },
+ "doorstep_step_before_m": {
+  "n": 349,
+  "p50": 0.127,
+  "p90": 0.3,
+  "max": 0.983
+ },
+ "doorstep_step_after_m": {
+  "n": 349,
+  "p50": 0.13,
+  "p90": 0.28,
+  "max": 0.929
+ },
+ "doorstep_step_worsened_m": {
+  "n": 349,
+  "p50": 0.0,
+  "p90": 0.07,
+  "max": 0.245
+ },
+ "max_abs_delta_m": 3.594,
+ "chord_dev_before_m": {
+  "n": 371,
+  "p50": 0.378,
+  "p90": 0.827,
+  "max": 1.738
+ },
+ "chord_dev_after_m": {
+  "n": 371,
+  "p50": 0.103,
+  "p90": 0.289,
+  "max": 0.836
+ },
+ "house_edge_abs_delta_m": {
+  "n": 9329,
+  "p50": 0.0,
+  "p90": 0.039,
+  "max": 1.68
+ },
+ "house_edge_step_before_m": {
+  "n": 9329,
+  "p50": 0.088,
+  "p90": 0.234,
+  "max": 3.008
+ },
+ "house_edge_step_after_m": {
+  "n": 9329,
+  "p50": 0.088,
+  "p90": 0.234,
+  "max": 2.754
+ },
+ "house_edge_step_worsened_m": {
+  "n": 9329,
+  "p50": 0.0,
+  "p90": 0.0,
+  "max": 0.469
+ },
+ "vertices_made_steeper_than_bank": 0,
+ "already_steep_vertices_steepened": 12,
+ "already_steep_worst_deg": [
+  33.4,
+  39.2
+ ],
+ "slope_increase_on_changed_deg": {
+  "n": 44173,
+  "p50": -2.043,
+  "p90": 2.405,
+  "max": 19.803
+ },
+ "consumers_on_changed_ground": {
+  "foliage": {
+   "foliage/alpine_8k_Conifer.json": {
+    "instances": 230690,
+    "on_changed_ground": 0
+   },
+   "foliage/alpine_8k_ConiferPine.json": {
+    "instances": 172632,
+    "on_changed_ground": 0
+   },
+   "foliage/alpine_8k_SpruceSapling.json": {
+    "instances": 192531,
+    "on_changed_ground": 0
+   },
+   "foliage/alpine_8k_SpruceSub.json": {
+    "instances": 201647,
+    "on_changed_ground": 0
+   }
+  },
+  "foliage_total": 0,
+  "foliage_instances_checked": 797500,
+  "encounters": 0,
+  "encounters_checked": 307,
+  "water_centres": 0,
+  "water_checked": 288
+ },
+ "discs_detail": [
+  {
+   "centre_cm": [
+    -210800.0,
+    278800.0
+   ],
+   "r_m": 22.0,
+   "plane_slope_deg": 3.75,
+   "max_abs_delta_m": 0.714,
+   "shoulder_m": 3.0
+  },
+  {
+   "centre_cm": [
+    -196600.0,
+    277000.0
+   ],
+   "r_m": 9.0,
+   "plane_slope_deg": 1.86,
+   "max_abs_delta_m": 1.186,
+   "shoulder_m": 3.08
+  },
+  {
+   "centre_cm": [
+    -199160.0,
+    316520.0
+   ],
+   "r_m": 9.0,
+   "plane_slope_deg": 13.58,
+   "max_abs_delta_m": 0.667,
+   "shoulder_m": 3.0
+  },
+  {
+   "centre_cm": [
+    -209000.0,
+    284600.0
+   ],
+   "r_m": 9.0,
+   "plane_slope_deg": 6.02,
+   "max_abs_delta_m": 3.136,
+   "shoulder_m": 8.15
+  },
+  {
+   "centre_cm": [
+    -221800.0,
+    283800.0
+   ],
+   "r_m": 9.0,
+   "plane_slope_deg": 7.39,
+   "max_abs_delta_m": 0.276,
+   "shoulder_m": 3.0
+  }
+ ],
+ "pieces_widened": 50,
+ "max_shoulder_m": 8.59,
+ "fails": [],
+ "cfg": {
+  "pre_source": "terrain/alpine_8k_prestreets.png",
+  "pre_source_sha256": "13789791538d20a6ab061ef4ea87d2c82b74d207dd892f890eadb6e986724e84",
+  "sigma_m": 4.0,
+  "shoulder_m": 3.0,
+  "bank_max_deg": 30.0,
+  "guard_m": 0.5,
+  "house_fade_m": 1.0,
+  "door_apron_m": 3.0,
+  "max_abs_delta_m": 4.0,
+  "doorstep_max_m": 0.3,
+  "house_edge_step_max_m": 0.5,
+  "changed_threshold_cm": 2.0,
+  "crop_margin_m": 20.0
+ },
+ "write": true
+}

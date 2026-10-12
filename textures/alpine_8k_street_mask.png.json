@@ -1,0 +1,46 @@
+{
+ "_produced_by": "scripts/build_street_mask.py",
+ "_recipe": "recipes/alpine_8k.json",
+ "_city_plan": "city/alpine_basin_town_plan.json",
+ "_kit_manifest": "city/alpine_basin_town_kit_manifest.json",
+ "inputs_sha16": {
+  "city/alpine_basin_town_plan.json": "68667a6b24670b8e",
+  "city/alpine_basin_town_kit_manifest.json": "d74e1fa06f49cbb0",
+  "Free/_measured/meadow_boulder_reach.json": "a53b4959f8323535"
+ },
+ "boulder_reach_m": 9.704,
+ "boulder_probe_m": 11.618,
+ "box_cm": [
+  -261556.0,
+  228826.3,
+  102400.0
+ ],
+ "px": 4096,
+ "row0": "min-Y edge of the box (V grows with world Y)",
+ "channels": {
+  "R": "cobble",
+  "G": "grass exclusion",
+  "B": "large-grass (boulder) exclusion, >= G",
+  "A": "reserved 0"
+ },
+ "feather_m": 0.35,
+ "house_margin_m": 0.5,
+ "grass_margin_m": 0.75,
+ "boulder_margin_m": 12.25,
+ "border_px": 2,
+ "exclude_grass_in_houses": true,
+ "box_m": 1024.0,
+ "coverage_pct_over_half": {
+  "R": 2.734,
+  "G": 5.333,
+  "B": 16.902
+ },
+ "gate_counts": {
+  "centreline_samples": 9840,
+  "house_centres": 349,
+  "outside_probes": 589,
+  "border_values": 131072,
+  "b_ge_g_pixels": 16777216,
+  "boulder_probes": 1091
+ }
+}

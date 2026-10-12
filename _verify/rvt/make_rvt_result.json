@@ -1,0 +1,67 @@
+{
+ "ok": true,
+ "assets": [
+  {
+   "path": "/Game/Alpine8K_RVT/RVT_Alpine8K_Color",
+   "readback": {
+    "material_type": "<RuntimeVirtualTextureMaterialType.BASE_COLOR_NORMAL_ROUGHNESS: 2>",
+    "tile_size": 2,
+    "tile_count": 12,
+    "compress": true,
+    "size_px": 1048576
+   },
+   "ok": true
+  },
+  {
+   "path": "/Game/Alpine8K_RVT/RVT_Alpine8K_Height",
+   "readback": {
+    "material_type": "<RuntimeVirtualTextureMaterialType.WORLD_HEIGHT: 6>",
+    "tile_size": 2,
+    "tile_count": 9,
+    "compress": true,
+    "size_px": 131072
+   },
+   "ok": true
+  }
+ ],
+ "volumes": [
+  {
+   "tag": "LL_RVT8K_Color",
+   "label": "LL_RVT8K_Color",
+   "location": [
+    -406400.0,
+    -406400.0,
+    0.0
+   ],
+   "scale": [
+    812800.0,
+    812800.0,
+    160000.0
+   ],
+   "rvt": "/Game/Alpine8K_RVT/RVT_Alpine8K_Color.RVT_Alpine8K_Color",
+   "ok": true
+  },
+  {
+   "tag": "LL_RVT8K_Height",
+   "label": "LL_RVT8K_Height",
+   "location": [
+    -406400.0,
+    -406400.0,
+    0.0
+   ],
+   "scale": [
+    812800.0,
+    812800.0,
+    160000.0
+   ],
+   "rvt": "/Game/Alpine8K_RVT/RVT_Alpine8K_Height.RVT_Alpine8K_Height",
+   "ok": true
+  }
+ ],
+ "landscape": {
+  "parent": true,
+  "proxies": 256,
+  "proxies_ok": 256,
+  "render_pass_type": "<RuntimeVirtualTextureMainPassType.ALWAYS: 2>"
+ }
+}

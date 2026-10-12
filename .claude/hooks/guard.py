@@ -579,7 +579,88 @@ def rule_commit_claims(data):
     allow()
 
 
+HELP_RE = re.compile(r"\bpython[0-9.]*(?:\.exe)?\s+[\"']?([^\s\"'|;&]+\.py)[\"']?"
+                     r"([^|;&\n]*)")
+
+
+def rule_help_runs_script(data):
+    """`--help` on a script with no argparse RUNS the script.
+
+    Added 2026-10-06 after the SECOND cost in one session:
+    `draw_city_plan.py --help` redrew and overwrote a git-ignored evidence PNG,
+    the lesson was logged (LESSONS 2026-10-06u), and minutes later
+    `gen_doc_tocs.py --help` rewrote the RECIPES/LESSONS TOCs. A lesson that
+    depends on remembering to read the head first did not fire; this does.
+
+    DISCRIMINATOR: `python <file>.py ... --help|-h` where the file exists and
+    contains neither `argparse` nor a literal `--help`. Unopenable or
+    non-repo files pass (nothing to read; a documented limit).
+    """
+    require_input(data, "command")
+    cmd = data["tool_input"]["command"]
+    for m in HELP_RE.finditer(cmd):
+        script, rest = m.group(1), m.group(2)
+        if not re.search(r"(^|\s)(--help|-h)(\s|$)", rest):
+            continue
+        path = script if os.path.isabs(script) else os.path.join(
+            data.get("cwd") or REPO_ROOT, script)
+        try:
+            with open(path, "r", encoding="utf-8", errors="replace") as fh:
+                src = fh.read()
+        except OSError:
+            continue
+        if "argparse" not in src and "--help" not in src:
+            deny(
+                "--help WOULD RUN THIS SCRIPT: {0} has no argparse and no "
+                "--help handling, so the flag is ignored and the script "
+                "executes with its defaults.\n"
+                "Cost twice on 2026-10-06: draw_city_plan.py --help overwrote "
+                "a git-ignored _verify/ PNG; gen_doc_tocs.py --help rewrote "
+                "the doc TOCs.\nRead the file's docstring instead (Read tool, "
+                "first 40 lines).".format(script))
+    allow()
+
+
+AUDIT_ROOTS = (("REPO_ROOT:", "C:\\Users\\Admin\\UE5LandscapePipeline"),
+               ("UE_PROJECT_ROOT:", "C:\\Users\\Admin\\UE5LandscapePipeline\\LandscapeLab"))
+
+
+def rule_audit_roots(data):
+    """An `auditor` subagent request must state BOTH roots, verbatim.
+
+    Added 2026-10-11 after the THIRD blocked audit for the same omission
+    (LESSONS 36809, 37008, 2026-10-11e): the auditor's contract refuses to
+    infer scope from the code under audit, and the lesson that roots go in
+    every request did not fire. A line the auditor will refuse without is a
+    line the harness can check before the agent is even spawned.
+
+    DISCRIMINATOR: tool_input.subagent_type == "auditor" and the prompt lacks
+    a line starting `REPO_ROOT:` or `UE_PROJECT_ROOT:` followed by the exact
+    root path (case-insensitive, slash-agnostic). Other agent types pass.
+    """
+    ti = require_input(data, "any")
+    if str(ti.get("subagent_type", "")).strip().lower() != "auditor":
+        allow()
+    prompt = ti.get("prompt")
+    if not isinstance(prompt, str) or not prompt.strip():
+        deny("audit-roots: auditor request with no string prompt.")
+    lines = [ln.strip().replace("/", "\\").lower() for ln in prompt.splitlines()]
+    missing = []
+    for key, root in AUDIT_ROOTS:
+        want = (key + " " + root).lower()
+        if not any(ln == want or ln.startswith(want + " ") for ln in lines):
+            missing.append(key + " " + root)
+    if missing:
+        deny("AUDIT ROOTS MISSING: an auditor request must state both roots, "
+             "each on its own line, verbatim:\n  " + "\n  ".join(missing) +
+             "\nThe auditor BLOCKS without them (three times: LESSONS 36809, "
+             "37008, 2026-10-11e).")
+    allow()
+
+
 RULES = {
+    "audit-roots": rule_audit_roots,
+    "help-runs-script": rule_help_runs_script,
     "commit-claims": rule_commit_claims,
     "heredoc-escapes": rule_heredoc_escapes,
     "commit-file": rule_commit_file,

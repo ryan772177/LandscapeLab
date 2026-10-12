@@ -1,0 +1,26 @@
+{
+ "_produced_by": "scripts/flatten_streets.py",
+ "pre_source": "terrain/alpine_8k_prestreets.png",
+ "pre_source_sha256": "13789791538d20a6ab061ef4ea87d2c82b74d207dd892f890eadb6e986724e84",
+ "out_sha256": "54778a8bfda392be6f4394367b65d0957e62754e76c7b81448d5575f24e99c7d",
+ "inputs_sha16": {
+  "city/alpine_basin_town_plan.json": "f6244997bfe39a13",
+  "city/alpine_basin_town_kit_manifest.json": "b4ba6fa1d396f337"
+ },
+ "cfg": {
+  "pre_source": "terrain/alpine_8k_prestreets.png",
+  "pre_source_sha256": "13789791538d20a6ab061ef4ea87d2c82b74d207dd892f890eadb6e986724e84",
+  "sigma_m": 4.0,
+  "shoulder_m": 3.0,
+  "bank_max_deg": 30.0,
+  "guard_m": 0.5,
+  "house_fade_m": 1.0,
+  "door_apron_m": 3.0,
+  "max_abs_delta_m": 4.0,
+  "doorstep_max_m": 0.3,
+  "house_edge_step_max_m": 0.5,
+  "changed_threshold_cm": 2.0,
+  "crop_margin_m": 20.0
+ },
+ "report": "_verify/streets_flatten/flatten_report.json"
+}

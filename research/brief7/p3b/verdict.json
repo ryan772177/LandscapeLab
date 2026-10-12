@@ -1,21 +1,26 @@
 {
- "started": "2026-09-28T00:02:50",
+ "started": "2026-09-30T16:38:31",
  "phases": {
   "guard": {
    "rc": 0,
-   "tail": "REPO_ROOT : C:\\Users\\Admin\\UE5LandscapePipeline\nlock file : C:\\Users\\Admin\\UE5LandscapePipeline\\.heavy-op.lock\nmemory    : 22.6 GB free of 31.4 GB\nheld by   : nobody"
+   "tail": "REPO_ROOT : C:\\Users\\Admin\\UE5LandscapePipeline\nlock file : C:\\Users\\Admin\\UE5LandscapePipeline\\.heavy-op.lock\nmemory    : 20.9 GB free of 31.4 GB\nheld by   : nobody"
   },
   "launch": {
    "pids": [
-    26164
+    24364
    ],
-   "ready_s": 64
+   "ready_s": 663
+  },
+  "shader_quiet": {
+   "quiet_samples": 4,
+   "shader_workers": 0,
+   "waited_s": 140
   },
   "ram_settle": {
-   "free_gb": 0.88,
+   "free_gb": 3.38,
    "shader_workers": 0,
-   "editor_ws_gb": 18.91,
-   "waited_s": 2
+   "editor_ws_gb": 17.27,
+   "waited_s": 141
   },
   "level_check": {
    "ok": true,
@@ -57,7 +62,7 @@
  },
  "aborted": null,
  "notes": [
-  "stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 0.82 GB"
+  "stills-only: RAM settle gate NOT applied (Alpine8K editor ~25 GB private by measurement); free 3.61 GB"
  ],
  "mode": {
   "offscreen": false,
@@ -65,7 +70,7 @@
   "skip_perf": true,
   "build_map": null
  },
- "fence_tag": "pre-p3b-clutter-20260927",
+ "fence_tag": "pre-p4-stills-20260930",
  "pre_shas": {
   "LandscapeLab/Content/Materials/M_Alpine8K.uasset": "6fadc78a410475457425d436b811319ed04e9155",
   "LandscapeLab/Content/Foliage/GT_alpine_8k_Meadow.uasset": "c76a5b4c0c2d9d027c1aae07a235f4918b138540",

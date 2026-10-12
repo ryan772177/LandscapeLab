@@ -12,6 +12,9 @@ Content. /Engine/ references are the engine's and are reported, not required.
 Exit 0 = fully resolved. Exit 5 = at least one dangling reference.
 Exit 6 = nothing was scanned (empty or missing intake roots) -- "no dangling
 references" over zero checks is not closure.
+Exit 7 = an intake manifest is empty, disagrees with its declared package
+count, or lists a package that is not on disk (2026-10-08: every package in
+every Free/_measured/kit_medievalvillage*_closure.json is scanned too).
 """
 import io
 import os
@@ -64,6 +67,33 @@ def main():
             for fn in fns:
                 if fn.endswith(".uasset"):
                     files.append(os.path.join(dp, fn))
+    # 2026-10-08: the third intake landed OUTSIDE these roots (Meshes/Fences, Meshes/Well, PhysMat, ...). Every
+    # package an intake MANIFEST records is scanned as well, so a new intake is covered by its own manifest
+    # instead of by remembering to extend ROOTS (non-negotiable 24). A listed package missing on disk counts.
+    import json as _json
+    import glob as _glob
+    seen = set(os.path.normcase(f) for f in files)
+    missing_listed = []
+    for mp in sorted(_glob.glob(os.path.join(REPO, "Free", "_measured", "kit_medievalvillage*_closure.json"))):
+        doc = _json.load(io.open(mp, encoding="utf-8"))
+        rows = doc.get("files") or []
+        declared = doc.get("packages")
+        # rule 13 (audit 2026-10-08 F4): each manifest's row count printed; empty or disagreeing refuses
+        print("  manifest %-40s %4d rows (declares %s)" % (os.path.basename(mp), len(rows), declared))
+        if not rows or (declared is not None and int(declared) != len(rows)):
+            print("  REFUSE: %s has %d rows against a declared %s" % (os.path.basename(mp), len(rows), declared))
+            return 7
+        for row in rows:
+            f = [disk_of(row["package"], e) for e in (".uasset", ".umap")
+                 if os.path.isfile(disk_of(row["package"], e))]
+            if not f:
+                missing_listed.append(row["package"])
+            elif os.path.normcase(f[0]) not in seen:
+                seen.add(os.path.normcase(f[0]))
+                files.append(f[0])
+    if missing_listed:
+        print("  MANIFEST PACKAGES MISSING ON DISK: %d, first %s" % (len(missing_listed), missing_listed[:5]))
+        return 7
 
     dangling, checked, resolved, engine_refs = {}, 0, 0, set()
     source_ids = {}
@@ -142,9 +172,8 @@ def main():
     print("  * that the meshes RENDER correctly -- R-ASSET step 6 is a spawn")
     print("    and a render, and step 7 says verified-in-engine flips only then")
     print("  * that the 5.3 -> 5.8 version step is clean beyond loading")
-    print("  * that every EXPECTED module is PRESENT -- this checks that the")
-    print("    references in what IS here resolve, not that nothing is missing")
-    print("    from the kit (no measured-manifest cross-check yet)")
+    print("  * that the copied bytes are UNCHANGED -- every manifest-listed package")
+    print("    is checked for PRESENCE, but its SHA-256 is not re-hashed here")
     return 0
 
 
